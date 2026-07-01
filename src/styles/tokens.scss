@@ -1,0 +1,54 @@
+// 設計 token。顏色走 CSS 變數（支援深色主題切換），結構性數值走 SCSS 變數。
+
+$radius-sm: 8px;
+$radius: 12px;
+$radius-lg: 18px;
+$maxw: 900px;
+
+$mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+$sans:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  "Noto Sans TC",
+  "PingFang TC",
+  "Microsoft JhengHei",
+  sans-serif;
+
+// 難度 → (亮色, 對應的淺背景 token 名)
+$difficulties: easy, medium, hard;
+
+@mixin card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+@mixin lift {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-strong);
+}
+
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+  border-color: var(--accent);
+}
+
+@mixin pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}

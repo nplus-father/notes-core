@@ -1,0 +1,25 @@
+# 發布 @nplus-father/notes-core 到 GitHub Packages。
+# 觸發：推 v* tag（如 v0.1.0）或手動。版本以 package.json 為準，tag 僅作觸發。
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "latest"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@nplus-father"
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

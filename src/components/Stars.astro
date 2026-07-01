@@ -1,0 +1,13 @@
+---
+interface Props {
+  value: number;
+}
+const { value } = Astro.props;
+const full = Math.max(0, Math.min(5, value));
+---
+
+<span class="stars" title={`重要性 ${full}/5`} aria-label={`importance ${full} of 5`}>
+  <span class="stars-full">{"★".repeat(full)}</span><span class="stars-empty"
+    >{"★".repeat(5 - full)}</span
+  >
+</span>
