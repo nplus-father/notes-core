@@ -7,17 +7,19 @@ export interface Site {
   key: string; // seeAlso 用的短鍵（= slug 去掉 -note），亦即跨站連結的識別子
   slug: string; // GitHub repo 名 = nplus.wiki 子路徑（如 system-design-note）
   brand: string; // 英文顯示名（topnav / 站縮圖 cover.svg）
+  label: string; // 中文短名（跨站連結 siteLabel）
   ns: string; // 複習紀錄 localStorage 前綴，各站唯一
 }
 
+// 注意：key 一律 = slug 去掉 -note（如 leetcode-note → leetcode），跨站 URL 才組得對。
 export const sites: Site[] = [
-  { key: "system-design", slug: "system-design-note", brand: "SysDesign Notes", ns: "sd" },
-  { key: "data-systems", slug: "data-systems-note", brand: "Data Systems Notes", ns: "ds" },
-  { key: "cloud-infra", slug: "cloud-infra-note", brand: "Cloud-Infra Notes", ns: "ci" },
-  { key: "clean-code", slug: "clean-code-note", brand: "Clean Code Notes", ns: "cc" },
-  { key: "design-patterns", slug: "design-patterns-note", brand: "Design Patterns Notes", ns: "dp" },
-  { key: "leet-code", slug: "leet-code-note", brand: "LeetKode", ns: "lk" },
-  { key: "behaviour-interview", slug: "behaviour-interview-note", brand: "Behaviour Interview Notes", ns: "bi" },
+  { key: "system-design", slug: "system-design-note", brand: "SysDesign Notes", label: "系統設計", ns: "sd" },
+  { key: "data-systems", slug: "data-systems-note", brand: "Data Systems Notes", label: "資料系統", ns: "ds" },
+  { key: "cloud-infra", slug: "cloud-infra-note", brand: "Cloud-Infra Notes", label: "雲端維運", ns: "ci" },
+  { key: "clean-code", slug: "clean-code-note", brand: "Clean Code Notes", label: "程式碼工藝", ns: "cc" },
+  { key: "design-patterns", slug: "design-patterns-note", brand: "Design Patterns Notes", label: "設計模式", ns: "dp" },
+  { key: "leetcode", slug: "leetcode-note", brand: "LeetKode", label: "LeetCode", ns: "lk" },
+  { key: "behaviour-interview", slug: "behaviour-interview-note", brand: "Behaviour Interview Notes", label: "行為面試", ns: "bi" },
   // __NEW_SITE__ (new-note.sh 會在此行前插入新站)
 ];
 
