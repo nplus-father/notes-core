@@ -124,3 +124,51 @@
   }
 }
 
+
+/* 書架縮圖：用書 repo 的 cover.png（single source of truth） */
+.cover-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.cover-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 132px;
+  color: var(--text);
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    .cover-img {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .cover-cap {
+      color: var(--accent);
+    }
+  }
+}
+.cover-img {
+  width: 132px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.cover-cap {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--muted);
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

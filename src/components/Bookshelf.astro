@@ -24,10 +24,24 @@ const {
         <h2>{heading}</h2>
         <span class="bookshelf-note">{note}</span>
       </div>
-      <div class="bookshelf-row">
+      <div class="cover-row">
         {books.map((b) => (
-          <a class="book-spine" href={`https://nplus.wiki/${b.slug}/`} target="_blank" rel="noopener">
-            <span class="book-spine-title">{b.title}</span>
+          <a
+            class="cover-item"
+            href={`https://nplus.wiki/${b.slug}/`}
+            target="_blank"
+            rel="noopener"
+            title={b.title}
+          >
+            <img
+              class="cover-img"
+              src={`https://nplus.wiki/${b.slug}/cover.png`}
+              alt={b.title}
+              loading="lazy"
+              width="132"
+              height="190"
+            />
+            <span class="cover-cap">{b.title}</span>
           </a>
         ))}
       </div>
