@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：withBase、複習紀錄 factory、remark-details 外掛、設計 token、Stars 元件。",
   "type": "module",
   "license": "MIT",
@@ -14,8 +14,12 @@
   "exports": {
     ".": "./src/index.ts",
     "./remark-details": "./src/plugins/remark-details.mjs",
+    "./remark-response": "./src/plugins/remark-response.mjs",
     "./styles/tokens.scss": "./src/styles/tokens.scss",
-    "./Stars.astro": "./src/components/Stars.astro"
+    "./styles/two-block.scss": "./src/styles/two-block.scss",
+    "./Stars.astro": "./src/components/Stars.astro",
+    "./SourceByline.astro": "./src/components/SourceByline.astro",
+    "./Bookshelf.astro": "./src/components/Bookshelf.astro"
   },
   "sideEffects": [
     "*.scss"

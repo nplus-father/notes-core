@@ -1,0 +1,36 @@
+---
+// 首頁「參考書架」：一眼看出本站彙整自哪些 owned books（書的歸屬放首頁，
+// 各主題頁內文就不必逐段標書名）。books 由各站 src/data/books.ts 提供。
+interface Book {
+  slug: string;
+  title: string;
+}
+interface Props {
+  books: Book[];
+  heading?: string;
+  note?: string;
+}
+const {
+  books,
+  heading = "📚 本站彙整自這些書",
+  note = "內容以這些線上書為源，逐頁溯源",
+} = Astro.props;
+---
+
+{
+  books.length > 0 && (
+    <section class="bookshelf">
+      <div class="bookshelf-head">
+        <h2>{heading}</h2>
+        <span class="bookshelf-note">{note}</span>
+      </div>
+      <div class="bookshelf-row">
+        {books.map((b) => (
+          <a class="book-spine" href={`https://nplus.wiki/${b.slug}/`} target="_blank" rel="noopener">
+            <span class="book-spine-title">{b.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
