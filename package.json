@@ -13,6 +13,7 @@
   ],
   "exports": {
     ".": "./src/index.ts",
+    "./sites": "./src/lib/sites.ts",
     "./remark-details": "./src/plugins/remark-details.mjs",
     "./remark-response": "./src/plugins/remark-response.mjs",
     "./styles/tokens.scss": "./src/styles/tokens.scss",
