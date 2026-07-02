@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：版面（layouts / components / global.scss）、內容 schema factory、withBase、複習紀錄 factory、remark 外掛、設計 token。",
   "type": "module",
   "license": "MIT",
@@ -9,11 +9,17 @@
     "url": "git+https://github.com/nplus-father/notes-core.git"
   },
   "files": [
-    "src"
+    "src",
+    "tsconfig.base.json",
+    "eslint.config.js",
+    "prettier.config.json"
   ],
   "exports": {
     ".": "./src/index.ts",
     "./sites": "./src/lib/sites.ts",
+    "./tsconfig.base.json": "./tsconfig.base.json",
+    "./eslint": "./eslint.config.js",
+    "./prettier": "./prettier.config.json",
     "./remark-details": "./src/plugins/remark-details.mjs",
     "./remark-response": "./src/plugins/remark-response.mjs",
     "./content": "./src/content.ts",
@@ -45,6 +51,12 @@
   },
   "peerDependencies": {
     "astro": ">=5"
+  },
+    "//devDependencies": "eslint 共用設定所需外掛。消費站以 github: 安裝時 npm 略過本 devDependencies，改由消費站自己 devDependencies 就地解析；此處僅供 file: 連結開發時用。",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "typescript-eslint": "^8.62.1",
+    "eslint-plugin-astro": "^2.1.1"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
