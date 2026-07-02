@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/url";
+import { site } from "virtual:notes-core/site";
+
+// Pagefind 資源在 build 後輸出到 <base>/pagefind/。base 路徑要一起帶上。
+const pagefindUiCss = withBase("pagefind/pagefind-ui.css");
+const pagefindUiJs = withBase("pagefind/pagefind-ui.js");
+const bundlePath = withBase("pagefind/");
+const placeholder = site.searchPlaceholder ?? "搜尋筆記…";
+const searchLede = site.searchLede ? site.searchLede.replaceAll("{base}", withBase("/")) : "";
+---
+
+<BaseLayout title={`全文搜尋 · ${site.brand}`} site={site}>
+  <header class="page-head">
+    <h1>全文搜尋</h1>
+    {
+      searchLede ? (
+        <p class="lede" set:html={searchLede} />
+      ) : (
+        <p class="lede">搜尋各頁的<strong>內文</strong>。可用右側篩選縮小分類。</p>
+      )
+    }
+  </header>
+
+  <div id="search" class="pf-search"></div>
+
+  <p id="pf-fallback" class="muted" hidden>
+    搜尋索引尚未產生。索引在 <code>npm run build</code> 時建立，請用
+    <code>npm run build &amp;&amp; npm run preview</code> 後再瀏覽此頁（<code>astro dev</code> 不會載入索引）。
+  </p>
+
+  <link href={pagefindUiCss} rel="stylesheet" />
+  <script is:inline src={pagefindUiJs}></script>
+  <script define:vars={{ bundlePath, placeholder }}>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (typeof PagefindUI === "undefined") {
+        document.getElementById("pf-fallback")?.removeAttribute("hidden");
+        return;
+      }
+      new PagefindUI({
+        element: "#search",
+        bundlePath,
+        showSubResults: true,
+        showImages: false,
+        pageSize: 8,
+        excerptLength: 24,
+        translations: {
+          placeholder,
+          clear_search: "清除",
+          load_more: "載入更多結果",
+          search_label: "搜尋筆記",
+          filters_label: "篩選",
+          zero_results: "找不到 [SEARCH_TERM] 的結果",
+          many_results: "找到 [COUNT] 筆 [SEARCH_TERM] 的結果",
+          one_result: "找到 [COUNT] 筆 [SEARCH_TERM] 的結果",
+          alt_search: "找不到 [SEARCH_TERM]，改顯示 [DIFFERENT_TERM] 的結果",
+          search_suggestion: "找不到 [SEARCH_TERM]，試試以下搜尋：",
+          searching: "搜尋 [SEARCH_TERM] 中…",
+        },
+      });
+    });
+  </script>
+</BaseLayout>

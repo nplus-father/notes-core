@@ -1,0 +1,8 @@
+---
+interface Props {
+  difficulty: "Easy" | "Medium" | "Hard";
+}
+const { difficulty } = Astro.props;
+---
+
+<span class={`pill diff-${difficulty.toLowerCase()}`}>{difficulty}</span>

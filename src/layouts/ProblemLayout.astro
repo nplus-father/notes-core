@@ -1,0 +1,133 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import DifficultyPill from "../components/DifficultyPill.astro";
+import Stars from "../components/Stars.astro";
+import StatusBadge from "../components/StatusBadge.astro";
+import FurtherReading from "../components/FurtherReading.astro";
+import SourceByline from "../components/SourceByline.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+import RecallToolbar from "../components/RecallToolbar.astro";
+import RelatedList from "../components/RelatedList.astro";
+import PrevNext from "../components/PrevNext.astro";
+import { withBase } from "../lib/url";
+import { bareSlug, bySlug } from "../lib/collections";
+import type { SiteConfig } from "../lib/site-config";
+
+interface Props {
+  entry: any;
+  allProblems: any[];
+  allConcepts: any[];
+  domainBySlug: Map<string, { slug: string; name: string; icon: string }>;
+  categoryBySlug: Map<string, { icon: string }>;
+  site: SiteConfig;
+}
+const { entry, allProblems, allConcepts, domainBySlug, categoryBySlug, site } = Astro.props;
+const d = entry.data;
+const domain = domainBySlug.get(d.domain);
+const slug = bareSlug(entry.id);
+
+// 練到的概念 chips
+const conceptBySlug = bySlug(allConcepts);
+const conceptChips = d.concepts.map((s: string) => {
+  const t = conceptBySlug.get(s);
+  const cat = t ? categoryBySlug.get(t.data.category) : null;
+  return t
+    ? {
+        slug: s,
+        title: t.data.title,
+        icon: cat?.icon ?? "🧩",
+        href: withBase(`concepts/${t.id}/`),
+      }
+    : { slug: s, title: s, icon: "🧩", href: null };
+});
+
+// related problems
+const problemBySlug = bySlug(allProblems);
+const related = d.related.map((s: string) => {
+  const t = problemBySlug.get(s);
+  return t ? { slug: s, title: t.data.title, href: withBase(`problems/${t.id}/`) } : { slug: s };
+});
+
+// 同 domain 上一題 / 下一題
+const sameDomain = allProblems
+  .filter((p: any) => p.data.domain === d.domain)
+  .sort((a: any, b: any) => a.data.title.localeCompare(b.data.title));
+const idx = sameDomain.findIndex((p: any) => p.id === entry.id);
+const prev = idx > 0 ? sameDomain[idx - 1] : null;
+const next = idx >= 0 && idx < sameDomain.length - 1 ? sameDomain[idx + 1] : null;
+const nav = (p: any) => ({ href: withBase(`problems/${p.id}/`), title: p.data.title });
+const problemLabel = site.problemLabel ?? "題庫";
+---
+
+<BaseLayout title={`${d.title} · ${site.titleBase}${site.problemSuffix ?? "題"}`} site={site}>
+  <nav class="crumbs">
+    <a href={withBase("/problems/")}>{problemLabel}</a>
+    <span>/</span>
+    {
+      domain ? (
+        <span>
+          {domain.icon} {domain.name}
+        </span>
+      ) : (
+        <span>{d.domain}</span>
+      )
+    }
+  </nav>
+
+  <header class="prob-head">
+    <h1>{d.title}</h1>
+    <div class="prob-meta">
+      <DifficultyPill difficulty={d.difficulty} />
+      <Stars value={d.importance} />
+      <StatusBadge status={d.status} />
+    </div>
+  </header>
+
+  <SourceByline items={d.furtherReading} />
+
+  {
+    conceptChips.length > 0 && (
+      <div class="pat-chips">
+        <span class="pat-chips-label">練到的概念</span>
+        {conceptChips.map((c: any) =>
+          c.href ? (
+            <a class="pat-chip" href={c.href}>
+              {c.icon} {c.title}
+            </a>
+          ) : (
+            <span class="pat-chip muted">
+              {c.icon} {c.title}
+            </span>
+          )
+        )}
+      </div>
+    )
+  }
+
+  <RecallToolbar ns={site.ns} itemKey={`p:${slug}`} seedLast={d.lastReviewed ?? ""} />
+
+  <p class="recall-hint">慣例：先讀「需求與約束」、自己畫一版設計，再展開「參考架構」對照。</p>
+
+  <p class="block-eyebrow book-eyebrow">📚 書籍彙整</p>
+
+  <article id="solution" class="prose" data-pagefind-body>
+    <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
+    <span class="pf-meta" data-pagefind-filter="類型">題目</span>
+    <span class="pf-meta" data-pagefind-filter="難度">{d.difficulty}</span>
+    <span class="pf-meta" data-pagefind-filter="領域">{domain?.name ?? d.domain}</span>
+    <slot />
+  </article>
+
+  <FurtherReading items={d.furtherReading} />
+  <SeeAlso items={d.seeAlso} />
+
+  <RelatedList heading="相關題目" items={related} />
+
+  <PrevNext
+    prev={prev ? nav(prev) : null}
+    next={next ? nav(next) : null}
+    ariaLabel="同領域導航"
+    prevLabel="← 上一題"
+    nextLabel="下一題 →"
+  />
+</BaseLayout>

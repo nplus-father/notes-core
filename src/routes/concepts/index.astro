@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/url";
+import { bareSlug } from "../../lib/collections";
+import { site } from "virtual:notes-core/site";
+import { getCategories } from "../../lib/nav-data";
+import { getCollection } from "astro:content";
+
+const concepts = await getCollection("concepts");
+const { categories, roadmap } = await getCategories();
+const conceptLabel = site.conceptLabel ?? "概念";
+const hasSister = categories.some((c: any) => c.sister);
+
+// 依分類建 bareSlug → 已寫頁 的索引（collection id 形如 "naming/intention-revealing-names"）
+const writtenByCat = new Map<string, Map<string, (typeof concepts)[number]>>();
+for (const c of concepts) {
+  const cat = c.data.category;
+  if (!writtenByCat.has(cat)) writtenByCat.set(cat, new Map());
+  writtenByCat.get(cat)!.set(bareSlug(c.id), c);
+}
+
+const cats = [...categories].sort((a: any, b: any) => a.order - b.order);
+
+// 每個分類：把 roadmap 節點解析成 done / planned，並算進度
+const tracks = cats.map((c: any) => {
+  const nodes = ((roadmap as any)[c.slug] ?? []).map((n: any) => {
+    const entry = writtenByCat.get(c.slug)?.get(n.slug);
+    return {
+      title: entry ? entry.data.title : n.title,
+      tier: n.tier,
+      done: !!entry,
+      href: entry ? withBase(`concepts/${entry.id}/`) : null,
+    };
+  });
+  const done = nodes.filter((n: any) => n.done).length;
+  return { cat: c, nodes, done, total: nodes.length };
+});
+---
+
+<BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
+  <nav class="crumbs"><a href={withBase("/")}>首頁</a><span>/</span><span>{conceptLabel}</span></nav>
+  <header class="page-head">
+    <h1>📚 概念學習路徑</h1>
+    <p class="lede">
+      每個分類由 <strong>基礎 → 進階</strong> 鋪成一條路徑。
+      <span class="lg"><span class="lg-dot done"></span>已寫</span>
+      <span class="lg"><span class="lg-dot"></span>待寫（書已涵蓋，尚未成頁）</span>
+      {hasSister && <>；標 ↘ 的分類可深潛到姊妹站。</>}
+    </p>
+  </header>
+
+  <section class="tracks">
+    {
+      tracks.map(({ cat, nodes, done, total }: any) => (
+        <article class="track">
+          <div class="track-head">
+            <span class="track-icon">{cat.icon}</span>
+            <a class="track-name" href={withBase(`concepts/${cat.slug}/`)}>
+              {cat.name}
+            </a>
+            {cat.sister && (
+              <span class="deep-tag" title={`深潛 → ${cat.sister}`}>
+                ↘ {cat.sister}
+              </span>
+            )}
+            <span class="track-progress" data-empty={done === 0}>
+              {done}/{total}
+            </span>
+            <span class="track-bar">
+              <span class="track-bar-fill" style={`width:${total ? (done / total) * 100 : 0}%`} />
+            </span>
+          </div>
+
+          <div class="rail">
+            <span class="tier-gate">基礎</span>
+            {nodes.map((n: any, i: number) => (
+              <>
+                {i > 0 && nodes[i - 1].tier === "basic" && n.tier === "advanced" && (
+                  <span class="tier-gate adv">進階</span>
+                )}
+                {n.href ? (
+                  <a class="node done" href={n.href}>
+                    <span class="node-dot" />
+                    {n.title}
+                  </a>
+                ) : (
+                  <span class="node planned">
+                    <span class="node-dot" />
+                    {n.title}
+                    <em>待寫</em>
+                  </span>
+                )}
+              </>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>

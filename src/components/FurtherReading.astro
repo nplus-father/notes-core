@@ -1,0 +1,30 @@
+---
+import { bookUrl } from "../lib/links";
+interface Item {
+  book: string;
+  label: string;
+  anchor?: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="further">
+      <h2>📖 內容來源</h2>
+      <ul class="further-list">
+        {items.map((it) => (
+          <li>
+            <a href={bookUrl(it.book, it.anchor)} target="_blank" rel="noopener">
+              {it.label}
+            </a>
+            <span class="further-src">{it.book}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

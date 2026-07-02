@@ -1,0 +1,24 @@
+---
+// 主動學習複習工具列：markup + client 接線集中一處，ConceptLayout / ProblemLayout 共用。
+// itemKey 由 layout 傳入（概念頁 `c:<slug>`、題目頁 `p:<slug>`），對應 reviews 的紀錄鍵。
+interface Props {
+  ns: string;
+  itemKey: string;
+  seedLast?: string;
+}
+const { ns, itemKey, seedLast = "" } = Astro.props;
+---
+
+<div class="recall-toolbar" data-ns={ns} data-key={itemKey} data-seed-last={seedLast}>
+  <button id="review-btn" class="review-btn" type="button" hidden>
+    <span class="rv-do">✅ 今天複習過</span>
+    <span class="rv-done">✓ 已記錄今天</span>
+  </button>
+  <button id="review-undo" class="review-undo" type="button" hidden>撤銷</button>
+  <span id="review-meta" class="last-reviewed"></span>
+</div>
+
+<script>
+  import { initRecallToolbar } from "../lib/recall-toolbar";
+  initRecallToolbar();
+</script>

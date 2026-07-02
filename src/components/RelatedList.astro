@@ -1,0 +1,33 @@
+---
+// 交叉 / 反向連結清單（相關概念、相關題目、用到此概念的題目…）。
+// 未收錄的 slug 以低調 muted 呈現。heading 由呼叫端指定。
+interface Item {
+  slug: string;
+  title?: string;
+  href?: string | null;
+}
+interface Props {
+  heading: string;
+  items: Item[];
+}
+const { heading, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="related">
+      <h2>{heading}</h2>
+      <ul>
+        {items.map((r) => (
+          <li>
+            {r.href ? (
+              <a href={r.href}>{r.title}</a>
+            ) : (
+              <span class="muted">{r.slug}（尚未收錄）</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

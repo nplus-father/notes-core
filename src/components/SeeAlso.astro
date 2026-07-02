@@ -1,0 +1,30 @@
+---
+import { siteUrl, siteLabel } from "../lib/links";
+interface Item {
+  site: string;
+  path: string;
+  label: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="seealso">
+      <h2>🔗 跨站深潛</h2>
+      <ul class="seealso-list">
+        {items.map((it) => (
+          <li>
+            <a href={siteUrl(it.site, it.path)}>
+              <span class="seealso-site">{siteLabel(it.site)}</span>
+              {it.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

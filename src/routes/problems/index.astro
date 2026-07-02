@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProblemCard from "../../components/ProblemCard.astro";
+import { withBase } from "../../lib/url";
+import { byImportance } from "../../lib/collections";
+import { site } from "virtual:notes-core/site";
+import { getDomains } from "../../lib/nav-data";
+import { getCollection } from "astro:content";
+
+const problems = await getCollection("problems");
+const { domains: doms } = await getDomains();
+const problemLabel = site.problemLabel ?? "題庫";
+const problemsLede = site.problemsLede ? site.problemsLede.replaceAll("{base}", withBase("/")) : "";
+const byDomain = new Map<string, any[]>();
+for (const dm of doms) {
+  byDomain.set(dm.slug, problems.filter((p) => p.data.domain === dm.slug).sort(byImportance));
+}
+---
+
+<BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
+  <nav class="crumbs">
+    <a href={withBase("/")}>首頁</a><span>/</span><span>{problemLabel}</span>
+  </nav>
+  <header class="page-head">
+    <h1>🧩 {problemLabel}</h1>
+    {
+      problemsLede ? (
+        <p class="lede" set:html={problemsLede} />
+      ) : (
+        <p class="lede">依領域分組。每題標出練到的概念，可回連概念頁。</p>
+      )
+    }
+  </header>
+
+  <div class="filterbar">
+    <input id="q" type="search" placeholder="搜尋題目…" autocomplete="off" />
+    <select id="f-diff"
+      ><option value="">難度（全部）</option><option>Easy</option><option>Medium</option><option
+        >Hard</option
+      ></select
+    >
+    <select id="f-status"
+      ><option value="">狀態（全部）</option><option value="draft">草稿</option><option
+        value="studied">討論過</option
+      ><option value="reviewed">已整理</option></select
+    >
+    <span id="count" class="filter-count"></span>
+  </div>
+
+  {
+    doms.map((dm) => {
+      const items = byDomain.get(dm.slug) ?? [];
+      return (
+        items.length > 0 && (
+          <section class="domain-block" data-domain={dm.slug}>
+            <h2 id={dm.slug}>
+              <a href={withBase(`problems/${dm.slug}/`)}>
+                {dm.icon} {dm.name}
+              </a>
+            </h2>
+            <div class="card-grid">
+              {items.map((entry: any) => (
+                <ProblemCard entry={entry} />
+              ))}
+            </div>
+          </section>
+        )
+      );
+    })
+  }
+
+  <p id="empty-all" class="empty" hidden>沒有符合條件的題目。</p>
+
+  <script is:inline>
+    (() => {
+      const q = document.getElementById("q");
+      const fd = document.getElementById("f-diff");
+      const fs = document.getElementById("f-status");
+      const count = document.getElementById("count");
+      const emptyAll = document.getElementById("empty-all");
+      const cards = [...document.querySelectorAll(".card")];
+      const apply = () => {
+        const t = (q.value || "").trim().toLowerCase();
+        const dv = fd.value.toLowerCase();
+        const sv = fs.value;
+        let shown = 0;
+        for (const c of cards) {
+          const ok =
+            (!t || c.dataset.title.includes(t)) &&
+            (!dv || c.dataset.difficulty === dv) &&
+            (!sv || c.dataset.status === sv);
+          c.style.display = ok ? "" : "none";
+          if (ok) shown++;
+        }
+        for (const block of document.querySelectorAll(".domain-block")) {
+          const any = [...block.querySelectorAll(".card")].some((c) => c.style.display !== "none");
+          block.style.display = any ? "" : "none";
+        }
+        count.textContent = shown + " / " + cards.length + " 題";
+        emptyAll.hidden = shown !== 0;
+      };
+      [q, fd, fs].forEach((el) => el.addEventListener("input", apply));
+      apply();
+    })();
+  </script>
+</BaseLayout>

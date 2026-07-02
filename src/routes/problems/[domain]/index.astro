@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ProblemCard from "../../../components/ProblemCard.astro";
+import { withBase } from "../../../lib/url";
+import { byImportance } from "../../../lib/collections";
+import { site } from "virtual:notes-core/site";
+import { getDomains } from "../../../lib/nav-data";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const problems = await getCollection("problems");
+  const { domains } = await getDomains();
+  return domains.map((dm: any) => ({
+    params: { domain: dm.slug },
+    props: {
+      domain: dm,
+      items: problems.filter((p) => p.data.domain === dm.slug).sort(byImportance),
+    },
+  }));
+}
+
+const { domain, items } = Astro.props;
+const problemLabel = site.problemLabel ?? "題庫";
+---
+
+<BaseLayout title={`${domain.name} · ${problemLabel}`} site={site}>
+  <nav class="crumbs">
+    <a href={withBase("/")}>首頁</a><span>/</span>
+    <a href={withBase("/problems/")}>{problemLabel}</a><span>/</span><span>{domain.name}</span>
+  </nav>
+  <header class="page-head">
+    <h1>{domain.icon} {domain.name}</h1>
+    <p class="lede">{domain.intro}</p>
+    <p class="muted">{items.length} 題</p>
+  </header>
+
+  {
+    items.length > 0 ? (
+      <section class="card-grid">
+        {items.map((entry: any) => (
+          <ProblemCard entry={entry} />
+        ))}
+      </section>
+    ) : (
+      <p class="empty">這個領域還沒有題目。</p>
+    )
+  }
+</BaseLayout>

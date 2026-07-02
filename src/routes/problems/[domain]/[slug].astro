@@ -1,0 +1,34 @@
+---
+import ProblemLayout from "../../../layouts/ProblemLayout.astro";
+import { site } from "virtual:notes-core/site";
+import { getCategories, getDomains } from "../../../lib/nav-data";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const problems = await getCollection("problems");
+  const concepts = await getCollection("concepts");
+  return problems.map((entry) => {
+    const [domain, slug] = entry.id.split("/");
+    return {
+      params: { domain, slug },
+      props: { entry, allProblems: problems, allConcepts: concepts },
+    };
+  });
+}
+
+const { entry, allProblems, allConcepts } = Astro.props;
+const { categoryBySlug } = await getCategories();
+const { domainBySlug } = await getDomains();
+const { Content } = await render(entry);
+---
+
+<ProblemLayout
+  entry={entry}
+  allProblems={allProblems}
+  allConcepts={allConcepts}
+  domainBySlug={domainBySlug}
+  categoryBySlug={categoryBySlug}
+  site={site}
+>
+  <Content />
+</ProblemLayout>

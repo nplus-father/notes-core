@@ -1,7 +1,7 @@
 ---
 // 頁首優雅的來源 byline：把 furtherReading 的書名低調列在標題下，
 // 不在內文逐段標「出自哪本書哪章」。完整章節清單見頁尾「內容來源」。
-// 自足：不依賴各站 lib，book URL 直接指向 nplus.wiki 線上書。
+import { bookUrl } from "../lib/links";
 interface Item {
   book: string;
   label: string;
@@ -13,7 +13,6 @@ interface Props {
 const { items } = Astro.props;
 const books = [...new Map(items.map((it) => [it.book, it])).values()];
 const bookName = (label: string) => label.split(/[—–-]/)[0].trim();
-const bookUrl = (book: string, anchor = "") => `https://nplus.wiki/${book}/${anchor.replace(/^\//, "")}`;
 ---
 
 {

@@ -1,0 +1,13 @@
+---
+interface Props {
+  status: "draft" | "studied" | "reviewed";
+}
+const { status } = Astro.props;
+const label: Record<Props["status"], string> = {
+  draft: "草稿",
+  studied: "討論過",
+  reviewed: "已整理",
+};
+---
+
+<span class={`badge status-${status}`}>{label[status]}</span>

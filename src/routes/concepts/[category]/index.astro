@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ConceptCard from "../../../components/ConceptCard.astro";
+import { withBase } from "../../../lib/url";
+import { siteUrl, siteLabel } from "../../../lib/links";
+import { byImportance } from "../../../lib/collections";
+import { site } from "virtual:notes-core/site";
+import { getCategories } from "../../../lib/nav-data";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const concepts = await getCollection("concepts");
+  const { categories } = await getCategories();
+  return categories.map((c: any) => ({
+    params: { category: c.slug },
+    props: {
+      category: c,
+      items: concepts.filter((p) => p.data.category === c.slug).sort(byImportance),
+    },
+  }));
+}
+
+const { category, items } = Astro.props;
+const conceptLabel = site.conceptLabel ?? "概念";
+---
+
+<BaseLayout title={`${category.name} · ${conceptLabel}`} site={site}>
+  <nav class="crumbs">
+    <a href={withBase("/")}>首頁</a><span>/</span>
+    <a href={withBase("/concepts/")}>{conceptLabel}</a><span>/</span><span>{category.name}</span>
+  </nav>
+  <header class="page-head">
+    <h1>{category.icon} {category.name}</h1>
+    <p class="lede">{category.intro}</p>
+    <p class="muted">
+      {items.length} 篇
+      {
+        category.sister && (
+          <>
+            {" "}
+            · 深潛 → <a href={siteUrl(category.sister)}>{siteLabel(category.sister)}</a>
+          </>
+        )
+      }
+    </p>
+  </header>
+
+  {
+    items.length > 0 ? (
+      <section class="card-grid">
+        {items.map((entry: any) => (
+          <ConceptCard entry={entry} />
+        ))}
+      </section>
+    ) : (
+      <p class="empty">這個分類還沒有頁面。</p>
+    )
+  }
+</BaseLayout>

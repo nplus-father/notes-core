@@ -1,0 +1,101 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Stars from "../components/Stars.astro";
+import StatusBadge from "../components/StatusBadge.astro";
+import SourceByline from "../components/SourceByline.astro";
+import FurtherReading from "../components/FurtherReading.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+import RecallToolbar from "../components/RecallToolbar.astro";
+import RelatedList from "../components/RelatedList.astro";
+import PrevNext from "../components/PrevNext.astro";
+import { withBase } from "../lib/url";
+import { bareSlug, bySlug, byImportance } from "../lib/collections";
+import type { SiteConfig } from "../lib/site-config";
+
+interface Props {
+  entry: any;
+  allConcepts: any[];
+  allProblems: any[];
+  categoryBySlug: Map<string, { slug: string; name: string; icon: string }>;
+  site: SiteConfig;
+}
+const { entry, allConcepts, allProblems, categoryBySlug, site } = Astro.props;
+const d = entry.data;
+const cat = categoryBySlug.get(d.category);
+const slug = bareSlug(entry.id);
+
+// related concept slug → entry
+const conceptBySlug = bySlug(allConcepts);
+const related = d.related.map((s: string) => {
+  const t = conceptBySlug.get(s);
+  return t ? { slug: s, title: t.data.title, href: withBase(`concepts/${t.id}/`) } : { slug: s };
+});
+
+// 反向連結：用到此概念的題目
+const problemBySlug = bySlug(allProblems);
+const usedBy = d.problems.map((s: string) => {
+  const t = problemBySlug.get(s);
+  return t ? { slug: s, title: t.data.title, href: withBase(`problems/${t.id}/`) } : { slug: s };
+});
+
+// 同分類上一篇 / 下一篇（依 importance 高→低、再 title）
+const sameCat = allConcepts.filter((c: any) => c.data.category === d.category).sort(byImportance);
+const idx = sameCat.findIndex((c: any) => c.id === entry.id);
+const prev = idx > 0 ? sameCat[idx - 1] : null;
+const next = idx >= 0 && idx < sameCat.length - 1 ? sameCat[idx + 1] : null;
+const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.title });
+---
+
+<BaseLayout title={`${d.title} · ${site.titleBase}${site.conceptSuffix ?? "概念"}`} site={site}>
+  <nav class="crumbs">
+    <a href={withBase("/concepts/")}>{site.conceptLabel ?? "概念"}</a>
+    <span>/</span>
+    {
+      cat ? (
+        <a href={withBase(`concepts/${cat.slug}/`)}>
+          {cat.icon} {cat.name}
+        </a>
+      ) : (
+        <span>{d.category}</span>
+      )
+    }
+  </nav>
+
+  <header class="prob-head">
+    <h1>{d.title}</h1>
+    <div class="prob-meta">
+      <Stars value={d.importance} />
+      <StatusBadge status={d.status} />
+    </div>
+  </header>
+
+  <SourceByline items={d.furtherReading} />
+
+  <RecallToolbar ns={site.ns} itemKey={`c:${slug}`} seedLast={d.lastReviewed ?? ""} />
+
+  <p class="block-eyebrow book-eyebrow">📚 書籍彙整</p>
+
+  <article class="prose" data-pagefind-body>
+    <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
+    {
+      /* 「類型」篩選僅在雙集合站有意義（概念 vs 題目）；純概念站省略，避免單值 facet 雜訊。 */
+    }
+    {site.hasProblems && <span class="pf-meta" data-pagefind-filter="類型">概念</span>}
+    <span class="pf-meta" data-pagefind-filter="分類">{cat?.name ?? d.category}</span>
+    <slot />
+  </article>
+
+  <FurtherReading items={d.furtherReading} />
+  <SeeAlso items={d.seeAlso} />
+
+  <RelatedList heading="🧩 用到此概念的題目" items={usedBy} />
+  <RelatedList heading="相關概念" items={related} />
+
+  <PrevNext
+    prev={prev ? nav(prev) : null}
+    next={next ? nav(next) : null}
+    ariaLabel="同分類導航"
+    prevLabel="← 上一篇"
+    nextLabel="下一篇 →"
+  />
+</BaseLayout>

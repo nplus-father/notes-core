@@ -1,0 +1,31 @@
+---
+import Stars from "./Stars.astro";
+import { withBase } from "../lib/url";
+
+const { entry } = Astro.props;
+const d = entry.data;
+const href = withBase(`concepts/${entry.id}/`);
+---
+
+<a
+  class="card"
+  href={href}
+  data-status={d.status}
+  data-importance={d.importance}
+  data-title={d.title.toLowerCase()}
+>
+  <span class="card-top">
+    <span class={`dot status-${d.status}`} title={d.status}></span>
+  </span>
+  <span class="card-title">{d.title}</span>
+  <span class="card-meta">
+    <Stars value={d.importance} />
+    {
+      d.problems.length > 0 && (
+        <span class="card-cx" title="關聯題目數">
+          🧩 {d.problems.length}
+        </span>
+      )
+    }
+  </span>
+</a>

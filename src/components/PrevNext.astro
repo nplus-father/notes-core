@@ -1,0 +1,39 @@
+---
+// 同分類 / 同領域的「上一篇 / 下一篇」導航。文案（prevLabel/nextLabel/ariaLabel）
+// 由 layout 傳入，因概念頁說「篇」、題目頁說「題」。
+interface Item {
+  href: string;
+  title: string;
+}
+interface Props {
+  prev: Item | null;
+  next: Item | null;
+  ariaLabel: string;
+  prevLabel: string;
+  nextLabel: string;
+}
+const { prev, next, ariaLabel, prevLabel, nextLabel } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav class="prevnext" aria-label={ariaLabel}>
+      {prev ? (
+        <a class="pn pn-prev" href={prev.href}>
+          <span class="pn-dir">{prevLabel}</span>
+          <span class="pn-title">{prev.title}</span>
+        </a>
+      ) : (
+        <span class="pn pn-empty" />
+      )}
+      {next ? (
+        <a class="pn pn-next" href={next.href}>
+          <span class="pn-dir">{nextLabel}</span>
+          <span class="pn-title">{next.title}</span>
+        </a>
+      ) : (
+        <span class="pn pn-empty" />
+      )}
+    </nav>
+  )
+}

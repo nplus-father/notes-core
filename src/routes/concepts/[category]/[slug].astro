@@ -1,0 +1,33 @@
+---
+import ConceptLayout from "../../../layouts/ConceptLayout.astro";
+import { site } from "virtual:notes-core/site";
+import { getCategories } from "../../../lib/nav-data";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const concepts = await getCollection("concepts");
+  // 雙集合站：概念頁需要 allProblems 才能算「用到此概念的題目」反向連結。
+  const allProblems = site.hasProblems ? await getCollection("problems") : [];
+  return concepts.map((entry) => {
+    const [category, slug] = entry.id.split("/");
+    return {
+      params: { category, slug },
+      props: { entry, allConcepts: concepts, allProblems },
+    };
+  });
+}
+
+const { entry, allConcepts, allProblems } = Astro.props;
+const { categoryBySlug } = await getCategories();
+const { Content } = await render(entry);
+---
+
+<ConceptLayout
+  entry={entry}
+  allConcepts={allConcepts}
+  allProblems={allProblems}
+  categoryBySlug={categoryBySlug}
+  site={site}
+>
+  <Content />
+</ConceptLayout>

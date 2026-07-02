@@ -1,0 +1,68 @@
+---
+import "../styles/global.scss";
+import { withBase } from "../lib/url";
+import type { SiteConfig } from "../lib/site-config";
+interface Props {
+  title: string;
+  site: SiteConfig;
+}
+const { title, site } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+    <title>{title}</title>
+    <!-- 先於繪製設定主題與回想模式，避免閃爍 -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const saved = localStorage.getItem("theme");
+        const sys = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        root.dataset.theme = saved ?? sys;
+        if (localStorage.getItem("recall") === "on") root.dataset.recall = "on";
+      })();
+    </script>
+    {
+      /* 選用：覆寫品牌主色。html:root 特異度高於 global.scss 的 :root，確保勝出（與注入順序無關）。 */
+    }
+    {
+      site.accentOverride && (
+        <style is:inline set:html={`html:root{--accent:${site.accentOverride}}`} />
+      )
+    }
+  </head>
+  <body>
+    <nav class="topnav">
+      <a class="brand" href={withBase("/")}>{site.brand}</a>
+      <div class="topnav-right">
+        <span class="topnav-links">
+          {site.nav.map((l) => <a href={withBase(l.href)}>{l.label}</a>)}
+        </span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換深色 / 淺色">
+          <span class="icon-light">🌙</span>
+          <span class="icon-dark">☀️</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <span>{site.footer ?? "© 2026 Andrew"}</span>
+    </footer>
+
+    <script is:inline>
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("theme", next);
+      });
+    </script>
+  </body>
+</html>

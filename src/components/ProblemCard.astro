@@ -1,0 +1,28 @@
+---
+import DifficultyPill from "./DifficultyPill.astro";
+import Stars from "./Stars.astro";
+import { withBase } from "../lib/url";
+
+const { entry } = Astro.props;
+const d = entry.data;
+const href = withBase(`problems/${entry.id}/`);
+---
+
+<a
+  class="card"
+  href={href}
+  data-difficulty={d.difficulty.toLowerCase()}
+  data-status={d.status}
+  data-importance={d.importance}
+  data-domain={d.domain}
+  data-title={d.title.toLowerCase()}
+>
+  <span class="card-top">
+    <span class={`dot status-${d.status}`} title={d.status}></span>
+  </span>
+  <span class="card-title">{d.title}</span>
+  <span class="card-meta">
+    <DifficultyPill difficulty={d.difficulty} />
+    <Stars value={d.importance} />
+  </span>
+</a>
