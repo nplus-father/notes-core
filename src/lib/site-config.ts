@@ -7,7 +7,9 @@
 //   export const site = defineSite({ brand: "…", titleBase: "…", nav: […], ns: "cc", hasProblems: false });
 
 export interface NavLink {
-  href: string; // base-relative，如 "/concepts/"（會經 withBase 前綴 base）
+  // base-relative，如 "/concepts/"（會經 withBase 前綴 base）；
+  // 若為絕對 http(s) 網址（如姊妹 handbook 站），則原樣輸出並以新分頁開啟。
+  href: string;
   label: string; // 顯示文字
 }
 

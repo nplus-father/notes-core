@@ -40,7 +40,17 @@ const { title, site } = Astro.props;
       <a class="brand" href={withBase("/")}>{site.brand}</a>
       <div class="topnav-right">
         <span class="topnav-links">
-          {site.nav.map((l) => <a href={withBase(l.href)}>{l.label}</a>)}
+          {
+            site.nav.map((l) =>
+              /^https?:\/\//.test(l.href) ? (
+                <a href={l.href} target="_blank" rel="noopener">
+                  {l.label}
+                </a>
+              ) : (
+                <a href={withBase(l.href)}>{l.label}</a>
+              ),
+            )
+          }
         </span>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換深色 / 淺色">
           <span class="icon-light">🌙</span>
