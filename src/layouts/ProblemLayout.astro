@@ -56,7 +56,7 @@ const idx = sameDomain.findIndex((p: any) => p.id === entry.id);
 const prev = idx > 0 ? sameDomain[idx - 1] : null;
 const next = idx >= 0 && idx < sameDomain.length - 1 ? sameDomain[idx + 1] : null;
 const nav = (p: any) => ({ href: withBase(`problems/${p.id}/`), title: p.data.title });
-const problemLabel = site.problemLabel ?? "題庫";
+const problemLabel = site.problemLabelEn ?? "Problems";
 ---
 
 <BaseLayout title={`${d.title} · ${site.titleBase}${site.problemSuffix ?? "題"}`} site={site}>
@@ -88,7 +88,7 @@ const problemLabel = site.problemLabel ?? "題庫";
   {
     conceptChips.length > 0 && (
       <div class="pat-chips">
-        <span class="pat-chips-label">練到的概念</span>
+        <span class="pat-chips-label">Concepts practiced</span>
         {conceptChips.map((c: any) =>
           c.href ? (
             <a class="pat-chip" href={c.href}>
@@ -106,28 +106,31 @@ const problemLabel = site.problemLabel ?? "題庫";
 
   <RecallToolbar ns={site.ns} itemKey={`p:${slug}`} seedLast={d.lastReviewed ?? ""} />
 
-  <p class="recall-hint">慣例：先讀「需求與約束」、自己畫一版設計，再展開「參考架構」對照。</p>
+  <p class="recall-hint">
+    Convention: read the requirements &amp; constraints first, sketch your own design, then expand
+    the reference to compare.
+  </p>
 
-  <p class="block-eyebrow book-eyebrow">📚 書籍彙整</p>
+  <p class="block-eyebrow book-eyebrow">📚 From the Books</p>
 
   <article id="solution" class="prose" data-pagefind-body>
     <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
-    <span class="pf-meta" data-pagefind-filter="類型">題目</span>
-    <span class="pf-meta" data-pagefind-filter="難度">{d.difficulty}</span>
-    <span class="pf-meta" data-pagefind-filter="領域">{domain?.name ?? d.domain}</span>
+    <span class="pf-meta" data-pagefind-filter="Type">Problem</span>
+    <span class="pf-meta" data-pagefind-filter="Difficulty">{d.difficulty}</span>
+    <span class="pf-meta" data-pagefind-filter="Domain">{domain?.name ?? d.domain}</span>
     <slot />
   </article>
 
   <FurtherReading items={d.furtherReading} />
   <SeeAlso items={d.seeAlso} />
 
-  <RelatedList heading="相關題目" items={related} />
+  <RelatedList heading="Related problems" items={related} />
 
   <PrevNext
     prev={prev ? nav(prev) : null}
     next={next ? nav(next) : null}
-    ariaLabel="同領域導航"
-    prevLabel="← 上一題"
-    nextLabel="下一題 →"
+    ariaLabel="Same domain"
+    prevLabel="← Previous"
+    nextLabel="Next →"
   />
 </BaseLayout>

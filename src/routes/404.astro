@@ -2,23 +2,23 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../lib/url";
 import { site } from "virtual:notes-core/site";
-const conceptLabel = site.conceptLabel ?? "概念";
-const problemLabel = site.problemLabel ?? "題庫";
+const conceptLabel = site.conceptLabelEn ?? "Concepts";
+const problemLabel = site.problemLabelEn ?? "Problems";
 const lede = site.hasProblems
-  ? "頁面不存在。回首頁從概念或題目找，或用全文搜尋。"
-  : "頁面不存在。回首頁重新開始，或用全文搜尋。";
+  ? "This page doesn't exist. Head home to browse concepts or problems, or use search."
+  : "This page doesn't exist. Head home to start over, or use search.";
 ---
 
-<BaseLayout title={`找不到頁面 · ${site.brand}`} site={site}>
+<BaseLayout title={`Not found · ${site.brand}`} site={site}>
   <section class="notfound">
     <p class="nf-code">404</p>
-    <h1>這頁還沒收錄，或網址打錯了</h1>
+    <h1>This page isn't here — or the URL is off</h1>
     <p class="lede">{lede}</p>
     <p class="nf-actions">
-      <a class="nf-btn" href={withBase("/")}>← 回首頁</a>
-      <a class="nf-btn" href={withBase("/concepts/")}>瀏覽{conceptLabel}</a>
-      {site.hasProblems && <a class="nf-btn" href={withBase("/problems/")}>瀏覽{problemLabel}</a>}
-      <a class="nf-btn" href={withBase("/search/")}>🔍 全文搜尋</a>
+      <a class="nf-btn" href={withBase("/")}>← Home</a>
+      <a class="nf-btn" href={withBase("/concepts/")}>Browse {conceptLabel}</a>
+      {site.hasProblems && <a class="nf-btn" href={withBase("/problems/")}>Browse {problemLabel}</a>}
+      <a class="nf-btn" href={withBase("/search/")}>🔍 Search</a>
     </p>
   </section>
 </BaseLayout>

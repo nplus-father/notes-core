@@ -22,9 +22,9 @@ export function initRecallToolbar(): void {
     btn.hidden = false;
     btn.classList.toggle("is-done", doneToday);
     undo.hidden = !doneToday;
-    if (count > 0) meta.textContent = `上次複習：${last}（已記錄 ${count} 次）`;
-    else if (seedLast) meta.textContent = `上次複習：${seedLast}（來自筆記）`;
-    else meta.textContent = "尚未複習過";
+    if (count > 0) meta.textContent = `Last reviewed: ${last} (${count}×)`;
+    else if (seedLast) meta.textContent = `Last reviewed: ${seedLast} (from notes)`;
+    else meta.textContent = "Not reviewed yet";
   };
   btn.addEventListener("click", () => {
     markReviewedToday(key);

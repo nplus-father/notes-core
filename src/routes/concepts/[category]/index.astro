@@ -21,24 +21,24 @@ export async function getStaticPaths() {
 }
 
 const { category, items } = Astro.props;
-const conceptLabel = site.conceptLabel ?? "概念";
+const conceptLabel = site.conceptLabelEn ?? "Concepts";
 ---
 
 <BaseLayout title={`${category.name} · ${conceptLabel}`} site={site}>
   <nav class="crumbs">
-    <a href={withBase("/")}>首頁</a><span>/</span>
+    <a href={withBase("/")}>Home</a><span>/</span>
     <a href={withBase("/concepts/")}>{conceptLabel}</a><span>/</span><span>{category.name}</span>
   </nav>
   <header class="page-head">
     <h1>{category.icon} {category.name}</h1>
     <p class="lede">{category.intro}</p>
     <p class="muted">
-      {items.length} 篇
+      {items.length} pages
       {
         category.sister && (
           <>
             {" "}
-            · 深潛 → <a href={siteUrl(category.sister)}>{siteLabel(category.sister)}</a>
+            · Dive deeper → <a href={siteUrl(category.sister)}>{siteLabel(category.sister)}</a>
           </>
         )
       }
@@ -53,7 +53,7 @@ const conceptLabel = site.conceptLabel ?? "概念";
         ))}
       </section>
     ) : (
-      <p class="empty">這個分類還沒有頁面。</p>
+      <p class="empty">No pages in this category yet.</p>
     )
   }
 </BaseLayout>

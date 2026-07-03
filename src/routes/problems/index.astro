@@ -9,7 +9,7 @@ import { getCollection } from "astro:content";
 
 const problems = await getCollection("problems");
 const { domains: doms } = await getDomains();
-const problemLabel = site.problemLabel ?? "題庫";
+const problemLabel = site.problemLabelEn ?? "Problems";
 const problemsLede = site.problemsLede ? site.problemsLede.replaceAll("{base}", withBase("/")) : "";
 const byDomain = new Map<string, any[]>();
 for (const dm of doms) {
@@ -19,7 +19,7 @@ for (const dm of doms) {
 
 <BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
   <nav class="crumbs">
-    <a href={withBase("/")}>首頁</a><span>/</span><span>{problemLabel}</span>
+    <a href={withBase("/")}>Home</a><span>/</span><span>{problemLabel}</span>
   </nav>
   <header class="page-head">
     <h1>🧩 {problemLabel}</h1>
@@ -27,22 +27,22 @@ for (const dm of doms) {
       problemsLede ? (
         <p class="lede" set:html={problemsLede} />
       ) : (
-        <p class="lede">依領域分組。每題標出練到的概念，可回連概念頁。</p>
+        <p class="lede">Grouped by domain. Each problem tags the concepts it exercises and links back.</p>
       )
     }
   </header>
 
   <div class="filterbar">
-    <input id="q" type="search" placeholder="搜尋題目…" autocomplete="off" />
+    <input id="q" type="search" placeholder="Search problems…" autocomplete="off" />
     <select id="f-diff"
-      ><option value="">難度（全部）</option><option>Easy</option><option>Medium</option><option
+      ><option value="">Difficulty (all)</option><option>Easy</option><option>Medium</option><option
         >Hard</option
       ></select
     >
     <select id="f-status"
-      ><option value="">狀態（全部）</option><option value="draft">草稿</option><option
-        value="studied">討論過</option
-      ><option value="reviewed">已整理</option></select
+      ><option value="">Status (all)</option><option value="draft">Draft</option><option
+        value="studied">Studied</option
+      ><option value="reviewed">Reviewed</option></select
     >
     <span id="count" class="filter-count"></span>
   </div>
@@ -69,7 +69,7 @@ for (const dm of doms) {
     })
   }
 
-  <p id="empty-all" class="empty" hidden>沒有符合條件的題目。</p>
+  <p id="empty-all" class="empty" hidden>No matching problems.</p>
 
   <script is:inline>
     (() => {
@@ -96,7 +96,7 @@ for (const dm of doms) {
           const any = [...block.querySelectorAll(".card")].some((c) => c.style.display !== "none");
           block.style.display = any ? "" : "none";
         }
-        count.textContent = shown + " / " + cards.length + " 題";
+        count.textContent = shown + " / " + cards.length;
         emptyAll.hidden = shown !== 0;
       };
       [q, fd, fs].forEach((el) => el.addEventListener("input", apply));

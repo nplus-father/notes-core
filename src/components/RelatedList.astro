@@ -23,7 +23,7 @@ const { heading, items } = Astro.props;
             {r.href ? (
               <a href={r.href}>{r.title}</a>
             ) : (
-              <span class="muted">{r.slug}（尚未收錄）</span>
+              <span class="muted">{r.slug} (not yet added)</span>
             )}
           </li>
         ))}

@@ -11,10 +11,10 @@ const { ns, itemKey, seedLast = "" } = Astro.props;
 
 <div class="recall-toolbar" data-ns={ns} data-key={itemKey} data-seed-last={seedLast}>
   <button id="review-btn" class="review-btn" type="button" hidden>
-    <span class="rv-do">✅ 今天複習過</span>
-    <span class="rv-done">✓ 已記錄今天</span>
+    <span class="rv-do">✅ Reviewed today</span>
+    <span class="rv-done">✓ Logged today</span>
   </button>
-  <button id="review-undo" class="review-undo" type="button" hidden>撤銷</button>
+  <button id="review-undo" class="review-undo" type="button" hidden>Undo</button>
   <span id="review-meta" class="last-reviewed"></span>
 </div>
 

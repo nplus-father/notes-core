@@ -18,7 +18,7 @@ const bookName = (label: string) => label.split(/[—–-]/)[0].trim();
 {
   books.length > 0 && (
     <p class="source-byline">
-      <span class="byline-mark">⟢</span> 彙整自
+      <span class="byline-mark">⟢</span> From
       {books.map((it, i) => (
         <>
           {i > 0 && <span class="byline-sep">·</span>}

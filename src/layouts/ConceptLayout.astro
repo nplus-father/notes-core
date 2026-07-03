@@ -48,7 +48,7 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 
 <BaseLayout title={`${d.title} · ${site.titleBase}${site.conceptSuffix ?? "概念"}`} site={site}>
   <nav class="crumbs">
-    <a href={withBase("/concepts/")}>{site.conceptLabel ?? "概念"}</a>
+    <a href={withBase("/concepts/")}>{site.conceptLabelEn ?? "Concepts"}</a>
     <span>/</span>
     {
       cat ? (
@@ -73,29 +73,29 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 
   <RecallToolbar ns={site.ns} itemKey={`c:${slug}`} seedLast={d.lastReviewed ?? ""} />
 
-  <p class="block-eyebrow book-eyebrow">📚 書籍彙整</p>
+  <p class="block-eyebrow book-eyebrow">📚 From the Books</p>
 
   <article class="prose" data-pagefind-body>
     <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
     {
       /* 「類型」篩選僅在雙集合站有意義（概念 vs 題目）；純概念站省略，避免單值 facet 雜訊。 */
     }
-    {site.hasProblems && <span class="pf-meta" data-pagefind-filter="類型">概念</span>}
-    <span class="pf-meta" data-pagefind-filter="分類">{cat?.name ?? d.category}</span>
+    {site.hasProblems && <span class="pf-meta" data-pagefind-filter="Type">Concept</span>}
+    <span class="pf-meta" data-pagefind-filter="Category">{cat?.name ?? d.category}</span>
     <slot />
   </article>
 
   <FurtherReading items={d.furtherReading} />
   <SeeAlso items={d.seeAlso} />
 
-  <RelatedList heading="🧩 用到此概念的題目" items={usedBy} />
-  <RelatedList heading="相關概念" items={related} />
+  <RelatedList heading="🧩 Problems using this" items={usedBy} />
+  <RelatedList heading="Related concepts" items={related} />
 
   <PrevNext
     prev={prev ? nav(prev) : null}
     next={next ? nav(next) : null}
-    ariaLabel="同分類導航"
-    prevLabel="← 上一篇"
-    nextLabel="下一篇 →"
+    ariaLabel="Same category"
+    prevLabel="← Previous"
+    nextLabel="Next →"
   />
 </BaseLayout>
