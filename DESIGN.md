@@ -8,7 +8,7 @@
 
 ## 1. 版面骨架（notes-core `BaseLayout`）
 
-- **Topnav**：左 `site.brand` 連首頁；右為 `site.nav` 分頁（首頁／主題（或概念）／題庫／🔍 搜尋，依站啟用）＋ 深淺色切換。
+- **Topnav**：左 `site.brand` 連首頁；右為 `buildNav()` 依 `hasProblems` **自動生成的英文分頁**（Concepts ／（Problems）／ 🔍 Search，**不含首頁**——品牌字已連 home）＋ 深淺色切換。各站不再手寫 `nav`；語意站可用 `conceptLabelEn` / `problemLabelEn` 改英文標籤（如 Patterns / Methodology），姊妹手冊用 `extraNav`（插在 Search 前），特例可用 `nav` 完全覆寫。
 - **Footer**：預設 `© 2026 Andrew`（可用 `site.footer` 覆寫）。不要再加「· 筆記星系的一站 · 延伸閱讀…」那串。
 - **favicon**：星系**共用人像**，由 notes-core 以 asset 注入（single source of truth）——各站**不再放** `public/favicon.svg`。
 - 深淺色、回想模式（recall）由 notes-core inline script 處理，勿改。
