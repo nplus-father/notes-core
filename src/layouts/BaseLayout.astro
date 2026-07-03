@@ -1,6 +1,9 @@
 ---
 import "../styles/global.scss";
 import { withBase } from "../lib/url";
+// favicon = 星系共用人像（single source of truth）：圖歸 notes-core 管，各站不另存。
+// 以 ?url 匯入 → Vite 產出帶站台 base 的雜湊 URL；升 notes-core 版即全站同步。
+import faviconUrl from "../assets/favicon.png?url";
 import type { SiteConfig } from "../lib/site-config";
 interface Props {
   title: string;
@@ -14,7 +17,7 @@ const { title, site } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={faviconUrl} type="image/png" />
     <title>{title}</title>
     <!-- 先於繪製設定主題與回想模式，避免閃爍 -->
     <script is:inline>
