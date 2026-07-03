@@ -18,8 +18,18 @@ export interface SiteConfig {
   brand: string;
   /** <title> 主幹，如 "系統設計"；layout 會補「概念」/「題」後綴 */
   titleBase: string;
-  /** topnav 連結（順序與是否含題庫因站而異） */
-  nav: NavLink[];
+  /**
+   * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 依
+   * hasProblems 自動生成英文項（Concepts /（Problems）/ 🔍 Search，不含首頁，
+   * 品牌字本身已連 home）。只有需要完全掌控順序/內容的特例才給這個。
+   */
+  nav?: NavLink[];
+  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。 */
+  extraNav?: NavLink[];
+  /** 選用：nav 中概念項的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。 */
+  conceptLabelEn?: string;
+  /** 選用：nav 中題庫項的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。 */
+  problemLabelEn?: string;
   /** 複習紀錄 localStorage 命名空間（各站唯一，如 "sd"）。實際 key 為 `${ns}-reviews`。 */
   ns: string;
   /** 是否有題庫（problems）集合。純概念站為 false。 */
@@ -53,4 +63,20 @@ export interface SiteConfig {
 /** 身分設定 helper：純粹回傳原物件，提供型別檢查與 IDE 補全。 */
 export function defineSite(c: SiteConfig): SiteConfig {
   return c;
+}
+
+/**
+ * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
+ *   Concepts /（Problems，僅 hasProblems）/ …extraNav / 🔍 Search
+ * 不含「首頁」——品牌字（BaseLayout 左上）已連 home，避免重複。
+ * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
+ */
+export function buildNav(c: SiteConfig): NavLink[] {
+  if (c.nav) return c.nav;
+  return [
+    { href: "/concepts/", label: c.conceptLabelEn ?? "Concepts" },
+    ...(c.hasProblems ? [{ href: "/problems/", label: c.problemLabelEn ?? "Problems" }] : []),
+    ...(c.extraNav ?? []),
+    { href: "/search/", label: "🔍 Search" },
+  ];
 }
