@@ -759,6 +759,20 @@ a {
     margin-top: 1.6rem;
   }
 
+  // 模板化區塊小標（::core / ::case / ::takeaways）＋ case 補述副標（搬進內容區）。
+  .section-head {
+    margin-top: 2.3rem;
+    h2 {
+      margin-top: 0;
+    }
+  }
+  .section-sub {
+    margin: 0.55rem 0 0;
+    color: var(--text-2);
+    font-size: 0.96rem;
+    font-style: italic;
+  }
+
   a {
     font-weight: 500;
   }
@@ -2183,27 +2197,46 @@ a {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
+// 概念路徑：只有基礎/進階兩步，用兩條標示清楚的 lane（label 欄固定寬 → 節點對齊，
+// 長標題只在節點區內換行，不破壞 tier 分組）。
 .rail {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.5rem;
+  flex-direction: column;
+  gap: 0.55rem;
 }
-.tier-gate {
-  font-size: 0.68rem;
+.lane {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.6rem;
+  align-items: start;
+}
+.lane-label {
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--muted);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.1rem 0.2rem;
-  flex: none;
-  &::after {
-    content: " ▸";
-    opacity: 0.6;
-  }
+  color: var(--muted);
+  padding: 0.38rem 0 0;
+  border-top: 2px solid var(--border);
   &.adv {
     color: var(--accent-2);
-    margin-left: 0.15rem;
+    border-top-color: var(--accent-2);
+  }
+}
+.lane-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  min-width: 0;
+}
+@media (max-width: 30rem) {
+  .lane {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .lane-label {
+    border-top: none;
+    padding-top: 0;
   }
 }
 .node {
