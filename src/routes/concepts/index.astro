@@ -21,20 +21,21 @@ for (const c of concepts) {
 
 const cats = [...categories].sort((a: any, b: any) => a.order - b.order);
 
-// 每個分類：把 roadmap 節點解析成 done / planned，並算進度
-const tracks = cats.map((c: any) => {
-  const nodes = ((roadmap as any)[c.slug] ?? []).map((n: any) => {
-    const entry = writtenByCat.get(c.slug)?.get(n.slug);
-    return {
-      title: entry ? entry.data.title : n.title,
-      tier: n.tier,
-      done: !!entry,
-      href: entry ? withBase(`concepts/${entry.id}/`) : null,
-    };
-  });
-  const done = nodes.filter((n: any) => n.done).length;
-  return { cat: c, nodes, done, total: nodes.length };
-});
+// 每個分類：只收「已成頁」的 roadmap 節點（待寫節點不再顯示），保留基礎→進階排序。
+// 內容已大致填完，故移除進度條 / N/N / 待寫標示。空分類（全未成頁）整條略過。
+const tracks = cats
+  .map((c: any) => {
+    const nodes = ((roadmap as any)[c.slug] ?? [])
+      .map((n: any) => {
+        const entry = writtenByCat.get(c.slug)?.get(n.slug);
+        return entry
+          ? { title: entry.data.title, tier: n.tier, href: withBase(`concepts/${entry.id}/`) }
+          : null;
+      })
+      .filter(Boolean);
+    return { cat: c, nodes };
+  })
+  .filter((t: any) => t.nodes.length > 0);
 ---
 
 <BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
@@ -43,15 +44,13 @@ const tracks = cats.map((c: any) => {
     <h1>📚 概念學習路徑</h1>
     <p class="lede">
       每個分類由 <strong>基礎 → 進階</strong> 鋪成一條路徑。
-      <span class="lg"><span class="lg-dot done"></span>已寫</span>
-      <span class="lg"><span class="lg-dot"></span>待寫（書已涵蓋，尚未成頁）</span>
-      {hasSister && <>；標 ↘ 的分類可深潛到姊妹站。</>}
+      {hasSister && <>標 ↘ 的分類可深潛到姊妹站。</>}
     </p>
   </header>
 
   <section class="tracks">
     {
-      tracks.map(({ cat, nodes, done, total }: any) => (
+      tracks.map(({ cat, nodes }: any) => (
         <article class="track">
           <div class="track-head">
             <span class="track-icon">{cat.icon}</span>
@@ -63,12 +62,6 @@ const tracks = cats.map((c: any) => {
                 ↘ {cat.sister}
               </span>
             )}
-            <span class="track-progress" data-empty={done === 0}>
-              {done}/{total}
-            </span>
-            <span class="track-bar">
-              <span class="track-bar-fill" style={`width:${total ? (done / total) * 100 : 0}%`} />
-            </span>
           </div>
 
           <div class="rail">
@@ -78,18 +71,10 @@ const tracks = cats.map((c: any) => {
                 {i > 0 && nodes[i - 1].tier === "basic" && n.tier === "advanced" && (
                   <span class="tier-gate adv">進階</span>
                 )}
-                {n.href ? (
-                  <a class="node done" href={n.href}>
-                    <span class="node-dot" />
-                    {n.title}
-                  </a>
-                ) : (
-                  <span class="node planned">
-                    <span class="node-dot" />
-                    {n.title}
-                    <em>待寫</em>
-                  </span>
-                )}
+                <a class="node done" href={n.href}>
+                  <span class="node-dot" />
+                  {n.title}
+                </a>
               </>
             ))}
           </div>
