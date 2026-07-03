@@ -11,6 +11,8 @@
 //   integrations: [notesCore({ site, categories, roadmap, books })]
 import type { AstroIntegration } from "astro";
 import type { SiteConfig } from "./lib/site-config";
+// @ts-expect-error — .mjs remark 外掛無型別宣告
+import remarkSections from "./plugins/remark-sections.mjs";
 
 export interface NotesCoreData {
   site: SiteConfig;
@@ -27,6 +29,12 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
     name: "@nplus-father/notes-core",
     hooks: {
       "astro:config:setup": ({ injectRoute, updateConfig }) => {
+        // 標準區塊 heading（::core / ::case / ::takeaways）由 core 統一注入，
+        // 附加在各站 astro.config 的 remarkPlugins 之後（故必在 remarkDirective 之後執行）。
+        updateConfig({
+          markdown: { remarkPlugins: [remarkSections] },
+        });
+
         // 把站台資料序列化成一個 ESM virtual module。皆為純資料（可 JSON 化）。
         updateConfig({
           vite: {

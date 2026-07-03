@@ -29,7 +29,7 @@ export default function remarkResponse() {
             children: [
               {
                 type: "text",
-                value: "尚無個人回應。用 /sysdesign-study 討論，或直接在此區塊寫下你的心得 / Q&A。",
+                value: "No notes yet — jot your takeaways or Q&A here.",
               },
             ],
           },
@@ -40,7 +40,7 @@ export default function remarkResponse() {
       node.children.unshift({
         type: "paragraph",
         data: { hName: "header", hProperties: { className: ["my-response-head"] } },
-        children: [{ type: "text", value: "✍️ 我的回應" }],
+        children: [{ type: "text", value: "✍️ My Notes" }],
       });
     });
   };

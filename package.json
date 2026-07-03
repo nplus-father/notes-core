@@ -22,6 +22,7 @@
     "./prettier": "./prettier.config.json",
     "./remark-details": "./src/plugins/remark-details.mjs",
     "./remark-response": "./src/plugins/remark-response.mjs",
+    "./remark-sections": "./src/plugins/remark-sections.mjs",
     "./content": "./src/content.ts",
     "./integration": "./src/integration.ts",
     "./routes/*": "./src/routes/*",
