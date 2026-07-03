@@ -8,7 +8,8 @@ import { getCollection } from "astro:content";
 
 const concepts = await getCollection("concepts");
 const { categories, roadmap } = await getCategories();
-const conceptLabel = site.conceptLabel ?? "概念";
+// chrome 統一英文；標籤與 topnav 的 Concepts 項一致（語意站用 conceptLabelEn，如 Patterns）。
+const conceptLabel = site.conceptLabelEn ?? "Concepts";
 const hasSister = categories.some((c: any) => c.sister);
 
 // 依分類建 bareSlug → 已寫頁 的索引（collection id 形如 "naming/intention-revealing-names"）
@@ -21,8 +22,8 @@ for (const c of concepts) {
 
 const cats = [...categories].sort((a: any, b: any) => a.order - b.order);
 
-// 每個分類：只收「已成頁」的 roadmap 節點（待寫節點不再顯示），保留基礎→進階排序。
-// 內容已大致填完，故移除進度條 / N/N / 待寫標示。空分類（全未成頁）整條略過。
+// 每個分類：只收「已成頁」的 roadmap 節點（待寫節點不再顯示），依 tier 分成兩條 lane。
+// 只有基礎/進階兩步，故用兩條標示清楚的 lane 呈現（取代會因字數換行錯位的單列 rail）。
 const tracks = cats
   .map((c: any) => {
     const nodes = ((roadmap as any)[c.slug] ?? [])
@@ -33,24 +34,28 @@ const tracks = cats
           : null;
       })
       .filter(Boolean);
-    return { cat: c, nodes };
+    return {
+      cat: c,
+      basic: nodes.filter((n: any) => n.tier === "basic"),
+      advanced: nodes.filter((n: any) => n.tier === "advanced"),
+    };
   })
-  .filter((t: any) => t.nodes.length > 0);
+  .filter((t: any) => t.basic.length + t.advanced.length > 0);
 ---
 
 <BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
-  <nav class="crumbs"><a href={withBase("/")}>首頁</a><span>/</span><span>{conceptLabel}</span></nav>
+  <nav class="crumbs"><a href={withBase("/")}>Home</a><span>/</span><span>{conceptLabel}</span></nav>
   <header class="page-head">
-    <h1>📚 概念學習路徑</h1>
+    <h1>📚 {conceptLabel}</h1>
     <p class="lede">
-      每個分類由 <strong>基礎 → 進階</strong> 鋪成一條路徑。
-      {hasSister && <>標 ↘ 的分類可深潛到姊妹站。</>}
+      Each track runs <strong>Basic → Advanced</strong>.
+      {hasSister && <> Tracks marked ↘ dive deeper into a sister site.</>}
     </p>
   </header>
 
   <section class="tracks">
     {
-      tracks.map(({ cat, nodes }: any) => (
+      tracks.map(({ cat, basic, advanced }: any) => (
         <article class="track">
           <div class="track-head">
             <span class="track-icon">{cat.icon}</span>
@@ -58,25 +63,39 @@ const tracks = cats
               {cat.name}
             </a>
             {cat.sister && (
-              <span class="deep-tag" title={`深潛 → ${cat.sister}`}>
+              <span class="deep-tag" title={`Dive deeper → ${cat.sister}`}>
                 ↘ {cat.sister}
               </span>
             )}
           </div>
 
           <div class="rail">
-            <span class="tier-gate">基礎</span>
-            {nodes.map((n: any, i: number) => (
-              <>
-                {i > 0 && nodes[i - 1].tier === "basic" && n.tier === "advanced" && (
-                  <span class="tier-gate adv">進階</span>
-                )}
-                <a class="node done" href={n.href}>
-                  <span class="node-dot" />
-                  {n.title}
-                </a>
-              </>
-            ))}
+            {basic.length > 0 && (
+              <div class="lane">
+                <span class="lane-label">Basic</span>
+                <div class="lane-nodes">
+                  {basic.map((n: any) => (
+                    <a class="node done" href={n.href}>
+                      <span class="node-dot" />
+                      {n.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            {advanced.length > 0 && (
+              <div class="lane">
+                <span class="lane-label adv">Advanced</span>
+                <div class="lane-nodes">
+                  {advanced.map((n: any) => (
+                    <a class="node done" href={n.href}>
+                      <span class="node-dot" />
+                      {n.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </article>
       ))
