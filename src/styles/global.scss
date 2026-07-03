@@ -874,32 +874,53 @@ a {
   border-radius: 0 $radius-sm $radius-sm 0;
   background: var(--surface-2);
 
+  // 只留分類色 icon，隱藏 "Note/Tip/…" 文字——左邊框色＋icon 已足以辨識分類。
+  // font-size:0 收掉文字節點；icon 為固定 16×16 的 <svg>，尺寸不受影響。
   .markdown-alert-title {
-    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    margin-bottom: 0.2rem;
+    font-size: 0;
+    line-height: 0;
+    margin-bottom: 0.35rem;
+    color: var(--border-strong); // 預設 icon 色（無 variant 時）
+    svg {
+      fill: currentColor;
+    }
   }
   &-tip {
     border-left-color: var(--easy);
     background: var(--easy-bg);
+    .markdown-alert-title {
+      color: var(--easy);
+    }
   }
   &-warning {
     border-left-color: var(--medium);
     background: var(--medium-bg);
+    .markdown-alert-title {
+      color: var(--medium);
+    }
   }
   &-note {
     border-left-color: var(--accent);
     background: var(--accent-weak);
+    .markdown-alert-title {
+      color: var(--accent);
+    }
   }
   &-important {
     border-left-color: var(--guide);
     background: var(--guide-bg);
+    .markdown-alert-title {
+      color: var(--guide);
+    }
   }
   &-caution {
     border-left-color: var(--hard);
     background: var(--hard-bg);
+    .markdown-alert-title {
+      color: var(--hard);
+    }
   }
 }
 
