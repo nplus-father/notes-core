@@ -12,6 +12,11 @@ interface Props {
 const { title, site } = Astro.props;
 // nav 統一由 core 依 hasProblems 生成（英文、無首頁）；各站不再手寫。
 const nav = buildNav(site);
+// 頁尾「回母站」連結：未設 → 預設連 nplus.wiki 根（各站零設定即有）；設 null 可隱藏。
+const parentSite =
+  site.parentSite === undefined
+    ? { href: "https://nplus.wiki/", label: "🌐 nplus.wiki 技術筆記星系" }
+    : site.parentSite;
 ---
 
 <!doctype html>
@@ -70,6 +75,18 @@ const nav = buildNav(site);
 
     <footer class="footer">
       <span>{site.footer ?? "© 2026 Andrew"}</span>
+      {
+        parentSite && (
+          <>
+            <span class="footer-sep" aria-hidden="true">
+              ·
+            </span>
+            <a class="footer-home" href={parentSite.href}>
+              {parentSite.label}
+            </a>
+          </>
+        )
+      }
     </footer>
 
     <script is:inline>
