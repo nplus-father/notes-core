@@ -36,6 +36,12 @@ export interface SiteConfig {
   hasProblems: boolean;
   /** 頁尾文字，預設「© 2026 Andrew」 */
   footer?: string;
+  /**
+   * 選用：頁尾「回母站」連結（技術筆記星系入口）。各站同屬 nplus.wiki 底下，故預設即連母站——
+   * 不填 → 用預設 `{ href: "https://nplus.wiki/", label: "🌐 nplus.wiki 技術筆記星系" }`（零設定即有）；
+   * 設 `null` → 隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
+   */
+  parentSite?: { href: string; label: string } | null;
   /** 選用：覆寫品牌主色（--accent），不填則用共用設計系統的預設 indigo。 */
   accentOverride?: string;
   /** 選用：概念區的顯示標籤（麵包屑），預設「概念」；有些站叫「主題」。 */

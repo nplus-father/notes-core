@@ -186,6 +186,20 @@ a {
   color: var(--muted);
   font-size: 0.85rem;
   padding: 2.5rem 1rem;
+
+  .footer-sep {
+    margin: 0 0.5rem;
+    opacity: 0.6;
+  }
+  .footer-home {
+    color: var(--muted);
+    font-weight: 600;
+    transition: color 0.15s;
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
 }
 
 .page-head {
