@@ -1062,100 +1062,6 @@ a {
   }
 }
 
-/* ───────────────────────── 主動回想模式 ───────────────────────── */
-.recall-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin: 1.3rem 0 0.2rem;
-  flex-wrap: wrap;
-}
-.recall-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-2);
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    border-color 0.15s,
-    color 0.15s;
-  &:hover {
-    background: var(--surface-2);
-    border-color: var(--border-strong);
-  }
-  &[aria-pressed="true"] {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-  .on-show {
-    display: none;
-  }
-}
-.last-reviewed {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* 「今天複習過」按鈕 */
-.review-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--easy);
-  background: var(--easy-bg);
-  color: var(--easy);
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    border-color 0.15s,
-    color 0.15s,
-    filter 0.15s;
-  &:hover {
-    filter: brightness(0.97);
-  }
-  .rv-done {
-    display: none;
-  }
-  &.is-done {
-    background: var(--easy);
-    color: #fff;
-    .rv-do {
-      display: none;
-    }
-    .rv-done {
-      display: inline;
-    }
-  }
-}
-.review-undo {
-  padding: 0.3rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--muted);
-  font: inherit;
-  font-size: 0.78rem;
-  cursor: pointer;
-  &:hover {
-    border-color: var(--border-strong);
-    color: var(--text-2);
-  }
-}
-
 /* 同分類 上一題 / 下一題 */
 .prevnext {
   display: grid;
@@ -1207,15 +1113,12 @@ a {
   font-size: 0.9rem;
 }
 
+/* 隱藏解法的「主動回想」模式。BaseLayout 依 localStorage 的 `recall` 設上這個屬性，
+   但 core 已經沒有任何切換它的 UI（那個按鈕在 leetcode-note，該站有自己的一整套
+   layout 與樣式，不吃 core）。留著是因為它與複習紀錄是不同的功能，待決定去留。 */
 [data-recall="on"] {
   .recall-hint {
     display: block;
-  }
-  .recall-btn .on-hide {
-    display: none;
-  }
-  .recall-btn .on-show {
-    display: inline;
   }
   /* 隱藏第一個 h2（通常是 核心概念）起的所有內容，只留題目敘述 */
   #solution h2,

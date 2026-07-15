@@ -6,7 +6,6 @@ import StatusBadge from "../components/StatusBadge.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import SourceByline from "../components/SourceByline.astro";
 import SeeAlso from "../components/SeeAlso.astro";
-import RecallToolbar from "../components/RecallToolbar.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
 import { withBase } from "../lib/url";
@@ -103,8 +102,6 @@ const problemLabel = site.problemLabelEn ?? "Problems";
       </div>
     )
   }
-
-  <RecallToolbar ns={site.ns} itemKey={`p:${slug}`} seedLast={d.lastReviewed ?? ""} />
 
   <p class="recall-hint">
     Convention: read the requirements &amp; constraints first, sketch your own design, then expand

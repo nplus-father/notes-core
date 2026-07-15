@@ -30,7 +30,11 @@ export interface SiteConfig {
   conceptLabelEn?: string;
   /** 選用：nav 中題庫項的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。 */
   problemLabelEn?: string;
-  /** 複習紀錄 localStorage 命名空間（各站唯一，如 "sd"）。實際 key 為 `${ns}-reviews`。 */
+  /**
+   * @deprecated 原為複習紀錄的 localStorage 命名空間；該機制已移除，core 內已無人讀取。
+   * 型別保留是因為 45 個站的 site.config.ts 都還傳著它，移掉會讓它們全部編譯失敗；
+   * 待某次一併清理各站設定後再拿掉。
+   */
   ns: string;
   /** 是否有題庫（problems）集合。純概念站為 false。 */
   hasProblems: boolean;

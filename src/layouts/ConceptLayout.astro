@@ -5,7 +5,6 @@ import StatusBadge from "../components/StatusBadge.astro";
 import SourceByline from "../components/SourceByline.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import SeeAlso from "../components/SeeAlso.astro";
-import RecallToolbar from "../components/RecallToolbar.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
 import { withBase } from "../lib/url";
@@ -70,8 +69,6 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
   </header>
 
   <SourceByline items={d.furtherReading} />
-
-  <RecallToolbar ns={site.ns} itemKey={`c:${slug}`} seedLast={d.lastReviewed ?? ""} />
 
   <p class="block-eyebrow book-eyebrow">📚 From the Books</p>
 
