@@ -8,7 +8,8 @@ export interface Site {
   slug: string; // GitHub repo 名 = nplus.wiki 子路徑（如 system-design-note）
   brand: string; // 英文顯示名（topnav / 站縮圖 cover.svg）
   label: string; // 中文短名（跨站連結 siteLabel）
-  ns: string; // 複習紀錄 localStorage 前綴，各站唯一
+  /** @deprecated 原為複習紀錄的 localStorage 前綴；該機制已移除，已無人讀取。待與 SiteConfig.ns 一併清掉。 */
+  ns: string;
 }
 
 // 注意：key 一律 = slug 去掉 -note（如 leetcode-note → leetcode），跨站 URL 才組得對。

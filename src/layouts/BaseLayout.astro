@@ -26,14 +26,13 @@ const parentSite =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href={faviconUrl} type="image/png" />
     <title>{title}</title>
-    <!-- 先於繪製設定主題與回想模式，避免閃爍 -->
+    <!-- 先於繪製設定主題，避免閃爍 -->
     <script is:inline>
       (() => {
         const root = document.documentElement;
         const saved = localStorage.getItem("theme");
         const sys = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         root.dataset.theme = saved ?? sys;
-        if (localStorage.getItem("recall") === "on") root.dataset.recall = "on";
       })();
     </script>
     {

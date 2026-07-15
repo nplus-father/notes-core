@@ -1102,30 +1102,6 @@ a {
   border: none;
   background: none;
 }
-.recall-hint {
-  display: none;
-  margin: 0.6rem 0 0;
-  padding: 0.7rem 1rem;
-  border: 1px dashed var(--border-strong);
-  border-radius: $radius;
-  background: var(--surface-2);
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* 隱藏解法的「主動回想」模式。BaseLayout 依 localStorage 的 `recall` 設上這個屬性，
-   但 core 已經沒有任何切換它的 UI（那個按鈕在 leetcode-note，該站有自己的一整套
-   layout 與樣式，不吃 core）。留著是因為它與複習紀錄是不同的功能，待決定去留。 */
-[data-recall="on"] {
-  .recall-hint {
-    display: block;
-  }
-  /* 隱藏第一個 h2（通常是 核心概念）起的所有內容，只留題目敘述 */
-  #solution h2,
-  #solution h2 ~ * {
-    display: none;
-  }
-}
 
 /* ───────────────────────── 複習儀表板 ───────────────────────── */
 .dash-overview {
