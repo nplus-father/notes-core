@@ -75,6 +75,8 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
         );
         inject("/search", "search.astro");
         inject("/404", "404.astro");
+        // 本站概念的機器可讀索引，給站外消費者（每日書摘推播靠它選材）。
+        inject("/index.json", "index.json.ts");
 
         if (data.site.hasProblems) {
           inject("/problems", "problems/index.astro");
