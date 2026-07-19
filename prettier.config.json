@@ -4,6 +4,7 @@
   "trailingComma": "es5",
   "printWidth": 100,
   "tabWidth": 2,
+  "embeddedLanguageFormatting": "off",
   "plugins": ["prettier-plugin-astro"],
   "overrides": [
     {

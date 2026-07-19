@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.6.0",
+  "version": "0.8.0",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：版面（layouts / components / global.scss）、內容 schema factory、withBase、複習紀錄 factory、remark 外掛、設計 token。",
   "type": "module",
   "license": "MIT",
@@ -10,10 +10,15 @@
   },
   "files": [
     "src",
+    "bin",
     "tsconfig.base.json",
     "eslint.config.js",
-    "prettier.config.json"
+    "prettier.config.json",
+    "prettierignore"
   ],
+  "bin": {
+    "notes-fmt": "./bin/notes-fmt.mjs"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./sites": "./src/lib/sites.ts",
