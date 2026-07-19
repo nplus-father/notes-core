@@ -20,7 +20,8 @@ function essence(body: string): string {
   const lines: string[] = [];
   for (const line of body.trimStart().split("\n")) {
     if (line.startsWith(">")) lines.push(line.replace(/^>\s?/, "").trim());
-    else if (lines.length) break; // 引言結束
+    else if (lines.length)
+      break; // 引言結束
     else if (line.trim()) break; // 開頭不是引言
   }
   return lines.join(" ").trim();
@@ -33,6 +34,8 @@ function stationSlug(): string {
 
 export const GET: APIRoute = async (ctx) => {
   const concepts = await getCollection("concepts");
+  // 雙集合站（hasProblems）另有題庫；索引要一併輸出，消費端才能算全站進度。
+  const problems = site.hasProblems ? await getCollection("problems") : [];
 
   const payload = {
     station: stationSlug(),
@@ -55,6 +58,27 @@ export const GET: APIRoute = async (ctx) => {
         furtherReading: d.furtherReading,
       };
     }),
+    ...(site.hasProblems
+      ? {
+          problemCount: problems.length,
+          problems: problems.map((entry) => {
+            const [domain, slug] = entry.id.split("/");
+            const d = entry.data;
+            return {
+              id: entry.id,
+              title: d.title,
+              domain,
+              importance: d.importance,
+              status: d.status,
+              lastReviewed: d.lastReviewed ?? null,
+              url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site)
+                .href,
+              essence: essence(entry.body ?? ""),
+              related: d.related,
+            };
+          }),
+        }
+      : {}),
   };
 
   return new Response(JSON.stringify(payload, null, 2), {
