@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：版面（layouts / components / global.scss）、內容 schema factory、withBase、複習紀錄 factory、remark 外掛、設計 token。",
   "type": "module",
   "license": "MIT",
@@ -35,19 +35,7 @@
     "./site": "./src/lib/site-config.ts",
     "./styles/tokens.scss": "./src/styles/tokens.scss",
     "./styles/two-block.scss": "./src/styles/two-block.scss",
-    "./styles/global.scss": "./src/styles/global.scss",
-    "./Stars.astro": "./src/components/Stars.astro",
-    "./SourceByline.astro": "./src/components/SourceByline.astro",
-    "./Bookshelf.astro": "./src/components/Bookshelf.astro",
-    "./ConceptCard.astro": "./src/components/ConceptCard.astro",
-    "./ProblemCard.astro": "./src/components/ProblemCard.astro",
-    "./DifficultyPill.astro": "./src/components/DifficultyPill.astro",
-    "./StatusBadge.astro": "./src/components/StatusBadge.astro",
-    "./FurtherReading.astro": "./src/components/FurtherReading.astro",
-    "./SeeAlso.astro": "./src/components/SeeAlso.astro",
-    "./layouts/BaseLayout.astro": "./src/layouts/BaseLayout.astro",
-    "./layouts/ConceptLayout.astro": "./src/layouts/ConceptLayout.astro",
-    "./layouts/ProblemLayout.astro": "./src/layouts/ProblemLayout.astro"
+    "./styles/global.scss": "./src/styles/global.scss"
   },
   "sideEffects": [
     "*.scss"
