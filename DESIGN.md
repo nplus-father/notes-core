@@ -13,6 +13,7 @@
 - **favicon**：星系**共用人像**，由 notes-core 以 asset 注入（single source of truth）——各站**不再放** `public/favicon.svg`。
 - 深淺色、回想模式（recall）由 notes-core inline script 處理，勿改。
 - 版面全在 notes-core：升 `package.json` 的 notes-core 版本即全站同步，**各站不寫 `.astro` 外殼**。
+- **v0.11.0 起 astro.config 也收進 core**：各站 `astro.config.mjs` 只剩 `defineNotesAstroConfig({ base, site, bibliography, profile?|schools? })` 一句（markdown pipeline／shiki／sitemap 由 `@nplus-father/notes-core/astro-config` 工廠提供，Astro 升版遷移只改 core 一處）。`ns` 欄位同時轉 optional，各站已清除。
 
 ## 2. 首頁（notes-core `routes/index.astro`）
 

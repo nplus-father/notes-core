@@ -4,7 +4,7 @@
 //
 // 用法（各站 src/site.config.ts）：
 //   import { defineSite } from "@nplus-father/notes-core/site";
-//   export const site = defineSite({ brand: "…", titleBase: "…", nav: […], ns: "cc", hasProblems: false });
+//   export const site = defineSite({ brand: "…", titleBase: "…", hasProblems: false });
 
 export interface NavLink {
   // base-relative，如 "/concepts/"（會經 withBase 前綴 base）；
@@ -32,10 +32,10 @@ export interface SiteConfig {
   problemLabelEn?: string;
   /**
    * @deprecated 原為複習紀錄的 localStorage 命名空間；該機制已移除，core 內已無人讀取。
-   * 型別保留是因為 45 個站的 site.config.ts 都還傳著它，移掉會讓它們全部編譯失敗；
-   * 待某次一併清理各站設定後再拿掉。
+   * v0.11.0 起轉 optional，各站 site.config.ts 已於 2026-07-30 全數清除此欄；
+   * 型別暫留給零星未升版的消費者，下個 major 移除。
    */
-  ns: string;
+  ns?: string;
   /** 是否有題庫（problems）集合。純概念站為 false。 */
   hasProblems: boolean;
   /** 頁尾文字，預設「© 2026 Andrew」 */

@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：版面（layouts / components / global.scss）、內容 schema factory、withBase、複習紀錄 factory、remark 外掛、設計 token。",
   "type": "module",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "./remark-sections": "./src/plugins/remark-sections.mjs",
     "./content": "./src/content.ts",
     "./integration": "./src/integration.ts",
+    "./astro-config": "./src/astro-config.ts",
     "./routes/*": "./src/routes/*",
     "./links": "./src/lib/links.ts",
     "./library": "./src/lib/library.ts",
@@ -48,7 +49,10 @@
     "unist-util-visit": "^5.0.0"
   },
   "peerDependencies": {
-    "astro": ">=5"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": ">=5",
+    "remark-directive": "^4.0.0",
+    "remark-github-blockquote-alert": "^2.1.0"
   },
   "//devDependencies": "eslint 共用設定所需外掛。消費站以 github: 安裝時 npm 略過本 devDependencies，改由消費站自己 devDependencies 就地解析；此處僅供 file: 連結開發時用。",
   "devDependencies": {
