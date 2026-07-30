@@ -31,6 +31,7 @@ export const sites: Site[] = [
 
   // ── 人文站群（作者/書評/靈修站；seeAlso 用開放 string）─────────────
   { key: "bogle", slug: "bogle-note", brand: "Bogle Notes", label: "柏格", ns: "jb", kind: "humanities" },
+  { key: "cloud", slug: "cloud-note", brand: "Henry Cloud Notes", label: "克勞德", ns: "hc", kind: "humanities" },
   { key: "damodaran", slug: "damodaran-note", brand: "Damodaran Notes", label: "達摩德蘭", ns: "ad", kind: "humanities" },
   { key: "de-botton", slug: "de-botton-note", brand: "Alain de Botton Notes", label: "狄波頓", ns: "ab", kind: "humanities" },
   { key: "drucker", slug: "drucker-note", brand: "Drucker Notes", label: "杜拉克", ns: "dr", kind: "humanities" },
