@@ -19,8 +19,10 @@
 由上而下：
 
 1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
-2. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。
-3. **分類格**：`site.homeShowCategories: true` 時顯示分類卡片（icon／name／intro／已寫頁數）。純內容站點常開；不想重複 topnav 就設 `false`。
+2. **思想側寫 `<AuthorProfile>`**（人物站選配，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑、思想脈絡。
+3. **學派地圖 `<SchoolsMap>`**（主題站選配，見 §4.1）：領域主要流派——主張、代表人物（有作者站就跨站連結）、站內分類。
+4. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。
+5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表，缺口如實列出。
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
@@ -36,6 +38,17 @@
 - 用 `@nplus-father/notes-core/Bookshelf.astro`，`books` 由各站 `src/data/books.ts`（`{slug, title}[]`）提供。
 - 縮圖直接吃書 repo 的封面 `https://nplus.wiki/<book-slug>/cover.png`——**single source of truth**，圖歸書 repo 管，筆記站不另存。
 - 書的歸屬集中在首頁書架；內文頁不必逐段重述書名，改在 frontmatter `furtherReading` 逐條溯源。
+- **v0.10.0 起**：站台若提供 `bibliography`（§4.1），書架自動取其中 `owned` 項——`books.ts` 退役，盤點表成為單一資料源。
+
+## 4.1 藏書盤點／學派地圖／思想側寫（v0.10.0）
+
+首頁三個選配區塊，型別與 helpers 在 `@nplus-father/notes-core/library`，資料放各站 `src/data/*.ts`，經 `astro.config.mjs` 傳入整合器：`notesCore({ site, bibliography?, schools?, profile? })`。
+
+- **`bibliography.ts`（`defineBibliography`）**：人物站 = 作者**全集**、主題站 = 領域**公認經典**的完整盤點。每筆 `{title, original?, year?, slug?, status, note?, group?}`；`status`: `owned`（連書站）/ `wanted`（待收）/ `unavailable`（絕版、無中譯）/ `skipped`（刻意略過＋原因）。**缺口如實列出**——盤點表兼作收書 roadmap。
+- **`schools.ts`（`defineSchools`）**：主題站的流派地圖。每派 `{name, icon?, claim, figures?, categorySlug?}`；`figures[].site` 填 sites.ts 的 key 即跨站連結作者站——主題站因此成為串起作者站的樞紐。
+- **`profile.ts`（`defineProfile`）**：人物站的思想側寫。`thesis`（一句話中心思想）＋ `contributions`（研究主軸，`conceptPath` 連站內概念頁）＋ `readingPath`（slug 由 bibliography 反查書名）＋ `influences`（思想脈絡，有姊妹站就跨站連結）。
+
+慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`；試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
 
 ## 5. 內容頁結構（概念 / 題目）
 

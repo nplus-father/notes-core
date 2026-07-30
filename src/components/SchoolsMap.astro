@@ -1,0 +1,64 @@
+---
+// 首頁「學派地圖」：主題站的領域鳥瞰——每個流派一張卡：主張、代表人物
+// （有作者站就跨站連結）、對應的站內概念分類。人物站的對應物是 AuthorProfile。
+// 資料由各站 src/data/schools.ts 提供（型別見 lib/library.ts）。
+import { withBase } from "../lib/url";
+import { siteUrl } from "../lib/links";
+import type { School } from "../lib/library";
+
+interface Props {
+  schools: School[];
+  heading?: string;
+  note?: string;
+}
+const {
+  schools,
+  heading = "🗺 學派地圖",
+  note = "這個領域的主要流派——各自的主張與代表人物",
+} = Astro.props;
+---
+
+{
+  schools.length > 0 && (
+    <section class="schools">
+      <div class="schools-head">
+        <h2>{heading}</h2>
+        <span class="schools-note">{note}</span>
+      </div>
+      <div class="school-grid">
+        {schools.map((s) => (
+          <article class="school-card">
+            <div class="school-head">
+              {s.icon && <span class="school-icon">{s.icon}</span>}
+              <span class="school-name">{s.name}</span>
+              {s.categorySlug && (
+                <a class="school-cat" href={withBase(`/concepts/${s.categorySlug}/`)}>
+                  站內筆記 →
+                </a>
+              )}
+            </div>
+            <p class="school-claim" set:html={s.claim} />
+            {s.figures && s.figures.length > 0 && (
+              <div class="school-figures">
+                {s.figures.map((f) =>
+                  f.site ? (
+                    <a
+                      class="school-figure is-linked"
+                      href={siteUrl(f.site, "/")}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {f.name}
+                    </a>
+                  ) : (
+                    <span class="school-figure">{f.name}</span>
+                  )
+                )}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}

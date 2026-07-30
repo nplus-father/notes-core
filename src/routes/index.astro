@@ -1,13 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Bookshelf from "../components/Bookshelf.astro";
+import Bibliography from "../components/Bibliography.astro";
+import SchoolsMap from "../components/SchoolsMap.astro";
+import AuthorProfile from "../components/AuthorProfile.astro";
 import { withBase } from "../lib/url";
-import { site, books } from "virtual:notes-core/site";
+import { shelfFromBibliography } from "../lib/library";
+import { site, books, bibliography, schools, profile } from "virtual:notes-core/site";
 
-// 首頁只有 hero（品牌 + 導言）＋ 參考書架（Sources）。概念入口走 topnav 的 Concepts，
+// 首頁由上而下：hero → 思想側寫（人物站）→ 學派地圖（主題站）→ 參考書架 → 藏書盤點。
+// 側寫／地圖／盤點皆為選配，依站台是否提供資料決定；概念入口走 topnav 的 Concepts，
 // 不在首頁重複分類格——避免與 /concepts/ 學習路徑頁重覆。
+// 書架：站台給了 bibliography 就自動取其中 owned 項（單一資料源），不必再維護 books.ts。
 // prose config 可用 {base} 代表站台 base 前綴（withBase("/")）。
 const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
+const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : books;
 ---
 
 <BaseLayout title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand} site={site}>
@@ -19,5 +26,8 @@ const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
     </div>
   </header>
 
-  <Bookshelf books={books} />
+  {profile && <AuthorProfile profile={profile} bibliography={bibliography} />}
+  <SchoolsMap schools={schools} />
+  <Bookshelf books={shelf} />
+  <Bibliography entries={bibliography} />
 </BaseLayout>

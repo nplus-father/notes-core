@@ -1,0 +1,75 @@
+---
+// 首頁「藏書盤點」：人物站 = 作者全集、主題站 = 領域經典的完整清單——
+// 已收錄的連書站，缺口（待收錄／暫無來源）如實顯示，兼作收書 roadmap。
+// 資料由各站 src/data/bibliography.ts 提供（型別見 lib/library.ts）。
+import { bookUrl } from "../lib/links";
+import type { BibliographyEntry, BibliographyStatus } from "../lib/library";
+
+interface Props {
+  entries: BibliographyEntry[];
+  heading?: string;
+  note?: string;
+}
+const { entries, heading = "🗂 全集盤點", note } = Astro.props;
+
+const STATUS: Record<BibliographyStatus, { icon: string; label: string }> = {
+  owned: { icon: "✅", label: "已收錄" },
+  wanted: { icon: "🔍", label: "待收錄" },
+  unavailable: { icon: "🚫", label: "暫無來源" },
+  skipped: { icon: "➖", label: "略過" },
+};
+
+// 依 group 首次出現的順序分組（無 group 的歸入空字串組，直接平鋪）。
+const groups: { name: string; items: BibliographyEntry[] }[] = [];
+for (const e of entries) {
+  const name = e.group ?? "";
+  const g = groups.find((x) => x.name === name);
+  if (g) g.items.push(e);
+  else groups.push({ name, items: [e] });
+}
+const owned = entries.filter((e) => e.status === "owned").length;
+const defaultNote = `已收錄 ${owned} / ${entries.length} 本——缺口如實列出，兼作收書清單`;
+---
+
+{
+  entries.length > 0 && (
+    <section class="biblio">
+      <div class="biblio-head">
+        <h2>{heading}</h2>
+        <span class="biblio-note">{note ?? defaultNote}</span>
+      </div>
+      {groups.map((g) => (
+        <div class="biblio-group">
+          {g.name && <h3 class="biblio-group-name">{g.name}</h3>}
+          <div class="biblio-scroll">
+            <table class="biblio-table">
+              <tbody>
+                {g.items.map((e) => (
+                  <tr class={`biblio-row is-${e.status}`}>
+                    <td class="biblio-year">{e.year ?? ""}</td>
+                    <td class="biblio-title">
+                      {e.status === "owned" && e.slug ? (
+                        <a href={bookUrl(e.slug)} target="_blank" rel="noopener">
+                          {e.title}
+                        </a>
+                      ) : (
+                        e.title
+                      )}
+                      {e.original && <span class="biblio-orig">{e.original}</span>}
+                    </td>
+                    <td class="biblio-status">
+                      <span class={`badge biblio-${e.status}`} title={STATUS[e.status].label}>
+                        {STATUS[e.status].icon} {STATUS[e.status].label}
+                      </span>
+                    </td>
+                    <td class="biblio-remark">{e.note ?? ""}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+    </section>
+  )
+}

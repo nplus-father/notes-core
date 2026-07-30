@@ -18,6 +18,12 @@ export interface NotesCoreData {
   site: SiteConfig;
   books?: unknown[];
   domains?: unknown[];
+  /** 藏書盤點（人物站 = 作者全集；主題站 = 領域經典）。給了它就不必再給 books——書架自動取其中 owned 項。 */
+  bibliography?: unknown[];
+  /** 主題站的流派地圖。 */
+  schools?: unknown[];
+  /** 人物站的思想側寫。 */
+  profile?: unknown;
 }
 
 const VIRTUAL_ID = "virtual:notes-core/site";
@@ -52,6 +58,9 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
                     `export const books = ${JSON.stringify(data.books ?? [])};`,
                     `export const domains = ${JSON.stringify(data.domains ?? [])};`,
                     `export const domainBySlug = new Map(domains.map((d) => [d.slug, d]));`,
+                    `export const bibliography = ${JSON.stringify(data.bibliography ?? [])};`,
+                    `export const schools = ${JSON.stringify(data.schools ?? [])};`,
+                    `export const profile = ${JSON.stringify(data.profile ?? null)};`,
                   ].join("\n");
                 },
               },
@@ -69,10 +78,7 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
         inject("/", "index.astro");
         inject("/concepts", "concepts/index.astro");
         inject("/concepts/[category]", "concepts/[category]/index.astro");
-        inject(
-          "/concepts/[category]/[slug]",
-          "concepts/[category]/[slug].astro",
-        );
+        inject("/concepts/[category]/[slug]", "concepts/[category]/[slug].astro");
         inject("/search", "search.astro");
         inject("/404", "404.astro");
         // 本站概念的機器可讀索引，給站外消費者（每日書摘推播靠它選材）。

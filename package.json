@@ -1,6 +1,6 @@
 {
   "name": "@nplus-father/notes-core",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "技術筆記星系（nplus.wiki）Astro 筆記站的共用核心：版面（layouts / components / global.scss）、內容 schema factory、withBase、複習紀錄 factory、remark 外掛、設計 token。",
   "type": "module",
   "license": "MIT",
@@ -34,6 +34,7 @@
     "./integration": "./src/integration.ts",
     "./routes/*": "./src/routes/*",
     "./links": "./src/lib/links.ts",
+    "./library": "./src/lib/library.ts",
     "./site": "./src/lib/site-config.ts",
     "./styles/tokens.scss": "./src/styles/tokens.scss",
     "./styles/two-block.scss": "./src/styles/two-block.scss",

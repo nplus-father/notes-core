@@ -2186,3 +2186,245 @@ a {
     width: 100%;
   }
 }
+
+/* ───────────────────────── 藏書盤點（Bibliography） ───────────────────────── */
+.biblio {
+  margin: 2.2rem 0 0;
+}
+.biblio-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  h2 {
+    margin: 0;
+  }
+}
+.biblio-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.biblio-group {
+  margin-top: 1rem;
+}
+.biblio-group-name {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  color: var(--text-2);
+}
+.biblio-scroll {
+  overflow-x: auto;
+}
+.biblio-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  td {
+    padding: 0.42rem 0.7rem 0.42rem 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+}
+.biblio-year {
+  width: 3.2rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.biblio-title {
+  min-width: 14rem;
+  font-weight: 600;
+}
+.biblio-orig {
+  display: block;
+  font-weight: 400;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.biblio-status {
+  white-space: nowrap;
+}
+.biblio-remark {
+  color: var(--text-2);
+  font-size: 0.82rem;
+  min-width: 12rem;
+}
+.biblio-row.is-skipped .biblio-title,
+.biblio-row.is-skipped .biblio-remark {
+  color: var(--muted);
+  font-weight: 400;
+}
+.badge.biblio-owned {
+  background: var(--accent-weak);
+  color: var(--accent);
+}
+.badge.biblio-wanted {
+  border-style: dashed;
+  color: var(--text-2);
+}
+.badge.biblio-unavailable,
+.badge.biblio-skipped {
+  color: var(--muted);
+}
+
+/* ───────────────────────── 學派地圖（SchoolsMap） ───────────────────────── */
+.schools {
+  margin: 2.2rem 0 0;
+}
+.schools-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  h2 {
+    margin: 0;
+  }
+}
+.schools-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.school-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+.school-card {
+  @include card;
+  padding: 1rem 1.15rem 1.05rem;
+}
+.school-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.5rem;
+}
+.school-icon {
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--accent-weak);
+  flex: none;
+}
+.school-name {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.school-cat {
+  margin-left: auto;
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+.school-claim {
+  margin: 0 0 0.6rem;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.school-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.school-figure {
+  @include pill;
+  font-size: 0.76rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  &.is-linked {
+    color: var(--accent);
+    border-color: var(--accent);
+    &:hover {
+      text-decoration: none;
+      background: var(--accent-weak);
+    }
+  }
+}
+
+/* ───────────────────────── 思想側寫（AuthorProfile） ───────────────────────── */
+.profile {
+  margin: 2.2rem 0 0;
+  > h2 {
+    margin: 1.6rem 0 0.8rem;
+  }
+}
+.profile-thesis {
+  @include card;
+  margin: 0;
+  padding: 1.1rem 1.3rem;
+  border-left: 4px solid var(--accent);
+  p {
+    margin: 0.35rem 0 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
+.profile-thesis-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+.contrib-card {
+  @include card;
+  padding: 0.95rem 1.1rem;
+}
+.contrib-title {
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  a:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+}
+.contrib-summary {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.reading-path {
+  margin: 0;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.reading-stage-name {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+.reading-books a {
+  margin-right: 0.5rem;
+}
+.reading-why {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.influences {
+  margin: 0;
+  padding-left: 1.3rem;
+  li {
+    margin-bottom: 0.35rem;
+  }
+}
+.influence-name {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.influence-note {
+  font-size: 0.84rem;
+  color: var(--text-2);
+}
