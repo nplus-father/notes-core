@@ -30,6 +30,7 @@ export const sites: Site[] = [
   // __NEW_SITE__ (new-note.sh 會在此行前插入新技術站)
 
   // ── 人文站群（作者/書評/靈修站；seeAlso 用開放 string）─────────────
+  { key: "biblical-studies", slug: "biblical-studies-note", brand: "Biblical Studies Notes", label: "解經", ns: "bs2", kind: "humanities" },
   { key: "bogle", slug: "bogle-note", brand: "Bogle Notes", label: "柏格", ns: "jb", kind: "humanities" },
   { key: "cloud", slug: "cloud-note", brand: "Henry Cloud Notes", label: "克勞德", ns: "hc", kind: "humanities" },
   { key: "damodaran", slug: "damodaran-note", brand: "Damodaran Notes", label: "達摩德蘭", ns: "ad", kind: "humanities" },
@@ -45,6 +46,7 @@ export const sites: Site[] = [
   { key: "peterson", slug: "peterson-note", brand: "Jordan Peterson Notes", label: "彼得森", ns: "jp", kind: "humanities" },
   { key: "schwager", slug: "schwager-note", brand: "Schwager Notes", label: "史瓦格", ns: "sw", kind: "humanities" },
   { key: "stott", slug: "stott-note", brand: "Stott Notes", label: "斯托得", ns: "js", kind: "humanities" },
+  { key: "theology", slug: "theology-note", brand: "Theology Notes", label: "神學", ns: "tn", kind: "humanities" },
   { key: "tracy", slug: "tracy-note", brand: "Brian Tracy Notes", label: "崔西", ns: "bt", kind: "humanities" },
   { key: "uncle-bob", slug: "uncle-bob-note", brand: "Uncle Bob Notes", label: "Uncle Bob", ns: "rm", kind: "humanities" },
   { key: "wan-weigang", slug: "wan-weigang-note", brand: "Wan Weigang Notes", label: "萬維鋼", ns: "ww", kind: "humanities" },
