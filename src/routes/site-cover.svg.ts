@@ -73,17 +73,17 @@ export const GET: APIRoute = () => {
   const axis = entry?.axis ?? "topic";
   const ink = INK[axis];
 
-  // 主標：人物站用傳主中文名，主題站用中文短名；registry 查不到就退回站台 titleBase。
-  const heading =
-    (axis === "person" ? entry?.subject?.nameZh : entry?.label) ??
-    site.titleBase ??
-    site.brand;
+  // 主標一律用 registry 的 label（主題站＝中文短名，人物站＝該人物通行的寫法，
+  // 西方作者是英文全名）。registry 查不到就退回站台 titleBase。
+  const heading = entry?.label ?? site.titleBase ?? site.brand;
   // 同軸內編號——新站 append 在該軸尾端，既有編號因此穩定。
   const pool = axis === "person" ? personSites : topicSites;
   const idx = pool.findIndex((s) => s.slug === slug);
   const serial = idx >= 0 ? String(idx + 1).padStart(2, "0") : "";
 
   const headingSize = fitSize(heading, W - PAD * 2 - 120);
+  // 中文大字需要鬆一點的字距才透氣；英文全名再加字距會散掉，故只給極小值。
+  const headingTracking = /[　-鿿]/.test(heading) ? 4 : 0.5;
   const brand = truncate(site.brand, 40);
   const tagline = truncate(site.tagline ?? "", 34);
 
@@ -104,7 +104,7 @@ export const GET: APIRoute = () => {
   <text x="${PAD}" y="128" font-family="${sansStack}" font-size="22" font-weight="600" letter-spacing="9" fill="${TEXT_FAINT}">${axis === "person" ? "人物" : "主題"}</text>
   ${serial ? `<text x="${W - PAD}" y="128" text-anchor="end" font-family="${serifStack}" font-size="30" fill="${TEXT_FAINT}">N°${serial}</text>` : ""}
 
-  <text x="${PAD}" y="${baseline}" font-family="${serifStack}" font-size="${headingSize}" font-weight="600" letter-spacing="4" fill="${TEXT}">${esc(heading)}</text>
+  <text x="${PAD}" y="${baseline}" font-family="${serifStack}" font-size="${headingSize}" font-weight="600" letter-spacing="${headingTracking}" fill="${TEXT}">${esc(heading)}</text>
   <rect x="${PAD}" y="${baseline + 46}" width="104" height="2" fill="${ink}"/>
   <text x="${PAD}" y="${baseline + 108}" font-family="${sansStack}" font-size="28" font-weight="500" letter-spacing="6" fill="${TEXT_SOFT}">${esc(brand)}</text>
 

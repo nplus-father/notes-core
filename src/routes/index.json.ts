@@ -49,7 +49,6 @@ export const GET: APIRoute = async (ctx) => {
     label: entry?.label ?? site.titleBase,
     tagline: site.tagline ?? null,
     axis: entry?.axis ?? null,
-    subject: entry?.subject ?? null,
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。

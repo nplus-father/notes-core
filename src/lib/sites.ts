@@ -13,24 +13,22 @@
 export type NoteAxis = "topic" | "person";
 export type SeeAlsoMode = "strict" | "open";
 
-/** 人物站的傳主姓名。portal 人物卡以「中文名 + 原文名」呈現。 */
-export interface SubjectName {
-  nameZh: string;
-  /** 原文名；華文作者放羅馬拼音（與 brand 一致）。 */
-  nameEn: string;
-}
-
-interface SiteBase {
+export interface Site {
   key: string; // seeAlso 用的短鍵（= slug 去掉 -note），亦即跨站連結的識別子
   slug: string; // GitHub repo 名 = nplus.wiki 子路徑（如 system-design-note）
-  brand: string; // 英文顯示名（topnav / 站縮圖 cover.svg）
-  label: string; // 中文短名（跨站連結 siteLabel；人物站 = 傳主中文名）
+  brand: string; // 英文顯示名（topnav）
+  /**
+   * 顯示名，一處定義、到處沿用（站縮圖大字、portal 卡片、跨站連結 siteLabel）。
+   *   - 主題站：中文短名（如「哲學」「系統設計」）
+   *   - 人物站：該人物**通行的寫法**——西方作者用英文全名（Peter Drucker），
+   *     華文作者用中文（馮唐、劉潤、萬維鋼、吳軍）。不硬譯成中文。
+   * （v0.13.x 曾有 subject: { nameZh, nameEn } 這組欄位強制人物站取中文名，
+   *  那是過度中文化，v0.14.0 收回成這一個欄位。）
+   */
+  label: string;
+  axis: NoteAxis;
   seeAlsoMode: SeeAlsoMode;
 }
-
-// 人物站必須給 subject（傳主是誰是人物站的定義）；主題站不得給——由型別擋住。
-export type Site = SiteBase &
-  ({ axis: "topic"; subject?: never } | { axis: "person"; subject: SubjectName });
 
 // 注意：key 一律 = slug 去掉 -note（如 leetcode-note → leetcode），跨站 URL 才組得對。
 export const sites: Site[] = [
@@ -78,35 +76,33 @@ export const sites: Site[] = [
   // __NEW_TOPIC_SITE__ (new-note.sh 會在此行前插入新主題站)
 
   // ══ 人物站群（首頁走 profile 思想側寫）════════════════════════════════
-  { key: "bogle", slug: "bogle-note", brand: "Bogle Notes", label: "柏格", axis: "person", seeAlsoMode: "open", subject: { nameZh: "柏格", nameEn: "John C. Bogle" } },
-  { key: "cloud", slug: "cloud-note", brand: "Henry Cloud Notes", label: "克勞德", axis: "person", seeAlsoMode: "open", subject: { nameZh: "克勞德", nameEn: "Henry Cloud" } },
-  { key: "damodaran", slug: "damodaran-note", brand: "Damodaran Notes", label: "達摩德蘭", axis: "person", seeAlsoMode: "open", subject: { nameZh: "達摩德蘭", nameEn: "Aswath Damodaran" } },
-  { key: "de-botton", slug: "de-botton-note", brand: "Alain de Botton Notes", label: "狄波頓", axis: "person", seeAlsoMode: "open", subject: { nameZh: "狄波頓", nameEn: "Alain de Botton" } },
-  { key: "drucker", slug: "drucker-note", brand: "Drucker Notes", label: "杜拉克", axis: "person", seeAlsoMode: "open", subject: { nameZh: "杜拉克", nameEn: "Peter Drucker" } },
-  { key: "fengtang", slug: "fengtang-note", brand: "Feng Tang Notes", label: "馮唐", axis: "person", seeAlsoMode: "open", subject: { nameZh: "馮唐", nameEn: "Feng Tang" } },
-  { key: "fromm", slug: "fromm-note", brand: "Erich Fromm Notes", label: "佛洛姆", axis: "person", seeAlsoMode: "open", subject: { nameZh: "佛洛姆", nameEn: "Erich Fromm" } },
-  { key: "gardner", slug: "gardner-note", brand: "Howard Gardner Notes", label: "加德納", axis: "person", seeAlsoMode: "open", subject: { nameZh: "加德納", nameEn: "Howard Gardner" } },
-  { key: "greene", slug: "greene-note", brand: "Robert Greene Notes", label: "葛林", axis: "person", seeAlsoMode: "open", subject: { nameZh: "葛林", nameEn: "Robert Greene" } },
-  { key: "keller", slug: "keller-note", brand: "Keller Notes", label: "凱勒", axis: "person", seeAlsoMode: "open", subject: { nameZh: "凱勒", nameEn: "Timothy Keller" } },
-  { key: "kiyosaki", slug: "kiyosaki-note", brand: "Kiyosaki Notes", label: "清崎", axis: "person", seeAlsoMode: "open", subject: { nameZh: "清崎", nameEn: "Robert Kiyosaki" } },
-  // 中文譯名採信仰出版界通行的「魯益師」（站台 titleBase 亦同），非「路易斯」。
-  { key: "lewis", slug: "lewis-note", brand: "C.S. Lewis Notes", label: "魯益師", axis: "person", seeAlsoMode: "open", subject: { nameZh: "魯益師", nameEn: "C.S. Lewis" } },
-  { key: "liurun", slug: "liurun-note", brand: "Liu Run Notes", label: "劉潤", axis: "person", seeAlsoMode: "open", subject: { nameZh: "劉潤", nameEn: "Liu Run" } },
-  { key: "maxwell", slug: "maxwell-note", brand: "Maxwell Notes", label: "麥斯威爾", axis: "person", seeAlsoMode: "open", subject: { nameZh: "麥斯威爾", nameEn: "John C. Maxwell" } },
-  { key: "newport", slug: "newport-note", brand: "Cal Newport Notes", label: "紐波特", axis: "person", seeAlsoMode: "open", subject: { nameZh: "紐波特", nameEn: "Cal Newport" } },
-  { key: "nouwen", slug: "nouwen-note", brand: "Nouwen Notes", label: "盧雲", axis: "person", seeAlsoMode: "open", subject: { nameZh: "盧雲", nameEn: "Henri Nouwen" } },
-  { key: "nt-wright", slug: "nt-wright-note", brand: "N.T. Wright Notes", label: "賴特", axis: "person", seeAlsoMode: "open", subject: { nameZh: "賴特", nameEn: "N.T. Wright" } },
-  { key: "peck", slug: "peck-note", brand: "Scott Peck Notes", label: "派克", axis: "person", seeAlsoMode: "open", subject: { nameZh: "派克", nameEn: "M. Scott Peck" } },
-  { key: "peterson", slug: "peterson-note", brand: "Jordan Peterson Notes", label: "彼得森", axis: "person", seeAlsoMode: "open", subject: { nameZh: "彼得森", nameEn: "Jordan Peterson" } },
-  { key: "schwager", slug: "schwager-note", brand: "Schwager Notes", label: "史瓦格", axis: "person", seeAlsoMode: "open", subject: { nameZh: "史瓦格", nameEn: "Jack Schwager" } },
-  { key: "stott", slug: "stott-note", brand: "Stott Notes", label: "斯托得", axis: "person", seeAlsoMode: "open", subject: { nameZh: "斯托得", nameEn: "John Stott" } },
-  { key: "taleb", slug: "taleb-note", brand: "Taleb Notes", label: "塔雷伯", axis: "person", seeAlsoMode: "open", subject: { nameZh: "塔雷伯", nameEn: "Nassim Nicholas Taleb" } },
-  { key: "tracy", slug: "tracy-note", brand: "Brian Tracy Notes", label: "崔西", axis: "person", seeAlsoMode: "open", subject: { nameZh: "崔西", nameEn: "Brian Tracy" } },
-  // 通稱就是 Uncle Bob（站台 titleBase 亦為「Uncle Bob 筆記」），不硬譯成「馬丁」。
-  { key: "uncle-bob", slug: "uncle-bob-note", brand: "Uncle Bob Notes", label: "Uncle Bob", axis: "person", seeAlsoMode: "open", subject: { nameZh: "Uncle Bob", nameEn: "Robert C. Martin" } },
-  { key: "wan-weigang", slug: "wan-weigang-note", brand: "Wan Weigang Notes", label: "萬維鋼", axis: "person", seeAlsoMode: "open", subject: { nameZh: "萬維鋼", nameEn: "Wan Weigang" } },
-  { key: "willard", slug: "willard-note", brand: "Dallas Willard Notes", label: "魏樂德", axis: "person", seeAlsoMode: "open", subject: { nameZh: "魏樂德", nameEn: "Dallas Willard" } },
-  { key: "wujun", slug: "wujun-note", brand: "Wu Jun Notes", label: "吳軍", axis: "person", seeAlsoMode: "open", subject: { nameZh: "吳軍", nameEn: "Wu Jun" } },
+  { key: "bogle", slug: "bogle-note", brand: "Bogle Notes", label: "John C. Bogle", axis: "person", seeAlsoMode: "open" },
+  { key: "cloud", slug: "cloud-note", brand: "Henry Cloud Notes", label: "Henry Cloud", axis: "person", seeAlsoMode: "open" },
+  { key: "damodaran", slug: "damodaran-note", brand: "Damodaran Notes", label: "Aswath Damodaran", axis: "person", seeAlsoMode: "open" },
+  { key: "de-botton", slug: "de-botton-note", brand: "Alain de Botton Notes", label: "Alain de Botton", axis: "person", seeAlsoMode: "open" },
+  { key: "drucker", slug: "drucker-note", brand: "Drucker Notes", label: "Peter Drucker", axis: "person", seeAlsoMode: "open" },
+  { key: "fengtang", slug: "fengtang-note", brand: "Feng Tang Notes", label: "馮唐", axis: "person", seeAlsoMode: "open" },
+  { key: "fromm", slug: "fromm-note", brand: "Erich Fromm Notes", label: "Erich Fromm", axis: "person", seeAlsoMode: "open" },
+  { key: "gardner", slug: "gardner-note", brand: "Howard Gardner Notes", label: "Howard Gardner", axis: "person", seeAlsoMode: "open" },
+  { key: "greene", slug: "greene-note", brand: "Robert Greene Notes", label: "Robert Greene", axis: "person", seeAlsoMode: "open" },
+  { key: "keller", slug: "keller-note", brand: "Keller Notes", label: "Timothy Keller", axis: "person", seeAlsoMode: "open" },
+  { key: "kiyosaki", slug: "kiyosaki-note", brand: "Kiyosaki Notes", label: "Robert Kiyosaki", axis: "person", seeAlsoMode: "open" },
+  { key: "lewis", slug: "lewis-note", brand: "C.S. Lewis Notes", label: "C.S. Lewis", axis: "person", seeAlsoMode: "open" },
+  { key: "liurun", slug: "liurun-note", brand: "Liu Run Notes", label: "劉潤", axis: "person", seeAlsoMode: "open" },
+  { key: "maxwell", slug: "maxwell-note", brand: "Maxwell Notes", label: "John C. Maxwell", axis: "person", seeAlsoMode: "open" },
+  { key: "newport", slug: "newport-note", brand: "Cal Newport Notes", label: "Cal Newport", axis: "person", seeAlsoMode: "open" },
+  { key: "nouwen", slug: "nouwen-note", brand: "Nouwen Notes", label: "Henri Nouwen", axis: "person", seeAlsoMode: "open" },
+  { key: "nt-wright", slug: "nt-wright-note", brand: "N.T. Wright Notes", label: "N.T. Wright", axis: "person", seeAlsoMode: "open" },
+  { key: "peck", slug: "peck-note", brand: "Scott Peck Notes", label: "M. Scott Peck", axis: "person", seeAlsoMode: "open" },
+  { key: "peterson", slug: "peterson-note", brand: "Jordan Peterson Notes", label: "Jordan Peterson", axis: "person", seeAlsoMode: "open" },
+  { key: "schwager", slug: "schwager-note", brand: "Schwager Notes", label: "Jack Schwager", axis: "person", seeAlsoMode: "open" },
+  { key: "stott", slug: "stott-note", brand: "Stott Notes", label: "John Stott", axis: "person", seeAlsoMode: "open" },
+  { key: "taleb", slug: "taleb-note", brand: "Taleb Notes", label: "Nassim Nicholas Taleb", axis: "person", seeAlsoMode: "open" },
+  { key: "tracy", slug: "tracy-note", brand: "Brian Tracy Notes", label: "Brian Tracy", axis: "person", seeAlsoMode: "open" },
+  { key: "uncle-bob", slug: "uncle-bob-note", brand: "Uncle Bob Notes", label: "Robert C. Martin", axis: "person", seeAlsoMode: "open" },
+  { key: "wan-weigang", slug: "wan-weigang-note", brand: "Wan Weigang Notes", label: "萬維鋼", axis: "person", seeAlsoMode: "open" },
+  { key: "willard", slug: "willard-note", brand: "Dallas Willard Notes", label: "Dallas Willard", axis: "person", seeAlsoMode: "open" },
+  { key: "wujun", slug: "wujun-note", brand: "Wu Jun Notes", label: "吳軍", axis: "person", seeAlsoMode: "open" },
   // __NEW_PERSON_SITE__ (new-note.sh 會在此行前插入新人物站)
 ];
 
