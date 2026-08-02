@@ -8,6 +8,7 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { site } from "virtual:notes-core/site";
 import { withBase } from "../lib/url";
+import { siteBySlug } from "../lib/sites";
 
 export const prerender = true;
 
@@ -37,9 +38,18 @@ export const GET: APIRoute = async (ctx) => {
   // 雙集合站（hasProblems）另有題庫；索引要一併輸出，消費端才能算全站進度。
   const problems = site.hasProblems ? await getCollection("problems") : [];
 
+  // 星系 registry（sites.ts）是知識軸的正本；站台不重複宣告，這裡查表帶出去，
+  // 讓 nplus.wiki portal 不必靠 GitHub repo description（那 62 個 repo 全是空的）
+  // 就能把筆記分成「主題 / 人物」兩區。查不到（尚未入列）就給 null，消費端自行退回。
+  const entry = siteBySlug.get(stationSlug()) ?? null;
+
   const payload = {
     station: stationSlug(),
     brand: site.brand,
+    label: entry?.label ?? site.titleBase,
+    tagline: site.tagline ?? null,
+    axis: entry?.axis ?? null,
+    subject: entry?.subject ?? null,
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。
