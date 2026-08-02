@@ -102,7 +102,8 @@ export const sites: Site[] = [
   { key: "stott", slug: "stott-note", brand: "Stott Notes", label: "斯托得", axis: "person", seeAlsoMode: "open", subject: { nameZh: "斯托得", nameEn: "John Stott" } },
   { key: "taleb", slug: "taleb-note", brand: "Taleb Notes", label: "塔雷伯", axis: "person", seeAlsoMode: "open", subject: { nameZh: "塔雷伯", nameEn: "Nassim Nicholas Taleb" } },
   { key: "tracy", slug: "tracy-note", brand: "Brian Tracy Notes", label: "崔西", axis: "person", seeAlsoMode: "open", subject: { nameZh: "崔西", nameEn: "Brian Tracy" } },
-  { key: "uncle-bob", slug: "uncle-bob-note", brand: "Uncle Bob Notes", label: "Uncle Bob", axis: "person", seeAlsoMode: "open", subject: { nameZh: "馬丁", nameEn: "Robert C. Martin" } },
+  // 通稱就是 Uncle Bob（站台 titleBase 亦為「Uncle Bob 筆記」），不硬譯成「馬丁」。
+  { key: "uncle-bob", slug: "uncle-bob-note", brand: "Uncle Bob Notes", label: "Uncle Bob", axis: "person", seeAlsoMode: "open", subject: { nameZh: "Uncle Bob", nameEn: "Robert C. Martin" } },
   { key: "wan-weigang", slug: "wan-weigang-note", brand: "Wan Weigang Notes", label: "萬維鋼", axis: "person", seeAlsoMode: "open", subject: { nameZh: "萬維鋼", nameEn: "Wan Weigang" } },
   { key: "willard", slug: "willard-note", brand: "Dallas Willard Notes", label: "魏樂德", axis: "person", seeAlsoMode: "open", subject: { nameZh: "魏樂德", nameEn: "Dallas Willard" } },
   { key: "wujun", slug: "wujun-note", brand: "Wu Jun Notes", label: "吳軍", axis: "person", seeAlsoMode: "open", subject: { nameZh: "吳軍", nameEn: "Wu Jun" } },
