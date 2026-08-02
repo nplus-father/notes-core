@@ -19,7 +19,13 @@ const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : bo
 
 <BaseLayout title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand} site={site}>
   <header class="home-hero">
-    <img class="site-cover" src={withBase("cover.svg")} alt={site.brand} width="480" height="252" />
+    <img
+      class="site-cover"
+      src={withBase("site-cover.svg")}
+      alt={site.brand}
+      width="480"
+      height="252"
+    />
     <div class="home-hero-body">
       <h1>{site.brand}</h1>
       {heroLede && <p class="lede" set:html={heroLede} />}

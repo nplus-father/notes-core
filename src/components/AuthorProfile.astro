@@ -20,7 +20,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
     <p set:html={profile.thesis} />
   </blockquote>
 
-  <h2>🏛 特定貢獻——研究他的幾條主軸</h2>
+  <h2>特定貢獻——研究他的幾條主軸</h2>
   <div class="contrib-grid">
     {
       profile.contributions.map((c) => (
@@ -41,7 +41,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
   {
     profile.readingPath && profile.readingPath.length > 0 && (
       <>
-        <h2>🪜 建議閱讀路徑</h2>
+        <h2>建議閱讀路徑</h2>
         <ol class="reading-path">
           {profile.readingPath.map((r) => (
             <li class="reading-stage">
@@ -64,7 +64,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
   {
     profile.influences && profile.influences.length > 0 && (
       <>
-        <h2>🔗 思想脈絡</h2>
+        <h2>思想脈絡</h2>
         <ul class="influences">
           {profile.influences.map((i) => (
             <li>

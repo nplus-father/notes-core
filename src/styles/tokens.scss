@@ -1,11 +1,26 @@
 // 設計 token。顏色走 CSS 變數（支援深色主題切換），結構性數值走 SCSS 變數。
 
-$radius-sm: 8px;
-$radius: 12px;
-$radius-lg: 18px;
+// 圓角收到近乎直角：12px/18px 是 SaaS 卡片的手感，排版型版面要的是切邊。
+$radius-sm: 2px;
+$radius: 3px;
+$radius-lg: 4px;
 $maxw: 900px;
 
 $mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+// 中文襯線體必須指名到底：generic `serif` 在 Linux 解析中文時會落到 Noto Sans CJK，
+// 襯線意圖會靜默失效（實測 Chrome 上 serif 與 sans-serif 的中文是同一套字）。
+// "Noto Serif TC" 是 macOS/Windows 那邊的名字，"Noto Serif CJK TC" 是 Linux 這邊的。
+// 標題與品牌字走這個，正文仍走 $sans——全篇襯線在螢幕上不好讀。
+$serif:
+  "Noto Serif TC",
+  "Noto Serif CJK TC",
+  "Source Han Serif TC",
+  "Songti TC",
+  "Songti SC",
+  Georgia,
+  "Times New Roman",
+  serif;
+
 $sans:
   "Inter",
   -apple-system,
@@ -30,10 +45,11 @@ $difficulties: easy, medium, hard;
     border-color 0.16s ease;
 }
 
+// hover 只讓框線變深，不位移也不加陰影——「卡片浮起來」是 SaaS 語彙，
+// 在髮絲線的排版裡會顯得突兀（且 62 站每張卡都在動）。
 @mixin lift {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
   border-color: var(--border-strong);
+  background: var(--surface-2);
 }
 
 @mixin focus-ring {

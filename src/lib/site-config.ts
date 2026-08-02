@@ -20,7 +20,7 @@ export interface SiteConfig {
   titleBase: string;
   /**
    * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 依
-   * hasProblems 自動生成英文項（Concepts /（Problems）/ 🔍 Search，不含首頁，
+   * hasProblems 自動生成英文項（Concepts /（Problems）/ Search，不含首頁，
    * 品牌字本身已連 home）。只有需要完全掌控順序/內容的特例才給這個。
    */
   nav?: NavLink[];
@@ -42,7 +42,7 @@ export interface SiteConfig {
   footer?: string;
   /**
    * 選用：頁尾「回母站」連結（技術筆記星系入口）。各站同屬 nplus.wiki 底下，故預設即連母站——
-   * 不填 → 用預設 `{ href: "https://nplus.wiki/", label: "🌐 nplus.wiki 技術筆記星系" }`（零設定即有）；
+   * 不填 → 用預設 `{ href: "https://nplus.wiki/", label: "nplus.wiki 筆記星系" }`（零設定即有）；
    * 設 `null` → 隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
    */
   parentSite?: { href: string; label: string } | null;
@@ -77,7 +77,7 @@ export function defineSite(c: SiteConfig): SiteConfig {
 
 /**
  * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
- *   Concepts /（Problems，僅 hasProblems）/ …extraNav / 🔍 Search
+ *   Concepts /（Problems，僅 hasProblems）/ …extraNav / Search
  * 不含「首頁」——品牌字（BaseLayout 左上）已連 home，避免重複。
  * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
  */
@@ -85,8 +85,10 @@ export function buildNav(c: SiteConfig): NavLink[] {
   if (c.nav) return c.nav;
   return [
     { href: "/concepts/", label: c.conceptLabelEn ?? "Concepts" },
-    ...(c.hasProblems ? [{ href: "/problems/", label: c.problemLabelEn ?? "Problems" }] : []),
+    ...(c.hasProblems
+      ? [{ href: "/problems/", label: c.problemLabelEn ?? "Problems" }]
+      : []),
     ...(c.extraNav ?? []),
-    { href: "/search/", label: "🔍 Search" },
+    { href: "/search/", label: "Search" },
   ];
 }

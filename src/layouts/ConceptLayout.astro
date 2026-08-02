@@ -70,7 +70,7 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 
   <SourceByline items={d.furtherReading} />
 
-  <p class="block-eyebrow book-eyebrow">📚 From the Books</p>
+  <p class="block-eyebrow book-eyebrow">From the Books</p>
 
   <article class="prose" data-pagefind-body>
     <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
@@ -85,7 +85,7 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
   <FurtherReading items={d.furtherReading} />
   <SeeAlso items={d.seeAlso} />
 
-  <RelatedList heading="🧩 Problems using this" items={usedBy} />
+  <RelatedList heading="Problems using this" items={usedBy} />
   <RelatedList heading="Related concepts" items={related} />
 
   <PrevNext

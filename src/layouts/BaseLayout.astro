@@ -5,22 +5,27 @@ import { withBase } from "../lib/url";
 // 以 ?url 匯入 → Vite 產出帶站台 base 的雜湊 URL；升 notes-core 版即全站同步。
 import faviconUrl from "../assets/favicon.png?url";
 import { buildNav, type SiteConfig } from "../lib/site-config";
+import { siteBySlug } from "../lib/sites";
 interface Props {
   title: string;
   site: SiteConfig;
 }
 const { title, site } = Astro.props;
+// 知識軸掛在 <html> 上，讓人物站的主色（暖褐）與其站縮圖同一階——顏色只在
+// global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
+const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
+const axis = siteBySlug.get(stationSlug)?.axis ?? "topic";
 // nav 統一由 core 依 hasProblems 生成（英文、無首頁）；各站不再手寫。
 const nav = buildNav(site);
 // 頁尾「回母站」連結：未設 → 預設連 nplus.wiki 根（各站零設定即有）；設 null 可隱藏。
 const parentSite =
   site.parentSite === undefined
-    ? { href: "https://nplus.wiki/", label: "🌐 nplus.wiki 技術筆記星系" }
+    ? { href: "https://nplus.wiki/", label: "nplus.wiki 筆記星系" }
     : site.parentSite;
 ---
 
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-axis={axis}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -62,8 +67,24 @@ const parentSite =
           }
         </span>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark / light">
-          <span class="icon-light">🌙</span>
-          <span class="icon-dark">☀️</span>
+          {/* 極簡線性 icon 取代 🌙 / ☀️ emoji；currentColor 讓它跟著 --text-2 走。 */}
+          <svg class="icon-light" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M13.2 9.7A5.6 5.6 0 0 1 6.3 2.8a5.6 5.6 0 1 0 6.9 6.9Z"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <svg class="icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.2" />
+            <path
+              d="M8 1v1.8M8 13.2V15M1 8h1.8M13.2 8H15M3.1 3.1l1.3 1.3M11.6 11.6l1.3 1.3M12.9 3.1l-1.3 1.3M4.4 11.6l-1.3 1.3"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linecap="round"
+            />
+          </svg>
         </button>
       </div>
     </nav>

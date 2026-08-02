@@ -34,10 +34,10 @@ const conceptChips = d.concepts.map((s: string) => {
     ? {
         slug: s,
         title: t.data.title,
-        icon: cat?.icon ?? "🧩",
+        icon: cat?.icon ?? "",
         href: withBase(`concepts/${t.id}/`),
       }
-    : { slug: s, title: s, icon: "🧩", href: null };
+    : { slug: s, title: s, icon: "", href: null };
 });
 
 // related problems
@@ -103,7 +103,7 @@ const problemLabel = site.problemLabelEn ?? "Problems";
     )
   }
 
-  <p class="block-eyebrow book-eyebrow">📚 From the Books</p>
+  <p class="block-eyebrow book-eyebrow">From the Books</p>
 
   <article id="solution" class="prose" data-pagefind-body>
     <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>

@@ -13,7 +13,7 @@ interface Props {
 }
 const {
   schools,
-  heading = "🗺 學派地圖",
+  heading = "學派地圖",
   note = "這個領域的主要流派——各自的主張與代表人物",
 } = Astro.props;
 ---
@@ -26,10 +26,13 @@ const {
         <span class="schools-note">{note}</span>
       </div>
       <div class="school-grid">
-        {schools.map((s) => (
+        {schools.map((s, i) => (
           <article class="school-card">
             <div class="school-head">
-              {s.icon && <span class="school-icon">{s.icon}</span>}
+              {/* 序號記號取代各站 schools.ts 的 emoji 圖示（📜 ⚖️ 🏛 …）——與站縮圖
+                  的 N° 同一個裝置，35 個主題站因此不必逐站改資料就一起變。
+                  School.icon 已標 deprecated，這裡刻意不再渲染。 */}
+              <span class="school-index">{String(i + 1).padStart(2, "0")}</span>
               <span class="school-name">{s.name}</span>
               {s.categorySlug && (
                 <a class="school-cat" href={withBase(`/concepts/${s.categorySlug}/`)}>

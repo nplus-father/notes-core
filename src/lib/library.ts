@@ -33,7 +33,10 @@ export interface SchoolFigure {
 
 export interface School {
   name: string;
-  /** emoji 圖示 */
+  /**
+   * @deprecated v0.13.0 起不再渲染——學派卡改用序號記號（與站縮圖的 N° 同一裝置），
+   * 不再用 emoji 圖示。型別暫留讓 35 個主題站的 schools.ts 不必同步改動，下個 major 移除。
+   */
   icon?: string;
   /** 一句話主張（允許行內 HTML） */
   claim: string;
@@ -78,7 +81,9 @@ export interface AuthorProfile {
 }
 
 /** 純 identity helpers：提供型別檢查與 IDE 補全。 */
-export function defineBibliography(entries: BibliographyEntry[]): BibliographyEntry[] {
+export function defineBibliography(
+  entries: BibliographyEntry[],
+): BibliographyEntry[] {
   return entries;
 }
 export function defineSchools(schools: School[]): School[] {
@@ -90,9 +95,12 @@ export function defineProfile(profile: AuthorProfile): AuthorProfile {
 
 /** 首頁書架封面列 = 盤點表中已收錄的書（單一資料源，取代各站手維護的 books.ts）。 */
 export function shelfFromBibliography(
-  entries: BibliographyEntry[]
+  entries: BibliographyEntry[],
 ): { slug: string; title: string }[] {
   return entries
-    .filter((e): e is BibliographyEntry & { slug: string } => e.status === "owned" && !!e.slug)
+    .filter(
+      (e): e is BibliographyEntry & { slug: string } =>
+        e.status === "owned" && !!e.slug,
+    )
     .map((e) => ({ slug: e.slug, title: e.title }));
 }

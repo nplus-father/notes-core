@@ -10,13 +10,13 @@ interface Props {
   heading?: string;
   note?: string;
 }
-const { entries, heading = "🗂 全集盤點", note } = Astro.props;
+const { entries, heading = "全集盤點", note } = Astro.props;
 
 const STATUS: Record<BibliographyStatus, { icon: string; label: string }> = {
-  owned: { icon: "✅", label: "已收錄" },
-  wanted: { icon: "🔍", label: "待收錄" },
-  unavailable: { icon: "🚫", label: "暫無來源" },
-  skipped: { icon: "➖", label: "略過" },
+  owned: { icon: "■", label: "已收錄" },
+  wanted: { icon: "□", label: "待收錄" },
+  unavailable: { icon: "×", label: "暫無來源" },
+  skipped: { icon: "–", label: "略過" },
 };
 
 // 依 group 首次出現的順序分組（無 group 的歸入空字串組，直接平鋪）。
