@@ -23,49 +23,107 @@ export interface SiteCover {
 /** slug → 封面參數。鍵必須是 sites.ts 裡 axis === "topic" 的站（生成器會對帳）。 */
 export const siteCovers: Record<string, SiteCover> = {
   // ── 技術 ──────────────────────────────────────────────
-  "system-design-note": { accent: "#4d9dff", accent2: "#2a6ac9", motif: "network" },
+  "system-design-note": {
+    accent: "#4d9dff",
+    accent2: "#2a6ac9",
+    motif: "network",
+  },
   "data-systems-note": { accent: "#2fbf9e", accent2: "#1c8a72", motif: "db" },
   "cloud-infra-note": { accent: "#35c6d6", accent2: "#1f8fa0", motif: "cloud" },
   "clean-code-note": { accent: "#a678ff", accent2: "#6f47c9", motif: "code" },
-  "design-patterns-note": { accent: "#6d8cff", accent2: "#3a52cc", motif: "patterns" },
+  "design-patterns-note": {
+    accent: "#6d8cff",
+    accent2: "#3a52cc",
+    motif: "patterns",
+  },
   "leetcode-note": { accent: "#8b7cff", accent2: "#4f46e5", motif: "braces" },
-  "behaviour-interview-note": { accent: "#ff7a9c", accent2: "#d64d72", motif: "chat" },
+  "behaviour-interview-note": {
+    accent: "#ff7a9c",
+    accent2: "#d64d72",
+    motif: "chat",
+  },
+  "agile-note": { accent: "#3fc4b0", accent2: "#22897a", motif: "board" },
 
   // ── 商業 ──────────────────────────────────────────────
-  "business-strategy-note": { accent: "#e8a23d", accent2: "#c06f1c", motif: "target" },
+  "business-strategy-note": {
+    accent: "#e8a23d",
+    accent2: "#c06f1c",
+    motif: "target",
+  },
   "management-note": { accent: "#c9923a", accent2: "#96661f", motif: "org" },
   "hbr-note": { accent: "#e0574e", accent2: "#b03a33", motif: "journal" },
   "career-note": { accent: "#d9a441", accent2: "#a9781f", motif: "briefcase" },
-  "leadership-note": { accent: "#4fc26b", accent2: "#2f8f46", motif: "compass" },
+  "leadership-note": {
+    accent: "#4fc26b",
+    accent2: "#2f8f46",
+    motif: "compass",
+  },
   "startup-note": { accent: "#ff8a5c", accent2: "#d6552c", motif: "rocket" },
-  "marketing-note": { accent: "#ff8a3d", accent2: "#d6631c", motif: "megaphone" },
-  "communication-note": { accent: "#38b6c9", accent2: "#1f8090", motif: "chat2" },
+  "marketing-note": {
+    accent: "#ff8a3d",
+    accent2: "#d6631c",
+    motif: "megaphone",
+  },
+  "communication-note": {
+    accent: "#38b6c9",
+    accent2: "#1f8090",
+    motif: "chat2",
+  },
 
   // ── 財經 ──────────────────────────────────────────────
   "investing-note": { accent: "#5ec26b", accent2: "#2f8f46", motif: "chart" },
-  "personal-finance-note": { accent: "#e8b23d", accent2: "#c0871c", motif: "bill" },
+  "personal-finance-note": {
+    accent: "#e8b23d",
+    accent2: "#c0871c",
+    motif: "bill",
+  },
   "economics-note": { accent: "#2fbf9e", accent2: "#1c8a72", motif: "econ" },
 
   // ── 人文與心智 ────────────────────────────────────────
   "philosophy-note": { accent: "#a678ff", accent2: "#6f47c9", motif: "column" },
   "history-note": { accent: "#d9a441", accent2: "#a9781f", motif: "hourglass" },
   "thinking-note": { accent: "#c264d6", accent2: "#8f3fa0", motif: "bulb" },
-  "problem-solving-note": { accent: "#9b6dff", accent2: "#6538c9", motif: "puzzle" },
+  "problem-solving-note": {
+    accent: "#9b6dff",
+    accent2: "#6538c9",
+    motif: "puzzle",
+  },
   "learning-note": { accent: "#4d9dff", accent2: "#2a6ac9", motif: "book" },
   "science-note": { accent: "#3db8e8", accent2: "#1f7fa8", motif: "flask" },
   "writing-note": { accent: "#6d8cff", accent2: "#3a52cc", motif: "pen" },
+  "design-note": { accent: "#ff9f43", accent2: "#cc6f1a", motif: "nib" },
 
   // ── 個人 ──────────────────────────────────────────────
   "growth-note": { accent: "#4fc26b", accent2: "#2f8f46", motif: "growth" },
   "habits-note": { accent: "#4fc26b", accent2: "#2f8f46", motif: "cycle" },
-  "relationships-note": { accent: "#ff7a9c", accent2: "#d64d72", motif: "link" },
-  "life-meaning-note": { accent: "#c264d6", accent2: "#8f3fa0", motif: "mountain" },
-  "image-style-note": { accent: "#38b6c9", accent2: "#1f8090", motif: "hanger" },
+  "relationships-note": {
+    accent: "#ff7a9c",
+    accent2: "#d64d72",
+    motif: "link",
+  },
+  "life-meaning-note": {
+    accent: "#c264d6",
+    accent2: "#8f3fa0",
+    motif: "mountain",
+  },
+  "image-style-note": {
+    accent: "#38b6c9",
+    accent2: "#1f8090",
+    motif: "hanger",
+  },
   "tools-note": { accent: "#7c6dff", accent2: "#4f46e5", motif: "checklist" },
   "wellness-note": { accent: "#34c98a", accent2: "#1f8f63", motif: "pulse" },
 
   // ── 信仰（同一金色家族，各自不同符號）────────────────
-  "biblical-studies-note": { accent: "#d9903d", accent2: "#a86a1f", motif: "scroll" },
+  "biblical-studies-note": {
+    accent: "#d9903d",
+    accent2: "#a86a1f",
+    motif: "scroll",
+  },
   "theology-note": { accent: "#e0b04a", accent2: "#a8781f", motif: "celtic" },
-  "spiritual-formation-note": { accent: "#e0a93c", accent2: "#a8781f", motif: "sprout" },
+  "spiritual-formation-note": {
+    accent: "#e0a93c",
+    accent2: "#a8781f",
+    motif: "sprout",
+  },
 };

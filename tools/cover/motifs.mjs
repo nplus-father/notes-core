@@ -14,7 +14,9 @@ export const MOTIFS = {
       <line x1="222" y1="120" x2="178" y2="280"/></g></svg>`,
 
   // arranged shapes grid — design-patterns
-  patterns: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  patterns: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="${c}" stroke-width="7">
       <rect x="92" y="92" width="96" height="96" rx="14"/>
       <circle cx="260" cy="140" r="48"/>
@@ -23,7 +25,9 @@ export const MOTIFS = {
     <g fill="${c}"><rect x="120" y="120" width="40" height="40" rx="6"/><circle cx="260" cy="308" r="0"/></g></svg>`,
 
   // connected nodes — system-design
-  network: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  network: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <g stroke="${c}" stroke-width="7" opacity=".9" stroke-linecap="round">
       <line x1="200" y1="88" x2="108" y2="228"/><line x1="200" y1="88" x2="292" y2="228"/>
       <line x1="108" y1="228" x2="292" y2="228"/><line x1="200" y1="88" x2="200" y2="312"/>
@@ -56,14 +60,18 @@ export const MOTIFS = {
     <path d="M320 80 l-10 40 l-30 -30 z" fill="${c}"/></svg>`,
 
   // briefcase — career
-  briefcase: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  briefcase: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <path d="M158 146 v-18 a18 18 0 0 1 18 -18 h48 a18 18 0 0 1 18 18 v18" fill="none" stroke="${c}" stroke-width="7"/>
     <rect x="90" y="146" width="220" height="158" rx="18" fill="none" stroke="${c}" stroke-width="7"/>
     <line x1="90" y1="212" x2="310" y2="212" stroke="${c}" stroke-width="7"/>
     <rect x="176" y="196" width="48" height="32" rx="6" fill="${c}"/></svg>`,
 
   // compass — leadership
-  compass: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  compass: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <circle cx="200" cy="200" r="120" fill="none" stroke="${c}" stroke-width="7"/>
     <path d="M200 96 L236 200 L200 214 L164 200 Z" fill="${c}"/>
     <path d="M200 304 L164 200 L200 186 L236 200 Z" fill="${c}" opacity=".45"/>
@@ -79,7 +87,9 @@ export const MOTIFS = {
       <path d="M174 300 q26 44 52 0"/></g></svg>`,
 
   // megaphone — marketing
-  megaphone: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  megaphone: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <path d="M96 172 h56 l128 -64 v184 l-128 -64 h-56 a0 0 0 0 1 0 0 z" fill="${c}"/>
     <rect x="96" y="172" width="56" height="56" rx="10" fill="${c}"/>
     <path d="M152 228 h34 l6 60 h-28 z" fill="${c}"/>
@@ -131,7 +141,9 @@ export const MOTIFS = {
       <line x1="218" y1="138" x2="218" y2="282"/><line x1="252" y1="138" x2="252" y2="282"/></g></svg>`,
 
   // hourglass — history
-  hourglass: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  hourglass: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="${c}" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
       <line x1="120" y1="92" x2="280" y2="92"/><line x1="120" y1="308" x2="280" y2="308"/>
       <path d="M134 92 q0 74 66 108 q66 -34 66 -108"/>
@@ -168,7 +180,9 @@ export const MOTIFS = {
     <g fill="none" stroke="${c}" stroke-width="10"><circle cx="156" cy="200" r="82"/><circle cx="244" cy="200" r="82"/></g></svg>`,
 
   // mountain + sun — life-meaning
-  mountain: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  mountain: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <circle cx="288" cy="126" r="30" fill="${c}"/>
     <path d="M72 308 l78 -134 l52 74 l46 -80 l80 140 z" fill="${c}"/></svg>`,
 
@@ -209,7 +223,9 @@ export const MOTIFS = {
     <circle cx="200" cy="158" r="46" fill="none" stroke="${c}" stroke-width="9"/></svg>`,
 
   // journal issue — hbr（期刊＝有刊頭的一期，與 book/bill 都不同）
-  journal: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  journal: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <rect x="94" y="70" width="212" height="268" rx="16" fill="none" stroke="${c}" stroke-width="8"/>
     <path d="M94 86 a16 16 0 0 1 16 -16 h180 a16 16 0 0 1 16 16 v46 h-212 z" fill="${c}"/>
     <g stroke="${c}" stroke-width="8" stroke-linecap="round">
@@ -242,7 +258,9 @@ export const MOTIFS = {
 
   // checked list — tools/productivity（原本與 business-strategy 共用 target，撞圖）
   // 線要對齊框的中線、且不要拉太長，否則兩行會散成四個各自為政的元素。
-  checklist: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  checklist: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="${c}" stroke-width="8" stroke-linejoin="round">
       <rect x="104" y="112" width="64" height="64" rx="13"/>
       <rect x="104" y="224" width="64" height="64" rx="13"/></g>
@@ -259,4 +277,31 @@ export const MOTIFS = {
     <line x1="200" y1="192" x2="200" y2="318" stroke="${c}" stroke-width="10" stroke-linecap="round"/>
     <path d="M194 202 c-6 -64 -50 -90 -94 -88 c-2 48 36 92 94 88 z" fill="${c}"/>
     <path d="M206 202 c6 -64 50 -90 94 -88 c2 48 -36 92 -94 88 z" fill="${c}" opacity=".55"/></svg>`,
+
+  // kanban board — agile（三欄與一張正在流動的卡；刻意不用 cycle，
+  // 那是 habits 的迴路，敏捷要表達的是「卡片橫向移動」而不是「重複」）
+  board: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="${c}" stroke-width="7">
+      <rect x="72" y="96" width="76" height="208" rx="12"/>
+      <rect x="162" y="96" width="76" height="208" rx="12"/>
+      <rect x="252" y="96" width="76" height="208" rx="12"/></g>
+    <g fill="${c}">
+      <rect x="86" y="118" width="48" height="30" rx="7"/>
+      <rect x="86" y="162" width="48" height="30" rx="7" opacity=".55"/>
+      <rect x="176" y="118" width="48" height="30" rx="7"/></g>
+    <g stroke="${c}" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="248" y1="230" x2="300" y2="230"/>
+      <polyline points="286,216 300,230 286,244"/></g></svg>`,
+
+  // alignment grid + nib — design（強調「對齊」這條線，而不是畫筆本身；
+  // patterns 是排列好的形狀，屬 design-patterns，這裡刻意分開）
+  nib: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="${c}" stroke-width="5" opacity=".4">
+      <line x1="132" y1="76" x2="132" y2="324"/>
+      <line x1="76" y1="268" x2="324" y2="268"/></g>
+    <g fill="none" stroke="${c}" stroke-width="7" stroke-linejoin="round">
+      <path d="M132 268 L250 130 L296 168 L178 306 Z"/>
+      <line x1="132" y1="268" x2="214" y2="197"/></g>
+    <path d="M132 268 l46 -40 l22 18 l-46 40 z" fill="${c}"/>
+    <circle cx="132" cy="268" r="9" fill="${c}"/></svg>`,
 };
