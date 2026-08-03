@@ -63,7 +63,6 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/new-note.sh`             | 開新站：建 repo、套模板、打 `nplus-note` topic、自動入列 `sites.ts`       |
 | `tools/bump-notes-core.sh`      | 把所有站的 notes-core 釘版 bump 到新 tag，逐站重裝＋驗 lockfile＋build    |
 | `tools/cover/render.sh`         | 重繪主題站封面 PNG（需 Chrome + ImageMagick）                            |
-| `tools/rewire-notes-core.sh`    | ⚠️ 已退役，保留考古；新站請走 `new-note.sh`                              |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
