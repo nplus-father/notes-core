@@ -1,7 +1,10 @@
 ---
 // 首頁「參考書架」：一眼看出本站彙整自哪些 owned books（書的歸屬放首頁，
 // 各主題頁內文就不必逐段標書名）。books 由各站 src/data/books.ts 提供。
-import { bookUrl } from "../lib/links";
+//
+// 縮圖走 bookCoverUrl() 的代理（見 links.ts）而非書 repo 的原始 PNG：
+// 顯示只有 132×190，原圖卻平均 280KB，書多的站一頁能吃掉 21MB。
+import { bookUrl, bookCoverUrl } from "../lib/links";
 interface Book {
   slug: string;
   title: string;
@@ -36,9 +39,11 @@ const {
           >
             <img
               class="cover-img"
-              src={bookUrl(b.slug, "cover.png")}
+              src={bookCoverUrl(b.slug)}
+              data-fallback={bookUrl(b.slug, "cover.png")}
               alt={b.title}
               loading="lazy"
+              decoding="async"
               width="132"
               height="190"
             />
@@ -49,3 +54,21 @@ const {
     </section>
   )
 }
+
+<script>
+  // 代理退路：wsrv.nl 掛掉／被擋時退回書 repo 的原圖（慢，但不破圖）。
+  // 用 capture 監聽——img 的 error 不冒泡，委派只能在捕獲階段接到。
+  // 一頁只掛一個監聽器，不隨書數增加。
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement) || !img.classList.contains("cover-img")) return;
+      const fallback = img.dataset.fallback;
+      if (!fallback || img.src === fallback) return;
+      img.src = fallback;
+      delete img.dataset.fallback; // 只退一次，原圖再壞就讓它壞，別無限重試
+    },
+    true,
+  );
+</script>

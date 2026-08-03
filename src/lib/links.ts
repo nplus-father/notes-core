@@ -13,6 +13,31 @@ export function bookUrl(book: string, anchor = ""): string {
   return `${WIKI}/${book}/${a}`;
 }
 
+/**
+ * 書封縮圖 URL：經 wsrv.nl 代理縮放並轉成 WebP。
+ *
+ * 為何不直接指 `bookUrl(slug, "cover.png")`：那是書 repo 的 900×1200 原始 PNG，
+ * 實測平均 280KB，而書架只顯示 132×190。書多的站（leadership-note 有 77 本）
+ * 光書架就要吃 21MB；代理後每張約 15KB，同一頁降到約 0.9MB。
+ *
+ * **原圖仍然是 SSOT**——圖歸書 repo 管，這裡只改「取用時的尺寸與格式」，
+ * 書 repo 一個位元都不用動。這也是不能在 build 時處理的原因：圖在別的 repo、
+ * 別的網域，build 時去抓等於讓 62 站的建置綁死 1391 個書站的可用性。
+ *
+ * 代理掛掉時由 Bookshelf 的 error 監聽退回原圖——會變慢，但不會破圖。
+ * 不帶 `v=` 版本參數：書封極少改，換來的是所有站共用同一份代理快取。
+ */
+export function bookCoverUrl(book: string, width = 264): string {
+  const target = `${WIKI}/${book}/cover.png`.replace(/^https?:\/\//, "");
+  const params = new URLSearchParams({
+    url: target,
+    w: String(width),
+    output: "webp",
+    q: "80",
+  });
+  return `https://wsrv.nl/?${params.toString()}`;
+}
+
 /** 姊妹站連結：site = 站代號（sites.ts 的 key），path = 站內路徑。 */
 export function siteUrl(site: string, path = ""): string {
   const repo = siteByKey.get(site)?.slug ?? site;
