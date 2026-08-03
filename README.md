@@ -52,6 +52,30 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 
 升星系依賴版本的流程：改 `versions.json` → 發新 tag → 各站 `notes-doctor fix` + `npm install` + build 驗證。
 
+## tools/ — 星系操作腳本（不發佈）
+
+`bin/` 是**站內**工具，跟著套件裝進每一站；`tools/` 是**站外**工具，站在星系的視角一次操作很多個 repo。
+
+判準只有一條：**需要 host 環境依賴（`gh`、`git push`、headless Chrome、ImageMagick）或會跨 repo 寫入的，一律放 `tools/`，且不列進 `package.json` 的 `files`。** 62 站建置時會 import notes-core，不該把這些拖進那條依賴鏈。
+
+| 腳本                            | 用途                                                                     |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| `tools/new-note.sh`             | 開新站：建 repo、套模板、打 `nplus-note` topic、自動入列 `sites.ts`       |
+| `tools/bump-notes-core.sh`      | 把所有站的 notes-core 釘版 bump 到新 tag，逐站重裝＋驗 lockfile＋build    |
+| `tools/cover/render.sh`         | 重繪主題站封面 PNG（需 Chrome + ImageMagick）                            |
+| `tools/rewire-notes-core.sh`    | ⚠️ 已退役，保留考古；新站請走 `new-note.sh`                              |
+
+星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
+`NOTES_ROOT=` 覆寫。
+
+**為何各站用 git 依賴而非 GitHub Packages**：org 政策禁止 public npm package，而 private package
+跨 repo 讀取很痛。notes-core 的 *repo* 是 public，故直接 `github:nplus-father/notes-core#<tag>`
+由 npm clone——零 token / 零 `.npmrc` / 零 registry。
+
+代價是 **npm 對「只有 committish 變」的 git 依賴會沿用 lockfile 舊 `resolved`**：改了 tag、`npm install`
+跑完、build 還是綠，裝的卻仍是舊版（2026-07-20 一次 44 站 bump 就這樣整批做白工）。所以
+`bump-notes-core.sh` 在 build 之前先比對 `package-lock.json` 裡的 commit sha——**build 綠不是升級成功的證據，lockfile 的 sha 才是。**
+
 ## 發布
 
 版本以 `package.json` 為準。推 `v*` tag 觸發 `.github/workflows/publish.yml`，用 repo `GITHUB_TOKEN` 發到 GitHub Packages：
