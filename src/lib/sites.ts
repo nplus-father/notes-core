@@ -73,6 +73,8 @@ export const sites: Site[] = [
   { key: "tools", slug: "tools-note", brand: "Productivity Notes", label: "生產力", axis: "topic", seeAlsoMode: "open" },
   { key: "wellness", slug: "wellness-note", brand: "Wellness Notes", label: "身心健康", axis: "topic", seeAlsoMode: "open" },
   { key: "writing", slug: "writing-note", brand: "Writing Notes", label: "寫作工藝", axis: "topic", seeAlsoMode: "open" },
+  { key: "agile", slug: "agile-note", brand: "Agile Notes", label: "敏捷開發", axis: "topic", seeAlsoMode: "open" },
+  { key: "design", slug: "design-note", brand: "Design Notes", label: "設計思考", axis: "topic", seeAlsoMode: "open" },
   // __NEW_TOPIC_SITE__ (new-note.sh 會在此行前插入新主題站)
 
   // ══ 人物站群（首頁走 profile 思想側寫）════════════════════════════════
@@ -103,6 +105,7 @@ export const sites: Site[] = [
   { key: "wan-weigang", slug: "wan-weigang-note", brand: "Wan Weigang Notes", label: "萬維鋼", axis: "person", seeAlsoMode: "open" },
   { key: "willard", slug: "willard-note", brand: "Dallas Willard Notes", label: "Dallas Willard", axis: "person", seeAlsoMode: "open" },
   { key: "wujun", slug: "wujun-note", brand: "Wu Jun Notes", label: "吳軍", axis: "person", seeAlsoMode: "open" },
+  { key: "covey", slug: "covey-note", brand: "Covey Notes", label: "Stephen R. Covey", axis: "person", seeAlsoMode: "open" },
   // __NEW_PERSON_SITE__ (new-note.sh 會在此行前插入新人物站)
 ];
 

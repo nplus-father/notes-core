@@ -2,10 +2,14 @@
 # 一鍵開新 note 站並自動入列星系。
 #
 # 用法：
-#   tools/new-note.sh <slug> "<Brand 英文顯示名>" "<中文短名>" <topic|person> ["<tagline>"] ["<原文名>"]
+#   tools/new-note.sh <slug> "<Brand 英文顯示名>" "<顯示名>" <topic|person> ["<tagline>"]
 # 例：
 #   tools/new-note.sh habits-note "Habits Notes" "習慣" topic "習慣養成筆記。"
-#   tools/new-note.sh drucker-note "Drucker Notes" "杜拉克" person "杜拉克的管理思想。" "Peter Drucker"
+#   tools/new-note.sh drucker-note "Drucker Notes" "Peter Drucker" person "杜拉克的管理思想。"
+#
+# 第三個參數是 registry 的 label——主題站用中文短名；人物站用**該人物通行的寫法**
+# （西方作者英文全名 Peter Drucker，華文作者中文名 馮唐），不硬譯。v0.14.0 起
+# subject: { nameZh, nameEn } 已收回，所以不再有第 6 個「原文名」參數。
 #
 # 做的事：
 #   1. 從 GitHub template repo `nplus-father/note-template` 建新 repo 並 clone 到 notes/ 下
@@ -15,21 +19,19 @@
 set -euo pipefail
 
 OWNER=nplus-father
-USAGE='用法: tools/new-note.sh <slug> "<Brand>" "<中文短名>" <topic|person> ["<tagline>"] ["<原文名>"]'
+USAGE='用法: tools/new-note.sh <slug> "<Brand>" "<顯示名>" <topic|person> ["<tagline>"]'
 SLUG="${1:?$USAGE}"
 BRAND="${2:?需要 Brand 英文顯示名}"
-LABEL="${3:?需要中文短名（人物站 = 傳主中文名）}"
+LABEL="${3:?需要顯示名（主題站＝中文短名；人物站＝該人物通行的寫法）}"
 AXIS="${4:?需要知識軸：topic（主題站）或 person（人物站）}"
 TAGLINE="${5:-}"
-NAME_EN="${6:-}"
 # 星系根目錄＝放所有 -note 站的容器目錄。本腳本住在 notes-core/tools/，往上兩層就是。
 # 佈局不同時用 NOTES_ROOT 覆寫（對應 tools/cover/render.sh 的 --install <notes-root>）。
 ROOT="${NOTES_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}"
 NS="$(echo "$SLUG" | awk -F- '{printf "%s%s", substr($1,1,1), substr($2,1,1)}')"
 
 case "$AXIS" in
-  topic) ;;
-  person) : "${NAME_EN:?人物站需要第 6 個參數（傳主原文名）}" ;;
+  topic | person) ;;
   *) echo "✘ axis 只能是 topic 或 person（收到 \"$AXIS\"）" >&2; exit 2 ;;
 esac
 
@@ -49,14 +51,15 @@ gh repo edit "$OWNER/$SLUG" --add-topic nplus-note
 # 新站一律 seeAlsoMode "open"；要收進嚴格 enum（技術站群）請手動搬到 __NEW_SITE__ 那一區。
 SITES="$ROOT/notes-core/src/lib/sites.ts"
 KEY="${SLUG%-note}"
+# v0.14.0 起 Site 型別只剩單一 label（人物站用該人物通行的寫法：西方作者英文全名、
+# 華文作者中文名）。v0.13.x 那組 subject: { nameZh, nameEn } 已收回——這裡再寫出來
+# 會變成型別不存在的欄位，registry 直接編不過。
 if [ "$AXIS" = "person" ]; then
   MARKER="__NEW_PERSON_SITE__"
-  SUBJECT=", subject: { nameZh: \"$LABEL\", nameEn: \"$NAME_EN\" }"
 else
   MARKER="__NEW_TOPIC_SITE__"
-  SUBJECT=""
 fi
-LINE="  { key: \"$KEY\", slug: \"$SLUG\", brand: \"$BRAND\", label: \"$LABEL\", axis: \"$AXIS\", seeAlsoMode: \"open\"$SUBJECT },"
+LINE="  { key: \"$KEY\", slug: \"$SLUG\", brand: \"$BRAND\", label: \"$LABEL\", axis: \"$AXIS\", seeAlsoMode: \"open\" },"
 if [ -f "$SITES" ] && ! grep -q "slug: \"$SLUG\"" "$SITES"; then
   LINE="$LINE" MARKER="$MARKER" perl -0pi -e 's{(\n\s*// \Q$ENV{MARKER}\E)}{\n$ENV{LINE}$1}' "$SITES"
   echo "✔ 已加進 notes-core/src/lib/sites.ts（記得發 notes-core 新版讓各站吃到）"
