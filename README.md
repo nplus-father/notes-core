@@ -75,6 +75,24 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 跑完、build 還是綠，裝的卻仍是舊版（2026-07-20 一次 44 站 bump 就這樣整批做白工）。所以
 `bump-notes-core.sh` 在 build 之前先比對 `package-lock.json` 裡的 commit sha——**build 綠不是升級成功的證據，lockfile 的 sha 才是。**
 
+## docs/ — 星系規劃文件（不發佈）
+
+跨站的盤點與規劃文件。這些原本散在星系根目錄（`notes/*.md`）**完全沒有版控**——改了沒有歷史、
+壞了無法回溯，2026-08-04 收進這裡。同樣不列進 `files`，消費站不需要它們。
+
+| 文件                                | 用途                                                                |
+| ----------------------------------- | ------------------------------------------------------------------- |
+| `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；附可重跑的掃描腳本      |
+| `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-enrich` 補）；跨站排序          |
+| `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
+| `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
+| `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
+| `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
+| `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
+
+**前兩份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 兩者是不同的軸，別混用——
+「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG。
+
 ## 發布
 
 版本以 `package.json` 為準。推 `v*` tag 觸發 `.github/workflows/publish.yml`，用 repo `GITHUB_TOKEN` 發到 GitHub Packages：
