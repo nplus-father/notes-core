@@ -44,8 +44,22 @@ gh repo create "$OWNER/$SLUG" --template "$OWNER/note-template" --private --clon
 cd "$ROOT/$SLUG"
 ./init.sh "$SLUG" "$BRAND" "$TAGLINE" "$NS"
 
-# 3) 星系 topic（遠端撈取用）
-gh repo edit "$OWNER/$SLUG" --add-topic nplus-note
+# 3) portal 可見性：homepage + topic
+#
+# portal 的 scripts/fetch-repos.ts 用「topic 含 nplus-portal **且** homepage 非空」兩個條件撈，
+# 兩者缺一新站就不會出現在 nplus.wiki/notes/——而且不會報錯，只是靜靜地不見。
+# （2026-08-04 開的三站就是這樣：只打了 nplus-note，那個 topic 沒有任何程式在讀。）
+#
+# top-*/sub-* 決定 portal 的領域分組，必須跟書庫同一套詞彙：拿該站主力書的
+# leaf topic 去對照書 repo 的 top-/sub- 即可（例：leaf-agile → sub-engineering/top-craft）。
+# 這兩個沒辦法從參數推導，所以留給人補——先設好前兩項，卡片至少出得來。
+gh repo edit "$OWNER/$SLUG" \
+  --homepage "https://nplus.wiki/$SLUG/" \
+  --description "${TAGLINE:-$BRAND}" \
+  --add-topic nplus-kind-notes \
+  --add-topic nplus-portal
+echo "⚠ 記得補 top-*/sub-* topic，否則 portal 會把本站歸到「未分類」："
+echo "    gh repo edit $OWNER/$SLUG --add-topic top-<領域> --add-topic sub-<主題>"
 
 # 4) 入列 notes-core sites.ts（若本地有 clone）
 # 新站一律 seeAlsoMode "open"；要收進嚴格 enum（技術站群）請手動搬到 __NEW_SITE__ 那一區。
