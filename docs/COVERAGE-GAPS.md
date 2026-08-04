@@ -1,9 +1,10 @@
 # Note 星系 coverage gap（還沒開站的人物與主題）
 
-掃描日：2026-08-03。**與 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) 是不同的軸，別混用**：
+掃描日：2026-08-03（2026-08-04 重掃更新）。**星系的維護有三個軸，別混用**：
 
 - 本檔：**還沒有站**的人物／主題 —— 缺口靠「開新站」補。
-- ENRICH-BACKLOG：**站已存在但還沒寫完** —— 缺口靠 `note-enrich` 補。
+- [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-enrich` 長內容補。
+- [SOURCING-DEBT.md](./SOURCING-DEBT.md)：**內容寫了但查不到出處** —— 缺口靠掛 `anchor` 補（2026-08-04 新增的軸；當時全星系 33% 的頁沒有 anchor）。
 
 ## 指標與重算方式
 
@@ -73,6 +74,19 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 - **機構不算人物**：Harvard Business Review（36 本，已有 `hbr-note`）、CFA Institute（6 本）。
 - **共同作者字串會重複計數**：`Robert T. Kiyosaki & Sharon L. Lechter` 與 `Robert Kiyosaki` 會被算成兩個作者。重算時取 `&`／`,`／`and` 之前的第一作者。
 
+## 2026-08-04 重掃（開完五站之後）
+
+**1401 本藏書，1006 本已被引用，395 本沒有任何站碰過**（08-03 是 1391 / 978 / 413）。
+
+藏書 ≥6 本且未覆蓋 ≥50% 的 leaf 只剩兩個：
+
+| leaf | 未覆蓋/總數 | 處置 |
+| --- | --- | --- |
+| `biblical-studies` | 59/109（54%） | 依決議暫緩；歸 `biblical-studies-note` 的 enrich，見 ENRICH-BACKLOG |
+| `security` | 6/7（85%） | **新發現的主題缺口**，之前沒被列進候選。藏書量小，先評估併進 `cloud-infra-note` 還是獨立開站 |
+
+> 08-03 的兩個主題缺口（`agile` 7/8、`visual` 11/12）已由開站解決；A 類人物缺口也已清空。
+
 ## 已執行（2026-08-04）
 
 ### 第一批：主題缺口 + Covey
@@ -108,7 +122,19 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 ## 下一輪的候選
 
-1. `biblical-studies-note` enrich（吃掉神學那 18 本）—— **暫緩，2026-08-04 決議先不做**；見 ENRICH-BACKLOG
-2. B 類人物站 —— 想清楚「重切」的價值再動
+1. **溯源債** —— 見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)。這是目前投報率最高的一項：全星系 33% 的頁查不到出處，而清債的過程會抓出實質錯誤（2026-08-04 的 26 頁抓到 8 處）。
+2. `security` leaf 缺口 —— 7 本藏書、6 本未覆蓋，先決定併站還是開站。
+3. `biblical-studies-note` enrich（吃掉神學那 18 本 + leaf 層的 59 本）—— **暫緩，2026-08-04 決議先不做**；見 ENRICH-BACKLOG
+4. B 類人物站 —— 想清楚「重切」的價值再動
+
+## 這份文件掃不到的東西
+
+三個軸都不涵蓋的維護面向，2026-08-04 實測數字：
+
+| 面向 | 現況 | 為什麼 enrich 補不了 |
+| --- | --- | --- |
+| **跨站連結** | 1203 頁空 `seeAlso`，只有 114 頁有 | `note-enrich` 的紀律是「確認姊妹站路徑存在才加，否則留空」——實務上永遠留空。星系目前是 69 個各自獨立的站 |
+| **複習狀態** | 1219 draft / 51 reviewed / 47 studied；`lastReviewed` 只有 14 頁設過 | enrich 只管產出不管複習 |
+| **心得層** | `:::response` 只有 36 頁有內容（2.7%） | enrich 明文不填這層，那是 `note-master` 與 `*-study` 的職責 |
 
 > 舊的規劃稿（`humanities-books-by-domain.md`、`humanities-note-scope-draft.md`、`books-by-domain.md`）是 2026-07-01～02 的建站期文件，其提案多已落地，保留作歷史紀錄；**新的缺口盤點以本檔為準**。
