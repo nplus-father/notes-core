@@ -14,12 +14,14 @@
 
 開站緣由與缺口分析見 COVERAGE-GAPS.md。
 
-| 站 | pages/owned | 狀態 |
-|---|---|---|
-| templar-note | 7 / 6 | 骨架;人物站;the-code/work/people/self——The Rules 系列六本,一條規則一頁對頁的體例 |
-| navarro-note | 6 / 4 | 骨架;人物站;observation/limbic/dictionary/danger——非語言溝通三本+危險人格一本 |
+(無)
 
-### 已 enrich(2026-08-04 同日完成第一批)
+### 已 enrich(2026-08-04 同日完成)
+
+| 站 | pages/owned | 備註 |
+|---|---|---|
+| templar-note | 7 / 6 | 開站種子概念全數改寫為書本位並掛章節 anchor;順手修正三處事實(Rules of Thinking 是 10 部不是 6 類、Rules of Management 的核心是「管理流程而非管理人」、work 分類頁改名 manage-the-process-not-the-people) |
+| navarro-note | 6 / 4 | 同上;補入十大準則、三腦一體、識謊迷思(慣性說謊者反而增加眼神接觸)、討喜 vs 善良對照表 |
 
 | 站 | pages/owned | 備註 |
 |---|---|---|

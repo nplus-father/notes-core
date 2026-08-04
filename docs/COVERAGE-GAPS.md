@@ -87,19 +87,28 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 ### 第二批：A 類人物（Templar / Navarro）
 
-決議兩位都獨立開站，不併進 `communication-note`。理由：Templar 的體例（一條規則一頁對頁、拒絕理論）與 Navarro 的方法論（基準線紀律、反測謊立場）各自成體系，併站會把兩套語彙壓成通用溝通建議。骨架階段，內容待 `note-enrich`：
+決議兩位都獨立開站，不併進 `communication-note`。理由：Templar 的體例（一條規則一頁對頁、拒絕理論）與 Navarro 的方法論（基準線紀律、反測謊立場）各自成體系，併站會把兩套語彙壓成通用溝通建議。開站後同日已改寫為書本位：
 
-| 站 | 軸 | 分類 | 種子概念 | owned |
+| 站 | 軸 | 分類 | 頁數 | owned |
 | --- | --- | --- | --- | --- |
 | `templar-note` | person | the-code / work / people / self | 7 | 6 |
 | `navarro-note` | person | observation / limbic / dictionary / danger | 6 | 4 |
 
 > 兩站的 registry 入列與封面走 `notes-core` v0.18.0；portal 分組 topic 都取主力書的 `top-professional` / `sub-communication`。
 
+### 開站種子概念的溯源債（已清）
+
+`note-new-station` 對種子概念沒有書本位要求（那是 `note-enrich` 的紀律），所以開站當下寫出來的頁是憑既有理解寫的、`furtherReading` 只掛書不掛 anchor。**同日已全部回頭對照 `books-done` 原文改寫**，並掛上章節 anchor。這一輪校正抓到三處實質錯誤：
+
+- 《The Rules of Thinking》是**十個部分**，不是六類。
+- 《The Rules of Management》的核心是**「管理流程而非管理人」**（第一部卷首），而不是「管自己先於管團隊」——書的順序也是團隊先、自己後。
+- Navarro 的識謊立場比原本寫的更強：**慣性說謊者反而會增加眼神接觸**，而「說謊者不敢對視」是明確的迷思。
+
+> **教訓**：新站開完就該接一輪 `note-enrich`，別讓種子概念以未溯源的狀態留在站上——它讀起來跟書本位的頁一模一樣，但沒有 anchor 可以查。
+
 ## 下一輪的候選
 
-1. `templar-note` / `navarro-note` enrich —— 骨架落差是滿的，優先於一般高落差
-2. `biblical-studies-note` enrich（吃掉神學那 18 本）—— **暫緩，2026-08-04 決議先不做**；見 ENRICH-BACKLOG
-3. B 類人物站 —— 想清楚「重切」的價值再動
+1. `biblical-studies-note` enrich（吃掉神學那 18 本）—— **暫緩，2026-08-04 決議先不做**；見 ENRICH-BACKLOG
+2. B 類人物站 —— 想清楚「重切」的價值再動
 
 > 舊的規劃稿（`humanities-books-by-domain.md`、`humanities-note-scope-draft.md`、`books-by-domain.md`）是 2026-07-01～02 的建站期文件，其提案多已落地，保留作歷史紀錄；**新的缺口盤點以本檔為準**。
