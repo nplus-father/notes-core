@@ -41,7 +41,11 @@ const total = groups.reduce((n, g) => n + g.items.length, 0);
 const storeKey = `check:${import.meta.env.BASE_URL}`;
 ---
 
-<BaseLayout title={`Check · ${site.brand}`} site={site}>
+{
+  /* 還沒定義 mastery 的站，這頁只有空狀態說明——掛 noindex，別讓 62 站各交一份
+    幾乎相同的空頁給搜尋引擎（路由恆注入，故不能靠 sitemap 的 config 期過濾）。 */
+}
+<BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
   <nav class="crumbs"><a href={withBase("/")}>Home</a><span>/</span><span>Check</span></nav>
   <header class="page-head">
     <div class="check-head">

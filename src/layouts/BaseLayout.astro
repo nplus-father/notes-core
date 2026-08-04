@@ -10,8 +10,10 @@ import { siteBySlug } from "../lib/sites";
 interface Props {
   title: string;
   site: SiteConfig;
+  /** 這一頁沒有實質內容（如尚未定義 mastery 的空檢核頁），不要讓搜尋引擎收錄。 */
+  noindex?: boolean;
 }
-const { title, site } = Astro.props;
+const { title, site, noindex = false } = Astro.props;
 // 知識軸掛在 <html> 上，讓人物站的主色（暖褐）與其站縮圖同一階——顏色只在
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
@@ -35,6 +37,7 @@ const parentSite =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href={faviconUrl} type="image/png" />
+    {noindex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
     <!-- 先於繪製設定主題，避免閃爍 -->
     <script is:inline>
