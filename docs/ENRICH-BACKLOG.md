@@ -10,6 +10,14 @@
 
 (無)
 
+## v0.19.0 版面契約債(2026-08-05 登記)
+
+core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁(資料源=分類 `_index.md` 的 `mastery`)。全站已 bump 到 v0.19.0(68 repo 含 note-template,0 失敗);存量內容債三筆,隨 note-enrich / note-inventory 分批清:
+
+1. **mastery 全站皆缺(62 站)**:各分類 `_index.md` 補 `mastery: [{text, slug?}]`(每分類 2–4 條、書本位、slug 連回概念頁)。沒補的站 topnav 不出 ✅、`/check/` 是空狀態頁,不是壞——所以不急,**隨各站下一輪 note-enrich 順手補**(note-enrich §2 已列為落差類型)。試點:covey-note(2026-08-05 已補,當範本)。
+2. **kind 指派(非學派主題站)**:34 站有 schools.ts,預設學派地圖多數正確。初步建議改口味——`methods`(方法地圖):agile、design、problem-solving、biblical-studies、learning、tools;`themes`(主題地圖):history、science、hbr。實際逐站由 note-inventory 判斷,一站一行 `defineSchools(entries, {kind})` 即可。
+3. **缺 schools 的主題站 2 站(v0.19.0 起=note-review blocker)**:`leetcode-note`(建議 methods:解題方法體系)、`behaviour-interview-note`(建議 methods:面試方法體系)——用 note-inventory 補。
+
 ## 新站(2026-08-04 開站,同日全部完成 enrich)
 
 開站緣由與缺口分析見 COVERAGE-GAPS.md。五站的內容皆為書本位、每頁掛章節 anchor。
