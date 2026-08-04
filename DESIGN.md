@@ -57,7 +57,9 @@
 
 `title / category(或 domain) / importance / status / related / furtherReading / seeAlso`。**每個內容單元都要能溯源**到某本 owned book：`furtherReading: [{book, label, anchor?}]`，`anchor` = 線上書路徑（如 `docs/2-distributed-data/7-sharding/`）；不確定就省略，避免深連 404。
 
-`label` 慣例 **「書名 — 章節」**（破折號分隔）如今是 load-bearing：頁尾「Further Reading」渲染成**卡片**——破折號後段（章節）當子標題主角、書名退為小字、右側配書圖（吃書架同一個 cover 代理）；頁首 SourceByline 取破折號前段（書名）。沒有破折號的 label 整句當子標題。
+`label` 慣例 **「書名 — 章節」**（破折號分隔）如今是 load-bearing：頁尾「Further Reading」渲染成**卡片**——破折號後段（章節）當子標題主角、書名退為小字、右側配書圖（吃書架同一個 cover 代理）；頁首 SourceByline 取破折號前段（書名）。沒有分隔號的 label 整句當子標題、不出書名小字。
+
+> **分隔號寫全形破折號 `—`**（或 en dash `–`，或**前後有空白**的 ` - `）。拆法（`splitBookLabel`）刻意不認貼著字的 ASCII 連字號——書名常含連字號（The Non-Designer's…／High-Performance…／Test-Driven…），無條件拆會把書名攔腰斬成「The Non」，而錯的那半正好是卡片最大的字。
 
 ### 5.2 正文標題慣例（固定順序）
 

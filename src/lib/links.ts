@@ -49,3 +49,21 @@ export function siteUrl(site: string, path = ""): string {
 export function siteLabel(site: string): string {
   return siteByKey.get(site)?.label ?? site;
 }
+
+/**
+ * 拆 furtherReading 的 `label`（慣例「書名 — 章節」）成書名與章節，供頁尾卡片
+ * （章節當子標題、書名退小字）與頁首 byline（只取書名）共用同一套拆法。
+ *
+ * **分隔號只認 em/en dash，或前後有空白的 ASCII hyphen。** 不能無條件拆 `-`——
+ * 書名本身常含連字號（The Non-Designer's…／High-Performance…／Test-Driven…），
+ * 那樣會把書名攔腰斬成「The Non」，且錯的那半正好是卡片最大的字。
+ * 沒有分隔號時：整句當章節、書名留空（卡片不出小字）。
+ */
+export function splitBookLabel(label: string): { book: string; chapter: string } {
+  const m = label.match(/\s*[—–]\s*|\s+-\s+/);
+  if (!m || m.index === undefined) return { book: "", chapter: label.trim() };
+  return {
+    book: label.slice(0, m.index).trim(),
+    chapter: label.slice(m.index + m[0].length).trim(),
+  };
+}

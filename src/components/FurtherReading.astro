@@ -2,7 +2,7 @@
 // 頁尾「Further Reading」：卡片版型（v0.19.0）——章節子標題當主角、書名退為小字，
 // 書的身分交給右側書圖；整張卡連到書站的章節 anchor。
 // 書圖與書架同一個代理（bookCoverUrl）；寬度用預設值，62 站共用同一份代理快取。
-import { bookUrl, bookCoverUrl } from "../lib/links";
+import { bookUrl, bookCoverUrl, splitBookLabel } from "../lib/links";
 interface Item {
   book: string;
   label: string;
@@ -13,14 +13,7 @@ interface Props {
 }
 const { items } = Astro.props;
 
-// 拆法沿用 SourceByline（label 慣例「書名 — 章節」）：分隔號前＝書名、後＝章節；
-// 用 slice 取剩段而非 split 重組——章節內含連字號時不會被拆爛。
-// 沒有分隔號的 label 整句當子標題、不出書名小字。
-const parse = (label: string) => {
-  const head = label.split(/[—–-]/)[0];
-  const rest = label.slice(head.length + 1).trim();
-  return rest ? { chapter: rest, book: head.trim() } : { chapter: label.trim(), book: "" };
-};
+// 書名／章節的拆法與頁首 byline 共用 splitBookLabel（見 lib/links.ts）。
 ---
 
 {
@@ -29,7 +22,7 @@ const parse = (label: string) => {
       <h2>Further Reading</h2>
       <div class="further-grid">
         {items.map((it) => {
-          const p = parse(it.label);
+          const p = splitBookLabel(it.label);
           return (
             <a
               class="further-card"
