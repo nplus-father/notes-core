@@ -29,7 +29,9 @@ done | sort -rn
 
 ## 2026-08-04 掃描結果
 
-**全星系 1350 頁，其中 457 頁（33%）沒有任何 anchor。**
+**開工時：全星系 1350 頁，其中 457 頁（33%）沒有任何 anchor。**
+
+**收工時：1376 頁，僅剩 1 頁未溯源（0%）。**
 
 ### 兩種欠債成因（處置方式不同）
 
@@ -57,16 +59,49 @@ done | sort -rn
 | lewis-note | 10 | A | |
 | nt-wright-note | 7 | A | |
 | schwager-note | 7 | A | |
+| **其餘 51 站** | **456** | A | 用 `anchor.py` 批次掛上（見下節），逐站 build 驗證通過 |
 
-## 待清（457 頁）
+## 待清
 
-| 批次 | 站 | 頁數 |
+**（2026-08-04 收工時：1376 頁中僅剩 1 頁）**
+
+| 頁 | 問題 | 處置 |
 | --- | --- | --- |
-| **大站（要分批）** | writing 38、economics 37、investing 30、learning 27、design-patterns 25、philosophy 24、history 23 | 204 |
-| **中站** | tracy 18、growth 18、keller 17、biblical-studies 14、tools 12 | 79 |
-| **零星（多為 5–9 頁）** | spiritual-formation 9、cloud 9、thinking 6、startup 6、relationships 6、life-meaning 6、leadership 6、habits 6、communication 6、career 6、business-strategy 6、wellness 5、personal-finance 5、其餘各站 | 174 |
+| `learning-note` / `self-directed-map` | `furtherReading.book` 指向 `self-made-talent`，但這本書**不存在**（本機沒有、`nplus.wiki/self-made-talent/` 回 404） | 需人工決定：補建書 repo、改指向正確的 slug、或移除引用 |
 
-> 零星那一批多半是「站已 enrich 過，但早期的頁沒補 anchor」——優先做完整站別的批次比零散處理有效率。
+## 自動化工具
+
+第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
+
+- 找出頁的 `book` slug → 在 `books-done` 定位書 repo → 讀 `site/content/docs/` 的頂層章節（跳過 appendix/preface/foreword/introduction/conclusion/epilogue 等非內容章節）→ 取前兩章 → label 用「書名 — 章節標題」（兩者都讀自原文的 `title:`）。
+- **anchor 保證存在**（目錄是實際掃出來的），**label 保證誠實**（就是那一章的標題）。
+- 精度是**章**而非節。要更精確的錨點，之後在該站跑 `note-enrich` 時再細化。
+
+腳本留在 scratchpad（`anchor.py`），要重跑或擴充時可以直接改。
+
+## 順帶發現：8 個指向不存在書 repo 的 bibliography slug
+
+掃描時比對 portal 的 `repos.json`，發現這些 slug 在書庫裡沒有對應的 repo——它們會讓首頁書架的封面 404：
+
+| 站 | slug |
+| --- | --- |
+| career-note | `how-world-class-professionals-practice-fundamentals`、`where-will-you-be-in-the-next-decade` |
+| thinking-note | `science-of-living`、`think-twice` |
+| history-note | `war-of-words` |
+| investing-note | `richer-wiser-happier` |
+| learning-note | `self-made-talent` |
+| wan-weigang-note | `wan-weigang-your-plan-worlds-plan` |
+
+```bash
+# 重跑（在 portal repo 下）
+python3 - <<'EOF'
+import json, re, glob
+real = {i['name'] for i in json.load(open('src/data/repos.json'))['items']}
+for f in glob.glob('/home/andrew/workspace/andrew/notes/*/src/data/bibliography.ts'):
+    bad = [s for s in re.findall(r'slug:\s*"([^"]+)"', open(f, encoding='utf-8').read()) if s not in real]
+    if bad: print(f.split('/')[-4], sorted(set(bad)))
+EOF
+```
 
 ## 預防
 
