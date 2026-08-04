@@ -10,21 +10,14 @@
 
 (無)
 
-## 新站(2026-08-04 開站,骨架階段,優先於一般高落差)
+## 新站(2026-08-04 開站,同日全部完成 enrich)
 
-開站緣由與缺口分析見 COVERAGE-GAPS.md。
-
-(無)
-
-### 已 enrich(2026-08-04 同日完成)
+開站緣由與缺口分析見 COVERAGE-GAPS.md。五站的內容皆為書本位、每頁掛章節 anchor。
 
 | 站 | pages/owned | 備註 |
 |---|---|---|
 | templar-note | 7 / 6 | 開站種子概念全數改寫為書本位並掛章節 anchor;順手修正三處事實(Rules of Thinking 是 10 部不是 6 類、Rules of Management 的核心是「管理流程而非管理人」、work 分類頁改名 manage-the-process-not-the-people) |
 | navarro-note | 6 / 4 | 同上;補入十大準則、三腦一體、識謊迷思(慣性說謊者反而增加眼神接觸)、討喜 vs 善良對照表 |
-
-| 站 | pages/owned | 備註 |
-|---|---|---|
 | design-note | 8 / 9 | 批次 1 完成;新增 5 頁(SHE 削減、SLIP 組織、三個重疊空間、創造是減法、清晰與神秘) |
 | agile-note | 13 / 8 | 批次 1 完成;新增 9 頁(DEEP/相對估算/技術債、視覺化/管理流動、角色建模/故事異味、ADAPT/自組織領導) |
 | covey-note | 12 / 8 | 批次 1 完成;新增 6 頁(以終為始、磨鋸、雙贏、統合綜效、信用四核心、4DX) |
