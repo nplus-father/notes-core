@@ -19,7 +19,7 @@ const furtherReading = z
       book: z.string(), // 書本 repo slug（= nplus.wiki 子路徑）
       label: z.string(), // 顯示文字（書名 + 章節）
       anchor: z.string().optional(), // 書內路徑，如 'docs/2-distributed-data/replication/'
-    }),
+    })
   )
   .default([]);
 
@@ -41,7 +41,7 @@ function makeSeeAlso(open: boolean) {
         site: open ? z.string() : z.enum(siteKeys),
         path: z.string(), // 站內路徑，如 'concepts/data-distribution/replication/'
         label: z.string(),
-      }),
+      })
     )
     .default([]);
 }
@@ -51,9 +51,7 @@ function makeSeeAlso(open: boolean) {
  * @param opts.hasProblems 是否含題庫（problems）集合，純概念站傳 false（預設）。
  * @param opts.openSeeAlso seeAlso.site 用開放 string（人文站群）而非 siteKeys enum（技術站群，預設）。
  */
-export function defineNoteCollections(
-  opts: { hasProblems?: boolean; openSeeAlso?: boolean } = {},
-) {
+export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso?: boolean } = {}) {
   const seeAlso = makeSeeAlso(opts.openSeeAlso ?? false);
 
   // 分類設定：每個分類資料夾一個 _index.md，frontmatter 當 config（name/icon/order/intro/roadmap）。
@@ -72,7 +70,18 @@ export function defineNoteCollections(
             slug: z.string(),
             title: z.string().default(""),
             tier: z.enum(["basic", "advanced"]).default("basic"),
-          }),
+          })
+        )
+        .default([]),
+      // 檢核清單：「認定讀完此分類時該具備的知識」，一句一條（書本位，須可溯源）。
+      // /check/ 頁依分類分組渲染；roadmap 說讀什麼、mastery 說讀完該會什麼。
+      // slug = 教這一條的概念頁（同分類內），渲染成「複習 →」回連；省略則無回連。
+      mastery: z
+        .array(
+          z.object({
+            text: z.string(),
+            slug: z.string().optional(),
+          })
         )
         .default([]),
     }),

@@ -9,6 +9,8 @@ export interface CategoryData {
   order: number;
   intro: string;
   roadmap: { slug: string; title: string; tier: "basic" | "advanced" }[];
+  /** 檢核清單（/check/ 頁資料源）：讀完此分類該具備的知識；slug 連回教它的概念頁。 */
+  mastery?: { text: string; slug?: string }[];
 }
 
 export async function getCategories() {
@@ -17,9 +19,7 @@ export async function getCategories() {
     .map((e: any) => ({ slug: e.id.replace(/\/_index$/, ""), ...e.data }))
     .sort((a, b) => a.order - b.order);
   const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
-  const roadmap = Object.fromEntries(
-    categories.map((c) => [c.slug, c.roadmap]),
-  );
+  const roadmap = Object.fromEntries(categories.map((c) => [c.slug, c.roadmap]));
   return { categories, categoryBySlug, roadmap };
 }
 

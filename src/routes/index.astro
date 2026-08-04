@@ -5,7 +5,7 @@ import Bibliography from "../components/Bibliography.astro";
 import SchoolsMap from "../components/SchoolsMap.astro";
 import AuthorProfile from "../components/AuthorProfile.astro";
 import { withBase } from "../lib/url";
-import { shelfFromBibliography } from "../lib/library";
+import { shelfFromBibliography, normalizeSchools } from "../lib/library";
 import { site, books, bibliography, schools, profile } from "virtual:notes-core/site";
 
 // 首頁由上而下：hero → 思想側寫（人物站）→ 學派地圖（主題站）→ 參考書架 → 藏書盤點。
@@ -15,6 +15,8 @@ import { site, books, bibliography, schools, profile } from "virtual:notes-core/
 // prose config 可用 {base} 代表站台 base 前綴（withBase("/")）。
 const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
 const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : books;
+// 舊 schools.ts（純 array）與新 defineSchools 物件形式兩收，歸一後交給 SchoolsMap。
+const schoolsData = normalizeSchools(schools);
 ---
 
 <BaseLayout title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand} site={site}>
@@ -33,7 +35,7 @@ const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : bo
   </header>
 
   {profile && <AuthorProfile profile={profile} bibliography={bibliography} />}
-  <SchoolsMap schools={schools} />
+  <SchoolsMap schools={schoolsData} />
   <Bookshelf books={shelf} />
   <Bibliography entries={bibliography} />
 </BaseLayout>

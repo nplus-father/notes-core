@@ -8,7 +8,7 @@
 
 ## 1. 版面骨架（notes-core `BaseLayout`）
 
-- **Topnav**：左 `site.brand` 連首頁；右為 `buildNav()` 依 `hasProblems` **自動生成的英文分頁**（Concepts ／（Problems）／ 🔍 Search，**不含首頁**——品牌字已連 home）＋ 深淺色切換。各站不再手寫 `nav`；語意站可用 `conceptLabelEn` / `problemLabelEn` 改英文標籤（如 Patterns / Methodology），姊妹手冊用 `extraNav`（插在 Search 前），特例可用 `nav` 完全覆寫。
+- **Topnav（v0.19.0）**：左**只放人像**連首頁（與 favicon 同一張圖，core asset）——站名退出 topnav，身分由人像＋首頁 hero 承擔，62 站的導覽列長得一模一樣。右為 `buildNav()` 自動生成的**固定 emoji 分頁**：🧠 Concepts ／（📝 Problems，僅 `hasProblems`）／（✅ Check，僅站台有 mastery 資料）／ 🔍 Search（hover／aria-label 帶英文全名，**不含首頁**）＋ 深淺色切換。詞彙全星系統一、只出 emoji；`conceptLabelEn` / `problemLabelEn` 只用於麵包屑與頁標題，不再影響 nav。姊妹手冊用 `extraNav`（插在 Search 前，想配 emoji 自己寫進 label），特例可用 `nav` 完全覆寫。
 - **Footer**：預設 `© 2026 Andrew`（可用 `site.footer` 覆寫）。不要再加「· 筆記星系的一站 · 延伸閱讀…」那串。
 - **favicon**：星系**共用人像**，由 notes-core 以 asset 注入（single source of truth）——各站**不再放** `public/favicon.svg`。
 - 深淺色、回想模式（recall）由 notes-core inline script 處理，勿改。
@@ -20,10 +20,10 @@
 由上而下：
 
 1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
-2. **思想側寫 `<AuthorProfile>`**（人物站選配，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑、思想脈絡。
-3. **學派地圖 `<SchoolsMap>`**（主題站選配，見 §4.1）：領域主要流派——主張、代表人物（有作者站就跨站連結）、站內分類。
+2. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
+3. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。
 4. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。
-5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表，缺口如實列出。
+5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表。欄序 = **收錄 → 書名 → 註記 → 年份**（年份最不重要，靠右淡化）；狀態只出 emoji（✅ 已收錄／⬜ 待收錄／🚫 暫無來源／➖ 略過，hover 有全名），表頭那行兼作進度與圖例。
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
@@ -46,16 +46,18 @@
 首頁三個選配區塊，型別與 helpers 在 `@nplus-father/notes-core/library`，資料放各站 `src/data/*.ts`，經 `astro.config.mjs` 傳入整合器：`notesCore({ site, bibliography?, schools?, profile? })`。
 
 - **`bibliography.ts`（`defineBibliography`）**：人物站 = 作者**全集**、主題站 = 領域**公認經典**的完整盤點。每筆 `{title, original?, year?, slug?, status, note?, group?}`；`status`: `owned`（連書站）/ `wanted`（待收）/ `unavailable`（絕版、無中譯）/ `skipped`（刻意略過＋原因）。**缺口如實列出**——盤點表兼作收書 roadmap。
-- **`schools.ts`（`defineSchools`）**：主題站的流派地圖。每派 `{name, icon?, claim, figures?, categorySlug?}`；`figures[].site` 填 sites.ts 的 key 即跨站連結作者站——主題站因此成為串起作者站的樞紐。
+- **`schools.ts`（`defineSchools(entries, {kind?, lede?})`）**：主題站的**領域地圖**。每張卡 `{name, icon?, claim, figures?, categorySlug?}`；`figures[].site` 填 sites.ts 的 key 即跨站連結作者站——主題站因此成為串起作者站的樞紐。第二參數選配：`kind` 三選一決定標題與副標（**詞彙表收在 core 的 SchoolsMap，站台只挑 enum**）——`"schools"` 學派地圖＝流派互相對立（預設）｜`"methods"` 方法地圖＝方法體系並存（敏捷、設計思考…）｜`"themes"` 主題地圖＝核心命題分區（歷史、科學…）；`lede` 一句話提綱挈領。舊的純 array 形式視同 schools 口味（向後相容）。
 - **`profile.ts`（`defineProfile`）**：人物站的思想側寫。`thesis`（一句話中心思想）＋ `contributions`（研究主軸，`conceptPath` 連站內概念頁）＋ `readingPath`（slug 由 bibliography 反查書名）＋ `influences`（思想脈絡，有姊妹站就跨站連結）。
 
-慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`；試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
+慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`——**v0.19.0 起兩者升格為該站型的必備區塊**（缺的列入 note-review 紅燈；存量站隨 enrich 補）。試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
 
 ## 5. 內容頁結構（概念 / 題目）
 
 ### 5.1 Frontmatter（schema = `@nplus-father/notes-core/content` factory）
 
 `title / category(或 domain) / importance / status / related / furtherReading / seeAlso`。**每個內容單元都要能溯源**到某本 owned book：`furtherReading: [{book, label, anchor?}]`，`anchor` = 線上書路徑（如 `docs/2-distributed-data/7-sharding/`）；不確定就省略，避免深連 404。
+
+`label` 慣例 **「書名 — 章節」**（破折號分隔）如今是 load-bearing：頁尾「Further Reading」渲染成**卡片**——破折號後段（章節）當子標題主角、書名退為小字、右側配書圖（吃書架同一個 cover 代理）；頁首 SourceByline 取破折號前段（書名）。沒有破折號的 label 整句當子標題。
 
 ### 5.2 正文標題慣例（固定順序）
 
@@ -100,9 +102,18 @@
 - 資料源＝各分類 `src/content/concepts/<cat>/_index.md` 的 **`roadmap`** 欄位：`[{slug, title, tier:'basic'|'advanced'}]`。
 - 已寫 vs 待寫由實際 `.md` 檔決定（SSOT）；`roadmap` 的 planned 節點＝**書已涵蓋、頁未寫**的 backlog，每個都應可溯源到某本 owned book 的章節。
 
+## 6.1 檢核頁 `/check/`（v0.19.0）
+
+「讀完這站」的定義——**出師條件**。資料源＝各分類 `_index.md` 的 **`mastery`** 欄位：`[{text, slug?}]`，一句一條「認定讀完此分類時該具備的知識」；**roadmap 說讀什麼、mastery 說讀完該會什麼**，兩者同處維護。
+
+- 頁面依分類分組（沿用分類 emoji 與名稱），`slug` 填同分類的概念頁 → 渲染「複習 →」回連（只連真的存在的頁）。
+- 勾選記進 localStorage（key = `check:<base>`，62 站同網域不互撞）；頁首與各分類顯示進度。
+- topnav 的 ✅ 只在站台有任何 mastery 時出現；路由恆注入，沒資料時是空狀態頁不是 404。
+- mastery 句子維持**書本位**——每句都要能溯源到某本 owned book；存量站隨 `note-enrich` 補（記進 ENRICH-BACKLOG），note-review 檢查。
+
 ## 7. 技術注記
 
-- **分類 = 資料夾 + `_index.md`**：`src/content/concepts/<cat>/_index.md` frontmatter 當 config（`name/icon/order/intro/roadmap`）。題庫站同理 `src/content/problems/<domain>/_index.md`（`site.config` 設 `hasProblems: true`）。
+- **分類 = 資料夾 + `_index.md`**：`src/content/concepts/<cat>/_index.md` frontmatter 當 config（`name/icon/order/intro/roadmap/mastery`）。題庫站同理 `src/content/problems/<domain>/_index.md`（`site.config` 設 `hasProblems: true`）。
 - **站內連結**由 notes-core `withBase()` 處理（base = `/<slug>`）；各站不寫 shim。
 - **跨站連結**用 frontmatter `seeAlso`（`site` + `path` + `label`）；schema factory `openSeeAlso: true` 時不寫死 enum。
 - **Node** ≥ 20（Astro 需求；`.nvmrc` 釘 22）。若曾在 Node 18 裝過依賴、build 報缺 `@rolldown/binding-linux-x64-gnu`，`rm -rf node_modules package-lock.json` 後在 Node ≥ 20 重裝。

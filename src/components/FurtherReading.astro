@@ -1,5 +1,8 @@
 ---
-import { bookUrl } from "../lib/links";
+// 頁尾「Further Reading」：卡片版型（v0.19.0）——章節子標題當主角、書名退為小字，
+// 書的身分交給右側書圖；整張卡連到書站的章節 anchor。
+// 書圖與書架同一個代理（bookCoverUrl）；寬度用預設值，62 站共用同一份代理快取。
+import { bookUrl, bookCoverUrl } from "../lib/links";
 interface Item {
   book: string;
   label: string;
@@ -9,22 +12,66 @@ interface Props {
   items: Item[];
 }
 const { items } = Astro.props;
+
+// 拆法沿用 SourceByline（label 慣例「書名 — 章節」）：分隔號前＝書名、後＝章節；
+// 用 slice 取剩段而非 split 重組——章節內含連字號時不會被拆爛。
+// 沒有分隔號的 label 整句當子標題、不出書名小字。
+const parse = (label: string) => {
+  const head = label.split(/[—–-]/)[0];
+  const rest = label.slice(head.length + 1).trim();
+  return rest ? { chapter: rest, book: head.trim() } : { chapter: label.trim(), book: "" };
+};
 ---
 
 {
   items.length > 0 && (
     <section class="further">
       <h2>Further Reading</h2>
-      <ul class="further-list">
-        {items.map((it) => (
-          <li>
-            <a href={bookUrl(it.book, it.anchor)} target="_blank" rel="noopener">
-              {it.label}
+      <div class="further-grid">
+        {items.map((it) => {
+          const p = parse(it.label);
+          return (
+            <a
+              class="further-card"
+              href={bookUrl(it.book, it.anchor)}
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="further-body">
+                <span class="further-chapter">{p.chapter}</span>
+                {p.book && <span class="further-book">{p.book}</span>}
+              </span>
+              <img
+                class="cover-img further-cover"
+                src={bookCoverUrl(it.book)}
+                data-fallback={bookUrl(it.book, "cover.png")}
+                alt={p.book || it.book}
+                loading="lazy"
+                decoding="async"
+                width="66"
+                height="95"
+              />
             </a>
-            <span class="further-src">{it.book}</span>
-          </li>
-        ))}
-      </ul>
+          );
+        })}
+      </div>
     </section>
   )
 }
+
+<script>
+  // 代理退路：與 Bookshelf 同一套（概念頁上沒有書架，要自帶）。兩者同頁共存也安全——
+  // 先到的監聽器退圖後清掉 data-fallback，後到的檢查不到就直接 return。
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement) || !img.classList.contains("cover-img")) return;
+      const fallback = img.dataset.fallback;
+      if (!fallback || img.src === fallback) return;
+      img.src = fallback;
+      delete img.dataset.fallback; // 只退一次，原圖再壞就讓它壞，別無限重試
+    },
+    true
+  );
+</script>

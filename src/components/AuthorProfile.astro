@@ -1,9 +1,9 @@
 ---
 // 首頁「思想側寫」：人物站的主軸——一句話中心思想、特定貢獻（連站內概念頁）、
-// 建議閱讀路徑（標題由 bibliography 反查）、思想脈絡（有姊妹站就跨站連結）。
+// 建議閱讀路徑（直式 stepper：N° 節點＋書封＋一行 why）、思想脈絡（有姊妹站就跨站連結）。
 // 資料由各站 src/data/profile.ts 提供（型別見 lib/library.ts）。
 import { withBase } from "../lib/url";
-import { bookUrl, siteUrl } from "../lib/links";
+import { bookUrl, bookCoverUrl, siteUrl } from "../lib/links";
 import type { AuthorProfile, BibliographyEntry } from "../lib/library";
 
 interface Props {
@@ -42,18 +42,36 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
     profile.readingPath && profile.readingPath.length > 0 && (
       <>
         <h2>建議閱讀路徑</h2>
+        {/* 直式 stepper：節點編號沿用學派卡的 N° 裝置；書封與書架同一個代理
+            （.cover-img 掛的是 Bookshelf 的退路監聽——首頁書架必在，共用即可）。 */}
         <ol class="reading-path">
-          {profile.readingPath.map((r) => (
+          {profile.readingPath.map((r, i) => (
             <li class="reading-stage">
+              <span class="reading-dot">{String(i + 1).padStart(2, "0")}</span>
               <span class="reading-stage-name">{r.stage}</span>
+              <span class="reading-why">{r.why}</span>
               <span class="reading-books">
                 {r.slugs.map((slug) => (
-                  <a href={bookUrl(slug)} target="_blank" rel="noopener">
-                    {titleBySlug.get(slug) ?? slug}
+                  <a
+                    class="reading-cover"
+                    href={bookUrl(slug)}
+                    target="_blank"
+                    rel="noopener"
+                    title={titleBySlug.get(slug) ?? slug}
+                  >
+                    <img
+                      class="cover-img"
+                      src={bookCoverUrl(slug)}
+                      data-fallback={bookUrl(slug, "cover.png")}
+                      alt={titleBySlug.get(slug) ?? slug}
+                      loading="lazy"
+                      decoding="async"
+                      width="84"
+                      height="121"
+                    />
                   </a>
                 ))}
               </span>
-              <span class="reading-why">{r.why}</span>
             </li>
           ))}
         </ol>

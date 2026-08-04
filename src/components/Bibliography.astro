@@ -12,11 +12,12 @@ interface Props {
 }
 const { entries, heading = "全集盤點", note } = Astro.props;
 
+// 狀態只出 emoji（hover 有全名），第一欄一掃就知道收藏進度；文字 badge 退役（v0.19.0）。
 const STATUS: Record<BibliographyStatus, { icon: string; label: string }> = {
-  owned: { icon: "■", label: "已收錄" },
-  wanted: { icon: "□", label: "待收錄" },
-  unavailable: { icon: "×", label: "暫無來源" },
-  skipped: { icon: "–", label: "略過" },
+  owned: { icon: "✅", label: "已收錄" },
+  wanted: { icon: "⬜", label: "待收錄" },
+  unavailable: { icon: "🚫", label: "暫無來源" },
+  skipped: { icon: "➖", label: "略過" },
 };
 
 // 依 group 首次出現的順序分組（無 group 的歸入空字串組，直接平鋪）。
@@ -28,7 +29,12 @@ for (const e of entries) {
   else groups.push({ name, items: [e] });
 }
 const owned = entries.filter((e) => e.status === "owned").length;
-const defaultNote = `已收錄 ${owned} / ${entries.length} 本——缺口如實列出，兼作收書清單`;
+// 表頭那行兼作圖例：進度＋只列實際出現過的狀態。
+const rest = (["wanted", "unavailable", "skipped"] as BibliographyStatus[])
+  .filter((s) => entries.some((e) => e.status === s))
+  .map((s) => `${STATUS[s].icon} ${STATUS[s].label}`)
+  .join(" · ");
+const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${rest}` : ""}——缺口如實列出，兼作收書清單`;
 ---
 
 {
@@ -46,7 +52,10 @@ const defaultNote = `已收錄 ${owned} / ${entries.length} 本——缺口如�
               <tbody>
                 {g.items.map((e) => (
                   <tr class={`biblio-row is-${e.status}`}>
-                    <td class="biblio-year">{e.year ?? ""}</td>
+                    {/* 欄序（v0.19.0）：收錄 → 書名 → 註記 → 年份——年份最不重要，靠右淡化。 */}
+                    <td class="biblio-status" title={STATUS[e.status].label}>
+                      {STATUS[e.status].icon}
+                    </td>
                     <td class="biblio-title">
                       {e.status === "owned" && e.slug ? (
                         <a href={bookUrl(e.slug)} target="_blank" rel="noopener">
@@ -57,12 +66,8 @@ const defaultNote = `已收錄 ${owned} / ${entries.length} 本——缺口如�
                       )}
                       {e.original && <span class="biblio-orig">{e.original}</span>}
                     </td>
-                    <td class="biblio-status">
-                      <span class={`badge biblio-${e.status}`} title={STATUS[e.status].label}>
-                        {STATUS[e.status].icon} {STATUS[e.status].label}
-                      </span>
-                    </td>
                     <td class="biblio-remark">{e.note ?? ""}</td>
+                    <td class="biblio-year">{e.year ?? ""}</td>
                   </tr>
                 ))}
               </tbody>

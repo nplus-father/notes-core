@@ -1,8 +1,9 @@
 ---
 import "../styles/global.scss";
+import { getCollection } from "astro:content";
 import { withBase } from "../lib/url";
-// favicon = 星系共用人像（single source of truth）：圖歸 notes-core 管，各站不另存。
-// 以 ?url 匯入 → Vite 產出帶站台 base 的雜湊 URL；升 notes-core 版即全站同步。
+// 人像 = 星系共用（single source of truth）：favicon 與左上回首頁共用同一張圖，
+// 圖歸 notes-core 管，各站不另存。以 ?url 匯入 → Vite 產出帶站台 base 的雜湊 URL。
 import faviconUrl from "../assets/favicon.png?url";
 import { buildNav, type SiteConfig } from "../lib/site-config";
 import { siteBySlug } from "../lib/sites";
@@ -15,8 +16,12 @@ const { title, site } = Astro.props;
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
 const axis = siteBySlug.get(stationSlug)?.axis ?? "topic";
-// nav 統一由 core 依 hasProblems 生成（英文、無首頁）；各站不再手寫。
-const nav = buildNav(site);
+// nav 統一由 core 生成：固定詞彙、只出 emoji（🧠 📝 ✅ 🔍，hover 帶英文全名）。
+// ✅ 只在站台真的有檢核資料時出現——沒補 mastery 的站不出空 tab。
+const hasCheck = (await getCollection("categories")).some(
+  (c) => ((c.data as { mastery?: unknown[] }).mastery ?? []).length > 0
+);
+const nav = buildNav(site, { hasCheck });
 // 頁尾「回母站」連結：未設 → 預設連 nplus.wiki 根（各站零設定即有）；設 null 可隱藏。
 const parentSite =
   site.parentSite === undefined
@@ -51,39 +56,67 @@ const parentSite =
   </head>
   <body>
     <nav class="topnav">
-      <a class="brand" href={withBase("/")}>{site.brand}</a>
+      {/* 站名退出 topnav——身分由人像＋首頁 hero 承擔，62 站的導覽列長得一模一樣。 */}
+      <a class="brand-avatar" href={withBase("/")} title={site.brand}>
+        <img src={faviconUrl} alt={site.brand} width="30" height="30" />
+      </a>
       <div class="topnav-right">
         <span class="topnav-links">
           {
             nav.map((l) =>
               /^https?:\/\//.test(l.href) ? (
-                <a href={l.href} target="_blank" rel="noopener">
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener"
+                  title={l.title}
+                  aria-label={l.title}
+                >
                   {l.label}
                 </a>
               ) : (
-                <a href={withBase(l.href)}>{l.label}</a>
-              ),
+                <a href={withBase(l.href)} title={l.title} aria-label={l.title}>
+                  {l.label}
+                </a>
+              )
             )
           }
         </span>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark / light">
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle dark / light"
+        >
           {/* 極簡線性 icon 取代 🌙 / ☀️ emoji；currentColor 讓它跟著 --text-2 走。 */}
-          <svg class="icon-light" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <svg
+            class="icon-light"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
             <path
               d="M13.2 9.7A5.6 5.6 0 0 1 6.3 2.8a5.6 5.6 0 1 0 6.9 6.9Z"
               stroke="currentColor"
               stroke-width="1.2"
-              stroke-linejoin="round"
-            />
+              stroke-linejoin="round"></path>
           </svg>
-          <svg class="icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.2" />
+          <svg
+            class="icon-dark"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.2"></circle>
             <path
               d="M8 1v1.8M8 13.2V15M1 8h1.8M13.2 8H15M3.1 3.1l1.3 1.3M11.6 11.6l1.3 1.3M12.9 3.1l-1.3 1.3M4.4 11.6l-1.3 1.3"
               stroke="currentColor"
               stroke-width="1.2"
-              stroke-linecap="round"
-            />
+              stroke-linecap="round"></path>
           </svg>
         </button>
       </div>

@@ -20,8 +20,8 @@ export interface NotesCoreData {
   domains?: unknown[];
   /** 藏書盤點（人物站 = 作者全集；主題站 = 領域經典）。給了它就不必再給 books——書架自動取其中 owned 項。 */
   bibliography?: unknown[];
-  /** 主題站的流派地圖。 */
-  schools?: unknown[];
+  /** 主題站的領域地圖：defineSchools 物件（entries/kind/lede），或升版前的純 array（視同 schools 口味）。 */
+  schools?: unknown[] | Record<string, unknown>;
   /** 人物站的思想側寫。 */
   profile?: unknown;
 }
@@ -79,6 +79,9 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
         inject("/concepts", "concepts/index.astro");
         inject("/concepts/[category]", "concepts/[category]/index.astro");
         inject("/concepts/[category]/[slug]", "concepts/[category]/[slug].astro");
+        // 檢核頁（出師條件）。恆注入——有沒有 mastery 資料是建置期內容問題，
+        // 這裡不知道；沒資料時頁面出空狀態、nav 不出 ✅（見 BaseLayout / check.astro）。
+        inject("/check", "check.astro");
         inject("/search", "search.astro");
         inject("/404", "404.astro");
         // 本站概念的機器可讀索引，給站外消費者（每日書摘推播靠它選材）。

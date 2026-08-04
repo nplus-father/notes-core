@@ -45,6 +45,19 @@ export interface School {
   categorySlug?: string;
 }
 
+/**
+ * 領域地圖的口味——決定首頁綜覽區的標題與副標（詞彙表收在 SchoolsMap，要新口味改 core 一處）：
+ *   schools（預設）學派地圖＝流派互相對立｜methods 方法地圖＝方法體系並存｜themes 主題地圖＝核心命題分區
+ */
+export type SchoolsKind = "schools" | "methods" | "themes";
+
+export interface SchoolsData {
+  entries: School[];
+  kind: SchoolsKind;
+  /** 選配：地圖上方一句話提綱挈領（允許行內 HTML） */
+  lede?: string;
+}
+
 export interface Contribution {
   title: string;
   /** 一句話說明這項貢獻（允許行內 HTML） */
@@ -81,13 +94,21 @@ export interface AuthorProfile {
 }
 
 /** 純 identity helpers：提供型別檢查與 IDE 補全。 */
-export function defineBibliography(
-  entries: BibliographyEntry[],
-): BibliographyEntry[] {
+export function defineBibliography(entries: BibliographyEntry[]): BibliographyEntry[] {
   return entries;
 }
-export function defineSchools(schools: School[]): School[] {
-  return schools;
+export function defineSchools(
+  schools: School[],
+  meta: { kind?: SchoolsKind; lede?: string } = {}
+): SchoolsData {
+  return { entries: schools, kind: meta.kind ?? "schools", lede: meta.lede };
+}
+
+/** 整合器兩收 array（升版前的舊 schools.ts）｜object：這裡歸一成 SchoolsData。 */
+export function normalizeSchools(data: unknown): SchoolsData {
+  if (Array.isArray(data)) return { entries: data as School[], kind: "schools" };
+  if (data && typeof data === "object" && "entries" in data) return data as SchoolsData;
+  return { entries: [], kind: "schools" };
 }
 export function defineProfile(profile: AuthorProfile): AuthorProfile {
   return profile;
@@ -95,12 +116,9 @@ export function defineProfile(profile: AuthorProfile): AuthorProfile {
 
 /** 首頁書架封面列 = 盤點表中已收錄的書（單一資料源，取代各站手維護的 books.ts）。 */
 export function shelfFromBibliography(
-  entries: BibliographyEntry[],
+  entries: BibliographyEntry[]
 ): { slug: string; title: string }[] {
   return entries
-    .filter(
-      (e): e is BibliographyEntry & { slug: string } =>
-        e.status === "owned" && !!e.slug,
-    )
+    .filter((e): e is BibliographyEntry & { slug: string } => e.status === "owned" && !!e.slug)
     .map((e) => ({ slug: e.slug, title: e.title }));
 }

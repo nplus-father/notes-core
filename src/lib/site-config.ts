@@ -10,7 +10,9 @@ export interface NavLink {
   // base-relative，如 "/concepts/"（會經 withBase 前綴 base）；
   // 若為絕對 http(s) 網址（如姊妹 handbook 站），則原樣輸出並以新分頁開啟。
   href: string;
-  label: string; // 顯示文字
+  label: string; // 顯示文字（標準四項為 emoji，見 buildNav）
+  /** hover／aria-label 用的英文全名（emoji 項必填；extraNav 可省略） */
+  title?: string;
 }
 
 export interface SiteConfig {
@@ -19,16 +21,16 @@ export interface SiteConfig {
   /** <title> 主幹，如 "系統設計"；layout 會補「概念」/「題」後綴 */
   titleBase: string;
   /**
-   * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 依
-   * hasProblems 自動生成英文項（Concepts /（Problems）/ Search，不含首頁，
-   * 品牌字本身已連 home）。只有需要完全掌控順序/內容的特例才給這個。
+   * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 自動生成
+   * 固定 emoji 項（🧠 /（📝）/（✅）/ 🔍，不含首頁，左上人像已連 home）。
+   * 只有需要完全掌控順序/內容的特例才給這個。
    */
   nav?: NavLink[];
-  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。 */
+  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。想配 emoji 自己寫進 label。 */
   extraNav?: NavLink[];
-  /** 選用：nav 中概念項的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。 */
+  /** 選用：概念區的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律 emoji）。 */
   conceptLabelEn?: string;
-  /** 選用：nav 中題庫項的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。 */
+  /** 選用：題庫區的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律 emoji）。 */
   problemLabelEn?: string;
   /**
    * @deprecated 原為複習紀錄的 localStorage 命名空間；該機制已移除，core 內已無人讀取。
@@ -77,18 +79,19 @@ export function defineSite(c: SiteConfig): SiteConfig {
 
 /**
  * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
- *   Concepts /（Problems，僅 hasProblems）/ …extraNav / Search
- * 不含「首頁」——品牌字（BaseLayout 左上）已連 home，避免重複。
+ *   🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/ …extraNav / 🔍 Search
+ * 全星系固定這四個詞彙、只出 emoji（hover／aria-label 帶英文全名）——
+ * conceptLabelEn / problemLabelEn 不再影響 nav。不含「首頁」——左上人像已連 home。
+ * hasCheck 由 BaseLayout 依 categories 的 mastery 判定（有檢核資料才出 ✅）。
  * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
  */
-export function buildNav(c: SiteConfig): NavLink[] {
+export function buildNav(c: SiteConfig, opts: { hasCheck?: boolean } = {}): NavLink[] {
   if (c.nav) return c.nav;
   return [
-    { href: "/concepts/", label: c.conceptLabelEn ?? "Concepts" },
-    ...(c.hasProblems
-      ? [{ href: "/problems/", label: c.problemLabelEn ?? "Problems" }]
-      : []),
+    { href: "/concepts/", label: "🧠", title: "Concepts" },
+    ...(c.hasProblems ? [{ href: "/problems/", label: "📝", title: "Problems" }] : []),
+    ...(opts.hasCheck ? [{ href: "/check/", label: "✅", title: "Check" }] : []),
     ...(c.extraNav ?? []),
-    { href: "/search/", label: "Search" },
+    { href: "/search/", label: "🔍", title: "Search" },
   ];
 }

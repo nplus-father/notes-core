@@ -1,0 +1,126 @@
+---
+// 檢核頁 /check/：這一站「讀完」的定義——出師條件。
+// 資料源 = 各分類 _index.md 的 mastery 欄位（roadmap 說讀什麼、mastery 說讀完該會什麼），
+// 依分類分組、每句可帶「複習 →」連回教它的概念頁；勾選記進 localStorage（key 含站台
+// base，62 站同網域不互撞）。站台完全沒有 mastery 時 nav 不出 ✅（見 BaseLayout），
+// 此頁仍會建置——直接打網址會看到空狀態說明，不是 404。
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/url";
+import { bareSlug } from "../lib/collections";
+import { site } from "virtual:notes-core/site";
+import { getCategories } from "../lib/nav-data";
+import { getCollection } from "astro:content";
+
+const concepts = await getCollection("concepts");
+const { categories } = await getCategories();
+
+// 分類內 bare slug → 已寫概念頁；「複習 →」只連真的存在的頁，待寫節點不出死鏈。
+const writtenByCat = new Map<string, Map<string, (typeof concepts)[number]>>();
+for (const c of concepts) {
+  const cat = c.data.category;
+  if (!writtenByCat.has(cat)) writtenByCat.set(cat, new Map());
+  writtenByCat.get(cat)!.set(bareSlug(c.id), c);
+}
+
+const groups = categories
+  .map((cat) => ({
+    cat,
+    items: (cat.mastery ?? []).map((m, i) => {
+      const entry = m.slug ? writtenByCat.get(cat.slug)?.get(m.slug) : undefined;
+      return {
+        key: `${cat.slug}:${i}`,
+        text: m.text,
+        href: entry ? withBase(`concepts/${entry.id}/`) : null,
+      };
+    }),
+  }))
+  .filter((g) => g.items.length > 0);
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+
+// 勾選記憶的 localStorage key：含站台 base（= /<slug>/），站與站不互撞。
+const storeKey = `check:${import.meta.env.BASE_URL}`;
+---
+
+<BaseLayout title={`Check · ${site.brand}`} site={site}>
+  <nav class="crumbs"><a href={withBase("/")}>Home</a><span>/</span><span>Check</span></nav>
+  <header class="page-head">
+    <div class="check-head">
+      <h1>Check</h1>
+      {
+        total > 0 && (
+          <span class="check-total" data-total-prog>
+            進度 0 / {total}
+          </span>
+        )
+      }
+    </div>
+    <p class="lede">這一站「讀完」的定義——合上筆記，逐條自問；答不上來的，點「複習」回去重讀。</p>
+  </header>
+
+  {
+    total === 0 && (
+      <p class="check-empty">
+        這一站還沒定義檢核清單——各分類 _index.md 的 mastery 欄位補上後，這裡就會長出來。
+      </p>
+    )
+  }
+
+  {
+    groups.map(({ cat, items }) => (
+      <section class="check-cat" data-cat>
+        <div class="check-cat-head">
+          <span class="check-cat-icon">{cat.icon}</span>
+          <span class="check-cat-name">{cat.name}</span>
+          <span class="check-prog" data-cat-prog />
+        </div>
+        <ul class="check-list">
+          {items.map((it) => (
+            <li>
+              <input type="checkbox" id={it.key} data-check-key={it.key} />
+              <label for={it.key}>{it.text}</label>
+              {it.href && (
+                <a class="check-review" href={it.href}>
+                  複習 →
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  {
+    /* 勾選記憶＋進度計數。存 key 陣列而非 index bitmap——分類增刪句子時不錯位。
+      無條件掛載：空狀態時 boxes 為空、自然不動作（script 不能包在 JSX 條件裡）。 */
+  }
+  <script is:inline define:vars={{ storeKey }}>
+    const boxes = [...document.querySelectorAll("input[data-check-key]")];
+    let saved = [];
+    try {
+      saved = JSON.parse(localStorage.getItem(storeKey) || "[]");
+    } catch {
+      saved = []; // 壞資料當沒存過
+    }
+    const on = new Set(saved);
+    for (const b of boxes) b.checked = on.has(b.dataset.checkKey);
+    const update = () => {
+      for (const sec of document.querySelectorAll("[data-cat]")) {
+        const all = sec.querySelectorAll("input[data-check-key]").length;
+        const done = sec.querySelectorAll("input[data-check-key]:checked").length;
+        sec.querySelector("[data-cat-prog]").textContent = `${done} / ${all}`;
+      }
+      const done = boxes.filter((b) => b.checked).length;
+      const totalEl = document.querySelector("[data-total-prog]");
+      if (totalEl) totalEl.textContent = `進度 ${done} / ${boxes.length}`;
+    };
+    document.addEventListener("change", (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLInputElement) || !t.dataset.checkKey) return;
+      const checked = boxes.filter((b) => b.checked).map((b) => b.dataset.checkKey);
+      localStorage.setItem(storeKey, JSON.stringify(checked));
+      update();
+    });
+    update();
+  </script>
+</BaseLayout>
