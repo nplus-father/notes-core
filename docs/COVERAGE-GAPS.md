@@ -54,8 +54,8 @@ EOF
 | 作者 | 藏書 | 未引用 | 領域 | 處置 |
 | --- | --- | --- | --- | --- |
 | Stephen R. Covey | 6 | 4 | communication | ✅ 已開 `covey-note`（2026-08-04） |
-| Richard Templar | 6 | 5 | communication | 待評估——The Rules of… 系列，是否夠一站待定 |
-| Joe Navarro | 4 | 3 | communication | 待評估——肢體語言，可能該併進 `communication-note` |
+| Richard Templar | 6 | 5 | communication | ✅ 已開 `templar-note`（2026-08-04）——The Rules 系列，決議獨立開站 |
+| Joe Navarro | 4 | 3 | communication | ✅ 已開 `navarro-note`（2026-08-04）——決議獨立開站，不併進 `communication-note` |
 | Michael Wilcock | 6 | 6 | theology | ❌ 不開站 |
 | Alec Motyer | 4 | 4 | theology | ❌ 不開站 |
 | Raymond Brown | 4 | 4 | theology | ❌ 不開站 |
@@ -75,18 +75,31 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 ## 已執行（2026-08-04）
 
-三站皆為骨架階段（分類 + 種子概念 + 盤點表），內容待 `note-enrich`：
+### 第一批：主題缺口 + Covey
+
+開站時為骨架階段，同日已跑過 `note-enrich`：
+
+| 站 | 軸 | 分類 | 頁數（開站 → enrich 後） | owned |
+| --- | --- | --- | --- | --- |
+| `agile-note` | topic | scrum / flow / user-stories / adoption | 4 → 13 | 8 |
+| `covey-note` | person | principles / personal-victory / public-victory / legacy | 6 → 12 | 8 |
+| `design-note` | topic | simplicity / design-thinking / visual-basics | 3 → 8 | 9 |
+
+### 第二批：A 類人物（Templar / Navarro）
+
+決議兩位都獨立開站，不併進 `communication-note`。理由：Templar 的體例（一條規則一頁對頁、拒絕理論）與 Navarro 的方法論（基準線紀律、反測謊立場）各自成體系，併站會把兩套語彙壓成通用溝通建議。骨架階段，內容待 `note-enrich`：
 
 | 站 | 軸 | 分類 | 種子概念 | owned |
 | --- | --- | --- | --- | --- |
-| `agile-note` | topic | scrum / flow / user-stories / adoption | 4 | 8 |
-| `covey-note` | person | principles / personal-victory / public-victory / legacy | 6 | 8 |
-| `design-note` | topic | simplicity / design-thinking / visual-basics | 3 | 9 |
+| `templar-note` | person | the-code / work / people / self | 7 | 6 |
+| `navarro-note` | person | observation / limbic / dictionary / danger | 6 | 4 |
+
+> 兩站的 registry 入列與封面走 `notes-core` v0.18.0；portal 分組 topic 都取主力書的 `top-professional` / `sub-communication`。
 
 ## 下一輪的候選
 
-1. `biblical-studies-note` enrich（吃掉神學那 18 本）—— 見 ENRICH-BACKLOG
-2. Richard Templar / Joe Navarro —— 先判斷該獨立開站還是併進 `communication-note`
+1. `templar-note` / `navarro-note` enrich —— 骨架落差是滿的，優先於一般高落差
+2. `biblical-studies-note` enrich（吃掉神學那 18 本）—— **暫緩，2026-08-04 決議先不做**；見 ENRICH-BACKLOG
 3. B 類人物站 —— 想清楚「重切」的價值再動
 
 > 舊的規劃稿（`humanities-books-by-domain.md`、`humanities-note-scope-draft.md`、`books-by-domain.md`）是 2026-07-01～02 的建站期文件，其提案多已落地，保留作歷史紀錄；**新的缺口盤點以本檔為準**。

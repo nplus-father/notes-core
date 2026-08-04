@@ -12,19 +12,28 @@
 
 ## 新站(2026-08-04 開站,骨架階段,優先於一般高落差)
 
-三站皆只有分類骨架與種子概念,落差是滿的。開站緣由與缺口分析見 COVERAGE-GAPS.md。
+開站緣由與缺口分析見 COVERAGE-GAPS.md。
+
+| 站 | pages/owned | 狀態 |
+|---|---|---|
+| templar-note | 7 / 6 | 骨架;人物站;the-code/work/people/self——The Rules 系列六本,一條規則一頁對頁的體例 |
+| navarro-note | 6 / 4 | 骨架;人物站;observation/limbic/dictionary/danger——非語言溝通三本+危險人格一本 |
+
+### 已 enrich(2026-08-04 同日完成第一批)
 
 | 站 | pages/owned | 備註 |
 |---|---|---|
-| design-note | 3 / 9 | 主題站;simplicity/design-thinking/visual-basics |
-| agile-note | 4 / 8 | 主題站;scrum/flow/user-stories/adoption |
-| covey-note | 6 / 8 | 人物站;正典 3 本+延伸 3 本+家族延續 2 本(後者非本人著作,寫時要標清楚) |
+| design-note | 8 / 9 | 批次 1 完成;新增 5 頁(SHE 削減、SLIP 組織、三個重疊空間、創造是減法、清晰與神秘) |
+| agile-note | 13 / 8 | 批次 1 完成;新增 9 頁(DEEP/相對估算/技術債、視覺化/管理流動、角色建模/故事異味、ADAPT/自組織領導) |
+| covey-note | 12 / 8 | 批次 1 完成;新增 6 頁(以終為始、磨鋸、雙贏、統合綜效、信用四核心、4DX) |
+
+> 三站的來源書都在 `books-done` 下且章節完整,溯源 anchor 已掛。covey 站刻意不另開「影響圈」頁——既有的 `space-between-stimulus-and-response` 已完整涵蓋。
 
 ## 高落差(owned 遠大於 pages,優先)
 
 | 站 | pages/owned |
 |---|---|
-| biblical-studies-note | 19 / 47 |
+| biblical-studies-note | 19 / 47(**暫緩**——2026-08-04 決議這一輪先不做) |
 | problem-solving-note | 4 / 20 |
 | kiyosaki-note | 3 / 13 |
 | career-note | 36 / 58 |
