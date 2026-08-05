@@ -63,6 +63,7 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/new-note.sh`             | 開新站：建 repo、套模板、打 `nplus-note` topic、自動入列 `sites.ts`       |
 | `tools/bump-notes-core.sh`      | 把所有站的 notes-core 釘版 bump 到新 tag，逐站重裝＋驗 lockfile＋build    |
 | `tools/cover/render.sh`         | 重繪主題站封面 PNG（需 Chrome + ImageMagick）                            |
+| `tools/export-wanted.py`        | 匯出全星系 bibliography 的 `wanted` 成採購清單 `docs/WANTED-BOOKS.md`     |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
@@ -84,20 +85,30 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | ----------------------------------- | ------------------------------------------------------------------- |
 | `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；附可重跑的掃描腳本      |
 | `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-enrich` 補）；跨站排序          |
+| `docs/SOURCING-DEBT.md`             | **內容寫了但查不到出處**（缺口靠掛 `anchor` 補）；2026-08-05 已清空  |
+| `docs/WANTED-BOOKS.md`              | **書還沒收**（缺口靠去收書補）；由 `tools/export-wanted.py` 生成     |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
 | `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
 | `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
 | `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
 
-**前兩份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 兩者是不同的軸，別混用——
-「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG。
+**前四份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 四者是不同的軸，別混用——
+「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
+「書還沒收」進 WANTED-BOOKS（且那份是生成物，改各站 bibliography 再重跑，不要手改）。
 
 ## 發布
 
-版本以 `package.json` 為準。推 `v*` tag 觸發 `.github/workflows/publish.yml`，用 repo `GITHUB_TOKEN` 發到 GitHub Packages：
+版本以 `package.json` 為準。**沒有 publish workflow**——各站是 `github:nplus-father/notes-core#<tag>`
+由 npm 直接 clone（理由見上面「為何各站用 git 依賴」），所以**打上 tag 就等於發布**：
 
 ```bash
 npm version patch   # 或 minor / major
 git push --follow-tags
+```
+
+發完別忘了讓各站跟上，否則 core 升了、線上還是舊版：
+
+```bash
+tools/bump-notes-core.sh <舊 tag> <新 tag> --push
 ```

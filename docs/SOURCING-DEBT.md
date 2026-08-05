@@ -1,9 +1,15 @@
 # Note 星系 溯源債（第三個軸）
 
-掃描日：2026-08-04。**這是與另外兩份文件不同的第三個軸，別混用**：
+> **現況（2026-08-05 重驗）：債已清空。** 全星系 1441 個概念頁，**0 頁**沒有 anchor；
+> bibliography 指向不存在書 repo 的 slug **0 個**。本檔自此轉為**方法紀錄**——
+> 掃描腳本、兩種欠債成因的判準、預防機制都還有效，債本身沒有了。下次大批新增內容後
+> 重跑下面兩段掃描即可。
+
+掃描日：2026-08-04（清償），2026-08-05（重驗）。**這是與另外三份文件不同的軸，別混用**：
 
 - [COVERAGE-GAPS.md](./COVERAGE-GAPS.md)：**還沒有站**的人物／主題 —— 缺口靠「開新站」補。
 - [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-enrich` 長內容補。
+- [WANTED-BOOKS.md](./WANTED-BOOKS.md)：**書本身還沒收** —— 缺口靠去收書補。
 - **本檔**：**內容已經寫了，但查不到出處** —— 缺口靠掛 `anchor` 補（必要時回原文校正）。
 
 ## 指標與重算方式
@@ -61,13 +67,15 @@ done | sort -rn
 | schwager-note | 7 | A | |
 | **其餘 51 站** | **456** | A | 用 `anchor.py` 批次掛上（見下節），逐站 build 驗證通過 |
 
-## 待清
+## 待清：無
 
-**（2026-08-04 收工時：1376 頁中僅剩 1 頁）**
+2026-08-04 收工時 1376 頁中剩最後 1 頁，已於當日結清：
 
-| 頁 | 問題 | 處置 |
+| 頁 | 問題 | 實際處置 |
 | --- | --- | --- |
-| `learning-note` / `self-directed-map` | `furtherReading.book` 指向 `self-made-talent`，但這本書**不存在**（本機沒有、`nplus.wiki/self-made-talent/` 回 404） | 需人工決定：補建書 repo、改指向正確的 slug、或移除引用 |
+| `learning-note` / `self-directed-map` | `furtherReading.book` 指向 `self-made-talent`，但這本書**不存在**（本機沒有、`nplus.wiki/self-made-talent/` 回 404） | 頁與 bibliography 條目一併移除（`learning-note` e49948a）——沒有書就不留一頁假裝有出處 |
+
+2026-08-05 重驗：1441 頁（比收工時多 65 頁）全部有 anchor。
 
 ## 自動化工具
 
@@ -79,18 +87,23 @@ done | sort -rn
 
 腳本留在 scratchpad（`anchor.py`），要重跑或擴充時可以直接改。
 
-## 順帶發現：8 個指向不存在書 repo 的 bibliography slug
+## 順帶發現：指向不存在書 repo 的 bibliography slug —— 已清（2026-08-05 重驗 0 個）
 
-掃描時比對 portal 的 `repos.json`，發現這些 slug 在書庫裡沒有對應的 repo——它們會讓首頁書架的封面 404：
+掃描時比對 portal 的 `repos.json`，這類 slug 在書庫裡沒有對應的 repo——它們會讓首頁書架的封面 404。
+2026-08-04 抓到 8 個，2026-08-05 重驗全部結清，分兩種收法：
 
-| 站 | slug |
-| --- | --- |
-| career-note | `how-world-class-professionals-practice-fundamentals`、`where-will-you-be-in-the-next-decade` |
-| thinking-note | `science-of-living`、`think-twice` |
-| history-note | `war-of-words` |
-| investing-note | `richer-wiser-happier` |
-| learning-note | `self-made-talent` |
-| wan-weigang-note | `wan-weigang-your-plan-worlds-plan` |
+| 站 | slug | 收法 |
+| --- | --- | --- |
+| thinking-note | `science-of-living` | **補建書 repo**，bibliography 照舊指向它 |
+| history-note | `war-of-words` | 同上 |
+| investing-note | `richer-wiser-happier` | 同上 |
+| career-note | `how-world-class-professionals-practice-fundamentals`、`where-will-you-be-in-the-next-decade` | **撤掉這筆 `slug`**（書不存在就不掛死鏈） |
+| thinking-note | `think-twice` | 同上 |
+| learning-note | `self-made-talent` | 同上（連頁一起移除） |
+| wan-weigang-note | `wan-weigang-your-plan-worlds-plan` | 同上，並改登記成 `wanted`——書是真的想收，只是還沒有 |
+
+> 反方向的落差（bibliography 說 `wanted`、書 repo 其實**已經存在**）另有 14 筆，
+> 見 [WANTED-BOOKS.md](./WANTED-BOOKS.md) 的「先扣掉」一節——那是 status 沒跟上，不是死鏈。
 
 ```bash
 # 重跑（在 portal repo 下）
