@@ -92,6 +92,12 @@ done | sort -rn
 
 kiyosaki-note 同輪自檢另抓 2 處措辭與原文不符（標準石油起薪、700 棟房現金流表述），未入站前即校正（commit `f4aa093`）。
 
+同日稍晚的中落差六站批次再添三類發現（皆已處置）：
+
+- **系統性錯掛（economics，commit `733ecb9`）**：12 頁 anchor 亂掛——8 頁不論主題一律指向 50-economics-ideas 前兩章、4 頁掛錯書，疑為 2026-08-04 `anchor.py` 批次的機械配對遺留。「有 anchor ≠ 掛對章」，逐頁回原文重掛；其中《推力》器捐段抓到**主張反向**的內容錯誤（書實際反對推定同意、主張提示選擇），已改寫。
+- **死 anchor（relationships，commit `44f7c0c`）**：friendship-over-time 指向不存在的章節目錄，已修。同時發現書 repo `life-is-a-long-term-accumulation` 各章正文是**空 stub**（僅 frontmatter＋書根概覽）——書庫內容債，待補書。
+- **書架誤植（history 當輪回報）**：`war-of-words` 實為 Paul Tripp 的言語神學／溝通門訓書，卻放在 books-done 的 military 類——分類錯位待搬，站上未硬寫軍事頁。
+
 ### 新型債：書 repo 身分錯配（2026-08-06 首例，newport enrich 抓到）
 
 book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at College》**（繁中《深度學習力》2019）——2026-04-04 建 repo 時「譯名→英文原名」推斷步驟把 Newport 兩本學生書搞混，錯名寫進 slug 與 GitHub 描述，矛盾甚至寫在書頁自己的作者背景段（「How to Be a High School Superstar，原書名為 How to Win at College」）。下游 newport-note bibliography 繼承錯名並把真 Superstar 的「鬆弛悖論」註記錯掛。
