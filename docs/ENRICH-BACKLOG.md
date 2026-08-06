@@ -10,14 +10,16 @@
 
 (無)
 
-## v0.19.0 版面契約債(2026-08-05 登記)
+## v0.19.0 版面契約債(2026-08-05 登記,2026-08-06 全數結案)
 
-core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁(資料源=分類 `_index.md` 的 `mastery`)。全站已 bump 到 v0.19.0(68 repo 含 note-template,0 失敗);存量內容債三筆,隨 note-enrich / note-inventory 分批清:
+core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆存量債已於 2026-08-06 一次清完(校準批 5 站先驗風格,再 8 批平行 agent 放量,逐站 build 驗證+slug 機械核對):
 
-1. **mastery 全站皆缺(62 站)**:各分類 `_index.md` 補 `mastery: [{text, slug?}]`(每分類 2–4 條、書本位、slug 連回概念頁)。沒補的站 topnav 不出 ✅、`/check/` 是空狀態頁,不是壞——所以不急,**隨各站下一輪 note-enrich 順手補**(note-enrich §2 已列為落差類型)。試點:covey-note(2026-08-05 已補,當範本)。
-2. **kind 指派(非學派主題站)**:34 站有 schools.ts,預設學派地圖多數正確。初步建議改口味——`methods`(方法地圖):agile、design、problem-solving、biblical-studies、learning、tools;`themes`(主題地圖):history、science、hbr。實際逐站由 note-inventory 判斷,一站一行 `defineSchools(entries, {kind})` 即可。
-3. **缺 schools 的主題站 1 站(v0.19.0 起=note-review blocker)**:`behaviour-interview-note`(建議 methods:面試方法體系)——用 note-inventory 補。
-   > `leetcode-note` 不算在內:它是**唯一沒遷移到 core 版面的站**(自帶 `src/pages`/`layouts`/`components`/`styles`,只從 core 取 remark-details),所以 v0.19.0 的導覽列、卡片、檢核頁一概吃不到,首頁也不走 core 的 index 路由。要它跟上得先做 Phase-2 遷移,是另一個獨立工項。
+1. ~~mastery 全站皆缺~~:**66 站全數補齊**(除 leetcode-note),每個分類 `_index.md` 都有 2–4 條書本位 mastery、slug 只連真實存在的頁;分類只有單頁已寫成時 2 條同掛該頁。範本=covey-note。
+2. ~~kind 指派~~:9 站完成——methods:agile、design、problem-solving、biblical-studies、learning、tools;themes:history、science、hbr。其餘 schools 站維持預設學派地圖。
+3. ~~缺 schools 的主題站~~:behaviour-interview-note 已補 methods 方法地圖(6 張卡,跨站連 newport)。
+   > `leetcode-note` 仍除外:唯一沒遷移到 core 版面的站,v0.19.0 的導覽列、卡片、檢核頁一概吃不到。要它跟上得先做 Phase-2 遷移,是另一個獨立工項。
+
+> 順手修掉的雜項(2026-08-06):economics 2 頁、keller 13 頁檔尾殘留的工具呼叫雜訊行(`</content>`/`</invoke>`)已清;agile/investing 3 條「尚未收」過時註記隨 wanted→owned 翻轉一併改寫。
 
 ## 新站(2026-08-04 開站,同日全部完成 enrich)
 
