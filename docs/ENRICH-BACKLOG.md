@@ -10,6 +10,20 @@
 
 (無)
 
+## 下次開工第一件事(2026-08-06 留)
+
+**全星系還釘在 v0.19.2,core 已發到 v0.19.3**(唯一差異:`bin/notes-fmt.mjs` 補上執行位——v0.19.2 以 644 提交,github: 安裝後 `npm run format:check` 直接 Permission denied,全星系皆中,workaround 是用 node 直呼)。跑一行補齊:
+
+```bash
+notes-core/tools/bump-notes-core.sh v0.19.2 v0.19.3 --push
+```
+
+不急——只影響 format:check 的執行方式,內容與版面無變化。
+
+## note-review 抽查(2026-08-06,大改後驗證輪)
+
+抽 5 站(problem-solving/kiyosaki/behaviour-interview/drucker/system-design)跑全站唯讀體檢:**零紅燈,5 站 PASS with warnings**。黃燈已修:10 站 schools 接線 prettier 格式(kind 指派的 sed 遺留)、6 站翻 owned 後過時的「最大缺口」註記、kiyosaki 2 翻+3 補列、drucker/kiyosaki 7 條 related 單向邊、notes-fmt 執行位(→v0.19.3)。behaviour-interview 與 system-design 的系統性 related/雙集合反向不對稱另發 --fix 清理。遺留人工判斷項:behaviour-interview 的 `::discussion` 變體是否認可、system-design caching-strategies 的 `:::response` 疑似範例殘留、problems 全站未填 difficulty。
+
 ## v0.19.0 版面契約債(2026-08-05 登記,2026-08-06 全數結案)
 
 core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆存量債已於 2026-08-06 一次清完(校準批 5 站先驗風格,再 8 批平行 agent 放量,逐站 build 驗證+slug 機械核對):
