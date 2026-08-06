@@ -92,6 +92,13 @@ done | sort -rn
 
 kiyosaki-note 同輪自檢另抓 2 處措辭與原文不符（標準石油起薪、700 棟房現金流表述），未入站前即校正（commit `f4aa093`）。
 
+### 新型債：書 repo 身分錯配（2026-08-06 首例，newport enrich 抓到）
+
+book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at College》**（繁中《深度學習力》2019）——2026-04-04 建 repo 時「譯名→英文原名」推斷步驟把 Newport 兩本學生書搞混，錯名寫進 slug 與 GitHub 描述，矛盾甚至寫在書頁自己的作者背景段（「How to Be a High School Superstar，原書名為 How to Win at College」）。下游 newport-note bibliography 繼承錯名並把真 Superstar 的「鬆弛悖論」註記錯掛。
+
+- 教訓：**anchor 驗證只驗目錄存在，驗不到 repo 身分**——「有 anchor ≠ 掛對書」。
+- 處置（依 Andrew 決議，以不動 repo 名為原則）：newport-note bibliography 條目改回 Win at College（slug 沿用、note 註明錯配史，commit `e8f4ae3`）、真 Superstar 另立 wanted；防再犯規則已寫進 `book-import-to-queue` skill A2（版權頁查原名＋三方核對，claude-code-commands `a5eb4d4`）。
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
