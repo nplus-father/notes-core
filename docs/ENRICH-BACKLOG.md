@@ -10,16 +10,6 @@
 
 (無)
 
-## 下次開工第一件事(2026-08-05 留)
-
-**全星系還釘在 v0.19.1,core 已發到 v0.19.2**(唯一差異:沒有 mastery 的空 `/check/` 頁掛 noindex,免得 62 站各交一份空頁給搜尋引擎)。跑一行補齊:
-
-```bash
-notes-core/tools/bump-notes-core.sh v0.19.1 v0.19.2 --push
-```
-
-不急——v0.19.1 已在線上、功能完整,v0.19.2 只是 SEO 衛生。
-
 ## v0.19.0 版面契約債(2026-08-05 登記)
 
 core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁(資料源=分類 `_index.md` 的 `mastery`)。全站已 bump 到 v0.19.0(68 repo 含 note-template,0 失敗);存量內容債三筆,隨 note-enrich / note-inventory 分批清:
