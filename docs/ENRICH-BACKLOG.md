@@ -10,15 +10,9 @@
 
 (無)
 
-## 下次開工第一件事(2026-08-06 留)
+## 下次開工第一件事
 
-**全星系還釘在 v0.19.2,core 已發到 v0.19.3**(唯一差異:`bin/notes-fmt.mjs` 補上執行位——v0.19.2 以 644 提交,github: 安裝後 `npm run format:check` 直接 Permission denied,全星系皆中,workaround 是用 node 直呼)。跑一行補齊:
-
-```bash
-notes-core/tools/bump-notes-core.sh v0.19.2 v0.19.3 --push
-```
-
-不急——只影響 format:check 的執行方式,內容與版面無變化。
+(無——v0.19.3 全站 bump 已於 2026-08-06 當日完成,68 站 0 失敗。)
 
 ## note-review 抽查(2026-08-06,大改後驗證輪)
 
