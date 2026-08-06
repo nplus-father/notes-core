@@ -19,34 +19,21 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1482 筆（去重 1042 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **379 筆（去重 376 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1494 筆（去重 1052 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **368 筆（去重 365 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 35 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
-> `owned` 去重後的 1042 是**已建成書站的書**（1482 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1052 是**已建成書站的書**（1494 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：13 本其實已經有書站了
+## 先扣掉：0 本其實已經有書站了
 
 這些 `wanted` 的書名對得上 portal `repos.json` 裡**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批。**
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
-| `change-your-thinking-change-your-life` | Change Your Thinking, Change Your Life | tracy-note | Change Your Thinking, Change Your Life \| Joseph Murphy \| A y |
-| `cracking-the-coding-interview` | Cracking the Coding Interview | career-note | Cracking the Coding Interview \| Gayle Laakmann McDowell \| A  |
-| `designing-distributed-systems` | Designing Distributed Systems | system-design-note | Designing Distributed Systems \| Brendan Burns \| A pattern ca |
-| `distributed-systems-principles-and-paradigms` | Distributed Systems: Principles and Paradigms | system-design-note | Distributed Systems: Principles and Paradigms \| Andrew S. Ta |
-| `further-along-the-road-less-traveled` | Further Along the Road Less Traveled | peck-note | 心靈地圖2 \| M. Scott Peck M.D. \| 從成長、探索到信仰，延續心靈成熟與靈性議題的探討 |
-| `guns-germs-and-steel` | Guns, Germs, and Steel | science-note | Guns, Germs, and Steel \| Jared Diamond \| The evolutionary bi |
-| `how-to-be-a-gentleman` | How to Be a Gentleman | image-style-note | How to Be a Gentleman \| John Bridges \| A pocket-sized field  |
-| `rich-kid-smart-kid` | Rich Kid Smart Kid | kiyosaki-note | Rich Kid, Smart Kid \| Robert T. Kiyosaki & Sharon L. Lechter |
-| `second-chance` | Second Chance | kiyosaki-note | Second Chance \| Robert T. Kiyosaki \| Draws on Buckminster Fu |
-| `sql-performance-explained` | SQL Performance Explained | data-systems-note | SQL Performance Explained \| Markus Winand \| A developer-faci |
-| `unfair-advantage` | Unfair Advantage: The Power of Financial Education | kiyosaki-note | Unfair Advantage: The Power of Financial Education \| Robert  |
-| `who-took-my-money` | Who Took My Money? | kiyosaki-note | Rich Dad's Who Took My Money? \| Robert T. Kiyosaki \| Explain |
-| `why-the-rich-are-getting-richer` | Why the Rich Are Getting Richer | kiyosaki-note | Why the Rich Are Getting Richer \| Robert T. Kiyosaki \| A gra |
 
 ## 優先收：3 本有兩個以上的站在等
 
@@ -58,7 +45,7 @@
 | **Paul and the Faithfulness of God** |  | 2013 | 2: biblical-studies, nt-wright |
 | **The War of Art** |  | 2002 | 2: habits, writing |
 
-## 完整清單（依站，共 379 筆）
+## 完整清單（依站，共 368 筆）
 
 ### cloud-infra-note — 14 本
 
@@ -186,38 +173,6 @@
 | Venture Deals | 創業投資聖經 | 2011 | Feld & Mendelson：看懂 term sheet 再上談判桌 |
 | Built to Sell |  | 2011 | Warrillow：打造一間可以賣掉的公司 |
 
-### data-systems-note — 11 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Readings in Database Systems |  | 2015 | Red Book 第五版；Stonebraker 選編的論文導讀，線上免費 |
-| SQL Performance Explained ⟵ 已有書站 |  | 2012 | Winand；索引為核心的查詢效能薄冊（Use The Index, Luke 作者） |
-| SQL Antipatterns |  | 2010 | Karwin；schema 與查詢的反模式目錄 |
-| NoSQL Distilled |  | 2012 | Fowler & Sadalage；聚合導向資料模型與 polyglot persistence 的語彙 |
-| Seven Databases in Seven Weeks |  | 2012 | 以七種資料庫走一遍資料模型光譜 |
-| Streaming Systems |  | 2018 | Akidau 等；watermark／trigger——串流語意的正典 |
-| Kafka: The Definitive Guide |  | 2017 | log 為中心的資料骨幹，事實標準的官方指南 |
-| Designing Event-Driven Systems |  | 2018 | Stopford；以 Kafka 為底的事件驅動服務，O'Reilly 免費電子書 |
-| Fundamentals of Data Engineering |  | 2022 | Reis & Housley；資料工程生命週期的現代全景 |
-| The Data Warehouse Toolkit |  | 1996 | Kimball；維度建模（star schema）的正典 |
-| Versioning in an Event Sourced System |  | 2017 | Greg Young；事件溯源在演進期的實務難題 |
-
-### science-note — 11 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Six Easy Pieces | 物理之美 | 1994 | 費曼講義精選——物理直覺教學的黃金標準，本站頭號缺口 |
-| Cosmos | 宇宙 | 1980 | Sagan：科學普及史上最有影響力的一本 |
-| Surely You're Joking, Mr. Feynman! | 別鬧了，費曼先生 | 1985 | 科學家性格與「絕不自欺」的第一手示範 |
-| Brain Rules | 大腦當家 | 2008 | Medina：認知神經科學的實用十二則 |
-| The Selfish Gene | 自私的基因 | 1976 | Dawkins：基因視角與迷因概念的源頭，演化科普第一缺口 |
-| On the Origin of Species | 物種起源 | 1859 | 達爾文原典——變異、選擇、共同祖先 |
-| The Blind Watchmaker | 盲眼鐘錶匠 | 1986 | Dawkins：累積選擇如何無心智地造出設計 |
-| Guns, Germs, and Steel ⟵ 已有書站 | 槍炮、病菌與鋼鐵 | 1997 | Diamond：地理與生態決定的文明分歧 |
-| The Structure of Scientific Revolutions | 科學革命的結構 | 1962 | Kuhn：典範轉移——科學哲學的分水嶺 |
-| The Demon-Haunted World | 魔鬼盤據的世界 | 1995 | Sagan：懷疑論工具箱（baloney detection kit） |
-| Conjectures and Refutations | 猜想與反駁 | 1963 | Popper：可否證性原則的原典 |
-
 ### thinking-note — 11 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -234,7 +189,37 @@
 | How Emotions Are Made | 情緒跟你以為的不一樣 | 2017 | Barrett：情緒建構論，對基本情緒論的正面挑戰 |
 | Emotional Intelligence | EQ | 1995 | Goleman：把情緒智力帶進大眾語彙的原典 |
 
-### career-note — 10 本
+### data-systems-note — 10 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Readings in Database Systems |  | 2015 | Red Book 第五版；Stonebraker 選編的論文導讀，線上免費 |
+| SQL Antipatterns |  | 2010 | Karwin；schema 與查詢的反模式目錄 |
+| NoSQL Distilled |  | 2012 | Fowler & Sadalage；聚合導向資料模型與 polyglot persistence 的語彙 |
+| Seven Databases in Seven Weeks |  | 2012 | 以七種資料庫走一遍資料模型光譜 |
+| Streaming Systems |  | 2018 | Akidau 等；watermark／trigger——串流語意的正典 |
+| Kafka: The Definitive Guide |  | 2017 | log 為中心的資料骨幹，事實標準的官方指南 |
+| Designing Event-Driven Systems |  | 2018 | Stopford；以 Kafka 為底的事件驅動服務，O'Reilly 免費電子書 |
+| Fundamentals of Data Engineering |  | 2022 | Reis & Housley；資料工程生命週期的現代全景 |
+| The Data Warehouse Toolkit |  | 1996 | Kimball；維度建模（star schema）的正典 |
+| Versioning in an Event Sourced System |  | 2017 | Greg Young；事件溯源在演進期的實務難題 |
+
+### science-note — 10 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Six Easy Pieces | 物理之美 | 1994 | 費曼講義精選——物理直覺教學的黃金標準，本站頭號缺口 |
+| Cosmos | 宇宙 | 1980 | Sagan：科學普及史上最有影響力的一本 |
+| Surely You're Joking, Mr. Feynman! | 別鬧了，費曼先生 | 1985 | 科學家性格與「絕不自欺」的第一手示範 |
+| Brain Rules | 大腦當家 | 2008 | Medina：認知神經科學的實用十二則 |
+| The Selfish Gene | 自私的基因 | 1976 | Dawkins：基因視角與迷因概念的源頭，演化科普第一缺口 |
+| On the Origin of Species | 物種起源 | 1859 | 達爾文原典——變異、選擇、共同祖先 |
+| The Blind Watchmaker | 盲眼鐘錶匠 | 1986 | Dawkins：累積選擇如何無心智地造出設計 |
+| The Structure of Scientific Revolutions | 科學革命的結構 | 1962 | Kuhn：典範轉移——科學哲學的分水嶺 |
+| The Demon-Haunted World | 魔鬼盤據的世界 | 1995 | Sagan：懷疑論工具箱（baloney detection kit） |
+| Conjectures and Refutations | 猜想與反駁 | 1963 | Popper：可否證性原則的原典 |
+
+### career-note — 9 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
@@ -244,7 +229,6 @@
 | A Whole New Mind | 未來在等待的人才 | 2005 | Pink：右腦能力在自動化時代增值 |
 | The Defining Decade 20 | 世代，你的人生是不是卡住了 | 2012 | Meg Jay：二十世代的不可替代性 |
 | The Pathless Path |  | 2022 | Millerd：離開預設路徑的工作觀 |
-| Cracking the Coding Interview ⟵ 已有書站 |  | 2015 | McDowell 的技術面試正典（Tech Career 已收） |
 | Working Identity | 轉行 | 2003 | Ibarra：轉職是先行動再認同，不是先想清楚 |
 | The Alliance | 聯盟世代 | 2014 | Hoffman：僱傭關係是任期制聯盟 |
 | Never Eat Alone | 別自己一個人吃飯 | 2005 | Ferrazzi 的人脈經營經典 |
@@ -274,19 +258,6 @@
 | Technical Analysis of the Financial Markets |  | 1999 | Murphy;技術分析的教科書標準(Schwager 入門冊已收) |
 | Valuation (McKinsey) |  | 1990 | Koller 等;企業估值的業界標準 |
 | Financial Shenanigans | 財報詭計 | 1993 | Schilit;財報偵錯的防守面 |
-
-### kiyosaki-note — 8 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Rich Dad's Guide to Investing | 富爸爸投資指南 | 2000 | 正典第三部：富人投資什麼、90/10 法則——目前最大的缺口 |
-| Rich Kid Smart Kid ⟵ 已有書站 | 富爸爸富小孩 | 2001 | 寫給父母的財務教育：如何給孩子金錢的先修課 |
-| Why the Rich Are Getting Richer ⟵ 已有書站 | 為什麼有錢人越來越有錢？ | 2017 | 自稱「真正的研究所版富爸爸」：稅、債與金融教育的落差 |
-| Rich Dad's Prophecy | 富爸爸大預言 | 2002 | 預言退休金制度（401k 世代）引發的市場危機 |
-| Second Chance ⟵ 已有書站 | 第二次致富機會 | 2015 | 以富勒（Buckminster Fuller）為軸回顧過去、預備未來的危機 |
-| Who Took My Money? ⟵ 已有書站 | 富爸爸，誰拿走了你的錢 | 2004 | 加速財富的投資組合：為何共同基金跑輸複合投資者 |
-| Rich Dad's Before You Quit Your Job | 富爸爸，辭職創業前的十堂課 | 2005 | B-I 三角完整版：創業者要建的是系統，不是工作 |
-| Unfair Advantage: The Power of Financial Education ⟵ 已有書站 | 不公平的優勢 | 2011 | 財務教育帶來的五種不公平優勢：知識、稅、債、風險、補償 |
 
 ### marketing-note — 8 本
 
@@ -454,17 +425,6 @@
 | Zen Buddhism and Psychoanalysis | 禪與心理分析 | 1960 | 與鈴木大拙合著：東方的資源如何滋養「存在樣式」 |
 | Beyond the Chains of Illusion | 超越幻想的鎖鏈 | 1962 | 自述思想自傳：我與馬克思和佛洛伊德的相遇——理解佛洛姆體系的鑰匙 |
 
-### image-style-note — 6 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| True Style: The History and Principles of Classic Menswear | True Style | 2015 | Boyer 晚期集大成——逐單品講歷史與原則 |
-| ABC of Men's Fashion |  | 1964 | Hardy Amies；英倫剪裁祖師的辭典式小書 |
-| The Suit: A Machiavellian Approach to Men's Style | The Suit | 2006 | Antongiavanni 仿《君主論》體例談西裝——文體奇書 |
-| Take Ivy |  | 1965 | 石津謙介企劃；美式 Ivy 風格的攝影聖經 |
-| Icons of Men's Style |  | 2011 | Sims；逐單品的設計史——每件經典從哪來 |
-| How to Be a Gentleman ⟵ 已有書站 |  | 1998 | Bridges；行止與儀態的現代禮儀小書 |
-
 ### liurun-note — 6 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -498,17 +458,6 @@
 | With Christ in the School of Prayer | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
 | Lament for a Son | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |
 
-### system-design-note — 6 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Designing Distributed Systems ⟵ 已有書站 |  | 2018 | Brendan Burns；sidecar／ambassador 等分散式模式語彙 |
-| Distributed Systems: Principles and Paradigms ⟵ 已有書站 |  | 2017 | van Steen & Tanenbaum 教科書，官方網站有免費電子版 |
-| Release It! |  | 2018 | Nygard；circuit breaker／bulkhead 等穩定性模式的出處 |
-| The Art of Scalability |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
-| API Design Patterns |  | 2021 | Geewax；API 設計決策的模式目錄 |
-| Acing the System Design Interview |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
-
 ### writing-note — 6 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -539,6 +488,16 @@
 | HBR's 10 Must Reads on Managing People |  | 2011 | 主系列帶人卷——One Minute Manager 級的經典選文 |
 | HBR's 10 Must Reads on Strategy |  | 2011 | 主系列策略卷——Porter〈What Is Strategy?〉所在 |
 | HBR's 10 Must Reads on Innovation |  | 2013 | 主系列創新卷——Christensen 破壞式創新名文 |
+
+### image-style-note — 5 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| True Style: The History and Principles of Classic Menswear | True Style | 2015 | Boyer 晚期集大成——逐單品講歷史與原則 |
+| ABC of Men's Fashion |  | 1964 | Hardy Amies；英倫剪裁祖師的辭典式小書 |
+| The Suit: A Machiavellian Approach to Men's Style | The Suit | 2006 | Antongiavanni 仿《君主論》體例談西裝——文體奇書 |
+| Take Ivy |  | 1965 | 石津謙介企劃；美式 Ivy 風格的攝影聖經 |
+| Icons of Men's Style |  | 2011 | Sims；逐單品的設計史——每件經典從哪來 |
 
 ### maxwell-note — 5 本
 
@@ -605,6 +564,15 @@
 | The Goal | 目標 | 1984 | Goldratt 限制理論（TOC）小說體經典 |
 | Working Backwards | 亞馬遜逆向工作法 | 2021 | PR/FAQ 與輸入指標的亞馬遜機制 |
 
+### system-design-note — 4 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Release It! |  | 2018 | Nygard；circuit breaker／bulkhead 等穩定性模式的出處 |
+| The Art of Scalability |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
+| API Design Patterns |  | 2021 | Geewax；API 設計決策的模式目錄 |
+| Acing the System Design Interview |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
+
 ### tracy-note — 4 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -631,6 +599,14 @@
 | Insight |  | 2017 | Eurich：自我覺察的實證研究——內省常常做錯 |
 | Awaken the Giant Within |  | 1991 | Robbins：自助正典名冊的一員，補齊譜系用 |
 
+### kiyosaki-note — 3 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Rich Dad's Guide to Investing | 富爸爸投資指南 | 2000 | 正典第三部：富人投資什麼、90/10 法則——目前最大的缺口 |
+| Rich Dad's Prophecy | 富爸爸大預言 | 2002 | 預言退休金制度（401k 世代）引發的市場危機 |
+| Rich Dad's Before You Quit Your Job | 富爸爸，辭職創業前的十堂課 | 2005 | B-I 三角完整版：創業者要建的是系統，不是工作 |
+
 ### learning-note — 3 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -654,6 +630,14 @@
 | Emotional Intelligence EQ |  | 1995 | Goleman 的 EQ 原典（HBR 選集已收，本傳未收） |
 | Being Mortal | 凝視死亡 | 2014 | Gawande——醫療極限與善終的必讀經典 |
 | Tuesdays with Morrie | 最後 14 堂星期二的課 | 1997 | 臨終導師的人生課，本題最溫柔的入口 |
+
+### newport-note — 3 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| How to Win at College |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
+| How to Become a Straight-A Student | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
+| How to Be a High School Superstar ⟵ 已有書站 |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正 |
 
 ### templar-note — 3 本
 
@@ -719,13 +703,6 @@
 | Be Exceptional |  | 2021 | 晚期的正向轉向：從「讀懂別人」推到「成為值得被信任的人」 |
 | Three Minutes to Doomsday |  | 2017 | 回憶錄式的間諜案偵訊實錄——方法論在真實高壓現場的完整展開 |
 
-### newport-note — 2 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| How to Win at College |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
-| How to Become a Straight-A Student | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
-
 ### schwager-note — 2 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -746,12 +723,6 @@
 | --- | --- | --- | --- |
 | （你有你的計劃，世界另有計劃） | 你有你的計劃，世界另有計劃 | 2019 | 精英日課結集之一；原列在建議閱讀路徑卻沒有對應書站，2026-08-05 校正為待收 |
 | （量子力學究竟是什麼） | 量子力學究竟是什麼 | 2021 | 「究竟是什麼」系列的量子篇，科普線目前唯一缺口 |
-
-### peck-note — 1 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Further Along the Road Less Traveled ⟵ 已有書站 | 與心靈對話 | 1993 | 演講集結的續篇，補足成長主線的中段——目前最明顯的缺口 |
 
 ### uncle-bob-note — 1 本
 

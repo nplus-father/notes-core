@@ -120,10 +120,21 @@ def main():
 
     # 已有書站：完整書名優先，主標當次要（`Unfair Advantage: The Power of Financial
     # Education` 的 repo 叫 unfair-advantage，全名對不上）。主標比對較寬鬆，標出來讓人核對。
+    #
+    # 已核對過「同名但不同書」的撞名——比對命中也不算已有書站（想收的那本仍是 wanted）：
+    #   change-your-thinking-change-your-life：repo 是 Joseph Murphy 的書，
+    #   tracy-note 想收的是 Brian Tracy 2003 年的同名書（站上 note 亦註明）。
+    #   how-to-be-a-high-school-superstar：repo 內容實為 How to Win at College
+    #   （建站時譯名對應錯誤，見 SOURCING-DEBT.md），newport-note 想收的
+    #   才是真正的 2010 年 Superstar。
+    NAME_COLLISIONS = {
+        ("change-your-thinking-change-your-life", "tracy-note"),
+        ("how-to-be-a-high-school-superstar", "newport-note"),
+    }
     existing = {}
     for r in rows:
         hit = r["full"] if r["full"] in repo_desc else (r["main"] if r["main"] in repo_desc else None)
-        if hit:
+        if hit and (hit, r["station"]) not in NAME_COLLISIONS:
             existing.setdefault(hit, []).append(r)
 
     multi = sorted(
