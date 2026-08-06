@@ -44,8 +44,8 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 | biblical-studies-note | 19 / 47(**暫緩**——2026-08-04 決議這一輪先不做) |
 | problem-solving-note | 17 / 20(批次 1 完成 2026-08-06;13 頁新增+4 頁種子頁回原文校正(抓到 6 處實質錯誤,見 SOURCING-DEBT.md);16 本已引用,zero-second 系列/mckinsey-work-method 與既有頁重疊刻意不寫——實際落差歸零) |
 | kiyosaki-note | 11 / 13(批次 1 完成 2026-08-06;8 頁新增;10 本已引用,for-teens/rich-brother 等 3 本重疊或無容器刻意不寫——實際落差歸零) |
-| career-note | 36 / 58 |
-| leadership-note | 44 / 77 |
+| career-note | 44 / 58(批次 1 完成 2026-08-06;8 頁新增,底子乾淨無未溯源頁;30 本名目落差中 8 本跨站分工、3 本姊妹站認領、3 本本地無書源、其餘書摘太薄或軸不合刻意不寫——實際落差歸零) |
+| leadership-note | 54 / 77(批次 1 完成 2026-08-06;10 頁新增(multipliers/radical-candor/great-by-choice 等今日剛翻 owned 的新書為主);28 本刻意不寫:12 本跨站分工、9 本姊妹站認領、7 本重疊或離題——實際落差歸零。遺留小債:6 個既存頁不在 roadmap 內(ceo-excellence/confront-brutal-facts/drucker-five-questions/boundaries-for-leaders/team-of-teams/five-levels-of-leadership),roadmap 視圖不顯示,下輪順手補) |
 
 > biblical-studies-note 這一筆現在額外吃得下 18 本:Wilcock/Motyer/Raymond Brown/Walton 四位釋經作者的書,依 COVERAGE-GAPS.md 的決議不另開人物站,全歸這裡。
 
