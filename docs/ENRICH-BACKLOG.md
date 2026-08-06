@@ -65,7 +65,7 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 | business-strategy-note | 31 / 39(批次 1 完成 2026-07-31;39 本中 29 本已消化——9 本跨站分工(management/startup/leadership/habits/marketing/hbr/communication/tracy)、concept-of-the-corporation 依決議歸 management-note 佇列——實際落差歸零;附註:art-of-strategy 書 repo 有「乃許」類 CJK 損壞譯名待修) |
 | habits-note | 28 / 34(批次 1 完成 2026-08-01;34 本中 25 本已消化——8 本 tools/wellness 站領土、workbook 練習冊不消化——實際落差歸零) |
 | economics/history/relationships/thinking/tracy/startup-note 等 | 差距 8~16 |
-| 作者站小落差:nouwen(3/9)、gardner(3/9)、fengtang(3/8)、willard(3/5)、newport(4/6)、liurun(4/7)、taleb(3/5)、schwager(7/9) | 頁數絕對值低,一批就能補完 |
+| 作者站小落差 8 站 | **批次 1 全數完成 2026-08-06**:nouwen(3→8)、gardner(3→8)、fengtang(3→8)、willard(3→7)、newport(4→10)、liurun(4→11)、taleb(3→8)、schwager(7→10)。全書本位+anchor 逐一驗證;newport 這輪順帶揪出書 repo 身分錯配首例(見 SOURCING-DEBT.md);各站刻意不寫的重疊/跨站分工清單在各自 commit 訊息對應的回報——實際落差歸零 |
 
 ## 低落差 / 已充實(暫不動)
 
