@@ -42,8 +42,8 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 | 站 | pages/owned |
 |---|---|
 | biblical-studies-note | 19 / 47(**暫緩**——2026-08-04 決議這一輪先不做) |
-| problem-solving-note | 4 / 20 |
-| kiyosaki-note | 3 / 13 |
+| problem-solving-note | 17 / 20(批次 1 完成 2026-08-06;13 頁新增+4 頁種子頁回原文校正(抓到 6 處實質錯誤,見 SOURCING-DEBT.md);16 本已引用,zero-second 系列/mckinsey-work-method 與既有頁重疊刻意不寫——實際落差歸零) |
+| kiyosaki-note | 11 / 13(批次 1 完成 2026-08-06;8 頁新增;10 本已引用,for-teens/rich-brother 等 3 本重疊或無容器刻意不寫——實際落差歸零) |
 | career-note | 36 / 58 |
 | leadership-note | 44 / 77 |
 
