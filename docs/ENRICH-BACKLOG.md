@@ -49,7 +49,7 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 
 | 站 | pages/owned |
 |---|---|
-| biblical-studies-note | 33 / 74(**解禁,批次 1 完成 2026-08-06**:Wilcock/Motyer/Brown 14 本 BST 卷冊補列進盤點(Walton 4 本原已在列),寫成 14 頁卷冊解經框架頁,old/new-testament 兩分類 roadmap+mastery 大幅擴充。**批次 2 候選**(agent 完整清單見 51cd8ac 當輪回報):Beale 新約聖經神學、賴特卷一、eat-this-book、Bailey 集大成、genesis-waltke、Hays 道德視野等 10+ 本高價值缺口;BST 其餘 38 卷屬系列級落差可逐批比照;工具書群適合作 alternative——落差仍大,是持續多批次的站) |
+| biblical-studies-note | 44 / 74(批次 1+2 完成 2026-08-06:批次 1 補列 14 本 BST 並寫 14 頁卷冊解經框架;批次 2 再寫 11 頁清高價值缺口——Beale 新創造、賴特卷一史學方法、Bailey 中東之眼、Waltke toledot、Hays 三焦點、Ehrman 文本鑑別、逐卷讀經法/難解經文/孫寶玲講道學、Watkin 對角化、Peterson lectio divina。**批次 3+ 剩餘**:BST 其餘 38 卷(Stott Romans/Acts/Ephesians、Webb Isaiah、Kidner Jeremiah/Ecclesiastes 等,系列級,比照批次 1 卷冊框架逐批寫);工具書群(TDNT/IVP 背景註釋等)作 alternative 不立頁) |
 | problem-solving-note | 17 / 20(批次 1 完成 2026-08-06;13 頁新增+4 頁種子頁回原文校正(抓到 6 處實質錯誤,見 SOURCING-DEBT.md);16 本已引用,zero-second 系列/mckinsey-work-method 與既有頁重疊刻意不寫——實際落差歸零) |
 | kiyosaki-note | 11 / 13(批次 1 完成 2026-08-06;8 頁新增;10 本已引用,for-teens/rich-brother 等 3 本重疊或無容器刻意不寫——實際落差歸零) |
 | career-note | 44 / 58(批次 1 完成 2026-08-06;8 頁新增,底子乾淨無未溯源頁;30 本名目落差中 8 本跨站分工、3 本姊妹站認領、3 本本地無書源、其餘書摘太薄或軸不合刻意不寫——實際落差歸零) |
