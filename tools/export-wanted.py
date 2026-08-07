@@ -19,9 +19,23 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
 `Flow`、有站寫 `Flow: The Psychology of Optimal Experience`）。已核對過合併結果
 不會誤併不同的書。
 
-**「其實已經有書站」的比對**要用**完整書名**的 slug，不能用主標——`Distributed
-Systems: Principles and Paradigms` 的 repo 是全名，砍成 `distributed-systems`
-就對不上了。命中但 portal 沒有 description 的（無從核對是不是同一本）標成待確認。
+**「其實已經有書站」怎麼比對**（2026-08-07 全面改寫；舊版用 repo name 精確比對，
+20 本裡漏報 16 本，兩個獨立故障各自都足以讓它全盲）：
+
+  1. **資料源要現況，不要快照。** 站台的 `repos.json` 是 build 時打 GitHub API 存
+     下來 commit 進去的，落後好幾天很正常（漏報那次快照是 08-05、書是 08-07 建的）。
+     所以預設 `gh repo list` 直接問 GitHub；問不到才退回快照，並在輸出頂端標明
+     資料源與落後天數——**證據過期就要吵**，不能安靜地回報「0 本已收錄」。
+  2. **比對鍵用 description 的書名欄，不是 repo name。** 這些 repo 的描述是結構化的
+     `書名 | 作者 | 簡介`；書名是書的身分，repo name 只是命名慣例，會砍冠詞
+     （`the-war-of-art` → `war-of-art`）、加作者前綴（`minto-pyramid-principle`）。
+     兩邊都正規化（小寫、砍冒號後副標、砍冠詞、去標點）之後，只認**完全相同**，
+     外加一條「作者前綴」例外，且**只能拿書名欄套**——repo name 的作者前綴反而是
+     反指標（`kostolany-confessions` 這樣命名，正是為了跟奧古斯丁的《懺悔錄》區隔）。
+  3. **同名不同書列 NAME_COLLISIONS**：《Biblical Theology》Vos ≠ Goldingay、
+     《Christian Theology》麥葛福 ≠ Erickson——命中也不算已收錄。
+  4. **改名／轉寫沒有演算法可解，列 ALIASES**：英美版書名不同（Between Two Worlds
+     ＝ I Believe in Preaching）、華文書 repo 用英文轉寫（浪潮之巔 ＝ on-top-of-tides）。
 """
 
 import collections
@@ -29,12 +43,58 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
+
+# ── 手選 Top 20：全檔唯一的人工區塊 ──────────────────────────────
+# 366 筆太長，這是從裡面挑出來的採購順序。挑選準則，依序：
+#   1. 多站共等——收一本補多站（下面「優先收」那節自動算出來的那批）
+#   2. 站主自己在該筆的 `note` 裡標了「最大／頭號缺口」
+#   3. portal 驗證的 anchor 深度——nplus.wiki 上**已經建成幾本**回指它的書站
+#      （同作者的書櫃已有幾本／同一條線的衍生書有幾本），收了既有概念頁才掛得上
+#      anchor（見 SOURCING-DEBT.md）。書櫃愈深、原典愈缺，排愈前面
+#   4. 同等重要時，薄的、有繁中在版的排前面——排序即建議消化順序
+# 下面「為何排這裡」的 portal 數字是實查 nplus-father／Andrewnplus 的書 repo 得到的
+# （作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；portal 長大之後數字會漂，
+# 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
+# key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
+# 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
+TOP20 = [
+    ("life-of-the-beloved", "nouwen 站最大缺口；portal 已有 9 本盧雲，獨缺「你是蒙愛的」這句話的出處——薄、有繁中，起手式選它"),
+    ("maximum-achievement", "portal 已有 29 本 Brian Tracy——全星系最深的作者書櫃，獨缺這本總綱；tracy 站自標「目前最大的缺口」，Tracy 一貫好讀"),
+    ("exegetical-fallacies", "biblical-studies 站自標方法論缺口首位；portal 釋經方法論已有 10 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer…），缺這份防守清單——薄"),
+    ("accelerate", "portal 的 DevOps／SRE 線已有 10 本（Handbook、Continuous Delivery、SRE 三部曲、剛收的 Seeking SRE），獨缺這本研究實證；薄"),
+    ("the-goal", "portal 剛建好《鳳凰專案》——TOC 這條線現在有了直系後代，收祖先才掛得上 anchor；小說體好讀、有繁中"),
+    ("in-the-name-of-jesus", "nouwen 站標「重要缺口」；一百頁的屬靈領導小經典，portal 9 本盧雲裡沒有領導神學這塊"),
+    ("management-challenges-for-the-21st-century", "drucker 站自標次大缺口；portal 已有 12 本杜拉克（含 Essential／Daily Drucker），缺這本晚期綱領，有繁中"),
+    ("the-5-levels-of-leadership", "portal 已有 12 本 Maxwell，缺整個體系最清楚的那張成長地圖；有繁中，一晚讀完"),
+    ("hope-in-times-of-fear", "keller 站標大缺口；portal 已有 15 本凱勒，獨缺這本以復活為軸的收官之作"),
+    ("reflections-on-the-psalms", "lewis 站標靈修線缺口；portal 已有 11 本路易斯，缺他讀詩篇的那本——薄，咒詛詩的難題正面處理"),
+    ("competitive-advantage", "portal 剛收《競爭策略》，價值鏈原典接著補上，Porter 兩本地基才完整；business-strategy 站第二順位"),
+    ("say-it-with-charts", "portal 的麥肯錫線已有 16 本（含剛收的 Minto 原典），圖表溝通那一支還缺源頭；有繁中《麥肯錫圖表簡報術》"),
+    ("the-revolution-of-hope", "portal 已有 10 本佛洛姆，缺這本技術社會的人性化綱領——寫給 1968 年的美國，對著 AI 時代讀"),
+    ("how-proust-can-change-your-life", "portal 已有 8 本狄波頓（旅行的藝術剛收），缺成名作——慰藉方法論的起點"),
+    ("on-the-origin-of-species", "portal 的演化線只有剛收的《自私的基因》，達爾文原典還不在；science 站演化這塊的地基"),
+    ("we-programmers", "uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望"),
+    ("multiple-intelligences", "portal 已有 8 本加德納（含 Frames of Mind），缺 MI 落地教育現場的那本中繼站"),
+    ("attached", "portal 婚姻線 14 本（含剛收的 Gottman）全是關係經營，成人依附理論這塊沒有入口；薄、有繁中"),
+    ("schwager-on-futures", "schwager 站標「怪傑系列外最大缺口」；portal 已有 8 本 Schwager 全是訪談集，缺這本基本面框架的硬書"),
+    ("statistical-consequences-of-fat-tails", "taleb 站自標目前最大缺口；portal 已有 5 本塔雷伯，缺把黑天鵝數學嚴格化的技術版——壓軸慢啃"),
+]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
 PORTAL_REPOS = NOTES_ROOT / ".." / "sites" / "nplus-father.github.io" / "src" / "data" / "repos.json"
 OUT = Path(__file__).resolve().parents[1] / "docs" / "WANTED-BOOKS.md"
+PORTAL_OWNERS = ("nplus-father", "Andrewnplus")
+SNAPSHOT_STALE_DAYS = 2  # 退回快照時，超過這個天數就在輸出裡吵
+
+# 書名對不上 repo 的例外：英美版書名不同、華文書 repo 用英文轉寫。
+# key = wanted 的 main slug（華文原著用 "cjk::原書名"），value = repo name。
+ALIASES = {
+    "between-two-worlds": "i-believe-in-preaching",
+    "cjk::浪潮之巔": "on-top-of-tides",
+}
 
 # CJK 統一漢字、日文假名、CJK 標點與全形符號
 NONLAT = re.compile(r"[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\u3000-\u303f\uff00-\uffef]")
@@ -78,6 +138,73 @@ def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")
 
 
+def norm_title(s):
+    """書名正規化：砍副標與冠詞、去標點——兩邊都過這關才能比。"""
+    s = re.sub(r"[:：].*", "", s or "").lower()
+    s = re.sub(r"[^a-z0-9一-鿿]+", " ", s).strip()
+    return re.sub(r"^(the|a|an) ", "", s)
+
+
+def load_portal():
+    """回傳 (items, source, age_note)。先問 GitHub（權威），失敗才退回站台快照。
+
+    快照是站台 build 時存下來 commit 進去的，落後幾天很正常——退回去用就一定要
+    在輸出裡標明，否則「0 本已收錄」會被當成事實。
+    """
+    items = []
+    for owner in PORTAL_OWNERS:
+        try:
+            out = subprocess.run(
+                ["gh", "repo", "list", owner, "--limit", "2000", "--json", "name,description,repositoryTopics"],
+                capture_output=True, text=True, timeout=120, check=True,
+            ).stdout
+        except (OSError, subprocess.SubprocessError):
+            items = []
+            break
+        for r in json.loads(out):
+            items.append(
+                {
+                    "name": r["name"],
+                    "description": r.get("description") or "",
+                    "topics": [t["name"] for t in (r.get("repositoryTopics") or [])],
+                }
+            )
+    if items:
+        return items, f"GitHub 現況（`gh repo list` {'／'.join(PORTAL_OWNERS)}，{len(items)} 個 repo）", ""
+
+    snap = json.loads(PORTAL_REPOS.read_text(encoding="utf-8"))
+    fetched = snap.get("fetchedAt", "")
+    age = ""
+    try:
+        import datetime as _dt
+
+        days = (_dt.datetime.now(_dt.timezone.utc) - _dt.datetime.fromisoformat(fetched.replace("Z", "+00:00"))).days
+        if days >= SNAPSHOT_STALE_DAYS:
+            age = f"⚠ **快照已經 {days} 天沒更新，這節可能漏報剛建好的書站**——`gh auth login` 後重跑才準。"
+    except ValueError:
+        age = "⚠ **快照時間戳讀不出來，無法判斷新舊。**"
+    return (
+        [{"name": i["name"], "description": i.get("description") or "", "topics": i.get("topics") or []} for i in snap["items"]],
+        f"站台快照 `repos.json`（fetchedAt {fetched}，{len(snap['items'])} 個 repo）",
+        age,
+    )
+
+
+def portal_index(items):
+    """建書名索引：主鍵是 description 的書名欄（`書名 | 作者 | 簡介`），repo name 當備援。"""
+    idx = {}
+    for it in items:
+        parts = [p.strip() for p in it["description"].split("|")]
+        it["book_title"] = parts[0] if parts and parts[0] else it["name"]
+        it["book_author"] = parts[1] if len(parts) >= 2 else ""
+        for k in (norm_title(it["book_title"]), norm_title(it["name"].replace("-", " "))):
+            if k:
+                idx.setdefault(k, it)
+    # 作者前綴只准拿「書名欄」套（見模組 docstring 第 2 點）
+    title_idx = {norm_title(it["book_title"]): it for it in items if norm_title(it["book_title"])}
+    return idx, title_idx
+
+
 def main():
     rows = []
     counts = collections.Counter()
@@ -108,8 +235,10 @@ def main():
         }
     )
 
-    portal = json.loads(PORTAL_REPOS.read_text(encoding="utf-8"))
-    repo_desc = {i["name"]: (i.get("description") or "").strip() for i in portal["items"]}
+    portal_items, portal_source, portal_age = load_portal()
+    repo_desc = {i["name"]: i["description"].strip() for i in portal_items}
+    by_name = {i["name"]: i for i in portal_items}
+    idx, title_idx = portal_index(portal_items)
 
     by_main = collections.defaultdict(list)
     for r in rows:
@@ -118,24 +247,58 @@ def main():
     for r in rows:
         by_station[r["station"]].append(r)
 
-    # 已有書站：完整書名優先，主標當次要（`Unfair Advantage: The Power of Financial
-    # Education` 的 repo 叫 unfair-advantage，全名對不上）。主標比對較寬鬆，標出來讓人核對。
-    #
     # 已核對過「同名但不同書」的撞名——比對命中也不算已有書站（想收的那本仍是 wanted）：
     #   change-your-thinking-change-your-life：repo 是 Joseph Murphy 的書，
     #   tracy-note 想收的是 Brian Tracy 2003 年的同名書（站上 note 亦註明）。
     #   how-to-be-a-high-school-superstar：repo 內容實為 How to Win at College
     #   （建站時譯名對應錯誤，見 SOURCING-DEBT.md），newport-note 想收的
     #   才是真正的 2010 年 Superstar。
+    #   biblical-theology-goldingay：repo 是 Goldingay 的同名書，
+    #   biblical-studies-note 想收的是 Vos 1948 年那本奠基之作。
+    #   erickson-christian-theology：repo 是 Millard Erickson 的，
+    #   theology-note 想收的是麥葛福（McGrath）的同名教科書。
     NAME_COLLISIONS = {
         ("change-your-thinking-change-your-life", "tracy-note"),
         ("how-to-be-a-high-school-superstar", "newport-note"),
+        ("biblical-theology-goldingay", "biblical-studies-note"),
+        ("erickson-christian-theology", "theology-note"),
     }
+
+    def match_repo(r):
+        """一筆 wanted 對得上哪個書 repo？對不上回 None——那才是真缺口。
+
+        只認兩種命中，其餘一律當沒有：
+          a. 正規化後**完全相同**（砍副標與冠詞之後，真的是同一個書名）。
+          b. **作者前綴**：portal 書名 ＝ 作者姓氏 ＋ 想收的書名，且那個姓氏確實出現在
+             description 的作者欄（`The Minto Pyramid Principle` ＝ `Pyramid Principle`）。
+        曾經試過「token 連續包含」，結果 `Action` 吃掉 `Kubernetes in Action`、
+        `Boundaries` 吃掉 `Boundaries with Kids`、`The Divine Conspiracy` 吃掉它的續集
+        `Continued`——48 筆命中裡三十幾筆是假的。寧可漏報留在 wanted，也不要把還沒收的
+        書從採購清單裡誤刪；漏掉的用 ALIASES 補。
+        """
+        alias = ALIASES.get(r["main"])
+        if alias and alias in by_name:
+            return by_name[alias]
+        for key in (r["en"], r["title"]):
+            k = norm_title(key)
+            if not k:
+                continue
+            if k in idx:
+                return idx[k]
+            toks = k.split()
+            for pk, it in title_idx.items():
+                ptoks = pk.split()
+                if len(ptoks) == len(toks) + 1 and ptoks[1:] == toks:
+                    if ptoks[0] in norm_title(it["book_author"]).split():
+                        return it
+        return None
+
     existing = {}
     for r in rows:
-        hit = r["full"] if r["full"] in repo_desc else (r["main"] if r["main"] in repo_desc else None)
-        if hit and (hit, r["station"]) not in NAME_COLLISIONS:
-            existing.setdefault(hit, []).append(r)
+        hit = match_repo(r)
+        if hit and (hit["name"], r["station"]) not in NAME_COLLISIONS:
+            r["repo"] = hit["name"]
+            existing.setdefault(hit["name"], []).append(r)
 
     multi = sorted(
         (k for k, v in by_main.items() if len({r["station"] for r in v}) > 1),
@@ -160,6 +323,46 @@ def main():
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
+**已收錄比對的資料源**：{portal_source}。{portal_age}
+
+""")
+
+    w("## 先收這 20 本\n\n")
+    w(
+        f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
+        "起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
+        "`TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 "
+        "②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——"
+        "nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），"
+        "書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） "
+        "④同等重要時，薄的、有繁中在版的排前面。\n\n"
+        "「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、"
+        "各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。\n\n"
+    )
+    built = sum(1 for key, _ in TOP20 if any(r.get("repo") for r in by_main.get(key, [])))
+    if built:
+        w(
+            f"> ⚠ **這 20 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
+            "跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。\n\n"
+        )
+    w("| # | 英文書名 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- |\n")
+    for i, (key, why) in enumerate(TOP20, 1):
+        v = by_main.get(key)
+        if not v:
+            w(f"| {i} | ⚠ `{key}` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | {esc(why)} |\n")
+            continue
+        best = max(v, key=lambda r: len(r["en"] or ""))
+        name = best["en"] or f"（{best['title']}）"
+        year = best["year"] or next((r["year"] for r in v if r["year"]), "")
+        stations = sorted({r["station"].replace("-note", "") for r in v})
+        repo = next((r["repo"] for r in v if r.get("repo")), None)
+        flag = f"✅ 已建站 `{repo}`——" if repo else ""
+        w(
+            f"| {i} | **{esc(name)}** | {esc(zh(best)) if best['en'] else ''} | {year} "
+            f"| {', '.join(stations)} | {flag}{esc(why)} |\n"
+        )
+
+    w("""
 **這是第四個軸**，與 docs/ 既有三份不同：
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
@@ -188,8 +391,9 @@ def main():
 
     w(f"## 先扣掉：{len(existing)} 本其實已經有書站了\n\n")
     w(
-        "這些 `wanted` 的書名對得上 portal `repos.json` 裡**已存在的書 repo**——"
-        "不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批。**\n\n"
+        "這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 "
+        "status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: \"owned\"` ＋ 補上 "
+        "`slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。\n\n"
     )
     w("| 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |\n| --- | --- | --- | --- |\n")
     for k in sorted(existing):
@@ -215,7 +419,7 @@ def main():
         w("| 英文書名 | 中譯 | 年 | 為何想收 |\n| --- | --- | --- | --- |\n")
         for r in entries:
             name = r["en"] or f"（{esc(r['title'])}）"
-            mark = " ⟵ 已有書站" if (r["full"] in repo_desc or r["main"] in repo_desc) else ""
+            mark = f" ⟵ 已有書站 `{r['repo']}`" if r.get("repo") else ""
             w(f"| {esc(name)}{mark} | {esc(zh(r))} | {r['year'] or ''} | {esc(r['note'])} |\n")
         w("\n")
 
