@@ -8,7 +8,7 @@
 
 ## 先收這 20 本
 
-整份 343 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
+整份 342 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
@@ -19,14 +19,14 @@
 | 3 | **Exegetical Fallacies** |  | 1984 | biblical-studies | biblical-studies 站自標方法論缺口首位；portal 釋經方法論已有 10 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer…），缺這份防守清單——薄 |
 | 4 | **Accelerate** |  | 2018 | cloud-infra | portal 的 DevOps／SRE 線已有 10 本（Handbook、Continuous Delivery、SRE 三部曲、剛收的 Seeking SRE），獨缺這本研究實證；薄 |
 | 5 | **The Goal** | 目標 | 1984 | management | portal 剛建好《鳳凰專案》——TOC 這條線現在有了直系後代，收祖先才掛得上 anchor；小說體好讀、有繁中 |
-| 6 | **In the Name of Jesus** | 奉耶穌的名 | 1989 | nouwen | nouwen 站標「重要缺口」；一百頁的屬靈領導小經典，portal 9 本盧雲裡沒有領導神學這塊 |
-| 7 | **Management Challenges for the 21st Century** | 21 世紀的管理挑戰 | 1999 | drucker | drucker 站自標次大缺口；portal 已有 12 本杜拉克（含 Essential／Daily Drucker），缺這本晚期綱領，有繁中 |
-| 8 | **The 5 Levels of Leadership** | 領導力的 5 個層次 | 2011 | maxwell | portal 已有 12 本 Maxwell，缺整個體系最清楚的那張成長地圖；有繁中，一晚讀完 |
-| 9 | **Hope in Times of Fear** | 恐懼時代的盼望 | 2021 | keller | keller 站標大缺口；portal 已有 15 本凱勒，獨缺這本以復活為軸的收官之作 |
-| 10 | **Reflections on the Psalms** | 詩篇擷思 | 1958 | lewis | lewis 站標靈修線缺口；portal 已有 11 本路易斯，缺他讀詩篇的那本——薄，咒詛詩的難題正面處理 |
-| 11 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 剛收《競爭策略》，價值鏈原典接著補上，Porter 兩本地基才完整；business-strategy 站第二順位 |
-| 12 | **Say It with Charts** | 麥肯錫圖表簡報術 | 1985 | problem-solving | portal 的麥肯錫線已有 16 本（含剛收的 Minto 原典），圖表溝通那一支還缺源頭；有繁中《麥肯錫圖表簡報術》 |
-| 13 | **The Revolution of Hope** | 希望的革命 | 1968 | fromm | portal 已有 10 本佛洛姆，缺這本技術社會的人性化綱領——寫給 1968 年的美國，對著 AI 時代讀 |
+| 6 | **Management Challenges for the 21st Century** | 21 世紀的管理挑戰 | 1999 | drucker | drucker 站自標次大缺口；portal 已有 12 本杜拉克（含 Essential／Daily Drucker），缺這本晚期綱領，有繁中 |
+| 7 | **The 5 Levels of Leadership** | 領導力的 5 個層次 | 2011 | maxwell | portal 已有 12 本 Maxwell，缺整個體系最清楚的那張成長地圖；有繁中，一晚讀完 |
+| 8 | **Hope in Times of Fear** | 恐懼時代的盼望 | 2021 | keller | keller 站標大缺口；portal 已有 15 本凱勒，獨缺這本以復活為軸的收官之作 |
+| 9 | **Reflections on the Psalms** | 詩篇擷思 | 1958 | lewis | lewis 站標靈修線缺口；portal 已有 11 本路易斯，缺他讀詩篇的那本——薄，咒詛詩的難題正面處理 |
+| 10 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 剛收《競爭策略》，價值鏈原典接著補上，Porter 兩本地基才完整；business-strategy 站第二順位 |
+| 11 | **Say It with Charts** | 麥肯錫圖表簡報術 | 1985 | problem-solving | portal 的麥肯錫線已有 16 本（含剛收的 Minto 原典），圖表溝通那一支還缺源頭；有繁中《麥肯錫圖表簡報術》 |
+| 12 | **The Revolution of Hope** | 希望的革命 | 1968 | fromm | portal 已有 10 本佛洛姆，缺這本技術社會的人性化綱領——寫給 1968 年的美國，對著 AI 時代讀 |
+| 13 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 12 本斯托得（講道學那本剛收），缺「雙重聆聽」的完整陳述——這個詞站內用了 8 處，出處卻不在；有繁中《當代基督門徒》 |
 | 14 | **How Proust Can Change Your Life** | 擁抱似水年華 | 1997 | de-botton | portal 已有 8 本狄波頓（旅行的藝術剛收），缺成名作——慰藉方法論的起點 |
 | 15 | **On the Origin of Species** | 物種起源 | 1859 | science | portal 的演化線只有剛收的《自私的基因》，達爾文原典還不在；science 站演化這塊的地基 |
 | 16 | **We, Programmers: A Chronicle of Coders from Ada to AI** |  | 2024 | uncle-bob | uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望 |
@@ -73,7 +73,7 @@
 | 英文書名 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- |
 
-## 完整清單（依站，共 343 筆）
+## 完整清單（依站，共 342 筆）
 
 ### leadership-note — 14 本
 
@@ -111,23 +111,6 @@
 | This Time Is Different | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
 | Globalization and Its Discontents | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
 | 23 Things They Don't Tell You About Capitalism | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
-
-### nouwen-note — 12 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Intimacy | 親密 | 1969 | 處女作；牧養心理學時期的起點 |
-| Out of Solitude | 始於寧謐處 | 1974 | 獨處與服事的小經典；三篇講章 |
-| Reaching Out | 靈程三動向 | 1975 | 自認最個人的一本：孤獨→獨處、敵意→款待、幻象→禱告 |
-| The Genesee Diary | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
-| Clowning in Rome | 羅馬城的小丑戲 | 1979 | 小丑（邊緣人）作為屬靈生活的隱喻 |
-| Compassion | 慈心憐憫 | 1982 | 與 McNeill、Morrison 合著；憐憫＝一同受苦的神學 |
-| The Road to Daybreak | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
-| In the Name of Jesus | 奉耶穌的名 | 1989 | 屬靈領導的三重試探；領導神學的小經典——重要缺口 |
-| Heart Speaks to Heart | 心應心 | 1989 | 對基督之心的三篇禱文；崩潰後的深水之作 |
-| Life of the Beloved | 活出有愛的生命 | 1992 | 「你是蒙愛的」——寫給世俗友人的核心信息；最大缺口 |
-| Can You Drink the Cup? | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
-| The Inner Voice of Love | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
 
 ### theology-note — 12 本
 
@@ -177,6 +160,22 @@
 | Terraform: Up & Running |  | 2017 | Brikman；IaC 落地的實戰標準 |
 | Infrastructure as Code |  | 2016 | Kief Morris；把基礎設施當軟體管理的原則書 |
 | The Practice of Cloud System Administration |  | 2014 | Limoncelli；分散式服務維運的教科書 |
+
+### nouwen-note — 11 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Intimacy | 親密 | 1969 | 處女作；牧養心理學時期的起點 |
+| Out of Solitude | 始於寧謐處 | 1974 | 獨處與服事的小經典；三篇講章 |
+| Reaching Out | 靈程三動向 | 1975 | 自認最個人的一本：孤獨→獨處、敵意→款待、幻象→禱告 |
+| The Genesee Diary | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
+| Clowning in Rome | 羅馬城的小丑戲 | 1979 | 小丑（邊緣人）作為屬靈生活的隱喻 |
+| Compassion | 慈心憐憫 | 1982 | 與 McNeill、Morrison 合著；憐憫＝一同受苦的神學 |
+| The Road to Daybreak | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
+| Heart Speaks to Heart | 心應心 | 1989 | 對基督之心的三篇禱文；崩潰後的深水之作 |
+| Life of the Beloved | 活出有愛的生命 | 1992 | 「你是蒙愛的」——寫給世俗友人的核心信息；最大缺口 |
+| Can You Drink the Cup? | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
+| The Inner Voice of Love | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
 
 ### startup-note — 11 本
 
