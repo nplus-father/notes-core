@@ -4,33 +4,33 @@
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1581 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1599 個 repo）。
 
 ## 先收這 20 本
 
-整份 327 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
+整份 310 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
 | # | 英文書名 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- |
 | 1 | **Exegetical Fallacies** |  | 1984 | biblical-studies | biblical-studies 站自標「方法論缺口首位」；portal 釋經方法論線 6 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer、Beale & Carson…），Carson 本人只有 2 本且都是合著，缺這份單獨掛名的防守清單——薄，起手式選它 |
-| 2 | **Hidden Christmas** | 隱藏的聖誕 | 2016 | keller | portal 已有 21 本凱勒——**整個書櫃只剩這一本沒收**；收了 keller 站的 wanted 就歸零；薄、有繁中《隱藏的聖誕》 |
+| 2 | **Hidden Christmas** | 隱藏的聖誕 | 2016 | keller | portal 已有 24 本凱勒——**整個書櫃只剩這一本沒收**（keller 站 owned 22／wanted 1，收了就歸零）；薄、有繁中《隱藏的聖誕》 |
 | 3 | **Reaching Out** | 靈程三動向 | 1975 | nouwen | portal 已有 11 本盧雲；「款待」這個詞全星系 28 處、橫跨 8 站（nouwen、spiritual-formation、theology、startup…），三動向的出處卻不在——盧雲自認最個人的一本；薄、有繁中《靈程三動向》 |
 | 4 | **Landmarks of Tomorrow** | 明日的地標 | 1959 | drucker | portal 已有 17 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡 |
-| 5 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 12 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》 |
+| 5 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》 |
 | 6 | **Change Your Thinking, Change Your Life** |  | 2003 | tracy | portal 已有 33 本 Brian Tracy——全星系最深的作者書櫃，只剩 3 本未收；「自我概念」29 處全集中在 tracy 站，這本是它的系統整理。注意 portal 同名 repo 是 Joseph Murphy 的書，不是這本（見 NAME_COLLISIONS） |
 | 7 | **The Ruthless Elimination of Hurry** |  | 2019 | spiritual-formation | spiritual-formation 站自標「匆忙是屬靈生命的頭號大敵」；Comer 在 portal 一本都沒有，這條線的入口全缺——薄（繁中在版狀況待查，站上未記中譯名） |
 | 8 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 的 Porter 只有 2 本（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、跨 4 站（business-strategy、problem-solving、management、agile） |
 | 9 | **Boundaries in Marriage** | 為婚姻立界線 | 1999 | cloud | portal 的 Cloud／Townsend 界線線已有 7 本，連 Boundaries in Dating 都收了，獨缺婚姻這本——cloud 站自標「系列中最明顯的缺口」；有繁中 |
 | 10 | **Till We Have Faces** | 裸顏 | 1956 | lewis | portal 已有 12 本路易斯，只剩這本與納尼亞未收；路易斯自認最成熟的小說，重述丘比特與賽姬——有繁中《裸顏》，比納尼亞七部曲好起手 |
-| 11 | **Rich Dad's Prophecy** | 富爸爸大預言 | 2002 | kiyosaki | portal 已有 23 本清崎——**書櫃只剩這一本**；退休金制度崩塌的預言，「退休金」站內 19 處、跨 7 站；有繁中《富爸爸大預言》 |
-| 12 | **The Rules of Love** |  | 2008 | templar | portal 已有 6 本 Templar；templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」——薄，一晚讀完 |
-| 13 | **Psychoanalysis and Religion** | 精神分析與宗教 | 1950 | fromm | portal 已有 11 本佛洛姆，缺這本區分權威主義／人本主義宗教的短篇正典——是 fromm 站與 theology 站之間那條線的接點；薄 |
-| 14 | **How to Become a Straight-A Student** | 如何成為全A學生 | 2006 | newport | portal 已有 6 本 Cal Newport，缺「偽工作」概念的起點——深度工作那一整套的雛形在這本；薄 |
-| 15 | **The End of Economic Man** | 經濟人的末日 | 1939 | drucker | portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、跨 5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭 |
-| 16 | **Kubernetes in Action** |  | 2017 | cloud-infra | cloud-infra 站自標「K8s 概念書的公認首選」；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——廣義 cloud-native／SRE 線 9 本都掛在這個空缺上；厚，排中段 |
-| 17 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 10 本加德納；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點 |
+| 11 | **Rich Dad's Prophecy** | 富爸爸大預言 | 2002 | kiyosaki | portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1）；退休金制度崩塌的預言，「退休金」站內 19 處、13 個檔案、7 站；有繁中《富爸爸大預言》 |
+| 12 | **Servant Leadership** |  | 1977 | leadership | leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 只有 Greenleaf 晚年文集 The Power of Servant-Leadership，源頭不在，而下游整片（Maxwell 14 本，加上這輪剛建好的 Kouzes、Bennis、Kotter、Goleman）全掛在它上面 |
+| 13 | **The Rules of Love** |  | 2008 | templar | portal 已有 6 本 Templar；templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」——薄，一晚讀完 |
+| 14 | **Psychoanalysis and Religion** | 精神分析與宗教 | 1950 | fromm | portal 已有 11 本佛洛姆，缺這本區分權威主義／人本主義宗教的短篇正典——是 fromm 站與 theology 站之間那條線的接點；薄 |
+| 15 | **The End of Economic Man** | 經濟人的末日 | 1939 | drucker | portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、9 個檔案、5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭 |
+| 16 | **Kubernetes in Action** |  | 2017 | cloud-infra | cloud-infra 站自標「K8s 概念書的公認首選」（該站 owned 16／wanted 10，是缺口最深的技術站之一）；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——SRE 線 4 本（SRE、Workbook、Handbook、Seeking SRE）都掛在這個空缺上；厚，排中段 |
+| 17 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 10 本加德納（gardner 站 owned 10／wanted 6）；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點 |
 | 18 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
 | 19 | **We, Programmers: A Chronicle of Coders from Ada to AI** |  | 2024 | uncle-bob | uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望——厚，排後段 |
 | 20 | **Dynamic Hedging: Managing Vanilla and Exotic Options** | 動態避險 | 1997 | taleb | portal 已有 6 本塔雷伯——**只剩這一本**（技術版 Incerto 剛收）；交易員時期的選擇權專著，Incerto 全部思想的實務源頭；硬書，壓軸慢啃 |
@@ -50,12 +50,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | {counts['owned']} 筆（去重 {owned_unique} 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **{counts['wanted']} 筆（去重 {len(by_main)} 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | {counts['unavailable']} 筆 |
-| `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | {counts['skipped']} 筆 |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1568 筆（去重 1123 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **310 筆（去重 310 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 36 筆 |
+| `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
-> `owned` 去重後的 {owned_unique} 是**已建成書站的書**（{counts['owned']} 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1123 是**已建成書站的書**（1568 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -73,44 +73,7 @@
 | 英文書名 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- |
 
-## 完整清單（依站，共 327 筆）
-
-### leadership-note — 14 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Extreme Ownership |  | 2015 | 海豹部隊的絕對當責——沒有爛團隊，只有爛領導 |
-| The First 90 Days |  | 2003 | Watkins：新任領導者的轉換期教科書 |
-| Leading Change |  | 1996 | Kotter 變革八步驟的原典 |
-| The Culture Code | 高效團隊默默在做的三件事 | 2018 | Coyle：安全感、示弱、共同目標 |
-| The Culture Map | 文化地圖 | 2014 | Erin Meyer：跨文化團隊的八個刻度 |
-| Dare to Lead | 召喚勇氣 | 2018 | Brené Brown：脆弱是勇氣的入口 |
-| The Coaching Habit |  | 2016 | Stanier：七個教練提問，少給建議 |
-| Trillion Dollar Coach | 教練 | 2019 | Bill Campbell——矽谷共同的教練 |
-| Thinking in Bets | 高勝算決策 | 2018 | Annie Duke：用下注思維面對不確定 |
-| Decisive | 零偏見決斷法 | 2013 | Heath 兄弟的 WRAP 決策流程 |
-| On Becoming a Leader |  | 1989 | Bennis：領導者是後天養成的 |
-| The Leadership Challenge | 模範領導 | 1987 | Kouzes & Posner 的五大實務 |
-| Primal Leadership |  | 2002 | Goleman：EQ 領導的六種風格 |
-| Servant Leadership |  | 1977 | Greenleaf——僕人領導思想的源頭 |
-
-### economics-note — 13 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The Wealth of Nations | 國富論 | 1776 | Adam Smith；分工與看不見的手——現代經濟學的原點 |
-| The General Theory of Employment, Interest and Money | 就業、利息與貨幣的一般理論 | 1936 | Keynes 本尊原典——總體經濟學的分水嶺 |
-| The Road to Serfdom | 到奴役之路 | 1944 | Hayek；中央計畫批判的政治經濟學經典 |
-| Capitalism and Freedom | 資本主義與自由 | 1962 | Friedman 的學術版立場書（Free to Choose 已收） |
-| Economics in One Lesson | 一課經濟學 | 1946 | Hazlitt；看得見與看不見的後果 |
-| The Worldly Philosophers | 俗世哲學家 | 1953 | Heilbroner；經濟思想史最會說故事的一冊 |
-| Freakonomics | 蘋果橘子經濟學 | 2005 | Levitt & Dubner；誘因分析的大眾化里程碑 |
-| The Undercover Economist | 臥底經濟學家 | 2005 | Harford；用日常現象教會你像經濟學家思考 |
-| Naked Economics |  | 2002 | Wheelan；無方程式的經濟學通識入門 |
-| Animal Spirits | 動物本能 | 2009 | Akerlof & Shiller；把心理拉回總體經濟學 |
-| This Time Is Different | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
-| Globalization and Its Discontents | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
-| 23 Things They Don't Tell You About Capitalism | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
+## 完整清單（依站，共 310 筆）
 
 ### theology-note — 12 本
 
@@ -235,6 +198,19 @@
 | Working Identity | 轉行 | 2003 | Ibarra：轉職是先行動再認同，不是先想清楚 |
 | The Alliance | 聯盟世代 | 2014 | Hoffman：僱傭關係是任期制聯盟 |
 | Never Eat Alone | 別自己一個人吃飯 | 2005 | Ferrazzi 的人脈經營經典 |
+
+### economics-note — 8 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| The Worldly Philosophers | 俗世哲學家 | 1953 | Heilbroner；經濟思想史最會說故事的一冊 |
+| Freakonomics | 蘋果橘子經濟學 | 2005 | Levitt & Dubner；誘因分析的大眾化里程碑 |
+| The Undercover Economist | 臥底經濟學家 | 2005 | Harford；用日常現象教會你像經濟學家思考 |
+| Naked Economics |  | 2002 | Wheelan；無方程式的經濟學通識入門 |
+| Animal Spirits | 動物本能 | 2009 | Akerlof & Shiller；把心理拉回總體經濟學 |
+| This Time Is Different | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
+| Globalization and Its Discontents | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
+| 23 Things They Don't Tell You About Capitalism | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
 
 ### investing-note — 8 本
 
@@ -652,6 +628,13 @@
 | --- | --- | --- | --- |
 | The 50th Law | 第 50 條法則 | 2009 | 與 50 Cent 合著；「無所畏懼」——48 法則之外的第 50 條 |
 | The Law of the Sublime |  |  | 醞釀多年的「崇高」主題新作，出版與中譯後再收 |
+
+### leadership-note — 2 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| The Culture Map | 文化地圖 | 2014 | Erin Meyer：跨文化團隊的八個刻度 |
+| Servant Leadership |  | 1977 | Greenleaf——僕人領導思想的源頭 |
 
 ### lewis-note — 2 本
 

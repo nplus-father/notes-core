@@ -62,22 +62,22 @@ from pathlib import Path
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
 TOP20 = [
     ("exegetical-fallacies", "biblical-studies 站自標「方法論缺口首位」；portal 釋經方法論線 6 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer、Beale & Carson…），Carson 本人只有 2 本且都是合著，缺這份單獨掛名的防守清單——薄，起手式選它"),
-    ("hidden-christmas", "portal 已有 21 本凱勒——**整個書櫃只剩這一本沒收**；收了 keller 站的 wanted 就歸零；薄、有繁中《隱藏的聖誕》"),
+    ("hidden-christmas", "portal 已有 24 本凱勒——**整個書櫃只剩這一本沒收**（keller 站 owned 22／wanted 1，收了就歸零）；薄、有繁中《隱藏的聖誕》"),
     ("reaching-out", "portal 已有 11 本盧雲；「款待」這個詞全星系 28 處、橫跨 8 站（nouwen、spiritual-formation、theology、startup…），三動向的出處卻不在——盧雲自認最個人的一本；薄、有繁中《靈程三動向》"),
     ("landmarks-of-tomorrow", "portal 已有 17 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡"),
-    ("the-contemporary-christian", "portal 已有 12 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》"),
+    ("the-contemporary-christian", "portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》"),
     ("change-your-thinking-change-your-life", "portal 已有 33 本 Brian Tracy——全星系最深的作者書櫃，只剩 3 本未收；「自我概念」29 處全集中在 tracy 站，這本是它的系統整理。注意 portal 同名 repo 是 Joseph Murphy 的書，不是這本（見 NAME_COLLISIONS）"),
     ("the-ruthless-elimination-of-hurry", "spiritual-formation 站自標「匆忙是屬靈生命的頭號大敵」；Comer 在 portal 一本都沒有，這條線的入口全缺——薄（繁中在版狀況待查，站上未記中譯名）"),
     ("competitive-advantage", "portal 的 Porter 只有 2 本（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、跨 4 站（business-strategy、problem-solving、management、agile）"),
     ("boundaries-in-marriage", "portal 的 Cloud／Townsend 界線線已有 7 本，連 Boundaries in Dating 都收了，獨缺婚姻這本——cloud 站自標「系列中最明顯的缺口」；有繁中"),
     ("till-we-have-faces", "portal 已有 12 本路易斯，只剩這本與納尼亞未收；路易斯自認最成熟的小說，重述丘比特與賽姬——有繁中《裸顏》，比納尼亞七部曲好起手"),
-    ("rich-dad-s-prophecy", "portal 已有 23 本清崎——**書櫃只剩這一本**；退休金制度崩塌的預言，「退休金」站內 19 處、跨 7 站；有繁中《富爸爸大預言》"),
+    ("rich-dad-s-prophecy", "portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1）；退休金制度崩塌的預言，「退休金」站內 19 處、13 個檔案、7 站；有繁中《富爸爸大預言》"),
+    ("servant-leadership", "leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 只有 Greenleaf 晚年文集 The Power of Servant-Leadership，源頭不在，而下游整片（Maxwell 14 本，加上這輪剛建好的 Kouzes、Bennis、Kotter、Goleman）全掛在它上面"),
     ("the-rules-of-love", "portal 已有 6 本 Templar；templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」——薄，一晚讀完"),
     ("psychoanalysis-and-religion", "portal 已有 11 本佛洛姆，缺這本區分權威主義／人本主義宗教的短篇正典——是 fromm 站與 theology 站之間那條線的接點；薄"),
-    ("how-to-become-a-straight-a-student", "portal 已有 6 本 Cal Newport，缺「偽工作」概念的起點——深度工作那一整套的雛形在這本；薄"),
-    ("the-end-of-economic-man", "portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、跨 5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭"),
-    ("kubernetes-in-action", "cloud-infra 站自標「K8s 概念書的公認首選」；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——廣義 cloud-native／SRE 線 9 本都掛在這個空缺上；厚，排中段"),
-    ("leading-minds", "portal 已有 10 本加德納；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點"),
+    ("the-end-of-economic-man", "portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、9 個檔案、5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭"),
+    ("kubernetes-in-action", "cloud-infra 站自標「K8s 概念書的公認首選」（該站 owned 16／wanted 10，是缺口最深的技術站之一）；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——SRE 線 4 本（SRE、Workbook、Handbook、Seeking SRE）都掛在這個空缺上；厚，排中段"),
+    ("leading-minds", "portal 已有 10 本加德納（gardner 站 owned 10／wanted 6）；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點"),
     ("the-divine-conspiracy-continued", "portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域"),
     ("we-programmers", "uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望——厚，排後段"),
     ("dynamic-hedging", "portal 已有 6 本塔雷伯——**只剩這一本**（技術版 Incerto 剛收）；交易員時期的選擇權專著，Incerto 全部思想的實務源頭；硬書，壓軸慢啃"),
@@ -362,7 +362,7 @@ def main():
             f"| {', '.join(stations)} | {flag}{esc(why)} |\n"
         )
 
-    w("""
+    w(f"""
 **這是第四個軸**，與 docs/ 既有三份不同：
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
