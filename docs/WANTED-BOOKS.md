@@ -8,7 +8,7 @@
 
 ## 先收這 20 本
 
-整份 299 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
+整份 295 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
@@ -18,17 +18,17 @@
 | 2 | **Confessions** | 懺悔錄 | 397 | theology | **全星系最重的作者級空洞**：「奧古斯丁」被引用 34 處、25 個檔案、橫跨 9 站（theology、biblical-studies、keller、lewis、peck、peterson、spiritual-formation、stott、willard），而 portal 上奧古斯丁的書**一本都沒有**——這本是那 34 處的共同源頭；繁中多種在版 |
 | 3 | **Rich Dad's Prophecy** | 富爸爸大預言 | 2002 | kiyosaki | portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1，收了就歸零）；退休金制度崩塌的預言；有繁中《富爸爸大預言》 |
 | 4 | **Refactoring UI** |  | 2018 | design | design 站 owned 11／wanted 1——**收了就歸零**；portal 完全沒有這本，補的是 CRAP 原則到實際元件之間那一段；薄、工程師視角，一個週末讀完 |
-| 5 | **（量子力學究竟是什麼）** |  | 2021 | wan-weigang | wan-weigang 站自標「科普線目前唯一缺口」；portal 已有 12 本萬維鋼，「究竟是什麼」系列就缺量子這篇——薄；注意繁中版書名是《高手量子力學》，簡中版才叫這個名字 |
-| 6 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、5 個檔案、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》 |
-| 7 | **Landmarks of Tomorrow** | 明日的地標 | 1959 | drucker | portal 已有 18 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡 |
-| 8 | **Servant Leadership** |  | 1977 | leadership | leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），源頭不在，而下游整片（Maxwell 13 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
-| 9 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 的 Porter **只有 2 本**（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、7 個檔案、跨 4 站（business-strategy、problem-solving、management、agile） |
-| 10 | **Emotional Intelligence** | EQ | 1995 | thinking | portal 已有 6 本情緒智力的**衍生書**（HBR 三本指南、Primal Leadership、Permission to Feel、Peak Performance），1995 年那本把 EQ 帶進大眾語彙的原典卻不在；「EQ／情緒智商／情緒智力」站內 28 處、跨 8 站（career、cloud、covey、hbr、kiyosaki、leadership、life-meaning、thinking） |
-| 11 | **Biblical Theology** |  | 1948 | biblical-studies | 「聖經神學」站內 49 處、13 個檔案、跨 3 站（biblical-studies、keller、theology）；portal 有 6 本掛聖經神學的書（According to Plan、A New Testament Biblical Theology…），缺的正是 Vos 1948 這本把它立成一門學科的奠基原典。注意 portal 同名 repo 是 Goldingay 的書（見 NAME_COLLISIONS） |
-| 12 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 11 本加德納（gardner 站 owned 10／wanted 6）；「多元智能」站內 39 處，「說故事」跨 17 站——這本以說故事的人解剖領導，正是他從 MI 跨到領導研究的那一步，是 gardner 站與 leadership 站的接點 |
-| 13 | **Schwager on Futures: Fundamental Analysis** | 史瓦格期貨基本分析 | 1995 | schwager | schwager 站自標「怪傑系列外最大缺口」；portal 已有 9 本 Schwager，清一色是訪談與入門（Market Wizards 系列、技術分析入門、期貨市場完全指南），缺這本供需與價差的基本面框架——三部曲補上最後一角 |
-| 14 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
-| 15 | **The Culture Map** | 文化地圖 | 2014 | leadership | leadership 站 owned 94／wanted 2 的另一本——收完這兩本該站就歸零；portal 的 Erin Meyer 只有與 Hastings 合著的 No Rules Rules，她自己那本跨文化八刻度的主著不在；有繁中《文化地圖》 |
+| 5 | **The Everlasting Man** | 永恆的人 | 1925 | theology | portal 只有 2 本切斯特頓（Orthodoxy、What's Wrong with the World）；「切斯特頓」站內 11 處、跨 3 站（lewis、theology、design），而 portal 13 本路易斯那整個書櫃的歸信轉捩點正是這一本——收了才接得起來；薄、有繁中《永恆的人》 |
+| 6 | **Servant Leadership** |  | 1977 | leadership | leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），源頭不在，而下游整片（Maxwell 13 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
+| 7 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 的 Porter **只有 2 本**（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、7 個檔案、跨 4 站（business-strategy、problem-solving、management、agile） |
+| 8 | **Emotional Intelligence** | EQ | 1995 | thinking | portal 已有 6 本情緒智力的**衍生書**（HBR 三本指南、Primal Leadership、Permission to Feel、Peak Performance），1995 年那本把 EQ 帶進大眾語彙的原典卻不在；「EQ／情緒智商／情緒智力」站內 28 處、跨 8 站（career、cloud、covey、hbr、kiyosaki、leadership、life-meaning、thinking） |
+| 9 | **Trading in the Zone** |  | 2000 | investing | portal 已有 Mark Douglas 的前作 The Disciplined Trader，缺這本被當成交易心理標準讀物的成熟之作——「交易心理」站內 12 處，橫跨 investing 與 schwager 兩站，兩站的概念頁都指著它；investing 站 owned 54／wanted 8 |
+| 10 | **Biblical Theology** |  | 1948 | biblical-studies | 「聖經神學」站內 49 處、13 個檔案、跨 3 站（biblical-studies、keller、theology）；portal 有 6 本掛聖經神學的書（According to Plan、A New Testament Biblical Theology…），缺的正是 Vos 1948 這本把它立成一門學科的奠基原典。注意 portal 同名 repo 是 Goldingay 的書（見 NAME_COLLISIONS） |
+| 11 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 11 本加德納（gardner 站 owned 10／wanted 6）；「多元智能」站內 39 處，「說故事」跨 17 站——這本以說故事的人解剖領導，正是他從 MI 跨到領導研究的那一步，是 gardner 站與 leadership 站的接點 |
+| 12 | **Advanced Selling Strategies** |  | 1995 | tracy | portal 已有 34 本 Brian Tracy——**全星系最深的作者書櫃**，而 tracy 站 owned 34／wanted 2；銷售線上已有 The Psychology of Selling、Sales Management、Negotiation 三本，缺的正是大客戶與關係銷售這一層進階正典（「銷售」全星系 298 處、113 個檔案、31 站） |
+| 13 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
+| 14 | **The Culture Map** | 文化地圖 | 2014 | leadership | leadership 站 owned 94／wanted 2 的另一本——收完這兩本該站就歸零；portal 的 Erin Meyer 只有與 Hastings 合著的 No Rules Rules，她自己那本跨文化八刻度的主著不在；有繁中《文化地圖》 |
+| 15 | **The Body Keeps the Score** | 心靈的傷，身體會記住 | 2014 | wellness | 「創傷」是全星系橫跨最廣的概念之一——38 處、20 個檔案、**10 站**（growth、history、life-meaning、navarro、peterson、relationships、taleb、theology、thinking、wellness），而 portal 的 van der Kolk **掛零**，這片引用沒有任何原典可掛；有繁中《心靈的傷，身體會記住》，厚，排中後段 |
 | 16 | **The Data Warehouse Toolkit** |  | 1996 | data-systems | data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛 |
 | 17 | **Kanban: Successful Evolutionary Change for Your Technology Business** | Kanban | 2010 | agile | portal 有衍生的 Kanban in Action、卻沒有 Anderson 2010 的原典；「看板」在 agile 站 14 個檔案（另散見 career、hbr、tools、uncle-bob 等 7 站），限制在製品的理論來源全靠二手轉述 |
 | 18 | **The Four Steps to the Epiphany** |  | 2005 | startup | startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**，而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證 |
@@ -51,8 +51,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1579 筆（去重 1134 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **299 筆（去重 299 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 36 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **295 筆（去重 295 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 40 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
 > `owned` 去重後的 1134 是**已建成書站的書**（1579 是含跨站重複的登錄筆數，
@@ -73,7 +73,7 @@
 | 英文書名 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- |
 
-## 完整清單（依站，共 299 筆）
+## 完整清單（依站，共 295 筆）
 
 ### theology-note — 12 本
 
@@ -283,17 +283,6 @@
 | Feeling Good: The New Mood Therapy |  | 1980 | Burns：認知行為治療（CBT）自助經典 |
 | Flourish | 邁向圓滿 | 2011 | Seligman：PERMA 幸福模型 |
 
-### drucker-note — 6 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The Future of Industrial Man | 工業人的未來 | 1942 | 提出「合法性」與「地位與功能」問題，通往《企業的概念》 |
-| Landmarks of Tomorrow | 明日的地標 | 1959 | 首次提出「知識工作者」，知識社會論的起點 |
-| Managing in Turbulent Times | 動盪時代的管理 | 1980 | 不確定時代的經營綱領，與當下高度共鳴 |
-| Managing the Non-Profit Organization | 使命與領導：非營利組織的管理 | 1990 | 杜拉克晚年最重視的部門——社會部門 |
-| Drucker on Asia | 杜拉克看亞洲 | 1997 | 與中內功的對談錄；杜拉克與日本經營的互動 |
-| Managing in the Next Society | 下一個社會 | 2002 | 最後的社會預言：少子高齡化、資訊革命的下一步 |
-
 ### fengtang-note — 6 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -389,6 +378,16 @@
 | Analysis Patterns |  | 1996 | Fowler；領域模型層級的可重用模式 |
 | Pattern-Oriented Software Architecture Vol.1 (POSA) |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
 | Game Programming Patterns |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
+
+### drucker-note — 5 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| The Future of Industrial Man | 工業人的未來 | 1942 | 提出「合法性」與「地位與功能」問題，通往《企業的概念》 |
+| Managing in Turbulent Times | 動盪時代的管理 | 1980 | 不確定時代的經營綱領，與當下高度共鳴 |
+| Managing the Non-Profit Organization | 使命與領導：非營利組織的管理 | 1990 | 杜拉克晚年最重視的部門——社會部門 |
+| Drucker on Asia | 杜拉克看亞洲 | 1997 | 與中內功的對談錄；杜拉克與日本經營的互動 |
+| Managing in the Next Society | 下一個社會 | 2002 | 最後的社會預言：少子高齡化、資訊革命的下一步 |
 
 ### hbr-note — 5 本
 
@@ -512,15 +511,6 @@
 | The Back of the Napkin | 餐巾紙的背後 | 2008 | Dan Roam：視覺化解題的普及經典 |
 | The McKinsey Way | 專業主義：麥肯錫的成功之道 | 1999 | Ethan Rasiel：局內人視角的麥肯錫方法論第一手記錄 |
 
-### stott-note — 4 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Why I Am a Christian |  | 2003 | 晚年的個人見證版《真理的尋索》——「基督的獵犬」追上他的故事 |
-| Understanding the Bible | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
-| The Contemporary Christian | 當代基督門徒 | 1992 | 雙重聆聽的完整陳述：福音、門徒、聖經、教會、世界五部 |
-| Christian Mission in the Modern World |  | 1975 | 洛桑運動時期的宣教神學：整全使命（佈道＋社會責任）的定調之作 |
-
 ### system-design-note — 4 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -569,6 +559,14 @@
 | How to Win at College |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
 | How to Become a Straight-A Student | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
 | How to Be a High School Superstar |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正 |
+
+### stott-note — 3 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Why I Am a Christian |  | 2003 | 晚年的個人見證版《真理的尋索》——「基督的獵犬」追上他的故事 |
+| Understanding the Bible | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
+| Christian Mission in the Modern World |  | 1975 | 洛桑運動時期的宣教神學：整全使命（佈道＋社會責任）的定調之作 |
 
 ### templar-note — 3 本
 
@@ -628,26 +626,12 @@
 | Be Exceptional |  | 2021 | 晚期的正向轉向：從「讀懂別人」推到「成為值得被信任的人」 |
 | Three Minutes to Doomsday |  | 2017 | 回憶錄式的間諜案偵訊實錄——方法論在真實高壓現場的完整展開 |
 
-### schwager-note — 2 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Schwager on Futures: Fundamental Analysis | 史瓦格期貨基本分析 | 1995 | 三部曲之一：供需與價差的基本面框架，怪傑系列外最大缺口 |
-| Market Sense and Nonsense | 市場真相 | 2012 | 拆解投資圈流行謬誤：效率市場、波動度、對沖基金迷思的實證清算 |
-
 ### tracy-note — 2 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
 | Advanced Selling Strategies |  | 1995 | 銷售進階正典，大客戶與關係銷售的完整方法 |
 | Million Dollar Habits |  | 2004 | 把財富歸因到習慣系統，補齊「習慣」這一塊拼圖 |
-
-### wan-weigang-note — 2 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| （你有你的計劃，世界另有計劃） | 你有你的計劃，世界另有計劃 | 2019 | 精英日課結集之一；原列在建議閱讀路徑卻沒有對應書站，2026-08-05 校正為待收 |
-| （量子力學究竟是什麼） | 量子力學究竟是什麼 | 2021 | 「究竟是什麼」系列的量子篇，科普線目前唯一缺口 |
 
 ### bogle-note — 1 本
 
@@ -673,13 +657,25 @@
 | --- | --- | --- | --- |
 | The Chronicles of Narnia | 納尼亞傳奇（七部曲） | 1950 | 1950–1956 七部合併一筆；想像護教最廣為人知的成品，值得整套收錄 |
 
+### schwager-note — 1 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Market Sense and Nonsense | 市場真相 | 2012 | 拆解投資圈流行謬誤：效率市場、波動度、對沖基金迷思的實證清算 |
+
 ### uncle-bob-note — 1 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
 | We, Programmers: A Chronicle of Coders from Ada to AI |  | 2024 | 晚年回望：從 Ada 到 AI 的程式設計師群像史——目前最大的缺口 |
 
-## 沒有英文書名的 21 本（華文／日文原著）
+### wan-weigang-note — 1 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| （你有你的計劃，世界另有計劃） | 你有你的計劃，世界另有計劃 | 2019 | 精英日課結集之一；原列在建議閱讀路徑卻沒有對應書站，2026-08-05 校正為待收 |
+
+## 沒有英文書名的 20 本（華文／日文原著）
 
 這些本來就沒有英文版，照原書名收。
 
@@ -699,7 +695,6 @@
 | 關鍵躍升：新任管理者的底層邏輯 | liurun-note | 寫給新手管理者的「驚險一躍」專書——管理分類的直接補強 |
 | 邏輯思考的技術 | problem-solving-note | 照屋華子・岡田惠子：MECE 與 So What?/Why So? 的教科書 |
 | 你有你的計劃，世界另有計劃 | wan-weigang-note | 精英日課結集之一；原列在建議閱讀路徑卻沒有對應書站，2026-08-05 校正為待收 |
-| 量子力學究竟是什麼 | wan-weigang-note | 「究竟是什麼」系列的量子篇，科普線目前唯一缺口 |
 | 信息傳 | wujun-note | 資訊史詩；香農資訊論如何成為理解未來的方法論（無繁中版） |
 | 全球科技通史 | wujun-note | 從石器到量子的科技全史；「能量與資訊」雙主線的史觀 |
 | 吳軍數學通識講義 | wujun-note | 得到課程結集；把數學史講成通識教育的系統嘗試 |
