@@ -4,36 +4,36 @@
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1599 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1611 個 repo）。
 
 ## 先收這 20 本
 
-整份 310 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
+整份 299 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 ②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ④同等重要時，薄的、有繁中在版的排前面。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
 | # | 英文書名 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- |
-| 1 | **Exegetical Fallacies** |  | 1984 | biblical-studies | biblical-studies 站自標「方法論缺口首位」；portal 釋經方法論線 6 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer、Beale & Carson…），Carson 本人只有 2 本且都是合著，缺這份單獨掛名的防守清單——薄，起手式選它 |
-| 2 | **Hidden Christmas** | 隱藏的聖誕 | 2016 | keller | portal 已有 24 本凱勒——**整個書櫃只剩這一本沒收**（keller 站 owned 22／wanted 1，收了就歸零）；薄、有繁中《隱藏的聖誕》 |
-| 3 | **Reaching Out** | 靈程三動向 | 1975 | nouwen | portal 已有 11 本盧雲；「款待」這個詞全星系 28 處、橫跨 8 站（nouwen、spiritual-formation、theology、startup…），三動向的出處卻不在——盧雲自認最個人的一本；薄、有繁中《靈程三動向》 |
-| 4 | **Landmarks of Tomorrow** | 明日的地標 | 1959 | drucker | portal 已有 17 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡 |
-| 5 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》 |
-| 6 | **Change Your Thinking, Change Your Life** |  | 2003 | tracy | portal 已有 33 本 Brian Tracy——全星系最深的作者書櫃，只剩 3 本未收；「自我概念」29 處全集中在 tracy 站，這本是它的系統整理。注意 portal 同名 repo 是 Joseph Murphy 的書，不是這本（見 NAME_COLLISIONS） |
-| 7 | **The Ruthless Elimination of Hurry** |  | 2019 | spiritual-formation | spiritual-formation 站自標「匆忙是屬靈生命的頭號大敵」；Comer 在 portal 一本都沒有，這條線的入口全缺——薄（繁中在版狀況待查，站上未記中譯名） |
-| 8 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 的 Porter 只有 2 本（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、跨 4 站（business-strategy、problem-solving、management、agile） |
-| 9 | **Boundaries in Marriage** | 為婚姻立界線 | 1999 | cloud | portal 的 Cloud／Townsend 界線線已有 7 本，連 Boundaries in Dating 都收了，獨缺婚姻這本——cloud 站自標「系列中最明顯的缺口」；有繁中 |
-| 10 | **Till We Have Faces** | 裸顏 | 1956 | lewis | portal 已有 12 本路易斯，只剩這本與納尼亞未收；路易斯自認最成熟的小說，重述丘比特與賽姬——有繁中《裸顏》，比納尼亞七部曲好起手 |
-| 11 | **Rich Dad's Prophecy** | 富爸爸大預言 | 2002 | kiyosaki | portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1）；退休金制度崩塌的預言，「退休金」站內 19 處、13 個檔案、7 站；有繁中《富爸爸大預言》 |
-| 12 | **Servant Leadership** |  | 1977 | leadership | leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 只有 Greenleaf 晚年文集 The Power of Servant-Leadership，源頭不在，而下游整片（Maxwell 14 本，加上這輪剛建好的 Kouzes、Bennis、Kotter、Goleman）全掛在它上面 |
-| 13 | **The Rules of Love** |  | 2008 | templar | portal 已有 6 本 Templar；templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」——薄，一晚讀完 |
-| 14 | **Psychoanalysis and Religion** | 精神分析與宗教 | 1950 | fromm | portal 已有 11 本佛洛姆，缺這本區分權威主義／人本主義宗教的短篇正典——是 fromm 站與 theology 站之間那條線的接點；薄 |
-| 15 | **The End of Economic Man** | 經濟人的末日 | 1939 | drucker | portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、9 個檔案、5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭 |
-| 16 | **Kubernetes in Action** |  | 2017 | cloud-infra | cloud-infra 站自標「K8s 概念書的公認首選」（該站 owned 16／wanted 10，是缺口最深的技術站之一）；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——SRE 線 4 本（SRE、Workbook、Handbook、Seeking SRE）都掛在這個空缺上；厚，排中段 |
-| 17 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 10 本加德納（gardner 站 owned 10／wanted 6）；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點 |
-| 18 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
-| 19 | **We, Programmers: A Chronicle of Coders from Ada to AI** |  | 2024 | uncle-bob | uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望——厚，排後段 |
-| 20 | **Dynamic Hedging: Managing Vanilla and Exotic Options** | 動態避險 | 1997 | taleb | portal 已有 6 本塔雷伯——**只剩這一本**（技術版 Incerto 剛收）；交易員時期的選擇權專著，Incerto 全部思想的實務源頭；硬書，壓軸慢啃 |
+| 1 | **The Rules of Love** |  | 2008 | templar | templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」；portal 已有 6 本 Templar（Life、Management、People、Thinking、Wealth、Work），系列就缺這本——薄，一晚讀完，起手式選它 |
+| 2 | **Confessions** | 懺悔錄 | 397 | theology | **全星系最重的作者級空洞**：「奧古斯丁」被引用 34 處、25 個檔案、橫跨 9 站（theology、biblical-studies、keller、lewis、peck、peterson、spiritual-formation、stott、willard），而 portal 上奧古斯丁的書**一本都沒有**——這本是那 34 處的共同源頭；繁中多種在版 |
+| 3 | **Rich Dad's Prophecy** | 富爸爸大預言 | 2002 | kiyosaki | portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1，收了就歸零）；退休金制度崩塌的預言；有繁中《富爸爸大預言》 |
+| 4 | **Refactoring UI** |  | 2018 | design | design 站 owned 11／wanted 1——**收了就歸零**；portal 完全沒有這本，補的是 CRAP 原則到實際元件之間那一段；薄、工程師視角，一個週末讀完 |
+| 5 | **（量子力學究竟是什麼）** |  | 2021 | wan-weigang | wan-weigang 站自標「科普線目前唯一缺口」；portal 已有 12 本萬維鋼，「究竟是什麼」系列就缺量子這篇——薄；注意繁中版書名是《高手量子力學》，簡中版才叫這個名字 |
+| 6 | **The Contemporary Christian** | 當代基督門徒 | 1992 | stott | portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、5 個檔案、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》 |
+| 7 | **Landmarks of Tomorrow** | 明日的地標 | 1959 | drucker | portal 已有 18 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡 |
+| 8 | **Servant Leadership** |  | 1977 | leadership | leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），源頭不在，而下游整片（Maxwell 13 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
+| 9 | **Competitive Advantage** | 競爭優勢 | 1985 | business-strategy | portal 的 Porter **只有 2 本**（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、7 個檔案、跨 4 站（business-strategy、problem-solving、management、agile） |
+| 10 | **Emotional Intelligence** | EQ | 1995 | thinking | portal 已有 6 本情緒智力的**衍生書**（HBR 三本指南、Primal Leadership、Permission to Feel、Peak Performance），1995 年那本把 EQ 帶進大眾語彙的原典卻不在；「EQ／情緒智商／情緒智力」站內 28 處、跨 8 站（career、cloud、covey、hbr、kiyosaki、leadership、life-meaning、thinking） |
+| 11 | **Biblical Theology** |  | 1948 | biblical-studies | 「聖經神學」站內 49 處、13 個檔案、跨 3 站（biblical-studies、keller、theology）；portal 有 6 本掛聖經神學的書（According to Plan、A New Testament Biblical Theology…），缺的正是 Vos 1948 這本把它立成一門學科的奠基原典。注意 portal 同名 repo 是 Goldingay 的書（見 NAME_COLLISIONS） |
+| 12 | **Leading Minds: An Anatomy of Leadership** | 領導心智 | 1995 | gardner | portal 已有 11 本加德納（gardner 站 owned 10／wanted 6）；「多元智能」站內 39 處，「說故事」跨 17 站——這本以說故事的人解剖領導，正是他從 MI 跨到領導研究的那一步，是 gardner 站與 leadership 站的接點 |
+| 13 | **Schwager on Futures: Fundamental Analysis** | 史瓦格期貨基本分析 | 1995 | schwager | schwager 站自標「怪傑系列外最大缺口」；portal 已有 9 本 Schwager，清一色是訪談與入門（Market Wizards 系列、技術分析入門、期貨市場完全指南），缺這本供需與價差的基本面框架——三部曲補上最後一角 |
+| 14 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
+| 15 | **The Culture Map** | 文化地圖 | 2014 | leadership | leadership 站 owned 94／wanted 2 的另一本——收完這兩本該站就歸零；portal 的 Erin Meyer 只有與 Hastings 合著的 No Rules Rules，她自己那本跨文化八刻度的主著不在；有繁中《文化地圖》 |
+| 16 | **The Data Warehouse Toolkit** |  | 1996 | data-systems | data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛 |
+| 17 | **Kanban: Successful Evolutionary Change for Your Technology Business** | Kanban | 2010 | agile | portal 有衍生的 Kanban in Action、卻沒有 Anderson 2010 的原典；「看板」在 agile 站 14 個檔案（另散見 career、hbr、tools、uncle-bob 等 7 站），限制在製品的理論來源全靠二手轉述 |
+| 18 | **The Four Steps to the Epiphany** |  | 2005 | startup | startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**，而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證 |
+| 19 | **The Chronicles of Narnia** | 納尼亞傳奇（七部曲） | 1950 | lewis | lewis 站 owned 13／wanted 1——**收了就歸零**；portal 已有 13 本路易斯而納尼亞掛零，「納尼亞」站內 4 處跨 3 站（lewis、keller、biblical-studies）卻無處可掛；七部曲，厚，排後段 |
+| 20 | **We, Programmers: A Chronicle of Coders from Ada to AI** |  | 2024 | uncle-bob | uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin（Clean 系列全在），缺這本 2024 年從 Ada 到 AI 的晚年回望——厚，壓軸慢啃 |
 
 **這是第四個軸**，與 docs/ 既有三份不同：
 
@@ -50,12 +50,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1568 筆（去重 1123 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **310 筆（去重 310 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1579 筆（去重 1134 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **299 筆（去重 299 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 36 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
-> `owned` 去重後的 1123 是**已建成書站的書**（1568 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1134 是**已建成書站的書**（1579 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -73,7 +73,7 @@
 | 英文書名 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- |
 
-## 完整清單（依站，共 310 筆）
+## 完整清單（依站，共 299 筆）
 
 ### theology-note — 12 本
 
@@ -91,22 +91,6 @@
 | The City of God | 上帝之城 | 426 | 奧古斯丁；歷史神學與政治神學的奠基 |
 | On the Incarnation | 論道成肉身 | 318 | 亞他那修；教父基督論最佳入門 |
 | The Imitation of Christ | 效法基督 | 1418 | 金碧士；中世紀靈修最流通的一本 |
-
-### biblical-studies-note — 11 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The Art of Biblical Narrative |  | 1981 | Alter——文學讀法的分水嶺之作 |
-| Theology of the Old Testament |  | 1997 | Brueggemann——「見證與爭訟」框架的舊約神學另一極 |
-| Old Testament Theology | 三卷） | 2003 | Goldingay 的敘事進路大部頭（其單卷《聖經神學》已收） |
-| Jesus and the Eyewitnesses |  | 2006 | Bauckham——福音書作為目擊者見證 |
-| Echoes of Scripture in the Letters of Paul |  | 1989 | Hays——互文性讀保羅的開山之作 |
-| Exegetical Fallacies |  | 1984 | Carson——釋經謬誤的防守清單，方法論缺口首位 |
-| Grasping God's Word |  | 2001 | Duvall & Hays——釋經步驟化的教科書標準 |
-| Biblical Theology |  | 1948 | Vos——聖經神學作為學科的奠基原典 |
-| Kingdom through Covenant |  | 2012 | Gentry & Wellum——以聖約串起正典的系統性嘗試 |
-| The Temple and the Church's Mission |  | 2004 | Beale——聖殿主線的專論，本站主線概念的深化來源 |
-| NICNT | ／NICOT 系列代表卷 |  | 學術註釋的系列級缺口——如 Moo《Romans》、Fee《1 Corinthians》、Wenham《Genesis》 |
 
 ### startup-note — 11 本
 
@@ -140,20 +124,20 @@
 | How Emotions Are Made | 情緒跟你以為的不一樣 | 2017 | Barrett：情緒建構論，對基本情緒論的正面挑戰 |
 | Emotional Intelligence | EQ | 1995 | Goleman：把情緒智力帶進大眾語彙的原典 |
 
-### cloud-infra-note — 10 本
+### biblical-studies-note — 10 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
-| The Unicorn Project | 獨角獸專案 | 2019 | 鳳凰專案的開發者視角姊妹作 |
-| Observability Engineering |  | 2022 | Majors 等；高基數事件與「未知的未知」——可觀測性學派的正典 |
-| Practical Monitoring |  | 2017 | Julian；監控反模式與務實起步 |
-| Systems Performance |  | 2020 | Brendan Gregg；USE 方法與效能分析的系統性正典 |
-| TCP/IP Illustrated, Volume 1 |  | 1994 | Stevens；網路協定的經典解剖 |
-| UNIX and Linux System Administration Handbook |  | 2017 | Nemeth 等；傳統系統管理的百科全書 |
-| Kubernetes in Action |  | 2017 | Lukša；K8s 概念書的公認首選 |
-| Terraform: Up & Running |  | 2017 | Brikman；IaC 落地的實戰標準 |
-| Infrastructure as Code |  | 2016 | Kief Morris；把基礎設施當軟體管理的原則書 |
-| The Practice of Cloud System Administration |  | 2014 | Limoncelli；分散式服務維運的教科書 |
+| The Art of Biblical Narrative |  | 1981 | Alter——文學讀法的分水嶺之作 |
+| Theology of the Old Testament |  | 1997 | Brueggemann——「見證與爭訟」框架的舊約神學另一極 |
+| Old Testament Theology | 三卷） | 2003 | Goldingay 的敘事進路大部頭（其單卷《聖經神學》已收） |
+| Jesus and the Eyewitnesses |  | 2006 | Bauckham——福音書作為目擊者見證 |
+| Echoes of Scripture in the Letters of Paul |  | 1989 | Hays——互文性讀保羅的開山之作 |
+| Grasping God's Word |  | 2001 | Duvall & Hays——釋經步驟化的教科書標準 |
+| Biblical Theology |  | 1948 | Vos——聖經神學作為學科的奠基原典 |
+| Kingdom through Covenant |  | 2012 | Gentry & Wellum——以聖約串起正典的系統性嘗試 |
+| The Temple and the Church's Mission |  | 2004 | Beale——聖殿主線的專論，本站主線概念的深化來源 |
+| NICNT | ／NICOT 系列代表卷 |  | 學術註釋的系列級缺口——如 Moo《Romans》、Fee《1 Corinthians》、Wenham《Genesis》 |
 
 ### data-systems-note — 10 本
 
@@ -170,21 +154,6 @@
 | The Data Warehouse Toolkit |  | 1996 | Kimball；維度建模（star schema）的正典 |
 | Versioning in an Event Sourced System |  | 2017 | Greg Young；事件溯源在演進期的實務難題 |
 
-### nouwen-note — 10 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Intimacy | 親密 | 1969 | 處女作；牧養心理學時期的起點 |
-| Out of Solitude | 始於寧謐處 | 1974 | 獨處與服事的小經典；三篇講章 |
-| Reaching Out | 靈程三動向 | 1975 | 自認最個人的一本：孤獨→獨處、敵意→款待、幻象→禱告 |
-| The Genesee Diary | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
-| Clowning in Rome | 羅馬城的小丑戲 | 1979 | 小丑（邊緣人）作為屬靈生活的隱喻 |
-| Compassion | 慈心憐憫 | 1982 | 與 McNeill、Morrison 合著；憐憫＝一同受苦的神學 |
-| The Road to Daybreak | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
-| Heart Speaks to Heart | 心應心 | 1989 | 對基督之心的三篇禱文；崩潰後的深水之作 |
-| Can You Drink the Cup? | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
-| The Inner Voice of Love | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
-
 ### career-note — 9 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -198,6 +167,34 @@
 | Working Identity | 轉行 | 2003 | Ibarra：轉職是先行動再認同，不是先想清楚 |
 | The Alliance | 聯盟世代 | 2014 | Hoffman：僱傭關係是任期制聯盟 |
 | Never Eat Alone | 別自己一個人吃飯 | 2005 | Ferrazzi 的人脈經營經典 |
+
+### cloud-infra-note — 9 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| The Unicorn Project | 獨角獸專案 | 2019 | 鳳凰專案的開發者視角姊妹作 |
+| Observability Engineering |  | 2022 | Majors 等；高基數事件與「未知的未知」——可觀測性學派的正典 |
+| Practical Monitoring |  | 2017 | Julian；監控反模式與務實起步 |
+| Systems Performance |  | 2020 | Brendan Gregg；USE 方法與效能分析的系統性正典 |
+| TCP/IP Illustrated, Volume 1 |  | 1994 | Stevens；網路協定的經典解剖 |
+| UNIX and Linux System Administration Handbook |  | 2017 | Nemeth 等；傳統系統管理的百科全書 |
+| Terraform: Up & Running |  | 2017 | Brikman；IaC 落地的實戰標準 |
+| Infrastructure as Code |  | 2016 | Kief Morris；把基礎設施當軟體管理的原則書 |
+| The Practice of Cloud System Administration |  | 2014 | Limoncelli；分散式服務維運的教科書 |
+
+### nouwen-note — 9 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Intimacy | 親密 | 1969 | 處女作；牧養心理學時期的起點 |
+| Out of Solitude | 始於寧謐處 | 1974 | 獨處與服事的小經典；三篇講章 |
+| The Genesee Diary | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
+| Clowning in Rome | 羅馬城的小丑戲 | 1979 | 小丑（邊緣人）作為屬靈生活的隱喻 |
+| Compassion | 慈心憐憫 | 1982 | 與 McNeill、Morrison 合著；憐憫＝一同受苦的神學 |
+| The Road to Daybreak | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
+| Heart Speaks to Heart | 心應心 | 1989 | 對基督之心的三篇禱文；崩潰後的深水之作 |
+| Can You Drink the Cup? | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
+| The Inner Voice of Love | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
 
 ### economics-note — 8 本
 
@@ -237,18 +234,6 @@
 | Le Mythe de Sisyphe | The Myth of Sisyphus 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
 | The Analects | 論語 |  | 儒家原典——關係與德性的東方座標 |
 | Tao Te Ching | 道德經 |  | 道家原典——無為與反者道之動 |
-
-### drucker-note — 7 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The End of Economic Man | 經濟人的末日 | 1939 | 處女作，剖析極權主義的起源——杜拉克一切思想的出發點 |
-| The Future of Industrial Man | 工業人的未來 | 1942 | 提出「合法性」與「地位與功能」問題，通往《企業的概念》 |
-| Landmarks of Tomorrow | 明日的地標 | 1959 | 首次提出「知識工作者」，知識社會論的起點 |
-| Managing in Turbulent Times | 動盪時代的管理 | 1980 | 不確定時代的經營綱領，與當下高度共鳴 |
-| Managing the Non-Profit Organization | 使命與領導：非營利組織的管理 | 1990 | 杜拉克晚年最重視的部門——社會部門 |
-| Drucker on Asia | 杜拉克看亞洲 | 1997 | 與中內功的對談錄；杜拉克與日本經營的互動 |
-| Managing in the Next Society | 下一個社會 | 2002 | 最後的社會預言：少子高齡化、資訊革命的下一步 |
 
 ### marketing-note — 7 本
 
@@ -298,16 +283,16 @@
 | Feeling Good: The New Mood Therapy |  | 1980 | Burns：認知行為治療（CBT）自助經典 |
 | Flourish | 邁向圓滿 | 2011 | Seligman：PERMA 幸福模型 |
 
-### cloud-note — 6 本
+### drucker-note — 6 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
-| Boundaries with Kids | 為孩子立界線 | 1998 | 把界線變成教養框架——讓孩子為自己的行為承擔後果 |
-| Boundaries in Marriage | 為婚姻立界線 | 1999 | 界線系列在最重要關係上的應用，系列中最明顯的缺口 |
-| How People Grow | 成長神學 | 2001 | 與 Townsend 合寫的成長框架神學基座——恩典、真理、時間的系統陳述 |
-| Safe People | 安全的人 | 1995 | 如何辨認（並成為）值得靠近的人——關係線的實用篇 |
-| Integrity: The Courage to Meet the Demands of Reality | Integrity | 2006 | 品格六面向——能力之外，讓成果留下來的是人格結構 |
-| Trust: Knowing When to Give It, When to Withhold It... | Trust | 2023 | 最新主著：信任的五要素與重建之路，界線思想的續篇 |
+| The Future of Industrial Man | 工業人的未來 | 1942 | 提出「合法性」與「地位與功能」問題，通往《企業的概念》 |
+| Landmarks of Tomorrow | 明日的地標 | 1959 | 首次提出「知識工作者」，知識社會論的起點 |
+| Managing in Turbulent Times | 動盪時代的管理 | 1980 | 不確定時代的經營綱領，與當下高度共鳴 |
+| Managing the Non-Profit Organization | 使命與領導：非營利組織的管理 | 1990 | 杜拉克晚年最重視的部門——社會部門 |
+| Drucker on Asia | 杜拉克看亞洲 | 1997 | 與中內功的對談錄；杜拉克與日本經營的互動 |
+| Managing in the Next Society | 下一個社會 | 2002 | 最後的社會預言：少子高齡化、資訊革命的下一步 |
 
 ### fengtang-note — 6 本
 
@@ -364,17 +349,6 @@
 | The Demon-Haunted World | 魔鬼盤據的世界 | 1995 | Sagan：懷疑論工具箱（baloney detection kit） |
 | Conjectures and Refutations | 猜想與反駁 | 1963 | Popper：可否證性原則的原典 |
 
-### spiritual-formation-note — 6 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| De Imitatione Christi | The Imitation of Christ 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
-| Confessiones | Confessions 懺悔錄 | 397 | 奧古斯丁：自傳式靈修書寫的原點 |
-| The Practice of the Presence of God | 與神同在 | 1692 | 勞倫斯弟兄：廚房裡的操練 |
-| The Ruthless Elimination of Hurry |  | 2019 | Comer：匆忙是屬靈生命的頭號大敵 |
-| With Christ in the School of Prayer | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
-| Lament for a Son | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |
-
 ### wujun-note — 6 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -396,6 +370,16 @@
 | The Art of War | 孫子兵法 |  | 不戰而屈人之兵——一切戰略書的源頭 |
 | SPIN Selling | 銷售巨人 | 1988 | Rackham；大型銷售的實證研究——B2B 提問法原典 |
 
+### cloud-note — 5 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Boundaries with Kids | 為孩子立界線 | 1998 | 把界線變成教養框架——讓孩子為自己的行為承擔後果 |
+| How People Grow | 成長神學 | 2001 | 與 Townsend 合寫的成長框架神學基座——恩典、真理、時間的系統陳述 |
+| Safe People | 安全的人 | 1995 | 如何辨認（並成為）值得靠近的人——關係線的實用篇 |
+| Integrity: The Courage to Meet the Demands of Reality | Integrity | 2006 | 品格六面向——能力之外，讓成果留下來的是人格結構 |
+| Trust: Knowing When to Give It, When to Withhold It... | Trust | 2023 | 最新主著：信任的五要素與重建之路，界線思想的續篇 |
+
 ### design-patterns-note — 5 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -405,16 +389,6 @@
 | Analysis Patterns |  | 1996 | Fowler；領域模型層級的可重用模式 |
 | Pattern-Oriented Software Architecture Vol.1 (POSA) |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
 | Game Programming Patterns |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
-
-### fromm-note — 5 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| On Disobedience | 論不服從 | 1981 | 不服從作為道德能力：人類始於不服從，也可能終於服從 |
-| Psychoanalysis and Religion | 精神分析與宗教 | 1950 | 區分權威主義宗教與人本主義宗教——宗教心理學的短篇正典 |
-| The Forgotten Language | 被遺忘的語言 | 1951 | 夢、童話與神話的象徵語言——佛洛姆的釋夢學 |
-| Zen Buddhism and Psychoanalysis | 禪與心理分析 | 1960 | 與鈴木大拙合著：東方的資源如何滋養「存在樣式」 |
-| Beyond the Chains of Illusion | 超越幻想的鎖鏈 | 1962 | 自述思想自傳：我與馬克思和佛洛伊德的相遇——理解佛洛姆體系的鑰匙 |
 
 ### hbr-note — 5 本
 
@@ -445,6 +419,16 @@
 | How to Talk So Kids Will Listen & Listen So Kids Will Talk |  | 1980 | Faber & Mazlish：親子溝通的標準讀物 |
 | The Whole-Brain Child | 教孩子跟情緒做朋友 | 2011 | Siegel：全腦教養 |
 | Bowling Alone |  | 2000 | Putnam：社會資本流失的實證經典 |
+
+### spiritual-formation-note — 5 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| De Imitatione Christi | The Imitation of Christ 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
+| Confessiones | Confessions 懺悔錄 | 397 | 奧古斯丁：自傳式靈修書寫的原點 |
+| The Practice of the Presence of God | 與神同在 | 1692 | 勞倫斯弟兄：廚房裡的操練 |
+| With Christ in the School of Prayer | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
+| Lament for a Son | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |
 
 ### writing-note — 5 本
 
@@ -491,6 +475,15 @@
 | The Pleasures and Sorrows of Work | 工作！工作！ | 2009 | 十種行業的田野書寫：工作如何承載（或承載不了）意義 |
 | The News: A User's Manual | 新聞的騷動 | 2014 | 資訊焦慮時代的媒體使用手冊——慰藉方法用在新聞上 |
 | The School of Life: An Emotional Education | 人生學校：了解自己 | 2019 | 人生學校十年集大成的情感教育教科書 |
+
+### fromm-note — 4 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| On Disobedience | 論不服從 | 1981 | 不服從作為道德能力：人類始於不服從，也可能終於服從 |
+| The Forgotten Language | 被遺忘的語言 | 1951 | 夢、童話與神話的象徵語言——佛洛姆的釋夢學 |
+| Zen Buddhism and Psychoanalysis | 禪與心理分析 | 1960 | 與鈴木大拙合著：東方的資源如何滋養「存在樣式」 |
+| Beyond the Chains of Illusion | 超越幻想的鎖鏈 | 1962 | 自述思想自傳：我與馬克思和佛洛伊德的相遇——理解佛洛姆體系的鑰匙 |
 
 ### history-note — 4 本
 
@@ -585,14 +578,6 @@
 | The Rules of Parenting |  | 2008 | 教養場域；Life 只用幾條規則帶過的部分在這裡展開 |
 | The Rules to Break |  | 2012 | 反手的一本——列出那些「大家都說該遵守、其實該打破」的通則 |
 
-### tracy-note — 3 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Change Your Thinking, Change Your Life |  | 2003 | 思維改寫的系統整理（書庫同名 repo 是 Joseph Murphy 的書，非本書） |
-| Advanced Selling Strategies |  | 1995 | 銷售進階正典，大客戶與關係銷售的完整方法 |
-| Million Dollar Habits |  | 2004 | 把財富歸因到習慣系統，補齊「習慣」這一塊拼圖 |
-
 ### willard-note — 3 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -636,13 +621,6 @@
 | The Culture Map | 文化地圖 | 2014 | Erin Meyer：跨文化團隊的八個刻度 |
 | Servant Leadership |  | 1977 | Greenleaf——僕人領導思想的源頭 |
 
-### lewis-note — 2 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The Chronicles of Narnia | 納尼亞傳奇（七部曲） | 1950 | 1950–1956 七部合併一筆；想像護教最廣為人知的成品，值得整套收錄 |
-| Till We Have Faces | 裸顏 | 1956 | 重述丘比特與賽姬神話；路易斯自認最成熟的小說 |
-
 ### navarro-note — 2 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -656,6 +634,13 @@
 | --- | --- | --- | --- |
 | Schwager on Futures: Fundamental Analysis | 史瓦格期貨基本分析 | 1995 | 三部曲之一：供需與價差的基本面框架，怪傑系列外最大缺口 |
 | Market Sense and Nonsense | 市場真相 | 2012 | 拆解投資圈流行謬誤：效率市場、波動度、對沖基金迷思的實證清算 |
+
+### tracy-note — 2 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| Advanced Selling Strategies |  | 1995 | 銷售進階正典，大客戶與關係銷售的完整方法 |
+| Million Dollar Habits |  | 2004 | 把財富歸因到習慣系統，補齊「習慣」這一塊拼圖 |
 
 ### wan-weigang-note — 2 本
 
@@ -676,23 +661,17 @@
 | --- | --- | --- | --- |
 | Refactoring UI |  | 2018 | 工程師視角的介面設計實務，補 CRAP 到實際元件之間那一段 |
 
-### keller-note — 1 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| Hidden Christmas | 隱藏的聖誕 | 2016 | 聖誕敘事的福音講解，短小而完整的道成肉身神學 |
-
 ### kiyosaki-note — 1 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
 | Rich Dad's Prophecy | 富爸爸大預言 | 2002 | 預言退休金制度（401k 世代）引發的市場危機 |
 
-### taleb-note — 1 本
+### lewis-note — 1 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
-| Dynamic Hedging: Managing Vanilla and Exotic Options | 動態避險 | 1997 | 交易員時期的選擇權專著；Incerto 全部思想的實務源頭 |
+| The Chronicles of Narnia | 納尼亞傳奇（七部曲） | 1950 | 1950–1956 七部合併一筆；想像護教最廣為人知的成品，值得整套收錄 |
 
 ### uncle-bob-note — 1 本
 

@@ -33,7 +33,10 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
      外加一條「作者前綴」例外，且**只能拿書名欄套**——repo name 的作者前綴反而是
      反指標（`kostolany-confessions` 這樣命名，正是為了跟奧古斯丁的《懺悔錄》區隔）。
   3. **同名不同書列 NAME_COLLISIONS**：《Biblical Theology》Vos ≠ Goldingay、
-     《Christian Theology》麥葛福 ≠ Erickson——命中也不算已收錄。
+     《Christian Theology》麥葛福 ≠ Erickson、《Servant Leadership》Greenleaf 1977
+     原典 ≠ Larry W. Boone 的同名教科書（2026-08-08 加）——命中也不算已收錄。
+     這類撞名在「原典很有名、後人拿同一個書名寫教科書」時特別容易發生，回填前
+     務必逐筆核對 description 的作者欄。
   4. **改名／轉寫沒有演算法可解，列 ALIASES**：英美版書名不同（Between Two Worlds
      ＝ I Believe in Preaching）、華文書 repo 用英文轉寫（浪潮之巔 ＝ on-top-of-tides）。
 """
@@ -61,26 +64,26 @@ from pathlib import Path
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
 TOP20 = [
-    ("exegetical-fallacies", "biblical-studies 站自標「方法論缺口首位」；portal 釋經方法論線 6 本（Hermeneutical Spiral、Fee & Stuart、Vanhoozer、Beale & Carson…），Carson 本人只有 2 本且都是合著，缺這份單獨掛名的防守清單——薄，起手式選它"),
-    ("hidden-christmas", "portal 已有 24 本凱勒——**整個書櫃只剩這一本沒收**（keller 站 owned 22／wanted 1，收了就歸零）；薄、有繁中《隱藏的聖誕》"),
-    ("reaching-out", "portal 已有 11 本盧雲；「款待」這個詞全星系 28 處、橫跨 8 站（nouwen、spiritual-formation、theology、startup…），三動向的出處卻不在——盧雲自認最個人的一本；薄、有繁中《靈程三動向》"),
-    ("landmarks-of-tomorrow", "portal 已有 17 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡"),
-    ("the-contemporary-christian", "portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》"),
-    ("change-your-thinking-change-your-life", "portal 已有 33 本 Brian Tracy——全星系最深的作者書櫃，只剩 3 本未收；「自我概念」29 處全集中在 tracy 站，這本是它的系統整理。注意 portal 同名 repo 是 Joseph Murphy 的書，不是這本（見 NAME_COLLISIONS）"),
-    ("the-ruthless-elimination-of-hurry", "spiritual-formation 站自標「匆忙是屬靈生命的頭號大敵」；Comer 在 portal 一本都沒有，這條線的入口全缺——薄（繁中在版狀況待查，站上未記中譯名）"),
-    ("competitive-advantage", "portal 的 Porter 只有 2 本（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、跨 4 站（business-strategy、problem-solving、management、agile）"),
-    ("boundaries-in-marriage", "portal 的 Cloud／Townsend 界線線已有 7 本，連 Boundaries in Dating 都收了，獨缺婚姻這本——cloud 站自標「系列中最明顯的缺口」；有繁中"),
-    ("till-we-have-faces", "portal 已有 12 本路易斯，只剩這本與納尼亞未收；路易斯自認最成熟的小說，重述丘比特與賽姬——有繁中《裸顏》，比納尼亞七部曲好起手"),
-    ("rich-dad-s-prophecy", "portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1）；退休金制度崩塌的預言，「退休金」站內 19 處、13 個檔案、7 站；有繁中《富爸爸大預言》"),
-    ("servant-leadership", "leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 只有 Greenleaf 晚年文集 The Power of Servant-Leadership，源頭不在，而下游整片（Maxwell 14 本，加上這輪剛建好的 Kouzes、Bennis、Kotter、Goleman）全掛在它上面"),
-    ("the-rules-of-love", "portal 已有 6 本 Templar；templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」——薄，一晚讀完"),
-    ("psychoanalysis-and-religion", "portal 已有 11 本佛洛姆，缺這本區分權威主義／人本主義宗教的短篇正典——是 fromm 站與 theology 站之間那條線的接點；薄"),
-    ("the-end-of-economic-man", "portal 17 本杜拉克裡最早的一本仍缺——1939 處女作，杜拉克一切思想的出發點；「極權主義」站內 15 處、9 個檔案、5 站（drucker、fromm、peterson、philosophy、theology），這是它在管理線這側的源頭"),
-    ("kubernetes-in-action", "cloud-infra 站自標「K8s 概念書的公認首選」（該站 owned 16／wanted 10，是缺口最深的技術站之一）；portal 的 K8s 直系只有 Kubernetes Patterns 一本，而那本預設你已經懂概念——SRE 線 4 本（SRE、Workbook、Handbook、Seeking SRE）都掛在這個空缺上；厚，排中段"),
-    ("leading-minds", "portal 已有 10 本加德納（gardner 站 owned 10／wanted 6）；以「說故事的人」解剖領導，是他從 MI 跨到領導研究的那一步——gardner 站與 leadership 站的接點"),
+    ("the-rules-of-love", "templar 站自標「親密關係那一塊的缺口，系列裡與 Life 最互補」；portal 已有 6 本 Templar（Life、Management、People、Thinking、Wealth、Work），系列就缺這本——薄，一晚讀完，起手式選它"),
+    ("confessions", "**全星系最重的作者級空洞**：「奧古斯丁」被引用 34 處、25 個檔案、橫跨 9 站（theology、biblical-studies、keller、lewis、peck、peterson、spiritual-formation、stott、willard），而 portal 上奧古斯丁的書**一本都沒有**——這本是那 34 處的共同源頭；繁中多種在版"),
+    ("rich-dad-s-prophecy", "portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1，收了就歸零）；退休金制度崩塌的預言；有繁中《富爸爸大預言》"),
+    ("refactoring-ui", "design 站 owned 11／wanted 1——**收了就歸零**；portal 完全沒有這本，補的是 CRAP 原則到實際元件之間那一段；薄、工程師視角，一個週末讀完"),
+    ("cjk::量子力學究竟是什麼", "wan-weigang 站自標「科普線目前唯一缺口」；portal 已有 12 本萬維鋼，「究竟是什麼」系列就缺量子這篇——薄；注意繁中版書名是《高手量子力學》，簡中版才叫這個名字"),
+    ("the-contemporary-christian", "portal 已有 13 本斯托得，缺「雙重聆聽」的完整陳述——這個詞站內 10 處、5 個檔案、跨 4 站（stott、theology、keller、biblical-studies），出處卻不在；有繁中《當代基督門徒》"),
+    ("landmarks-of-tomorrow", "portal 已有 18 本杜拉克；「知識工作者」是全星系被引用最重的概念——93 處、33 個檔案、7 站（drucker、management、hbr、newport、covey、wujun、business-strategy），而 1959 年的造詞出處不在書櫃裡"),
+    ("servant-leadership", "leadership 站 owned 94／wanted 2——**全星系最深的站書櫃、已收到 98%**，缺的正是這本 1977 原典；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），源頭不在，而下游整片（Maxwell 13 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
+    ("competitive-advantage", "portal 的 Porter **只有 2 本**（競爭策略、國家競爭優勢），三部曲中間這本價值鏈原典不在；「價值鏈」站內 8 處、7 個檔案、跨 4 站（business-strategy、problem-solving、management、agile）"),
+    ("emotional-intelligence", "portal 已有 6 本情緒智力的**衍生書**（HBR 三本指南、Primal Leadership、Permission to Feel、Peak Performance），1995 年那本把 EQ 帶進大眾語彙的原典卻不在；「EQ／情緒智商／情緒智力」站內 28 處、跨 8 站（career、cloud、covey、hbr、kiyosaki、leadership、life-meaning、thinking）"),
+    ("biblical-theology", "「聖經神學」站內 49 處、13 個檔案、跨 3 站（biblical-studies、keller、theology）；portal 有 6 本掛聖經神學的書（According to Plan、A New Testament Biblical Theology…），缺的正是 Vos 1948 這本把它立成一門學科的奠基原典。注意 portal 同名 repo 是 Goldingay 的書（見 NAME_COLLISIONS）"),
+    ("leading-minds", "portal 已有 11 本加德納（gardner 站 owned 10／wanted 6）；「多元智能」站內 39 處，「說故事」跨 17 站——這本以說故事的人解剖領導，正是他從 MI 跨到領導研究的那一步，是 gardner 站與 leadership 站的接點"),
+    ("schwager-on-futures", "schwager 站自標「怪傑系列外最大缺口」；portal 已有 9 本 Schwager，清一色是訪談與入門（Market Wizards 系列、技術分析入門、期貨市場完全指南），缺這本供需與價差的基本面框架——三部曲補上最後一角"),
     ("the-divine-conspiracy-continued", "portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域"),
-    ("we-programmers", "uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin，缺這本 2024 年的晚年回望——厚，排後段"),
-    ("dynamic-hedging", "portal 已有 6 本塔雷伯——**只剩這一本**（技術版 Incerto 剛收）；交易員時期的選擇權專著，Incerto 全部思想的實務源頭；硬書，壓軸慢啃"),
+    ("the-culture-map", "leadership 站 owned 94／wanted 2 的另一本——收完這兩本該站就歸零；portal 的 Erin Meyer 只有與 Hastings 合著的 No Rules Rules，她自己那本跨文化八刻度的主著不在；有繁中《文化地圖》"),
+    ("the-data-warehouse-toolkit", "data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛"),
+    ("kanban", "portal 有衍生的 Kanban in Action、卻沒有 Anderson 2010 的原典；「看板」在 agile 站 14 個檔案（另散見 career、hbr、tools、uncle-bob 等 7 站），限制在製品的理論來源全靠二手轉述"),
+    ("the-four-steps-to-the-epiphany", "startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**，而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證"),
+    ("the-chronicles-of-narnia", "lewis 站 owned 13／wanted 1——**收了就歸零**；portal 已有 13 本路易斯而納尼亞掛零，「納尼亞」站內 4 處跨 3 站（lewis、keller、biblical-studies）卻無處可掛；七部曲，厚，排後段"),
+    ("we-programmers", "uncle-bob 站自標「目前最大的缺口」；portal 已有 7 本 Robert C. Martin（Clean 系列全在），缺這本 2024 年從 Ada 到 AI 的晚年回望——厚，壓軸慢啃"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -257,11 +260,15 @@ def main():
     #   biblical-studies-note 想收的是 Vos 1948 年那本奠基之作。
     #   erickson-christian-theology：repo 是 Millard Erickson 的，
     #   theology-note 想收的是麥葛福（McGrath）的同名教科書。
+    #   servant-leadership：repo 是 Larry W. Boone 的教科書式拆解，
+    #   leadership-note 想收的是 Greenleaf 1977 年的原典（portal 只有他的晚年
+    #   文集 power-of-servant-leadership，源頭本身仍缺）。
     NAME_COLLISIONS = {
         ("change-your-thinking-change-your-life", "tracy-note"),
         ("how-to-be-a-high-school-superstar", "newport-note"),
         ("biblical-theology-goldingay", "biblical-studies-note"),
         ("erickson-christian-theology", "theology-note"),
+        ("servant-leadership", "leadership-note"),
     }
 
     def match_repo(r):
