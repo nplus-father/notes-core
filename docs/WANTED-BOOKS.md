@@ -16,26 +16,26 @@
 
 | # | 英文書名 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- |
-| 1 | **Emotional Intelligence** | EQ | 1995 | life-meaning(1), thinking(10) | **多站共等**（準則①）——life-meaning 與 thinking 兩站都掛著它，也是腳本自己算得出來的那一本；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」站內 11 處跨 5 站、「情緒智力」4 處跨 2 站；繁中《EQ》在版 |
-| 2 | **The Imitation of Christ** | 效法基督 | 1418 | theology(9) | **另一本多站共等**（準則①）：theology 與 spiritual-formation 兩站都掛著它——腳本沒併起來，因為 sf 那筆的 `original` 放的是拉丁原名 `De Imitatione Christi`（見檔頭 2026-08-09 的漏併坑），下方完整清單可見兩筆；portal 的**中世紀靈修原典整片掛零**——金碧士、大德蘭、十架約翰、不知之雲、勞倫斯弟兄一本都沒有，只有 Foster《Celebration of Discipline》這類當代轉述；willard 站的 profile 明列「Thomas à Kempis 與古典靈修傳統」是他的素材庫，源頭卻不在；薄、繁中多種在版 |
-| 3 | ⚠ `market-sense-and-nonsense` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | schwager 站 owned 9／wanted 1——**收了就歸零**；portal 的 9 個 Schwager repo 全是 Market Wizards 訪談線（外加一本技術分析入門），缺的是他唯一一本正面清算投資圈流行謬誤的實證之作；「效率市場」站內 16 處、10 個檔案、跨 3 站（investing 5、schwager 3、bogle 2），三站都在談卻沒有原典可掛；有繁中《市場真相》 |
-| 4 | ⚠ `cjk::你有你的計劃，世界另有計劃` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | wan-weigang 站 owned 10／wanted 1——**收了就歸零**；portal 已有 11 個萬維鋼 repo，而站主自註這本「原列在建議閱讀路徑卻沒有對應書站」——閱讀路徑現在是斷的，收它是把既有的路走通，不是開新路 |
-| 5 | **Servant Leadership** |  | 1977 | leadership(0) | leadership 站 owned 95／wanted 1——**全星系最深的站書櫃，只差這一本就歸零**；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
-| 6 | ⚠ `the-everlasting-man` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | portal 只有 2 本切斯特頓（Orthodoxy、What's Wrong with the World）；「切斯特頓」站內 11 處、6 個檔案、跨 3 站（lewis、theology、design），而 portal 13 本路易斯那整個書櫃的歸信轉捩點正是這一本——收了才接得起來；薄、有繁中《永恆的人》 |
-| 7 | ⚠ `insight` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | 「自我覺察」站內 40 處、**跨 11 站**（behaviour-interview 6、fromm 4、startup 3、growth 3、tools、science、maxwell、life-meaning、leadership、image-style、covey），而 portal **沒有任何一本以自我覺察為主題的書**、Eurich 本人也掛零——橫跨最廣卻完全沒有原典可掛的概念；薄、有繁中《洞察》 |
-| 8 | ⚠ `principle-centered-leadership` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | covey 站 owned 8／wanted 2（80%，是幾個小而緊的站之一）；portal 的柯維本人著作 6 本全是個人層次（七個習慣、第 8 個習慣、與時間有約…），缺的正是把原則中心從個人推到**組織**層次的這一本——「原則中心」站內 4 處跨 2 站，轉折點沒有出處 |
-| 9 | ⚠ `trading-in-the-zone` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | portal 的 Mark Douglas **只有前作** The Disciplined Trader，缺這本被當成交易心理標準讀物的成熟之作；「交易心理」站內 12 處、7 個檔案，橫跨 investing 與 schwager 兩站，兩站的概念頁都指著它 |
-| 10 | ⚠ `advanced-selling-strategies` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | portal 已有 34 本 Brian Tracy——**全星系最深的作者書櫃**，而 tracy 站 owned 34／wanted 2；銷售線上已有 The Psychology of Selling、Sales Management、Negotiation 三本，缺的正是大客戶與關係銷售這一層進階正典 |
-| 11 | **The Divine Conspiracy Continued** | 神聖的密謀・續篇 | 2014 | willard(2) | portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域 |
-| 12 | **After You Believe (Virtue Reborn)** | 信主了，然後呢？ | 2010 | nt-wright(6) | nt-wright 是**第二淺的站**（owned 8／wanted 7，53%）；portal 的 8 本賴特裡，普及三部曲已有 Simply Christian 與 Surprised by Hope，**就缺這本收尾的**——系列缺一本，補起來最划算；有繁中《信主了，然後呢？》 |
-| 13 | ⚠ `being-mortal` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | 「臨終」站內 48 處、19 個檔案、**跨 13 站**（nouwen、theology、peck、design、de-botton、willard、spiritual-formation、relationships、personal-finance、life-meaning、growth、covey、biblical-studies），另有「善終」12 處跨 4 站；portal 的 Gawande **只有 The Checklist Manifesto**，善終這條線一本都沒有；有繁中《凝視死亡》 |
-| 14 | ⚠ `kanban` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | portal 只有衍生的 Kanban in Action，沒有 Anderson 2010 的原典；「看板」站內 67 處、22 個檔案、跨 8 站，「限制在製品」21 處、WIP 86 處——理論來源全靠二手轉述 |
-| 15 | **Release It!** |  | 2018 | system-design(3) | portal 的 Nygard **掛零**，而「circuit breaker／斷路器」站內 22 處、16 個檔案、跨 4 站（cloud-infra 10、system-design 8、design-patterns 3、data-systems 1；covey 那 1 處是同名零件，已剔除），bulkhead 另 5 處跨 2 站——data-systems 的失效偵測頁甚至直接連到 system-design 的 `concepts/reliability/circuit-breaker/`，整套穩定性模式的命名來源沒有原典可掛；system-design 站 owned 21／wanted 4，cloud-infra 只有 65% |
-| 16 | ⚠ `out-of-the-crisis` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | portal 的 Deming **掛零**；「戴明」6 處＋「Deming」5 處、各跨 4 站，品質管理與系統觀的源頭完全沒有出處；management 站 owned 44／wanted 3，是深站裡少數還缺源頭的一條線；有繁中《轉危為安》 |
-| 17 | **The Data Warehouse Toolkit** |  | 1996 | data-systems(9) | data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛 |
-| 18 | ⚠ `the-four-steps-to-the-epiphany` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**（唯一命中 Blank 的是 Blank-Edelman 的 Seeking SRE，不是他），而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證 |
-| 19 | ⚠ `the-body-keeps-the-score` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | 「創傷」是全星系橫跨最廣的概念之一——38 處、20 個檔案、**跨 10 站**（growth、history、life-meaning、navarro、peterson、relationships、taleb、theology、thinking、wellness），而 portal 的 van der Kolk **掛零**，這片引用沒有任何原典可掛；有繁中《心靈的傷，身體會記住》，厚，排後段 |
-| 20 | ⚠ `the-chronicles-of-narnia` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | lewis 站 owned 13／wanted 1——**收了就歸零**；portal 已有 13 本路易斯而納尼亞掛零，「納尼亞」站內 4 處跨 3 站（lewis、keller、biblical-studies）卻無處可掛；七部曲，最厚，壓軸慢啃 |
+| 1 | **Servant Leadership** |  | 1977 | leadership(0) | leadership 站 owned 95／wanted 1——**全星系最深的站，收了就歸零**（第二深的 biblical-studies 65 本還差 9 本）；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
+| 2 | **The 7 Habits of Highly Effective Families** |  | 1997 | covey(0) | covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄 |
+| 3 | **Million Dollar Habits** |  | 2004 | tracy(0) | tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案 |
+| 4 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後 |
+| 5 | **Working Backwards** | 亞馬遜逆向工作法 | 2021 | management(1) | management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》 |
+| 6 | **Managing** |  | 2009 | management(1) | management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條 |
+| 7 | **The Obstacle Is the Way** | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》 |
+| 8 | **Awaken the Giant Within** |  | 1991 | growth(1) | growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面 |
+| 9 | **Emotional Intelligence** | EQ | 1995 | life-meaning(1), thinking(10) | life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》 |
+| 10 | **Tuesdays with Morrie** | 最後 14 堂星期二的課 | 1997 | life-meaning(1) | life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》 |
+| 11 | **Decode and Conquer** |  | 2013 | behaviour-interview(1) | behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述 |
+| 12 | **60 Seconds and You're Hired!** |  | 1994 | behaviour-interview(1) | behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄 |
+| 13 | **The Rules of Parenting** |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄 |
+| 14 | **The Rules to Break** |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
+| 15 | **The 50th Law** | 第 50 條法則 | 2009 | greene(1) | greene 站 owned 6／wanted 2，但另一本《The Law of the Sublime》**還沒出版**（站主自註「出版與中譯後再收」），所以這是**現在買得到的最後一本**——收了之後 greene 的採購缺口實質歸零；portal 的 Greene 6 本全在，獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站 |
+| 16 | **Be Exceptional** |  | 2021 | navarro(1) | navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄 |
+| 17 | **Three Minutes to Doomsday** |  | 2017 | navarro(1) | navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面 |
+| 18 | **The Dark Side of Valuation** | 估值的黑暗面 | 2001 | damodaran(1) | damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處 |
+| 19 | **Investment Philosophies** | 投資哲學 | 2003 | damodaran(1) | damodaran 的另一半；「投資哲學」6 處跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在 |
+| 20 | **The Imitation of Christ** | 效法基督 | 1418 | spiritual-formation(3), theology(9) | **唯二的多站共等**（theology ＋ spiritual-formation，準則②；這輪修好 `original` 放拉丁原名 `De Imitatione Christi` 的併合缺陷，它才浮出來，見檔頭）；portal 的**中世紀靈修原典整片掛零**——金碧士本人掛零，大德蘭與十架約翰只出現在 50 Spiritual Classics、The Wound of Knowledge 這類選集與二手著作裡，一手文本只有 Foster《Celebration of Discipline》這種當代轉述；「效法基督」10 處／8 個檔案／跨 5 站、「金碧士」3 處、「Kempis」2 處，而 portal 已有 7 本魏樂德、willard 站 profile 明列金碧士是他的素材庫；薄，繁中多種在版 |
 
 **這是第四個軸**，與 docs/ 既有三份不同：
 
@@ -53,7 +53,7 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1600 筆（去重 1154 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **272 筆（去重 271 本）** |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **272 筆（去重 270 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 42 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
@@ -87,13 +87,14 @@
 | `navarro-note` | 4 | **2** | Be Exceptional, Three Minutes to Doomsday |
 | `damodaran-note` | 3 | **2** | The Dark Side of Valuation, Investment Philosophies |
 
-## 優先收：1 本有兩個以上的站在等
+## 優先收：2 本有兩個以上的站在等
 
 同一本書被多站列為 `wanted`——收一本補多站的缺口，投資報酬率最高。
 
 | 英文書名 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- |
 | **Emotional Intelligence** | EQ | 1995 | 2: life-meaning, thinking |
+| **The Imitation of Christ** | 效法基督 | 1418 | 2: spiritual-formation, theology |
 
 ## 完整清單（依站，共 272 筆）
 
@@ -232,11 +233,11 @@
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
 | Sophie's World | 蘇菲的世界 | 1991 | 小說形式的哲學史，國民級入門 |
-| Ethika Nikomacheia | Nicomachean Ethics 尼各馬可倫理學 |  | 亞里斯多德德性倫理的原典 |
-| Politeia | The Republic 理想國 |  | 柏拉圖——政治哲學的起點 |
+| Nicomachean Ethics | 尼各馬可倫理學 |  | 亞里斯多德德性倫理的原典 |
+| The Republic | 理想國 |  | 柏拉圖——政治哲學的起點 |
 | A Theory of Justice | 正義論 | 1971 | Rawls——當代政治哲學的座標原點 |
-| Diatribai | Discourses 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
-| Le Mythe de Sisyphe | The Myth of Sisyphus 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
+| Discourses | 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
+| The Myth of Sisyphus | 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
 | The Analects | 論語 |  | 儒家原典——關係與德性的東方座標 |
 | Tao Te Ching | 道德經 |  | 道家原典——無為與反者道之動 |
 
@@ -510,7 +511,7 @@
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
-| De Imitatione Christi | The Imitation of Christ 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
+| The Imitation of Christ | 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
 | The Practice of the Presence of God | 與神同在 | 1692 | 勞倫斯弟兄：廚房裡的操練 |
 | With Christ in the School of Prayer | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
 | Lament for a Son | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |

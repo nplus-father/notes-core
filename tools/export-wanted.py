@@ -34,6 +34,12 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
   拿 `original` 當英文名之前，先確認它真的是英文；覺得可疑就再拿 `title` 的拉丁前綴
   對一次 portal。
 
+  **修法（2026-08-09 第二輪補上）**：`NON_ENGLISH_ORIGINALS` 列出這些非英文原名，命中就
+  改用 `title` 的拉丁前綴當英文名。沒有演算法能判斷「這串拉丁字母是不是英文」——
+  `De Imitatione Christi` 與 `The Divine Conspiracy` 在字元層級長得一樣——所以照
+  ALIASES 的辦法列白名單。`title` 沒有拉丁前綴時（`神學大全`／`思想錄` 這種純中文
+  title）仍退回用 `original`，否則它們會掉進「華文／日文原著」那節，那更不對。
+
 **「其實已經有書站」怎麼比對**（2026-08-07 全面改寫；舊版用 repo name 精確比對，
 20 本裡漏報 16 本，兩個獨立故障各自都足以讓它全盲）：
 
@@ -82,27 +88,33 @@ from pathlib import Path
 # 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
+# 2026-08-09 這輪：上一版 20 本裡 13 本已經建好書站（回填成 owned），空出來的位子全部
+# 給準則①。近零站剛好有 4 站差 1 本、8 站差 2 本＝20 本候選，扣掉《The Law of the Sublime》
+# （greene 站主自註「出版與中譯後再收」，書還沒出版，不該佔採購清單版面）剩 19 本，
+# 第 20 格給唯一還沒排到的多站共等（準則②）。因此 release-it／the-data-warehouse-toolkit／
+# after-you-believe／the-divine-conspiracy-continued 這輪全數讓位——它們是準則③④的票，
+# 依規矩排在歸零批之後，下一輪再上。
 TOP20 = [
-    ("emotional-intelligence", "**多站共等**（準則①）——life-meaning 與 thinking 兩站都掛著它，也是腳本自己算得出來的那一本；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」站內 11 處跨 5 站、「情緒智力」4 處跨 2 站；繁中《EQ》在版"),
-    ("the-imitation-of-christ", "**另一本多站共等**（準則①）：theology 與 spiritual-formation 兩站都掛著它——腳本沒併起來，因為 sf 那筆的 `original` 放的是拉丁原名 `De Imitatione Christi`（見檔頭 2026-08-09 的漏併坑），下方完整清單可見兩筆；portal 的**中世紀靈修原典整片掛零**——金碧士、大德蘭、十架約翰、不知之雲、勞倫斯弟兄一本都沒有，只有 Foster《Celebration of Discipline》這類當代轉述；willard 站的 profile 明列「Thomas à Kempis 與古典靈修傳統」是他的素材庫，源頭卻不在；薄、繁中多種在版"),
-    ("market-sense-and-nonsense", "schwager 站 owned 9／wanted 1——**收了就歸零**；portal 的 9 個 Schwager repo 全是 Market Wizards 訪談線（外加一本技術分析入門），缺的是他唯一一本正面清算投資圈流行謬誤的實證之作；「效率市場」站內 16 處、10 個檔案、跨 3 站（investing 5、schwager 3、bogle 2），三站都在談卻沒有原典可掛；有繁中《市場真相》"),
-    ("cjk::你有你的計劃，世界另有計劃", "wan-weigang 站 owned 10／wanted 1——**收了就歸零**；portal 已有 11 個萬維鋼 repo，而站主自註這本「原列在建議閱讀路徑卻沒有對應書站」——閱讀路徑現在是斷的，收它是把既有的路走通，不是開新路"),
-    ("servant-leadership", "leadership 站 owned 95／wanted 1——**全星系最深的站書櫃，只差這一本就歸零**；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
-    ("the-everlasting-man", "portal 只有 2 本切斯特頓（Orthodoxy、What's Wrong with the World）；「切斯特頓」站內 11 處、6 個檔案、跨 3 站（lewis、theology、design），而 portal 13 本路易斯那整個書櫃的歸信轉捩點正是這一本——收了才接得起來；薄、有繁中《永恆的人》"),
-    ("insight", "「自我覺察」站內 40 處、**跨 11 站**（behaviour-interview 6、fromm 4、startup 3、growth 3、tools、science、maxwell、life-meaning、leadership、image-style、covey），而 portal **沒有任何一本以自我覺察為主題的書**、Eurich 本人也掛零——橫跨最廣卻完全沒有原典可掛的概念；薄、有繁中《洞察》"),
-    ("principle-centered-leadership", "covey 站 owned 8／wanted 2（80%，是幾個小而緊的站之一）；portal 的柯維本人著作 6 本全是個人層次（七個習慣、第 8 個習慣、與時間有約…），缺的正是把原則中心從個人推到**組織**層次的這一本——「原則中心」站內 4 處跨 2 站，轉折點沒有出處"),
-    ("trading-in-the-zone", "portal 的 Mark Douglas **只有前作** The Disciplined Trader，缺這本被當成交易心理標準讀物的成熟之作；「交易心理」站內 12 處、7 個檔案，橫跨 investing 與 schwager 兩站，兩站的概念頁都指著它"),
-    ("advanced-selling-strategies", "portal 已有 34 本 Brian Tracy——**全星系最深的作者書櫃**，而 tracy 站 owned 34／wanted 2；銷售線上已有 The Psychology of Selling、Sales Management、Negotiation 三本，缺的正是大客戶與關係銷售這一層進階正典"),
-    ("the-divine-conspiracy-continued", "portal 已有 7 本魏樂德，《神聖的密謀》本傳在、續篇不在（注意兩者是不同書，別讓比對誤併）；天國福音延伸到職場與公共領域"),
-    ("after-you-believe-virtue-reborn", "nt-wright 是**第二淺的站**（owned 8／wanted 7，53%）；portal 的 8 本賴特裡，普及三部曲已有 Simply Christian 與 Surprised by Hope，**就缺這本收尾的**——系列缺一本，補起來最划算；有繁中《信主了，然後呢？》"),
-    ("being-mortal", "「臨終」站內 48 處、19 個檔案、**跨 13 站**（nouwen、theology、peck、design、de-botton、willard、spiritual-formation、relationships、personal-finance、life-meaning、growth、covey、biblical-studies），另有「善終」12 處跨 4 站；portal 的 Gawande **只有 The Checklist Manifesto**，善終這條線一本都沒有；有繁中《凝視死亡》"),
-    ("kanban", "portal 只有衍生的 Kanban in Action，沒有 Anderson 2010 的原典；「看板」站內 67 處、22 個檔案、跨 8 站，「限制在製品」21 處、WIP 86 處——理論來源全靠二手轉述"),
-    ("release-it", "portal 的 Nygard **掛零**，而「circuit breaker／斷路器」站內 22 處、16 個檔案、跨 4 站（cloud-infra 10、system-design 8、design-patterns 3、data-systems 1；covey 那 1 處是同名零件，已剔除），bulkhead 另 5 處跨 2 站——data-systems 的失效偵測頁甚至直接連到 system-design 的 `concepts/reliability/circuit-breaker/`，整套穩定性模式的命名來源沒有原典可掛；system-design 站 owned 21／wanted 4，cloud-infra 只有 65%"),
-    ("out-of-the-crisis", "portal 的 Deming **掛零**；「戴明」6 處＋「Deming」5 處、各跨 4 站，品質管理與系統觀的源頭完全沒有出處；management 站 owned 44／wanted 3，是深站裡少數還缺源頭的一條線；有繁中《轉危為安》"),
-    ("the-data-warehouse-toolkit", "data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛"),
-    ("the-four-steps-to-the-epiphany", "startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**（唯一命中 Blank 的是 Blank-Edelman 的 Seeking SRE，不是他），而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證"),
-    ("the-body-keeps-the-score", "「創傷」是全星系橫跨最廣的概念之一——38 處、20 個檔案、**跨 10 站**（growth、history、life-meaning、navarro、peterson、relationships、taleb、theology、thinking、wellness），而 portal 的 van der Kolk **掛零**，這片引用沒有任何原典可掛；有繁中《心靈的傷，身體會記住》，厚，排後段"),
-    ("the-chronicles-of-narnia", "lewis 站 owned 13／wanted 1——**收了就歸零**；portal 已有 13 本路易斯而納尼亞掛零，「納尼亞」站內 4 處跨 3 站（lewis、keller、biblical-studies）卻無處可掛；七部曲，最厚，壓軸慢啃"),
+    ("servant-leadership", "leadership 站 owned 95／wanted 1——**全星系最深的站，收了就歸零**（第二深的 biblical-studies 65 本還差 9 本）；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
+    ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄"),
+    ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案"),
+    ("bogle-on-mutual-funds", "bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後"),
+    ("working-backwards", "management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》"),
+    ("managing", "management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條"),
+    ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》"),
+    ("awaken-the-giant-within", "growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面"),
+    ("emotional-intelligence", "life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》"),
+    ("tuesdays-with-morrie", "life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》"),
+    ("decode-and-conquer", "behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述"),
+    ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄"),
+    ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄"),
+    ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
+    ("the-50th-law", "greene 站 owned 6／wanted 2，但另一本《The Law of the Sublime》**還沒出版**（站主自註「出版與中譯後再收」），所以這是**現在買得到的最後一本**——收了之後 greene 的採購缺口實質歸零；portal 的 Greene 6 本全在，獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站"),
+    ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
+    ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
+    ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處"),
+    ("investment-philosophies", "damodaran 的另一半；「投資哲學」6 處跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在"),
+    ("the-imitation-of-christ", "**唯二的多站共等**（theology ＋ spiritual-formation，準則②；這輪修好 `original` 放拉丁原名 `De Imitatione Christi` 的併合缺陷，它才浮出來，見檔頭）；portal 的**中世紀靈修原典整片掛零**——金碧士本人掛零，大德蘭與十架約翰只出現在 50 Spiritual Classics、The Wound of Knowledge 這類選集與二手著作裡，一手文本只有 Foster《Celebration of Discipline》這種當代轉述；「效法基督」10 處／8 個檔案／跨 5 站、「金碧士」3 處、「Kempis」2 處，而 portal 已有 7 本魏樂德、willard 站 profile 明列金碧士是他的素材庫；薄，繁中多種在版"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -116,6 +128,19 @@ SNAPSHOT_STALE_DAYS = 2  # 退回快照時，超過這個天數就在輸出裡�
 ALIASES = {
     "between-two-worlds": "i-believe-in-preaching",
     "cjk::浪潮之巔": "on-top-of-tides",
+}
+
+# `original` 裡放的是拉丁／希臘／法文原名，不是英文書名——命中就改拿 `title` 的拉丁
+# 前綴當英文名（見檔頭「同一個坑的另一種形狀」）。漏列的代價是跨站併不起來、portal
+# 也對不上，看到某書「應該多站都要卻只出現一次」時先查這裡。
+NON_ENGLISH_ORIGINALS = {
+    "Confessiones",
+    "De Imitatione Christi",
+    "Diatribai",
+    "Ethika Nikomacheia",
+    "Le Mythe de Sisyphe",
+    "Politeia",
+    "Tao Te Ching",
 }
 
 # CJK 統一漢字、日文假名、CJK 標點與全形符號
@@ -236,7 +261,10 @@ def main():
             counts[e["status"]] += 1
             if e["status"] != "wanted":
                 continue
-            en = latin_of(e["original"]) or latin_of(e["title"])
+            if (e["original"] or "").strip() in NON_ENGLISH_ORIGINALS:
+                en = latin_of(e["title"]) or latin_of(e["original"])
+            else:
+                en = latin_of(e["original"]) or latin_of(e["title"])
             rows.append(
                 {
                     **e,
