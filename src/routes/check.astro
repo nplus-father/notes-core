@@ -1,7 +1,7 @@
 ---
 // 檢核頁 /check/：這一站「讀完」的定義——出師條件。
 // 資料源 = 各分類 _index.md 的 mastery 欄位（roadmap 說讀什麼、mastery 說讀完該會什麼），
-// 依分類分組、每句可帶「複習 →」連回教它的概念頁；勾選記進 localStorage（key 含站台
+// 依分類分組、每句可帶「複習」鍵連回教它的概念頁；勾選記進 localStorage（key 含站台
 // base，62 站同網域不互撞）。站台完全沒有 mastery 時 nav 不出 ✅（見 BaseLayout），
 // 此頁仍會建置——直接打網址會看到空狀態說明，不是 404。
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -15,7 +15,7 @@ import { getCollection } from "astro:content";
 const concepts = await getCollection("concepts");
 const { categories } = await getCategories();
 
-// 分類內 bare slug → 已寫概念頁；「複習 →」只連真的存在的頁，待寫節點不出死鏈。
+// 分類內 bare slug → 已寫概念頁；「複習」鍵只連真的存在的頁，待寫節點不出死鏈。
 const writtenByCat = new Map<string, Map<string, (typeof concepts)[number]>>();
 for (const c of concepts) {
   const cat = c.data.category;
@@ -86,9 +86,6 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
               {it.href && (
                 <a class="check-review" href={it.href} title={`複習：${it.text}`}>
                   複習
-                  <span class="check-review-arrow" aria-hidden="true">
-                    →
-                  </span>
                 </a>
               )}
             </li>

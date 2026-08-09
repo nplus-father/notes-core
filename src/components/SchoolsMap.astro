@@ -41,13 +41,11 @@ const { heading, note } = KINDS[data.kind] ?? KINDS.schools;
               <span class="school-index">{String(i + 1).padStart(2, "0")}</span>
               <span class="school-name">{s.name}</span>
               {/* 卡片唯一的去處，所以做成鍵而不是一行小灰字——原本它只是右上角一句
-                  「站內筆記 →」，跟卡片其他文字同色同粗細，看不出可以點。 */}
+                  「站內筆記」，跟卡片其他文字同色同粗細，看不出可以點。
+                  框線已經在說「這是可按的」，箭頭是第二次說同一件事，故不畫。 */}
               {s.categorySlug && (
                 <a class="school-cat" href={withBase(`/concepts/${s.categorySlug}/`)}>
                   站內筆記
-                  <span class="school-cat-arrow" aria-hidden="true">
-                    →
-                  </span>
                 </a>
               )}
             </div>
