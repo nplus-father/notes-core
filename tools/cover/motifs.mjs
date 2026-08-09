@@ -304,4 +304,12 @@ export const MOTIFS = {
       <line x1="132" y1="268" x2="214" y2="197"/></g>
     <path d="M132 268 l46 -40 l22 18 l-46 40 z" fill="${c}"/>
     <circle cx="132" cy="268" r="9" fill="${c}"/></svg>`,
+
+  // shepherd's crook over a heart — pastoral-psychology（牧杖護心＝牧養人心；
+  // 心是被牧養的對象，與 pulse 的心電圖、link 的圓環、celtic 的十字都分得開）
+  shepherd: (
+    c,
+  ) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <path d="M120 332 L120 152 a56 56 0 0 1 112 0 v14" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/>
+    <path d="M232 298 c-38 -32 -62 -54 -62 -84 a31 31 0 0 1 62 -19 a31 31 0 0 1 62 19 c0 30 -24 52 -62 84 z" fill="${c}"/></svg>`,
 };

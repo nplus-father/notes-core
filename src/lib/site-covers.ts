@@ -126,4 +126,9 @@ export const siteCovers: Record<string, SiteCover> = {
     accent2: "#a8781f",
     motif: "sprout",
   },
+  "pastoral-psychology-note": {
+    accent: "#dda545",
+    accent2: "#a8781f",
+    motif: "shepherd",
+  },
 };
