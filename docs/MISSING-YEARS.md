@@ -9,7 +9,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：66 站 / 1993 筆，缺 year **142 筆**（7.1%），分佈在 27 站；其中 131 筆查得到版次日線索。
+目前：66 站 / 1993 筆，缺 year **96 筆**（4.8%），分佈在 24 站；其中 91 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -19,83 +19,58 @@
 
 | 站 | 總筆數 | 有 year | 缺 year |
 | --- | ---: | ---: | ---: |
-| leadership-note | 98 | 81 | 17 |
-| tracy-note | 39 | 23 | 16 |
-| biblical-studies-note | 74 | 59 | 15 |
-| career-note | 71 | 58 | 13 |
-| behaviour-interview-note | 20 | 12 | 8 |
-| science-note | 49 | 42 | 7 |
-| wellness-note | 34 | 27 | 7 |
+| tracy-note | 39 | 27 | 12 |
+| leadership-note | 98 | 87 | 11 |
+| career-note | 71 | 63 | 8 |
+| biblical-studies-note | 74 | 67 | 7 |
 | cloud-infra-note | 26 | 20 | 6 |
-| management-note | 47 | 41 | 6 |
 | startup-note | 64 | 58 | 6 |
-| philosophy-note | 37 | 32 | 5 |
+| management-note | 47 | 42 | 5 |
 | theology-note | 66 | 61 | 5 |
-| marketing-note | 33 | 29 | 4 |
+| wellness-note | 34 | 29 | 5 |
+| science-note | 49 | 45 | 4 |
+| behaviour-interview-note | 20 | 17 | 3 |
 | fengtang-note | 15 | 12 | 3 |
-| hbr-note | 47 | 44 | 3 |
-| relationships-note | 47 | 44 | 3 |
+| marketing-note | 33 | 30 | 3 |
 | system-design-note | 25 | 22 | 3 |
 | design-patterns-note | 21 | 19 | 2 |
 | greene-note | 9 | 7 | 2 |
 | history-note | 36 | 34 | 2 |
 | keller-note | 27 | 25 | 2 |
-| life-meaning-note | 40 | 38 | 2 |
-| business-strategy-note | 51 | 50 | 1 |
+| relationships-note | 47 | 45 | 2 |
 | habits-note | 45 | 44 | 1 |
-| image-style-note | 16 | 15 | 1 |
+| hbr-note | 47 | 46 | 1 |
 | learning-note | 33 | 32 | 1 |
+| life-meaning-note | 40 | 39 | 1 |
 | thinking-note | 58 | 57 | 1 |
 
 ## 逐筆清單
 
 格式：`[status]` 書名 / 原文 · 分組 — 📕 書 repo 記的版次日（若有）
 
-### behaviour-interview-note（8 筆）
+### behaviour-interview-note（3 筆）
 
 - [owned] Mastering Behavioral Interviews · 行為面試核心 — 📕 December 9, 2025
 - [owned] Behavioral Interviews for Software Engineers · 行為面試核心 — 📕 December 9, 2023
 - [owned] The STAR Interview · 行為面試核心 — 📕 February 15, 2019
-- [owned] Cracking the Coding Interview · 科技求職 — 📕 July 1, 2015
-- [owned] Cracking the Tech Career · 科技求職 — 📕 November 24, 2014
-- [owned] 哈佛商業評論：求職指南 / HBR Guide to Your Job Search · 科技求職 — 📕 February 6, 2024
-- [owned] Staff Engineer · 工程職涯敘事 — 📕 June 17, 2021
-- [owned] 軟技能：soft skills，讓你不過時、不貶值、不消失 · 工程職涯敘事 — 📕 January 13, 2025
 
-### biblical-studies-note（15 筆）
+### biblical-studies-note（7 筆）
 
 - [owned] 出埃及記的信息 / The Message of Exodus · 逐卷解經（BST 系列） — 📕 January 18, 2022
-- [owned] 民數記的信息 / The Message of Numbers · 逐卷解經（BST 系列） — 📕 February 1, 2022
-- [owned] 申命記的信息 / The Message of Deuteronomy · 逐卷解經（BST 系列） — 📕 October 14, 1993
-- [owned] 士師記的信息 / The Message of Judges · 逐卷解經（BST 系列） — 📕 January 25, 1993
-- [owned] 歷代志的信息：王冠的重量 / The Message of Chronicles · 逐卷解經（BST 系列） — 📕 June 26, 1987
-- [owned] 尼希米記的信息 / The Message of Nehemiah · 逐卷解經（BST 系列） — 📕 September 9, 1998
 - [owned] 詩篇的信息（上）1–72 / The Message of Psalms 1–72 · 逐卷解經（BST 系列） — 📕 December 6, 2001
 - [owned] 詩篇的信息（下）73–150 / The Message of Psalms 73–150 · 逐卷解經（BST 系列） — 📕 July 18, 2023
-- [owned] 阿摩司書的信息：耶和華的吼叫 / The Message of Amos · 逐卷解經（BST 系列） — 📕 April 2, 2024
 - [owned] 路加福音的信息 / The Message of Luke · 逐卷解經（BST 系列） — 📕 August 13, 1984
-- [owned] 腓立比書的信息 / The Message of Philippians · 逐卷解經（BST 系列） — 📕 November 24, 2020
 - [owned] 希伯來書的信息 / The Message of Hebrews · 逐卷解經（BST 系列） — 📕 August 13, 1984
 - [owned] 雅各書的信息 / The Message of James · 逐卷解經（BST 系列） — 📕 June 15, 2021
-- [owned] 啟示錄的信息：我看見天開了 / The Message of Revelation · 逐卷解經（BST 系列） — 📕 June 29, 2021
 - [wanted] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
 
-### business-strategy-note（1 筆）
+### career-note（8 筆）
 
-- [wanted] The Art of War 孫子兵法 · 競爭策略
-
-### career-note（13 筆）
-
-- [owned] 軟技能：soft skills，讓你不過時、不貶值、不消失 · 職涯資本 — 📕 January 13, 2025
 - [owned] 將世界菁英的工作方式整理成冊 · 恆毅力與精通 — 📕 July 26, 2020
 - [owned] 馮唐成事心法 · 自我管理 — 📕 December 1, 2020
 - [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理 — 📕 2020/11/07
 - [owned] 為什麼老闆總是對我說「你很好，但是…」 / Kiss Your BUT Good-Bye · 自我管理 — 📕 June 11, 2013
 - [owned] HBR Guide to Your Professional Growth · 自我管理 — 📕 March 26, 2019
-- [owned] 哈佛商業評論：遠距工作指南 / HBR Guide to Remote Work · 自我管理 — 📕 February 2, 2021
-- [owned] 未來最需要的新人才 · 通才與跨域 — 📕 February 9, 2020
-- [owned] HBR Guide to Your Job Search · 求職與轉職 — 📕 February 6, 2024
-- [owned] 哈佛商業評論：轉換職涯指南 / HBR Guide to Changing Your Career · 求職與轉職 — 📕 July 17, 2018
 - [owned] 軟體工程師的行為面試 / Behavioral Interviews for Software Engineers · 求職與轉職 — 📕 December 9, 2023
 - [owned] 精通行為面試：科技業說故事指南 / Mastering Behavioral Interviews: The Guide to Storytelling in Tech · 求職與轉職 — 📕 December 9, 2025
 - [owned] STAR 面試法 / The STAR Interview · 求職與轉職 — 📕 February 15, 2019
@@ -129,10 +104,8 @@
 
 - [owned] The Atomic Habits Workbook · 習慣迴路 — 📕 January 1, 2021
 
-### hbr-note（3 筆）
+### hbr-note（1 筆）
 
-- [owned] HBR Guide to Emotional Intelligence（另一版本） · 自我管理 — 📕 November 15, 2022
-- [owned] HBR Guide to Managing Stress · 自我管理 — 📕 May 31, 2011
 - [owned] HBR Guide Collection（合輯） · 溝通協作 — 📕 March 19, 2019
 
 ### history-note（2 筆）
@@ -140,31 +113,21 @@
 - [owned] 舊約背景與年代表 · 古代與起源 — 📕 May 11, 2018
 - [owned] 脈絡：小我與大勢 · 文明興衰 — 📕 April 1, 2024
 
-### image-style-note（1 筆）
-
-- [owned] The Ultimate Guide to Men's Style · 剪裁與單品 — 📕 July 4, 2013
-
 ### keller-note（2 筆）
 
 - [owned] 順服的主 · 福音核心 — 📕 October 10, 2013
 - [owned] 智慧之道 / The Way of Wisdom · 靈修與智慧 — 📕 October 19, 2017
 
-### leadership-note（17 筆）
+### leadership-note（11 筆）
 
 - [owned] 彼得·杜拉克與管理學：歐洲、社會、思想 · 管理正典 — 📕 June 3, 2024
 - [owned] 5分鐘商學院 管理篇 · 管理正典 — 📕 November 2, 2018
 - [owned] 我用軍隊學到的8堂領導課 / 8 Lessons in Military Leadership for Entrepreneurs · 帶人與團隊 — 📕 May 12, 2015
-- [owned] 領導力：發揮影響力的核心技巧 / Leadership (The Brian Tracy Success Library) · 帶人與團隊 — 📕 March 24, 2014
 - [owned] Sales Management: The Brian Tracy Success Library · 帶人與團隊 — 📕 January 15, 2016
 - [owned] 哈佛教你高EQ管理術 / HBR's 10 Must Reads on Emotional Intelligence · 帶人與團隊 — 📕 March 16, 2018
-- [owned] HBR Guide to Emotional Intelligence · 帶人與團隊 — 📕 November 15, 2022
 - [owned] 哈佛商業評論：領導變革指南 / HBR Guide to Leading Through Change · 帶人與團隊 — 📕 August 27, 2024
-- [owned] 哈佛商業評論：精準招募與聘用指南 / HBR Guide to Better Recruiting and Hiring · 帶人與團隊 — 📕 February 18, 2025
-- [owned] 釣到好人才，緊緊網住他 / Hire and Keep the Best People · 帶人與團隊 — 📕 October 14, 2001
 - [owned] HBR Guide to Retaining Your Best People · 帶人與團隊 — 📕 August 5, 2025
 - [owned] Meetings That Get Results · 帶人與團隊 — 📕 February 24, 2016
-- [owned] HBR Guide to Coaching Employees · 教練與回饋 — 📕 November 18, 2014
-- [owned] HBR Guide to Delivering Effective Feedback · 教練與回饋 — 📕 April 19, 2016
 - [owned] 可複製的領導力 · 教練與回饋 — 📕 December 1, 2018
 - [owned] 選民進化論 / Won't Get Fooled Again · 決策與判斷 — 📕 February 10, 2019
 - [owned] 黑道商學院 / I Will Make You an Offer You Can't Refuse · 領導者修練與權力 — 📕 September 20, 2019
@@ -173,46 +136,31 @@
 
 - [owned] 刻意進化 · 刻意練習與精熟 — 📕 February 6, 2024
 
-### life-meaning-note（2 筆）
+### life-meaning-note（1 筆）
 
-- [owned] The Anatomy of Exercise · 身心健康 — 📕 March 1, 2009
 - [owned] The Harvard Guide to a Healthy Life · 老化與有限性 — 📕 August 12, 2018
 
-### management-note（6 筆）
+### management-note（5 筆）
 
-- [owned] 管理者的養成（高績效經理人的管理備忘錄） · 管理者的工作 — 📕 February 20, 2022
 - [owned] 程天縱《經營學》 · 管理者的工作 — 📕 January 18, 2017
 - [owned] 程天縱《管理力》 · 管理者的工作 — 📕 January 4, 2018
 - [owned] 程天縱《專業力》 · 管理者的工作 — 📕 December 4, 2018
 - [owned] 5 分鐘商學院・管理工具篇 · 管理者的工作 — 📕 January 4, 2019
 - [owned] Peter Drucker Café 杜拉克咖啡館 · 管理者的工作 — 📕 February 1, 2023
 
-### marketing-note（4 筆）
+### marketing-note（3 筆）
 
 - [owned] Social Media Marketing & Online Business · 社群與通路 — 📕 May 22, 2019
-- [owned] Marketing 行銷 / Marketing (The Brian Tracy Success Library) · 廣告與基本功 — 📕 June 11, 2014
 - [owned] 峰值體驗 · 廣告與基本功 — 📕 January 3, 2022
 - [owned] 峰值體驗 2 · 廣告與基本功 — 📕 2024-11-01
 
-### philosophy-note（5 筆）
+### relationships-note（2 筆）
 
-- [wanted] Nicomachean Ethics 尼各馬可倫理學 / Ethika Nikomacheia · 倫理與正義
-- [wanted] The Republic 理想國 / Politeia · 政治哲學
-- [wanted] Discourses 愛比克泰德語錄 / Diatribai · 斯多噶
-- [wanted] 論語 / The Analects · 東方思想
-- [wanted] 道德經 / Tao Te Ching · 東方思想
-
-### relationships-note（3 筆）
-
-- [owned] Reading People · 連結與同理 — 📕 September 2, 2008
 - [owned] 與家人的財務界線 · 界線 — 📕 February 27, 2020
 - [owned] 生命是長期而持續的累積 · 友誼與群體 — 📕 November 1, 2018
 
-### science-note（7 筆）
+### science-note（4 筆）
 
-- [owned] 基礎與臨床藥理學 / Basic & Clinical Pharmacology · 專業教科書 — 📕 November 21, 2023
-- [owned] 古德曼與吉爾曼：治療學的藥理學基礎 / Goodman & Gilman's The Pharmacological Basis of Therapeutics · 專業教科書 — 📕 November 1, 2022
-- [owned] Rang & Dale 藥理學 / Rang & Dale's Pharmacology · 專業教科書 — 📕 TODO
 - [owned] 應用治療學：臨床用藥 / Applied Therapeutics · 專業教科書 — 📕 January 1, 2008
 - [owned] 藥物治療學：原理與實務 / Pharmacotherapy: Principles and Practice · 專業教科書 — 📕  October 29, 2025
 - [owned] 藥物治療學案例集 / Pharmacotherapy Casebook · 專業教科書 — 📕 April 7, 2023
@@ -245,18 +193,14 @@
 
 - [owned] 萬維鋼《科學思考者》 / 科學思考者 · 思維模型 — 📕 December 1, 2021
 
-### tracy-note（16 筆）
+### tracy-note（12 筆）
 
 - [owned] Think Big · 目標與成就 — 📕 January 20, 2026
 - [owned] Take Charge of Your Life · 目標與成就 — 📕 September 22, 2023
 - [owned] 運氣的法則 / The Laws of Luck · 目標與成就 — 📕 August 15, 2023
 - [skipped] 勵志小品群 / Kiss That Frog! / Crunch Point / Reinvention / Full Engagement! ... · 目標與成就
-- [owned] 時間管理21項關鍵 / Time Management · 時間與執行 — 📕 January 20, 2014
 - [owned] Creativity and Problem Solving · 時間與執行 — 📕 October 15, 2014
-- [owned] 領導力 / Leadership · 經營與領導 — 📕 March 24, 2014
 - [owned] Sales Management · 經營與領導 — 📕 January 15, 2016
-- [owned] Marketing · 經營與領導 — 📕 June 11, 2014
-- [owned] 商業策略 / Business Strategy · 經營與領導 — 📕 April 14, 2015
 - [owned] Entrepreneurship · 經營與領導 — 📕 September 17, 2019
 - [owned] 6 Essentials to Start and Succeed in Your Own Business · 經營與領導 — 📕 February 28, 2023
 - [owned] Master Course for Business Success / Brian Tracy's Master Course for Business Success · 經營與領導 — 📕 June 11, 2024
@@ -264,13 +208,11 @@
 - [skipped] How the Best Leaders Lead / TurboStrategy · 經營與領導
 - [owned] 立即致富 / Get Rich Now · 財富 — 📕 December 6, 2022
 
-### wellness-note（7 筆）
+### wellness-note（5 筆）
 
-- [owned] Anatomy of Exercise · 運動與體能 — 📕 March 1, 2009
 - [owned] 間歇性斷食減醣全書 · 飲食與睡眠 — 📕 August 11, 2021
 - [owned] 不再痛風的生活 · 飲食與睡眠 — 📕 May 27, 2020
 - [owned] 哈佛教你打造健康人生 · 飲食與睡眠 — 📕 August 12, 2018
-- [owned] HBR Guide to Managing Stress · 壓力與心理健康 — 📕 May 31, 2011
 - [owned] 有本事 · 幸福與安適 — 📕 July 13, 2021
 - [owned] 了不起 · 幸福與安適 — 📕 August 2022
 

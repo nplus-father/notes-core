@@ -40,16 +40,32 @@ for (const g of groups) g.items.sort((a, b) => yearOf(a) - yearOf(b));
 const BUCKETS = [10, 20, 25, 50, 100, 200, 250, 500, 1000];
 // 14 根是「窄螢幕排得下、又不必隔兩根才標一次年份」的上限；再多就換更寬的桶。
 const MAX_BARS = 14;
-const years = entries.map((e) => e.year).filter((y): y is number => typeof y === "number");
+const years = entries
+  .map((e) => e.year)
+  .filter((y): y is number => typeof y === "number")
+  .sort((a, b) => a - b);
 let bucket = BUCKETS[0];
-const lo = years.length ? Math.min(...years) : 0;
-const hi = years.length ? Math.max(...years) : 0;
+const lo = years.length ? years[0] : 0;
+const hi = years.length ? years[years.length - 1] : 0;
+
+// 上古離群值的處理：business-strategy 的 51 本裡有 50 本在 1960 之後，但《孫子兵法》
+// 一筆 -500 就把軸拉成 2500 年——14 格裡 12 格全空、50 本全擠進最右邊那格，圖就廢了。
+// 作法：軸只涵蓋「主群」（第 5 百分位起），更早的收進一根標成「更早」的溢位柱，
+// 且僅在「主群之前的尾巴比主群本身還長」時才啟動——theology 那種真的橫跨古今的站不受影響。
+// 這是截軸不是砍資料：那幾本仍在溢位柱裡計數，hover 說得出是哪個區間。
+const p5 = years.length ? years[Math.floor(years.length * 0.05)] : 0;
+const truncated = years.length >= 8 && p5 - lo > (hi - lo) * 0.5;
+const axisLo = truncated ? p5 : lo;
+const overflow = truncated
+  ? entries.filter((e) => typeof e.year === "number" && e.year < axisLo)
+  : [];
+
 const bars: { start: number; total: number; owned: number }[] = [];
 if (years.length >= 4) {
   bucket =
-    BUCKETS.find((b) => Math.floor(hi / b) - Math.floor(lo / b) + 1 <= MAX_BARS) ??
+    BUCKETS.find((b) => Math.floor(hi / b) - Math.floor(axisLo / b) + 1 <= MAX_BARS) ??
     BUCKETS[BUCKETS.length - 1];
-  const from = Math.floor(lo / bucket) * bucket;
+  const from = Math.floor(axisLo / bucket) * bucket;
   const to = Math.floor(hi / bucket) * bucket;
   for (let s = from; s <= to; s += bucket) {
     const inBucket = entries.filter(
@@ -97,6 +113,34 @@ const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${r
           aria-label={`年代分佈：${years.length} 本標了出版年的書落在 ${yearLabel(lo)}–${yearLabel(hi)} 之間，深色段為已收錄。逐筆資料見下方表格。`}
         >
           <div class="biblio-bars">
+            {/* 溢位柱：軸起點之前的書全收在這裡，與主軸之間留一道間隙表示「不連續」。 */}
+            {overflow.length > 0 && (
+              <div class="biblio-bar-col is-overflow">
+                <div
+                  class="biblio-bar-track"
+                  title={`${yearLabel(lo)}–${yearLabel(axisLo - 1)} · ${overflow.length} 本 · 已收錄 ${overflow.filter((e) => e.status === "owned").length}`}
+                >
+                  <div
+                    class="biblio-bar"
+                    style={`height:${Math.min(100, Math.max(6, (overflow.length / peak) * 100))}%`}
+                  >
+                    {overflow.length - overflow.filter((e) => e.status === "owned").length > 0 && (
+                      <span
+                        class="biblio-seg is-gap"
+                        style={`flex-grow:${overflow.length - overflow.filter((e) => e.status === "owned").length}`}
+                      />
+                    )}
+                    {overflow.filter((e) => e.status === "owned").length > 0 && (
+                      <span
+                        class="biblio-seg is-owned"
+                        style={`flex-grow:${overflow.filter((e) => e.status === "owned").length}`}
+                      />
+                    )}
+                  </div>
+                </div>
+                <span class="biblio-bar-label">更早</span>
+              </div>
+            )}
             {bars.map((b, i) => (
               <div class="biblio-bar-col">
                 <div class="biblio-bar-track" title={barTitle(b)}>
@@ -118,7 +162,9 @@ const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${r
             ))}
           </div>
           <figcaption class="biblio-chart-note">
-            <span>年代分佈，每格 {bucket} 年</span>
+            <span>
+              年代分佈，每格 {bucket} 年{truncated && `（更早的 ${overflow.length} 本併入首格）`}
+            </span>
             <span class="biblio-key">
               <i class="biblio-key-dot is-owned" aria-hidden="true" />
               已收錄
@@ -154,7 +200,10 @@ const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${r
                       {e.original && <span class="biblio-orig">{e.original}</span>}
                     </td>
                     <td class="biblio-remark">{e.note ?? ""}</td>
-                    <td class="biblio-year">{e.year ?? ""}</td>
+                    {/* 負數年＝西元前，要寫成「500 BC」；直接印 e.year 會出現裸的 -500。 */}
+                    <td class="biblio-year">
+                      {typeof e.year === "number" ? yearLabel(e.year) : ""}
+                    </td>
                   </tr>
                 ))}
               </tbody>

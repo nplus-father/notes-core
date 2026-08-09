@@ -2359,6 +2359,13 @@ a {
   flex: 1 0 24px;
   display: flex;
   flex-direction: column;
+  /* 溢位柱（軸起點之前的書）：右側留一道間隙，讀得出它與主軸不連續。 */
+  &.is-overflow {
+    margin-right: 0.55rem;
+    .biblio-bar-label {
+      color: var(--text-2);
+    }
+  }
 }
 .biblio-bar-track {
   height: 68px;
