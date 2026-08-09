@@ -8,7 +8,7 @@
 
 ## 先收這 20 本
 
-整份 272 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 271 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -19,18 +19,18 @@
 | 1 | **Servant Leadership** |  | 1977 | leadership(0) | leadership 站 owned 95／wanted 1——**全星系最深的站，收了就歸零**（第二深的 biblical-studies 65 本還差 9 本）；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS） |
 | 2 | **The 7 Habits of Highly Effective Families** |  | 1997 | covey(0) | covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄 |
 | 3 | **Million Dollar Habits** |  | 2004 | tracy(0) | tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案 |
-| 4 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後 |
-| 5 | **Working Backwards** | 亞馬遜逆向工作法 | 2021 | management(1) | management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》 |
-| 6 | **Managing** |  | 2009 | management(1) | management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條 |
-| 7 | **The Obstacle Is the Way** | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》 |
-| 8 | **Awaken the Giant Within** |  | 1991 | growth(1) | growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面 |
-| 9 | **Emotional Intelligence** | EQ | 1995 | life-meaning(1), thinking(10) | life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》 |
-| 10 | **Tuesdays with Morrie** | 最後 14 堂星期二的課 | 1997 | life-meaning(1) | life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》 |
-| 11 | **Decode and Conquer** |  | 2013 | behaviour-interview(1) | behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述 |
-| 12 | **60 Seconds and You're Hired!** |  | 1994 | behaviour-interview(1) | behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄 |
-| 13 | **The Rules of Parenting** |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄 |
-| 14 | **The Rules to Break** |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
-| 15 | **The 50th Law** | 第 50 條法則 | 2009 | greene(1) | greene 站 owned 6／wanted 2，但另一本《The Law of the Sublime》**還沒出版**（站主自註「出版與中譯後再收」），所以這是**現在買得到的最後一本**——收了之後 greene 的採購缺口實質歸零；portal 的 Greene 6 本全在，獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站 |
+| 4 | **The 50th Law** | 第 50 條法則 | 2009 | greene(0) | greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站 |
+| 5 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後 |
+| 6 | **Working Backwards** | 亞馬遜逆向工作法 | 2021 | management(1) | management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》 |
+| 7 | **Managing** |  | 2009 | management(1) | management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條 |
+| 8 | **The Obstacle Is the Way** | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》 |
+| 9 | **Awaken the Giant Within** |  | 1991 | growth(1) | growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面 |
+| 10 | **Emotional Intelligence** | EQ | 1995 | life-meaning(1), thinking(10) | life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》 |
+| 11 | **Tuesdays with Morrie** | 最後 14 堂星期二的課 | 1997 | life-meaning(1) | life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》 |
+| 12 | **Decode and Conquer** |  | 2013 | behaviour-interview(1) | behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述 |
+| 13 | **60 Seconds and You're Hired!** |  | 1994 | behaviour-interview(1) | behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄 |
+| 14 | **The Rules of Parenting** |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄 |
+| 15 | **The Rules to Break** |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
 | 16 | **Be Exceptional** |  | 2021 | navarro(1) | navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄 |
 | 17 | **Three Minutes to Doomsday** |  | 2017 | navarro(1) | navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面 |
 | 18 | **The Dark Side of Valuation** | 估值的黑暗面 | 2001 | damodaran(1) | damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處 |
@@ -53,8 +53,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1600 筆（去重 1154 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **272 筆（去重 270 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 42 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **271 筆（去重 269 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 43 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
 > `owned` 去重後的 1154 是**已建成書站的書**（1600 是含跨站重複的登錄筆數，
@@ -77,13 +77,13 @@
 | `leadership-note` | 95 | **1** | Servant Leadership |
 | `tracy-note` | 35 | **1** | Million Dollar Habits |
 | `covey-note` | 9 | **1** | The 7 Habits of Highly Effective Families |
+| `greene-note` | 6 | **1** | The 50th Law |
 | `bogle-note` | 5 | **1** | Bogle on Mutual Funds: New Perspectives for the Intelligent Investor |
 | `management-note` | 45 | **2** | Managing, Working Backwards |
 | `growth-note` | 42 | **2** | Awaken the Giant Within, The Obstacle Is the Way |
 | `life-meaning-note` | 37 | **2** | Emotional Intelligence, Tuesdays with Morrie |
 | `behaviour-interview-note` | 18 | **2** | 60 Seconds and You're Hired!, Decode and Conquer |
 | `templar-note` | 7 | **2** | The Rules of Parenting, The Rules to Break |
-| `greene-note` | 6 | **2** | The Law of the Sublime, The 50th Law |
 | `navarro-note` | 4 | **2** | Be Exceptional, Three Minutes to Doomsday |
 | `damodaran-note` | 3 | **2** | The Dark Side of Valuation, Investment Philosophies |
 
@@ -96,7 +96,7 @@
 | **Emotional Intelligence** | EQ | 1995 | 2: life-meaning, thinking |
 | **The Imitation of Christ** | 效法基督 | 1418 | 2: spiritual-formation, theology |
 
-## 完整清單（依站，共 272 筆）
+## 完整清單（依站，共 271 筆）
 
 ### thinking-note — 11 本
 
@@ -579,13 +579,6 @@
 | The Dark Side of Valuation | 估值的黑暗面 | 2001 | 年輕、高成長與困境公司的估值難題——正典外最值得補的一塊 |
 | Investment Philosophies | 投資哲學 | 2003 | 把估值放進完整光譜：從價值、成長到交易，各流派的證據與適配者 |
 
-### greene-note — 2 本
-
-| 英文書名 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- |
-| The 50th Law | 第 50 條法則 | 2009 | 與 50 Cent 合著；「無所畏懼」——48 法則之外的第 50 條 |
-| The Law of the Sublime |  |  | 醞釀多年的「崇高」主題新作，出版與中譯後再收 |
-
 ### growth-note — 2 本
 
 | 英文書名 | 中譯 | 年 | 為何想收 |
@@ -632,6 +625,12 @@
 | 英文書名 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- |
 | The 7 Habits of Highly Effective Families |  | 1997 | 同一套原則用在家庭；柯維本人最看重的應用場域之一 |
+
+### greene-note — 1 本
+
+| 英文書名 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- |
+| The 50th Law | 第 50 條法則 | 2009 | 與 50 Cent 合著；「無所畏懼」——48 法則之外的第 50 條 |
 
 ### leadership-note — 1 本
 

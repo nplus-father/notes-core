@@ -94,10 +94,15 @@ from pathlib import Path
 # 第 20 格給唯一還沒排到的多站共等（準則②）。因此 release-it／the-data-warehouse-toolkit／
 # after-you-believe／the-divine-conspiracy-continued 這輪全數讓位——它們是準則③④的票，
 # 依規矩排在歸零批之後，下一輪再上。
+#
+# 同日第二輪：《The Law of the Sublime》經 Andrew 裁決改成 `unavailable`（2026-08 查仍未出版），
+# greene 站因此從差 2 本變成差 1 本，《The 50th Law》依準則①「差 1 本的站先全部排進去」
+# 上移到第 4 格，Bogle 那本（厚）退到差 1 批的最後。20 本的組成沒變，只動了順序。
 TOP20 = [
     ("servant-leadership", "leadership 站 owned 95／wanted 1——**全星系最深的站，收了就歸零**（第二深的 biblical-studies 65 本還差 9 本）；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
     ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄"),
     ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案"),
+    ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站"),
     ("bogle-on-mutual-funds", "bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後"),
     ("working-backwards", "management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》"),
     ("managing", "management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條"),
@@ -109,7 +114,6 @@ TOP20 = [
     ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄"),
     ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄"),
     ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
-    ("the-50th-law", "greene 站 owned 6／wanted 2，但另一本《The Law of the Sublime》**還沒出版**（站主自註「出版與中譯後再收」），所以這是**現在買得到的最後一本**——收了之後 greene 的採購缺口實質歸零；portal 的 Greene 6 本全在，獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站"),
     ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
     ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
     ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處"),
