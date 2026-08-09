@@ -25,6 +25,15 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
   「多站共等」少報一本。修法在資料側：那筆補 `original` 放純英文書名（thinking-note
   本來就這樣寫）。看到某書「應該多站都要卻只出現一次」時，先查這個。
 
+  同一個坑的另一種形狀（2026-08-09）：`original` 放的是**拉丁／希臘原名**
+  （spiritual-formation 的 `Confessiones`、`De Imitatione Christi`，philosophy 的
+  `Politeia`、`Ethika Nikomacheia`），規則 1 照收，於是英文名整個對不上——兩個後果：
+  跨站併不起來（《效法基督》theology 用英文名、spiritual-formation 用拉丁名，被算成
+  兩本，「多站共等」漏報），portal 比對也對不上（《懺悔錄》早就有 `augustine-confessions`
+  書站，卻在 wanted 躺到 2026-08-09 才發現，「先扣掉」那節一直回報 0 本）。
+  拿 `original` 當英文名之前，先確認它真的是英文；覺得可疑就再拿 `title` 的拉丁前綴
+  對一次 portal。
+
 **「其實已經有書站」怎麼比對**（2026-08-07 全面改寫；舊版用 repo name 精確比對，
 20 本裡漏報 16 本，兩個獨立故障各自都足以讓它全盲）：
 
@@ -70,12 +79,11 @@ from pathlib import Path
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
 TOP20 = [
-    ("emotional-intelligence", "**這輪唯一一本多站共等**（準則①）——life-meaning 與 thinking 兩站都掛著它；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」站內 11 處跨 5 站、「情緒智力」4 處跨 2 站；繁中《EQ》在版"),
-    ("rich-dad-s-prophecy", "portal 已有 25 本清崎——**書櫃只剩這一本**（kiyosaki 站 owned 23／wanted 1，收了就歸零）；退休金制度崩塌的預言；薄、有繁中《富爸爸大預言》"),
+    ("emotional-intelligence", "**多站共等**（準則①）——life-meaning 與 thinking 兩站都掛著它，也是腳本自己算得出來的那一本；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」站內 11 處跨 5 站、「情緒智力」4 處跨 2 站；繁中《EQ》在版"),
+    ("the-imitation-of-christ", "**另一本多站共等**（準則①）：theology 與 spiritual-formation 兩站都掛著它——腳本沒併起來，因為 sf 那筆的 `original` 放的是拉丁原名 `De Imitatione Christi`（見檔頭 2026-08-09 的漏併坑），下方完整清單可見兩筆；portal 的**中世紀靈修原典整片掛零**——金碧士、大德蘭、十架約翰、不知之雲、勞倫斯弟兄一本都沒有，只有 Foster《Celebration of Discipline》這類當代轉述；willard 站的 profile 明列「Thomas à Kempis 與古典靈修傳統」是他的素材庫，源頭卻不在；薄、繁中多種在版"),
     ("market-sense-and-nonsense", "schwager 站 owned 9／wanted 1——**收了就歸零**；portal 的 9 個 Schwager repo 全是 Market Wizards 訪談線（外加一本技術分析入門），缺的是他唯一一本正面清算投資圈流行謬誤的實證之作；「效率市場」站內 16 處、10 個檔案、跨 3 站（investing 5、schwager 3、bogle 2），三站都在談卻沒有原典可掛；有繁中《市場真相》"),
     ("cjk::你有你的計劃，世界另有計劃", "wan-weigang 站 owned 10／wanted 1——**收了就歸零**；portal 已有 11 個萬維鋼 repo，而站主自註這本「原列在建議閱讀路徑卻沒有對應書站」——閱讀路徑現在是斷的，收它是把既有的路走通，不是開新路"),
     ("servant-leadership", "leadership 站 owned 95／wanted 1——**全星系最深的站書櫃，只差這一本就歸零**；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
-    ("we-programmers", "**全星系唯一由站主自標的缺口**（準則②）：uncle-bob 站的 note 寫著「目前最大的缺口」；portal 已有 7 本 Robert C. Martin（Clean 系列全在），缺這本 2024 年從 Ada 到 AI 的晚年回望。依準則②排在純 anchor 深度那批之前，但它厚——真的開始讀時可以往後挪"),
     ("the-everlasting-man", "portal 只有 2 本切斯特頓（Orthodoxy、What's Wrong with the World）；「切斯特頓」站內 11 處、6 個檔案、跨 3 站（lewis、theology、design），而 portal 13 本路易斯那整個書櫃的歸信轉捩點正是這一本——收了才接得起來；薄、有繁中《永恆的人》"),
     ("insight", "「自我覺察」站內 40 處、**跨 11 站**（behaviour-interview 6、fromm 4、startup 3、growth 3、tools、science、maxwell、life-meaning、leadership、image-style、covey），而 portal **沒有任何一本以自我覺察為主題的書**、Eurich 本人也掛零——橫跨最廣卻完全沒有原典可掛的概念；薄、有繁中《洞察》"),
     ("principle-centered-leadership", "covey 站 owned 8／wanted 2（80%，是幾個小而緊的站之一）；portal 的柯維本人著作 6 本全是個人層次（七個習慣、第 8 個習慣、與時間有約…），缺的正是把原則中心從個人推到**組織**層次的這一本——「原則中心」站內 4 處跨 2 站，轉折點沒有出處"),
@@ -85,6 +93,7 @@ TOP20 = [
     ("after-you-believe-virtue-reborn", "nt-wright 是**第二淺的站**（owned 8／wanted 7，53%）；portal 的 8 本賴特裡，普及三部曲已有 Simply Christian 與 Surprised by Hope，**就缺這本收尾的**——系列缺一本，補起來最划算；有繁中《信主了，然後呢？》"),
     ("being-mortal", "「臨終」站內 48 處、19 個檔案、**跨 13 站**（nouwen、theology、peck、design、de-botton、willard、spiritual-formation、relationships、personal-finance、life-meaning、growth、covey、biblical-studies），另有「善終」12 處跨 4 站；portal 的 Gawande **只有 The Checklist Manifesto**，善終這條線一本都沒有；有繁中《凝視死亡》"),
     ("kanban", "portal 只有衍生的 Kanban in Action，沒有 Anderson 2010 的原典；「看板」站內 67 處、22 個檔案、跨 8 站，「限制在製品」21 處、WIP 86 處——理論來源全靠二手轉述"),
+    ("release-it", "portal 的 Nygard **掛零**，而「circuit breaker／斷路器」站內 22 處、16 個檔案、跨 4 站（cloud-infra 10、system-design 8、design-patterns 3、data-systems 1；covey 那 1 處是同名零件，已剔除），bulkhead 另 5 處跨 2 站——data-systems 的失效偵測頁甚至直接連到 system-design 的 `concepts/reliability/circuit-breaker/`，整套穩定性模式的命名來源沒有原典可掛；system-design 站 owned 21／wanted 4，cloud-infra 只有 65%"),
     ("out-of-the-crisis", "portal 的 Deming **掛零**；「戴明」6 處＋「Deming」5 處、各跨 4 站，品質管理與系統觀的源頭完全沒有出處；management 站 owned 44／wanted 3，是深站裡少數還缺源頭的一條線；有繁中《轉危為安》"),
     ("the-data-warehouse-toolkit", "data-systems 是**全星系最淺的站**（owned 9／wanted 10，僅 47%）；portal 的 Kimball **掛零**，「維度建模」站內只有 1 處——星型結構的正典不在，整個資料倉儲線沒有源頭可掛"),
     ("the-four-steps-to-the-epiphany", "startup 站 wanted 11 本、是缺口最深的主題站之一；portal 的 Steve Blank **掛零**（唯一命中 Blank 的是 Blank-Edelman 的 Seeking SRE，不是他），而下游（Running Lean／Scaling Lean、精實創業線）全從顧客開發長出來——源頭不在，「顧客開發」站內只剩 2 處孤證"),
