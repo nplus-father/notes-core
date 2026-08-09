@@ -82,11 +82,12 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 | business-strategy-note | 31 / 39(批次 1 完成 2026-07-31;39 本中 29 本已消化——9 本跨站分工(management/startup/leadership/habits/marketing/hbr/communication/tracy)、concept-of-the-corporation 依決議歸 management-note 佇列——實際落差歸零;附註:art-of-strategy 書 repo 有「乃許」類 CJK 損壞譯名待修) |
 | habits-note | 28 / 34(批次 1 完成 2026-08-01;34 本中 25 本已消化——8 本 tools/wellness 站領土、workbook 練習冊不消化——實際落差歸零) |
 | economics/history/relationships/thinking/tracy/startup | **六站批次全數完成 2026-08-06**:economics 37→45(另抓 12 頁系統性錯掛 anchor+推力器捐主張反向,見 SOURCING-DEBT)、history 23→30、relationships 29→34、thinking 36→46(新開 mental-models 分類)、tracy 18→25、startup 37→44(藍海/獲利世代由本站認領)——各站實際落差歸零,刻意不寫清單見各站 commit 當輪回報 |
+| peterson-note | 12→24 / 4(批次 1 完成 2026-08-09;12 頁新增——與神摔跤 5 章(亞當夏娃/挪亞/亞伯拉罕/摩西 I+II 合一頁/約拿,theology-note 的 wrestle-with-god 分工至此兌現)、十二法則 3 條(法則四/六/八)、秩序之上 2 條(VI 意識型態/XI 怨恨)、意義的地圖 2 章(異常的出現/學徒期);WWWG 結論章歸概覽頁、兩本法則書其餘條目刻意不寫防逐章書摘化、MM 序言歸概覽——實際落差歸零。溯源 100%(29 anchors 全驗)、抽驗零杜撰、seeAlso 首開 3 條跨站連結(biblical-studies×2/keller×1)) |
 | 作者站小落差 8 站 | **批次 1 全數完成 2026-08-06**:nouwen(3→8)、gardner(3→8)、fengtang(3→8)、willard(3→7)、newport(4→10)、liurun(4→11)、taleb(3→8)、schwager(7→10)。全書本位+anchor 逐一驗證;newport 這輪順帶揪出書 repo 身分錯配首例(見 SOURCING-DEBT.md);各站刻意不寫的重疊/跨站分工清單在各自 commit 訊息對應的回報——實際落差歸零 |
 
 ## 低落差 / 已充實(暫不動)
 
-behaviour-interview、clean-code、cloud-infra、data-systems、design-patterns、system-design、learning、writing、marketing、peterson、greene、uncle-bob、wan-weigang、image-style、peck、bogle、damodaran、de-botton、cloud、fromm、lewis、nt-wright、maxwell、stott、keller、drucker、wujun、personal-finance、philosophy、life-meaning、growth、economics…(pages≥owned 或差距小)
+behaviour-interview、clean-code、cloud-infra、data-systems、design-patterns、system-design、learning、writing、marketing、greene、uncle-bob、wan-weigang、image-style、peck、bogle、damodaran、de-botton、cloud、fromm、lewis、nt-wright、maxwell、stott、keller、drucker、wujun、personal-finance、philosophy、life-meaning、growth、economics…(pages≥owned 或差距小)
 
 ## 用法
 
