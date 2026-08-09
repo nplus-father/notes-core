@@ -49,6 +49,9 @@ export const GET: APIRoute = async (ctx) => {
     label: entry?.label ?? site.titleBase,
     tagline: site.tagline ?? null,
     axis: entry?.axis ?? null,
+    // 保養戳記（/note-check 收工日）。portal 拿它顯示「這站體檢／補齊過沒、多久前」；
+    // 沒蓋過章就是 null，消費端自行退回不顯示。
+    curation: site.curation ?? null,
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。
@@ -80,8 +83,7 @@ export const GET: APIRoute = async (ctx) => {
               importance: d.importance,
               status: d.status,
               lastReviewed: d.lastReviewed ?? null,
-              url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site)
-                .href,
+              url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site).href,
               essence: essence(entry.body ?? ""),
               related: d.related,
             };

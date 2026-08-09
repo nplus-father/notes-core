@@ -43,6 +43,18 @@ export interface SiteConfig {
   /** 頁尾文字，預設「© 2026 Andrew」 */
   footer?: string;
   /**
+   * 選用：站台保養戳記（`/note-check` 收工時蓋）。記日期而非布林——「做完了」會過期
+   * （書單再進新書、內容再翻修，落差就重新打開），日期自帶時效判讀；AI 端還能拿它對
+   * `git log --since` 算出「戳記之後動過什麼」。流向：頁尾徽章（BaseLayout）＋
+   * `/index.json`（portal 匯總各站顯示）。
+   */
+  curation?: {
+    /** 最近一次全站體檢（`/note-check`）收工日，YYYY-MM-DD */
+    checkedAt?: string;
+    /** 最近一次內容補齊（`--enrich` 批次）收工日，YYYY-MM-DD */
+    enrichedAt?: string;
+  };
+  /**
    * 選用：「回母站」連結（筆記星系入口），同時出現在 topnav 最左與頁尾。各站同屬
    * nplus.wiki 底下，故預設即連母站——不填 → 用 `DEFAULT_PARENT_SITE`（零設定即有）；
    * 設 `null` → 兩處都隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。

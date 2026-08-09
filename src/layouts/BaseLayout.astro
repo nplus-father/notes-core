@@ -27,6 +27,13 @@ const nav = buildNav(site, { hasCheck });
 // 「回母站」連結：未設 → 預設連 nplus.wiki/notes/（各站零設定即有）；設 null 可隱藏。
 // v0.20.0 起同時出現在 topnav 最左（往上一層）與頁尾——原本只在頁尾，讀者滑到底才看得到。
 const parentSite = site.parentSite === undefined ? DEFAULT_PARENT_SITE : site.parentSite;
+// 保養戳記：蓋過章的站在頁尾露出日期（日期本身就是時效訊號，舊了讀者自然看得出來）。
+const curationLine = [
+  site.curation?.checkedAt && `🩺 體檢 ${site.curation.checkedAt}`,
+  site.curation?.enrichedAt && `✍️ 補齊 ${site.curation.enrichedAt}`,
+]
+  .filter(Boolean)
+  .join(" · ");
 ---
 
 <!doctype html>
@@ -159,6 +166,18 @@ const parentSite = site.parentSite === undefined ? DEFAULT_PARENT_SITE : site.pa
             <a class="footer-home" href={parentSite.href}>
               {parentSite.label}
             </a>
+          </>
+        )
+      }
+      {
+        curationLine && (
+          <>
+            <span class="footer-sep" aria-hidden="true">
+              ·
+            </span>
+            <span class="footer-curation" title="本站最近一次全站體檢／內容補齊（/note-check）">
+              {curationLine}
+            </span>
           </>
         )
       }
