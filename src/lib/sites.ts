@@ -113,6 +113,8 @@ export const sites: Site[] = [
   { key: "grove", slug: "grove-note", brand: "Grove Notes", label: "Andrew S. Grove", axis: "person", seeAlsoMode: "open" },
   { key: "grant", slug: "grant-note", brand: "Grant Notes", label: "Adam Grant", axis: "person", seeAlsoMode: "open" },
   { key: "jung", slug: "jung-note", brand: "Jung Notes", label: "C. G. Jung", axis: "person", seeAlsoMode: "open" },
+  { key: "kent-beck", slug: "kent-beck-note", brand: "Kent Beck Notes", label: "Kent Beck", axis: "person", seeAlsoMode: "open" },
+  { key: "fowler", slug: "fowler-note", brand: "Fowler Notes", label: "Martin Fowler", axis: "person", seeAlsoMode: "open" },
   // __NEW_PERSON_SITE__ (new-note.sh 會在此行前插入新人物站)
 ];
 
