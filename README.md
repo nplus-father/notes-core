@@ -65,6 +65,7 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/cover/render.sh`         | 重繪主題站封面 PNG（需 Chrome + ImageMagick）                            |
 | `tools/export-wanted.py`        | 匯出全星系 bibliography 的 `wanted` 成採購清單 `docs/WANTED-BOOKS.md`     |
 | `tools/export-missing-years.py` | 匯出全星系 bibliography 缺 `year` 的條目成 `docs/MISSING-YEARS.md`        |
+| `tools/export-deepen-ready.py`  | 盤點各站書單完成度與頁/書，排出可深化順序 `docs/DEEPEN-READY.md`          |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
@@ -89,16 +90,22 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/SOURCING-DEBT.md`             | **內容寫了但查不到出處**（缺口靠掛 `anchor` 補）；2026-08-05 已清空  |
 | `docs/WANTED-BOOKS.md`              | **書還沒收**（缺口靠去收書補）；由 `tools/export-wanted.py` 生成     |
 | `docs/MISSING-YEARS.md`             | **書收了但沒填出版年**（缺口靠查初版年補）；由 `tools/export-missing-years.py` 生成 |
+| `docs/DEEPEN-READY.md`              | **哪些站書收齊了、可以進場深化**（排序表）；由 `tools/export-deepen-ready.py` 生成 |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
 | `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
 | `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
 | `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
 
-**前五份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 五者是不同的軸，別混用——
+**前六份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 六者是不同的軸，別混用——
 「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
-「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS（後兩份是生成物，
-改各站 bibliography 再重跑，不要手改）。
+「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS，
+「哪些站現在可以進場深化」看 DEEPEN-READY（後三份是生成物，改各站 bibliography／內容再重跑，不要手改）。
+
+> **ENRICH-BACKLOG 與 DEEPEN-READY 的分工**：前者是**做過什麼**的工作日誌（抽查輪次、
+> 契約債結案），手維護；後者是**現在該做什麼**的排序表，每次重算。原本 ENRICH-BACKLOG
+> 裡那張手寫的「頁少書多」排序表已由 DEEPEN-READY 取代——手寫的掃描日一停就過期
+> （2026-08-09 那份還停在 07-31，中間 68 站的 bibliography 已經翻過好幾輪）。
 
 ## 發布
 
