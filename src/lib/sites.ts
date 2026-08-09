@@ -108,6 +108,11 @@ export const sites: Site[] = [
   { key: "covey", slug: "covey-note", brand: "Covey Notes", label: "Stephen R. Covey", axis: "person", seeAlsoMode: "open" },
   { key: "templar", slug: "templar-note", brand: "Templar Notes", label: "Richard Templar", axis: "person", seeAlsoMode: "open" },
   { key: "navarro", slug: "navarro-note", brand: "Navarro Notes", label: "Joe Navarro", axis: "person", seeAlsoMode: "open" },
+  { key: "christensen", slug: "christensen-note", brand: "Christensen Notes", label: "Clayton Christensen", axis: "person", seeAlsoMode: "open" },
+  { key: "collins", slug: "collins-note", brand: "Collins Notes", label: "Jim Collins", axis: "person", seeAlsoMode: "open" },
+  { key: "grove", slug: "grove-note", brand: "Grove Notes", label: "Andrew S. Grove", axis: "person", seeAlsoMode: "open" },
+  { key: "grant", slug: "grant-note", brand: "Grant Notes", label: "Adam Grant", axis: "person", seeAlsoMode: "open" },
+  { key: "jung", slug: "jung-note", brand: "Jung Notes", label: "C. G. Jung", axis: "person", seeAlsoMode: "open" },
   // __NEW_PERSON_SITE__ (new-note.sh 會在此行前插入新人物站)
 ];
 
