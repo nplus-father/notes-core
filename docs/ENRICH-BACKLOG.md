@@ -17,7 +17,7 @@
 
 ## 進行中
 
-(無)
+- **pastoral-psychology-note 開站（2026-08-10）：種子概念 5 頁未溯源（路徑 B）**。封閉集合站，書單十本皆 wanted、本機無書源，furtherReading 全數不掛 anchor。收書後跑 `note-check --enrich` 逐頁改寫成書本位並補 anchor，才算完工。
 
 ## 下次開工第一件事
 

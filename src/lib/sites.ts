@@ -75,6 +75,7 @@ export const sites: Site[] = [
   { key: "writing", slug: "writing-note", brand: "Writing Notes", label: "寫作工藝", axis: "topic", seeAlsoMode: "open" },
   { key: "agile", slug: "agile-note", brand: "Agile Notes", label: "敏捷開發", axis: "topic", seeAlsoMode: "open" },
   { key: "design", slug: "design-note", brand: "Design Notes", label: "設計思考", axis: "topic", seeAlsoMode: "open" },
+  { key: "pastoral-psychology", slug: "pastoral-psychology-note", brand: "Pastoral Psychology Notes", label: "教牧心理學", axis: "topic", seeAlsoMode: "open" },
   // __NEW_TOPIC_SITE__ (new-note.sh 會在此行前插入新主題站)
 
   // ══ 人物站群（首頁走 profile 思想側寫）════════════════════════════════
