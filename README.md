@@ -85,7 +85,7 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | 文件                                | 用途                                                                |
 | ----------------------------------- | ------------------------------------------------------------------- |
 | `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；附可重跑的掃描腳本      |
-| `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-enrich` 補）；跨站排序          |
+| `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-check --enrich` 補）；跨站排序          |
 | `docs/SOURCING-DEBT.md`             | **內容寫了但查不到出處**（缺口靠掛 `anchor` 補）；2026-08-05 已清空  |
 | `docs/WANTED-BOOKS.md`              | **書還沒收**（缺口靠去收書補）；由 `tools/export-wanted.py` 生成     |
 | `docs/MISSING-YEARS.md`             | **書收了但沒填出版年**（缺口靠查初版年補）；由 `tools/export-missing-years.py` 生成 |

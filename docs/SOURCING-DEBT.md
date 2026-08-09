@@ -8,7 +8,7 @@
 掃描日：2026-08-04（清償），2026-08-05（重驗）。**這是與另外三份文件不同的軸，別混用**：
 
 - [COVERAGE-GAPS.md](./COVERAGE-GAPS.md)：**還沒有站**的人物／主題 —— 缺口靠「開新站」補。
-- [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-enrich` 長內容補。
+- [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-check --enrich` 長內容補。
 - [WANTED-BOOKS.md](./WANTED-BOOKS.md)：**書本身還沒收** —— 缺口靠去收書補。
 - **本檔**：**內容已經寫了，但查不到出處** —— 缺口靠掛 `anchor` 補（必要時回原文校正）。
 
@@ -77,7 +77,7 @@ done | sort -rn
 
 2026-08-05 重驗：1441 頁（比收工時多 65 頁）全部有 anchor。
 
-## 2026-08-06 追加校正（第 3 波 note-enrich 抓到）
+## 2026-08-06 追加校正（第 3 波 note-check 抓到）
 
 「有 anchor ≠ 主張對」——problem-solving-note 的 4 頁種子頁 anchor 齊全，但 enrich 回原文逐段核對時抓到 **6 處實質錯誤**，全數已改（commit `ce9cfef`）：
 
@@ -111,7 +111,7 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 
 - 找出頁的 `book` slug → 在 `books-done` 定位書 repo → 讀 `site/content/docs/` 的頂層章節（跳過 appendix/preface/foreword/introduction/conclusion/epilogue 等非內容章節）→ 取前兩章 → label 用「書名 — 章節標題」（兩者都讀自原文的 `title:`）。
 - **anchor 保證存在**（目錄是實際掃出來的），**label 保證誠實**（就是那一章的標題）。
-- 精度是**章**而非節。要更精確的錨點，之後在該站跑 `note-enrich` 時再細化。
+- 精度是**章**而非節。要更精確的錨點，之後在該站跑 `note-check` 時再細化。
 
 腳本留在 scratchpad（`anchor.py`），要重跑或擴充時可以直接改。
 
@@ -146,7 +146,7 @@ EOF
 
 ## 預防
 
-`note-new-station` 的種子概念與 `note-enrich` 的產出都已加上規範（2026-08-04）：
+`note-new-station` 的種子概念與 `note-check` 的產出都已加上規範（2026-08-04）：
 
 - **`note-new-station`**：種子概念二選一 —— 路徑 A（當場讀原文、掛驗證過的 anchor）或路徑 B（**一律不掛 anchor** 當作標記，並登記進 ENRICH-BACKLOG，且開站不算完成）。
-- **`note-enrich`**：§0.5 新增溯源健檢（上面那段掃描），未溯源頁自動列為 §2 落差分析的**第一類、必改不是選改**；§5 自檢要求收尾重跑掃描且輸出為空。
+- **`note-check`**：§0.5 新增溯源健檢（上面那段掃描），未溯源頁自動列為 §2 落差分析的**第一類、必改不是選改**；§5 自檢要求收尾重跑掃描且輸出為空。

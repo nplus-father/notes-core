@@ -51,7 +51,7 @@
 - **`schools.ts`（`defineSchools(entries, {kind?, lede?})`）**：主題站的**領域地圖**。每張卡 `{name, icon?, claim, figures?, categorySlug?}`；`figures[].site` 填 sites.ts 的 key 即跨站連結作者站——主題站因此成為串起作者站的樞紐。第二參數選配：`kind` 三選一決定標題與副標（**詞彙表收在 core 的 SchoolsMap，站台只挑 enum**）——`"schools"` 學派地圖＝流派互相對立（預設）｜`"methods"` 方法地圖＝方法體系並存（敏捷、設計思考…）｜`"themes"` 主題地圖＝核心命題分區（歷史、科學…）；`lede` 一句話提綱挈領。舊的純 array 形式視同 schools 口味（向後相容）。
 - **`profile.ts`（`defineProfile`）**：人物站的思想側寫。`thesis`（一句話中心思想）＋ `contributions`（研究主軸，`conceptPath` 連站內概念頁）＋ `readingPath`（slug 由 bibliography 反查書名）＋ `influences`（思想脈絡，有姊妹站就跨站連結）。
 
-慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`——**v0.19.0 起兩者升格為該站型的必備區塊**（缺的列入 note-review 紅燈；存量站隨 enrich 補）。試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
+慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`——**v0.19.0 起兩者升格為該站型的必備區塊**（缺的列入 note-check 紅燈；存量站隨 enrich 補）。試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
 
 ## 5. 內容頁結構（概念 / 題目）
 
@@ -113,7 +113,7 @@
 - 頁面依分類分組（沿用分類 emoji 與名稱），`slug` 填同分類的概念頁 → 渲染「複習 →」回連（只連真的存在的頁）。**v0.20.0 起**它是**靠右對齊的幽靈鍵**（框線＋箭頭）而非句尾的一行小字——句子長短不一時仍排成整齊一行，一眼看得出每條都能回去重讀；已勾選的那條會連鍵一起淡出。
 - 勾選記進 localStorage（key = `check:<base>`，62 站同網域不互撞）；頁首與各分類顯示進度。
 - topnav 的 ✅ 只在站台有任何 mastery 時出現；路由恆注入，沒資料時是空狀態頁不是 404。
-- mastery 句子維持**書本位**——每句都要能溯源到某本 owned book；存量站隨 `note-enrich` 補（記進 ENRICH-BACKLOG），note-review 檢查。
+- mastery 句子維持**書本位**——每句都要能溯源到某本 owned book；存量站隨 `note-check --enrich` 補（記進 ENRICH-BACKLOG），note-check 檢查。
 
 ## 7. 技術注記
 
@@ -131,4 +131,4 @@
 - **`-note` 命名（本地 fallback）**：`ls -d ~/workspace/andrew/notes/*-note`。
 - **notes-core `sites.ts`（星系內部 SSOT）**：`@nplus-father/notes-core/sites` 匯出 `sites`（key/slug/brand/ns）、`siteKeys`。用於姊妹站選單、sitemap、`seeAlso` 白名單。
 
-**開新站用 `/note-new-station` skill**（clone template → `init.sh` → 填 `site.config` + `_index.md` 分類 + 內容 → build）。內容充實用 `/note-enrich`。
+**開新站用 `/note-new-station` skill**（clone template → `init.sh` → 填 `site.config` + `_index.md` 分類 + 內容 → build）。內容充實用 `/note-check`。

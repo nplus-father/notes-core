@@ -1,6 +1,6 @@
 # Note 星系 enrich backlog(鳥瞰)
 
-掃描日:2026-07-31(2026-08-04 補入三個新站)。指標=內容頁數 vs bibliography owned 書數(粗指標:頁少書多=落差大;精確落差要進站跑 note-enrich 的 grep 分析)。
+掃描日:2026-07-31(2026-08-04 補入三個新站)。指標=內容頁數 vs bibliography owned 書數(粗指標:頁少書多=落差大;精確落差要進站跑 note-check 的 grep 分析)。
 
 **慣例:單站的詳細 TODO 放該站根目錄 `TODO-enrich.md`(工作暫存,不 commit,完成即刪);本檔只維護跨站排序,開工/完工時更新狀態欄。**
 
@@ -14,7 +14,7 @@
 
 (無——v0.19.3 全站 bump 已於 2026-08-06 當日完成,68 站 0 失敗。)
 
-## note-review 抽查(2026-08-06,大改後驗證輪)
+## note-check 抽查(2026-08-06,大改後驗證輪)
 
 抽 5 站(problem-solving/kiyosaki/behaviour-interview/drucker/system-design)跑全站唯讀體檢:**零紅燈,5 站 PASS with warnings**。黃燈已修:10 站 schools 接線 prettier 格式(kind 指派的 sed 遺留)、6 站翻 owned 後過時的「最大缺口」註記、kiyosaki 2 翻+3 補列、drucker/kiyosaki 7 條 related 單向邊、notes-fmt 執行位(→v0.19.3)。behaviour-interview 與 system-design 的系統性 related/雙集合反向不對稱另發 --fix 清理。遺留人工判斷項:behaviour-interview 的 `::discussion` 變體是否認可、system-design caching-strategies 的 `:::response` 疑似範例殘留、problems 全站未填 difficulty。
 
@@ -41,7 +41,7 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 | agile-note | 13 / 8 | 批次 1 完成;新增 9 頁(DEEP/相對估算/技術債、視覺化/管理流動、角色建模/故事異味、ADAPT/自組織領導) |
 | covey-note | 12 / 8 | 批次 1 完成;新增 6 頁(以終為始、磨鋸、雙贏、統合綜效、信用四核心、4DX) |
 
-> **溯源債已清（2026-08-04）**:上表三站開站當天的種子概念(agile 4 頁、covey 6 頁、design 3 頁)原本沒有 anchor,同日已全部回原文逐段核對後改寫。五站現在跑 `note-enrich` §0.5 掃描皆為空。
+> **溯源債已清（2026-08-04）**:上表三站開站當天的種子概念(agile 4 頁、covey 6 頁、design 3 頁)原本沒有 anchor,同日已全部回原文逐段核對後改寫。五站現在跑 `note-check` §0.5 掃描皆為空。
 
 > 三站的來源書都在 `books-done` 下且章節完整,溯源 anchor 已掛。covey 站刻意不另開「影響圈」頁——既有的 `space-between-stimulus-and-response` 已完整涵蓋。
 
@@ -81,6 +81,6 @@ behaviour-interview、clean-code、cloud-infra、data-systems、design-patterns�
 
 ## 用法
 
-1. 挑一站 → `cd notes/<站>` → 跑 note-enrich skill(或照 hbr-note 這輪的配方)。
+1. 挑一站 → `cd notes/<站>` → 跑 note-check skill(或照 hbr-note 這輪的配方)。
 2. 開工時在該站建 `TODO-enrich.md`,並把本檔該站移到「進行中」。
 3. 完工(commit+push、刪站內 TODO)後,回本檔更新 pages 數、移回對應區塊。

@@ -3,7 +3,7 @@
 掃描日：2026-08-03（2026-08-04 重掃更新）。**星系的維護有三個軸，別混用**：
 
 - 本檔：**還沒有站**的人物／主題 —— 缺口靠「開新站」補。
-- [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-enrich` 長內容補。
+- [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-check --enrich` 長內容補。
 - [SOURCING-DEBT.md](./SOURCING-DEBT.md)：**內容寫了但查不到出處** —— 缺口靠掛 `anchor` 補（2026-08-04 新增的軸；當時全星系 33% 的頁沒有 anchor）。
 
 ## 指標與重算方式
@@ -91,7 +91,7 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 ### 第一批：主題缺口 + Covey
 
-開站時為骨架階段，同日已跑過 `note-enrich`：
+開站時為骨架階段，同日已跑過 `note-check`：
 
 | 站 | 軸 | 分類 | 頁數（開站 → enrich 後） | owned |
 | --- | --- | --- | --- | --- |
@@ -112,13 +112,13 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 ### 開站種子概念的溯源債（已清）
 
-`note-new-station` 對種子概念沒有書本位要求（那是 `note-enrich` 的紀律），所以開站當下寫出來的頁是憑既有理解寫的、`furtherReading` 只掛書不掛 anchor。**同日已全部回頭對照 `books-done` 原文改寫**，並掛上章節 anchor。這一輪校正抓到三處實質錯誤：
+`note-new-station` 對種子概念沒有書本位要求（那是 `note-check` 的紀律），所以開站當下寫出來的頁是憑既有理解寫的、`furtherReading` 只掛書不掛 anchor。**同日已全部回頭對照 `books-done` 原文改寫**，並掛上章節 anchor。這一輪校正抓到三處實質錯誤：
 
 - 《The Rules of Thinking》是**十個部分**，不是六類。
 - 《The Rules of Management》的核心是**「管理流程而非管理人」**（第一部卷首），而不是「管自己先於管團隊」——書的順序也是團隊先、自己後。
 - Navarro 的識謊立場比原本寫的更強：**慣性說謊者反而會增加眼神接觸**，而「說謊者不敢對視」是明確的迷思。
 
-> **教訓**：新站開完就該接一輪 `note-enrich`，別讓種子概念以未溯源的狀態留在站上——它讀起來跟書本位的頁一模一樣，但沒有 anchor 可以查。
+> **教訓**：新站開完就該接一輪 `note-check --enrich`，別讓種子概念以未溯源的狀態留在站上——它讀起來跟書本位的頁一模一樣，但沒有 anchor 可以查。
 
 ## 下一輪的候選
 
@@ -133,7 +133,7 @@ Yuval Noah Harari（4）、Malcolm Gladwell（5）、Ray Dalio（4）、Adam Gra
 
 | 面向 | 現況 | 為什麼 enrich 補不了 |
 | --- | --- | --- |
-| **跨站連結** | 1203 頁空 `seeAlso`，只有 114 頁有 | `note-enrich` 的紀律是「確認姊妹站路徑存在才加，否則留空」——實務上永遠留空。星系目前是 69 個各自獨立的站 |
+| **跨站連結** | 1203 頁空 `seeAlso`，只有 114 頁有 | `note-check` 的紀律是「確認姊妹站路徑存在才加，否則留空」——實務上永遠留空。星系目前是 69 個各自獨立的站 |
 | **複習狀態** | 1219 draft / 51 reviewed / 47 studied；`lastReviewed` 只有 14 頁設過 | enrich 只管產出不管複習 |
 | **心得層** | `:::response` 只有 36 頁有內容（2.7%） | enrich 明文不填這層，那是 `note-master` 與 `*-study` 的職責 |
 
