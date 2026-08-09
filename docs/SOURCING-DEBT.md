@@ -105,6 +105,16 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 - 教訓：**anchor 驗證只驗目錄存在，驗不到 repo 身分**——「有 anchor ≠ 掛對書」。
 - 處置（依 Andrew 決議，以不動 repo 名為原則）：newport-note bibliography 條目改回 Win at College（slug 沿用、note 註明錯配史，commit `e8f4ae3`）、真 Superstar 另立 wanted；防再犯規則已寫進 `book-import-to-queue` skill A2（版權頁查原名＋三方核對，claude-code-commands `a5eb4d4`）。
 
+## 2026-08-09 追加校正（taleb-note enrich 抓到）
+
+教訓仍是 08-06 那句「有 anchor ≠ 主張對」——本輪三處皆為**頁級溯源齊全、段級／數字級破口**（站內容與本表一併待 Andrew review 後 commit）：
+
+| 頁 | 原本寫的 | 原文實際說的 |
+| --- | --- | --- |
+| antifragile-and-barbell | 槓鈴比例「90/10 的虧損有底、獲益無頂」 | book-3 ch11（Never Marry the Rock Star）的表格是**絕對安全 85–90% ＋ 高風險投機 10–15%**；且該頁原只錨 book-1/book-2，主打的槓鈴本章反而沒錨——數字與 anchor 一併補正 |
+| skin-in-the-game | 兩句加引號的「語錄」：「用工作摧毀閒暇的人不懂閒暇為何物」「被雇用就是被馴化」 | 書 repo 查無此二句——主題有支撐（ch7 視閒暇為高尚、ch5 薪資奴役），但**轉述被包裝成直引**。改為轉述＋書中實句「讓奴隸相信自己是自由的，是現代社會控制最高明的手段」，並補 ch5/ch7 anchor |
+| black-swan-and-extremistan | 🖼️ 段整段講《隨機騙局》（牙醫、俄羅斯債券交易員），furtherReading 卻無該書 | 內容回查可驗（非杜撰）；補 fooled-by-randomness 卷一 Solon's Warning anchor——**段落引書也要錨**，頁級 ≥1 本不夠 |
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
@@ -150,3 +160,35 @@ EOF
 
 - **`note-new-station`**：種子概念二選一 —— 路徑 A（當場讀原文、掛驗證過的 anchor）或路徑 B（**一律不掛 anchor** 當作標記，並登記進 ENRICH-BACKLOG，且開站不算完成）。
 - **`note-check`**：§0.5 新增溯源健檢（上面那段掃描），未溯源頁自動列為 §2 落差分析的**第一類、必改不是選改**；§5 自檢要求收尾重跑掃描且輸出為空。
+
+## 損壞譯名類（2026-08-09 立案並大掃除）
+
+**病灶**：books-done 書 repo 的音譯專名（人名/片名/書名/樂團名）內有字被錯置成罕用字或簡體字，
+形成「看起來像譯名、其實查無此人」的損壞——與缺 anchor 同屬「查不到出處」軸，故記於本檔。
+已確認的損壞字類：**乃**（乃許＝納許、乃潔兒＝瑞秋）、**乙**（乙希＝柔伊、乙溫絲蕾＝溫絲蕾）、
+**乔/乏/乌/泽/乍/乘/乾**（乔佛乔德·希區乔克＝希區考克、乏乙德＝博伊德）、
+以及**簡體字卡在譯名內**（馬丁·路德·乔治＝金恩——注意不能盲轉「喬治」）。
+
+**本輪成果**：8 個工作包（主代理＋7 子代理）掃全庫 239 本嫌疑書，
+確認並修復 **~95 本書、550+ 處**（含簡體字卡名內的第四類 ~140 處）；凱勒書架（forgive/counterfeit-gods/prodigal-god 含講義）全清。
+keller-note 站內引用已同步修正。修正明細見各書 repo 的未 commit diff。
+
+**掃描方式**（下次大批產書後重跑）：
+
+```bash
+# 在 books-done 下：損壞字 + 人名情境（分隔號/書名號/鄰近拉丁字母）
+grep -rn '[乃乙乔乏乌泽]' . --include='*.md' \
+  | grep -v '乃是\|乃至\|西乃\|乃縵\|康乃\|木乃伊\|美乃滋\|甲\|乙方' \
+  | grep -P '[·．・《（(]'
+```
+
+**未結**：
+1. **簡體殘留（另一類，未修）**：簡體原著書（馮唐×4、萬維鋼×3、劉潤、溝通的方法、secret-of-loving…）
+   的正文/引文大量簡體字（刘邦、持之以恒、整句簡體），核心字集掃描 55 本 ~350 命中、寬字集千行級。
+   建議獨立專案：逐書 `opencc s2twp` ＋人工過譯名（譯名不可盲轉，見上）。
+2. 不可考 3 筆：laws-of-human-nature 的「乃乃乃·乃奧乃爾」（git 初版即損壞，無英文可考）；
+   wan-weigang-scientific-thinker「麥乃志」（華裔可能本名含乃）；why-wont-you-apologize「乃拉」（疑 Nora）。
+3. thank-you-for-arguing 一處片名疑似生成期誤植（《一生中最美好的歲月》情節實為《風雲人物》），僅去損字未改題。
+
+**成因推測與預防**：損壞集中在 AI 批次產書期的輸出（非 OCR）；書 repo 產線（hugo-book-manager / 相關 skill）
+的收尾檢查應加上面的掃描一鍵。
