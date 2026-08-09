@@ -98,8 +98,13 @@ from pathlib import Path
 # 同日第二輪：《The Law of the Sublime》經 Andrew 裁決改成 `unavailable`（2026-08 查仍未出版），
 # greene 站因此從差 2 本變成差 1 本，《The 50th Law》依準則①「差 1 本的站先全部排進去」
 # 上移到第 4 格，Bogle 那本（厚）退到差 1 批的最後。20 本的組成沒變，只動了順序。
+#
+# 同日第三輪：再兩筆裁決連帶洗牌——《Servant Leadership》（Greenleaf 1977，2026-08 找過只買到
+# Larry W. Boone 的同名教科書）與《The Divine Conspiracy Continued》都改 `unavailable`。
+# 前者讓 leadership 站 wanted 歸零、退出近零名單，前 20 少一格；後者讓 willard 站從差 3 本
+# 掉到差 2 本、**新進近零名單**，補上兩格。結果近零站剛好 4 站差 1 ＋ 8 站差 2 ＝ 20 本，
+# 歸零批把前 20 填滿，《The Imitation of Christ》（準則②多站共等）因此讓位，下一輪再上。
 TOP20 = [
-    ("servant-leadership", "leadership 站 owned 95／wanted 1——**全星系最深的站，收了就歸零**（第二深的 biblical-studies 65 本還差 9 本）；portal 的 Greenleaf **只有 1 本**（晚年文集 The Power of Servant-Leadership），1977 原典不在，而下游整片（Maxwell 14 本、Kouzes、Bennis、Kotter）全掛在它上面。注意 portal 的 `servant-leadership` repo 是 Larry W. Boone 的同名教科書，不是本書（見 NAME_COLLISIONS）"),
     ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄"),
     ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案"),
     ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站"),
@@ -114,11 +119,12 @@ TOP20 = [
     ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄"),
     ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄"),
     ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
+    ("life-without-lack", "willard 站 owned 7／wanted 2——**這兩本收齊就歸零**；這輪《神聖的密謀・續篇》查證無貨改 `unavailable` 之後，willard 才掉進近零名單；portal 的魏樂德恰好 7 本（神聖的密謀、心靈的重塑、靈性操練真諦、傾聽神的聲音…），全是他生前出版的系統著作，缺的是身後整理的詩篇 23 篇講章——「天國生活」站內 3 處全靠系統著作轉述，講道體那一面沒有出處"),
+    ("living-in-christ-s-presence", "willard 的另一半；與 John Ortberg 的最後對談錄，臨終前的思想總回顧；portal 的 Ortberg **掛零**、全星系提到他 0 處——魏樂德最重要的門生兼詮釋者這條線完全沒接上，而 willard 站的閱讀路徑正是以「總回顧」收尾；薄"),
     ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
     ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
     ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處"),
     ("investment-philosophies", "damodaran 的另一半；「投資哲學」6 處跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在"),
-    ("the-imitation-of-christ", "**唯二的多站共等**（theology ＋ spiritual-formation，準則②；這輪修好 `original` 放拉丁原名 `De Imitatione Christi` 的併合缺陷，它才浮出來，見檔頭）；portal 的**中世紀靈修原典整片掛零**——金碧士本人掛零，大德蘭與十架約翰只出現在 50 Spiritual Classics、The Wound of Knowledge 這類選集與二手著作裡，一手文本只有 Foster《Celebration of Discipline》這種當代轉述；「效法基督」10 處／8 個檔案／跨 5 站、「金碧士」3 處、「Kempis」2 處，而 portal 已有 7 本魏樂德、willard 站 profile 明列金碧士是他的素材庫；薄，繁中多種在版"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -145,6 +151,288 @@ NON_ENGLISH_ORIGINALS = {
     "Le Mythe de Sisyphe",
     "Politeia",
     "Tao Te Ching",
+}
+
+# ── 作者對照表（2026-08-09 加）──────────────────────────────────
+# 為什麼放這裡而不放各站的 bibliography：`BibliographyEntry`（notes-core/src/lib/library.ts）
+# 沒有 author 欄，加欄位得先發 notes-core 新版、再 bump 全部的站，否則各站寫了 `author:`
+# 就 typecheck 失敗（物件字面值的 excess property check）。這張表只服務採購清單這一份產出，
+# 放產生器最省事；真要進資料模型是另一件事，屆時把這裡整批搬過去即可。
+#
+# **為什麼非有不可**：同名不同書會讓人買錯——2026-08 就真的發生過，portal 上建成的
+# `servant-leadership` 是 Larry W. Boone 的教科書，不是 Greenleaf 1977 原典；《Christian
+# Theology》麥葛福 ≠ Erickson 也是同一類。清單只印書名時，這種錯要拿到書才會發現。
+#
+# key = by_main 的鍵（英文主標的 slug；華文原著用 "cjk::原書名"）。
+# 對不上的書會在輸出裡標「⚠ 作者未登錄」——**新書進 wanted 時順手補這裡**，別讓它留白。
+AUTHORS = {
+    "100-baggers": "Christopher W. Mayer",
+    "1587-a-year-of-no-significance": "黃仁宇",
+    "23-things-they-don-t-tell-you-about-capitalism": "Ha-Joon Chang 張夏準",
+    "60-seconds-and-you-re-hired": "Robin Ryan",
+    "a-little-history-of-the-world": "E. H. Gombrich",
+    "a-theory-of-justice": "John Rawls",
+    "a-whole-new-mind": "Daniel H. Pink",
+    "abc-of-men-s-fashion": "Hardy Amies",
+    "acing-the-system-design-interview": "Zhiyong Tan",
+    "after-you-believe-virtue-reborn": "N. T. Wright",
+    "analysis-patterns": "Martin Fowler",
+    "animal-spirits": "George A. Akerlof & Robert J. Shiller",
+    "api-design-patterns": "JJ Geewax",
+    "art-as-therapy": "Alain de Botton & John Armstrong",
+    "art-mind-and-brain": "Howard Gardner",
+    "awaken-the-giant-within": "Anthony Robbins",
+    "bargaining-for-advantage": "G. Richard Shell",
+    "be-exceptional": "Joe Navarro",
+    "becoming-a-person-of-influence": "John C. Maxwell & Jim Dornan",
+    "behave": "Robert M. Sapolsky",
+    "being-you": "Anil Seth",
+    "beyond-the-chains-of-illusion": "Erich Fromm",
+    "blitzscaling": "Reid Hoffman & Chris Yeh",
+    "bogle-on-mutual-funds": "John C. Bogle",
+    "boundaries-with-kids": "Henry Cloud & John Townsend",
+    "bowling-alone": "Robert D. Putnam",
+    "brain-rules": "John Medina",
+    "built-to-sell": "John Warrillow",
+    "bulletproof-problem-solving": "Charles Conn & Robert McLean",
+    "can-you-drink-the-cup": "Henri J. M. Nouwen",
+    "christian-mission-in-the-modern-world": "John Stott",
+    "christian-theology": "Alister E. McGrath 麥葛福 — 不是 Millard Erickson 的同名書",
+    "civilization-and-its-discontents": "Sigmund Freud",
+    "cjk::三十六大": "馮唐",
+    "cjk::互聯網+：傳統企業，互聯網在踢門": "劉潤",
+    "cjk::信息傳": "吳軍",
+    "cjk::全球科技通史": "吳軍",
+    "cjk::吳軍數學通識講義": "吳軍",
+    "cjk::商業簡史": "劉潤",
+    "cjk::大學之路": "吳軍",
+    "cjk::成事：馮唐品讀曾國藩嘉言鈔": "馮唐",
+    "cjk::文明之光": "吳軍",
+    "cjk::新零售：低價高效的數據賦能之路": "劉潤",
+    "cjk::智能時代": "吳軍",
+    "cjk::活著活著就老了": "馮唐",
+    "cjk::無所畏": "馮唐",
+    "cjk::萬物生長三部曲（十八歲給我一個姑娘／萬物生長／北京，北京）": "馮唐",
+    "cjk::趨勢紅利": "劉潤",
+    "cjk::進化的力量2": "劉潤",
+    "cjk::邏輯思考的技術": "照屋華子、岡田惠子",
+    "cjk::關鍵躍升：新任管理者的底層邏輯": "劉潤",
+    "cjk::馮唐詩百首": "馮唐",
+    "clowning-in-rome": "Henri J. M. Nouwen",
+    "collapse": "Jared Diamond",
+    "compassion": "Henri J. M. Nouwen、Donald P. McNeill & Douglas A. Morrison",
+    "conjectures-and-refutations": "Karl Popper",
+    "contagious": "Jonah Berger",
+    "cosmos": "Carl Sagan",
+    "daily-rituals": "Mason Currey",
+    "decode-and-conquer": "Lewis C. Lin",
+    "designing-event-driven-systems": "Ben Stopford",
+    "die-with-zero": "Bill Perkins",
+    "discipline-is-destiny": "Ryan Holiday",
+    "discourses": "Epictetus 愛比克泰德（Arrian 記錄）",
+    "draft-no-4": "John McPhee",
+    "drucker-on-asia": "Peter F. Drucker & 中內功",
+    "early-retirement-extreme": "Jacob Lund Fisker",
+    "echoes-of-scripture-in-the-letters-of-paul": "Richard B. Hays",
+    "emotional-intelligence": "Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集",
+    "extraordinary-minds": "Howard Gardner",
+    "feeling-good": "David D. Burns",
+    "fierce-conversations": "Susan Scott",
+    "financial-shenanigans": "Howard M. Schilit",
+    "flourish": "Martin E. P. Seligman",
+    "freakonomics": "Steven D. Levitt & Stephen J. Dubner",
+    "fundamentals-of-data-engineering": "Joe Reis & Matt Housley",
+    "game-programming-patterns": "Robert Nystrom",
+    "games-people-play": "Eric Berne",
+    "globalization-and-its-discontents": "Joseph E. Stiglitz",
+    "good-habits-bad-habits": "Wendy Wood",
+    "good-strategy-bad-strategy": "Richard P. Rumelt",
+    "grasping-god-s-word": "J. Scott Duvall & J. Daniel Hays",
+    "growing-object-oriented-software-guided-by-tests": "Steve Freeman & Nat Pryce",
+    "hbr-s-10-must-reads": "Harvard Business Review",
+    "hbr-s-10-must-reads-on-innovation": "Harvard Business Review",
+    "hbr-s-10-must-reads-on-leadership": "Harvard Business Review",
+    "hbr-s-10-must-reads-on-managing-people": "Harvard Business Review",
+    "hbr-s-10-must-reads-on-strategy": "Harvard Business Review",
+    "head-first-design-patterns": "Eric Freeman & Elisabeth Robson 等",
+    "heart-speaks-to-heart": "Henri J. M. Nouwen",
+    "high-growth-handbook": "Elad Gil",
+    "hold-me-tight": "Sue Johnson",
+    "how-brands-grow": "Byron Sharp",
+    "how-emotions-are-made": "Lisa Feldman Barrett",
+    "how-god-became-king": "N. T. Wright",
+    "how-not-to-die": "Michael Greger",
+    "how-people-grow": "Henry Cloud & John Townsend",
+    "how-the-mind-works": "Steven Pinker",
+    "how-to-be-a-high-school-superstar": "Cal Newport — portal 同名 repo 內容實為 How to Win at College",
+    "how-to-become-a-straight-a-student": "Cal Newport",
+    "how-to-talk-so-kids-will-listen-listen-so-kids-will-talk": "Adele Faber & Elaine Mazlish",
+    "how-to-win-at-college": "Cal Newport",
+    "how-we-learn": "Stanislas Dehaene",
+    "icons-of-men-s-style": "Josh Sims",
+    "impact-mapping": "Gojko Adzic",
+    "in-defense-of-food": "Michael Pollan",
+    "infrastructure-as-code": "Kief Morris",
+    "integrity": "Henry Cloud",
+    "intimacy": "Henri J. M. Nouwen",
+    "into-the-woods": "John Yorke",
+    "investment-philosophies": "Aswath Damodaran",
+    "jesus-and-the-eyewitnesses": "Richard Bauckham",
+    "justification": "N. T. Wright",
+    "kafka": "Gwen Shapira 等（O'Reilly）",
+    "kingdom-through-covenant": "Peter J. Gentry & Stephen J. Wellum",
+    "lament-for-a-son": "Nicholas Wolterstorff 沃特斯托夫",
+    "leadershift": "John C. Maxwell",
+    "lectures-to-my-students": "Charles H. Spurgeon 司布真",
+    "life-without-lack": "Dallas Willard",
+    "linchpin": "Seth Godin",
+    "living-in-christ-s-presence": "Dallas Willard & John Ortberg",
+    "managing": "Henry Mintzberg",
+    "managing-in-the-next-society": "Peter F. Drucker",
+    "managing-in-turbulent-times": "Peter F. Drucker",
+    "managing-the-non-profit-organization": "Peter F. Drucker",
+    "marketing-management": "Philip Kotler & Kevin Lane Keller",
+    "metaphors-we-live-by": "George Lakoff & Mark Johnson",
+    "million-dollar-habits": "Brian Tracy",
+    "moonwalking-with-einstein": "Joshua Foer",
+    "moral-tribes": "Joshua Greene",
+    "naked-economics": "Charles Wheelan",
+    "never-eat-alone": "Keith Ferrazzi",
+    "nicnt": "NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…）",
+    "nicomachean-ethics": "Aristotle 亞里斯多德",
+    "nosql-distilled": "Pramod J. Sadalage & Martin Fowler",
+    "observability-engineering": "Charity Majors、Liz Fong-Jones & George Miranda",
+    "obviously-awesome": "April Dunford",
+    "old-testament-theology": "John Goldingay",
+    "on-disobedience": "Erich Fromm",
+    "on-the-incarnation": "Athanasius 亞他那修",
+    "out-of-solitude": "Henri J. M. Nouwen",
+    "pattern-oriented-software-architecture-vol-1-posa": "Frank Buschmann 等",
+    "paul": "N. T. Wright",
+    "pens-es": "Blaise Pascal 巴斯卡",
+    "permission-marketing": "Seth Godin",
+    "pioneering-portfolio-management": "David F. Swensen",
+    "playing-to-win": "A. G. Lafley & Roger L. Martin",
+    "practical-monitoring": "Mike Julian",
+    "project-retrospectives": "Norman L. Kerth",
+    "purple-cow": "Seth Godin",
+    "quit-like-a-millionaire": "Kristy Shen & Bryce Leung",
+    "readings-in-database-systems": "Peter Bailis、Joseph M. Hellerstein & Michael Stonebraker 編",
+    "reformed-dogmatics": "Herman Bavinck 巴文克",
+    "release-it": "Michael T. Nygard",
+    "rest": "Alex Soojung-Kim Pang",
+    "running-lean": "Ash Maurya",
+    "safe-people": "Henry Cloud & John Townsend",
+    "save-the-cat": "Blake Snyder",
+    "scientific-advertising": "Claude C. Hopkins",
+    "scripture-and-the-authority-of-god": "N. T. Wright",
+    "seven-databases-in-seven-weeks": "Eric Redmond & Jim R. Wilson",
+    "simply-jesus": "N. T. Wright",
+    "smalltalk-best-practice-patterns": "Kent Beck",
+    "soft-skills": "John Sonmez",
+    "sophie-s-world": "Jostein Gaarder 喬斯坦・賈德",
+    "spark": "John J. Ratey",
+    "spin-selling": "Neil Rackham",
+    "sql-antipatterns": "Bill Karwin",
+    "stolen-focus": "Johann Hari",
+    "streaming-systems": "Tyler Akidau、Slava Chernyak & Reuven Lax",
+    "summa-theologiae": "Thomas Aquinas 阿奎那",
+    "supercommunicators": "Charles Duhigg",
+    "superforecasting": "Philip E. Tetlock & Dan Gardner",
+    "surely-you-re-joking-mr-feynman": "Richard P. Feynman",
+    "systems-performance": "Brendan Gregg",
+    "take-ivy": "石津謙介 企劃／林田昭慶 等",
+    "tao-te-ching": "老子",
+    "tcp-ip-illustrated-volume-1": "W. Richard Stevens",
+    "technical-analysis-of-the-financial-markets": "John J. Murphy",
+    "terraform": "Yevgeniy Brikman",
+    "the-100-startup-3000": "Chris Guillebeau",
+    "the-17-indisputable-laws-of-teamwork": "John C. Maxwell",
+    "the-50th-law": "Robert Greene & 50 Cent",
+    "the-7-habits-of-highly-effective-families": "Stephen R. Covey",
+    "the-alchemy-of-finance": "George Soros 索羅斯",
+    "the-alliance": "Reid Hoffman、Ben Casnocha & Chris Yeh",
+    "the-analects": "孔子（弟子輯錄）",
+    "the-app-generation": "Howard Gardner & Katie Davis",
+    "the-art-of-biblical-narrative": "Robert Alter",
+    "the-art-of-readable-code": "Dustin Boswell & Trevor Foucher",
+    "the-art-of-scalability": "Martin L. Abbott & Michael T. Fisher",
+    "the-art-of-war": "孫子",
+    "the-artist-s-way": "Julia Cameron",
+    "the-automatic-millionaire": "David Bach",
+    "the-back-of-the-napkin": "Dan Roam",
+    "the-blind-watchmaker": "Richard Dawkins",
+    "the-city-of-god": "Augustine 奧古斯丁",
+    "the-contemplative-pastor": "Eugene H. Peterson 畢德生",
+    "the-dark-side-of-valuation": "Aswath Damodaran",
+    "the-data-warehouse-toolkit": "Ralph Kimball & Margy Ross",
+    "the-day-the-revolution-began": "N. T. Wright",
+    "the-defining-decade-20": "Meg Jay",
+    "the-demon-haunted-world": "Carl Sagan",
+    "the-forgotten-language": "Erich Fromm",
+    "the-founder-s-dilemmas": "Noam Wasserman",
+    "the-future-of-industrial-man": "Peter F. Drucker",
+    "the-genesee-diary": "Henri J. M. Nouwen",
+    "the-great-game-of-business": "Jack Stack & Bo Burlingham",
+    "the-imitation-of-christ": "Thomas à Kempis 金碧士",
+    "the-inner-voice-of-love": "Henri J. M. Nouwen",
+    "the-language-instinct": "Steven Pinker",
+    "the-mckinsey-way": "Ethan M. Rasiel",
+    "the-millionaire-mind": "Thomas J. Stanley",
+    "the-mind-s-new-science": "Howard Gardner",
+    "the-myth-of-sisyphus": "Albert Camus 卡繆",
+    "the-news": "Alain de Botton",
+    "the-obstacle-is-the-way": "Ryan Holiday",
+    "the-pathless-path": "Paul Millerd",
+    "the-pleasures-and-sorrows-of-work": "Alain de Botton",
+    "the-practice-of-cloud-system-administration": "Thomas A. Limoncelli、Strata R. Chalup & Christina J. Hogan",
+    "the-practice-of-the-presence-of-god": "Brother Lawrence 勞倫斯弟兄",
+    "the-principles-of-product-development-flow": "Donald G. Reinertsen",
+    "the-reformed-pastor": "Richard Baxter 巴克斯特",
+    "the-republic": "Plato 柏拉圖",
+    "the-road-to-daybreak": "Henri J. M. Nouwen",
+    "the-rules-of-parenting": "Richard Templar",
+    "the-rules-to-break": "Richard Templar",
+    "the-school-of-life": "The School of Life（Alain de Botton 創辦）",
+    "the-scout-mindset": "Julia Galef",
+    "the-silk-roads": "Peter Frankopan",
+    "the-software-craftsman": "Sandro Mancuso",
+    "the-software-engineer-s-guidebook": "Gergely Orosz",
+    "the-startup-owner-s-manual": "Steve Blank & Bob Dorf",
+    "the-storytelling-animal": "Jonathan Gottschall",
+    "the-suit": "Nicholas Antongiavanni",
+    "the-temple-and-the-church-s-mission": "G. K. Beale",
+    "the-total-money-makeover": "Dave Ramsey",
+    "the-undercover-economist": "Tim Harford",
+    "the-unicorn-project": "Gene Kim",
+    "the-wealthy-barber": "David Chilton",
+    "the-whole-brain-child": "Daniel J. Siegel & Tina Payne Bryson",
+    "the-worldly-philosophers": "Robert L. Heilbroner",
+    "theology-of-the-old-testament": "Walter Brueggemann",
+    "this-time-is-different": "Carmen M. Reinhart & Kenneth S. Rogoff",
+    "three-minutes-to-doomsday": "Joe Navarro",
+    "tidy-first": "Kent Beck",
+    "today-matters": "John C. Maxwell",
+    "traction": "Gabriel Weinberg & Justin Mares",
+    "trend-following": "Michael W. Covel — 本傳，不是 Trend Following Masters Vol.2 訪談集",
+    "true-style": "G. Bruce Boyer",
+    "trust": "Henry Cloud",
+    "truth-beauty-and-goodness-reframed": "Howard Gardner",
+    "tuesdays-with-morrie": "Mitch Albom",
+    "understanding-the-bible": "John Stott",
+    "unix-and-linux-system-administration-handbook": "Evi Nemeth 等",
+    "valuation-mckinsey": "Tim Koller、Marc Goedhart & David Wessels（McKinsey）",
+    "venture-deals": "Brad Feld & Jason Mendelson",
+    "versioning-in-an-event-sourced-system": "Greg Young",
+    "why-don-t-students-like-school": "Daniel T. Willingham",
+    "why-i-am-a-christian": "John Stott",
+    "why-zebras-don-t-get-ulcers": "Robert M. Sapolsky",
+    "willpower": "Roy F. Baumeister & John Tierney",
+    "with-christ-in-the-school-of-prayer": "Andrew Murray 慕安德烈",
+    "working-backwards": "Colin Bryar & Bill Carr",
+    "working-identity": "Herminia Ibarra",
+    "writing-tools": "Roy Peter Clark",
+    "zen-buddhism-and-psychoanalysis": "Erich Fromm & 鈴木大拙",
 }
 
 # CJK 統一漢字、日文假名、CJK 標點與全形符號
@@ -294,6 +582,11 @@ def main():
     by_name = {i["name"]: i for i in portal_items}
     idx, title_idx = portal_index(portal_items)
 
+    # 作者：買錯書的唯一防線（同名不同書），查 AUTHORS；查不到就吵，不要靜靜留白。
+    for r in rows:
+        r["author"] = AUTHORS.get(r["main"], "")
+    unattributed = sorted({r["main"] for r in rows if not r["author"]})
+
     by_main = collections.defaultdict(list)
     for r in rows:
         by_main[r["main"]].append(r)
@@ -403,7 +696,9 @@ def main():
     w(f"""# 待收書單（bibliography `wanted` 全星系匯出）
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
-全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面。由
+全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
+同名不同書會讓人買錯（portal 上的 `servant-leadership` 是 Larry W. Boone 的教科書，
+不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
 **已收錄比對的資料源**：{portal_source}。{portal_age}
@@ -431,11 +726,11 @@ def main():
             f"> ⚠ **這 20 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
             "跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。\n\n"
         )
-    w("| # | 英文書名 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- |\n")
+    w("| # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- | --- |\n")
     for i, (key, why) in enumerate(TOP20, 1):
         v = by_main.get(key)
         if not v:
-            w(f"| {i} | ⚠ `{key}` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | {esc(why)} |\n")
+            w(f"| {i} | ⚠ `{key}` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | {esc(why)} |\n")
             continue
         best = max(v, key=lambda r: len(r["en"] or ""))
         name = best["en"] or f"（{best['title']}）"
@@ -448,7 +743,8 @@ def main():
         repo = next((r["repo"] for r in v if r.get("repo")), None)
         flag = f"✅ 已建站 `{repo}`——" if repo else ""
         w(
-            f"| {i} | **{esc(name)}** | {esc(zh(best)) if best['en'] else ''} | {year} "
+            f"| {i} | **{esc(name)}** | {esc(best['author']) or '⚠ 作者未登錄'} "
+            f"| {esc(zh(best)) if best['en'] else ''} | {year} "
             f"| {', '.join(stations)} | {flag}{esc(why)} |\n"
         )
 
@@ -501,38 +797,55 @@ def main():
     if near_zero:
         w("| 站 | 已收 | 還差 | 差哪幾本 |\n| --- | ---: | ---: | --- |\n")
         for st in near_zero:
-            need = ", ".join(
-                esc(r["en"] or r["title"]) for r in sorted(by_station[st], key=lambda r: r["title"])
+            need = "、".join(
+                f"{esc(r['en'] or r['title'])}（{esc(r['author']) or '⚠ 作者未登錄'}）"
+                for r in sorted(by_station[st], key=lambda r: r["title"])
             )
             w(f"| `{st}` | {station_owned[st]} | **{station_left[st]}** | {need} |\n")
     else:
         w("（目前沒有只差 1–2 本的站。）\n")
 
+    if unattributed:
+        w(
+            f"\n> ⚠ **{len(unattributed)} 本還沒登錄作者**，表上標「⚠ 作者未登錄」："
+            + "、".join(f"`{k}`" for k in unattributed)
+            + "。補進 `export-wanted.py` 的 `AUTHORS` 再重跑——沒有作者就防不了同名不同書。\n"
+        )
+
     w(f"\n## 優先收：{len(multi)} 本有兩個以上的站在等\n\n")
     w("同一本書被多站列為 `wanted`——收一本補多站的缺口，投資報酬率最高。\n\n")
-    w("| 英文書名 | 中譯 | 年 | 等它的站 |\n| --- | --- | --- | --- |\n")
+    w("| 英文書名 | 作者 | 中譯 | 年 | 等它的站 |\n| --- | --- | --- | --- | --- |\n")
     for k in multi:
         v = by_main[k]
         best = max(v, key=lambda r: len(r["en"] or ""))
         stations = sorted({r["station"].replace("-note", "") for r in v})
         year = best["year"] or next((r["year"] for r in v if r["year"]), "")
-        w(f"| **{esc(best['en'] or best['title'])}** | {esc(zh(best))} | {year} | {len(stations)}: {', '.join(stations)} |\n")
+        w(
+            f"| **{esc(best['en'] or best['title'])}** | {esc(best['author']) or '⚠ 作者未登錄'} "
+            f"| {esc(zh(best))} | {year} | {len(stations)}: {', '.join(stations)} |\n"
+        )
 
     w(f"\n## 完整清單（依站，共 {len(rows)} 筆）\n\n")
     for st in sorted(by_station, key=lambda s: (-len(by_station[s]), s)):
         entries = by_station[st]
         w(f"### {st} — {len(entries)} 本\n\n")
-        w("| 英文書名 | 中譯 | 年 | 為何想收 |\n| --- | --- | --- | --- |\n")
+        w("| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |\n| --- | --- | --- | --- | --- |\n")
         for r in entries:
             name = r["en"] or f"（{esc(r['title'])}）"
             mark = f" ⟵ 已有書站 `{r['repo']}`" if r.get("repo") else ""
-            w(f"| {esc(name)}{mark} | {esc(zh(r))} | {r['year'] or ''} | {esc(r['note'])} |\n")
+            w(
+                f"| {esc(name)}{mark} | {esc(r['author']) or '⚠ 作者未登錄'} "
+                f"| {esc(zh(r))} | {r['year'] or ''} | {esc(r['note'])} |\n"
+            )
         w("\n")
 
     w(f"## 沒有英文書名的 {len(cjk_only)} 本（華文／日文原著）\n\n")
-    w("這些本來就沒有英文版，照原書名收。\n\n| 原書名 | 站 | 為何想收 |\n| --- | --- | --- |\n")
+    w("這些本來就沒有英文版，照原書名收。\n\n| 原書名 | 作者 | 站 | 為何想收 |\n| --- | --- | --- | --- |\n")
     for r in sorted(cjk_only, key=lambda r: (r["station"], r["title"] or "")):
-        w(f"| {esc(r['title'])} | {r['station']} | {esc(r['note'])} |\n")
+        w(
+            f"| {esc(r['title'])} | {esc(r['author']) or '⚠ 作者未登錄'} "
+            f"| {r['station']} | {esc(r['note'])} |\n"
+        )
 
     w("""
 ## 重跑
