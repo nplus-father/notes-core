@@ -9,10 +9,16 @@
 //   import { roadmap } from "./src/data/roadmap";
 //   import { books } from "./src/data/books";
 //   integrations: [notesCore({ site, categories, roadmap, books })]
+//
+// **markdown pipeline 不在這裡**（v0.21.0 起）：remark-sections 原本由本整合器用
+// `updateConfig({ markdown: { remarkPlugins: [...] } })` 附加到站台陣列的尾巴，但
+// `markdown.remarkPlugins` 已被 Astro 標為 deprecated，取代它的 `markdown.processor`
+// 是單一物件、沒有「附加」語義——整條 pipeline 只能在同一個 `unified()` 裡宣告完。
+// 因此 remark-sections 搬進 `astro-config.ts` 的 `unified()`，順序不變（仍在最後）。
+// 代價：單獨用 `notesCore()` 而不經 `defineNotesAstroConfig()` 的站，不會拿到
+// remark-sections——目前 68 站無人如此用（leetcode-note 是舊結構站，連整合器都沒用）。
 import type { AstroIntegration } from "astro";
 import type { SiteConfig } from "./lib/site-config";
-// @ts-expect-error — .mjs remark 外掛無型別宣告
-import remarkSections from "./plugins/remark-sections.mjs";
 
 export interface NotesCoreData {
   site: SiteConfig;
@@ -35,12 +41,6 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
     name: "@nplus-father/notes-core",
     hooks: {
       "astro:config:setup": ({ injectRoute, updateConfig }) => {
-        // 標準區塊 heading（::core / ::case / ::takeaways）由 core 統一注入，
-        // 附加在各站 astro.config 的 remarkPlugins 之後（故必在 remarkDirective 之後執行）。
-        updateConfig({
-          markdown: { remarkPlugins: [remarkSections] },
-        });
-
         // 把站台資料序列化成一個 ESM virtual module。皆為純資料（可 JSON 化）。
         updateConfig({
           vite: {
