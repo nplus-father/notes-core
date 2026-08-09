@@ -67,12 +67,16 @@ from pathlib import Path
 
 # ── 手選 Top 20：全檔唯一的人工區塊 ──────────────────────────────
 # 366 筆太長，這是從裡面挑出來的採購順序。挑選準則，依序：
-#   1. 多站共等——收一本補多站（下面「優先收」那節自動算出來的那批）
-#   2. 站主自己在該筆的 `note` 裡標了「最大／頭號缺口」
-#   3. portal 驗證的 anchor 深度——nplus.wiki 上**已經建成幾本**回指它的書站
+#   1. **歸零槓桿（2026-08-09 起升為準則①）**——優先收「還差 1–2 本就收齊」的站所缺的書。
+#      理由：一個站的書單歸零，缺書就不再是它進 note-enrich 深化的瓶頸；把採購火力集中在
+#      快到終點的站，換到的是「多一個站可以開始深化」，而不是「多一本好書躺在清單上」。
+#      腳本自動算（見 near_zero / leverage 與輸出的「快歸零的站」那節），不必手數。
+#   2. 多站共等——收一本補多站（下面「優先收」那節自動算出來的那批）
+#   3. 站主自己在該筆的 `note` 裡標了「最大／頭號缺口」
+#   4. portal 驗證的 anchor 深度——nplus.wiki 上**已經建成幾本**回指它的書站
 #      （同作者的書櫃已有幾本／同一條線的衍生書有幾本），收了既有概念頁才掛得上
 #      anchor（見 SOURCING-DEBT.md）。書櫃愈深、原典愈缺，排愈前面
-#   4. 同等重要時，薄的、有繁中在版的排前面——排序即建議消化順序
+#   5. 同等重要時，薄的、有繁中在版的排前面——排序即建議消化順序
 # 下面「為何排這裡」的 portal 數字是實查 nplus-father／Andrewnplus 的書 repo 得到的
 # （作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；portal 長大之後數字會漂，
 # 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
@@ -328,6 +332,31 @@ def main():
     )
     cjk_only = [r for r in rows if not r["en"]]
 
+    # ── 歸零槓桿（2026-08-09 起是 TOP20 的準則①）
+    # 「這本書收了，某個站的書單就收齊了」比「這本書很重要」更能決定採購順序：
+    # 站書單歸零 → 該站可以進 note-enrich／深化，缺書不再是它的瓶頸。
+    # 分母只算 owned + wanted——unavailable（絕版無中譯）與 skipped（刻意略過）
+    # 是永久不可收，把它們算進去會讓永遠歸不了零的站看起來像差一點點。
+    station_left = {}  # 站 → 還差幾本 wanted
+    station_owned = {}
+    for f in sorted(NOTES_ROOT.glob("*-note/src/data/bibliography.ts")):
+        st = f.parts[len(NOTES_ROOT.parts)]
+        es = parse_bibliography(f)
+        station_left[st] = sum(1 for e in es if e["status"] == "wanted")
+        station_owned[st] = sum(1 for e in es if e["status"] == "owned")
+
+    def leverage(key):
+        """這本書能讓「還差最少本」的那個站前進多少——回 (最小剩餘, 等它的站數)。"""
+        v = by_main.get(key) or []
+        lefts = [station_left.get(r["station"], 99) for r in v]
+        return (min(lefts) if lefts else 99, len({r["station"] for r in v}))
+
+    # 只差 1–2 本就歸零的站（採購清單的第一梯隊）
+    near_zero = sorted(
+        (st for st, n in station_left.items() if 0 < n <= 2),
+        key=lambda st: (station_left[st], -station_owned[st], st),
+    )
+
     esc = lambda s: (s or "").replace("|", "\\|").replace("\n", " ")
 
     def zh(r):
@@ -353,11 +382,14 @@ def main():
     w(
         f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
         "起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
-        "`TOP20`，不要改這裡。挑選準則依序：①多站共等，收一本補多站 "
-        "②站主自己在 `note` 裡標了「最大／頭號缺口」 ③portal 驗證的 anchor 深度——"
+        "`TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」"
+        "的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是"
+        "它進 `note-enrich` 深化的瓶頸） ②多站共等，收一本補多站 "
+        "③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——"
         "nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），"
         "書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） "
-        "④同等重要時，薄的、有繁中在版的排前面。\n\n"
+        "⑤同等重要時，薄的、有繁中在版的排前面。\n\n"
+        "「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。\n\n"
         "「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、"
         "各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。\n\n"
     )
@@ -376,7 +408,11 @@ def main():
         best = max(v, key=lambda r: len(r["en"] or ""))
         name = best["en"] or f"（{best['title']}）"
         year = best["year"] or next((r["year"] for r in v if r["year"]), "")
-        stations = sorted({r["station"].replace("-note", "") for r in v})
+        # 站欄帶「收了之後還剩幾本」，讓歸零槓桿在表上直接看得出來，不必翻下面那節。
+        stations = sorted(
+            f"{r['station'].replace('-note', '')}({max(0, station_left.get(r['station'], 0) - 1)})"
+            for r in {r["station"]: r for r in v}.values()
+        )
         repo = next((r["repo"] for r in v if r.get("repo")), None)
         flag = f"✅ 已建站 `{repo}`——" if repo else ""
         w(
@@ -423,6 +459,22 @@ def main():
         desc = repo_desc[k]
         shown = esc(desc[:60]) if desc else "**（repo 無描述，需人工確認是不是同一本）**"
         w(f"| `{k}` | {esc(v[0]['en'] or v[0]['title'])} | {', '.join(sorted({r['station'] for r in v}))} | {shown} |\n")
+
+    w(f"\n## 快歸零的站：{len(near_zero)} 站只差 1–2 本\n\n")
+    w(
+        "**TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，"
+        "整站的採購缺口就歸零——缺書不再是它進 `note-enrich` 深化的瓶頸。"
+        "分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。\n\n"
+    )
+    if near_zero:
+        w("| 站 | 已收 | 還差 | 差哪幾本 |\n| --- | ---: | ---: | --- |\n")
+        for st in near_zero:
+            need = ", ".join(
+                esc(r["en"] or r["title"]) for r in sorted(by_station[st], key=lambda r: r["title"])
+            )
+            w(f"| `{st}` | {station_owned[st]} | **{station_left[st]}** | {need} |\n")
+    else:
+        w("（目前沒有只差 1–2 本的站。）\n")
 
     w(f"\n## 優先收：{len(multi)} 本有兩個以上的站在等\n\n")
     w("同一本書被多站列為 `wanted`——收一本補多站的缺口，投資報酬率最高。\n\n")
