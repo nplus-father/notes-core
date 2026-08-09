@@ -5,6 +5,10 @@
 # 用法：tools/bump-notes-core.sh <old-tag> <new-tag> [--push]
 #   tools/bump-notes-core.sh v0.14.0 v0.15.0            # 只 bump + install + build + commit（不 push）
 #   tools/bump-notes-core.sh v0.14.0 v0.15.0 --push     # 同上並 git push（觸發各站 GitHub Pages 部署）
+#
+# SKIP="a-note b-note" 可排除指定站。用途：**別的 session 正在那幾站改稿**——
+# 本腳本收工時 `git add src/content`，會把人家還沒寫完的內容一起提交進 bump commit。
+# 星系常有多個 session 併行，跑之前先 `git status` 掃一遍，內容還髒的站放進 SKIP。
 set -euo pipefail
 
 # 星系根目錄＝放所有 -note 站的容器目錄。本腳本住在 notes-core/tools/，往上兩層就是。
@@ -34,8 +38,13 @@ echo
 FAILED=()
 DONE=()
 
+SKIPPED=()
+
 for d in *-note note-template; do
   [ -f "$d/package.json" ] || continue
+  if [[ " ${SKIP:-} " == *" $d "* ]]; then
+    echo "[$d] 在 SKIP 名單 — 略過"; SKIPPED+=("$d"); continue
+  fi
   if ! grep -q "notes-core#$OLD" "$d/package.json"; then
     echo "[$d] 不在 $OLD（可能已 bump 或特殊）— 略過"; continue
   fi
@@ -72,7 +81,10 @@ for d in *-note note-template; do
 done
 
 echo
-echo "完成 ${#DONE[@]} 站；失敗 ${#FAILED[@]} 站。"
+echo "完成 ${#DONE[@]} 站；失敗 ${#FAILED[@]} 站；略過 ${#SKIPPED[@]} 站。"
+if [ ${#SKIPPED[@]} -gt 0 ]; then
+  printf '  - %s（SKIP，仍停在 '"$OLD"'）\n' "${SKIPPED[@]}"
+fi
 if [ ${#FAILED[@]} -gt 0 ]; then
   printf '  ✘ %s\n' "${FAILED[@]}"
   echo "（失敗站的 package.json 可能已被 sed 改過但未 commit——修好後重跑或手動處理）"
