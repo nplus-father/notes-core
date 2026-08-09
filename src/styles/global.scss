@@ -125,7 +125,53 @@ a {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
 
-  /* 左側只有人像（v0.19.0）：站名退出 topnav，身分由人像＋首頁 hero 承擔。 */
+  /* 左側 = 往上一層的路徑（v0.20.0）：‹ 筆記星系 ｜ 人像。站名仍不進 topnav。 */
+  .topnav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  /* 跨站的「上一層」：回 nplus.wiki/notes/。灰字＋左向 chevron，靜置不搶人像的戲；
+   * hover 才轉主色並讓箭頭往左挪一格（方向就是它會帶你去的方向）。 */
+  .topnav-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.35rem;
+    border: 1px solid transparent;
+    border-radius: $radius;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      color 0.15s,
+      background 0.15s,
+      border-color 0.15s;
+    svg {
+      transition: transform 0.15s ease;
+    }
+    &:hover {
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--accent-weak);
+      border-color: var(--border);
+      svg {
+        transform: translateX(-2px);
+      }
+    }
+  }
+  /* 窄螢幕只留箭頭——title 仍帶全名，導覽列不因中文字被擠爆。 */
+  @media (max-width: 560px) {
+    .topnav-up-label {
+      display: none;
+    }
+    .topnav-up {
+      padding: 0.2rem 0.3rem;
+    }
+  }
+
   .brand-avatar {
     display: grid;
     place-items: center;
@@ -255,6 +301,7 @@ a {
 .crumbs {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.45rem;
   font-size: 0.84rem;
   color: var(--muted);
@@ -263,6 +310,41 @@ a {
     color: var(--muted);
     &:hover {
       color: var(--text);
+    }
+  }
+}
+.crumb-sep {
+  opacity: 0.55;
+}
+.crumb-icon {
+  margin-right: 0.25rem;
+}
+/* 第一項＝回本站首頁。做成鍵（框線 + 左向 chevron），在一串灰字裡一眼認得出來，
+ * 與 topnav 最左那顆「‹ 筆記星系」是同一套語彙、只差一層——上一層是站，再上一層是星系。 */
+.crumbs .crumb-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.14rem 0.5rem 0.14rem 0.36rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  background: var(--surface);
+  color: var(--text-2);
+  font-weight: 600;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+  svg {
+    transition: transform 0.15s ease;
+  }
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border-color: var(--accent);
+    svg {
+      transform: translateX(-2px);
     }
   }
 }
@@ -2258,6 +2340,86 @@ a {
   font-size: 0.82rem;
   color: var(--muted);
 }
+/* ── 年代分佈長條圖：表格下面那幾十列是資料，這 68px 是形狀——
+ * 哪個年代寫得最密、其中收了幾本，一眼看完。桶寬自適應（見 Bibliography.astro）。
+ * 深＝已收錄、淺＝未收，堆在同一根柱上，所以「產出高峰」與「收藏缺口」同時可讀。 */
+.biblio-chart {
+  margin: 0.9rem 0 0;
+}
+.biblio-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  overflow-x: auto;
+  /* 基線：沒有柱的格子讀得出是 0，而不是漏畫。 */
+  border-bottom: 1px solid var(--border);
+}
+.biblio-bar-col {
+  /* 桌機撐滿寬度，窄螢幕縮到 24px 為止（14 根剛好排得下手機）；再窄才讓容器橫捲。 */
+  flex: 1 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+.biblio-bar-track {
+  height: 68px;
+  display: flex;
+  align-items: flex-end;
+}
+.biblio-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* 兩段之間留底色縫，堆疊不糊成一條 */
+}
+.biblio-seg {
+  flex-basis: 0;
+  min-height: 3px;
+  /* 只有資料端（最上緣）收圓角，貼基線那端保持切齊。 */
+  &:first-child {
+    border-radius: $radius-sm $radius-sm 0 0;
+  }
+  &.is-owned {
+    background: var(--accent);
+  }
+  &.is-gap {
+    background: var(--border-strong);
+  }
+}
+.biblio-bar-label {
+  margin-top: 0.3rem;
+  font-family: $mono;
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+.biblio-chart-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.biblio-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.biblio-key-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: $radius-sm;
+  &.is-owned {
+    background: var(--accent);
+  }
+  &.is-gap {
+    background: var(--border-strong);
+  }
+}
+
 .biblio-group {
   margin-top: 1rem;
 }
@@ -2372,10 +2534,42 @@ a {
   font-weight: 700;
   letter-spacing: -0.01em;
 }
+/* 進站內筆記的鍵：框線 + 箭頭，一眼看得出可點。整張卡 hover 時它先亮起來
+ * （卡片本身不是連結——裡面還有代表人物的跨站連結，不能巢狀），滑到鍵上再轉主色實心。 */
 .school-cat {
   margin-left: auto;
-  font-size: 0.76rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  flex: none;
+  padding: 0.16rem 0.45rem 0.16rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 0.74rem;
+  font-weight: 600;
   white-space: nowrap;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+  .school-cat-arrow {
+    transition: transform 0.15s ease;
+  }
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border-color: var(--accent);
+    .school-cat-arrow {
+      transform: translateX(2px);
+    }
+  }
+}
+.school-card:hover .school-cat {
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 .school-claim {
   margin: 0 0 0.6rem;
@@ -2597,12 +2791,49 @@ a {
   }
   label {
     cursor: pointer;
+    min-width: 0; /* 長句子要能斷行，否則會把靠右的複習鍵推出去 */
   }
   input:checked + label {
     color: var(--muted);
   }
 }
+/* 複習鍵：靠右對齊排成一直行——原本它緊跟在句子後面，句子長短不一就參差不齊，
+ * 一眼看不出「每條都可以回去重讀」。靜置是灰框幽靈鍵，不與勾選框搶注意力。 */
 .check-review {
-  font-size: 0.78rem;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: none;
+  padding: 0.06rem 0.4rem 0.06rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
   white-space: nowrap;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+  .check-review-arrow {
+    transition: transform 0.15s ease;
+  }
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border-color: var(--accent);
+    .check-review-arrow {
+      transform: translateX(2px);
+    }
+  }
+}
+/* 勾掉的條目：複習鍵一起退到底色，讓還沒過關的那幾條自己浮出來。 */
+.check-list li:has(input:checked) .check-review {
+  opacity: 0.45;
+  &:hover {
+    opacity: 1;
+  }
 }

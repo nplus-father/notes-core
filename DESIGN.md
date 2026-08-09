@@ -9,6 +9,8 @@
 ## 1. 版面骨架（notes-core `BaseLayout`）
 
 - **Topnav（v0.19.0）**：左**只放人像**連首頁（與 favicon 同一張圖，core asset）——站名退出 topnav，身分由人像＋首頁 hero 承擔，62 站的導覽列長得一模一樣。右為 `buildNav()` 自動生成的**固定 emoji 分頁**：🧠 Concepts ／（📝 Problems，僅 `hasProblems`）／（✅ Check，僅站台有 mastery 資料）／ 🔍 Search（hover／aria-label 帶英文全名，**不含首頁**）＋ 深淺色切換。詞彙全星系統一、只出 emoji；`conceptLabelEn` / `problemLabelEn` 只用於麵包屑與頁標題，不再影響 nav。姊妹手冊用 `extraNav`（插在 Search 前，想配 emoji 自己寫進 label），特例可用 `nav` 完全覆寫。
+- **往上一層（v0.20.0）**：topnav 最左是「‹ 筆記星系」，連 `site.parentSite`（預設 `DEFAULT_PARENT_SITE` = `https://nplus.wiki/notes/`，**不是 wiki 根**——從一個筆記站往上就是那張主題／人物索引）；窄螢幕只留箭頭。同一連結仍在頁尾出現一次；`parentSite: null` 兩處一起隱藏。
+- **麵包屑 `<Crumbs>`（v0.20.0）**：所有子頁（分類／概念／題目／檢核／搜尋）統一用這個元件，六個路由不再各寫一份 `<nav class="crumbs">`。**第一項固定是回本站首頁**，做成有框線的返回鍵、文字用 `site.brand` 而非泛稱的 "Home"（62 站同網域，"Home" 是哪個家不自明）；其後才是祖先鏈。於是「star 站 → 本站 → 本層」三級都是一步。
 - **Footer**：預設 `© 2026 Andrew`（可用 `site.footer` 覆寫）。不要再加「· 筆記星系的一站 · 延伸閱讀…」那串。
 - **favicon**：星系**共用人像**，由 notes-core 以 asset 注入（single source of truth）——各站**不再放** `public/favicon.svg`。
 - 深淺色、回想模式（recall）由 notes-core inline script 處理，勿改。
@@ -21,9 +23,9 @@
 
 1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
 2. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
-3. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。
+3. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
 4. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。
-5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表。欄序 = **收錄 → 書名 → 註記 → 年份**（年份最不重要，靠右淡化）；狀態只出 emoji（✅ 已收錄／⬜ 待收錄／🚫 暫無來源／➖ 略過，hover 有全名），表頭那行兼作進度與圖例。
+5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表。欄序 = **收錄 → 書名 → 註記 → 年份**（年份最不重要，靠右淡化）；狀態只出 emoji（✅ 已收錄／⬜ 待收錄／🚫 暫無來源／➖ 略過，hover 有全名），表頭那行兼作進度與圖例。**v0.20.0 起**：組內一律**依出版年由早到晚**（分組說「哪一類」，年份說「怎麼長出來的」；沒填年份的沉底），並在表格上方加一條**年代分佈長條圖**——桶寬自適應（10／20／…／1000 年，取能把格數壓進 14 以內的最小值，`leadership-note` 得 10 年、跨 318–2024 的 `theology-note` 得 200 年），每根柱把「已收錄」堆在「未收」下面，一眼看完產出高峰與收藏缺口。書少於 4 本或跨不過一格就不畫。
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
@@ -45,7 +47,7 @@
 
 首頁三個選配區塊，型別與 helpers 在 `@nplus-father/notes-core/library`，資料放各站 `src/data/*.ts`，經 `astro.config.mjs` 傳入整合器：`notesCore({ site, bibliography?, schools?, profile? })`。
 
-- **`bibliography.ts`（`defineBibliography`）**：人物站 = 作者**全集**、主題站 = 領域**公認經典**的完整盤點。每筆 `{title, original?, year?, slug?, status, note?, group?}`；`status`: `owned`（連書站）/ `wanted`（待收）/ `unavailable`（絕版、無中譯）/ `skipped`（刻意略過＋原因）。**缺口如實列出**——盤點表兼作收書 roadmap。
+- **`bibliography.ts`（`defineBibliography`）**：人物站 = 作者**全集**、主題站 = 領域**公認經典**的完整盤點。每筆 `{title, original?, year?, slug?, status, note?, group?}`；`status`: `owned`（連書站）/ `wanted`（待收）/ `unavailable`（絕版、無中譯）/ `skipped`（刻意略過＋原因）。**缺口如實列出**——盤點表兼作收書 roadmap（這是**寫資料時的規矩**；v0.20.0 起表頭那行只報進度與圖例，不再把這句印在頁面上）。`year` 從「可有可無的補充」升格為**排序與年代分佈圖的軸**，新資料盡量補上。
 - **`schools.ts`（`defineSchools(entries, {kind?, lede?})`）**：主題站的**領域地圖**。每張卡 `{name, icon?, claim, figures?, categorySlug?}`；`figures[].site` 填 sites.ts 的 key 即跨站連結作者站——主題站因此成為串起作者站的樞紐。第二參數選配：`kind` 三選一決定標題與副標（**詞彙表收在 core 的 SchoolsMap，站台只挑 enum**）——`"schools"` 學派地圖＝流派互相對立（預設）｜`"methods"` 方法地圖＝方法體系並存（敏捷、設計思考…）｜`"themes"` 主題地圖＝核心命題分區（歷史、科學…）；`lede` 一句話提綱挈領。舊的純 array 形式視同 schools 口味（向後相容）。
 - **`profile.ts`（`defineProfile`）**：人物站的思想側寫。`thesis`（一句話中心思想）＋ `contributions`（研究主軸，`conceptPath` 連站內概念頁）＋ `readingPath`（slug 由 bibliography 反查書名）＋ `influences`（思想脈絡，有姊妹站就跨站連結）。
 
@@ -108,7 +110,7 @@
 
 「讀完這站」的定義——**出師條件**。資料源＝各分類 `_index.md` 的 **`mastery`** 欄位：`[{text, slug?}]`，一句一條「認定讀完此分類時該具備的知識」；**roadmap 說讀什麼、mastery 說讀完該會什麼**，兩者同處維護。
 
-- 頁面依分類分組（沿用分類 emoji 與名稱），`slug` 填同分類的概念頁 → 渲染「複習 →」回連（只連真的存在的頁）。
+- 頁面依分類分組（沿用分類 emoji 與名稱），`slug` 填同分類的概念頁 → 渲染「複習 →」回連（只連真的存在的頁）。**v0.20.0 起**它是**靠右對齊的幽靈鍵**（框線＋箭頭）而非句尾的一行小字——句子長短不一時仍排成整齊一行，一眼看得出每條都能回去重讀；已勾選的那條會連鍵一起淡出。
 - 勾選記進 localStorage（key = `check:<base>`，62 站同網域不互撞）；頁首與各分類顯示進度。
 - topnav 的 ✅ 只在站台有任何 mastery 時出現；路由恆注入，沒資料時是空狀態頁不是 404。
 - mastery 句子維持**書本位**——每句都要能溯源到某本 owned book；存量站隨 `note-enrich` 補（記進 ENRICH-BACKLOG），note-review 檢查。

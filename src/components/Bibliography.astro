@@ -28,13 +28,58 @@ for (const e of entries) {
   if (g) g.items.push(e);
   else groups.push({ name, items: [e] });
 }
+// 組內一律依出版年由早到晚（v0.20.0）——分組給的是「哪一類」，年份給的是「怎麼長出來的」，
+// 兩個軸疊起來這張表才讀得出思想的推進。沒填年份的沉底（sort 穩定，維持站台原順序）。
+// 排的是 groups 內新建的陣列，不動 entries 本身——首頁書架仍照站台給的順序。
+const yearOf = (e: BibliographyEntry) => e.year ?? Number.MAX_SAFE_INTEGER;
+for (const g of groups) g.items.sort((a, b) => yearOf(a) - yearOf(b));
+
+// ── 年代分佈長條圖：把上面那條年份軸畫出來，順便疊上收藏進度。
+// 桶寬自適應：主題站多半集中在近幾十年（10 年一格剛好），神學／哲學站卻橫跨
+// 318–2024（10 年一格會變成 170 根針）。取「能把格數壓進 MAX_BARS 以內」的最小桶寬。
+const BUCKETS = [10, 20, 25, 50, 100, 200, 250, 500, 1000];
+// 14 根是「窄螢幕排得下、又不必隔兩根才標一次年份」的上限；再多就換更寬的桶。
+const MAX_BARS = 14;
+const years = entries.map((e) => e.year).filter((y): y is number => typeof y === "number");
+let bucket = BUCKETS[0];
+const lo = years.length ? Math.min(...years) : 0;
+const hi = years.length ? Math.max(...years) : 0;
+const bars: { start: number; total: number; owned: number }[] = [];
+if (years.length >= 4) {
+  bucket =
+    BUCKETS.find((b) => Math.floor(hi / b) - Math.floor(lo / b) + 1 <= MAX_BARS) ??
+    BUCKETS[BUCKETS.length - 1];
+  const from = Math.floor(lo / bucket) * bucket;
+  const to = Math.floor(hi / bucket) * bucket;
+  for (let s = from; s <= to; s += bucket) {
+    const inBucket = entries.filter(
+      (e) => typeof e.year === "number" && e.year >= s && e.year < s + bucket
+    );
+    bars.push({
+      start: s,
+      total: inBucket.length,
+      owned: inBucket.filter((e) => e.status === "owned").length,
+    });
+  }
+}
+// 一根柱不叫分佈；跨不過一格就不畫。
+const showChart = bars.length >= 2;
+const peak = Math.max(1, ...bars.map((b) => b.total));
+// 格數多時隔一根才標，免得 0.62rem 的年份標籤在窄螢幕上疊在一起。
+const labelEvery = bars.length > 10 ? 2 : 1;
+const yearLabel = (y: number) => (y < 0 ? `${-y} BC` : `${y}`);
+// 10 年一格才寫成「1990s」；格子更寬時只標起始年，範圍留給 hover 的 title。
+const barLabel = (start: number) => (start >= 0 && bucket === 10 ? `${start}s` : yearLabel(start));
+const barTitle = (b: (typeof bars)[number]) =>
+  `${yearLabel(b.start)}–${yearLabel(b.start + bucket - 1)} · ${b.total} 本 · 已收錄 ${b.owned}`;
+
 const owned = entries.filter((e) => e.status === "owned").length;
 // 表頭那行兼作圖例：進度＋只列實際出現過的狀態。
 const rest = (["wanted", "unavailable", "skipped"] as BibliographyStatus[])
   .filter((s) => entries.some((e) => e.status === s))
   .map((s) => `${STATUS[s].icon} ${STATUS[s].label}`)
   .join(" · ");
-const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${rest}` : ""}——缺口如實列出，兼作收書清單`;
+const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${rest}` : ""}`;
 ---
 
 {
@@ -44,6 +89,48 @@ const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${r
         <h2>{heading}</h2>
         <span class="biblio-note">{note ?? defaultNote}</span>
       </div>
+
+      {showChart && (
+        <figure
+          class="biblio-chart"
+          role="img"
+          aria-label={`年代分佈：${years.length} 本標了出版年的書落在 ${yearLabel(lo)}–${yearLabel(hi)} 之間，深色段為已收錄。逐筆資料見下方表格。`}
+        >
+          <div class="biblio-bars">
+            {bars.map((b, i) => (
+              <div class="biblio-bar-col">
+                <div class="biblio-bar-track" title={barTitle(b)}>
+                  {b.total > 0 && (
+                    <div class="biblio-bar" style={`height:${(b.total / peak) * 100}%`}>
+                      {b.total - b.owned > 0 && (
+                        <span class="biblio-seg is-gap" style={`flex-grow:${b.total - b.owned}`} />
+                      )}
+                      {b.owned > 0 && (
+                        <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
+                      )}
+                    </div>
+                  )}
+                </div>
+                <span class="biblio-bar-label">
+                  {i % labelEvery === 0 ? barLabel(b.start) : ""}
+                </span>
+              </div>
+            ))}
+          </div>
+          <figcaption class="biblio-chart-note">
+            <span>年代分佈，每格 {bucket} 年</span>
+            <span class="biblio-key">
+              <i class="biblio-key-dot is-owned" aria-hidden="true" />
+              已收錄
+            </span>
+            <span class="biblio-key">
+              <i class="biblio-key-dot is-gap" aria-hidden="true" />
+              未收
+            </span>
+          </figcaption>
+        </figure>
+      )}
+
       {groups.map((g) => (
         <div class="biblio-group">
           {g.name && <h3 class="biblio-group-name">{g.name}</h3>}

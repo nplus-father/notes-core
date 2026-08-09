@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ConceptCard from "../../../components/ConceptCard.astro";
-import { withBase } from "../../../lib/url";
+import Crumbs from "../../../components/Crumbs.astro";
 import { siteUrl, siteLabel } from "../../../lib/links";
 import { byImportance } from "../../../lib/collections";
 import { site } from "virtual:notes-core/site";
@@ -25,10 +25,13 @@ const conceptLabel = site.conceptLabelEn ?? "Concepts";
 ---
 
 <BaseLayout title={`${category.name} · ${conceptLabel}`} site={site}>
-  <nav class="crumbs">
-    <a href={withBase("/")}>Home</a><span>/</span>
-    <a href={withBase("/concepts/")}>{conceptLabel}</a><span>/</span><span>{category.name}</span>
-  </nav>
+  <Crumbs
+    site={site}
+    items={[
+      { label: conceptLabel, href: "/concepts/" },
+      { label: category.name, icon: category.icon },
+    ]}
+  />
   <header class="page-head">
     <h1>{category.icon} {category.name}</h1>
     <p class="lede">{category.intro}</p>

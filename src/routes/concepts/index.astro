@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Crumbs from "../../components/Crumbs.astro";
 import { withBase } from "../../lib/url";
 import { bareSlug } from "../../lib/collections";
 import { site } from "virtual:notes-core/site";
@@ -44,7 +45,7 @@ const tracks = cats
 ---
 
 <BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
-  <nav class="crumbs"><a href={withBase("/")}>Home</a><span>/</span><span>{conceptLabel}</span></nav>
+  <Crumbs site={site} items={[{ label: conceptLabel }]} />
   <header class="page-head">
     <h1>{conceptLabel}</h1>
     <p class="lede">

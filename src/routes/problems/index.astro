@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProblemCard from "../../components/ProblemCard.astro";
+import Crumbs from "../../components/Crumbs.astro";
 import { withBase } from "../../lib/url";
 import { byImportance } from "../../lib/collections";
 import { site } from "virtual:notes-core/site";
@@ -18,9 +19,7 @@ for (const dm of doms) {
 ---
 
 <BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
-  <nav class="crumbs">
-    <a href={withBase("/")}>Home</a><span>/</span><span>{problemLabel}</span>
-  </nav>
+  <Crumbs site={site} items={[{ label: problemLabel }]} />
   <header class="page-head">
     <h1>{problemLabel}</h1>
     {

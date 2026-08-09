@@ -1,0 +1,60 @@
+---
+// 麵包屑：v0.20.0 起統一由 core 生成，六個呼叫端不再各寫一份 <nav class="crumbs">。
+//
+// 第一項固定是「回本站首頁」，且刻意做成有邊框的返回鍵——原本它只是一串灰字裡的
+// 「Home」，跟後面的祖先項長得一模一樣，從 /concepts/mindset/ 想回站首頁得先認出
+// 哪個字可以點。改成鍵之後，任何子頁（分類／概念／題目／檢核／搜尋）都是一眼、一步。
+//
+// 文字用 site.brand 而非泛稱的 "Home"：直接告訴你這一步會回到哪一站——62 站同網域，
+// 「Home」是哪個家並不自明。
+import { withBase } from "../lib/url";
+import type { SiteConfig } from "../lib/site-config";
+
+interface Crumb {
+  label: string;
+  /** base-relative 路徑（如 "/concepts/"）；省略 = 當前頁，不可點 */
+  href?: string;
+  /** 分類 emoji，置於 label 前 */
+  icon?: string;
+}
+interface Props {
+  site: SiteConfig;
+  /** 站首頁之後的祖先鏈，由外而內；最後一項通常不給 href */
+  items?: Crumb[];
+}
+const { site, items = [] } = Astro.props;
+---
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a class="crumb-home" href={withBase("/")}>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path
+        d="M7.3 2.4 3.7 6l3.6 3.6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+    {site.brand}
+  </a>
+  {
+    items.map((c) => (
+      <>
+        <span class="crumb-sep" aria-hidden="true">
+          /
+        </span>
+        {c.href ? (
+          <a href={withBase(c.href)}>
+            {c.icon && <span class="crumb-icon">{c.icon}</span>}
+            {c.label}
+          </a>
+        ) : (
+          <span aria-current="page">
+            {c.icon && <span class="crumb-icon">{c.icon}</span>}
+            {c.label}
+          </span>
+        )}
+      </>
+    ))
+  }
+</nav>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
 import { withBase } from "../lib/url";
 import { site } from "virtual:notes-core/site";
 
@@ -12,6 +13,7 @@ const searchLede = site.searchLede ? site.searchLede.replaceAll("{base}", withBa
 ---
 
 <BaseLayout title={`Search · ${site.brand}`} site={site}>
+  <Crumbs site={site} items={[{ label: "Search" }]} />
   <header class="page-head">
     <h1>Search</h1>
     {

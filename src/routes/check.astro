@@ -5,6 +5,7 @@
 // base，62 站同網域不互撞）。站台完全沒有 mastery 時 nav 不出 ✅（見 BaseLayout），
 // 此頁仍會建置——直接打網址會看到空狀態說明，不是 404。
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
 import { withBase } from "../lib/url";
 import { bareSlug } from "../lib/collections";
 import { site } from "virtual:notes-core/site";
@@ -46,7 +47,7 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
     幾乎相同的空頁給搜尋引擎（路由恆注入，故不能靠 sitemap 的 config 期過濾）。 */
 }
 <BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
-  <nav class="crumbs"><a href={withBase("/")}>Home</a><span>/</span><span>Check</span></nav>
+  <Crumbs site={site} items={[{ label: "Check" }]} />
   <header class="page-head">
     <div class="check-head">
       <h1>Check</h1>
@@ -83,8 +84,11 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
               <input type="checkbox" id={it.key} data-check-key={it.key} />
               <label for={it.key}>{it.text}</label>
               {it.href && (
-                <a class="check-review" href={it.href}>
-                  複習 →
+                <a class="check-review" href={it.href} title={`複習：${it.text}`}>
+                  複習
+                  <span class="check-review-arrow" aria-hidden="true">
+                    →
+                  </span>
                 </a>
               )}
             </li>

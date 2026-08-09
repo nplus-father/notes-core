@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
 import Stars from "../components/Stars.astro";
 import StatusBadge from "../components/StatusBadge.astro";
 import SourceByline from "../components/SourceByline.astro";
@@ -46,19 +47,15 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 ---
 
 <BaseLayout title={`${d.title} · ${site.titleBase}${site.conceptSuffix ?? "概念"}`} site={site}>
-  <nav class="crumbs">
-    <a href={withBase("/concepts/")}>{site.conceptLabelEn ?? "Concepts"}</a>
-    <span>/</span>
-    {
-      cat ? (
-        <a href={withBase(`concepts/${cat.slug}/`)}>
-          {cat.icon} {cat.name}
-        </a>
-      ) : (
-        <span>{d.category}</span>
-      )
-    }
-  </nav>
+  <Crumbs
+    site={site}
+    items={[
+      { label: site.conceptLabelEn ?? "Concepts", href: "/concepts/" },
+      cat
+        ? { label: cat.name, icon: cat.icon, href: `/concepts/${cat.slug}/` }
+        : { label: d.category },
+    ]}
+  />
 
   <header class="prob-head">
     <h1>{d.title}</h1>

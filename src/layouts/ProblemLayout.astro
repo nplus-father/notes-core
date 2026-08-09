@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
 import DifficultyPill from "../components/DifficultyPill.astro";
 import Stars from "../components/Stars.astro";
 import StatusBadge from "../components/StatusBadge.astro";
@@ -59,19 +60,15 @@ const problemLabel = site.problemLabelEn ?? "Problems";
 ---
 
 <BaseLayout title={`${d.title} · ${site.titleBase}${site.problemSuffix ?? "題"}`} site={site}>
-  <nav class="crumbs">
-    <a href={withBase("/problems/")}>{problemLabel}</a>
-    <span>/</span>
-    {
-      domain ? (
-        <span>
-          {domain.icon} {domain.name}
-        </span>
-      ) : (
-        <span>{d.domain}</span>
-      )
-    }
-  </nav>
+  <Crumbs
+    site={site}
+    items={[
+      { label: problemLabel, href: "/problems/" },
+      domain
+        ? { label: domain.name, icon: domain.icon, href: `/problems/${domain.slug}/` }
+        : { label: d.domain },
+    ]}
+  />
 
   <header class="prob-head">
     <h1>{d.title}</h1>

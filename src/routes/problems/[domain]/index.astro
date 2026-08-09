@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ProblemCard from "../../../components/ProblemCard.astro";
-import { withBase } from "../../../lib/url";
+import Crumbs from "../../../components/Crumbs.astro";
 import { byImportance } from "../../../lib/collections";
 import { site } from "virtual:notes-core/site";
 import { getDomains } from "../../../lib/nav-data";
@@ -24,10 +24,13 @@ const problemLabel = site.problemLabelEn ?? "Problems";
 ---
 
 <BaseLayout title={`${domain.name} · ${problemLabel}`} site={site}>
-  <nav class="crumbs">
-    <a href={withBase("/")}>Home</a><span>/</span>
-    <a href={withBase("/problems/")}>{problemLabel}</a><span>/</span><span>{domain.name}</span>
-  </nav>
+  <Crumbs
+    site={site}
+    items={[
+      { label: problemLabel, href: "/problems/" },
+      { label: domain.name, icon: domain.icon },
+    ]}
+  />
   <header class="page-head">
     <h1>{domain.icon} {domain.name}</h1>
     <p class="lede">{domain.intro}</p>

@@ -43,11 +43,12 @@ export interface SiteConfig {
   /** 頁尾文字，預設「© 2026 Andrew」 */
   footer?: string;
   /**
-   * 選用：頁尾「回母站」連結（技術筆記星系入口）。各站同屬 nplus.wiki 底下，故預設即連母站——
-   * 不填 → 用預設 `{ href: "https://nplus.wiki/", label: "nplus.wiki 筆記星系" }`（零設定即有）；
-   * 設 `null` → 隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
+   * 選用：「回母站」連結（筆記星系入口），同時出現在 topnav 最左與頁尾。各站同屬
+   * nplus.wiki 底下，故預設即連母站——不填 → 用 `DEFAULT_PARENT_SITE`（零設定即有）；
+   * 設 `null` → 兩處都隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
+   * `short` 是 topnav 用的短名（省略則沿用 `label`）——導覽列塞不下全名。
    */
-  parentSite?: { href: string; label: string } | null;
+  parentSite?: { href: string; label: string; short?: string } | null;
   /** 選用：覆寫品牌主色（--accent），不填則用共用設計系統的預設 indigo。 */
   accentOverride?: string;
   /** 選用：概念區的顯示標籤（麵包屑），預設「概念」；有些站叫「主題」。 */
@@ -71,6 +72,17 @@ export interface SiteConfig {
   /** 選用：題庫頁 <title> 後綴（預設「題」）。 */
   problemSuffix?: string;
 }
+
+/**
+ * 母站預設值：連 `/notes/` 這個筆記索引頁，而非 nplus.wiki 根。
+ * 根頁是整個 wiki（書站 + 筆記站 + 其他）的門面；從一個筆記站往上一層，該落回的是
+ * 「主題 37 站 / 人物 28 站」那張索引——上一層就是筆記星系本身，不是整個站群。
+ */
+export const DEFAULT_PARENT_SITE = {
+  href: "https://nplus.wiki/notes/",
+  label: "nplus.wiki 筆記星系",
+  short: "筆記星系",
+};
 
 /** 身分設定 helper：純粹回傳原物件，提供型別檢查與 IDE 補全。 */
 export function defineSite(c: SiteConfig): SiteConfig {
