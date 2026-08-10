@@ -749,14 +749,18 @@ def main():
         )
 
     w(f"""
-**這是第四個軸**，與 docs/ 既有三份不同：
+**這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
 | [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
+| [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md) | **書有了、沒有站在管** | 認領／開站 |
 | **本檔** | **書本身還沒有** | **去收書** |
+
+> 本檔是「**站**說它缺什麼」的正向視角，看不到「沒有任何站提過」的書——那一側看
+> [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)。兩份要成對看，`tools/refresh-galaxy-docs.sh` 一次重算。
 
 ## bibliography 的四個 status
 

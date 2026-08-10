@@ -66,6 +66,8 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/export-wanted.py`        | 匯出全星系 bibliography 的 `wanted` 成採購清單 `docs/WANTED-BOOKS.md`     |
 | `tools/export-missing-years.py` | 匯出全星系 bibliography 缺 `year` 的條目成 `docs/MISSING-YEARS.md`        |
 | `tools/export-deepen-ready.py`  | 盤點各站書單完成度與頁/書，排出可深化順序 `docs/DEEPEN-READY.md`          |
+| `tools/export-orphan-books.py`  | 反向盤點：書庫的書沒站在管、slug 死鏈 `docs/ORPHAN-BOOKS.md`              |
+| `tools/refresh-galaxy-docs.sh`  | **一次重算上面四份生成文件**並印落差；`--check` 有落差就 exit 1          |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
@@ -85,22 +87,32 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 
 | 文件                                | 用途                                                                |
 | ----------------------------------- | ------------------------------------------------------------------- |
-| `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；附可重跑的掃描腳本      |
+| `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；2026-08-10 起是決策紀錄，現況看 ORPHAN-BOOKS |
 | `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-check --enrich` 補）；跨站排序          |
 | `docs/SOURCING-DEBT.md`             | **內容寫了但查不到出處**（缺口靠掛 `anchor` 補）；2026-08-05 已清空  |
 | `docs/WANTED-BOOKS.md`              | **書還沒收**（缺口靠去收書補）；由 `tools/export-wanted.py` 生成     |
 | `docs/MISSING-YEARS.md`             | **書收了但沒填出版年**（缺口靠查初版年補）；由 `tools/export-missing-years.py` 生成 |
 | `docs/DEEPEN-READY.md`              | **哪些站書收齊了、可以進場深化**（排序表）；由 `tools/export-deepen-ready.py` 生成 |
+| `docs/ORPHAN-BOOKS.md`              | **書有了但沒有站在管**，外加死鏈 slug／anchor（缺口靠認領或開站補）；由 `tools/export-orphan-books.py` 生成 |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
 | `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
 | `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
 | `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
 
-**前六份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 六者是不同的軸，別混用——
+**前七份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 七者是不同的軸，別混用——
 「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
 「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS，
-「哪些站現在可以進場深化」看 DEEPEN-READY（後三份是生成物，改各站 bibliography／內容再重跑，不要手改）。
+「哪些站現在可以進場深化」看 DEEPEN-READY，「書有了卻沒有站在管」看 ORPHAN-BOOKS
+（後四份是生成物，改各站 bibliography／內容再重跑，不要手改）。
+
+> **四份生成物用 `tools/refresh-galaxy-docs.sh` 一次重算，不要單獨跑其中一支。**
+> 生成物停更會開始騙人，而它看起來跟剛跑完一模一樣——2026-08-10 實測，committed 的
+> WANTED-BOOKS 說「先扣掉 0 本」，當場重跑是 23 本，採購前 20 名裡 2 本早就建好書站了。
+
+> **正向與反向要成對看**：WANTED-BOOKS／DEEPEN-READY 都是「**站**說它缺什麼」，
+> 看不到「沒有任何站提過」的書；ORPHAN-BOOKS 是唯一從**書庫**那一側問的，
+> 新建的書站沒人認領只有它抓得到。
 
 > **ENRICH-BACKLOG 與 DEEPEN-READY 的分工**：前者是**做過什麼**的工作日誌（抽查輪次、
 > 契約債結案），手維護；後者是**現在該做什麼**的排序表，每次重算。原本 ENRICH-BACKLOG

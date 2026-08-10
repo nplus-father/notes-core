@@ -1,33 +1,29 @@
 # Note 星系 coverage gap（還沒開站的人物與主題）
 
-掃描日：2026-08-03（2026-08-04 重掃更新）。**星系的維護有三個軸，別混用**：
+掃描日：2026-08-03（2026-08-04 重掃更新）。**本檔自 2026-08-10 起是那兩輪的決策紀錄**——「現在還有哪些沒站管」看生成物 [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)，每次重算，不會過期。
 
-- 本檔：**還沒有站**的人物／主題 —— 缺口靠「開新站」補。
+**星系的維護軸，別混用**：
+
+- 本檔：**還沒有站**的人物／主題 —— 缺口靠「開新站」補（決策紀錄；現況看 ORPHAN-BOOKS）。
 - [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)：**站已存在但還沒寫完** —— 缺口靠 `note-check --enrich` 長內容補。
 - [SOURCING-DEBT.md](./SOURCING-DEBT.md)：**內容寫了但查不到出處** —— 缺口靠掛 `anchor` 補（2026-08-04 新增的軸；當時全星系 33% 的頁沒有 anchor）。
+- [WANTED-BOOKS.md](./WANTED-BOOKS.md)：**書本身還沒有** —— 缺口靠去收書補。
+- [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)：**書有了、沒有站在管** —— 缺口靠認領或開站補（2026-08-10 把本檔的手動掃描腳本化成這一份）。
 
 ## 指標與重算方式
 
 指標＝一本藏書有沒有被**任何**站的 `src/data/bibliography.ts` 引用到。這比「站數 vs 書數」精確，因為它抓得到跨站分工（一本書被別站認領也算覆蓋）。
 
 ```bash
-# 在 portal repo 下跑（需要 src/data/repos.json 是最新的：npm run fetch-repos）
-python3 - <<'EOF'
-import json, re, glob
-from collections import Counter
-items = json.load(open('src/data/repos.json'))['items']
-books = [i for i in items if 'nplus-kind-book' in i.get('topics', [])]
-leaf = lambda i: next((t[5:] for t in i.get('topics', []) if t.startswith('leaf-')), '')
-cited = set()
-for f in glob.glob('/home/andrew/workspace/andrew/notes/*/src/data/bibliography.ts'):
-    cited |= set(re.findall(r'slug:\s*"([^"]+)"', open(f, encoding='utf-8').read()))
-uncov = [b for b in books if b['name'] not in cited]
-print(len(books), '本藏書，未被引用', len(uncov), '本')
-for l, n in Counter(leaf(b) for b in uncov).most_common(20):
-    tot = sum(1 for b in books if leaf(b) == l)
-    print(f'  {n:4}/{tot:<4} {l}')
-EOF
+notes-core/tools/export-orphan-books.py
 ```
+
+> **原本這裡是一段要手貼進 portal repo 跑的 heredoc，2026-08-10 移除。** 兩個理由：
+> 一是它吃站台的 `repos.json` **快照**，而快照落後好幾天很正常（2026-08-07 就是拿
+> 08-05 的快照對 08-07 建的書站，回報全錯）；腳本改成先問 `gh repo list`，退回快照時
+> 會在輸出頂端吵。二是手貼的東西沒人會定期跑——掃描日就這樣停在 2026-08-03，
+> 中間書庫多了兩百多個 repo 都沒人重掃。腳本版另外多驗三件事（死鏈 slug、`owned`
+> 缺 slug、死鏈 anchor），並把「內容已經引了、bibliography 沒登記」單獨抓出來。
 
 **讀法**：看**比例**不是看絕對數。未覆蓋比例高＝沒站在管（開新站）；絕對數高但比例低＝有站在管、只是還沒寫完（進 ENRICH-BACKLOG）。
 
