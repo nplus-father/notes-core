@@ -4,7 +4,7 @@
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1667 個 repo），其中 `nplus-kind-book` 的書 repo 1548 本。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1710 個 repo），其中 `nplus-kind-book` 的書 repo 1591 本。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -18,13 +18,13 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **358** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **362** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：358 本沒有任何站認領
+## 一、孤兒書：362 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -46,31 +46,31 @@
 | --- | --- | ---: | ---: | --- |
 | `investing` | finance | 52/123 | 42% | investing(46)、schwager(9)、personal-finance(7) |
 | `biblical-studies` | theology | 43/117 | 37% | biblical-studies(63)、stott(8)、nt-wright(7) |
-| `growth` | mindset | 37/115 | 32% | growth(22)、thinking(17)、science(11) |
+| `growth` | mindset | 37/116 | 32% | growth(22)、thinking(17)、science(11) |
 | `systematic` | theology | 31/78 | 40% | theology(27)、keller(13)、spiritual-formation(9) |
 | `persuasion` | communication | 30/64 | 47% | communication(18)、greene(3)、business-strategy(3) |
 | `coding-practice` | engineering | 29/70 | 41% | clean-code(18)、design-patterns(12)、uncle-bob(5) |
-| `ethics` | philosophy | 25/69 | 36% | philosophy(15)、fromm(9)、de-botton(7) |
+| `ethics` | philosophy | 25/73 | 34% | philosophy(17)、fromm(9)、de-botton(7) |
 | `productivity` | habit | 11/53 | 21% | tools(25)、habits(20)、tracy(5) |
-| `self-learning` | education | 9/29 | 31% | learning(17)、growth(4)、career(2) |
+| `self-learning` | education | 9/30 | 30% | learning(18)、growth(4)、career(2) |
 | `strategy` | business | 9/35 | 26% | business-strategy(18)、startup(5)、hbr(3) |
 | `community` | relationships | 8/26 | 31% | relationships(14)、maxwell(2)、communication(2) |
+| `economics` | finance | 7/44 | 16% | economics(37)、investing(3)、kiyosaki(2) |
 | `public-speaking` | communication | 5/13 | 38% | communication(5)、hbr(3)、tracy(1) |
-| `civilization` | history | 5/24 | 21% | history(13)、fengtang(2)、wujun(2) |
+| `civilization` | history | 5/26 | 19% | history(15)、fengtang(2)、wujun(2) |
 | `systems-design` | engineering | 5/26 | 19% | system-design(14)、design-patterns(6)、fowler(3) |
+| `political-philosophy` | philosophy | 4/9 | 44% | philosophy(4)、economics(1) |
 | `storytelling` | communication | 4/11 | 36% | communication(5)、writing(2)、greene(1) |
 | `personal-finance` | finance | 4/29 | 14% | personal-finance(17)、kiyosaki(14)、schwager(1) |
-| `economics` | finance | 4/36 | 11% | economics(32)、investing(3)、kiyosaki(2) |
 | `negotiation` | communication | 3/16 | 19% | communication(10)、hbr(2)、relationships(1) |
-| `political-philosophy` | philosophy | 3/6 | 50% | philosophy(2)、economics(1) |
 | `emotion` | mindset | 3/12 | 25% | life-meaning(9)、thinking(2)、maxwell(1) |
 | `apologetics` | theology | 2/9 | 22% | theology(7)、lewis(4)、spiritual-formation(1) |
-| `cognitive` | science | 2/32 | 6% | thinking(23)、science(12)、gardner(7) |
+| `cognitive` | science | 2/37 | 5% | thinking(28)、science(12)、gardner(7) |
 | `databases` | engineering | 2/10 | 20% | data-systems(8)、fowler(1) |
 | `vision` | leadership | 2/45 | 4% | leadership(39)、management(7)、business-strategy(5) |
 | `discipline` | habit | 2/5 | 40% | habits(2)、writing(1)、cloud(1) |
 | `non-fiction` | writing | 2/19 | 11% | writing(15)、learning(1)、philosophy(1) |
-| `visual` | design | 2/14 | 14% | design(11)、problem-solving(1)、de-botton(1) |
+| `visual` | design | 2/15 | 13% | design(11)、problem-solving(2)、de-botton(1) |
 | `coffee` | tools | 2/2 | 100% | **沒有站在管** |
 | `fiction` | writing | 2/7 | 29% | writing(4)、lewis(1) |
 | `engineering-management` | engineering | 2/5 | 40% | agile(1)、cloud-infra(1)、career(1) |
@@ -88,7 +88,7 @@
 | David J. Atkinson | 3 | — | The Message of Job、The Message of Proverbs、The Message of Ruth |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 358 本（依 leaf 分組）
+### 1e. 全部 362 本（依 leaf 分組）
 
 #### `investing` — 52/123 沒人認領（目前：investing(46)、schwager(9)、personal-finance(7)）
 
@@ -195,7 +195,7 @@
 | `understanding-the-bible` | Understanding the Bible: Methods of Bible Study | Dorothy L. Johns |
 | `when-good-men-are-tempted` | When Good Men Are Tempted | Bill Perkins |
 
-#### `growth` — 37/115 沒人認領（目前：growth(22)、thinking(17)、science(11)）
+#### `growth` — 37/116 沒人認領（目前：growth(22)、thinking(17)、science(11)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -342,7 +342,7 @@
 | `specification-by-example` | Specification by Example | Gojko Adzic |
 | `zen-programmer` | The Zen Programmer | Christian Grobmeier |
 
-#### `ethics` — 25/69 沒人認領（目前：philosophy(15)、fromm(9)、de-botton(7)）
+#### `ethics` — 25/73 沒人認領（目前：philosophy(17)、fromm(9)、de-botton(7)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -388,7 +388,7 @@
 | `world-only-readers-can-reach` | 只有讀書能抵達的境界 | 齋藤孝 |
 | `worries-are-all-in-your-head` | 煩惱都是自己想出來的 | 古川武士 |
 
-#### `self-learning` — 9/29 沒人認領（目前：learning(17)、growth(4)、career(2)）
+#### `self-learning` — 9/30 沒人認領（目前：learning(18)、growth(4)、career(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -429,6 +429,18 @@
 | `whos-pulling-your-strings` | Who's Pulling Your Strings? | Harriet B. Braiker |
 | `your-anxiety-comes-from-being-too-used-to-getting-hurt` | 你的不安，是因為太習慣受傷害 | 中島輝 |
 
+#### `economics` — 7/44 沒人認領（目前：economics(37)、investing(3)、kiyosaki(2)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `algebra-of-wealth` | The Algebra of Wealth | Scott Galloway |
+| `from-here-to-financial-happiness` | From Here to Financial Happiness | Jonathan Clements |
+| `globalization-and-its-discontents-revisited` | Globalization and Its Discontents Revisited | Joseph E. Stiglitz |
+| `how-economy-grows` | How an Economy Grows and Why It Crashes | Peter D. Schiff & Andrew J. Schiff |
+| `little-book-that-builds-wealth` | The Little Book That Builds Wealth | Pat Dorsey |
+| `superfreakonomics` | SuperFreakonomics | Steven D. Levitt & Stephen J. Dubner |
+| `undercover-economist-strikes-back` | The Undercover Economist Strikes Back | Tim Harford |
+
 #### `public-speaking` — 5/13 沒人認領（目前：communication(5)、hbr(3)、tracy(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -439,7 +451,7 @@
 | `speaking-up` | Speaking Up | Frederick Gilbert |
 | `stage-presentation-skills` | 上台的技術 | 王永福 |
 
-#### `civilization` — 5/24 沒人認領（目前：history(13)、fengtang(2)、wujun(2)）
+#### `civilization` — 5/26 沒人認領（目前：history(15)、fengtang(2)、wujun(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -459,6 +471,15 @@
 | `software-architecture-for-developers-vol2` | Software Architecture for Developers, Vol. 2 | Simon Brown |
 | `system-architecture-design` | 系統架構設計：從程式設計師向架構師轉型之路 | 鄭天民 |
 
+#### `political-philosophy` — 4/9 沒人認領（目前：philosophy(4)、economics(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `50-politics-classics` | 50 Politics Classics | Tom Butler-Bowdon |
+| `discourses-on-livy` | The Discourses | Niccolo Machiavelli |
+| `equality` | Equality | Thomas Piketty & Michael J. Sandel |
+| `secular-age` | A Secular Age | Charles Taylor |
+
 #### `storytelling` — 4/11 沒人認領（目前：communication(5)、writing(2)、greene(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -477,15 +498,6 @@
 | `who-stole-my-pension` | Who Stole My Pension? | Robert Kiyosaki & Edward Siedle |
 | `why-a-students-work-for-c-students` | Why "A" Students Work for "C" Students | Robert T. Kiyosaki |
 
-#### `economics` — 4/36 沒人認領（目前：economics(32)、investing(3)、kiyosaki(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `algebra-of-wealth` | The Algebra of Wealth | Scott Galloway |
-| `from-here-to-financial-happiness` | From Here to Financial Happiness | Jonathan Clements |
-| `how-economy-grows` | How an Economy Grows and Why It Crashes | Peter D. Schiff & Andrew J. Schiff |
-| `little-book-that-builds-wealth` | The Little Book That Builds Wealth | Pat Dorsey |
-
 #### `negotiation` — 3/16 沒人認領（目前：communication(10)、hbr(2)、relationships(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -493,14 +505,6 @@
 | `code-of-trust` | The Code of Trust | Robin Dreeke |
 | `getting-to-yes-with-yourself` | Getting to Yes with Yourself | William Ury |
 | `secrets-of-power-negotiating-for-salespeople` | Secrets of Power Negotiating for Salespeople | Roger Dawson |
-
-#### `political-philosophy` — 3/6 沒人認領（目前：philosophy(2)、economics(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `50-politics-classics` | 50 Politics Classics | Tom Butler-Bowdon |
-| `equality` | Equality | Thomas Piketty & Michael J. Sandel |
-| `secular-age` | A Secular Age | Charles Taylor |
 
 #### `emotion` — 3/12 沒人認領（目前：life-meaning(9)、thinking(2)、maxwell(1)）
 
@@ -517,7 +521,7 @@
 | `god-in-the-dock` | God in the Dock: Essays on Theology and Ethics | C. S. Lewis |
 | `shadowlands` | Shadowlands | Brian Sibley |
 
-#### `cognitive` — 2/32 沒人認領（目前：thinking(23)、science(12)、gardner(7)）
+#### `cognitive` — 2/37 沒人認領（目前：thinking(28)、science(12)、gardner(7)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -552,7 +556,7 @@
 | `wild-at-heart` | 我心狂野 | 艾傑奇 (John Eldredge) |
 | `working-poor` | The Working Poor | David K. Shipler |
 
-#### `visual` — 2/14 沒人認領（目前：design(11)、problem-solving(1)、de-botton(1)）
+#### `visual` — 2/15 沒人認領（目前：design(11)、problem-solving(2)、de-botton(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -622,7 +626,7 @@
 | --- | --- | --- |
 | `whats-wrong-with-the-world` | What's Wrong with the World | G. K. Chesterton |
 
-#### `self-awareness` — 1/6 沒人認領（目前：growth(5)、career(1)、greene(1)）
+#### `self-awareness` — 1/7 沒人認領（目前：growth(5)、thinking(1)、career(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -664,7 +668,7 @@
 | --- | --- | --- |
 | `secrets-of-sexual-body-language` | Secrets of Sexual Body Language | Martin Lloyd-Elliott |
 
-#### `job-search` — 1/10 沒人認領（目前：career(9)、behaviour-interview(7)、management(1)）
+#### `job-search` — 1/12 沒人認領（目前：behaviour-interview(9)、career(9)、management(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -682,7 +686,7 @@
 | --- | --- | --- |
 | `timeless-way-of-building` | The Timeless Way of Building | Christopher Alexander |
 
-#### `marketing` — 1/22 沒人認領（目前：marketing(20)、tracy(2)、writing(1)）
+#### `marketing` — 1/23 沒人認領（目前：marketing(20)、startup(2)、tracy(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |

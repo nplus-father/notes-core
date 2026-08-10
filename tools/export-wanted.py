@@ -25,6 +25,13 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
   「多站共等」少報一本。修法在資料側：那筆補 `original` 放純英文書名（thinking-note
   本來就這樣寫）。看到某書「應該多站都要卻只出現一次」時，先查這個。
 
+  第三種形狀（2026-08-11）：**中譯書名以 ASCII 數字開頭**，latin_of 的「砍 CJK 之後」
+  切不乾淨——startup 的 `The $100 Startup 3000元開始的自主人生`，英文名被抓成
+  `The $100 Startup 3000`，於是 portal 早就有的 `100-startup` 對不上，那本在 wanted
+  躺著沒被扣掉。career 的 `The Defining Decade 20 世代…` 是同一個形狀（暫時沒 repo
+  所以沒出事）。兩筆都已在資料側補 `original` 放純英文書名。掃法：`title` 含 CJK 時，
+  取 CJK 之前的前綴，**前綴結尾是數字或冠詞／介係詞就是可疑**。
+
   同一個坑的另一種形狀（2026-08-09）：`original` 放的是**拉丁／希臘原名**
   （spiritual-formation 的 `Confessiones`、`De Imitatione Christi`，philosophy 的
   `Politeia`、`Ethika Nikomacheia`），規則 1 照收，於是英文名整個對不上——兩個後果：
@@ -105,47 +112,49 @@ from pathlib import Path
 # 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
-# 2026-08-10 這輪（`/note-wanted` 全跑）：上一版 20 本裡 2 本已經建好書站（Emotional
-# Intelligence、Life Without Lack），但那只是冰山一角——這輪重跑「先扣掉」抓到 **23 本**
-# wanted 其實早有 repo，回填 29 筆條目（跨 15 站）。**這不是比對邏輯壞掉，是產出停更**：
-# WANTED-BOOKS.md 從 08-09 就沒重算，而書庫這段期間長了兩百多個 repo。教訓寫進
-# tools/refresh-galaxy-docs.sh——四份生成物一次重算，不要單獨跑其中一支。
+# 2026-08-11 這輪（`/note-wanted` 全跑）：上一版 20 本裡 3 本已經建好書站（Tuesdays with
+# Morrie、Decode and Conquer、60 Seconds and You're Hired），「先扣掉」整體抓到 **38 本**
+# wanted 其實早有 repo，回填 38 筆條目（跨 9 站）。全部逐筆對過作者才回填，沒有一筆撞名。
 #
-# 回填之後的近零名單變成 **6 站差 1 本 ＋ 9 站差 2 本＝24 本候選**，第一次超過 20 格。
-# 依規矩「差 1 本的站先全部排進去，再排差 2 本的」，前 20 **全部由歸零批填滿**，準則②③④
-# 這輪都排不上（多站共等本來就歸零了——Emotional Intelligence 與 The Imitation of Christ
-# 兩本一回填，「優先收」那節就空了）。
+# 另外抓到 **一筆比對漏報**：`The $100 Startup 3000元開始的自主人生` 的英文名被 latin_of
+# 抓成 `The $100 Startup 3000`（中譯書名以數字開頭，砍 CJK 砍不乾淨），於是 portal 早有的
+# `100-startup` 對不上。修法在資料側補 `original`，形狀寫進本檔 docstring 第三個坑。
+# 同形狀的 career `The Defining Decade 20 世代…` 一併補了（它目前沒 repo，還沒出事）。
 #
-# 差 2 本的 9 站只有 7 站擠得進來，讓位的兩站與理由：
-#   - `jung-note`（Psychological Types／The Red Book）：兩本都厚且貴，Red Book 是大開本
-#     摹真本——準則⑤「薄的排前面」把它們推到最後；下一輪若仍差 2 本再上。
-#   - `collins-note`（Good to Great and the Social Sectors／How the Mighty Fall）：準則④
-#     輸給 christensen——portal 的 Jim Collins 書櫃實查 4 本（great-by-choice、built-to-last、
-#     good-to-great、be-2-0；搜「Collins」另外命中的 team-geek 與 simple-path-to-wealth
-#     是別的 Collins，**子字串假命中要濾掉**），christensen 是 7 本。
+# 回填之後近零名單是 **7 站差 1 本 ＋ 9 站差 2 本＝25 本候選**，又超過 20 格。依規矩
+# 「差 1 本的站先全部排進去，再排差 2 本的」，前 20 **全部由歸零批填滿**，準則②這輪
+# 一樣排不上（「優先收」是 0 本——多站共等的都回填成 owned 了）。
+#
+# 差 2 本的 9 站有 6 站整對進榜、第 20 格給第 7 站的其中一本（growth 的 The Obstacle Is
+# the Way），讓位的兩站與理由：
+#   - `management-note`（Managing／Working Backwards）：兩位作者 portal 都掛零，但站內
+#     引用薄到只剩孤證——Mintzberg 2 處、「逆向工作法」「PR/FAQ」各 1 處，準則④輸給
+#     引用密度高的那幾站。
+#   - `navarro-note`（Be Exceptional／Three Minutes to Doomsday）：「肢體語言」全星系
+#     12 處／12 個檔案，navarro 站自己只有 3 處——同樣是準則④偏弱；Three Minutes 又厚。
 #
 # 排序 = 消化順序：差 1 批在前（收一本歸零一站），批內與差 2 批內都依準則⑤ 薄→厚。
 TOP20 = [
-    ("tuesdays-with-morrie", "life-meaning 站 owned 38／wanted 1——**收了就歸零**（Emotional Intelligence 這輪回填成 owned 之後只剩這本）；portal 的 Mitch Albom **掛零**；「臨終」全星系 50 處／21 個檔案／**跨 14 站**（peck 17、relationships 7、nouwen 7…），醫療端有 Being Mortal 接住，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》"),
-    ("living-in-christ-s-presence", "willard 站 owned 8／wanted 1——**收了就歸零**（Life Without Lack 這輪回填成 owned）；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾。**更正上一版的理由**：portal 的 Ortberg 不是掛零，實查有 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；薄，有繁中《活在基督的同在中》"),
+    ("living-in-christ-s-presence", "willard 站 owned 8／wanted 1——**收了就歸零**；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾；portal 的 Ortberg 實查 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；最薄的一本，有繁中《活在基督的同在中》"),
+    ("running-lean", "startup 站 owned 61／wanted 1——**收了就歸零**，而這是全星系第二深的主題站（The $100 Startup 這輪查出 portal 早有 `100-startup`、回填成 owned 之後只剩這本）；portal 的 Ash Maurya 只有 Scaling Lean 一本，而那本是**續作**——Lean Canvas 的原典正是缺的這本；站內「精實」21 處／6 個檔案，「Lean Canvas」卻只有 1 處孤證；薄，有繁中《Running Lean 精實執行》"),
+    ("a-little-history-of-the-world", "history 站 owned 33／wanted 1——**收了就歸零**（The Silk Roads、Collapse 這輪都查出早有書站）；portal 的 Gombrich **掛零**，但 Little History 這個系列的後輩已經收了 3 本（`little-history-of-literature`、`little-history-of-philosophy`、`little-history-of-economics`）——**系列開山的 1935 那本反而不在**；history 站內「世界史」4 處／3 個檔案；薄，有繁中《寫給年輕人的簡明世界史》"),
     ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案；有繁中《第 50 條法則》"),
     ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**（實查 portal 作者欄命中 35 筆）；財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」40 處／10 個檔案、「習慣」24 處／11 個檔案"),
-    ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導、與成功有約的高效能習慣…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》"),
+    ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》"),
     ("bogle-on-mutual-funds", "bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 31 處／20 個檔案／跨 5 站，其中 bogle 站內 15 處／7 個檔案——常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 批的最後"),
-    ("decode-and-conquer", "behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），**Lewis C. Lin 與 Robin Ryan 兩位作者都掛零**（實查作者欄各 0 筆）；站內「STAR」76 處／22 個檔案、「行為面試」68 處／32 個檔案，大廠情境題的答題框架全靠站內轉述；薄"),
-    ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站，其中本站 68 處），出處卻不在；薄"),
-    ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站，而系列裡就缺這本場域書；薄"),
-    ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
-    ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上：肢體語言辭典、Louder Than Words、FBI 教你讀心術、Dangerous Personalities）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
-    ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處／7 個檔案，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
-    ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》"),
-    ("awaken-the-giant-within", "growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面"),
-    ("working-backwards", "management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Bryar／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》"),
-    ("managing", "management 的另一半；portal 的 Mintzberg **掛零**（作者欄 0 筆），站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條"),
+    ("discourses", "philosophy 站 owned 31／wanted 2——**這兩本收齊就歸零**（蘇菲的世界、尼各馬可倫理學、理想國、正義論這輪一次回填了 4 本）；portal 的 Epictetus **掛零**，站上已有奧理略與塞內卡，缺的正是斯多噶三巨頭的最後一角；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，其中 philosophy 站內 27 處／8 個檔案——密度最高的站卻缺一根柱子。**下單前對作者**：portal 的 `discourses-on-livy` 是馬基維利的《論李維》，不是這本（見「作者這一關擋下的」）；薄"),
+    ("the-myth-of-sisyphus", "philosophy 的另一半；portal 的 Camus **掛零**（作者欄 0 筆），而站上「人文主義與存在」那組已有佛洛姆 3 本、海德格《存在與時間》列 skipped——存在主義這條線目前沒有任何一本原典撐著（「存在主義」全星系只有 8 處／6 個檔案／跨 4 站，philosophy 站內 1 處）；最薄的一本，有繁中《薛西弗斯的神話》"),
     ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站，其中 damodaran 站內 178 處／12 個檔案——**全星系概念密度最高的主題卻只有 3 本原典**，而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處；厚"),
     ("investment-philosophies", "damodaran 的另一半；「投資哲學」6 處／6 個檔案／跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在；厚"),
-    ("disrupting-class", "christensen 站 owned 7／wanted 2——**這兩本收齊就歸零**；portal 的克里斯汀生書櫃實查 7 本（創新的兩難、創新者的解答、看見未來、繁榮的悖論、與運氣競爭、你要如何衡量你的人生、創新者的 DNA），**理論本身收得很齊，缺的是兩條應用線**：這本是教育端，站內「教育」2 處、「學校」1 處全靠轉述；「破壞式創新」全星系 27 處／22 個檔案／跨 9 站（christensen 站內 6 處／3 個檔案）；有繁中《來上一堂破壞課》"),
-    ("the-innovator-s-prescription", "christensen 的另一半，醫療端；他自己認定最重要的一本（站上 note 已註明），而 christensen 站內「醫療」只有 2 處、無專書可掛；厚，排在差 2 批的最後"),
+    ("the-innovator-s-prescription", "christensen 站 owned 7／wanted 2——**這兩本收齊就歸零**；portal 的克里斯汀生實查 7 本（創新的兩難、創新者的解答、看見未來、繁榮的悖論、與運氣競爭、你要如何衡量你的人生、創新者的 DNA），**理論本身收得很齊，缺的是兩條應用線**——站上索性把這兩本放進名為「缺口」的分組；這本是醫療端，站主自註「他自認最重要的一本」，而 christensen 站內「醫療」只有 2 處／1 個檔案；厚"),
+    ("disrupting-class", "christensen 的另一半，教育端；「破壞式創新」全星系 27 處／22 個檔案／跨 9 站（business-strategy 8、christensen 6、management 5…）——理論被九個站引用，教育這條應用線卻只有 christensen 站內 2 處在轉述；有繁中《來上一堂破壞課》"),
+    ("psychological-types", "jung 站 owned 5／wanted 2——**這兩本收齊就歸零**；portal 的榮格恰好 5 本（Answer to Job、原型與集體潛意識、人及其象徵、回憶‧夢‧省思、尋求靈魂的現代人）；「榮格」全星系 100 處／32 個檔案／跨 10 站，**引用他最多的是 thinking 站的 63 處，不是他自己站的 22 處**；這本是內傾／外傾與四種功能的原典、MBTI 整條產業鏈的源頭，而 jung 站內「個體化」19 處／7 個檔案卻沒有類型論的出處；厚"),
+    ("the-red-book-liber-novus", "jung 的另一半；1913–1930 的私人筆記、2009 年才出版，他自承後半生的一切都從這裡長出來——站上的閱讀路徑缺的正是這個源頭；**大開本摹真本、二手價高**，排在 jung 這對的後面"),
+    ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站（relationships 12、career 5…）**卻沒有任何一站有專書可掛**，而系列裡就缺這本場域書；薄"),
+    ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出那些「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
+    ("how-the-mighty-fall", "collins 站 owned 4／wanted 2——**這兩本收齊就歸零**；portal 的 Jim Collins 實查 4 本（Good to Great、Built to Last、Great by Choice、BE 2.0——搜「Collins」另外命中的 `simple-path-to-wealth` 是 J.L. Collins、`team-geek` 是 Collins-Sussman，**子字串假命中要濾掉**）；站主自註「與《從 A 到 A+》互為反面，這條線缺了它就只剩上升段」，而「第五級領導」41 處／20 個檔案、「刺蝟」51 處／22 個檔案，引用大戶是 leadership 與 business-strategy，collins 站自己只有 10 處與 3 處；薄"),
+    ("good-to-great-and-the-social-sectors", "collins 的另一半；把同一套框架搬到沒有利潤計分板的非營利部門——「非營利」全星系 18 處／14 個檔案／跨 8 站（drucker 5、business-strategy 3…），杜拉克那條線接住了非營利管理，卓越框架這一側沒有；四十餘頁的專論，最薄"),
+    ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2，**這本收了還差 Awaken the Giant Within 才歸零**——本輪 20 格用完，另一半下輪再排；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，但 growth 站內只有 1 處——這條韌性線在 growth 目前是靠 Holiday 的另兩本撐著；薄，有繁中《障礙就是道路》"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])

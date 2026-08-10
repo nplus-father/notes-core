@@ -6,40 +6,38 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1686 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1710 個 repo）。
 
 ## 先收這 20 本
 
-整份 266 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 227 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
-> ⚠ **這 20 本裡有 2 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。
-
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | **Tuesdays with Morrie** | Mitch Albom | 最後 14 堂星期二的課 | 1997 | life-meaning(0) | life-meaning 站 owned 38／wanted 1——**收了就歸零**（Emotional Intelligence 這輪回填成 owned 之後只剩這本）；portal 的 Mitch Albom **掛零**；「臨終」全星系 50 處／21 個檔案／**跨 14 站**（peck 17、relationships 7、nouwen 7…），醫療端有 Being Mortal 接住，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》 |
-| 2 | **Living in Christ's Presence** | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | willard(0) | willard 站 owned 8／wanted 1——**收了就歸零**（Life Without Lack 這輪回填成 owned）；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾。**更正上一版的理由**：portal 的 Ortberg 不是掛零，實查有 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；薄，有繁中《活在基督的同在中》 |
-| 3 | **The 50th Law** | Robert Greene & 50 Cent | 第 50 條法則 | 2009 | greene(0) | greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案；有繁中《第 50 條法則》 |
-| 4 | **Million Dollar Habits** | Brian Tracy |  | 2004 | tracy(0) | tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**（實查 portal 作者欄命中 35 筆）；財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」40 處／10 個檔案、「習慣」24 處／11 個檔案 |
-| 5 | **The 7 Habits of Highly Effective Families** | Stephen R. Covey |  | 1997 | covey(0) | covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導、與成功有約的高效能習慣…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》 |
-| 6 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | John C. Bogle | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 31 處／20 個檔案／跨 5 站，其中 bogle 站內 15 處／7 個檔案——常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 批的最後 |
-| 7 | **Decode and Conquer** | Lewis C. Lin |  | 2013 | behaviour-interview(1) | ✅ 已建站 `decode-and-conquer`——behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），**Lewis C. Lin 與 Robin Ryan 兩位作者都掛零**（實查作者欄各 0 筆）；站內「STAR」76 處／22 個檔案、「行為面試」68 處／32 個檔案，大廠情境題的答題框架全靠站內轉述；薄 |
-| 8 | **60 Seconds and You're Hired!** | Robin Ryan |  | 1994 | behaviour-interview(1) | ✅ 已建站 `60-seconds-and-youre-hired`——behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站，其中本站 68 處），出處卻不在；薄 |
-| 9 | **The Rules of Parenting** | Richard Templar |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站，而系列裡就缺這本場域書；薄 |
-| 10 | **The Rules to Break** | Richard Templar |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
-| 11 | **Be Exceptional** | Joe Navarro |  | 2021 | navarro(1) | navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上：肢體語言辭典、Louder Than Words、FBI 教你讀心術、Dangerous Personalities）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄 |
-| 12 | **Three Minutes to Doomsday** | Joe Navarro |  | 2017 | navarro(1) | navarro 的另一半；navarro 站內「偵訊」9 處／7 個檔案，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面 |
-| 13 | **The Obstacle Is the Way** | Ryan Holiday | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》 |
-| 14 | **Awaken the Giant Within** | Anthony Robbins |  | 1991 | growth(1) | growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面 |
-| 15 | **Working Backwards** | Colin Bryar & Bill Carr | 亞馬遜逆向工作法 | 2021 | management(1) | management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Bryar／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》 |
-| 16 | **Managing** | Henry Mintzberg |  | 2009 | management(1) | management 的另一半；portal 的 Mintzberg **掛零**（作者欄 0 筆），站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條 |
-| 17 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(1) | damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站，其中 damodaran 站內 178 處／12 個檔案——**全星系概念密度最高的主題卻只有 3 本原典**，而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處；厚 |
-| 18 | **Investment Philosophies** | Aswath Damodaran | 投資哲學 | 2003 | damodaran(1) | damodaran 的另一半；「投資哲學」6 處／6 個檔案／跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在；厚 |
-| 19 | **Disrupting Class** | Clayton M. Christensen, Michael B. Horn & Curtis W. Johnson | 教育的創新 | 2008 | christensen(1) | christensen 站 owned 7／wanted 2——**這兩本收齊就歸零**；portal 的克里斯汀生書櫃實查 7 本（創新的兩難、創新者的解答、看見未來、繁榮的悖論、與運氣競爭、你要如何衡量你的人生、創新者的 DNA），**理論本身收得很齊，缺的是兩條應用線**：這本是教育端，站內「教育」2 處、「學校」1 處全靠轉述；「破壞式創新」全星系 27 處／22 個檔案／跨 9 站（christensen 站內 6 處／3 個檔案）；有繁中《來上一堂破壞課》 |
-| 20 | **The Innovator's Prescription** | Clayton M. Christensen, Jerome H. Grossman & Jason Hwang | 醫療的創新處方 | 2008 | christensen(1) | christensen 的另一半，醫療端；他自己認定最重要的一本（站上 note 已註明），而 christensen 站內「醫療」只有 2 處、無專書可掛；厚，排在差 2 批的最後 |
+| 1 | **Living in Christ's Presence** | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | willard(0) | willard 站 owned 8／wanted 1——**收了就歸零**；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾；portal 的 Ortberg 實查 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；最薄的一本，有繁中《活在基督的同在中》 |
+| 2 | **Running Lean** | Ash Maurya |  | 2012 | startup(0) | startup 站 owned 61／wanted 1——**收了就歸零**，而這是全星系第二深的主題站（The $100 Startup 這輪查出 portal 早有 `100-startup`、回填成 owned 之後只剩這本）；portal 的 Ash Maurya 只有 Scaling Lean 一本，而那本是**續作**——Lean Canvas 的原典正是缺的這本；站內「精實」21 處／6 個檔案，「Lean Canvas」卻只有 1 處孤證；薄，有繁中《Running Lean 精實執行》 |
+| 3 | **A Little History of the World** | E. H. Gombrich | 世界小史 | 1935 | history(0) | history 站 owned 33／wanted 1——**收了就歸零**（The Silk Roads、Collapse 這輪都查出早有書站）；portal 的 Gombrich **掛零**，但 Little History 這個系列的後輩已經收了 3 本（`little-history-of-literature`、`little-history-of-philosophy`、`little-history-of-economics`）——**系列開山的 1935 那本反而不在**；history 站內「世界史」4 處／3 個檔案；薄，有繁中《寫給年輕人的簡明世界史》 |
+| 4 | **The 50th Law** | Robert Greene & 50 Cent | 第 50 條法則 | 2009 | greene(0) | greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案；有繁中《第 50 條法則》 |
+| 5 | **Million Dollar Habits** | Brian Tracy |  | 2004 | tracy(0) | tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**（實查 portal 作者欄命中 35 筆）；財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」40 處／10 個檔案、「習慣」24 處／11 個檔案 |
+| 6 | **The 7 Habits of Highly Effective Families** | Stephen R. Covey |  | 1997 | covey(0) | covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》 |
+| 7 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | John C. Bogle | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 31 處／20 個檔案／跨 5 站，其中 bogle 站內 15 處／7 個檔案——常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 批的最後 |
+| 8 | **Discourses** | Epictetus 愛比克泰德（Arrian 記錄） | 愛比克泰德語錄 | 108 | philosophy(1) | philosophy 站 owned 31／wanted 2——**這兩本收齊就歸零**（蘇菲的世界、尼各馬可倫理學、理想國、正義論這輪一次回填了 4 本）；portal 的 Epictetus **掛零**，站上已有奧理略與塞內卡，缺的正是斯多噶三巨頭的最後一角；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，其中 philosophy 站內 27 處／8 個檔案——密度最高的站卻缺一根柱子。**下單前對作者**：portal 的 `discourses-on-livy` 是馬基維利的《論李維》，不是這本（見「作者這一關擋下的」）；薄 |
+| 9 | **The Myth of Sisyphus** | Albert Camus 卡繆 | 薛西弗斯的神話 | 1942 | philosophy(1) | philosophy 的另一半；portal 的 Camus **掛零**（作者欄 0 筆），而站上「人文主義與存在」那組已有佛洛姆 3 本、海德格《存在與時間》列 skipped——存在主義這條線目前沒有任何一本原典撐著（「存在主義」全星系只有 8 處／6 個檔案／跨 4 站，philosophy 站內 1 處）；最薄的一本，有繁中《薛西弗斯的神話》 |
+| 10 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(1) | damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站，其中 damodaran 站內 178 處／12 個檔案——**全星系概念密度最高的主題卻只有 3 本原典**，而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處；厚 |
+| 11 | **Investment Philosophies** | Aswath Damodaran | 投資哲學 | 2003 | damodaran(1) | damodaran 的另一半；「投資哲學」6 處／6 個檔案／跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在；厚 |
+| 12 | **The Innovator's Prescription** | Clayton M. Christensen, Jerome H. Grossman & Jason Hwang | 醫療的創新處方 | 2008 | christensen(1) | christensen 站 owned 7／wanted 2——**這兩本收齊就歸零**；portal 的克里斯汀生實查 7 本（創新的兩難、創新者的解答、看見未來、繁榮的悖論、與運氣競爭、你要如何衡量你的人生、創新者的 DNA），**理論本身收得很齊，缺的是兩條應用線**——站上索性把這兩本放進名為「缺口」的分組；這本是醫療端，站主自註「他自認最重要的一本」，而 christensen 站內「醫療」只有 2 處／1 個檔案；厚 |
+| 13 | **Disrupting Class** | Clayton M. Christensen, Michael B. Horn & Curtis W. Johnson | 教育的創新 | 2008 | christensen(1) | christensen 的另一半，教育端；「破壞式創新」全星系 27 處／22 個檔案／跨 9 站（business-strategy 8、christensen 6、management 5…）——理論被九個站引用，教育這條應用線卻只有 christensen 站內 2 處在轉述；有繁中《來上一堂破壞課》 |
+| 14 | **Psychological Types** | C. G. Jung | 心理類型 | 1921 | jung(1) | jung 站 owned 5／wanted 2——**這兩本收齊就歸零**；portal 的榮格恰好 5 本（Answer to Job、原型與集體潛意識、人及其象徵、回憶‧夢‧省思、尋求靈魂的現代人）；「榮格」全星系 100 處／32 個檔案／跨 10 站，**引用他最多的是 thinking 站的 63 處，不是他自己站的 22 處**；這本是內傾／外傾與四種功能的原典、MBTI 整條產業鏈的源頭，而 jung 站內「個體化」19 處／7 個檔案卻沒有類型論的出處；厚 |
+| 15 | **The Red Book (Liber Novus)** | C. G. Jung | 紅書 | 2009 | jung(1) | jung 的另一半；1913–1930 的私人筆記、2009 年才出版，他自承後半生的一切都從這裡長出來——站上的閱讀路徑缺的正是這個源頭；**大開本摹真本、二手價高**，排在 jung 這對的後面 |
+| 16 | **The Rules of Parenting** | Richard Templar |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站（relationships 12、career 5…）**卻沒有任何一站有專書可掛**，而系列裡就缺這本場域書；薄 |
+| 17 | **The Rules to Break** | Richard Templar |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出那些「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
+| 18 | **How the Mighty Fall** | Jim Collins | 為什麼 A+ 巨人也會倒下 | 2009 | collins(1) | collins 站 owned 4／wanted 2——**這兩本收齊就歸零**；portal 的 Jim Collins 實查 4 本（Good to Great、Built to Last、Great by Choice、BE 2.0——搜「Collins」另外命中的 `simple-path-to-wealth` 是 J.L. Collins、`team-geek` 是 Collins-Sussman，**子字串假命中要濾掉**）；站主自註「與《從 A 到 A+》互為反面，這條線缺了它就只剩上升段」，而「第五級領導」41 處／20 個檔案、「刺蝟」51 處／22 個檔案，引用大戶是 leadership 與 business-strategy，collins 站自己只有 10 處與 3 處；薄 |
+| 19 | **Good to Great and the Social Sectors** | Jim Collins | 從優秀到卓越（社會部門） | 2005 | collins(1) | collins 的另一半；把同一套框架搬到沒有利潤計分板的非營利部門——「非營利」全星系 18 處／14 個檔案／跨 8 站（drucker 5、business-strategy 3…），杜拉克那條線接住了非營利管理，卓越框架這一側沒有；四十餘頁的專論，最薄 |
+| 20 | **The Obstacle Is the Way** | Ryan Holiday | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2，**這本收了還差 Awaken the Giant Within 才歸零**——本輪 20 格用完，另一半下輪再排；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，但 growth 站內只有 1 處——這條韌性線在 growth 目前是靠 Holiday 的另兩本撐著；薄，有繁中《障礙就是道路》 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -60,38 +58,23 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1673 筆（去重 1190 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **266 筆（去重 266 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1712 筆（去重 1229 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **227 筆（去重 227 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 49 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
-> `owned` 去重後的 1190 是**已建成書站的書**（1673 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1229 是**已建成書站的書**（1712 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：15 本其實已經有書站了
+## 先扣掉：0 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
-| `23-things-they-dont-tell-you-about-capitalism` | 23 Things They Don't Tell You About Capitalism | economics-note | 23 Things They Don't Tell You about Capitalism \| Ha-Joon Cha |
-| `60-seconds-and-youre-hired` | 60 Seconds and You're Hired! | behaviour-interview-note | 60 Seconds and You're Hired! \| Robin Ryan \| An interview met |
-| `animal-spirits` | Animal Spirits | economics-note | Animal Spirits \| George A. Akerlof & Robert J. Shiller \| Arg |
-| `blitzscaling` | Blitzscaling | startup-note | Blitzscaling \| Reid Hoffman & Chris Yeh \| Prioritizing speed |
-| `built-to-sell` | Built to Sell | startup-note | Built to Sell \| John Warrillow \| A business fable showing ho |
-| `decode-and-conquer` | Decode and Conquer | behaviour-interview-note | Decode and Conquer \| Lewis C. Lin \| Frameworks such as CIRCL |
-| `founders-dilemmas` | The Founder's Dilemmas | startup-note | The Founder's Dilemmas \| Noam Wasserman \| Data from ten thou |
-| `great-game-of-business` | The Great Game of Business | startup-note | The Great Game of Business \| Jack Stack & Bo Burlingham \| Th |
-| `high-growth-handbook` | High Growth Handbook | startup-note | High Growth Handbook \| Elad Gil \| A practitioner's manual fo |
-| `naked-economics` | Naked Economics | economics-note | Naked Economics \| Charles Wheelan \| A jargon-free tour of ho |
-| `startup-owners-manual` | The Startup Owner's Manual | startup-note | The Startup Owner's Manual \| Steve Blank & Bob Dorf \| The st |
-| `this-time-is-different` | This Time Is Different | economics-note | This Time Is Different \| Carmen M. Reinhart & Kenneth S. Rog |
-| `traction` | Traction | startup-note | Traction \| Gabriel Weinberg & Justin Mares \| The Bullseye fr |
-| `venture-deals` | Venture Deals | startup-note | Venture Deals \| Brad Feld & Jason Mendelson \| A term-sheet-b |
-| `worldly-philosophers` | The Worldly Philosophers | economics-note | The Worldly Philosophers \| Robert L. Heilbroner \| Traces the |
 
-## 作者這一關擋下的：2 筆同名不同書
+## 作者這一關擋下的：3 筆同名不同書
 
 書名正規化後對得上某個書 repo，**但作者不符**——所以那本不是這一筆想收的書，維持 `wanted`。這關是 2026-08-10 加的第二因子；在那之前 matcher 只比書名，撞名只能靠 `NAME_COLLISIONS` 人工白名單一筆筆補（踩到才補）。
 
@@ -99,6 +82,7 @@
 
 | 想收的書 | 想收的作者 | 撞到的 repo | repo 上的作者 | 登記在 |
 | --- | --- | --- | --- | --- |
+| Discourses | Epictetus 愛比克泰德（Arrian 記錄） | `discourses-on-livy` | Niccolo Machiavelli | philosophy-note |
 | Christian Theology: An Introduction | Alister E. McGrath 麥葛福 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
 | Understanding the Bible | John Stott | `understanding-the-bible` | Dorothy L. Johns | stott-note |
 
@@ -113,21 +97,22 @@
 | Globalization and Its Discontents | Joseph E. Stiglitz | `globalization-and-its-discontents-revisited` | 80% | Globalization and Its Discontents Revisited | economics-note |
 | HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
 
-## 快歸零的站：15 站只差 1–2 本
+## 快歸零的站：16 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
 | 站 | 已收 | 還差 | 差哪幾本 |
 | --- | ---: | ---: | --- |
-| `life-meaning-note` | 38 | **1** | Tuesdays with Morrie（Mitch Albom） |
+| `startup-note` | 61 | **1** | Running Lean（Ash Maurya） |
 | `tracy-note` | 35 | **1** | Million Dollar Habits（Brian Tracy） |
+| `history-note` | 33 | **1** | A Little History of the World（E. H. Gombrich） |
 | `covey-note` | 9 | **1** | The 7 Habits of Highly Effective Families（Stephen R. Covey） |
 | `willard-note` | 8 | **1** | Living in Christ's Presence（Dallas Willard & John Ortberg） |
 | `greene-note` | 6 | **1** | The 50th Law（Robert Greene & 50 Cent） |
 | `bogle-note` | 5 | **1** | Bogle on Mutual Funds: New Perspectives for the Intelligent Investor（John C. Bogle） |
 | `management-note` | 45 | **2** | Managing（Henry Mintzberg）、Working Backwards（Colin Bryar & Bill Carr） |
 | `growth-note` | 42 | **2** | Awaken the Giant Within（Anthony Robbins）、The Obstacle Is the Way（Ryan Holiday） |
-| `behaviour-interview-note` | 18 | **2** | 60 Seconds and You're Hired!（Robin Ryan）、Decode and Conquer（Lewis C. Lin） |
+| `philosophy-note` | 31 | **2** | Discourses（Epictetus 愛比克泰德（Arrian 記錄））、The Myth of Sisyphus（Albert Camus 卡繆） |
 | `christensen-note` | 7 | **2** | Disrupting Class（Clayton M. Christensen, Michael B. Horn & Curtis W. Johnson）、The Innovator's Prescription（Clayton M. Christensen, Jerome H. Grossman & Jason Hwang） |
 | `templar-note` | 7 | **2** | The Rules of Parenting（Richard Templar）、The Rules to Break（Richard Templar） |
 | `jung-note` | 5 | **2** | Psychological Types（C. G. Jung）、The Red Book (Liber Novus)（C. G. Jung） |
@@ -142,37 +127,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 266 筆）
-
-### startup-note — 10 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| The Startup Owner's Manual ⟵ 已有書站 `startup-owners-manual` | Steve Blank & Bob Dorf |  | 2012 | 顧客開發的百科式操作版 |
-| Running Lean | Ash Maurya |  | 2012 | Maurya 前作：Lean Canvas 的原典（Scaling Lean 已收） |
-| Traction ⟵ 已有書站 `traction` | Gabriel Weinberg & Justin Mares |  | 2015 | Weinberg & Mares：19 個獲客渠道的 Bullseye 框架 |
-| The Founder's Dilemmas ⟵ 已有書站 `founders-dilemmas` | Noam Wasserman |  | 2012 | Wasserman：共同創辦人與股權分配的地雷圖 |
-| Blitzscaling ⟵ 已有書站 `blitzscaling` | Reid Hoffman & Chris Yeh | 閃電擴張 | 2018 | Hoffman：網路效應市場裡速度優先於效率 |
-| High Growth Handbook ⟵ 已有書站 `high-growth-handbook` | Elad Gil |  | 2018 | Elad Gil：10 人到 1000 人的規模化手冊 |
-| The Great Game of Business ⟵ 已有書站 `great-game-of-business` | Jack Stack & Bo Burlingham |  | 1992 | Stack：開卷管理——讓全員看懂財報玩同一場遊戲 |
-| The $100 Startup 3000 | Chris Guillebeau | 元開始的自主人生 | 2012 | Guillebeau：微資本開業的案例集 |
-| Venture Deals ⟵ 已有書站 `venture-deals` | Brad Feld & Jason Mendelson | 創業投資聖經 | 2011 | Feld & Mendelson：看懂 term sheet 再上談判桌 |
-| Built to Sell ⟵ 已有書站 `built-to-sell` | John Warrillow |  | 2011 | Warrillow：打造一間可以賣掉的公司 |
-
-### thinking-note — 10 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Superforecasting | Philip E. Tetlock & Dan Gardner | 超級預測 | 2015 | Tetlock：預測是可訓練的技能 |
-| The Scout Mindset | Julia Galef | 零盲點思維 | 2021 | Galef：偵察兵心態 vs 士兵心態 |
-| Moral Tribes | Joshua Greene | 道德部落 | 2013 | Joshua Greene：常識道德在部落之間失靈 |
-| Behave: The Biology of Humans at Our Best and Worst | Robert M. Sapolsky | Behave 行為 | 2017 | Sapolsky：行為的全尺度生物學 |
-| Civilization and Its Discontents | Sigmund Freud | 文明及其不滿 | 1930 | Freud 晚期文化批判的正典 |
-| How the Mind Works | Steven Pinker | 心智探奇 | 1997 | Pinker：演化＋計算視角的心智總覽 |
-| Being You: A New Science of Consciousness | Anil Seth | Being You 身為自己 | 2021 | Anil Seth：意識作為受控幻覺 |
-| The Language Instinct | Steven Pinker | 語言本能 | 1994 | Pinker：語言是演化出的本能 |
-| Metaphors We Live By | George Lakoff & Mark Johnson | 我們賴以生存的譬喻 | 1980 | Lakoff & Johnson：概念隱喻——思考建立在譬喻上 |
-| How Emotions Are Made | Lisa Feldman Barrett | 情緒跟你以為的不一樣 | 2017 | Barrett：情緒建構論，對基本情緒論的正面挑戰 |
+## 完整清單（依站，共 227 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -196,7 +151,7 @@
 | The Software Engineer's Guidebook | Gergely Orosz |  | 2023 | Orosz 的工程師職涯全地圖（Tech Resume 已收） |
 | Soft Skills: The Software Developer's Life Manual | John Sonmez |  | 2014 | Sonmez：工程師的職涯經營生存手冊 |
 | A Whole New Mind | Daniel H. Pink | 未來在等待的人才 | 2005 | Pink：右腦能力在自動化時代增值 |
-| The Defining Decade 20 | Meg Jay | 世代，你的人生是不是卡住了 | 2012 | Meg Jay：二十世代的不可替代性 |
+| The Defining Decade | Meg Jay | 20 世代，你的人生是不是卡住了 | 2012 | Meg Jay：二十世代的不可替代性 |
 | The Pathless Path | Paul Millerd |  | 2022 | Millerd：離開預設路徑的工作觀 |
 | Working Identity | Herminia Ibarra | 轉行 | 2003 | Ibarra：轉職是先行動再認同，不是先想清楚 |
 | The Alliance | Reid Hoffman、Ben Casnocha & Chris Yeh | 聯盟世代 | 2014 | Hoffman：僱傭關係是任期制聯盟 |
@@ -242,19 +197,6 @@
 | Designing Event-Driven Systems | Ben Stopford |  | 2018 | Stopford；以 Kafka 為底的事件驅動服務，O'Reilly 免費電子書 |
 | Fundamentals of Data Engineering | Joe Reis & Matt Housley |  | 2022 | Reis & Housley；資料工程生命週期的現代全景 |
 | Versioning in an Event Sourced System | Greg Young |  | 2017 | Greg Young；事件溯源在演進期的實務難題 |
-
-### economics-note — 8 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| The Worldly Philosophers ⟵ 已有書站 `worldly-philosophers` | Robert L. Heilbroner | 俗世哲學家 | 1953 | Heilbroner；經濟思想史最會說故事的一冊 |
-| Freakonomics | Steven D. Levitt & Stephen J. Dubner | 蘋果橘子經濟學 | 2005 | Levitt & Dubner；誘因分析的大眾化里程碑 |
-| The Undercover Economist | Tim Harford | 臥底經濟學家 | 2005 | Harford；用日常現象教會你像經濟學家思考 |
-| Naked Economics ⟵ 已有書站 `naked-economics` | Charles Wheelan |  | 2002 | Wheelan；無方程式的經濟學通識入門 |
-| Animal Spirits ⟵ 已有書站 `animal-spirits` | George A. Akerlof & Robert J. Shiller | 動物本能 | 2009 | Akerlof & Shiller；把心理拉回總體經濟學 |
-| This Time Is Different ⟵ 已有書站 `this-time-is-different` | Carmen M. Reinhart & Kenneth S. Rogoff | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
-| Globalization and Its Discontents | Joseph E. Stiglitz | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
-| 23 Things They Don't Tell You About Capitalism ⟵ 已有書站 `23-things-they-dont-tell-you-about-capitalism` | Ha-Joon Chang 張夏準 | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
 
 ### investing-note — 7 本
 
@@ -335,17 +277,6 @@
 | The Day the Revolution Began | N. T. Wright |  | 2016 | 十架論的普及重述：赦罪帶來的是新出埃及與革命 |
 | After You Believe (Virtue Reborn) | N. T. Wright | 信主了，然後呢？ | 2010 | 新創造框架下的品格與德行倫理——盼望三部曲的收尾 |
 | Scripture and the Authority of God | N. T. Wright |  | 2011 | 「聖經權柄」＝上帝藉聖經行使的權柄；五幕劇詮釋框架的出處 |
-
-### philosophy-note — 6 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Sophie's World | Jostein Gaarder 喬斯坦・賈德 | 蘇菲的世界 | 1991 | 小說形式的哲學史，國民級入門 |
-| Nicomachean Ethics | Aristotle 亞里斯多德 | 尼各馬可倫理學 |  | 亞里斯多德德性倫理的原典 |
-| The Republic | Plato 柏拉圖 | 理想國 |  | 柏拉圖——政治哲學的起點 |
-| A Theory of Justice | John Rawls | 正義論 | 1971 | Rawls——當代政治哲學的座標原點 |
-| Discourses | Epictetus 愛比克泰德（Arrian 記錄） | 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
-| The Myth of Sisyphus | Albert Camus 卡繆 | 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
 
 ### science-note — 6 本
 
@@ -550,21 +481,13 @@
 | Pattern-Oriented Software Architecture Vol.1 (POSA) | Frank Buschmann 等 |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
 | Game Programming Patterns | Robert Nystrom |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
 
-### history-note — 3 本
+### economics-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Silk Roads | Peter Frankopan | 絲綢之路 | 2015 | Frankopan——以貿易為軸、去歐洲中心的世界史 |
-| Collapse | Jared Diamond | 大崩壞 | 2005 | Diamond 的另一半：文明如何選擇失敗 |
-| A Little History of the World | E. H. Gombrich | 世界小史 | 1935 | Gombrich——一人一筆寫完的世界史，最好的入門 |
-
-### learning-note — 3 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| How We Learn: Why Brains Learn Better Than Any Machine | Stanislas Dehaene |  | 2020 | Dehaene；學習四支柱的神經科學正典 |
-| Why Don't Students Like School? | Daniel T. Willingham | 學生為什麼不喜歡上學 | 2009 | Willingham；「記憶是思考的殘留物」出處 |
-| Moonwalking with Einstein | Joshua Foer | 記憶人人 hold 得住 | 2011 | Foer；記憶宮殿與記憶競技的第一手報導 |
+| Freakonomics | Steven D. Levitt & Stephen J. Dubner | 蘋果橘子經濟學 | 2005 | Levitt & Dubner；誘因分析的大眾化里程碑 |
+| The Undercover Economist | Tim Harford | 臥底經濟學家 | 2005 | Harford；用日常現象教會你像經濟學家思考 |
+| Globalization and Its Discontents | Joseph E. Stiglitz | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
 
 ### newport-note — 3 本
 
@@ -573,14 +496,6 @@
 | How to Win at College | Cal Newport |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
 | How to Become a Straight-A Student | Cal Newport | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
 | How to Be a High School Superstar | Cal Newport |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正；portal 上同名的 how-to-be-a-high-school-superstar 內容實為《How to Win at College》，作者同樣是 Newport，所以作者比對擋不掉，靠 NAME_COLLISIONS 人工排除 |
-
-### problem-solving-note — 3 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Bulletproof Problem Solving | Charles Conn & Robert McLean |  | 2019 | Conn & McLean：麥肯錫七步解題法的現代正典 |
-| The Back of the Napkin | Dan Roam | 餐巾紙的背後 | 2008 | Dan Roam：視覺化解題的普及經典 |
-| The McKinsey Way | Ethan M. Rasiel | 專業主義：麥肯錫的成功之道 | 1999 | Ethan Rasiel：局內人視角的麥肯錫方法論第一手記錄 |
 
 ### spiritual-formation-note — 3 本
 
@@ -605,13 +520,6 @@
 | The Art of Scalability | Martin L. Abbott & Michael T. Fisher |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
 | API Design Patterns | JJ Geewax |  | 2021 | Geewax；API 設計決策的模式目錄 |
 | Acing the System Design Interview | Zhiyong Tan |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
-
-### behaviour-interview-note — 2 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Decode and Conquer ⟵ 已有書站 `decode-and-conquer` | Lewis C. Lin |  | 2013 | Lewis Lin；大廠行為題與情境題的答題框架 |
-| 60 Seconds and You're Hired! ⟵ 已有書站 `60-seconds-and-youre-hired` | Robin Ryan |  | 1994 | 把答案收斂在一分鐘內的經典 |
 
 ### christensen-note — 2 本
 
@@ -662,6 +570,13 @@
 | Be Exceptional | Joe Navarro |  | 2021 | 晚期的正向轉向：從「讀懂別人」推到「成為值得被信任的人」 |
 | Three Minutes to Doomsday | Joe Navarro |  | 2017 | 回憶錄式的間諜案偵訊實錄——方法論在真實高壓現場的完整展開 |
 
+### philosophy-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Discourses | Epictetus 愛比克泰德（Arrian 記錄） | 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
+| The Myth of Sisyphus | Albert Camus 卡繆 | 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
+
 ### templar-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -687,11 +602,17 @@
 | --- | --- | --- | --- | --- |
 | The 50th Law | Robert Greene & 50 Cent | 第 50 條法則 | 2009 | 與 50 Cent 合著；「無所畏懼」——48 法則之外的第 50 條 |
 
-### life-meaning-note — 1 本
+### history-note — 1 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Tuesdays with Morrie | Mitch Albom | 最後 14 堂星期二的課 | 1997 | 臨終導師的人生課，本題最溫柔的入口 |
+| A Little History of the World | E. H. Gombrich | 世界小史 | 1935 | Gombrich——一人一筆寫完的世界史，最好的入門 |
+
+### startup-note — 1 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Running Lean | Ash Maurya |  | 2012 | Maurya 前作：Lean Canvas 的原典（Scaling Lean 已收） |
 
 ### tracy-note — 1 本
 
