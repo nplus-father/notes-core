@@ -82,7 +82,7 @@
 
 | 想收的書 | 想收的作者 | 撞到的 repo | repo 上的作者 | 登記在 |
 | --- | --- | --- | --- | --- |
-| Christian Theology: An Introduction | Alister E. McGrath 麥葛福 — 不是 Millard Erickson 的同名書 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
+| Christian Theology: An Introduction | Alister E. McGrath 麥葛福 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
 | Understanding the Bible | John Stott | `understanding-the-bible` | Dorothy L. Johns | stott-note |
 
 ## 疑似漏報：1 本可能其實已經有 repo
@@ -203,7 +203,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Reformed Dogmatics | Herman Bavinck 巴文克 | 改革宗教理學 | 1906 | 巴文克；改革宗系統神學的巔峰，中譯陸續出版 |
-| Christian Theology: An Introduction | Alister E. McGrath 麥葛福 — 不是 Millard Erickson 的同名書 | 基督教神學手冊 | 1994 | 麥葛福；最平衡的入門教科書 |
+| Christian Theology: An Introduction | Alister E. McGrath 麥葛福 | 基督教神學手冊 | 1994 | 麥葛福；最平衡的入門教科書。portal 的 erickson-christian-theology 是 Millard Erickson 的同名書，不是這一本——下單前對作者 |
 | Summa Theologiae | Thomas Aquinas 阿奎那 | 神學大全 | 1274 | 阿奎那；中譯有全集但部頭極鉅 |
 | Pensées | Blaise Pascal 巴斯卡 | 思想錄 | 1670 | 巴斯卡；「賭注」與心之理由的源頭 |
 | The Reformed Pastor | Richard Baxter 巴克斯特 | 改革宗的牧師 | 1656 | 巴克斯特；清教徒牧養的正典 |
@@ -257,7 +257,7 @@
 | --- | --- | --- | --- | --- |
 | Pioneering Portfolio Management | David F. Swensen |  | 2000 | Swensen 機構版正典——耶魯模式本尊 |
 | 100 Baggers | Christopher W. Mayer |  | 2015 | Mayer 對百倍股的系統研究(承 Phelps 1972) |
-| Trend Following | Michael W. Covel — 本傳，不是 Trend Following Masters Vol.2 訪談集 |  | 2004 | Covel 本傳(目前只收錄 Masters Vol.2 訪談集) |
+| Trend Following | Michael W. Covel |  | 2004 | Covel 本傳(目前只收錄 Masters Vol.2 訪談集) |
 | The Alchemy of Finance | George Soros 索羅斯 | 金融煉金術 | 1987 | 索羅斯的反身性理論 |
 | Technical Analysis of the Financial Markets | John J. Murphy |  | 1999 | Murphy;技術分析的教科書標準(Schwager 入門冊已收) |
 | Valuation (McKinsey) | Tim Koller、Marc Goedhart & David Wessels（McKinsey） |  | 1990 | Koller 等;企業估值的業界標準 |
@@ -555,7 +555,7 @@
 | --- | --- | --- | --- | --- |
 | How to Win at College | Cal Newport |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
 | How to Become a Straight-A Student | Cal Newport | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
-| How to Be a High School Superstar | Cal Newport — portal 同名 repo 內容實為 How to Win at College |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正 |
+| How to Be a High School Superstar | Cal Newport |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正；portal 上同名的 how-to-be-a-high-school-superstar 內容實為《How to Win at College》，作者同樣是 Newport，所以作者比對擋不掉，靠 NAME_COLLISIONS 人工排除 |
 
 ### spiritual-formation-note — 3 本
 

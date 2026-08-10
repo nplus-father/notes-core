@@ -174,11 +174,15 @@ NON_ENGLISH_ORIGINALS = {
     "Tao Te Ching",
 }
 
-# ── 作者對照表（2026-08-09 加）──────────────────────────────────
-# 為什麼放這裡而不放各站的 bibliography：`BibliographyEntry`（notes-core/src/lib/library.ts）
-# 沒有 author 欄，加欄位得先發 notes-core 新版、再 bump 全部的站，否則各站寫了 `author:`
-# 就 typecheck 失敗（物件字面值的 excess property check）。這張表只服務採購清單這一份產出，
-# 放產生器最省事；真要進資料模型是另一件事，屆時把這裡整批搬過去即可。
+# ── 作者對照表（2026-08-09 加；2026-08-10 起是**退路**，不是正本）─────────
+# **正本已經搬進資料模型**：`BibliographyEntry.author`（notes-core v0.27.0）。新書進
+# bibliography 時直接填 `author:`，不要再往這張表加——這裡只留給還沒搬完的殘留，
+# 搬完就整張刪掉。搬遷用 `tools/migrate-authors.py`（一次性）。
+#
+# 當初為什麼會長在產生器裡：型別沒有 author 欄，各站寫了 `author:` 就 typecheck 失敗
+# （物件字面值的 excess property check），加欄位得先發 core 新版再 bump 全部的站。
+# 那個代價 2026-08-10 付掉了——付的理由是 `understanding-the-bible` 那次撞名：
+# 要擋錯的作者資料明明就在這張表裡，卻因為住在產生器、又沒接進比對，白白讓它過關。
 #
 # **為什麼非有不可**：同名不同書會讓人買錯——2026-08 就真的發生過，portal 上建成的
 # `servant-leadership` 是 Larry W. Boone 的教科書，不是 Greenleaf 1977 原典；《Christian
@@ -487,6 +491,7 @@ def parse_bibliography(path):
                 "title": field("title"),
                 "original": field("original"),
                 "note": field("note"),
+                "author": field("author"),
                 "slug": field("slug"),
                 "year": int(year.group(1)) if year else None,
             }
@@ -659,9 +664,10 @@ def main():
     by_name = {i["name"]: i for i in portal_items}
     idx, title_idx = portal_index(portal_items)
 
-    # 作者：買錯書的唯一防線（同名不同書），查 AUTHORS；查不到就吵，不要靜靜留白。
+    # 作者＝防買錯書的第二因子（見 author_ok）。**正本是各站 bibliography 的 `author` 欄**
+    # （notes-core v0.27.0 起）；`AUTHORS` 只是還沒搬完的遺留退路。查不到就吵，不要靜靜留白。
     for r in rows:
-        r["author"] = AUTHORS.get(r["main"], "")
+        r["author"] = r.get("author") or AUTHORS.get(r["main"], "")
     unattributed = sorted({r["main"] for r in rows if not r["author"]})
 
     by_main = collections.defaultdict(list)
@@ -1015,7 +1021,8 @@ def main():
         w(
             f"\n> ⚠ **{len(unattributed)} 本還沒登錄作者**，表上標「⚠ 作者未登錄」："
             + "、".join(f"`{k}`" for k in unattributed)
-            + "。補進 `export-wanted.py` 的 `AUTHORS` 再重跑——沒有作者就防不了同名不同書。\n"
+            + "。**在該站 `bibliography.ts` 那筆補 `author:`** 再重跑（notes-core v0.27.0 起"
+            "作者是資料欄，不要再往 `export-wanted.py` 的 `AUTHORS` 加）——沒有作者就防不了同名不同書。\n"
         )
 
     w(f"\n## 優先收：{len(multi)} 本有兩個以上的站在等\n\n")
