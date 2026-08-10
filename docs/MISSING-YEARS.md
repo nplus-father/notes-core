@@ -9,7 +9,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：66 站 / 1993 筆，缺 year **96 筆**（4.8%），分佈在 24 站；其中 91 筆查得到版次日線索。
+目前：74 站 / 2048 筆，缺 year **96 筆**（4.7%），分佈在 24 站；其中 91 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -98,7 +98,7 @@
 ### greene-note（2 筆）
 
 - [skipped] 精華節錄版 / The Concise 48 Laws of Power ... · 權力與策略
-- [wanted] The Law of the Sublime · 精通與日課
+- [unavailable] The Law of the Sublime · 精通與日課
 
 ### habits-note（1 筆）
 

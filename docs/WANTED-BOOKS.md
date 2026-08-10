@@ -6,15 +6,17 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1633 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1666 個 repo）。
 
 ## 先收這 20 本
 
-整份 269 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 293 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
+
+> ⚠ **這 20 本裡有 2 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。
 
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -26,27 +28,31 @@
 | 6 | **Managing** | Henry Mintzberg |  | 2009 | management(1) | management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條 |
 | 7 | **The Obstacle Is the Way** | Ryan Holiday | 障礙就是道路 | 2014 | growth(1) | growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》 |
 | 8 | **Awaken the Giant Within** | Anthony Robbins |  | 1991 | growth(1) | growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面 |
-| 9 | **Emotional Intelligence** | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | life-meaning(1), thinking(10) | life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》 |
+| 9 | **Emotional Intelligence** | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | life-meaning(1), thinking(10) | ✅ 已建站 `emotional-intelligence`——life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》 |
 | 10 | **Tuesdays with Morrie** | Mitch Albom | 最後 14 堂星期二的課 | 1997 | life-meaning(1) | life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》 |
 | 11 | **Decode and Conquer** | Lewis C. Lin |  | 2013 | behaviour-interview(1) | behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述 |
 | 12 | **60 Seconds and You're Hired!** | Robin Ryan |  | 1994 | behaviour-interview(1) | behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄 |
 | 13 | **The Rules of Parenting** | Richard Templar |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄 |
 | 14 | **The Rules to Break** | Richard Templar |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
-| 15 | **Life Without Lack** | Dallas Willard | 一無所缺的生命 | 2018 | willard(1) | willard 站 owned 7／wanted 2——**這兩本收齊就歸零**；這輪《神聖的密謀・續篇》查證無貨改 `unavailable` 之後，willard 才掉進近零名單；portal 的魏樂德恰好 7 本（神聖的密謀、心靈的重塑、靈性操練真諦、傾聽神的聲音…），全是他生前出版的系統著作，缺的是身後整理的詩篇 23 篇講章——「天國生活」站內 3 處全靠系統著作轉述，講道體那一面沒有出處 |
+| 15 | **Life Without Lack** | Dallas Willard | 一無所缺的生命 | 2018 | willard(1) | ✅ 已建站 `life-without-lack`——willard 站 owned 7／wanted 2——**這兩本收齊就歸零**；這輪《神聖的密謀・續篇》查證無貨改 `unavailable` 之後，willard 才掉進近零名單；portal 的魏樂德恰好 7 本（神聖的密謀、心靈的重塑、靈性操練真諦、傾聽神的聲音…），全是他生前出版的系統著作，缺的是身後整理的詩篇 23 篇講章——「天國生活」站內 3 處全靠系統著作轉述，講道體那一面沒有出處 |
 | 16 | **Living in Christ's Presence** | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | willard(1) | willard 的另一半；與 John Ortberg 的最後對談錄，臨終前的思想總回顧；portal 的 Ortberg **掛零**、全星系提到他 0 處——魏樂德最重要的門生兼詮釋者這條線完全沒接上，而 willard 站的閱讀路徑正是以「總回顧」收尾；薄 |
 | 17 | **Be Exceptional** | Joe Navarro |  | 2021 | navarro(1) | navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄 |
 | 18 | **Three Minutes to Doomsday** | Joe Navarro |  | 2017 | navarro(1) | navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面 |
 | 19 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(1) | damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處 |
 | 20 | **Investment Philosophies** | Aswath Damodaran | 投資哲學 | 2003 | damodaran(1) | damodaran 的另一半；「投資哲學」6 處跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在 |
 
-**這是第四個軸**，與 docs/ 既有三份不同：
+**這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
 | [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
+| [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md) | **書有了、沒有站在管** | 認領／開站 |
 | **本檔** | **書本身還沒有** | **去收書** |
+
+> 本檔是「**站**說它缺什麼」的正向視角，看不到「沒有任何站提過」的書——那一側看
+> [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)。兩份要成對看，`tools/refresh-galaxy-docs.sh` 一次重算。
 
 ## bibliography 的四個 status
 
@@ -54,23 +60,46 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1600 筆（去重 1154 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **269 筆（去重 267 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1631 筆（去重 1158 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **293 筆（去重 286 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 45 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
-> `owned` 去重後的 1154 是**已建成書站的書**（1600 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1158 是**已建成書站的書**（1631 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：0 本其實已經有書站了
+## 先扣掉：23 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
+| `analysis-patterns` | Analysis Patterns | design-patterns-note, fowler-note | Analysis Patterns: Reusable Object Models \| Martin Fowler \|  |
+| `attached-to-god` | Attached to God | pastoral-psychology-note | Attached to God: A Practical Guide to Deeper Spiritual Exper |
+| `can-you-drink-the-cup` | Can You Drink the Cup? | nouwen-note | Can You Drink the Cup? \| Henri J. M. Nouwen \| A meditation b |
+| `data-warehouse-toolkit` | The Data Warehouse Toolkit | data-systems-note | The Data Warehouse Toolkit: The Complete Guide to Dimensiona |
+| `emotional-intelligence` | Emotional Intelligence | life-meaning-note, thinking-note | Emotional Intelligence: Why It Can Matter More Than IQ \| Dan |
+| `genesee-diary` | The Genesee Diary | nouwen-note | The Genesee Diary: Report from a Trappist Monastery \| Henri  |
+| `imitation-of-christ` | The Imitation of Christ | spiritual-formation-note, theology-note | The Imitation of Christ \| Thomas à Kempis \| The fifteenth-ce |
+| `inner-voice-of-love` | The Inner Voice of Love | nouwen-note | The Inner Voice of Love: A Journey Through Anguish to Freedo |
+| `life-without-lack` | Life Without Lack | willard-note | Life Without Lack: Living in the Fullness of Psalm 23 \| Dall |
+| `measure-what-matters` | Measure What Matters | grove-note | Measure What Matters \| John Doerr \| Through cases at Google, |
+| `nosql-distilled` | NoSQL Distilled | data-systems-note, fowler-note | NoSQL Distilled: A Brief Guide to the Emerging World of Poly |
+| `paul-a-biography` | Paul: A Biography | nt-wright-note | Paul: A Biography \| N. T. Wright \| Follows Paul from zealous |
+| `planning-extreme-programming` | Planning Extreme Programming | fowler-note, kent-beck-note | Planning Extreme Programming \| Kent Beck & Martin Fowler \| T |
+| `psychology-theology-and-spirituality-in-christian-counseling` | Psychology, Theology, and Spirituality in Christian Counseling | pastoral-psychology-note | Psychology, Theology, and Spirituality in Christian Counseli |
+| `release-it` | Release It! | system-design-note | Release It! Design and Deploy Production-Ready Software \| Mi |
+| `road-to-daybreak` | The Road to Daybreak | nouwen-note | The Road to Daybreak: A Spiritual Journey \| Henri J. M. Nouw |
+| `seeing-with-new-eyes` | Seeing with New Eyes | pastoral-psychology-note | Seeing with New Eyes: Counseling and the Human Condition Thr |
+| `smalltalk-best-practice-patterns` | Smalltalk Best Practice Patterns | design-patterns-note, kent-beck-note | Smalltalk Best Practice Patterns \| Kent Beck \| Collects the  |
+| `soul-of-shame` | The Soul of Shame | pastoral-psychology-note | The Soul of Shame: Retelling the Stories We Believe About Ou |
+| `tidy-first` | Tidy First? | clean-code-note, kent-beck-note | Tidy First? A Personal Exercise in Empirical Software Design |
+| `uml-distilled` | UML Distilled | fowler-note | UML Distilled: A Brief Guide to the Standard Object Modeling |
+| `understanding-the-bible` | Understanding the Bible | stott-note | Understanding the Bible: Methods of Bible Study \| Dorothy L. |
+| `when-people-are-big-and-god-is-small` | When People Are Big and God Is Small | pastoral-psychology-note | When People Are Big and God Is Small: Overcoming Peer Pressu |
 
-## 快歸零的站：12 站只差 1–2 本
+## 快歸零的站：16 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
@@ -80,25 +109,36 @@
 | `covey-note` | 9 | **1** | The 7 Habits of Highly Effective Families（Stephen R. Covey） |
 | `greene-note` | 6 | **1** | The 50th Law（Robert Greene & 50 Cent） |
 | `bogle-note` | 5 | **1** | Bogle on Mutual Funds: New Perspectives for the Intelligent Investor（John C. Bogle） |
+| `grove-note` | 4 | **1** | Measure What Matters（⚠ 作者未登錄） |
 | `management-note` | 45 | **2** | Managing（Henry Mintzberg）、Working Backwards（Colin Bryar & Bill Carr） |
 | `growth-note` | 42 | **2** | Awaken the Giant Within（Anthony Robbins）、The Obstacle Is the Way（Ryan Holiday） |
 | `life-meaning-note` | 37 | **2** | Emotional Intelligence（Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集）、Tuesdays with Morrie（Mitch Albom） |
 | `behaviour-interview-note` | 18 | **2** | 60 Seconds and You're Hired!（Robin Ryan）、Decode and Conquer（Lewis C. Lin） |
+| `christensen-note` | 7 | **2** | Disrupting Class（⚠ 作者未登錄）、The Innovator's Prescription（⚠ 作者未登錄） |
 | `templar-note` | 7 | **2** | The Rules of Parenting（Richard Templar）、The Rules to Break（Richard Templar） |
 | `willard-note` | 7 | **2** | Life Without Lack（Dallas Willard）、Living in Christ's Presence（Dallas Willard & John Ortberg） |
+| `jung-note` | 5 | **2** | Psychological Types（⚠ 作者未登錄）、The Red Book (Liber Novus)（⚠ 作者未登錄） |
+| `collins-note` | 4 | **2** | Good to Great and the Social Sectors（⚠ 作者未登錄）、How the Mighty Fall（⚠ 作者未登錄） |
 | `navarro-note` | 4 | **2** | Be Exceptional（Joe Navarro）、Three Minutes to Doomsday（Joe Navarro） |
 | `damodaran-note` | 3 | **2** | The Dark Side of Valuation（Aswath Damodaran）、Investment Philosophies（Aswath Damodaran） |
 
-## 優先收：2 本有兩個以上的站在等
+> ⚠ **19 本還沒登錄作者**，表上標「⚠ 作者未登錄」：`attached-to-god`、`disrupting-class`、`forgiveness-and-reconciling`、`generation-to-generation`、`good-to-great-and-the-social-sectors`、`how-the-mighty-fall`、`measure-what-matters`、`planning-extreme-programming`、`psychological-types`、`psychology-christianity`、`psychology-theology-and-spirituality-in-christian-counseling`、`seeing-with-new-eyes`、`suffering-and-the-heart-of-god`、`the-emotionally-healthy-church`、`the-innovator-s-prescription`、`the-red-book-liber-novus`、`the-soul-of-shame`、`uml-distilled`、`when-people-are-big-and-god-is-small`。補進 `export-wanted.py` 的 `AUTHORS` 再重跑——沒有作者就防不了同名不同書。
+
+## 優先收：7 本有兩個以上的站在等
 
 同一本書被多站列為 `wanted`——收一本補多站的缺口，投資報酬率最高。
 
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
+| **Analysis Patterns** | Martin Fowler |  | 1996 | 2: design-patterns, fowler |
 | **Emotional Intelligence** | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | 2: life-meaning, thinking |
+| **NoSQL Distilled** | Pramod J. Sadalage & Martin Fowler |  | 2012 | 2: data-systems, fowler |
+| **Planning Extreme Programming** | ⚠ 作者未登錄 |  | 2000 | 2: fowler, kent-beck |
+| **Smalltalk Best Practice Patterns** | Kent Beck |  | 1996 | 2: design-patterns, kent-beck |
 | **The Imitation of Christ** | Thomas à Kempis 金碧士 | 效法基督 | 1418 | 2: spiritual-formation, theology |
+| **Tidy First?** | Kent Beck |  | 2023 | 2: clean-code, kent-beck |
 
-## 完整清單（依站，共 269 筆）
+## 完整清單（依站，共 293 筆）
 
 ### thinking-note — 11 本
 
@@ -114,7 +154,7 @@
 | The Language Instinct | Steven Pinker | 語言本能 | 1994 | Pinker：語言是演化出的本能 |
 | Metaphors We Live By | George Lakoff & Mark Johnson | 我們賴以生存的譬喻 | 1980 | Lakoff & Johnson：概念隱喻——思考建立在譬喻上 |
 | How Emotions Are Made | Lisa Feldman Barrett | 情緒跟你以為的不一樣 | 2017 | Barrett：情緒建構論，對基本情緒論的正面挑戰 |
-| Emotional Intelligence | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | Goleman：把情緒智力帶進大眾語彙的原典 |
+| Emotional Intelligence ⟵ 已有書站 `emotional-intelligence` | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | Goleman：把情緒智力帶進大眾語彙的原典 |
 
 ### data-systems-note — 10 本
 
@@ -122,14 +162,29 @@
 | --- | --- | --- | --- | --- |
 | Readings in Database Systems | Peter Bailis、Joseph M. Hellerstein & Michael Stonebraker 編 |  | 2015 | Red Book 第五版；Stonebraker 選編的論文導讀，線上免費 |
 | SQL Antipatterns | Bill Karwin |  | 2010 | Karwin；schema 與查詢的反模式目錄 |
-| NoSQL Distilled | Pramod J. Sadalage & Martin Fowler |  | 2012 | Fowler & Sadalage；聚合導向資料模型與 polyglot persistence 的語彙 |
+| NoSQL Distilled ⟵ 已有書站 `nosql-distilled` | Pramod J. Sadalage & Martin Fowler |  | 2012 | Fowler & Sadalage；聚合導向資料模型與 polyglot persistence 的語彙 |
 | Seven Databases in Seven Weeks | Eric Redmond & Jim R. Wilson |  | 2012 | 以七種資料庫走一遍資料模型光譜 |
 | Streaming Systems | Tyler Akidau、Slava Chernyak & Reuven Lax |  | 2018 | Akidau 等；watermark／trigger——串流語意的正典 |
 | Kafka: The Definitive Guide | Gwen Shapira 等（O'Reilly） |  | 2017 | log 為中心的資料骨幹，事實標準的官方指南 |
 | Designing Event-Driven Systems | Ben Stopford |  | 2018 | Stopford；以 Kafka 為底的事件驅動服務，O'Reilly 免費電子書 |
 | Fundamentals of Data Engineering | Joe Reis & Matt Housley |  | 2022 | Reis & Housley；資料工程生命週期的現代全景 |
-| The Data Warehouse Toolkit | Ralph Kimball & Margy Ross |  | 1996 | Kimball；維度建模（star schema）的正典 |
+| The Data Warehouse Toolkit ⟵ 已有書站 `data-warehouse-toolkit` | Ralph Kimball & Margy Ross |  | 1996 | Kimball；維度建模（star schema）的正典 |
 | Versioning in an Event Sourced System | Greg Young |  | 2017 | Greg Young；事件溯源在演進期的實務難題 |
+
+### pastoral-psychology-note — 10 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Psychology & Christianity: Five Views | ⚠ 作者未登錄 |  | 2010 | Eric Johnson 編；五種觀點同場對話，全站的定位地圖 |
+| Seeing with New Eyes ⟵ 已有書站 `seeing-with-new-eyes` | ⚠ 作者未登錄 |  | 2003 | David Powlison；聖經輔導（CCEF）的人論代表作 |
+| Psychology, Theology, and Spirituality in Christian Counseling ⟵ 已有書站 `psychology-theology-and-spirituality-in-christian-counseling` | ⚠ 作者未登錄 |  | 1996 | Mark McMinn；整合派實務標準書——禱告與經文進輔導室的紀律 |
+| When People Are Big and God Is Small ⟵ 已有書站 `when-people-are-big-and-god-is-small` | ⚠ 作者未登錄 |  | 1997 | Ed Welch；懼怕人（fear of man）的聖經輔導解剖 |
+| The Soul of Shame ⟵ 已有書站 `soul-of-shame` | ⚠ 作者未登錄 |  | 2015 | Curt Thompson；羞恥×人際神經生物學，敘事機制取向 |
+| Attached to God ⟵ 已有書站 `attached-to-god` | ⚠ 作者未登錄 |  | 2022 | Krispin Mayfield；依附理論×與神關係的普及入口 |
+| Suffering and the Heart of God | ⚠ 作者未登錄 |  | 2015 | Diane Langberg；創傷心理學家寫給教會，哀歌類經文的最大回饋 |
+| Generation to Generation | ⚠ 作者未登錄 |  | 1985 | Edwin Friedman；家庭系統理論進會眾——創世記家族敘事的透鏡 |
+| Forgiveness and Reconciling | ⚠ 作者未登錄 |  | 2003 | Everett Worthington；饒恕實證研究——REACH 模型與兩種饒恕 |
+| The Emotionally Healthy Church | ⚠ 作者未登錄 | 建立高EQ的教會 | 2003 | Pete Scazzero；情緒健康×門徒訓練，華人教會接受度高 |
 
 ### startup-note — 10 本
 
@@ -159,7 +214,7 @@
 | The Contemplative Pastor | Eugene H. Peterson 畢德生 | 返璞歸真的牧養藝術 | 1989 | 畢德生；反職業化牧養的當代聲音 |
 | The City of God | Augustine 奧古斯丁 | 上帝之城 | 426 | 奧古斯丁；歷史神學與政治神學的奠基 |
 | On the Incarnation | Athanasius 亞他那修 | 論道成肉身 | 318 | 亞他那修；教父基督論最佳入門 |
-| The Imitation of Christ | Thomas à Kempis 金碧士 | 效法基督 | 1418 | 金碧士；中世紀靈修最流通的一本 |
+| The Imitation of Christ ⟵ 已有書站 `imitation-of-christ` | Thomas à Kempis 金碧士 | 效法基督 | 1418 | 金碧士；中世紀靈修最流通的一本 |
 
 ### biblical-studies-note — 9 本
 
@@ -209,13 +264,13 @@
 | --- | --- | --- | --- | --- |
 | Intimacy | Henri J. M. Nouwen | 親密 | 1969 | 處女作；牧養心理學時期的起點 |
 | Out of Solitude | Henri J. M. Nouwen | 始於寧謐處 | 1974 | 獨處與服事的小經典；三篇講章 |
-| The Genesee Diary | Henri J. M. Nouwen | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
+| The Genesee Diary ⟵ 已有書站 `genesee-diary` | Henri J. M. Nouwen | 萬花筒般的隱修日記 | 1976 | 特拉普修院七個月的日記；學者第一次真正安靜下來 |
 | Clowning in Rome | Henri J. M. Nouwen | 羅馬城的小丑戲 | 1979 | 小丑（邊緣人）作為屬靈生活的隱喻 |
 | Compassion | Henri J. M. Nouwen、Donald P. McNeill & Douglas A. Morrison | 慈心憐憫 | 1982 | 與 McNeill、Morrison 合著；憐憫＝一同受苦的神學 |
-| The Road to Daybreak | Henri J. M. Nouwen | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
+| The Road to Daybreak ⟵ 已有書站 `road-to-daybreak` | Henri J. M. Nouwen | 黎明路上 | 1988 | 從哈佛到黎明之家的轉折日記 |
 | Heart Speaks to Heart | Henri J. M. Nouwen | 心應心 | 1989 | 對基督之心的三篇禱文；崩潰後的深水之作 |
-| Can You Drink the Cup? | Henri J. M. Nouwen | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
-| The Inner Voice of Love | Henri J. M. Nouwen | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
+| Can You Drink the Cup? ⟵ 已有書站 `can-you-drink-the-cup` | Henri J. M. Nouwen | 你能飲這杯嗎？ | 1996 | 杯的三個動作：拿起、舉起、喝下 |
+| The Inner Voice of Love ⟵ 已有書站 `inner-voice-of-love` | Henri J. M. Nouwen | 心靈愛語 | 1996 | 崩潰低谷的「秘密日記」；最赤裸的一本 |
 
 ### economics-note — 8 本
 
@@ -272,7 +327,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Justification: God's Plan and Paul's Vision | N. T. Wright |  | 2009 | 回應 Piper 的稱義論戰之作：稱義是盟約成員身分的宣告 |
-| Paul: A Biography | N. T. Wright |  | 2018 | 保羅生平的敘事重建，學術成果的普及出口 |
+| Paul: A Biography ⟵ 已有書站 `paul-a-biography` | N. T. Wright |  | 2018 | 保羅生平的敘事重建，學術成果的普及出口 |
 | Simply Jesus | N. T. Wright |  | 2011 | 《耶穌與神的得勝》的普及版：耶穌如何作王 |
 | How God Became King | N. T. Wright |  | 2012 | 四福音「被遺忘的中段」：上帝作王的故事，補信經跳過的一塊 |
 | The Day the Revolution Began | N. T. Wright |  | 2016 | 十架論的普及重述：赦罪帶來的是新出埃及與革命 |
@@ -372,8 +427,8 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Head First Design Patterns | Eric Freeman & Elisabeth Robson 等 | 深入淺出設計模式 | 2004 | 公認最好的模式入門教材 |
-| Smalltalk Best Practice Patterns | Kent Beck |  | 1996 | Beck；Implementation Patterns 的前身，模式思維的源頭之一 |
-| Analysis Patterns | Martin Fowler |  | 1996 | Fowler；領域模型層級的可重用模式 |
+| Smalltalk Best Practice Patterns ⟵ 已有書站 `smalltalk-best-practice-patterns` | Kent Beck |  | 1996 | Beck；Implementation Patterns 的前身，模式思維的源頭之一 |
+| Analysis Patterns ⟵ 已有書站 `analysis-patterns` | Martin Fowler |  | 1996 | Fowler；領域模型層級的可重用模式 |
 | Pattern-Oriented Software Architecture Vol.1 (POSA) | Frank Buschmann 等 |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
 | Game Programming Patterns | Robert Nystrom |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
 
@@ -451,7 +506,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | The Art of Readable Code | Dustin Boswell & Trevor Foucher |  | 2011 | 可讀性專書的標準入門 |
-| Tidy First? | Kent Beck |  | 2023 | Kent Beck；小步整理的經濟學 |
+| Tidy First? ⟵ 已有書站 `tidy-first` | Kent Beck |  | 2023 | Kent Beck；小步整理的經濟學 |
 | Growing Object-Oriented Software, Guided by Tests | Steve Freeman & Nat Pryce |  | 2009 | GOOS；倫敦學派 mock 驅動設計的正典 |
 | The Software Craftsman | Sandro Mancuso |  | 2014 | Mancuso；軟體工藝運動的宣言 |
 
@@ -472,6 +527,15 @@
 | The Pleasures and Sorrows of Work | Alain de Botton | 工作！工作！ | 2009 | 十種行業的田野書寫：工作如何承載（或承載不了）意義 |
 | The News: A User's Manual | Alain de Botton | 新聞的騷動 | 2014 | 資訊焦慮時代的媒體使用手冊——慰藉方法用在新聞上 |
 | The School of Life: An Emotional Education | The School of Life（Alain de Botton 創辦） | 人生學校：了解自己 | 2019 | 人生學校十年集大成的情感教育教科書 |
+
+### fowler-note — 4 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| NoSQL Distilled ⟵ 已有書站 `nosql-distilled` | Pramod J. Sadalage & Martin Fowler |  | 2012 | 與 Sadalage 合著；聚合導向資料模型與 polyglot persistence 的語彙 |
+| Analysis Patterns ⟵ 已有書站 `analysis-patterns` | Martin Fowler |  | 1996 | 領域模型層級的可重用模式——比 PoEAA 更早、更抽象的那一層 |
+| UML Distilled ⟵ 已有書站 `uml-distilled` | ⚠ 作者未登錄 |  | 1997 | 薄薄一本卻是 UML 最常被引用的入口；他「只取有用的 20%」風格的代表作 |
+| Planning Extreme Programming ⟵ 已有書站 `planning-extreme-programming` | ⚠ 作者未登錄 |  | 2000 | 與 Kent Beck 合著；XP 的規劃遊戲那一半 |
 
 ### fromm-note — 4 本
 
@@ -513,7 +577,7 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Imitation of Christ | Thomas à Kempis 金碧士 | 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
+| The Imitation of Christ ⟵ 已有書站 `imitation-of-christ` | Thomas à Kempis 金碧士 | 效法基督 | 1418 | 金碧士：中世紀以降最廣傳的靈修經典 |
 | The Practice of the Presence of God | Brother Lawrence 勞倫斯弟兄 | 與神同在 | 1692 | 勞倫斯弟兄：廚房裡的操練 |
 | With Christ in the School of Prayer | Andrew Murray 慕安德烈 | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
 | Lament for a Son | Nicholas Wolterstorff 沃特斯托夫 | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |
@@ -522,7 +586,7 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Release It! | Michael T. Nygard |  | 2018 | Nygard；circuit breaker／bulkhead 等穩定性模式的出處 |
+| Release It! ⟵ 已有書站 `release-it` | Michael T. Nygard |  | 2018 | Nygard；circuit breaker／bulkhead 等穩定性模式的出處 |
 | The Art of Scalability | Martin L. Abbott & Michael T. Fisher |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
 | API Design Patterns | JJ Geewax |  | 2021 | Geewax；API 設計決策的模式目錄 |
 | Acing the System Design Interview | Zhiyong Tan |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
@@ -534,6 +598,14 @@
 | The Principles of Product Development Flow | Donald G. Reinertsen |  | 2009 | Reinertsen 的排隊理論基礎，解釋「為什麼限制在製品有效」 |
 | Impact Mapping | Gojko Adzic |  | 2012 | 把商業目標接到交付項的地圖法，補使用者故事「為誰、為什麼」那一段 |
 | Project Retrospectives | Norman L. Kerth |  | 2001 | Norm Kerth 的原典，聚焦專案結束時的長型回顧，尚未收 |
+
+### kent-beck-note — 3 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Tidy First? ⟵ 已有書站 `tidy-first` | Kent Beck |  | 2023 | 小步整理的經濟學——把重構決策放進選擇權定價的框架裡談 |
+| Smalltalk Best Practice Patterns ⟵ 已有書站 `smalltalk-best-practice-patterns` | Kent Beck |  | 1996 | Implementation Patterns 的前身，他模式思維的源頭之一 |
+| Planning Extreme Programming ⟵ 已有書站 `planning-extreme-programming` | ⚠ 作者未登錄 |  | 2000 | 與 Fowler 合著；XP 的規劃遊戲那一半 |
 
 ### learning-note — 3 本
 
@@ -556,7 +628,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Why I Am a Christian | John Stott |  | 2003 | 晚年的個人見證版《真理的尋索》——「基督的獵犬」追上他的故事 |
-| Understanding the Bible | John Stott | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
+| Understanding the Bible ⟵ 已有書站 `understanding-the-bible` | John Stott | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
 | Christian Mission in the Modern World | John Stott |  | 1975 | 洛桑運動時期的宣教神學：整全使命（佈道＋社會責任）的定調之作 |
 
 ### behaviour-interview-note — 2 本
@@ -565,6 +637,20 @@
 | --- | --- | --- | --- | --- |
 | Decode and Conquer | Lewis C. Lin |  | 2013 | Lewis Lin；大廠行為題與情境題的答題框架 |
 | 60 Seconds and You're Hired! | Robin Ryan |  | 1994 | 把答案收斂在一分鐘內的經典 |
+
+### christensen-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| The Innovator's Prescription | ⚠ 作者未登錄 | 醫療的創新處方 | 2008 | 破壞理論在醫療體系的完整應用，是他自認最重要的一本 |
+| Disrupting Class | ⚠ 作者未登錄 | 教育的創新 | 2008 | 把破壞理論用在學校教育與客製化學習 |
+
+### collins-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| How the Mighty Fall | ⚠ 作者未登錄 | 為什麼 A+ 巨人也會倒下 | 2009 | 衰敗五階段——與《從 A 到 A+》互為反面，這條線缺了它就只剩上升段 |
+| Good to Great and the Social Sectors | ⚠ 作者未登錄 | 從優秀到卓越（社會部門） | 2005 | 把同一套框架搬到非營利：沒有利潤這個計分板時，卓越怎麼定義 |
 
 ### damodaran-note — 2 本
 
@@ -580,11 +666,18 @@
 | The Obstacle Is the Way | Ryan Holiday | 障礙就是道路 | 2014 | Holiday：斯多噶韌性的現代入門 |
 | Awaken the Giant Within | Anthony Robbins |  | 1991 | Robbins：自助正典名冊的一員，補齊譜系用 |
 
+### jung-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Psychological Types | ⚠ 作者未登錄 | 心理類型 | 1921 | 內傾／外傾與四種功能的原典——MBTI 那一整條產業鏈的源頭 |
+| The Red Book (Liber Novus) | ⚠ 作者未登錄 | 紅書 | 2009 | 1913–1930 的私人筆記，2009 年才出版；他自承後半生的一切都從這裡長出來 |
+
 ### life-meaning-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Emotional Intelligence | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | Goleman 的 EQ 原典（HBR 選集已收，本傳未收） |
+| Emotional Intelligence ⟵ 已有書站 `emotional-intelligence` | Daniel Goleman — 不是 HBR 的 Emotional Intelligence 系列選集 | EQ | 1995 | Goleman 的 EQ 原典（HBR 選集已收，本傳未收） |
 | Tuesdays with Morrie | Mitch Albom | 最後 14 堂星期二的課 | 1997 | 臨終導師的人生課，本題最溫柔的入口 |
 
 ### management-note — 2 本
@@ -613,7 +706,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Living in Christ's Presence | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | 與 John Ortberg 的最後對談錄；臨終前的思想總回顧 |
-| Life Without Lack | Dallas Willard | 一無所缺的生命 | 2018 | 身後出版的詩篇 23 篇講章：活在耶和華的豐足裡 |
+| Life Without Lack ⟵ 已有書站 `life-without-lack` | Dallas Willard | 一無所缺的生命 | 2018 | 身後出版的詩篇 23 篇講章：活在耶和華的豐足裡 |
 
 ### bogle-note — 1 本
 
@@ -632,6 +725,12 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | The 50th Law | Robert Greene & 50 Cent | 第 50 條法則 | 2009 | 與 50 Cent 合著；「無所畏懼」——48 法則之外的第 50 條 |
+
+### grove-note — 1 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Measure What Matters ⟵ 已有書站 `measure-what-matters` | ⚠ 作者未登錄 |  | 2018 | 杜爾寫的 OKR 正典，源頭正是葛洛夫在英特爾建立的目標管理制度 |
 
 ### tracy-note — 1 本
 
