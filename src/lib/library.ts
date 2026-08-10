@@ -13,6 +13,20 @@ export interface BibliographyEntry {
   title: string;
   /** 原文書名（title 已是原文時省略） */
   original?: string;
+  /**
+   * 作者（v0.27.0 加）。**目前不渲染**，但請照填——這是星系盤點工具的比對鍵，
+   * 不是裝飾欄位。`export-wanted.py` 拿它跟書 repo description 的作者欄做**第二因子**
+   * 比對：書名對上還不夠，作者也要對上才算「這本已經有書站了」。
+   *
+   * 為什麼非有不可：同名不同書會讓人買錯書。portal 上的 `understanding-the-bible`
+   * 是 Dorothy L. Johns 的函授查經課程，不是斯托得 1972 年的《認識聖經》；
+   * `servant-leadership` 是 Larry W. Boone 的教科書，不是 Greenleaf 的原典。
+   * 只比書名的話，這種錯要拿到書才會發現。
+   *
+   * 寫法不必統一（`John Stott` / `Kent Beck & Martin Fowler` / `馮唐` 都可以），
+   * 比對走姓氏 token 交集。合著列到能識別即可，不必抄滿版權頁。
+   */
+  author?: string;
   /** 初版年 */
   year?: number;
   /** 書 repo slug（nplus.wiki/<slug>/）；status = "owned" 時必填，據此連結＋抓封面 */
