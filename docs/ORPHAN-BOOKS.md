@@ -18,30 +18,19 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **390** | 書站建了但沒有筆記在用，等於白建 |
-| ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **8** | 補一筆 bibliography 就好，不必開站 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **364** | 書站建了但沒有筆記在用，等於白建 |
+| ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **4** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：390 本沒有任何站認領
+## 一、孤兒書：364 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
-### 1a. 內容已經引了、盤點沒登記：8 本
+### 1a. 內容已經引了、盤點沒登記：0 本
 
-**這批最該先補。** 站內已經有頁 `furtherReading` 錨到這本書，代表書確實在被用，只是那一站的 bibliography 漏登記——補一筆 `status: "owned"` ＋ `slug` 即可，不必開新站、也不必判斷歸誰。
-
-| 書 repo | 書名 | 作者 | 哪些頁在引 |
-| --- | --- | --- | --- |
-| `21st-century-biblical-homiletics` | 21世紀聖經講道學 | 孫寶玲 | `biblical-studies-note/concepts/hermeneutics/from-text-to-sermon.md` |
-| `cross-and-the-prodigal` | The Cross and the Prodigal | Kenneth E. Bailey | `biblical-studies-note/concepts/new-testament/prodigal-through-middle-eastern-eyes.md` |
-| `hard-sayings-of-the-bible` | Hard Sayings of the Bible | Walter C. Kaiser Jr., Peter H. Davids, F. F. Bruce & Manfred T. Brauch | `biblical-studies-note/concepts/hermeneutics/handling-hard-sayings.md` |
-| `how-to-read-the-bible-book-by-book` | How to Read the Bible Book by Book | Gordon D. Fee & Douglas Stuart | `biblical-studies-note/concepts/hermeneutics/book-by-book-reading.md` |
-| `seeing-with-new-eyes` | Seeing with New Eyes: Counseling and the Human Condition Through the Lens of Scripture | David Powlison | `pastoral-psychology-note/concepts/integration/ministerial-not-magisterial.md` |
-| `soul-of-shame` | The Soul of Shame: Retelling the Stories We Believe About Ourselves | Curt Thompson | `pastoral-psychology-note/concepts/inner-life/shame-vs-guilt.md` |
-| `whats-left-without-your-business-card` | 沒了名片，你還剩下什麼 | 張國洋、姚詩豪 | `career-note/concepts/job-search-change/pivot-to-a-new-track.md`、`career-note/concepts/meaning-direction/beyond-the-business-card.md` |
-| `when-people-are-big-and-god-is-small` | When People Are Big and God Is Small: Overcoming Peer Pressure, Codependency, and the Fear of Man | Edward T. Welch | `pastoral-psychology-note/concepts/inner-life/shame-vs-guilt.md` |
+無——內容引用到的書都已經登記在盤點裡。
 
 ### 1b. 開新站候選：1 個 leaf
 
@@ -58,51 +47,50 @@
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
 | `investing` | finance | 52/123 | 42% | investing(46)、schwager(9)、personal-finance(7) |
-| `biblical-studies` | theology | 48/117 | 41% | biblical-studies(59)、stott(8)、keller(7) |
+| `biblical-studies` | theology | 43/117 | 37% | biblical-studies(63)、stott(8)、nt-wright(7) |
 | `growth` | mindset | 37/115 | 32% | growth(22)、thinking(17)、science(11) |
-| `coding-practice` | engineering | 31/70 | 44% | clean-code(17)、design-patterns(11)、uncle-bob(5) |
 | `systematic` | theology | 31/78 | 40% | theology(27)、keller(13)、spiritual-formation(9) |
 | `persuasion` | communication | 30/64 | 47% | communication(18)、greene(3)、business-strategy(3) |
+| `coding-practice` | engineering | 29/70 | 41% | clean-code(18)、design-patterns(12)、uncle-bob(5) |
 | `ethics` | philosophy | 25/69 | 36% | philosophy(15)、fromm(9)、de-botton(7) |
 | `productivity` | habit | 11/53 | 21% | tools(25)、habits(20)、tracy(5) |
 | `self-learning` | education | 9/29 | 31% | learning(17)、growth(4)、career(2) |
 | `strategy` | business | 9/35 | 26% | business-strategy(18)、startup(5)、hbr(3) |
-| `systems-design` | engineering | 8/26 | 31% | system-design(13)、design-patterns(5)、clean-code(3) |
 | `community` | relationships | 8/26 | 31% | relationships(14)、maxwell(2)、communication(2) |
 | `security` | engineering | 6/8 | 75% | cloud-infra(1)、system-design(1) |
 | `public-speaking` | communication | 5/13 | 38% | communication(5)、hbr(3)、tracy(1) |
 | `civilization` | history | 5/24 | 21% | history(13)、fengtang(2)、wujun(2) |
-| `discipleship` | spiritual-formation | 4/12 | 33% | spiritual-formation(7)、willard(3)、theology(2) |
-| `databases` | engineering | 4/10 | 40% | data-systems(6) |
-| `emotion` | mindset | 4/12 | 33% | life-meaning(8)、maxwell(1)、thinking(1) |
+| `systems-design` | engineering | 5/26 | 19% | system-design(14)、design-patterns(6)、fowler(3) |
 | `storytelling` | communication | 4/11 | 36% | communication(5)、writing(2)、greene(1) |
 | `personal-finance` | finance | 4/29 | 14% | personal-finance(17)、kiyosaki(14)、schwager(1) |
 | `economics` | finance | 4/36 | 11% | economics(32)、investing(3)、kiyosaki(2) |
-| `pastoral` | theology | 3/14 | 21% | theology(9)、biblical-studies(4)、nouwen(2) |
-| `contemplative` | spiritual-formation | 3/6 | 50% | spiritual-formation(2)、theology(1)、nouwen(1) |
-| `devotional` | spiritual-formation | 3/12 | 25% | spiritual-formation(7)、lewis(6)、nouwen(2) |
 | `negotiation` | communication | 3/16 | 19% | communication(10)、hbr(2)、relationships(1) |
 | `political-philosophy` | philosophy | 3/6 | 50% | philosophy(2)、economics(1) |
+| `emotion` | mindset | 3/12 | 25% | life-meaning(9)、thinking(2)、maxwell(1) |
 | `apologetics` | theology | 2/9 | 22% | theology(7)、lewis(4)、spiritual-formation(1) |
 | `cognitive` | science | 2/32 | 6% | thinking(23)、science(12)、gardner(7) |
+| `databases` | engineering | 2/10 | 20% | data-systems(8)、fowler(1) |
 | `vision` | leadership | 2/45 | 4% | leadership(39)、management(7)、business-strategy(5) |
 | `discipline` | habit | 2/5 | 40% | habits(2)、writing(1)、cloud(1) |
+| `non-fiction` | writing | 2/19 | 11% | writing(15)、learning(1)、philosophy(1) |
+| `visual` | design | 2/14 | 14% | design(11)、problem-solving(1)、de-botton(1) |
+| `coffee` | tools | 2/2 | 100% | **沒有站在管** |
+| `fiction` | writing | 2/7 | 29% | writing(4)、lewis(1) |
 
-> 另有 23 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
+> 另有 19 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
 
-### 1d. 同一作者 ≥3 本沒人認領：5 位
+### 1d. 同一作者 ≥3 本沒人認領：4 位
 
 作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），沒有站才是開站候選——COVERAGE-GAPS 的人物缺口就是這樣抓出 covey／templar／navarro 三站的。
 
 | 作者 | 孤兒本數 | 已有作者站？ | 書 |
 | --- | ---: | --- | --- |
 | CFA Institute | 5 | — | Corporate Finance Workbook、Portfolio Management in Practice, Volume 1: Investment Management、Portfolio Management in Practice, Volume 2: Asset Allocation、Portfolio Management in Practice, Volume 3: Equity Portfolio Management、Quantitative Investment Analysis |
-| Henri J. M. Nouwen | 4 | `nouwen-note` | Can You Drink the Cup?、The Genesee Diary: Report from a Trappist Monastery、The Inner Voice of Love: A Journey Through Anguish to Freedom、The Road to Daybreak: A Spiritual Journey |
 | 秦嗣林 | 4 | — | 29張當票：典當不到的人生啟發、29張當票2：當舖裡特有的人生風景、29張當票3：門簾外的人生鑑定、學上當 |
 | David J. Atkinson | 3 | — | The Message of Job、The Message of Proverbs、The Message of Ruth |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 390 本（依 leaf 分組）
+### 1e. 全部 364 本（依 leaf 分組）
 
 #### `investing` — 52/123 沒人認領（目前：investing(46)、schwager(9)、personal-finance(7)）
 
@@ -161,19 +149,15 @@
 | `yale-finance-course` | 受用一生的耶魯金融投資課 | 陳志武 |
 | `yale-financial-literacy` | 耶魯最受歡迎的金融通識課 | 陳志武 |
 
-#### `biblical-studies` — 48/117 沒人認領（目前：biblical-studies(59)、stott(8)、keller(7)）
+#### `biblical-studies` — 43/117 沒人認領（目前：biblical-studies(63)、stott(8)、nt-wright(7)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `21st-century-biblical-homiletics` | 21世紀聖經講道學 | 孫寶玲 |
 | `an-introduction-to-the-new-testament` | An Introduction to the New Testament: Contexts, Methods & Ministry Formation | David A. deSilva |
 | `bible-atlas` | bible-atlas | ⚠ 描述沒有作者欄 |
 | `books-of-the-pentateuch` | The Books of the Pentateuch | William Evans |
-| `cross-and-the-prodigal` | The Cross and the Prodigal | Kenneth E. Bailey |
 | `dictionary-of-the-later-new-testament` | Dictionary of the Later New Testament & Its Developments | Ralph P. Martin & Peter H. Davids (eds.) |
 | `ezra-nehemiah-esther-for-everyone` | Ezra, Nehemiah, and Esther for Everyone | John Goldingay |
-| `hard-sayings-of-the-bible` | Hard Sayings of the Bible | Walter C. Kaiser Jr., Peter H. Davids, F. F. Bruce & Manfred T. Brauch |
-| `how-to-read-the-bible-book-by-book` | How to Read the Bible Book by Book | Gordon D. Fee & Douglas Stuart |
 | `message-of-1-corinthians` | The Message of 1 Corinthians | David Prior |
 | `message-of-1-peter` | The Message of 1 Peter | Edmund Clowney |
 | `message-of-2-corinthians` | The Message of 2 Corinthians | Paul Barnett |
@@ -207,7 +191,6 @@
 | `message-of-song-of-songs` | The Message of the Song of Songs | Tom Gledhill |
 | `message-of-zechariah` | The Message of Zechariah | Barry Webb |
 | `on-the-holy-spirit` | On the Holy Spirit | Basil the Great |
-| `paul-a-biography` | Paul: A Biography | N. T. Wright |
 | `sherlock-who-2-biblical-world` | 胡爾摩斯Ⅱ重返聖經現場 | 胡維華 |
 | `sherlock-who-3-new-light` | 胡爾摩斯Ⅲ新世紀拉比探案 | 胡維華 |
 | `state-of-new-testament-studies` | The State of New Testament Studies | Scot McKnight & Nijay K. Gupta (eds.) |
@@ -255,42 +238,6 @@
 | `thinking-101` | 思考 101：耶魯大學改變人生的一堂思辨課 | Woo-kyoung Ahn (安宇敬) |
 | `welcome-to-your-brain` | 大腦開竅手冊 | Sandra Aamodt & Sam Wang |
 | `winning-grover` | 贏者之道 | Tim S. Grover |
-
-#### `coding-practice` — 31/70 沒人認領（目前：clean-code(17)、design-patterns(11)、uncle-bob(5)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `97-things-every-programmer-should-know` | 97 Things Every Programmer Should Know | Kevlin Henney (ed.) |
-| `97-things-every-software-architect-should-know` | 97 Things Every Software Architect Should Know | Richard Monson-Haefel |
-| `algorithms-to-live-by` | Algorithms to Live By | Brian Christian & Tom Griffiths |
-| `art-of-clean-code` | 精通無瑕程式碼 | Christian Mayer |
-| `art-of-doing-science-and-engineering` | The Art of Doing Science and Engineering | Richard Hamming |
-| `balancing-coupling-in-software-design` | Balancing Coupling in Software Design | Vlad Khononov |
-| `bdd-in-action` | BDD in Action | John Ferguson Smart |
-| `big-refactoring` | 大話重構：軟體重構實戰指南 | 王洋 |
-| `clean-code-principles-and-patterns` | 整潔程式碼原則與模式：軟體從業者手冊 | Petri Silen |
-| `coders-at-work` | Coders at Work | Peter Seibel |
-| `coding-interview-patterns` | Coding Interview Patterns | Alex Xu |
-| `effective-debugging` | Effective Debugging | Diomidis Spinellis |
-| `exploring-requirements` | Exploring Requirements | Donald C. Gause & Gerald M. Weinberg |
-| `joel-on-software` | Joel on Software | Joel Spolsky |
-| `living-documentation` | Living Documentation | Cyrille Martraire |
-| `more-joel-on-software` | More Joel on Software | Joel Spolsky |
-| `mythical-man-month` | The Mythical Man-Month | Frederick P. Brooks Jr. |
-| `nine-algorithms-that-changed-the-future` | Nine Algorithms That Changed the Future | John MacCormick |
-| `perfect-software` | Perfect Software | Gerald M. Weinberg |
-| `prefactoring` | Prefactoring | Ken Pugh |
-| `programmer-self-cultivation` | 程式設計師的自我修養：連結、裝載與程式庫 | 俞甲子、石凡、潘愛民 |
-| `programming-pearls` | Programming Pearls | Jon Bentley |
-| `running-on-empty` | Running on Empty | Jonice Webb |
-| `seriously-good-software` | Seriously Good Software | Marco Faella |
-| `smalltalk-best-practice-patterns` | Smalltalk Best Practice Patterns | Kent Beck |
-| `software-architect-12-disciplines` | 12 Essential Skills for Software Architects | Dave Hendricksen |
-| `software-architect-elevator` | The Software Architect Elevator | Gregor Hohpe |
-| `software-developers-career-guide` | The Complete Software Developer's Career Guide | John Sonmez |
-| `specification-by-example` | Specification by Example | Gojko Adzic |
-| `tidy-first` | Tidy First? A Personal Exercise in Empirical Software Design | Kent Beck |
-| `zen-programmer` | The Zen Programmer | Christian Grobmeier |
 
 #### `systematic` — 31/78 沒人認領（目前：theology(27)、keller(13)、spiritual-formation(9)）
 
@@ -362,6 +309,40 @@
 | `winning` | Winning | Jack Welch & Suzy Welch |
 | `you-can-read-anyone` | You Can Read Anyone | David J. Lieberman |
 | `youve-got-8-seconds` | You've Got 8 Seconds | Paul Hellman |
+
+#### `coding-practice` — 29/70 沒人認領（目前：clean-code(18)、design-patterns(12)、uncle-bob(5)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `97-things-every-programmer-should-know` | 97 Things Every Programmer Should Know | Kevlin Henney (ed.) |
+| `97-things-every-software-architect-should-know` | 97 Things Every Software Architect Should Know | Richard Monson-Haefel |
+| `algorithms-to-live-by` | Algorithms to Live By | Brian Christian & Tom Griffiths |
+| `art-of-clean-code` | 精通無瑕程式碼 | Christian Mayer |
+| `art-of-doing-science-and-engineering` | The Art of Doing Science and Engineering | Richard Hamming |
+| `balancing-coupling-in-software-design` | Balancing Coupling in Software Design | Vlad Khononov |
+| `bdd-in-action` | BDD in Action | John Ferguson Smart |
+| `big-refactoring` | 大話重構：軟體重構實戰指南 | 王洋 |
+| `clean-code-principles-and-patterns` | 整潔程式碼原則與模式：軟體從業者手冊 | Petri Silen |
+| `coders-at-work` | Coders at Work | Peter Seibel |
+| `coding-interview-patterns` | Coding Interview Patterns | Alex Xu |
+| `effective-debugging` | Effective Debugging | Diomidis Spinellis |
+| `exploring-requirements` | Exploring Requirements | Donald C. Gause & Gerald M. Weinberg |
+| `joel-on-software` | Joel on Software | Joel Spolsky |
+| `living-documentation` | Living Documentation | Cyrille Martraire |
+| `more-joel-on-software` | More Joel on Software | Joel Spolsky |
+| `mythical-man-month` | The Mythical Man-Month | Frederick P. Brooks Jr. |
+| `nine-algorithms-that-changed-the-future` | Nine Algorithms That Changed the Future | John MacCormick |
+| `perfect-software` | Perfect Software | Gerald M. Weinberg |
+| `prefactoring` | Prefactoring | Ken Pugh |
+| `programmer-self-cultivation` | 程式設計師的自我修養：連結、裝載與程式庫 | 俞甲子、石凡、潘愛民 |
+| `programming-pearls` | Programming Pearls | Jon Bentley |
+| `running-on-empty` | Running on Empty | Jonice Webb |
+| `seriously-good-software` | Seriously Good Software | Marco Faella |
+| `software-architect-12-disciplines` | 12 Essential Skills for Software Architects | Dave Hendricksen |
+| `software-architect-elevator` | The Software Architect Elevator | Gregor Hohpe |
+| `software-developers-career-guide` | The Complete Software Developer's Career Guide | John Sonmez |
+| `specification-by-example` | Specification by Example | Gojko Adzic |
+| `zen-programmer` | The Zen Programmer | Christian Grobmeier |
 
 #### `ethics` — 25/69 沒人認領（目前：philosophy(15)、fromm(9)、de-botton(7)）
 
@@ -437,19 +418,6 @@
 | `post-corona` | Post Corona | Scott Galloway |
 | `secrets-of-the-javascript-ninja` | Secrets of the JavaScript Ninja, 2nd ed. | John Resig, Bear Bibeault & Josip Maras |
 
-#### `systems-design` — 8/26 沒人認領（目前：system-design(13)、design-patterns(5)、clean-code(3)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `analysis-patterns` | Analysis Patterns: Reusable Object Models | Martin Fowler |
-| `beautiful-architecture` | Beautiful Architecture | Diomidis Spinellis & Georgios Gousios |
-| `get-your-hands-dirty-clean-architecture` | Get Your Hands Dirty on Clean Architecture | Tom Hombergs |
-| `release-it` | Release It! Design and Deploy Production-Ready Software | Michael T. Nygard |
-| `software-architecture-for-developers-vol1` | Software Architecture for Developers, Vol. 1 | Simon Brown |
-| `software-architecture-for-developers-vol2` | Software Architecture for Developers, Vol. 2 | Simon Brown |
-| `system-architecture-design` | 系統架構設計：從程式設計師向架構師轉型之路 | 鄭天民 |
-| `uml-distilled` | UML Distilled: A Brief Guide to the Standard Object Modeling Language | Martin Fowler |
-
 #### `community` — 8/26 沒人認領（目前：relationships(14)、maxwell(2)、communication(2)）
 
 | 書 repo | 書名 | 作者 |
@@ -494,32 +462,15 @@
 | `sovereign-individual` | The Sovereign Individual | James Dale Davidson & Lord William Rees-Mogg |
 | `wealth-of-humans` | The Wealth of Humans | Ryan Avent |
 
-#### `discipleship` — 4/12 沒人認領（目前：spiritual-formation(7)、willard(3)、theology(2)）
+#### `systems-design` — 5/26 沒人認領（目前：system-design(14)、design-patterns(6)、fowler(3)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `after-you-believe` | After You Believe: Why Christian Character Matters | N. T. Wright |
-| `attached-to-god` | Attached to God: A Practical Guide to Deeper Spiritual Experience | Krispin Mayfield |
-| `life-without-lack` | Life Without Lack: Living in the Fullness of Psalm 23 | Dallas Willard |
-| `soul-of-shame` | The Soul of Shame: Retelling the Stories We Believe About Ourselves | Curt Thompson |
-
-#### `databases` — 4/10 沒人認領（目前：data-systems(6)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `art-of-postgresql` | The Art of PostgreSQL | Dimitri Fontaine |
-| `data-warehouse-toolkit` | The Data Warehouse Toolkit: The Complete Guide to Dimensional Modeling | Ralph Kimball & Margy Ross |
-| `nosql-distilled` | NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence | Pramod J. Sadalage & Martin Fowler |
-| `postgresql-14-internals` | PostgreSQL 14 Internals | Egor Rogov |
-
-#### `emotion` — 4/12 沒人認領（目前：life-meaning(8)、maxwell(1)、thinking(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `emotional-intelligence` | Emotional Intelligence: Why It Can Matter More Than IQ | Daniel Goleman |
-| `inner-excellence` | Inner Excellence | Jim Murphy |
-| `social-animal` | The Social Animal | David Brooks |
-| `your-mind-an-owners-manual-for-a-better-life` | Your Mind: An Owner's Manual for a Better Life | Christopher Cortman & Harold Shinitzky |
+| `beautiful-architecture` | Beautiful Architecture | Diomidis Spinellis & Georgios Gousios |
+| `get-your-hands-dirty-clean-architecture` | Get Your Hands Dirty on Clean Architecture | Tom Hombergs |
+| `software-architecture-for-developers-vol1` | Software Architecture for Developers, Vol. 1 | Simon Brown |
+| `software-architecture-for-developers-vol2` | Software Architecture for Developers, Vol. 2 | Simon Brown |
+| `system-architecture-design` | 系統架構設計：從程式設計師向架構師轉型之路 | 鄭天民 |
 
 #### `storytelling` — 4/11 沒人認領（目前：communication(5)、writing(2)、greene(1)）
 
@@ -548,30 +499,6 @@
 | `how-economy-grows` | How an Economy Grows and Why It Crashes | Peter D. Schiff & Andrew J. Schiff |
 | `little-book-that-builds-wealth` | The Little Book That Builds Wealth | Pat Dorsey |
 
-#### `pastoral` — 3/14 沒人認領（目前：theology(9)、biblical-studies(4)、nouwen(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `psychology-theology-and-spirituality-in-christian-counseling` | Psychology, Theology, and Spirituality in Christian Counseling | Mark R. McMinn |
-| `seeing-with-new-eyes` | Seeing with New Eyes: Counseling and the Human Condition Through the Lens of Scripture | David Powlison |
-| `when-people-are-big-and-god-is-small` | When People Are Big and God Is Small: Overcoming Peer Pressure, Codependency, and the Fear of Man | Edward T. Welch |
-
-#### `contemplative` — 3/6 沒人認領（目前：spiritual-formation(2)、theology(1)、nouwen(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `genesee-diary` | The Genesee Diary: Report from a Trappist Monastery | Henri J. M. Nouwen |
-| `inner-voice-of-love` | The Inner Voice of Love: A Journey Through Anguish to Freedom | Henri J. M. Nouwen |
-| `road-to-daybreak` | The Road to Daybreak: A Spiritual Journey | Henri J. M. Nouwen |
-
-#### `devotional` — 3/12 沒人認領（目前：spiritual-formation(7)、lewis(6)、nouwen(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `adam` | adam | ⚠ 描述沒有作者欄 |
-| `can-you-drink-the-cup` | Can You Drink the Cup? | Henri J. M. Nouwen |
-| `imitation-of-christ` | The Imitation of Christ | Thomas à Kempis |
-
 #### `negotiation` — 3/16 沒人認領（目前：communication(10)、hbr(2)、relationships(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -588,6 +515,14 @@
 | `equality` | Equality | Thomas Piketty & Michael J. Sandel |
 | `secular-age` | A Secular Age | Charles Taylor |
 
+#### `emotion` — 3/12 沒人認領（目前：life-meaning(9)、thinking(2)、maxwell(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `inner-excellence` | Inner Excellence | Jim Murphy |
+| `social-animal` | The Social Animal | David Brooks |
+| `your-mind-an-owners-manual-for-a-better-life` | Your Mind: An Owner's Manual for a Better Life | Christopher Cortman & Harold Shinitzky |
+
 #### `apologetics` — 2/9 沒人認領（目前：theology(7)、lewis(4)、spiritual-formation(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -601,6 +536,13 @@
 | --- | --- | --- |
 | `beast-gentleman` | 野獸紳士 | 巫家民 |
 | `less-is-more` | Less Is More | Jason Hickel |
+
+#### `databases` — 2/10 沒人認領（目前：data-systems(8)、fowler(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `art-of-postgresql` | The Art of PostgreSQL | Dimitri Fontaine |
+| `postgresql-14-internals` | PostgreSQL 14 Internals | Egor Rogov |
 
 #### `vision` — 2/45 沒人認領（目前：leadership(39)、management(7)、business-strategy(5)）
 
@@ -657,11 +599,11 @@
 | --- | --- | --- |
 | `forgiveness-and-reconciliation` | Forgiveness and Reconciliation: Initiating Individuation and Enabling Liberation | Monika Renz |
 
-#### `agile` — 1/11 沒人認領（目前：agile(10)、clean-code(1)、kent-beck(1)）
+#### `discipleship` — 1/12 沒人認領（目前：spiritual-formation(7)、willard(4)、pastoral-psychology(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `planning-extreme-programming` | Planning Extreme Programming | Kent Beck & Martin Fowler |
+| `after-you-believe` | After You Believe: Why Christian Character Matters | N. T. Wright |
 
 #### `eastern` — 1/2 沒人認領（目前：philosophy(1)）
 
@@ -717,6 +659,12 @@
 | --- | --- | --- |
 | `action-mckee` | Action | Robert McKee & Bassim El-Wakil |
 
+#### `devotional` — 1/12 沒人認領（目前：spiritual-formation(8)、lewis(6)、nouwen(3)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `adam` | adam | ⚠ 描述沒有作者欄 |
+
 #### `historical` — 1/6 沒人認領（目前：theology(5)、stott(1)）
 
 | 書 repo | 書名 | 作者 |
@@ -746,12 +694,6 @@
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
 | `timeless-way-of-building` | The Timeless Way of Building | Christopher Alexander |
-
-#### `skill-building` — 1/38 沒人認領（目前：career(35)、behaviour-interview(6)、growth(3)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `whats-left-without-your-business-card` | 沒了名片，你還剩下什麼 | 張國洋、姚詩豪 |
 
 #### `marketing` — 1/22 沒人認領（目前：marketing(20)、tracy(2)、writing(1)）
 

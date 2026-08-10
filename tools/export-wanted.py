@@ -88,43 +88,47 @@ from pathlib import Path
 # 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
-# 2026-08-09 這輪：上一版 20 本裡 13 本已經建好書站（回填成 owned），空出來的位子全部
-# 給準則①。近零站剛好有 4 站差 1 本、8 站差 2 本＝20 本候選，扣掉《The Law of the Sublime》
-# （greene 站主自註「出版與中譯後再收」，書還沒出版，不該佔採購清單版面）剩 19 本，
-# 第 20 格給唯一還沒排到的多站共等（準則②）。因此 release-it／the-data-warehouse-toolkit／
-# after-you-believe／the-divine-conspiracy-continued 這輪全數讓位——它們是準則③④的票，
-# 依規矩排在歸零批之後，下一輪再上。
+# 2026-08-10 這輪（`/note-wanted` 全跑）：上一版 20 本裡 2 本已經建好書站（Emotional
+# Intelligence、Life Without Lack），但那只是冰山一角——這輪重跑「先扣掉」抓到 **23 本**
+# wanted 其實早有 repo，回填 29 筆條目（跨 15 站）。**這不是比對邏輯壞掉，是產出停更**：
+# WANTED-BOOKS.md 從 08-09 就沒重算，而書庫這段期間長了兩百多個 repo。教訓寫進
+# tools/refresh-galaxy-docs.sh——四份生成物一次重算，不要單獨跑其中一支。
 #
-# 同日第二輪：《The Law of the Sublime》經 Andrew 裁決改成 `unavailable`（2026-08 查仍未出版），
-# greene 站因此從差 2 本變成差 1 本，《The 50th Law》依準則①「差 1 本的站先全部排進去」
-# 上移到第 4 格，Bogle 那本（厚）退到差 1 批的最後。20 本的組成沒變，只動了順序。
+# 回填之後的近零名單變成 **6 站差 1 本 ＋ 9 站差 2 本＝24 本候選**，第一次超過 20 格。
+# 依規矩「差 1 本的站先全部排進去，再排差 2 本的」，前 20 **全部由歸零批填滿**，準則②③④
+# 這輪都排不上（多站共等本來就歸零了——Emotional Intelligence 與 The Imitation of Christ
+# 兩本一回填，「優先收」那節就空了）。
 #
-# 同日第三輪：再兩筆裁決連帶洗牌——《Servant Leadership》（Greenleaf 1977，2026-08 找過只買到
-# Larry W. Boone 的同名教科書）與《The Divine Conspiracy Continued》都改 `unavailable`。
-# 前者讓 leadership 站 wanted 歸零、退出近零名單，前 20 少一格；後者讓 willard 站從差 3 本
-# 掉到差 2 本、**新進近零名單**，補上兩格。結果近零站剛好 4 站差 1 ＋ 8 站差 2 ＝ 20 本，
-# 歸零批把前 20 填滿，《The Imitation of Christ》（準則②多站共等）因此讓位，下一輪再上。
+# 差 2 本的 9 站只有 7 站擠得進來，讓位的兩站與理由：
+#   - `jung-note`（Psychological Types／The Red Book）：兩本都厚且貴，Red Book 是大開本
+#     摹真本——準則⑤「薄的排前面」把它們推到最後；下一輪若仍差 2 本再上。
+#   - `collins-note`（Good to Great and the Social Sectors／How the Mighty Fall）：準則④
+#     輸給 christensen——portal 的 Jim Collins 書櫃實查 4 本（great-by-choice、built-to-last、
+#     good-to-great、be-2-0；搜「Collins」另外命中的 team-geek 與 simple-path-to-wealth
+#     是別的 Collins，**子字串假命中要濾掉**），christensen 是 7 本。
+#
+# 排序 = 消化順序：差 1 批在前（收一本歸零一站），批內與差 2 批內都依準則⑤ 薄→厚。
 TOP20 = [
-    ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維本人 7 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導…），家庭這一塊掛零，而 covey 站內「家庭」22 處／11 個檔案——最常被援引卻沒有專書可掛的應用場域；薄"),
-    ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**；portal 的財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」31 處／7 個檔案、「習慣」20 處／9 個檔案"),
-    ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案，全星系「無所畏懼」5 處跨 5 站"),
-    ("bogle-on-mutual-funds", "bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 28 處／19 個檔案／跨 4 站（bogle 15、investing 7、personal-finance 3、kiyosaki 3），常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 本那批的最後"),
-    ("working-backwards", "management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」「輸入指標」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》"),
-    ("managing", "management 的另一半；portal 的 Mintzberg **掛零**，站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條"),
+    ("tuesdays-with-morrie", "life-meaning 站 owned 38／wanted 1——**收了就歸零**（Emotional Intelligence 這輪回填成 owned 之後只剩這本）；portal 的 Mitch Albom **掛零**；「臨終」全星系 50 處／21 個檔案／**跨 14 站**（peck 17、relationships 7、nouwen 7…），醫療端有 Being Mortal 接住，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》"),
+    ("living-in-christ-s-presence", "willard 站 owned 8／wanted 1——**收了就歸零**（Life Without Lack 這輪回填成 owned）；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾。**更正上一版的理由**：portal 的 Ortberg 不是掛零，實查有 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；薄，有繁中《活在基督的同在中》"),
+    ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案；有繁中《第 50 條法則》"),
+    ("million-dollar-habits", "tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**（實查 portal 作者欄命中 35 筆）；財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」40 處／10 個檔案、「習慣」24 處／11 個檔案"),
+    ("the-7-habits-of-highly-effective-families", "covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導、與成功有約的高效能習慣…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》"),
+    ("bogle-on-mutual-funds", "bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 31 處／20 個檔案／跨 5 站，其中 bogle 站內 15 處／7 個檔案——常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 批的最後"),
+    ("decode-and-conquer", "behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），**Lewis C. Lin 與 Robin Ryan 兩位作者都掛零**（實查作者欄各 0 筆）；站內「STAR」76 處／22 個檔案、「行為面試」68 處／32 個檔案，大廠情境題的答題框架全靠站內轉述；薄"),
+    ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站，其中本站 68 處），出處卻不在；薄"),
+    ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站，而系列裡就缺這本場域書；薄"),
+    ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
+    ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上：肢體語言辭典、Louder Than Words、FBI 教你讀心術、Dangerous Personalities）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
+    ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處／7 個檔案，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
     ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／**跨 10 站**（philosophy 27、taleb 5、keller 2…）；薄，有繁中《障礙就是道路》"),
     ("awaken-the-giant-within", "growth 的另一半；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在 growth 這對的後面"),
-    ("emotional-intelligence", "life-meaning 站 owned 37／wanted 2——**這兩本收齊就歸零**，同時是**唯二的多站共等**（life-meaning ＋ thinking，準則②）；portal 的 Goleman **只有 1 本、還是合著的** Primal Leadership，1995 年那本把 EQ 帶進大眾語彙的原典不在；「情緒智商」11 處跨 5 站、「情緒智力」4 處跨 2 站、「EQ」（濾掉 REQUEST／EQUAL 這類假命中後）10 處跨 6 站；有繁中《EQ》"),
-    ("tuesdays-with-morrie", "life-meaning 的另一半；portal 的 Albom **掛零**；「臨終」48 處／19 個檔案／**跨 13 站**——Being Mortal 這輪剛回填成 owned、接住了醫療端，缺的是敘事端最溫柔的那個入口；薄，有繁中《最後 14 堂星期二的課》"),
-    ("decode-and-conquer", "behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），Lewis Lin 卻**掛零**；站內「行為面試」68 處、「STAR」47 處，大廠情境題的答題框架全靠站內轉述"),
-    ("60-seconds-and-you-re-hired", "behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站），出處卻不在；薄"),
-    ("the-rules-of-parenting", "templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上）；「教養」全星系 29 處／14 個檔案／跨 10 站，而系列裡就缺這本場域書；薄"),
-    ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
-    ("life-without-lack", "willard 站 owned 7／wanted 2——**這兩本收齊就歸零**；這輪《神聖的密謀・續篇》查證無貨改 `unavailable` 之後，willard 才掉進近零名單；portal 的魏樂德恰好 7 本（神聖的密謀、心靈的重塑、靈性操練真諦、傾聽神的聲音…），全是他生前出版的系統著作，缺的是身後整理的詩篇 23 篇講章——「天國生活」站內 3 處全靠系統著作轉述，講道體那一面沒有出處"),
-    ("living-in-christ-s-presence", "willard 的另一半；與 John Ortberg 的最後對談錄，臨終前的思想總回顧；portal 的 Ortberg **掛零**、全星系提到他 0 處——魏樂德最重要的門生兼詮釋者這條線完全沒接上，而 willard 站的閱讀路徑正是以「總回顧」收尾；薄"),
-    ("be-exceptional", "navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄"),
-    ("three-minutes-to-doomsday", "navarro 的另一半；navarro 站內「偵訊」9 處，而方法論在真實高壓現場的完整展開只有這本回憶錄式的實錄；厚，排在 navarro 這對的後面"),
-    ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站（damodaran 178、investing 39、startup 8），而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處"),
-    ("investment-philosophies", "damodaran 的另一半；「投資哲學」6 處跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在"),
+    ("working-backwards", "management 站 owned 45／wanted 2——**這兩本收齊就歸零**；portal 的亞馬遜線**掛零**（作者欄搜 Bezos／Bryar／Amazon 一本都沒有），而站內「逆向工作法」「PR/FAQ」各 1 處、全擠在同一頁上當孤證；有繁中《亞馬遜逆向工作法》"),
+    ("managing", "management 的另一半；portal 的 Mintzberg **掛零**（作者欄 0 筆），站內只有 1 處提到他的名字——「經理人實際上在做什麼」這條實地研究線完全沒有原典，而這是 45 本深的站裡少數還缺源頭的一條"),
+    ("the-dark-side-of-valuation", "damodaran 站 owned 3／wanted 2——**這兩本收齊就歸零**（portal 的 Damodaran 恰好 3 本：Investment Valuation、The Little Book of Valuation、Narrative and Numbers）；「估值」全星系 236 處／40 個檔案／跨 10 站，其中 damodaran 站內 178 處／12 個檔案——**全星系概念密度最高的主題卻只有 3 本原典**，而年輕、高成長與困境公司這一塊在 Investment Valuation 之外沒有出處；厚"),
+    ("investment-philosophies", "damodaran 的另一半；「投資哲學」6 處／6 個檔案／跨 2 站（bogle 4、damodaran 2）——兩站都在談流派光譜與各自的適配者，來源卻不在；厚"),
+    ("disrupting-class", "christensen 站 owned 7／wanted 2——**這兩本收齊就歸零**；portal 的克里斯汀生書櫃實查 7 本（創新的兩難、創新者的解答、看見未來、繁榮的悖論、與運氣競爭、你要如何衡量你的人生、創新者的 DNA），**理論本身收得很齊，缺的是兩條應用線**：這本是教育端，站內「教育」2 處、「學校」1 處全靠轉述；「破壞式創新」全星系 27 處／22 個檔案／跨 9 站（christensen 站內 6 處／3 個檔案）；有繁中《來上一堂破壞課》"),
+    ("the-innovator-s-prescription", "christensen 的另一半，醫療端；他自己認定最重要的一本（站上 note 已註明），而 christensen 站內「醫療」只有 2 處、無專書可掛；厚，排在差 2 批的最後"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -230,6 +234,7 @@ AUTHORS = {
     "die-with-zero": "Bill Perkins",
     "discipline-is-destiny": "Ryan Holiday",
     "discourses": "Epictetus 愛比克泰德（Arrian 記錄）",
+    "disrupting-class": "Clayton M. Christensen, Michael B. Horn & Curtis W. Johnson",
     "draft-no-4": "John McPhee",
     "drucker-on-asia": "Peter F. Drucker & 中內功",
     "early-retirement-extreme": "Jacob Lund Fisker",
@@ -240,13 +245,16 @@ AUTHORS = {
     "fierce-conversations": "Susan Scott",
     "financial-shenanigans": "Howard M. Schilit",
     "flourish": "Martin E. P. Seligman",
+    "forgiveness-and-reconciling": "Everett L. Worthington Jr.",
     "freakonomics": "Steven D. Levitt & Stephen J. Dubner",
     "fundamentals-of-data-engineering": "Joe Reis & Matt Housley",
     "game-programming-patterns": "Robert Nystrom",
     "games-people-play": "Eric Berne",
+    "generation-to-generation": "Edwin H. Friedman",
     "globalization-and-its-discontents": "Joseph E. Stiglitz",
     "good-habits-bad-habits": "Wendy Wood",
     "good-strategy-bad-strategy": "Richard P. Rumelt",
+    "good-to-great-and-the-social-sectors": "Jim Collins",
     "grasping-god-s-word": "J. Scott Duvall & J. Daniel Hays",
     "growing-object-oriented-software-guided-by-tests": "Steve Freeman & Nat Pryce",
     "hbr-s-10-must-reads": "Harvard Business Review",
@@ -263,6 +271,7 @@ AUTHORS = {
     "how-god-became-king": "N. T. Wright",
     "how-not-to-die": "Michael Greger",
     "how-people-grow": "Henry Cloud & John Townsend",
+    "how-the-mighty-fall": "Jim Collins",
     "how-the-mind-works": "Steven Pinker",
     "how-to-be-a-high-school-superstar": "Cal Newport — portal 同名 repo 內容實為 How to Win at College",
     "how-to-become-a-straight-a-student": "Cal Newport",
@@ -315,6 +324,8 @@ AUTHORS = {
     "playing-to-win": "A. G. Lafley & Roger L. Martin",
     "practical-monitoring": "Mike Julian",
     "project-retrospectives": "Norman L. Kerth",
+    "psychological-types": "C. G. Jung",
+    "psychology-christianity": "Eric L. Johnson 編",
     "purple-cow": "Seth Godin",
     "quit-like-a-millionaire": "Kristy Shen & Bryce Leung",
     "readings-in-database-systems": "Peter Bailis、Joseph M. Hellerstein & Michael Stonebraker 編",
@@ -336,6 +347,7 @@ AUTHORS = {
     "sql-antipatterns": "Bill Karwin",
     "stolen-focus": "Johann Hari",
     "streaming-systems": "Tyler Akidau、Slava Chernyak & Reuven Lax",
+    "suffering-and-the-heart-of-god": "Diane Langberg",
     "summa-theologiae": "Thomas Aquinas 阿奎那",
     "supercommunicators": "Charles Duhigg",
     "superforecasting": "Philip E. Tetlock & Dan Gardner",
@@ -369,6 +381,7 @@ AUTHORS = {
     "the-day-the-revolution-began": "N. T. Wright",
     "the-defining-decade-20": "Meg Jay",
     "the-demon-haunted-world": "Carl Sagan",
+    "the-emotionally-healthy-church": "Peter Scazzero",
     "the-forgotten-language": "Erich Fromm",
     "the-founder-s-dilemmas": "Noam Wasserman",
     "the-future-of-industrial-man": "Peter F. Drucker",
@@ -376,6 +389,7 @@ AUTHORS = {
     "the-great-game-of-business": "Jack Stack & Bo Burlingham",
     "the-imitation-of-christ": "Thomas à Kempis 金碧士",
     "the-inner-voice-of-love": "Henri J. M. Nouwen",
+    "the-innovator-s-prescription": "Clayton M. Christensen, Jerome H. Grossman & Jason Hwang",
     "the-language-instinct": "Steven Pinker",
     "the-mckinsey-way": "Ethan M. Rasiel",
     "the-millionaire-mind": "Thomas J. Stanley",
@@ -388,6 +402,7 @@ AUTHORS = {
     "the-practice-of-cloud-system-administration": "Thomas A. Limoncelli、Strata R. Chalup & Christina J. Hogan",
     "the-practice-of-the-presence-of-god": "Brother Lawrence 勞倫斯弟兄",
     "the-principles-of-product-development-flow": "Donald G. Reinertsen",
+    "the-red-book-liber-novus": "C. G. Jung",
     "the-reformed-pastor": "Richard Baxter 巴克斯特",
     "the-republic": "Plato 柏拉圖",
     "the-road-to-daybreak": "Henri J. M. Nouwen",
@@ -607,12 +622,16 @@ def main():
     #   servant-leadership：repo 是 Larry W. Boone 的教科書式拆解，
     #   leadership-note 想收的是 Greenleaf 1977 年的原典（portal 只有他的晚年
     #   文集 power-of-servant-leadership，源頭本身仍缺）。
+    #   understanding-the-bible：repo 是 Dorothy L. Johns 的函授查經課程
+    #   (Methods of Bible Study)，stott-note 想收的是斯托得 1972 年的《認識聖經》
+    #   ——書名一字不差，作者與書種完全不同（2026-08-10 加）。
     NAME_COLLISIONS = {
         ("change-your-thinking-change-your-life", "tracy-note"),
         ("how-to-be-a-high-school-superstar", "newport-note"),
         ("biblical-theology-goldingay", "biblical-studies-note"),
         ("erickson-christian-theology", "theology-note"),
         ("servant-leadership", "leadership-note"),
+        ("understanding-the-bible", "stott-note"),
     }
 
     def match_repo(r):

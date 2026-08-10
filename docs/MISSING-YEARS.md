@@ -9,7 +9,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：74 站 / 2048 筆，缺 year **96 筆**（4.7%），分佈在 24 站；其中 91 筆查得到版次日線索。
+目前：74 站 / 2053 筆，缺 year **98 筆**（4.8%），分佈在 24 站；其中 93 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -21,8 +21,8 @@
 | --- | ---: | ---: | ---: |
 | tracy-note | 39 | 27 | 12 |
 | leadership-note | 98 | 87 | 11 |
-| career-note | 71 | 63 | 8 |
-| biblical-studies-note | 74 | 67 | 7 |
+| career-note | 72 | 63 | 9 |
+| biblical-studies-note | 78 | 70 | 8 |
 | cloud-infra-note | 26 | 20 | 6 |
 | startup-note | 64 | 58 | 6 |
 | management-note | 47 | 42 | 5 |
@@ -54,8 +54,9 @@
 - [owned] Behavioral Interviews for Software Engineers · 行為面試核心 — 📕 December 9, 2023
 - [owned] The STAR Interview · 行為面試核心 — 📕 February 15, 2019
 
-### biblical-studies-note（7 筆）
+### biblical-studies-note（8 筆）
 
+- [owned] 21世紀聖經講道學 · 釋經方法與讀經 — 📕 August 6, 2017
 - [owned] 出埃及記的信息 / The Message of Exodus · 逐卷解經（BST 系列） — 📕 January 18, 2022
 - [owned] 詩篇的信息（上）1–72 / The Message of Psalms 1–72 · 逐卷解經（BST 系列） — 📕 December 6, 2001
 - [owned] 詩篇的信息（下）73–150 / The Message of Psalms 73–150 · 逐卷解經（BST 系列） — 📕 July 18, 2023
@@ -64,13 +65,14 @@
 - [owned] 雅各書的信息 / The Message of James · 逐卷解經（BST 系列） — 📕 June 15, 2021
 - [wanted] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
 
-### career-note（8 筆）
+### career-note（9 筆）
 
 - [owned] 將世界菁英的工作方式整理成冊 · 恆毅力與精通 — 📕 July 26, 2020
 - [owned] 馮唐成事心法 · 自我管理 — 📕 December 1, 2020
 - [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理 — 📕 2020/11/07
 - [owned] 為什麼老闆總是對我說「你很好，但是…」 / Kiss Your BUT Good-Bye · 自我管理 — 📕 June 11, 2013
 - [owned] HBR Guide to Your Professional Growth · 自我管理 — 📕 March 26, 2019
+- [owned] 沒了名片，你還剩下什麼 · 意義與方向 — 📕 October 3, 2013
 - [owned] 軟體工程師的行為面試 / Behavioral Interviews for Software Engineers · 求職與轉職 — 📕 December 9, 2023
 - [owned] 精通行為面試：科技業說故事指南 / Mastering Behavioral Interviews: The Guide to Storytelling in Tech · 求職與轉職 — 📕 December 9, 2025
 - [owned] STAR 面試法 / The STAR Interview · 求職與轉職 — 📕 February 15, 2019
