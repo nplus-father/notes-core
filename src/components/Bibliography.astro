@@ -185,14 +185,17 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
           按鈕按不動，與其擺一排死鍵，不如整條不出、退回「所有組全部攤開」的舊行為。
           第一個鍵是「全部」而不是第一組：分組一旦變成篩選器，預設就該是**看得到全部**，
           否則 Ctrl+F 只找得到當下那一組，等於把資料藏起來。 */}
+      {/* ARIA 用 group + aria-pressed，**不是** tablist/tab：這排鍵是同一份表格的篩選器，
+          底下沒有多個 tabpanel 可對應。掛 role="tab" 而沒有 tabpanel 是壞掉的 tab 模式，
+          螢幕閱讀器會去找不存在的面板；一排 toggle button 才是它真正的樣子。 */}
       {showTabs && (
-        <div class="biblio-tabs" role="tablist" aria-label={`${heading}分組`} hidden>
-          <button class="biblio-tab is-active" role="tab" aria-selected="true" data-group="">
+        <div class="biblio-tabs" role="group" aria-label={`${heading}分組篩選`} hidden>
+          <button type="button" class="biblio-tab is-active" aria-pressed="true" data-group="">
             全部
             <span class="biblio-tab-count">{entries.length}</span>
           </button>
           {groups.map((g) => (
-            <button class="biblio-tab" role="tab" aria-selected="false" data-group={g.name}>
+            <button type="button" class="biblio-tab" aria-pressed="false" data-group={g.name}>
               {g.name}
               <span class="biblio-tab-count">{g.items.length}</span>
             </button>
@@ -262,7 +265,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
         for (const b of buttons) {
           const on = b === btn;
           b.classList.toggle("is-active", on);
-          b.setAttribute("aria-selected", String(on));
+          b.setAttribute("aria-pressed", String(on));
         }
         for (const g of groups) {
           g.classList.toggle("is-hidden", want !== "" && g.dataset.group !== want);
