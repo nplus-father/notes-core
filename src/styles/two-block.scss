@@ -71,59 +71,16 @@
   }
 }
 
-/* 首頁參考書架 */
-.bookshelf {
-  margin: 1.4rem 0 2.2rem;
-  padding: 1.1rem 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.bookshelf-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.85rem;
-  h2 {
-    font-size: 1rem;
-    margin: 0;
-  }
-}
-.bookshelf-note {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-.bookshelf-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.book-spine {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 0.7rem;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent-2);
-  border-radius: 6px;
-  background: var(--surface-2);
-  font-size: 0.8rem;
-  color: var(--text-2);
-  text-decoration: none;
-  transition:
-    transform 0.15s,
-    box-shadow 0.15s,
-    color 0.15s,
-    border-color 0.15s;
-  &:hover {
-    color: var(--accent);
-    border-left-color: var(--accent);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow);
-  }
-}
-
+/* 首頁參考書架的樣式**不在這裡**（v0.29.2 移走）。原本這裡有一份 `.bookshelf` 的
+ * 卡片外觀（1px 外框＋14px 圓角＋陰影＋內距）與 `.bookshelf-row` / `.book-spine`。
+ * 兩個問題：
+ *   1. `.bookshelf-row` / `.book-spine` 是**死碼**——Bookshelf.astro 早就改用
+ *      `.cover-row` / `.cover-item` 的封面列，全星系沒有任何 markup 用到那兩個 class。
+ *   2. 那層卡片外觀與現行設計語彙相反（tokens.scss：圓角收到近乎直角、hover 不位移，
+ *      「卡片浮起來」是 SaaS 語彙）。首頁其餘三區（總覽／地圖／盤點）都是無框的區段，
+ *      只有 Sources 還穿著舊皮。
+ * 現在 `.bookshelf*` 由 global.scss 單一持有，與 `.schools` / `.biblio` 同一個語彙。
+ */
 
 /* 書架縮圖：用書 repo 的 cover.png（single source of truth） */
 .cover-row {
