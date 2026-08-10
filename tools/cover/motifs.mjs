@@ -46,6 +46,13 @@ export const MOTIFS = {
   cloud: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <path d="M142 286 a58 58 0 0 1 -4 -116 a78 78 0 0 1 150 -14 a52 52 0 0 1 -6 130 z" fill="${c}"/></svg>`,
 
+  // shield w/ keyhole — security
+  shield: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <path d="M96 104 h208 a14 14 0 0 1 14 14 v92 c0 64 -46 106 -118 132 c-72 -26 -118 -68 -118 -132 v-92 a14 14 0 0 1 14 -14 z"
+      fill="none" stroke="${c}" stroke-width="7"/>
+    <g fill="${c}"><circle cx="200" cy="196" r="27"/>
+      <path d="M186 216 h28 l10 52 h-48 z"/></g></svg>`,
+
   // speech bubble w/ dots — behaviour-interview
   chat: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <path d="M104 120 h192 a26 26 0 0 1 26 26 v96 a26 26 0 0 1 -26 26 h-104 l-58 46 v-46 h-30 a26 26 0 0 1 -26 -26 v-96 a26 26 0 0 1 26 -26 z"

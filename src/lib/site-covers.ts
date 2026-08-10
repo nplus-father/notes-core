@@ -43,6 +43,8 @@ export const siteCovers: Record<string, SiteCover> = {
     motif: "chat",
   },
   "agile-note": { accent: "#3fc4b0", accent2: "#22897a", motif: "board" },
+  // 技術站群唯一的紅：其餘七站佔滿藍綠紫，格狀排列裡要一眼分得出防禦這一站。
+  "security-note": { accent: "#ff5f57", accent2: "#c93a33", motif: "shield" },
 
   // ── 商業 ──────────────────────────────────────────────
   "business-strategy-note": {
