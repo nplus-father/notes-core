@@ -5,6 +5,8 @@
 //     已收錄的連書站，缺口（wanted / unavailable）顯示出來，兼作收書 roadmap。
 //   - schools：主題站的流派地圖——每派的主張、代表人物（有作者站就跨站連結）、站內分類。
 //   - profile：人物站的思想側寫——中心思想、特定貢獻（連站內概念頁）、閱讀路徑、思想脈絡。
+//   - overview：首頁總覽（v0.29.0）——一長段散文，讓人一次讀懂「這個領域／這個人」的樣貌。
+//     側寫與地圖是結構化的卡片（快速掃），總覽是連貫敘事（讀懂）；兩者互補，不是二選一。
 
 export type BibliographyStatus = "owned" | "wanted" | "unavailable" | "skipped";
 
@@ -107,6 +109,32 @@ export interface AuthorProfile {
   influences?: Influence[];
 }
 
+/**
+ * 首頁總覽的口味。決定 Overview 的標題與各段的預設骨架（詞彙表收在 Overview.astro，
+ * 站台只挑 enum）：`domain` 主題站＝這個領域現在長什麼樣｜`person` 人物站＝這個人是誰。
+ */
+export type OverviewKind = "domain" | "person";
+
+export interface OverviewSection {
+  /** 小標（如「這個領域現在的樣貌」「主要論點」） */
+  heading: string;
+  /** 段落本文（允許行內 HTML，如 <strong>/<a>）。一段連貫敘事，不要寫成條列。 */
+  body: string;
+}
+
+export interface SiteOverview {
+  kind: OverviewKind;
+  /** 一句話把形狀講完，顯示在總覽最前面（允許行內 HTML） */
+  lede: string;
+  sections: OverviewSection[];
+  /**
+   * 選配：這份總覽是依「哪一版的站況」寫的，YYYY-MM-DD。書單再進新書、概念頁再翻修，
+   * 判讀就會過期——記日期而非布林，跟 site.curation 同一個理由（見 site-config.ts）。
+   * `/note-overview` 重寫時蓋上當天日期。
+   */
+  writtenAt?: string;
+}
+
 /** 純 identity helpers：提供型別檢查與 IDE 補全。 */
 export function defineBibliography(entries: BibliographyEntry[]): BibliographyEntry[] {
   return entries;
@@ -126,6 +154,9 @@ export function normalizeSchools(data: unknown): SchoolsData {
 }
 export function defineProfile(profile: AuthorProfile): AuthorProfile {
   return profile;
+}
+export function defineOverview(overview: SiteOverview): SiteOverview {
+  return overview;
 }
 
 /** 首頁書架封面列 = 盤點表中已收錄的書（單一資料源，取代各站手維護的 books.ts）。 */

@@ -30,6 +30,8 @@ export interface NotesCoreData {
   schools?: unknown[] | Record<string, unknown>;
   /** 人物站的思想側寫。 */
   profile?: unknown;
+  /** 首頁總覽（v0.29.0）：defineOverview 物件（kind/lede/sections）。 */
+  overview?: unknown;
 }
 
 const VIRTUAL_ID = "virtual:notes-core/site";
@@ -61,6 +63,7 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
                     `export const bibliography = ${JSON.stringify(data.bibliography ?? [])};`,
                     `export const schools = ${JSON.stringify(data.schools ?? [])};`,
                     `export const profile = ${JSON.stringify(data.profile ?? null)};`,
+                    `export const overview = ${JSON.stringify(data.overview ?? null)};`,
                   ].join("\n");
                 },
               },

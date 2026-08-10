@@ -96,6 +96,10 @@ const rest = (["wanted", "unavailable", "skipped"] as BibliographyStatus[])
   .map((s) => `${STATUS[s].icon} ${STATUS[s].label}`)
   .join(" · ");
 const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${rest}` : ""}`;
+
+// 分組鍵只在「真的有多組」時才有意義：沒填 group 的站會落成單一無名組，
+// 給它一排只有「全部」的鍵是噪音。
+const showTabs = groups.length >= 2 && groups.every((g) => g.name);
 ---
 
 {
@@ -177,40 +181,97 @@ const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${r
         </figure>
       )}
 
-      {groups.map((g) => (
-        <div class="biblio-group">
-          {g.name && <h3 class="biblio-group-name">{g.name}</h3>}
-          <div class="biblio-scroll">
-            <table class="biblio-table">
-              <tbody>
-                {g.items.map((e) => (
-                  <tr class={`biblio-row is-${e.status}`}>
-                    {/* 欄序（v0.19.0）：收錄 → 書名 → 註記 → 年份——年份最不重要，靠右淡化。 */}
-                    <td class="biblio-status" title={STATUS[e.status].label}>
-                      {STATUS[e.status].icon}
-                    </td>
-                    <td class="biblio-title">
-                      {e.status === "owned" && e.slug ? (
-                        <a href={bookUrl(e.slug)} target="_blank" rel="noopener">
-                          {e.title}
-                        </a>
-                      ) : (
-                        e.title
-                      )}
-                      {e.original && <span class="biblio-orig">{e.original}</span>}
-                    </td>
-                    <td class="biblio-remark">{e.note ?? ""}</td>
-                    {/* 負數年＝西元前，要寫成「500 BC」；直接印 e.year 會出現裸的 -500。 */}
-                    <td class="biblio-year">
-                      {typeof e.year === "number" ? yearLabel(e.year) : ""}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      {/* 分組切換鍵（v0.29.0）。**預設 hidden，由下面的 script 打開**——沒有 JS 時
+          按鈕按不動，與其擺一排死鍵，不如整條不出、退回「所有組全部攤開」的舊行為。
+          第一個鍵是「全部」而不是第一組：分組一旦變成篩選器，預設就該是**看得到全部**，
+          否則 Ctrl+F 只找得到當下那一組，等於把資料藏起來。 */}
+      {showTabs && (
+        <div class="biblio-tabs" role="tablist" aria-label={`${heading}分組`} hidden>
+          <button class="biblio-tab is-active" role="tab" aria-selected="true" data-group="">
+            全部
+            <span class="biblio-tab-count">{entries.length}</span>
+          </button>
+          {groups.map((g) => (
+            <button class="biblio-tab" role="tab" aria-selected="false" data-group={g.name}>
+              {g.name}
+              <span class="biblio-tab-count">{g.items.length}</span>
+            </button>
+          ))}
         </div>
-      ))}
+      )}
+
+      {/* 固定高度的捲動窗：盤點表動輒上百列，攤開會把首頁拉到十幾個螢幕高。
+          高度收在 CSS（--biblio-pane-h），這裡只負責結構。 */}
+      <div class="biblio-panes">
+        {groups.map((g) => (
+          <div class="biblio-group" data-group={g.name}>
+            {g.name && <h3 class="biblio-group-name">{g.name}</h3>}
+            <div class="biblio-scroll">
+              <table class="biblio-table">
+                <tbody>
+                  {g.items.map((e) => (
+                    <tr class={`biblio-row is-${e.status}`}>
+                      {/* 欄序（v0.19.0）：收錄 → 書名 → 註記 → 年份——年份最不重要，靠右淡化。 */}
+                      <td class="biblio-status" title={STATUS[e.status].label}>
+                        {STATUS[e.status].icon}
+                      </td>
+                      <td class="biblio-title">
+                        {e.status === "owned" && e.slug ? (
+                          <a href={bookUrl(e.slug)} target="_blank" rel="noopener">
+                            {e.title}
+                          </a>
+                        ) : (
+                          e.title
+                        )}
+                        {e.original && <span class="biblio-orig">{e.original}</span>}
+                      </td>
+                      <td class="biblio-remark">{e.note ?? ""}</td>
+                      {/* 負數年＝西元前，要寫成「500 BC」；直接印 e.year 會出現裸的 -500。 */}
+                      <td class="biblio-year">
+                        {typeof e.year === "number" ? yearLabel(e.year) : ""}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
+
+<script>
+  // 分組切換：不重畫 DOM，只在 .biblio-group 上開關 .is-hidden——同一份表格既是
+  // 「全部」也是各分組，不必把每筆書渲染兩次（大站兩百多列，複製一份就是白白兩倍 HTML）。
+  // 一站只有一個盤點區，但寫成 querySelectorAll 以免日後一頁放兩份時默默壞掉。
+  for (const root of document.querySelectorAll<HTMLElement>(".biblio")) {
+    const tabs = root.querySelector<HTMLElement>(".biblio-tabs");
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>(".biblio-tab")];
+    const groups = [...root.querySelectorAll<HTMLElement>(".biblio-group")];
+    const pane = root.querySelector<HTMLElement>(".biblio-panes");
+    if (!tabs || buttons.length === 0) continue;
+
+    // 有 JS 才出鍵（見上面的註解）。
+    tabs.hidden = false;
+
+    for (const btn of buttons) {
+      btn.addEventListener("click", () => {
+        const want = btn.dataset.group ?? "";
+        for (const b of buttons) {
+          const on = b === btn;
+          b.classList.toggle("is-active", on);
+          b.setAttribute("aria-selected", String(on));
+        }
+        for (const g of groups) {
+          g.classList.toggle("is-hidden", want !== "" && g.dataset.group !== want);
+        }
+        // 只在「選了某一組」時收掉組標題——「全部」那格還要靠標題分辨組界。
+        root.classList.toggle("is-filtered", want !== "");
+        // 換組後捲回頂端——不然切到短組時視窗停在上一組的捲動位置，看起來像空白。
+        if (pane) pane.scrollTop = 0;
+      });
+    }
+  }
+</script>

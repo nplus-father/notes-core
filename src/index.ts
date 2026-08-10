@@ -7,6 +7,7 @@ export {
   defineBibliography,
   defineSchools,
   defineProfile,
+  defineOverview,
   shelfFromBibliography,
 } from "./lib/library";
 export type {
@@ -18,4 +19,7 @@ export type {
   Contribution,
   ReadingStage,
   Influence,
+  SiteOverview,
+  OverviewKind,
+  OverviewSection,
 } from "./lib/library";

@@ -1,0 +1,51 @@
+---
+// 首頁「總覽」（v0.29.0）：一長段散文，讓人一次讀懂這個領域／這個人的樣貌。
+// 資料由各站 src/data/overview.ts 提供（型別見 lib/library.ts），由 /note-overview 產出。
+//
+// 為什麼要有它：首頁原本三個區塊都是**結構化的卡片**——側寫的貢獻條、地圖的學派卡、
+// 盤點的表格。掃得很快，但掃完只知道「有哪些東西」，不知道「這個領域長什麼樣」。
+// 那句判讀只有連貫散文寫得出來，卡片的一句話 claim 裝不下。書站的「深度概覽」是同一個
+// 東西的書本版，這裡是站台版。
+//
+// 口味詞彙表：標題與副標由 kind 決定、收斂在這裡——站台只挑 enum、不寫自由文字。
+import type { SiteOverview, OverviewKind } from "../lib/library";
+
+interface Props {
+  overview?: SiteOverview | null;
+}
+const { overview } = Astro.props;
+
+const KINDS: Record<OverviewKind, { heading: string; note: string }> = {
+  domain: { heading: "領域總覽", note: "收錄到目前為止，這個領域讀出來的樣貌" },
+  person: { heading: "人物總覽", note: "背景、貢獻與主要論點——先讀懂這個人" },
+};
+const meta = overview ? (KINDS[overview.kind] ?? KINDS.domain) : KINDS.domain;
+---
+
+{
+  overview && overview.sections.length > 0 && (
+    <section class="overview">
+      <div class="overview-head">
+        <h2>{meta.heading}</h2>
+        <span class="overview-note">{meta.note}</span>
+        {/* 判讀會過期（書單再進新書、概念頁再翻修），所以把「依哪一版站況寫的」印出來，
+            與頁尾的 curation 徽章同一個理由。沒填就不出，不要假裝新鮮。 */}
+        {overview.writtenAt && (
+          <span class="overview-stamp" title="這份總覽依當時的站況寫成">
+            {overview.writtenAt}
+          </span>
+        )}
+      </div>
+
+      <div class="overview-body">
+        <p class="overview-lede" set:html={overview.lede} />
+        {overview.sections.map((s) => (
+          <div class="overview-section">
+            <h3 class="overview-section-name">{s.heading}</h3>
+            <p class="overview-text" set:html={s.body} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}

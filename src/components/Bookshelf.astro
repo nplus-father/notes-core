@@ -27,29 +27,35 @@ const {
       <div class="bookshelf-head">
         <h2>{heading}</h2>
         <span class="bookshelf-note">{note}</span>
+        <span class="bookshelf-count">{books.length}</span>
       </div>
-      <div class="cover-row">
-        {books.map((b) => (
-          <a
-            class="cover-item"
-            href={bookUrl(b.slug)}
-            target="_blank"
-            rel="noopener"
-            title={b.title}
-          >
-            <img
-              class="cover-img"
-              src={bookCoverUrl(b.slug)}
-              data-fallback={bookUrl(b.slug, "cover.png")}
-              alt={b.title}
-              loading="lazy"
-              decoding="async"
-              width="132"
-              height="190"
-            />
-            <span class="cover-cap">{b.title}</span>
-          </a>
-        ))}
+      {/* 固定高度的捲動窗（v0.29.0）：書多的站（tracy 35 本、startup 61 本）攤開會是
+          好幾排 190px 高的封面，把下面的盤點表整個推出首屏。高度收在 CSS
+          （--shelf-h，約兩排半），封面列本身不變。 */}
+      <div class="bookshelf-scroll">
+        <div class="cover-row">
+          {books.map((b) => (
+            <a
+              class="cover-item"
+              href={bookUrl(b.slug)}
+              target="_blank"
+              rel="noopener"
+              title={b.title}
+            >
+              <img
+                class="cover-img"
+                src={bookCoverUrl(b.slug)}
+                data-fallback={bookUrl(b.slug, "cover.png")}
+                alt={b.title}
+                loading="lazy"
+                decoding="async"
+                width="132"
+                height="190"
+              />
+              <span class="cover-cap">{b.title}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )

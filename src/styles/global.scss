@@ -2097,7 +2097,97 @@ a {
   }
 }
 
+/* ───────────────────────── 首頁總覽（Overview） ───────────────────────── */
+/* 首頁唯一的長散文區。其餘三區都是卡片與表格（掃得快、但拼不出全貌），
+ * 這一段負責把「這個領域／這個人長什麼樣」一次講完，所以刻意用襯線、放寬行高、
+ * 收窄行長——這裡要的是讀，不是掃。 */
+.overview {
+  margin: 2.2rem 0 0;
+}
+.overview-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+  h2 {
+    margin: 0;
+  }
+}
+.overview-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+/* 「依哪一版站況寫的」——與頁尾 curation 徽章同一個語彙：單框、等寬、不搶戲。 */
+.overview-stamp {
+  margin-left: auto;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  font-family: $mono;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.overview-body {
+  max-width: 42em;
+}
+.overview-lede {
+  margin: 0 0 1.2rem;
+  font-family: $serif;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+.overview-section + .overview-section {
+  margin-top: 1.1rem;
+}
+.overview-section-name {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  color: var(--text-2);
+}
+.overview-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
 /* ───────────────────────── 書架縮圖（cover.png） ───────────────────────── */
+.bookshelf {
+  margin: 2.2rem 0 0;
+}
+.bookshelf-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  h2 {
+    margin: 0;
+  }
+}
+.bookshelf-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.bookshelf-count {
+  margin-left: auto;
+  font-family: $mono;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+/* 固定高度的捲動窗（v0.29.0）：封面 190px 高，書多的站攤開就是五六排、
+ * 把下面的盤點表整個推出首屏。兩排半＝看得出「還有更多」又不吃掉整個首頁。 */
+.bookshelf-scroll {
+  --shelf-h: 27rem;
+  max-height: var(--shelf-h);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* 捲動內容貼著切邊會看不出「還沒到底」，留一道淡邊界當提示。 */
+  padding-right: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
 .cover-row {
   display: flex;
   flex-wrap: wrap;
@@ -2427,13 +2517,76 @@ a {
   }
 }
 
+/* ── 分組切換鍵（v0.29.0）：分組從「一路往下的小標」改成篩選器。
+ * 預設 hidden（見 Bibliography.astro 的 script），有 JS 才出。 */
+.biblio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 1rem 0 0.6rem;
+  &[hidden] {
+    display: none;
+  }
+}
+.biblio-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease,
+    color 0.16s ease;
+  &:hover {
+    @include lift;
+  }
+  &:focus-visible {
+    @include focus-ring;
+  }
+  &.is-active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+.biblio-tab-count {
+  font-family: $mono;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.biblio-tab.is-active .biblio-tab-count {
+  color: var(--accent);
+}
+/* 固定高度的捲動窗：盤點表動輒上百列，攤開會把首頁拉到十幾個螢幕高。 */
+.biblio-panes {
+  --biblio-pane-h: 32rem;
+  max-height: var(--biblio-pane-h);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
 .biblio-group {
   margin-top: 1rem;
+  &.is-hidden {
+    display: none;
+  }
 }
 .biblio-group-name {
   margin: 0 0 0.4rem;
   font-size: 0.95rem;
   color: var(--text-2);
+}
+/* 選了某一組時，切換鍵已經說了在看哪一組，組內就不必再寫一次標題。
+ * 「全部」那一格反過來——那時只剩標題能分辨組界，一律砍掉會變成一面無差別的牆。 */
+.biblio.is-filtered .biblio-group-name {
+  display: none;
 }
 .biblio-scroll {
   overflow-x: auto;

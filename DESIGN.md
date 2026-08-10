@@ -15,17 +15,18 @@
 - **favicon**：星系**共用人像**，由 notes-core 以 asset 注入（single source of truth）——各站**不再放** `public/favicon.svg`。
 - 深淺色、回想模式（recall）由 notes-core inline script 處理，勿改。
 - 版面全在 notes-core：升 `package.json` 的 notes-core 版本即全站同步，**各站不寫 `.astro` 外殼**。
-- **v0.11.0 起 astro.config 也收進 core**：各站 `astro.config.mjs` 只剩 `defineNotesAstroConfig({ base, site, bibliography, profile?|schools? })` 一句（markdown pipeline／shiki／sitemap 由 `@nplus-father/notes-core/astro-config` 工廠提供，Astro 升版遷移只改 core 一處）。`ns` 欄位同時轉 optional，各站已清除。
+- **v0.11.0 起 astro.config 也收進 core**：各站 `astro.config.mjs` 只剩 `defineNotesAstroConfig({ base, site, bibliography, profile?|schools?, overview? })` 一句（markdown pipeline／shiki／sitemap 由 `@nplus-father/notes-core/astro-config` 工廠提供，Astro 升版遷移只改 core 一處）。`ns` 欄位同時轉 optional，各站已清除。
 
 ## 2. 首頁（notes-core `routes/index.astro`）
 
 由上而下：
 
 1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
-2. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
-3. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
-4. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。
-5. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表。欄序 = **收錄 → 書名 → 註記 → 年份**（年份最不重要，靠右淡化）；狀態只出 emoji（✅ 已收錄／⬜ 待收錄／🚫 暫無來源／➖ 略過，hover 有全名），表頭那行兼作進度與圖例。**v0.20.0 起**：組內一律**依出版年由早到晚**（分組說「哪一類」，年份說「怎麼長出來的」；沒填年份的沉底），並在表格上方加一條**年代分佈長條圖**——桶寬自適應（10／20／…／1000 年，取能把格數壓進 14 以內的最小值，`leadership-note` 得 10 年、跨 318–2024 的 `theology-note` 得 200 年），每根柱把「已收錄」堆在「未收」下面，一眼看完產出高峰與收藏缺口。書少於 4 本或跨不過一格就不畫。
+2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。反過來排的話，讀者得自己從卡片拼出全貌，而那正是總覽要代勞的事。標題由 `kind` 二選一（領域總覽／人物總覽）。
+3. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
+4. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
+5. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。**v0.29.0 起固定高度**（約兩排半封面）＋垂直捲動，標題列右端補書數——書多的站（startup 61 本）攤開就是五六排 190px 的封面，把盤點表整個推出首屏。
+6. **藏書盤點 `<Bibliography>`**（選配，見 §4.1）：人物站 = 作者全集、主題站 = 領域經典的完整盤點表。欄序 = **收錄 → 書名 → 註記 → 年份**（年份最不重要，靠右淡化）；狀態只出 emoji（✅ 已收錄／⬜ 待收錄／🚫 暫無來源／➖ 略過，hover 有全名），表頭那行兼作進度與圖例。**v0.20.0 起**：組內一律**依出版年由早到晚**（分組說「哪一類」，年份說「怎麼長出來的」；沒填年份的沉底），並在表格上方加一條**年代分佈長條圖**——桶寬自適應（10／20／…／1000 年，取能把格數壓進 14 以內的最小值，`leadership-note` 得 10 年、跨 318–2024 的 `theology-note` 得 200 年），每根柱把「已收錄」堆在「未收」下面，一眼看完產出高峰與收藏缺口。書少於 4 本或跨不過一格就不畫。**v0.29.0 起分組改成切換鍵**：表格收進固定高度的捲動窗，分組不再是一路往下的小標而是篩選器。第一個鍵是**「全部」且為預設**——分組一旦變成篩選器，預設就該看得到全部，否則 Ctrl+F 只找得到當下那一組，等於把資料藏起來；選了某一組才收掉組內重覆的標題（「全部」那格要靠標題分辨組界）。鍵預設 `hidden`、由 inline script 打開：沒有 JS 時與其擺一排死鍵，不如整條不出、退回舊的全部攤開。
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
@@ -52,6 +53,26 @@
 - **`profile.ts`（`defineProfile`）**：人物站的思想側寫。`thesis`（一句話中心思想）＋ `contributions`（研究主軸，`conceptPath` 連站內概念頁）＋ `readingPath`（slug 由 bibliography 反查書名）＋ `influences`（思想脈絡，有姊妹站就跨站連結）。
 
 慣例：人物站給 `profile + bibliography`，主題站給 `schools + bibliography`——**v0.19.0 起兩者升格為該站型的必備區塊**（缺的列入 note-check 紅燈；存量站隨 enrich 補）。試點範本見 `drucker-note`（人物）與 `investing-note`（主題）。
+
+## 4.2 首頁總覽（v0.29.0）
+
+`src/data/overview.ts`（`defineOverview`），與其他三份資料同一個歸位，經 `astro.config.mjs` 的 `overview` 傳入整合器。
+
+```ts
+export const overview = defineOverview({
+  kind: "person", // domain 主題站｜person 人物站
+  writtenAt: "2026-08-11",
+  lede: "一句話把形狀講完（允許行內 HTML）",
+  sections: [{ heading: "背景", body: "……" }],
+});
+```
+
+- **為什麼要有它**：首頁其餘三區都是結構化的卡片與表格——掃得很快，但掃完只知道「有哪些東西」，不知道「這個領域長什麼樣」。那句判讀只有連貫散文寫得出來，卡片的一句話 `claim` 裝不下。書站的「深度概覽」是同一個東西的書本版。
+- **段落骨架**（`/note-overview` 產出的預設，站台可增減）：主題站 = 這個領域現在的樣貌／幾條主線／收錄之後讀出來的判讀；人物站 = 背景／貢獻／主要論點。
+- **`body` 是 HTML 不是 Markdown**（走 `set:html`，與 `heroLede`、`schools.claim` 同一個慣例）。要粗體寫 `<strong>`，寫 `**…**` 只會原樣印出星號。
+- **一段連貫敘事，不要寫成條列**——條列版首頁已經有三個了。
+- **`writtenAt` 記日期而非布林**：書單再進新書、概念頁再翻修，判讀就會過期，日期自帶時效判讀（與 `site.curation` 同一個理由）。渲染在標題列右端。
+- 產出與更新走 **`/note-overview`**（正本在 `tools/claude-code-commands/`）。
 
 ## 5. 內容頁結構（概念 / 題目）
 
