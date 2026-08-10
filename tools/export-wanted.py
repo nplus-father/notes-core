@@ -125,17 +125,22 @@ from pathlib import Path
 # 「差 1 本的站先全部排進去，再排差 2 本的」，前 20 **全部由歸零批填滿**，準則②這輪
 # 一樣排不上（「優先收」是 0 本——多站共等的都回填成 owned 了）。
 #
-# 差 2 本的 9 站有 6 站整對進榜、第 20 格給第 7 站的其中一本（growth 的 The Obstacle Is
-# the Way），讓位的兩站與理由：
+# 差 2 本的站有 7 站整對進榜，讓位的幾站與理由：
 #   - `management-note`（Managing／Working Backwards）：兩位作者 portal 都掛零，但站內
 #     引用薄到只剩孤證——Mintzberg 2 處、「逆向工作法」「PR/FAQ」各 1 處，準則④輸給
 #     引用密度高的那幾站。
 #   - `navarro-note`（Be Exceptional／Three Minutes to Doomsday）：「肢體語言」全星系
 #     12 處／12 個檔案，navarro 站自己只有 3 處——同樣是準則④偏弱；Three Minutes 又厚。
+#   - `fengtang-note`（成事／無所畏）：同一天四本馮唐裁決成 `unavailable` 之後才掉進
+#     近零名單，本輪已無空格；下輪重挑時是新候選。
+#
+# 同日的後續裁決（2026-08-11）：`Living in Christ's Presence` 改成 `unavailable`，willard
+# 站因此**直接收齊、不再需要採購**——空出來的那格沒有另找一站，而是補上 growth 的另一半
+# `Awaken the Giant Within`，讓 growth 由半對變成整對、收齊即歸零。**歸零批的完整性
+# 優先於再拉一站進來**：拆對只會讓兩站都停在差 1 本。
 #
 # 排序 = 消化順序：差 1 批在前（收一本歸零一站），批內與差 2 批內都依準則⑤ 薄→厚。
 TOP20 = [
-    ("living-in-christ-s-presence", "willard 站 owned 8／wanted 1——**收了就歸零**；與 John Ortberg 的最後對談錄，臨終前的思想總回顧，而 willard 站的閱讀路徑正是以「總回顧」收尾；portal 的 Ortberg 實查 3 本（Who Is This Man?、God Is Closer Than You Think、行在水面上）——但那 3 本至今沒有任何站認領（見 ORPHAN-BOOKS 1d），全星系提到 Ortberg 只有 willard 站 2 處、還都在 bibliography 的註記裡；最薄的一本，有繁中《活在基督的同在中》"),
     ("running-lean", "startup 站 owned 61／wanted 1——**收了就歸零**，而這是全星系第二深的主題站（The $100 Startup 這輪查出 portal 早有 `100-startup`、回填成 owned 之後只剩這本）；portal 的 Ash Maurya 只有 Scaling Lean 一本，而那本是**續作**——Lean Canvas 的原典正是缺的這本；站內「精實」21 處／6 個檔案，「Lean Canvas」卻只有 1 處孤證；薄，有繁中《Running Lean 精實執行》"),
     ("a-little-history-of-the-world", "history 站 owned 33／wanted 1——**收了就歸零**（The Silk Roads、Collapse 這輪都查出早有書站）；portal 的 Gombrich **掛零**，但 Little History 這個系列的後輩已經收了 3 本（`little-history-of-literature`、`little-history-of-philosophy`、`little-history-of-economics`）——**系列開山的 1935 那本反而不在**；history 站內「世界史」4 處／3 個檔案；薄，有繁中《寫給年輕人的簡明世界史》"),
     ("the-50th-law", "greene 站 owned 6／wanted 1——**收了就歸零**；另一本《The Law of the Sublime》2026-08 查證仍未出版，已依裁決改成 `unavailable`，所以這是 greene 現在買得到的最後一本；portal 的 Greene 6 本全在（48 法則、33 戰爭策略、誘惑的藝術、人性 18 法則、喚醒你心中的大師、366 權力法則），獨缺這本與 50 Cent 的合著；greene 站內「恐懼」6 處／4 個檔案；有繁中《第 50 條法則》"),
@@ -154,7 +159,8 @@ TOP20 = [
     ("the-rules-to-break", "templar 的另一半；系列裡唯一反手的角度——列出那些「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄"),
     ("how-the-mighty-fall", "collins 站 owned 4／wanted 2——**這兩本收齊就歸零**；portal 的 Jim Collins 實查 4 本（Good to Great、Built to Last、Great by Choice、BE 2.0——搜「Collins」另外命中的 `simple-path-to-wealth` 是 J.L. Collins、`team-geek` 是 Collins-Sussman，**子字串假命中要濾掉**）；站主自註「與《從 A 到 A+》互為反面，這條線缺了它就只剩上升段」，而「第五級領導」41 處／20 個檔案、「刺蝟」51 處／22 個檔案，引用大戶是 leadership 與 business-strategy，collins 站自己只有 10 處與 3 處；薄"),
     ("good-to-great-and-the-social-sectors", "collins 的另一半；把同一套框架搬到沒有利潤計分板的非營利部門——「非營利」全星系 18 處／14 個檔案／跨 8 站（drucker 5、business-strategy 3…），杜拉克那條線接住了非營利管理，卓越框架這一側沒有；四十餘頁的專論，最薄"),
-    ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2，**這本收了還差 Awaken the Giant Within 才歸零**——本輪 20 格用完，另一半下輪再排；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，但 growth 站內只有 1 處——這條韌性線在 growth 目前是靠 Holiday 的另兩本撐著；薄，有繁中《障礙就是道路》"),
+    ("the-obstacle-is-the-way", "growth 站 owned 42／wanted 2——**這兩本收齊就歸零**；portal 已有 Holiday 2 本（The Daily Stoic、Ego Is the Enemy），缺的是三本一組裡的第一本；「斯多噶」全星系 41 處／19 個檔案／跨 10 站，但 growth 站內只有 1 處——這條韌性線在 growth 目前是靠 Holiday 的另兩本撐著；薄，有繁中《障礙就是道路》"),
+    ("awaken-the-giant-within", "growth 的另一半，遞補 Living in Christ's Presence 空出來的那格（willard 那本 2026-08 裁決成 `unavailable`，willard 站因此直接收齊、不再需要採購）；portal 的 Tony Robbins **掛零**（唯一命中 Robbins 的是 Mel Robbins 的 The Let Them Theory，不是他），站主自註是「自助正典名冊，補齊譜系用」；厚，排在最後"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
