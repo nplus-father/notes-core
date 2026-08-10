@@ -22,7 +22,7 @@
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
-| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **4** | 延伸閱讀連結 404 |
+| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
 
 ## 一、孤兒書：364 本沒有任何站認領
 
@@ -713,7 +713,7 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 
 無——每一筆 `owned` 都有 slug。
 
-## 四、死鏈 anchor：4 個 slug
+## 四、死鏈 anchor：3 個 slug
 
 內容頁 `furtherReading` 的 `book:` 指到不存在的書 repo——延伸閱讀連結 404。[SOURCING-DEBT](./SOURCING-DEBT.md) 只驗過「頁有沒有 anchor」，沒驗過「anchor 到的書在不在」。
 
@@ -721,7 +721,6 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 | --- | --- |
 | `forgiveness-and-reconciling` | `pastoral-psychology-note/concepts/ministry-practice/forgiveness-two-kinds.md` |
 | `psychology-and-christianity-five-views` | `pastoral-psychology-note/concepts/integration/five-views.md` |
-| `psychology-theology-and-spirituality` | `pastoral-psychology-note/concepts/integration/ministerial-not-magisterial.md` |
 | `suffering-and-the-heart-of-god` | `pastoral-psychology-note/concepts/trauma-grief/trauma-informed-reading.md` |
 
 ## 重跑
