@@ -6,15 +6,17 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1667 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1686 個 repo）。
 
 ## 先收這 20 本
 
-整份 270 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 266 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
+
+> ⚠ **這 20 本裡有 2 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。
 
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -24,8 +26,8 @@
 | 4 | **Million Dollar Habits** | Brian Tracy |  | 2004 | tracy(0) | tracy 站 owned 35／wanted 1——**收了就歸零**，而這 35 本是**全星系最深的作者書櫃**（實查 portal 作者欄命中 35 筆）；財富線已有 The Way to Wealth、Get Rich Now、The Science of Money、21 Success Secrets 四本，缺的正是把財富歸因到習慣系統的這一本；tracy 站內「財富」40 處／10 個檔案、「習慣」24 處／11 個檔案 |
 | 5 | **The 7 Habits of Highly Effective Families** | Stephen R. Covey |  | 1997 | covey(0) | covey 站 owned 9／wanted 1——**收了就歸零**；portal 的柯維 9 本全落在個人與組織層次（七個習慣、第 8 個習慣、與時間有約、原則中心領導、與成功有約的高效能習慣…），家庭這一塊掛零，而 covey 站內「家庭」23 處／12 個檔案——最常被援引卻沒有專書可掛的應用場域；厚，有繁中《與幸福有約》 |
 | 6 | **Bogle on Mutual Funds: New Perspectives for the Intelligent Investor** | John C. Bogle | 柏格談共同基金 | 1993 | bogle(0) | bogle 站 owned 5／wanted 1——**收了就歸零**（portal 的柏格恰好 5 本，全對得上），獨缺 1993 年這本第一本書；「共同基金」全星系 31 處／20 個檔案／跨 5 站，其中 bogle 站內 15 處／7 個檔案——常識投資框架成形的那一刻沒有出處可掛；厚，排在差 1 批的最後 |
-| 7 | **Decode and Conquer** | Lewis C. Lin |  | 2013 | behaviour-interview(1) | behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），**Lewis C. Lin 與 Robin Ryan 兩位作者都掛零**（實查作者欄各 0 筆）；站內「STAR」76 處／22 個檔案、「行為面試」68 處／32 個檔案，大廠情境題的答題框架全靠站內轉述；薄 |
-| 8 | **60 Seconds and You're Hired!** | Robin Ryan |  | 1994 | behaviour-interview(1) | behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站，其中本站 68 處），出處卻不在；薄 |
+| 7 | **Decode and Conquer** | Lewis C. Lin |  | 2013 | behaviour-interview(1) | ✅ 已建站 `decode-and-conquer`——behaviour-interview 站 owned 18／wanted 2——**這兩本收齊就歸零**；portal 的行為面試專書已有 3 本（The STAR Interview、Mastering Behavioral Interviews、Behavioral Interviews for Software Engineers），**Lewis C. Lin 與 Robin Ryan 兩位作者都掛零**（實查作者欄各 0 筆）；站內「STAR」76 處／22 個檔案、「行為面試」68 處／32 個檔案，大廠情境題的答題框架全靠站內轉述；薄 |
+| 8 | **60 Seconds and You're Hired!** | Robin Ryan |  | 1994 | behaviour-interview(1) | ✅ 已建站 `60-seconds-and-youre-hired`——behaviour-interview 的另一半；站主自註「把答案收斂在一分鐘內的經典」——這條紀律站內反覆出現（「行為面試」全星系 79 處／37 個檔案／跨 3 站，其中本站 68 處），出處卻不在；薄 |
 | 9 | **The Rules of Parenting** | Richard Templar |  | 2008 | templar(1) | templar 站 owned 7／wanted 2——**這兩本收齊，整套 Templar Rules 就全了**（portal 的 7 本 Rules 與站上 owned 7 恰好一一對上：love／thinking／life／management／wealth／work／people）；「教養」全星系 32 處／16 個檔案／跨 12 站，而系列裡就缺這本場域書；薄 |
 | 10 | **The Rules to Break** | Richard Templar |  | 2012 | templar(1) | templar 的另一半；系列裡唯一反手的角度——列出「大家都說該遵守、其實該打破」的通則，收了系列才完整；薄 |
 | 11 | **Be Exceptional** | Joe Navarro |  | 2021 | navarro(1) | navarro 站 owned 4／wanted 2——**這兩本收齊就歸零**（portal 的 Navarro 恰好 4 本，全對得上：肢體語言辭典、Louder Than Words、FBI 教你讀心術、Dangerous Personalities）；「肢體語言」全星系 12 處／12 個檔案／跨 7 站，而 2021 這本是他從「讀懂別人」轉向「成為值得被信任的人」的唯一一本，站內沒有對應出處；薄 |
@@ -59,20 +61,35 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1673 筆（去重 1190 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **270 筆（去重 270 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 45 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **266 筆（去重 266 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 49 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
 > `owned` 去重後的 1190 是**已建成書站的書**（1673 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：0 本其實已經有書站了
+## 先扣掉：15 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
+| `23-things-they-dont-tell-you-about-capitalism` | 23 Things They Don't Tell You About Capitalism | economics-note | 23 Things They Don't Tell You about Capitalism \| Ha-Joon Cha |
+| `60-seconds-and-youre-hired` | 60 Seconds and You're Hired! | behaviour-interview-note | 60 Seconds and You're Hired! \| Robin Ryan \| An interview met |
+| `animal-spirits` | Animal Spirits | economics-note | Animal Spirits \| George A. Akerlof & Robert J. Shiller \| Arg |
+| `blitzscaling` | Blitzscaling | startup-note | Blitzscaling \| Reid Hoffman & Chris Yeh \| Prioritizing speed |
+| `built-to-sell` | Built to Sell | startup-note | Built to Sell \| John Warrillow \| A business fable showing ho |
+| `decode-and-conquer` | Decode and Conquer | behaviour-interview-note | Decode and Conquer \| Lewis C. Lin \| Frameworks such as CIRCL |
+| `founders-dilemmas` | The Founder's Dilemmas | startup-note | The Founder's Dilemmas \| Noam Wasserman \| Data from ten thou |
+| `great-game-of-business` | The Great Game of Business | startup-note | The Great Game of Business \| Jack Stack & Bo Burlingham \| Th |
+| `high-growth-handbook` | High Growth Handbook | startup-note | High Growth Handbook \| Elad Gil \| A practitioner's manual fo |
+| `naked-economics` | Naked Economics | economics-note | Naked Economics \| Charles Wheelan \| A jargon-free tour of ho |
+| `startup-owners-manual` | The Startup Owner's Manual | startup-note | The Startup Owner's Manual \| Steve Blank & Bob Dorf \| The st |
+| `this-time-is-different` | This Time Is Different | economics-note | This Time Is Different \| Carmen M. Reinhart & Kenneth S. Rog |
+| `traction` | Traction | startup-note | Traction \| Gabriel Weinberg & Justin Mares \| The Bullseye fr |
+| `venture-deals` | Venture Deals | startup-note | Venture Deals \| Brad Feld & Jason Mendelson \| A term-sheet-b |
+| `worldly-philosophers` | The Worldly Philosophers | economics-note | The Worldly Philosophers \| Robert L. Heilbroner \| Traces the |
 
 ## 作者這一關擋下的：2 筆同名不同書
 
@@ -85,7 +102,7 @@
 | Christian Theology: An Introduction | Alister E. McGrath 麥葛福 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
 | Understanding the Bible | John Stott | `understanding-the-bible` | Dorothy L. Johns | stott-note |
 
-## 疑似漏報：1 本可能其實已經有 repo
+## 疑似漏報：2 本可能其實已經有 repo
 
 書名**沒有**正規化後完全相同，但 portal 上有 repo 長得很像——改過書名（英美版不同、中譯轉寫）的書會落在這裡。**這節是提名，不是判決**：確認是同一本就寫進 `export-wanted.py` 的 `ALIASES`，下一輪它就走精確路徑並自動掉進「先扣掉」；確認是續集或同系列的不同書就不用管，下輪還會再問一次。
 
@@ -93,6 +110,7 @@
 
 | 想收的書 | 作者 | 疑似 repo | 相似度 | repo 上的書名 | 登記在 |
 | --- | --- | --- | ---: | --- | --- |
+| Globalization and Its Discontents | Joseph E. Stiglitz | `globalization-and-its-discontents-revisited` | 80% | Globalization and Its Discontents Revisited | economics-note |
 | HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
 
 ## 快歸零的站：15 站只差 1–2 本
@@ -124,22 +142,22 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 270 筆）
+## 完整清單（依站，共 266 筆）
 
 ### startup-note — 10 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Startup Owner's Manual | Steve Blank & Bob Dorf |  | 2012 | 顧客開發的百科式操作版 |
+| The Startup Owner's Manual ⟵ 已有書站 `startup-owners-manual` | Steve Blank & Bob Dorf |  | 2012 | 顧客開發的百科式操作版 |
 | Running Lean | Ash Maurya |  | 2012 | Maurya 前作：Lean Canvas 的原典（Scaling Lean 已收） |
-| Traction | Gabriel Weinberg & Justin Mares |  | 2015 | Weinberg & Mares：19 個獲客渠道的 Bullseye 框架 |
-| The Founder's Dilemmas | Noam Wasserman |  | 2012 | Wasserman：共同創辦人與股權分配的地雷圖 |
-| Blitzscaling | Reid Hoffman & Chris Yeh | 閃電擴張 | 2018 | Hoffman：網路效應市場裡速度優先於效率 |
-| High Growth Handbook | Elad Gil |  | 2018 | Elad Gil：10 人到 1000 人的規模化手冊 |
-| The Great Game of Business | Jack Stack & Bo Burlingham |  | 1992 | Stack：開卷管理——讓全員看懂財報玩同一場遊戲 |
+| Traction ⟵ 已有書站 `traction` | Gabriel Weinberg & Justin Mares |  | 2015 | Weinberg & Mares：19 個獲客渠道的 Bullseye 框架 |
+| The Founder's Dilemmas ⟵ 已有書站 `founders-dilemmas` | Noam Wasserman |  | 2012 | Wasserman：共同創辦人與股權分配的地雷圖 |
+| Blitzscaling ⟵ 已有書站 `blitzscaling` | Reid Hoffman & Chris Yeh | 閃電擴張 | 2018 | Hoffman：網路效應市場裡速度優先於效率 |
+| High Growth Handbook ⟵ 已有書站 `high-growth-handbook` | Elad Gil |  | 2018 | Elad Gil：10 人到 1000 人的規模化手冊 |
+| The Great Game of Business ⟵ 已有書站 `great-game-of-business` | Jack Stack & Bo Burlingham |  | 1992 | Stack：開卷管理——讓全員看懂財報玩同一場遊戲 |
 | The $100 Startup 3000 | Chris Guillebeau | 元開始的自主人生 | 2012 | Guillebeau：微資本開業的案例集 |
-| Venture Deals | Brad Feld & Jason Mendelson | 創業投資聖經 | 2011 | Feld & Mendelson：看懂 term sheet 再上談判桌 |
-| Built to Sell | John Warrillow |  | 2011 | Warrillow：打造一間可以賣掉的公司 |
+| Venture Deals ⟵ 已有書站 `venture-deals` | Brad Feld & Jason Mendelson | 創業投資聖經 | 2011 | Feld & Mendelson：看懂 term sheet 再上談判桌 |
+| Built to Sell ⟵ 已有書站 `built-to-sell` | John Warrillow |  | 2011 | Warrillow：打造一間可以賣掉的公司 |
 
 ### thinking-note — 10 本
 
@@ -229,27 +247,14 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Worldly Philosophers | Robert L. Heilbroner | 俗世哲學家 | 1953 | Heilbroner；經濟思想史最會說故事的一冊 |
+| The Worldly Philosophers ⟵ 已有書站 `worldly-philosophers` | Robert L. Heilbroner | 俗世哲學家 | 1953 | Heilbroner；經濟思想史最會說故事的一冊 |
 | Freakonomics | Steven D. Levitt & Stephen J. Dubner | 蘋果橘子經濟學 | 2005 | Levitt & Dubner；誘因分析的大眾化里程碑 |
 | The Undercover Economist | Tim Harford | 臥底經濟學家 | 2005 | Harford；用日常現象教會你像經濟學家思考 |
-| Naked Economics | Charles Wheelan |  | 2002 | Wheelan；無方程式的經濟學通識入門 |
-| Animal Spirits | George A. Akerlof & Robert J. Shiller | 動物本能 | 2009 | Akerlof & Shiller；把心理拉回總體經濟學 |
-| This Time Is Different | Carmen M. Reinhart & Kenneth S. Rogoff | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
+| Naked Economics ⟵ 已有書站 `naked-economics` | Charles Wheelan |  | 2002 | Wheelan；無方程式的經濟學通識入門 |
+| Animal Spirits ⟵ 已有書站 `animal-spirits` | George A. Akerlof & Robert J. Shiller | 動物本能 | 2009 | Akerlof & Shiller；把心理拉回總體經濟學 |
+| This Time Is Different ⟵ 已有書站 `this-time-is-different` | Carmen M. Reinhart & Kenneth S. Rogoff | 這次不一樣 | 2009 | Reinhart & Rogoff；八百年金融危機的量化通史 |
 | Globalization and Its Discontents | Joseph E. Stiglitz | 全球化的許諾與失落 | 2002 | Stiglitz；體制內人對 IMF／世銀的批判 |
-| 23 Things They Don't Tell You About Capitalism | Ha-Joon Chang 張夏準 | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
-
-### philosophy-note — 8 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Sophie's World | Jostein Gaarder 喬斯坦・賈德 | 蘇菲的世界 | 1991 | 小說形式的哲學史，國民級入門 |
-| Nicomachean Ethics | Aristotle 亞里斯多德 | 尼各馬可倫理學 |  | 亞里斯多德德性倫理的原典 |
-| The Republic | Plato 柏拉圖 | 理想國 |  | 柏拉圖——政治哲學的起點 |
-| A Theory of Justice | John Rawls | 正義論 | 1971 | Rawls——當代政治哲學的座標原點 |
-| Discourses | Epictetus 愛比克泰德（Arrian 記錄） | 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
-| The Myth of Sisyphus | Albert Camus 卡繆 | 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
-| The Analects | 孔子（弟子輯錄） | 論語 |  | 儒家原典——關係與德性的東方座標 |
-| Tao Te Ching | 老子 | 道德經 |  | 道家原典——無為與反者道之動 |
+| 23 Things They Don't Tell You About Capitalism ⟵ 已有書站 `23-things-they-dont-tell-you-about-capitalism` | Ha-Joon Chang 張夏準 | 資本主義沒告訴你的 23 件事 | 2010 | Ha-Joon Chang；主流敘事的反方教材 |
 
 ### investing-note — 7 本
 
@@ -330,6 +335,17 @@
 | The Day the Revolution Began | N. T. Wright |  | 2016 | 十架論的普及重述：赦罪帶來的是新出埃及與革命 |
 | After You Believe (Virtue Reborn) | N. T. Wright | 信主了，然後呢？ | 2010 | 新創造框架下的品格與德行倫理——盼望三部曲的收尾 |
 | Scripture and the Authority of God | N. T. Wright |  | 2011 | 「聖經權柄」＝上帝藉聖經行使的權柄；五幕劇詮釋框架的出處 |
+
+### philosophy-note — 6 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Sophie's World | Jostein Gaarder 喬斯坦・賈德 | 蘇菲的世界 | 1991 | 小說形式的哲學史，國民級入門 |
+| Nicomachean Ethics | Aristotle 亞里斯多德 | 尼各馬可倫理學 |  | 亞里斯多德德性倫理的原典 |
+| The Republic | Plato 柏拉圖 | 理想國 |  | 柏拉圖——政治哲學的起點 |
+| A Theory of Justice | John Rawls | 正義論 | 1971 | Rawls——當代政治哲學的座標原點 |
+| Discourses | Epictetus 愛比克泰德（Arrian 記錄） | 愛比克泰德語錄 | 108 | 補齊斯多噶三巨頭的最後一角 |
+| The Myth of Sisyphus | Albert Camus 卡繆 | 薛西弗斯的神話 | 1942 | 卡繆——荒謬與反抗的存在主義原典 |
 
 ### science-note — 6 本
 
@@ -501,15 +517,6 @@
 | Zen Buddhism and Psychoanalysis | Erich Fromm & 鈴木大拙 | 禪與心理分析 | 1960 | 與鈴木大拙合著：東方的資源如何滋養「存在樣式」 |
 | Beyond the Chains of Illusion | Erich Fromm | 超越幻想的鎖鏈 | 1962 | 自述思想自傳：我與馬克思和佛洛伊德的相遇——理解佛洛姆體系的鑰匙 |
 
-### history-note — 4 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| The Silk Roads | Peter Frankopan | 絲綢之路 | 2015 | Frankopan——以貿易為軸、去歐洲中心的世界史 |
-| Collapse | Jared Diamond | 大崩壞 | 2005 | Diamond 的另一半：文明如何選擇失敗 |
-| 1587, a Year of No Significance | 黃仁宇 | 萬曆十五年 | 1981 | 黃仁宇——大歷史觀的微觀切片，中文史學經典 |
-| A Little History of the World | E. H. Gombrich | 世界小史 | 1935 | Gombrich——一人一筆寫完的世界史，最好的入門 |
-
 ### maxwell-note — 4 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -518,15 +525,6 @@
 | The 17 Indisputable Laws of Teamwork | John C. Maxwell | 團隊合作 17 法則 | 2001 | 從個人領導走向團隊的法則化整理 |
 | Becoming a Person of Influence | John C. Maxwell & Jim Dornan | 成為有影響力的人 | 1997 | 與 Jim Dornan 合著；影響力四階段的早期系統化 |
 | Today Matters | John C. Maxwell | 今天很重要 | 2004 | 把成長落到「每日例程」的實踐手冊，補齊行動層 |
-
-### problem-solving-note — 4 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Bulletproof Problem Solving | Charles Conn & Robert McLean |  | 2019 | Conn & McLean：麥肯錫七步解題法的現代正典 |
-| （邏輯思考的技術） | 照屋華子、岡田惠子 | 邏輯思考的技術 | 2001 | 照屋華子・岡田惠子：MECE 與 So What?/Why So? 的教科書 |
-| The Back of the Napkin | Dan Roam | 餐巾紙的背後 | 2008 | Dan Roam：視覺化解題的普及經典 |
-| The McKinsey Way | Ethan M. Rasiel | 專業主義：麥肯錫的成功之道 | 1999 | Ethan Rasiel：局內人視角的麥肯錫方法論第一手記錄 |
 
 ### agile-note — 3 本
 
@@ -552,6 +550,14 @@
 | Pattern-Oriented Software Architecture Vol.1 (POSA) | Frank Buschmann 等 |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
 | Game Programming Patterns | Robert Nystrom |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
 
+### history-note — 3 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| The Silk Roads | Peter Frankopan | 絲綢之路 | 2015 | Frankopan——以貿易為軸、去歐洲中心的世界史 |
+| Collapse | Jared Diamond | 大崩壞 | 2005 | Diamond 的另一半：文明如何選擇失敗 |
+| A Little History of the World | E. H. Gombrich | 世界小史 | 1935 | Gombrich——一人一筆寫完的世界史，最好的入門 |
+
 ### learning-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -567,6 +573,14 @@
 | How to Win at College | Cal Newport |  | 2005 | 大四時寫的處女作：75 條非常規的大學致勝法則 |
 | How to Become a Straight-A Student | Cal Newport | 如何成為全A學生 | 2006 | 「偽工作」概念的起點：用更少時間拿更好成績的學習系統 |
 | How to Be a High School Superstar | Cal Newport |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正；portal 上同名的 how-to-be-a-high-school-superstar 內容實為《How to Win at College》，作者同樣是 Newport，所以作者比對擋不掉，靠 NAME_COLLISIONS 人工排除 |
+
+### problem-solving-note — 3 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Bulletproof Problem Solving | Charles Conn & Robert McLean |  | 2019 | Conn & McLean：麥肯錫七步解題法的現代正典 |
+| The Back of the Napkin | Dan Roam | 餐巾紙的背後 | 2008 | Dan Roam：視覺化解題的普及經典 |
+| The McKinsey Way | Ethan M. Rasiel | 專業主義：麥肯錫的成功之道 | 1999 | Ethan Rasiel：局內人視角的麥肯錫方法論第一手記錄 |
 
 ### spiritual-formation-note — 3 本
 
@@ -596,8 +610,8 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Decode and Conquer | Lewis C. Lin |  | 2013 | Lewis Lin；大廠行為題與情境題的答題框架 |
-| 60 Seconds and You're Hired! | Robin Ryan |  | 1994 | 把答案收斂在一分鐘內的經典 |
+| Decode and Conquer ⟵ 已有書站 `decode-and-conquer` | Lewis C. Lin |  | 2013 | Lewis Lin；大廠行為題與情境題的答題框架 |
+| 60 Seconds and You're Hired! ⟵ 已有書站 `60-seconds-and-youre-hired` | Robin Ryan |  | 1994 | 把答案收斂在一分鐘內的經典 |
 
 ### christensen-note — 2 本
 
@@ -691,7 +705,7 @@
 | --- | --- | --- | --- | --- |
 | Living in Christ's Presence | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | 與 John Ortberg 的最後對談錄；臨終前的思想總回顧 |
 
-## 沒有英文書名的 19 本（華文／日文原著）
+## 沒有英文書名的 18 本（華文／日文原著）
 
 這些本來就沒有英文版，照原書名收。
 
@@ -709,7 +723,6 @@
 | 趨勢紅利 | 劉潤 | liurun-note | 早期代表作：紅利＝短暫供需失衡的出處 |
 | 進化的力量2 | 劉潤 | liurun-note | 年度演講系列續作；趨勢判讀框架的年度更新 |
 | 關鍵躍升：新任管理者的底層邏輯 | 劉潤 | liurun-note | 寫給新手管理者的「驚險一躍」專書——管理分類的直接補強 |
-| 邏輯思考的技術 | 照屋華子、岡田惠子 | problem-solving-note | 照屋華子・岡田惠子：MECE 與 So What?/Why So? 的教科書 |
 | 信息傳 | 吳軍 | wujun-note | 資訊史詩；香農資訊論如何成為理解未來的方法論（無繁中版） |
 | 全球科技通史 | 吳軍 | wujun-note | 從石器到量子的科技全史；「能量與資訊」雙主線的史觀 |
 | 吳軍數學通識講義 | 吳軍 | wujun-note | 得到課程結集；把數學史講成通識教育的系統嘗試 |
