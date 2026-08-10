@@ -4,7 +4,7 @@
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1666 個 repo），其中 `nplus-kind-book` 的書 repo 1548 本。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1667 個 repo），其中 `nplus-kind-book` 的書 repo 1548 本。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -18,13 +18,13 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **364** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **358** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：364 本沒有任何站認領
+## 一、孤兒書：358 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -32,13 +32,11 @@
 
 無——內容引用到的書都已經登記在盤點裡。
 
-### 1b. 開新站候選：1 個 leaf
+### 1b. 開新站候選：0 個 leaf
 
 判準沿用 COVERAGE-GAPS 那輪：**藏書 ≥8 本且未覆蓋 ≥60%**。低於這個比例的 leaf 表示已經有站在管、只是還沒寫完——那是 [ENRICH-BACKLOG](./ENRICH-BACKLOG.md) 的事，不是這裡的。
 
-| leaf | 未覆蓋/總數 | 未覆蓋率 | 沒人認領的是哪幾本 |
-| --- | ---: | ---: | --- |
-| `security` | 6/8 | **75%** | Security Engineering、Attacking Network Protocols、Hacking: The Art of Exploitation、Serious Cryptography、Real-World Bug Hunting、The Browser Hacker's Handbook |
+無——沒有任何 leaf 同時滿足「書夠多」與「大多沒人碰」。
 
 ### 1c. 各 leaf 覆蓋率與目前誰在管
 
@@ -57,7 +55,6 @@
 | `self-learning` | education | 9/29 | 31% | learning(17)、growth(4)、career(2) |
 | `strategy` | business | 9/35 | 26% | business-strategy(18)、startup(5)、hbr(3) |
 | `community` | relationships | 8/26 | 31% | relationships(14)、maxwell(2)、communication(2) |
-| `security` | engineering | 6/8 | 75% | cloud-infra(1)、system-design(1) |
 | `public-speaking` | communication | 5/13 | 38% | communication(5)、hbr(3)、tracy(1) |
 | `civilization` | history | 5/24 | 21% | history(13)、fengtang(2)、wujun(2) |
 | `systems-design` | engineering | 5/26 | 19% | system-design(14)、design-patterns(6)、fowler(3) |
@@ -76,8 +73,9 @@
 | `visual` | design | 2/14 | 14% | design(11)、problem-solving(1)、de-botton(1) |
 | `coffee` | tools | 2/2 | 100% | **沒有站在管** |
 | `fiction` | writing | 2/7 | 29% | writing(4)、lewis(1) |
+| `engineering-management` | engineering | 2/5 | 40% | agile(1)、cloud-infra(1)、career(1) |
 
-> 另有 19 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
+> 另有 18 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
 
 ### 1d. 同一作者 ≥3 本沒人認領：4 位
 
@@ -90,7 +88,7 @@
 | David J. Atkinson | 3 | — | The Message of Job、The Message of Proverbs、The Message of Ruth |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 364 本（依 leaf 分組）
+### 1e. 全部 358 本（依 leaf 分組）
 
 #### `investing` — 52/123 沒人認領（目前：investing(46)、schwager(9)、personal-finance(7)）
 
@@ -430,17 +428,6 @@
 | `sociopath-next-door` | The Sociopath Next Door | Martha Stout |
 | `whos-pulling-your-strings` | Who's Pulling Your Strings? | Harriet B. Braiker |
 | `your-anxiety-comes-from-being-too-used-to-getting-hurt` | 你的不安，是因為太習慣受傷害 | 中島輝 |
-
-#### `security` — 6/8 沒人認領（目前：cloud-infra(1)、system-design(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `attacking-network-protocols` | Attacking Network Protocols | James Forshaw |
-| `browser-hackers-handbook` | The Browser Hacker's Handbook | Wade Alcorn, Christian Frichot & Michele Orrù |
-| `hacking-art-of-exploitation` | Hacking: The Art of Exploitation | Jon Erickson |
-| `real-world-bug-hunting` | Real-World Bug Hunting | Peter Yaworski |
-| `security-engineering` | Security Engineering | Ross Anderson |
-| `serious-cryptography` | Serious Cryptography | Jean-Philippe Aumasson |
 
 #### `public-speaking` — 5/13 沒人認領（目前：communication(5)、hbr(3)、tracy(1)）
 

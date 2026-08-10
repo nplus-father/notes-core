@@ -38,6 +38,21 @@ core v0.19.0 把首頁綜覽升格必備、新增 `/check/` 檢核頁。三筆�
 
 > 順手修掉的雜項(2026-08-06):economics 2 頁、keller 13 頁檔尾殘留的工具呼叫雜訊行(`</content>`/`</invoke>`)已清;agile/investing 3 條「尚未收」過時註記隨 wanted→owned 翻轉一併改寫。
 
+## 新站(2026-08-10):security-note
+
+開站緣由:`ORPHAN-BOOKS.md` 1b 的唯一開新站候選——`leaf-security` 8 本藏書裡 6 本沒有任何站認領(75%),
+是全星系唯一同時滿足「藏書 ≥8」與「未覆蓋 ≥60%」的 leaf。這也是**反向盤點腳本化之後抓到的第一個站**。
+
+| 站 | pages/owned | 備註 |
+|---|---|---|
+| security-note | 4 / 8 | 四個分類各一則種子概念,**全部走路徑 A**(逐章讀 `books-done` 原文後寫,每頁掛章節 anchor,anchor 目錄已逐一驗證存在)——**不欠溯源債**。分類:安全工程/攻擊者視角/應用密碼學/Web 與應用安全 |
+
+> **待深化**:pages/owned = 4/8,每個分類的 roadmap 各留了 2 個 planned 節點(共 8 頁)。
+> 8 本 owned 書全部在本機 `books-done/craft/engineering/security/` 且章節完整,下一輪 `note-check --enrich` 直接可用。
+
+> **本站是第一個原生使用 `author` 欄的站**(notes-core v0.27.0);`wanted` 那 6 本已於開站當日實掃 portal 與
+> 本機 books-done,確認都不存在,不是假缺口。
+
 ## 新站(2026-08-04 開站,同日全部完成 enrich)
 
 開站緣由與缺口分析見 COVERAGE-GAPS.md。五站的內容皆為書本位、每頁掛章節 anchor。
