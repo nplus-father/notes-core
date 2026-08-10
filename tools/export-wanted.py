@@ -53,13 +53,30 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh 同慣例。
      兩邊都正規化（小寫、砍冒號後副標、砍冠詞、去標點）之後，只認**完全相同**，
      外加一條「作者前綴」例外，且**只能拿書名欄套**——repo name 的作者前綴反而是
      反指標（`kostolany-confessions` 這樣命名，正是為了跟奧古斯丁的《懺悔錄》區隔）。
-  3. **同名不同書列 NAME_COLLISIONS**：《Biblical Theology》Vos ≠ Goldingay、
-     《Christian Theology》麥葛福 ≠ Erickson、《Servant Leadership》Greenleaf 1977
-     原典 ≠ Larry W. Boone 的同名教科書（2026-08-08 加）——命中也不算已收錄。
-     這類撞名在「原典很有名、後人拿同一個書名寫教科書」時特別容易發生，回填前
-     務必逐筆核對 description 的作者欄。
-  4. **改名／轉寫沒有演算法可解，列 ALIASES**：英美版書名不同（Between Two Worlds
+  3. **書名對上還不夠，作者也要對上**（2026-08-10 起的第二因子，見 `author_ok`）。
+     在那之前 matcher **只比書名**，作者純粹拿來顯示——於是 `understanding-the-bible`
+     （Dorothy L. Johns 的函授查經課程）被判成 stott-note 想收的斯托得《認識聖經》，
+     而那筆的 `AUTHORS` 早就寫著 "John Stott"：**要擋這個錯的資料一直都在檔案裡，
+     只是沒接上比對**。接上之後，「原典很有名、後人拿同一個書名寫教科書」這一整類
+     （《Christian Theology》麥葛福 ≠ Erickson、《Servant Leadership》Greenleaf ≠ Boone、
+     《Biblical Theology》Vos ≠ Goldingay）都自動擋下並列進報告的「作者這一關擋下的」。
+     作者只在**雙方都登錄**時裁決，缺一邊就棄權——缺資料不該變成拒絕。
+  4. **NAME_COLLISIONS 剩下的職責**：作者相同、但 repo 內容掛錯書的那種——
+     `how-to-be-a-high-school-superstar` 的 repo 內容實為《How to Win at College》
+     （見 SOURCING-DEBT.md），作者同樣是 Cal Newport，所以第二因子救不了，只能人工列。
+     其餘幾筆是歷史紀錄（那些書已不在 wanted），留著當決策存檔。
+  5. **改名／轉寫沒有演算法可解，列 ALIASES**：英美版書名不同（Between Two Worlds
      ＝ I Believe in Preaching）、華文書 repo 用英文轉寫（浪潮之巔 ＝ on-top-of-tides）。
+     「該對上卻沒對上」現在會自己浮出來——報告的「疑似漏報」那節用雙向 Jaccard
+     提名候選（**只提名不採用**：門檻放寬到能抓改名，就一定混進續集與同系列，
+     而誤刪一本還沒收的書比漏報嚴重得多）。確認過的寫進 ALIASES 走精確路徑。
+
+**為什麼不預先把 slug 填進 wanted 條目**（2026-08-10 討論後的決定）：猜出來的 slug 會
+**無聲地**爛掉——命名慣例會砍冠詞（`the-war-of-art` → `war-of-art`）、加作者前綴
+（`minto-pyramid-principle`），猜錯就永遠對不上，而且沒有任何東西會報錯。這不是假想：
+pastoral-psychology 的四個概念頁就是拿 wanted 的書名猜 slug 去 `anchor`，四個全是
+死鏈（見 ORPHAN-BOOKS.md 第四節）。所以預測不存進資料，改成**每次重算時現算現報**
+（「疑似漏報」那節），沒有東西需要維護、也沒有東西會過期。
 """
 
 import collections
@@ -492,6 +509,51 @@ def slugify(s):
     return re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")
 
 
+# 作者欄裡「— 之後」是給人看的註記（`Cal Newport — portal 同名 repo 內容實為…`、
+# `Alister E. McGrath 麥葛福 — 不是 Millard Erickson 的同名書`）。**比對前一定要砍掉**：
+# 那段註記裡常常就寫著撞名的另一位作者，不砍會反過來把假命中認成真的。
+AUTHOR_NOTE = re.compile(r"\s*[—–]\s*.*$|\s+-\s+.*$")
+# 姓名裡不帶識別力的字：縮寫、序數、常見連接詞與敬稱。
+AUTHOR_STOP = {"jr", "sr", "ii", "iii", "and", "with", "et", "al", "the", "ed", "eds"}
+
+
+def author_keys(s):
+    """把作者欄拆成 (拉丁姓氏集合, CJK 字串)，兩種寫法各給一條比對路徑。
+
+    寫法從來不統一——`John Stott` / `John R. W. Stott` / `Kent Beck & Martin Fowler` /
+    `Alister E. McGrath 麥葛福` / `秦嗣林`。全等會過度嚴格（合著、有沒有中間名就對不上），
+    所以拉丁側用**姓氏 token 交集**：砍掉單字母縮寫與 jr/ed 這類雜訊之後還剩下的詞。
+    分得開 Stott 與 Johns、Greenleaf 與 Boone、Vos 與 Goldingay——這正是要擋的那一類。
+    """
+    s = AUTHOR_NOTE.sub("", s or "")
+    latin = {
+        t
+        for t in re.findall(r"[A-Za-z][A-Za-z'’-]*", s.lower())
+        if len(t) > 1 and t not in AUTHOR_STOP
+    }
+    cjk = "".join(re.findall(r"[㐀-鿿]", s))
+    return latin, cjk
+
+
+def author_ok(want, repo):
+    """兩因子的第二關：書名對上之後，作者也要對得上。回 True/False/None（無從判斷）。
+
+    **只有雙方都有作者訊號時才裁決**——缺資料不該變成拒絕（那會把一堆真命中誤殺），
+    所以回 None 表示「這關棄權，交給書名那關」，並在輸出裡催補 AUTHORS。
+
+    這一關擋掉的是「原典很有名、後人拿同一個書名寫別的書」那一類。2026-08-10 之前
+    matcher **只比書名**，作者純粹拿來顯示——於是 `understanding-the-bible`（Dorothy L.
+    Johns 的函授查經課程）被判成 stott-note 想收的斯托得《認識聖經》，而那筆的
+    `AUTHORS` 早就寫著 "John Stott"，資料就在檔案裡沒人用。加這一關之後，
+    NAME_COLLISIONS 只剩「作者還沒登錄」的那幾筆需要人工兜底。
+    """
+    wl, wc = author_keys(want)
+    rl, rc = author_keys(repo)
+    if (wl or wc) and (rl or rc):
+        return bool(wl & rl) or bool(wc and rc and (wc in rc or rc in wc))
+    return None
+
+
 def norm_title(s):
     """書名正規化：砍副標與冠詞、去標點——兩邊都過這關才能比。"""
     s = re.sub(r"[:：].*", "", s or "").lower()
@@ -635,12 +697,15 @@ def main():
     }
 
     def match_repo(r):
-        """一筆 wanted 對得上哪個書 repo？對不上回 None——那才是真缺口。
+        """一筆 wanted 對得上哪個書 repo？對不上回 (None, 原因)——那才是真缺口。
 
-        只認兩種命中，其餘一律當沒有：
-          a. 正規化後**完全相同**（砍副標與冠詞之後，真的是同一個書名）。
-          b. **作者前綴**：portal 書名 ＝ 作者姓氏 ＋ 想收的書名，且那個姓氏確實出現在
-             description 的作者欄（`The Minto Pyramid Principle` ＝ `Pyramid Principle`）。
+        **兩因子**（2026-08-10 起）：書名對上還不夠，作者也要對得上。
+          第一因子・書名，只認兩種命中，其餘一律當沒有：
+            a. 正規化後**完全相同**（砍副標與冠詞之後，真的是同一個書名）。
+            b. **作者前綴**：portal 書名 ＝ 作者姓氏 ＋ 想收的書名，且那個姓氏確實出現在
+               description 的作者欄（`The Minto Pyramid Principle` ＝ `Pyramid Principle`）。
+          第二因子・作者（見 author_ok）：雙方都登錄作者時才裁決，對不上就**否決這次命中**
+            並記下原因，讓它留在 wanted。這一關把「同名不同書」從人工白名單變成自動判斷。
         曾經試過「token 連續包含」，結果 `Action` 吃掉 `Kubernetes in Action`、
         `Boundaries` 吃掉 `Boundaries with Kids`、`The Divine Conspiracy` 吃掉它的續集
         `Continued`——48 筆命中裡三十幾筆是假的。寧可漏報留在 wanted，也不要把還沒收的
@@ -648,27 +713,102 @@ def main():
         """
         alias = ALIASES.get(r["main"])
         if alias and alias in by_name:
-            return by_name[alias]
+            return by_name[alias], None
+
+        hit = None
         for key in (r["en"], r["title"]):
             k = norm_title(key)
             if not k:
                 continue
             if k in idx:
-                return idx[k]
+                hit = idx[k]
+                break
             toks = k.split()
             for pk, it in title_idx.items():
                 ptoks = pk.split()
                 if len(ptoks) == len(toks) + 1 and ptoks[1:] == toks:
                     if ptoks[0] in norm_title(it["book_author"]).split():
-                        return it
-        return None
+                        hit = it
+                        break
+            if hit:
+                break
+        if not hit:
+            return None, None
+
+        verdict = author_ok(r["author"], hit["book_author"])
+        if verdict is False:
+            return None, (hit["name"], hit["book_author"])
+        return hit, None
 
     existing = {}
+    rejected = []  # 書名對上但作者不符——自動擋下的同名不同書
     for r in rows:
-        hit = match_repo(r)
+        hit, clash = match_repo(r)
+        if clash:
+            rejected.append((r, clash))
+            continue
         if hit and (hit["name"], r["station"]) not in NAME_COLLISIONS:
             r["repo"] = hit["name"]
             existing.setdefault(hit["name"], []).append(r)
+
+    # ── 疑似漏報：書名沒對上，但有 repo 長得很像 ──────────────────
+    # 精確比對只認「正規化後完全相同」，所以英美版改書名（Between Two Worlds ＝
+    # I Believe in Preaching）、華文書用英文轉寫（浪潮之巔 ＝ on-top-of-tides）都會漏，
+    # 過去只能靠人踩到再補 ALIASES。這一節把「該對上卻沒對上」自動撈出來給人看。
+    #
+    # **為什麼是報候選、不是自動採用**：門檻放寬到能抓到改名，就一定會混進續集與同系列
+    # （The Divine Conspiracy ↔ … Continued、Trend Following ↔ … Masters Vol.2）。
+    # 這類錯誤的代價是把「還沒收的書」從採購清單裡誤刪——比漏報嚴重得多。所以這節只
+    # 提名，確認過的請寫進 ALIASES，讓它下一輪走精確路徑。
+    #
+    # 這也是「預先填 slug」的替代方案：不把猜測**存進**資料（存了就會爛掉，而且爛得
+    # 無聲——今天 4 個死鏈 anchor 就是頁面拿 wanted 書名猜 slug 猜出來的），
+    # 改成每次重算時**現算現報**，沒有東西需要維護。
+    # 相似度用**雙向 Jaccard**，不是單向覆蓋率。單向會被系列卷洗版：
+    # `HBR's 10 Must Reads on Leadership` 的 4 個詞有 3 個出現在 `… on Communication`
+    # 裡＝75%，但那是完全不同的一本。Jaccard 把 repo 那側多出來的詞也算進分母
+    # （3/5＝60%）就篩掉了。同理擋掉 Trend Following ↔ Masters Vol.2、
+    # 7 Habits Families ↔ People——這三類正是 2026-08-10 首次跑時全部 8 筆提名的內容。
+    #
+    # 詞相等的判準放寬到**共同前綴 ≥5 字元**，才抓得到真正該抓的那類：詞形差異
+    # （`Forgiving and Reconciling` ↔ `Forgiveness and Reconciliation`——pastoral 站
+    # 就有一筆這樣的，頁面還照著錯書名猜了 slug 去 anchor，結果 404）。
+    STEM = 5
+
+    def tok_match(a, b):
+        return a == b or (min(len(a), len(b)) >= STEM and a[:STEM] == b[:STEM])
+
+    def jaccard(a, b):
+        inter = sum(1 for x in a if any(tok_match(x, y) for y in b))
+        union = len(a) + len(b) - inter
+        return inter / union if union else 0.0
+
+    author_of_repo = {i["name"]: i.get("book_author", "") for i in portal_items}
+    book_tokens = {
+        it["name"]: {t for t in norm_title(it["book_title"]).split() if len(t) > 2}
+        for it in portal_items
+    }
+
+    near_miss = []
+    for r in rows:
+        if r.get("repo") or not r["en"]:
+            continue
+        want = {t for t in norm_title(r["en"]).split() if len(t) > 2}
+        if len(want) < 2:
+            continue  # 一個詞的書名（Flow、Grit）跟太多東西像，放過
+        best = None
+        for name, toks in book_tokens.items():
+            if len(toks) < 2:
+                continue
+            score = jaccard(want, toks)
+            if score >= 0.7:
+                if author_ok(r["author"], author_of_repo.get(name, "")) is False:
+                    continue  # 作者已經否決，那就不是漏報
+                if best is None or score > best[1]:
+                    best = (name, score)
+        # NAME_COLLISIONS 已經人工裁決過的不必再提名——那是「已結案」，不是「待確認」。
+        if best and (best[0], r["station"]) not in NAME_COLLISIONS:
+            near_miss.append((r, best[0], best[1]))
 
     multi = sorted(
         (k for k, v in by_main.items() if len({r["station"] for r in v}) > 1),
@@ -811,7 +951,50 @@ def main():
         shown = esc(desc[:60]) if desc else "**（repo 無描述，需人工確認是不是同一本）**"
         w(f"| `{k}` | {esc(v[0]['en'] or v[0]['title'])} | {', '.join(sorted({r['station'] for r in v}))} | {shown} |\n")
 
-    w(f"\n## 快歸零的站：{len(near_zero)} 站只差 1–2 本\n\n")
+    w(f"\n## 作者這一關擋下的：{len(rejected)} 筆同名不同書\n\n")
+    w(
+        "書名正規化後對得上某個書 repo，**但作者不符**——所以那本不是這一筆想收的書，"
+        "維持 `wanted`。這關是 2026-08-10 加的第二因子；在那之前 matcher 只比書名，"
+        "撞名只能靠 `NAME_COLLISIONS` 人工白名單一筆筆補（踩到才補）。\n\n"
+        "**下面每一筆都要當成買錯書的預警**：想收的和 portal 上那本同名，"
+        "下單前對作者，別對書名。\n\n"
+    )
+    if rejected:
+        w("| 想收的書 | 想收的作者 | 撞到的 repo | repo 上的作者 | 登記在 |\n| --- | --- | --- | --- | --- |\n")
+        for r, (repo_name, repo_author) in sorted(rejected, key=lambda x: (x[1][0], x[0]["station"])):
+            w(
+                f"| {esc(r['en'] or r['title'])} | {esc(r['author'])} | `{repo_name}` "
+                f"| {esc(repo_author) or '（repo 無作者欄）'} | {r['station']} |\n"
+            )
+        w("\n")
+    else:
+        w("無——這輪沒有書名對上卻作者不符的。\n\n")
+
+    w(f"## 疑似漏報：{len(near_miss)} 本可能其實已經有 repo\n\n")
+    w(
+        "書名**沒有**正規化後完全相同，但 portal 上有 repo 長得很像——改過書名"
+        "（英美版不同、中譯轉寫）的書會落在這裡。**這節是提名，不是判決**：確認是同一本就"
+        "寫進 `export-wanted.py` 的 `ALIASES`，下一輪它就走精確路徑並自動掉進「先扣掉」；"
+        "確認是續集或同系列的不同書就不用管，下輪還會再問一次。\n\n"
+        "門檻：兩邊書名的**雙向 Jaccard ≥70%**（詞相等的判準放寬到共同前綴 5 字元，"
+        "才抓得到 `Forgiving` ↔ `Forgiveness` 這種詞形差異），且**作者沒有互相否決**。"
+        "用雙向而不是單向覆蓋率，是因為單向會被系列卷洗版——`… on Leadership` 的詞"
+        "有 75% 出現在 `… on Communication` 裡，但那是不同的一本。"
+        "作者不符的已經在上一節擋掉；`NAME_COLLISIONS` 裁決過的不再提名。\n\n"
+    )
+    if near_miss:
+        w("| 想收的書 | 作者 | 疑似 repo | 相似度 | repo 上的書名 | 登記在 |\n| --- | --- | --- | ---: | --- | --- |\n")
+        for r, name, score in sorted(near_miss, key=lambda x: -x[2]):
+            title = next((i["book_title"] for i in portal_items if i["name"] == name), name)
+            w(
+                f"| {esc(r['en'])} | {esc(r['author']) or '⚠ 作者未登錄'} | `{name}` "
+                f"| {score:.0%} | {esc(title)} | {r['station']} |\n"
+            )
+        w("\n")
+    else:
+        w("無——沒有書名相近卻沒對上的。\n\n")
+
+    w(f"## 快歸零的站：{len(near_zero)} 站只差 1–2 本\n\n")
     w(
         "**TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，"
         "整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。"

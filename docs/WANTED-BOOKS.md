@@ -74,6 +74,27 @@
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
 
+## 作者這一關擋下的：2 筆同名不同書
+
+書名正規化後對得上某個書 repo，**但作者不符**——所以那本不是這一筆想收的書，維持 `wanted`。這關是 2026-08-10 加的第二因子；在那之前 matcher 只比書名，撞名只能靠 `NAME_COLLISIONS` 人工白名單一筆筆補（踩到才補）。
+
+**下面每一筆都要當成買錯書的預警**：想收的和 portal 上那本同名，下單前對作者，別對書名。
+
+| 想收的書 | 想收的作者 | 撞到的 repo | repo 上的作者 | 登記在 |
+| --- | --- | --- | --- | --- |
+| Christian Theology: An Introduction | Alister E. McGrath 麥葛福 — 不是 Millard Erickson 的同名書 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
+| Understanding the Bible | John Stott | `understanding-the-bible` | Dorothy L. Johns | stott-note |
+
+## 疑似漏報：1 本可能其實已經有 repo
+
+書名**沒有**正規化後完全相同，但 portal 上有 repo 長得很像——改過書名（英美版不同、中譯轉寫）的書會落在這裡。**這節是提名，不是判決**：確認是同一本就寫進 `export-wanted.py` 的 `ALIASES`，下一輪它就走精確路徑並自動掉進「先扣掉」；確認是續集或同系列的不同書就不用管，下輪還會再問一次。
+
+門檻：兩邊書名的**雙向 Jaccard ≥70%**（詞相等的判準放寬到共同前綴 5 字元，才抓得到 `Forgiving` ↔ `Forgiveness` 這種詞形差異），且**作者沒有互相否決**。用雙向而不是單向覆蓋率，是因為單向會被系列卷洗版——`… on Leadership` 的詞有 75% 出現在 `… on Communication` 裡，但那是不同的一本。作者不符的已經在上一節擋掉；`NAME_COLLISIONS` 裁決過的不再提名。
+
+| 想收的書 | 作者 | 疑似 repo | 相似度 | repo 上的書名 | 登記在 |
+| --- | --- | --- | ---: | --- | --- |
+| HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
+
 ## 快歸零的站：15 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
