@@ -10,7 +10,7 @@
 
 ## 先收這 20 本
 
-整份 227 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 222 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -59,8 +59,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1712 筆（去重 1229 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **227 筆（去重 227 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 49 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **222 筆（去重 222 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 54 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
 > `owned` 去重後的 1229 是**已建成書站的書**（1712 是含跨站重複的登錄筆數，
@@ -97,7 +97,7 @@
 | Globalization and Its Discontents | Joseph E. Stiglitz | `globalization-and-its-discontents-revisited` | 80% | Globalization and Its Discontents Revisited | economics-note |
 | HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
 
-## 快歸零的站：16 站只差 1–2 本
+## 快歸零的站：17 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
@@ -113,6 +113,7 @@
 | `management-note` | 45 | **2** | Managing（Henry Mintzberg）、Working Backwards（Colin Bryar & Bill Carr） |
 | `growth-note` | 42 | **2** | Awaken the Giant Within（Anthony Robbins）、The Obstacle Is the Way（Ryan Holiday） |
 | `philosophy-note` | 31 | **2** | Discourses（Epictetus 愛比克泰德（Arrian 記錄））、The Myth of Sisyphus（Albert Camus 卡繆） |
+| `fengtang-note` | 8 | **2** | 成事：馮唐品讀曾國藩嘉言鈔（馮唐）、無所畏（馮唐） |
 | `christensen-note` | 7 | **2** | Disrupting Class（Clayton M. Christensen, Michael B. Horn & Curtis W. Johnson）、The Innovator's Prescription（Clayton M. Christensen, Jerome H. Grossman & Jason Hwang） |
 | `templar-note` | 7 | **2** | The Rules of Parenting（Richard Templar）、The Rules to Break（Richard Templar） |
 | `jung-note` | 5 | **2** | Psychological Types（C. G. Jung）、The Red Book (Liber Novus)（C. G. Jung） |
@@ -127,7 +128,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 227 筆）
+## 完整清單（依站，共 222 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -234,17 +235,6 @@
 | The Automatic Millionaire | David Bach | 讓錢為你工作的自動理財法 | 2004 | Bach；把儲蓄自動化的經典操作手冊 |
 | The Wealthy Barber | David Chilton |  | 1989 | Chilton；北美國民理財入門的敘事體始祖 |
 
-### fengtang-note — 6 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| （成事：馮唐品讀曾國藩嘉言鈔） | 馮唐 | 成事：馮唐品讀曾國藩嘉言鈔 | 2019 | 成事學的起點：逐條品讀曾國藩嘉言——《成事心法》的前作 |
-| （活著活著就老了） | 馮唐 | 活著活著就老了 | 2005 | 雜文成名作；馮唐聲口的原型——文學觀與人生觀的底稿 |
-| （三十六大） | 馮唐 | 三十六大 | 2012 | 三十六封公開信：「大」系列雜文的代表作 |
-| （無所畏） | 馮唐 | 無所畏 | 2018 | 中年心境的雜文集：無所畏與無所謂之間 |
-| （萬物生長三部曲（十八歲給我一個姑娘／萬物生長／北京，北京）） | 馮唐 | 萬物生長三部曲（十八歲給我一個姑娘／萬物生長／北京，北京） | 2001 | 青春三部曲：文學馮唐的主線長篇，一筆合併收錄 |
-| （馮唐詩百首） | 馮唐 | 馮唐詩百首 | 2011 | 「春風十里，不如你」的出處；詩人馮唐的代表集 |
-
 ### habits-note — 6 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -255,17 +245,6 @@
 | Rest | Alex Soojung-Kim Pang |  | 2016 | Pang：刻意休息是深度工作的另一半 |
 | Discipline Is Destiny | Ryan Holiday |  | 2022 | Holiday：斯多噶四樞德的自律卷 |
 | Willpower: Rediscovering the Greatest Human Strength | Roy F. Baumeister & John Tierney | Willpower 增強你的意志力 | 2011 | Baumeister：意志力科學的正典（自我耗損後續有爭議，仍值得收） |
-
-### liurun-note — 6 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| （商業簡史） | 劉潤 | 商業簡史 | 2020 | 把商業進化史讀成「交易成本不斷降低」的歷史——底層邏輯的史學版 |
-| （進化的力量2） | 劉潤 | 進化的力量2 | 2022 | 年度演講系列續作；趨勢判讀框架的年度更新 |
-| （趨勢紅利） | 劉潤 | 趨勢紅利 | 2016 | 早期代表作：紅利＝短暫供需失衡的出處 |
-| （新零售：低價高效的數據賦能之路） | 劉潤 | 新零售：低價高效的數據賦能之路 | 2018 | 「人貨場」重構的新零售方法論 |
-| （互聯網+：傳統企業，互聯網在踢門） | 劉潤 | 互聯網+：傳統企業，互聯網在踢門 | 2015 | 成名作：傳統企業轉型的早期宣言 |
-| （關鍵躍升：新任管理者的底層邏輯） | 劉潤 | 關鍵躍升：新任管理者的底層邏輯 | 2023 | 寫給新手管理者的「驚險一躍」專書——管理分類的直接補強 |
 
 ### nt-wright-note — 6 本
 
@@ -371,6 +350,16 @@
 | The Suit: A Machiavellian Approach to Men's Style | Nicholas Antongiavanni | The Suit | 2006 | Antongiavanni 仿《君主論》體例談西裝——文體奇書 |
 | Take Ivy | 石津謙介 企劃／林田昭慶 等 |  | 1965 | 石津謙介企劃；美式 Ivy 風格的攝影聖經 |
 | Icons of Men's Style | Josh Sims |  | 2011 | Sims；逐單品的設計史——每件經典從哪來 |
+
+### liurun-note — 5 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| （商業簡史） | 劉潤 | 商業簡史 | 2020 | 把商業進化史讀成「交易成本不斷降低」的歷史——底層邏輯的史學版 |
+| （進化的力量2） | 劉潤 | 進化的力量2 | 2022 | 年度演講系列續作；趨勢判讀框架的年度更新 |
+| （新零售：低價高效的數據賦能之路） | 劉潤 | 新零售：低價高效的數據賦能之路 | 2018 | 「人貨場」重構的新零售方法論 |
+| （互聯網+：傳統企業，互聯網在踢門） | 劉潤 | 互聯網+：傳統企業，互聯網在踢門 | 2015 | 成名作：傳統企業轉型的早期宣言 |
+| （關鍵躍升：新任管理者的底層邏輯） | 劉潤 | 關鍵躍升：新任管理者的底層邏輯 | 2023 | 寫給新手管理者的「驚險一躍」專書——管理分類的直接補強 |
 
 ### nouwen-note — 5 本
 
@@ -542,6 +531,13 @@
 | The Dark Side of Valuation | Aswath Damodaran | 估值的黑暗面 | 2001 | 年輕、高成長與困境公司的估值難題——正典外最值得補的一塊 |
 | Investment Philosophies | Aswath Damodaran | 投資哲學 | 2003 | 把估值放進完整光譜：從價值、成長到交易，各流派的證據與適配者 |
 
+### fengtang-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| （成事：馮唐品讀曾國藩嘉言鈔） | 馮唐 | 成事：馮唐品讀曾國藩嘉言鈔 | 2019 | 成事學的起點：逐條品讀曾國藩嘉言——《成事心法》的前作 |
+| （無所畏） | 馮唐 | 無所畏 | 2018 | 中年心境的雜文集：無所畏與無所謂之間 |
+
 ### growth-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -626,22 +622,17 @@
 | --- | --- | --- | --- | --- |
 | Living in Christ's Presence | Dallas Willard & John Ortberg | 活在基督的同在中 | 2014 | 與 John Ortberg 的最後對談錄；臨終前的思想總回顧 |
 
-## 沒有英文書名的 18 本（華文／日文原著）
+## 沒有英文書名的 13 本（華文／日文原著）
 
 這些本來就沒有英文版，照原書名收。
 
 | 原書名 | 作者 | 站 | 為何想收 |
 | --- | --- | --- | --- |
-| 三十六大 | 馮唐 | fengtang-note | 三十六封公開信：「大」系列雜文的代表作 |
 | 成事：馮唐品讀曾國藩嘉言鈔 | 馮唐 | fengtang-note | 成事學的起點：逐條品讀曾國藩嘉言——《成事心法》的前作 |
-| 活著活著就老了 | 馮唐 | fengtang-note | 雜文成名作；馮唐聲口的原型——文學觀與人生觀的底稿 |
 | 無所畏 | 馮唐 | fengtang-note | 中年心境的雜文集：無所畏與無所謂之間 |
-| 萬物生長三部曲（十八歲給我一個姑娘／萬物生長／北京，北京） | 馮唐 | fengtang-note | 青春三部曲：文學馮唐的主線長篇，一筆合併收錄 |
-| 馮唐詩百首 | 馮唐 | fengtang-note | 「春風十里，不如你」的出處；詩人馮唐的代表集 |
 | 互聯網+：傳統企業，互聯網在踢門 | 劉潤 | liurun-note | 成名作：傳統企業轉型的早期宣言 |
 | 商業簡史 | 劉潤 | liurun-note | 把商業進化史讀成「交易成本不斷降低」的歷史——底層邏輯的史學版 |
 | 新零售：低價高效的數據賦能之路 | 劉潤 | liurun-note | 「人貨場」重構的新零售方法論 |
-| 趨勢紅利 | 劉潤 | liurun-note | 早期代表作：紅利＝短暫供需失衡的出處 |
 | 進化的力量2 | 劉潤 | liurun-note | 年度演講系列續作；趨勢判讀框架的年度更新 |
 | 關鍵躍升：新任管理者的底層邏輯 | 劉潤 | liurun-note | 寫給新手管理者的「驚險一躍」專書——管理分類的直接補強 |
 | 信息傳 | 吳軍 | wujun-note | 資訊史詩；香農資訊論如何成為理解未來的方法論（無繁中版） |
