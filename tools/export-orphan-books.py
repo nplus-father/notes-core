@@ -28,6 +28,10 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh / export-wanted.py 同
       延伸閱讀連結直接 404。SOURCING-DEBT 只驗過「有沒有 anchor」，沒驗過「anchor 到的
       書在不在」。
 
+另外讀 docs/EXCLUDED-BOOKS.md（手維護的裁決紀錄）：裁定「不進任何站」的書從盤點分母
+整個拿掉，摘要留一行計數——不然練習冊、機構教材這類永遠不會被認領的書會在孤兒清單裡
+一直提醒，把真正該認領的淹掉。被排除卻仍有站在引＝裁決衝突，輸出裡吵。
+
 **資料源紀律**（這條被違反過，代價是整張清單失真）：權威是 GitHub 現況，不是站台的
 `repos.json`。那份快照是 build 時打 API 存下來 commit 進去的，落後好幾天很正常——
 2026-08-07 就是拿 08-05 的快照去對 08-07 建的書站，回報「0 本已收錄」，實際上 20 本裡
@@ -54,6 +58,7 @@ HERE = Path(__file__).resolve().parent
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or HERE.parent.parent)
 PORTAL_REPOS = NOTES_ROOT / ".." / "sites" / "nplus-father.github.io" / "src" / "data" / "repos.json"
 OUT = HERE.parent / "docs" / "ORPHAN-BOOKS.md"
+EXCLUDED_DOC = HERE.parent / "docs" / "EXCLUDED-BOOKS.md"  # 刻意排除的裁決紀錄（手維護）
 
 PORTAL_OWNERS = ("nplus-father", "Andrewnplus")
 BOOK_TOPIC = "nplus-kind-book"
@@ -77,6 +82,17 @@ LEAF_TABLE_LIMIT = 30
 def esc(s):
     """表格欄位裡的管線與換行會把 Markdown 表格打斷。"""
     return (s or "").replace("|", "\\|").replace("\n", " ").strip()
+
+
+def load_excluded():
+    """docs/EXCLUDED-BOOKS.md 表格裡的 repo slug——裁定「不進任何站」的書。
+
+    抓的是表格列開頭的 `` | `slug` `` 樣式；沒有這份檔就當空集合，行為與加這個
+    機制之前完全相同。排除≠刪 repo：書庫照舊，只是孤兒盤點不再提醒。
+    """
+    if not EXCLUDED_DOC.is_file():
+        return set()
+    return set(re.findall(r"^\|\s*`([A-Za-z0-9._-]+)`", EXCLUDED_DOC.read_text(encoding="utf-8"), re.M))
 
 
 def entries_of(src):
@@ -228,6 +244,16 @@ def main():
         b["sub"] = topic_of(b, "sub-") or "（無 sub）"
 
     cited, owned_no_slug, anchors = scan_stations()
+
+    # 刻意排除的書（EXCLUDED-BOOKS.md 裁決）：從盤點分母整個拿掉——孤兒、leaf 覆蓋率、
+    # 作者統計都不算它，只在摘要留一行計數。被排除卻仍有站在引的是裁決衝突，要吵；
+    # 這種情況下那本書照常留在盤點裡（引用是現實，裁決只是主張）。
+    excluded = load_excluded()
+    raw_book_count = len(books)
+    excluded_claimed = sorted(n for n in excluded if n in cited)
+    excluded_books = [b for b in books if b["name"] in excluded and b["name"] not in cited]
+    books = [b for b in books if b["name"] not in excluded or b["name"] in cited]
+
     orphans = [b for b in books if b["name"] not in cited]
     # 內容頁已經 anchor 到、bibliography 卻沒登記——補一筆盤點就好，不必開站。
     unlisted = [b for b in orphans if b["name"] in anchors]
@@ -256,7 +282,10 @@ def main():
         "**為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」"
         "的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。\n\n"
     )
-    w(f"**資料源**：{source}，其中 `{BOOK_TOPIC}` 的書 repo {len(books)} 本。\n\n")
+    w(f"**資料源**：{source}，其中 `{BOOK_TOPIC}` 的書 repo {raw_book_count} 本")
+    if excluded_books:
+        w(f"（{len(excluded_books)} 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）")
+    w("。\n\n")
     if age_note:
         w(f"> {age_note}\n\n")
 
@@ -271,9 +300,18 @@ def main():
     w("| 檢查 | 數 | 後果 |\n| --- | ---: | --- |\n")
     w(f"| 孤兒書（沒有任何站的 bibliography 指到） | **{len(orphans)}** | 書站建了但沒有筆記在用，等於白建 |\n")
     w(f"| ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **{len(unlisted)}** | 補一筆 bibliography 就好，不必開站 |\n")
+    w(f"| 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **{len(excluded_books)}** | 不列孤兒、不再提醒 |\n")
     w(f"| 死鏈 slug（bibliography 指到不存在的 repo） | **{len(dead_slugs)}** | 首頁書架封面 404 |\n")
     w(f"| `owned` 沒有 slug | **{len(owned_no_slug)}** | 不會出現在首頁書架，登記了卻看不到 |\n")
     w(f"| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **{len(dead_anchors)}** | 延伸閱讀連結 404 |\n\n")
+
+    if excluded_claimed:
+        w(
+            "> ⚠ **裁決衝突**：下列 slug 在 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 被排除，"
+            "卻有站的 bibliography 用 `slug` 指到它——去掉那筆引用，或刪掉排除那行重跑："
+            + "、".join(f"`{s}`" for s in excluded_claimed)
+            + "\n\n"
+        )
 
     # ── 一、孤兒書 ────────────────────────────────────────────────
     w(f"## 一、孤兒書：{len(orphans)} 本沒有任何站認領\n\n")
@@ -431,6 +469,7 @@ notes-core/tools/export-orphan-books.py
 
 認領一本孤兒＝在該站 `bibliography.ts` 加一筆 `status: "owned"` ＋ `slug: "<repo name>"`，
 重跑就會從這裡消失。整個 leaf 都沒站在管就走 `/note-new-station`。
+裁定**永遠不進任何站**＝在 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 加一行，重跑後不再提醒。
 """
     )
 
@@ -441,6 +480,7 @@ notes-core/tools/export-orphan-books.py
         OUT.write_text(text, encoding="utf-8")
         print(
             f"{OUT}: 孤兒 {len(orphans)} 本（其中 {len(unlisted)} 本內容已引）、"
+            f"刻意排除 {len(excluded_books)} 本、"
             f"死鏈 slug {len(dead_slugs)}、owned 缺 slug {len(owned_no_slug)}、"
             f"死鏈 anchor {len(dead_anchors)}"
         )

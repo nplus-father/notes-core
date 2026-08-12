@@ -94,6 +94,7 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/MISSING-YEARS.md`             | **書收了但沒填出版年**（缺口靠查初版年補）；由 `tools/export-missing-years.py` 生成 |
 | `docs/DEEPEN-READY.md`              | **哪些站書收齊了、可以進場深化**（排序表）；由 `tools/export-deepen-ready.py` 生成 |
 | `docs/ORPHAN-BOOKS.md`              | **書有了但沒有站在管**，外加死鏈 slug／anchor（缺口靠認領或開站補）；由 `tools/export-orphan-books.py` 生成 |
+| `docs/EXCLUDED-BOOKS.md`            | **裁定不進任何站**的書（品質把關的裁決紀錄，手維護）；orphan 掃描讀它，命中者不列孤兒不再提醒 |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
 | `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
