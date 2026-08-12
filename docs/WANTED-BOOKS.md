@@ -6,7 +6,7 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1745 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1754 個 repo）。
 
 ## 先收這 20 本
 
@@ -58,21 +58,29 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1745 筆（去重 1262 本） |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1742 筆（去重 1260 本） |
 | `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **184 筆（去重 184 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 59 筆 |
-| `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
+| `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 82 筆 |
 
-> `owned` 去重後的 1262 是**已建成書站的書**（1745 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1260 是**已建成書站的書**（1742 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：0 本其實已經有書站了
+## 先扣掉：8 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
+| `acing-the-system-design-interview` | Acing the System Design Interview | system-design-note | Acing the System Design Interview \| Zhiyong Tan \| Turns the  |
+| `api-design-patterns` | API Design Patterns | system-design-note | API Design Patterns \| JJ Geewax \| A pattern catalogue for re |
+| `art-as-therapy` | Art as Therapy | de-botton-note | Art as Therapy \| Alain de Botton & John Armstrong \| Proposes |
+| `art-of-readable-code` | The Art of Readable Code | clean-code-note | The Art of Readable Code \| Dustin Boswell & Trevor Foucher \| |
+| `art-of-scalability` | The Art of Scalability | system-design-note | The Art of Scalability \| Martin L. Abbott & Michael T. Fishe |
+| `bowling-alone` | Bowling Alone | relationships-note | Bowling Alone: The Collapse and Revival of American Communit |
+| `simply-jesus` | Simply Jesus | nt-wright-note | Simply Jesus: A New Vision of Who He Was, What He Did, and W |
+| `software-craftsman` | The Software Craftsman | clean-code-note | The Software Craftsman: Professionalism, Pragmatism, Pride \| |
 
 ## 作者這一關擋下的：2 筆同名不同書
 
@@ -333,7 +341,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Justification: God's Plan and Paul's Vision | N. T. Wright |  | 2009 | 回應 Piper 的稱義論戰之作：稱義是盟約成員身分的宣告 |
-| Simply Jesus | N. T. Wright |  | 2011 | 《耶穌與神的得勝》的普及版：耶穌如何作王 |
+| Simply Jesus ⟵ 已有書站 `simply-jesus` | N. T. Wright |  | 2011 | 《耶穌與神的得勝》的普及版：耶穌如何作王 |
 | How God Became King | N. T. Wright |  | 2012 | 四福音「被遺忘的中段」：上帝作王的故事，補信經跳過的一塊 |
 | The Day the Revolution Began | N. T. Wright |  | 2016 | 十架論的普及重述：赦罪帶來的是新出埃及與革命 |
 | Scripture and the Authority of God | N. T. Wright |  | 2011 | 「聖經權柄」＝上帝藉聖經行使的權柄；五幕劇詮釋框架的出處 |
@@ -356,7 +364,7 @@
 | Hold Me Tight | Sue Johnson | 抱緊我 | 2008 | Sue Johnson：情緒取向治療（EFT） |
 | How to Talk So Kids Will Listen & Listen So Kids Will Talk | Adele Faber & Elaine Mazlish |  | 1980 | Faber & Mazlish：親子溝通的標準讀物 |
 | The Whole-Brain Child | Daniel J. Siegel & Tina Payne Bryson | 教孩子跟情緒做朋友 | 2011 | Siegel：全腦教養 |
-| Bowling Alone | Robert D. Putnam |  | 2000 | Putnam：社會資本流失的實證經典 |
+| Bowling Alone ⟵ 已有書站 `bowling-alone` | Robert D. Putnam |  | 2000 | Putnam：社會資本流失的實證經典 |
 
 ### writing-note — 5 本
 
@@ -390,7 +398,7 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Art as Therapy | Alain de Botton & John Armstrong | 藝術的慰藉 | 2013 | 與 John Armstrong 合著：藝術作為心理工具——慰藉系列的收官 |
+| Art as Therapy ⟵ 已有書站 `art-as-therapy` | Alain de Botton & John Armstrong | 藝術的慰藉 | 2013 | 與 John Armstrong 合著：藝術作為心理工具——慰藉系列的收官 |
 | The Pleasures and Sorrows of Work | Alain de Botton | 工作！工作！ | 2009 | 十種行業的田野書寫：工作如何承載（或承載不了）意義 |
 | The News: A User's Manual | Alain de Botton | 新聞的騷動 | 2014 | 資訊焦慮時代的媒體使用手冊——慰藉方法用在新聞上 |
 | The School of Life: An Emotional Education | The School of Life（Alain de Botton 創辦） | 人生學校：了解自己 | 2019 | 人生學校十年集大成的情感教育教科書 |
@@ -417,9 +425,9 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Art of Readable Code | Dustin Boswell & Trevor Foucher |  | 2011 | 可讀性專書的標準入門 |
+| The Art of Readable Code ⟵ 已有書站 `art-of-readable-code` | Dustin Boswell & Trevor Foucher |  | 2011 | 可讀性專書的標準入門 |
 | Growing Object-Oriented Software, Guided by Tests | Steve Freeman & Nat Pryce |  | 2009 | GOOS；倫敦學派 mock 驅動設計的正典 |
-| The Software Craftsman | Sandro Mancuso |  | 2014 | Mancuso；軟體工藝運動的宣言 |
+| The Software Craftsman ⟵ 已有書站 `software-craftsman` | Sandro Mancuso |  | 2014 | Mancuso；軟體工藝運動的宣言 |
 
 ### economics-note — 3 本
 
@@ -449,9 +457,9 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Art of Scalability | Martin L. Abbott & Michael T. Fisher |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
-| API Design Patterns | JJ Geewax |  | 2021 | Geewax；API 設計決策的模式目錄 |
-| Acing the System Design Interview | Zhiyong Tan |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
+| The Art of Scalability ⟵ 已有書站 `art-of-scalability` | Martin L. Abbott & Michael T. Fisher |  | 2009 | Abbott & Fisher；Scale Cube（X/Y/Z 軸擴展）框架 |
+| API Design Patterns ⟵ 已有書站 `api-design-patterns` | JJ Geewax |  | 2021 | Geewax；API 設計決策的模式目錄 |
+| Acing the System Design Interview ⟵ 已有書站 `acing-the-system-design-interview` | Zhiyong Tan |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
 
 ### agile-note — 2 本
 

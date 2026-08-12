@@ -123,7 +123,7 @@
 ### leadership-note（11 筆）
 
 - [owned] 彼得·杜拉克與管理學：歐洲、社會、思想 · 管理正典 — 📕 June 3, 2024
-- [owned] 5分鐘商學院 管理篇 · 管理正典 — 📕 November 2, 2018
+- [skipped] 5分鐘商學院 管理篇 · 管理正典 — 📕 November 2, 2018
 - [owned] 我用軍隊學到的8堂領導課 / 8 Lessons in Military Leadership for Entrepreneurs · 帶人與團隊 — 📕 May 12, 2015
 - [owned] Sales Management: The Brian Tracy Success Library · 帶人與團隊 — 📕 January 15, 2016
 - [owned] 哈佛教你高EQ管理術 / HBR's 10 Must Reads on Emotional Intelligence · 帶人與團隊 — 📕 March 16, 2018
@@ -166,7 +166,7 @@
 - [owned] 應用治療學：臨床用藥 / Applied Therapeutics · 專業教科書 — 📕 January 1, 2008
 - [owned] 藥物治療學：原理與實務 / Pharmacotherapy: Principles and Practice · 專業教科書 — 📕 October 29, 2025
 - [owned] 藥物治療學案例集 / Pharmacotherapy Casebook · 專業教科書 — 📕 April 7, 2023
-- [owned] 牛津臨床藥學手冊 / Oxford Handbook of Clinical Pharmacy · 專業教科書 — 📕 June 8, 2017
+- [skipped] 牛津臨床藥學手冊 / Oxford Handbook of Clinical Pharmacy · 專業教科書 — 📕 June 8, 2017
 
 ### startup-note（6 筆）
 
