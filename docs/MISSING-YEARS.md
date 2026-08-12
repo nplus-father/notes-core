@@ -69,7 +69,7 @@
 
 - [owned] 將世界菁英的工作方式整理成冊 · 恆毅力與精通 — 📕 July 26, 2020
 - [owned] 馮唐成事心法 · 自我管理 — 📕 December 1, 2020
-- [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理 — 📕 2020/11/07
+- [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理 — 📕 November 7, 2020
 - [owned] 為什麼老闆總是對我說「你很好，但是…」 / Kiss Your BUT Good-Bye · 自我管理 — 📕 June 11, 2013
 - [owned] HBR Guide to Your Professional Growth · 自我管理 — 📕 March 26, 2019
 - [owned] 沒了名片，你還剩下什麼 · 意義與方向 — 📕 October 3, 2013
@@ -84,7 +84,7 @@
 - [owned] 鳥哥的 Linux 私房菜：基礎學習篇 · Linux 與網路 — 📕 January 27, 2016
 - [owned] 鳥哥的 Linux 私房菜：伺服器架設篇 · Linux 與網路 — 📕 September 19, 2011
 - [owned] MIS 一定要懂的 82個網路技術知識 · Linux 與網路 — 📕 February 14, 2018
-- [owned] 30 Days of GitLab · 工具鏈 — 📕 December 08, 2022
+- [owned] 30 Days of GitLab · 工具鏈 — 📕 December 8, 2022
 
 ### design-patterns-note（2 筆）
 
@@ -154,7 +154,7 @@
 
 - [owned] Social Media Marketing & Online Business · 社群與通路 — 📕 May 22, 2019
 - [owned] 峰值體驗 · 廣告與基本功 — 📕 January 3, 2022
-- [owned] 峰值體驗 2 · 廣告與基本功 — 📕 2024-11-01
+- [owned] 峰值體驗 2 · 廣告與基本功 — 📕 November 1, 2024
 
 ### relationships-note（2 筆）
 
@@ -164,7 +164,7 @@
 ### science-note（4 筆）
 
 - [owned] 應用治療學：臨床用藥 / Applied Therapeutics · 專業教科書 — 📕 January 1, 2008
-- [owned] 藥物治療學：原理與實務 / Pharmacotherapy: Principles and Practice · 專業教科書 — 📕  October 29, 2025
+- [owned] 藥物治療學：原理與實務 / Pharmacotherapy: Principles and Practice · 專業教科書 — 📕 October 29, 2025
 - [owned] 藥物治療學案例集 / Pharmacotherapy Casebook · 專業教科書 — 📕 April 7, 2023
 - [owned] 牛津臨床藥學手冊 / Oxford Handbook of Clinical Pharmacy · 專業教科書 — 📕 June 8, 2017
 
@@ -216,7 +216,7 @@
 - [owned] 不再痛風的生活 · 飲食與睡眠 — 📕 May 27, 2020
 - [owned] 哈佛教你打造健康人生 · 飲食與睡眠 — 📕 August 12, 2018
 - [owned] 有本事 · 幸福與安適 — 📕 July 13, 2021
-- [owned] 了不起 · 幸福與安適 — 📕 August 2022
+- [owned] 了不起 · 幸福與安適 — 📕 September 6, 2022
 
 ## 補不上來的那幾筆
 

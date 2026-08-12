@@ -10,7 +10,7 @@
 
 ## 先收這 20 本
 
-整份 188 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 184 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -25,15 +25,15 @@
 | 5 | **Investment Philosophies** | Aswath Damodaran | 投資哲學 | 2003 | damodaran(1) | damodaran 的另一半；把估值放進完整的流派光譜——「估值」的另外 58 處落在 investing（39）與 startup（8）等站，講的都是「哪一派適合誰」，來源卻不在；厚 |
 | 6 | **How to Become a Straight-A Student** | Cal Newport | 如何成為全A學生 | 2006 | newport(2) | newport 站 owned 6／wanted 3，但**只需要買 2 本就歸零**——第三本《How to Win at College》的書站其實已經存在，只是錯名掛在 `how-to-be-a-high-school-superstar` 上（SOURCING-DEBT.md 有案），那是 repo 改名的債、不是採購項；**2 本換一個歸零，是本輪最便宜的一格**；portal 的 Newport 已有 6 本（deep-work、digital-minimalism、so-good-they-cant-ignore-you、slow-productivity、a-world-without-email 與那本錯名的），獨缺學生三部曲；「深度工作」全星系 90 處／29 個檔案／跨 9 站（newport 48），而「偽工作」——這套學習系統的起點概念——只有 5 處；薄，有繁中《如何成為全 A 學生》 |
 | 7 | **How to Be a High School Superstar** | Cal Newport |  | 2010 | newport(2) | newport 的另一半；「鬆弛悖論」的原典，站上這條線目前是靠註記在轉述（該筆 note 自己就寫明 portal 同名 repo 內容實為另一本，靠 NAME_COLLISIONS 人工排除）；薄 |
-| 8 | **Understanding the Bible** | John Stott | 認識聖經 | 1972 | stott(2) | stott 站 owned 13／wanted 3——**這三本收齊就歸零**；portal 的斯托得 13 本是**全星系第二深的作者書櫃**（The Bible Speaks Today 系列 8 本＋十架、基督教基本真理、當代講道藝術、認識福音派信仰…），三本缺口全是他的**總論級作品**；「認識聖經」站內只有 1 處提及——最該有專書的入門卻掛零。**下單前對作者**：portal 的 `understanding-the-bible` 是 Dorothy L. Johns 的函授查經課程，不是斯托得這本（見「作者這一關擋下的」）；薄 |
-| 9 | **Why I Am a Christian** | John Stott |  | 2003 | stott(2) | stott 的第二本；晚年的個人見證版《真理的尋索》，portal 已有 `basic-christianity` 撐護教這條線的論證面，缺的是同一條線的自述面；薄 |
-| 10 | **Christian Mission in the Modern World** | John Stott |  | 1975 | stott(2) | stott 的第三本；「宣教」全星系 163 處／27 個檔案／跨 7 站（theology 71、biblical-studies 60、stott 26）——**引用他最多的兩個站都不是他自己的站**，而定調整全使命的這本不在：「洛桑」6 處（stott 4）、「社會責任」7 處（stott 4）、「整全使命」2 處，全是轉述 |
+| 8 | **Understanding the Bible** | John Stott | 認識聖經 | 1972 | stott(0) | stott 站 owned 13／wanted 3——**這三本收齊就歸零**；portal 的斯托得 13 本是**全星系第二深的作者書櫃**（The Bible Speaks Today 系列 8 本＋十架、基督教基本真理、當代講道藝術、認識福音派信仰…），三本缺口全是他的**總論級作品**；「認識聖經」站內只有 1 處提及——最該有專書的入門卻掛零。**下單前對作者**：portal 的 `understanding-the-bible` 是 Dorothy L. Johns 的函授查經課程，不是斯托得這本（見「作者這一關擋下的」）；薄 |
+| 9 | ⚠ `why-i-am-a-christian` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | stott 的第二本；晚年的個人見證版《真理的尋索》，portal 已有 `basic-christianity` 撐護教這條線的論證面，缺的是同一條線的自述面；薄 |
+| 10 | ⚠ `christian-mission-in-the-modern-world` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | stott 的第三本；「宣教」全星系 163 處／27 個檔案／跨 7 站（theology 71、biblical-studies 60、stott 26）——**引用他最多的兩個站都不是他自己的站**，而定調整全使命的這本不在：「洛桑」6 處（stott 4）、「社會責任」7 處（stott 4）、「整全使命」2 處，全是轉述 |
 | 11 | **Freakonomics** | Steven D. Levitt & Stephen J. Dubner | 蘋果橘子經濟學 | 2005 | economics(2) | economics 站 owned 47／wanted 3——**這三本收齊就歸零**，而這三本是同一個形狀：**續作／增訂版 portal 都有，原典一本都不在**（`superfreakonomics`、`undercover-economist-strikes-back`、`globalization-and-its-discontents-revisited`）——準則④「書櫃愈深、原典愈缺」最標準的樣子；「誘因」全星系 118 處／45 個檔案／跨 16 站，其中 economics 站內 80 處，而把誘因分析大眾化的這本只有 1 處；薄，有繁中《蘋果橘子經濟學》 |
 | 12 | **The Undercover Economist** | Tim Harford | 臥底經濟學家 | 2005 | economics(2) | economics 的第二本；portal 已有 `undercover-economist-strikes-back`（2013 的總體經濟續作），個體篇的原典反而不在；站內「臥底經濟」1 處孤證；薄，有繁中《臥底經濟學家》 |
 | 13 | **Globalization and Its Discontents** | Joseph E. Stiglitz | 全球化的許諾與失落 | 2002 | economics(2) | economics 的第三本；「全球化」全星系 39 處／12 個檔案／跨 10 站（economics 29），體制內人批判 IMF／世銀的這本沒有出處。**這筆有待裁決**：portal 的 `globalization-and-its-discontents-revisited`（2017 增訂版）在報告的「疑似漏報」列為 80% 相似——若判定增訂版就算收了，這格空出來由 clean-code 的另一本遞補；厚 |
-| 14 | **Head First Design Patterns** | Eric Freeman & Elisabeth Robson 等 | 深入淺出設計模式 | 2004 | design-patterns(2) | design-patterns 站 owned 18／wanted 3——**這三本收齊就歸零**；「設計模式」全星系 94 處／55 個檔案／跨 5 站（design-patterns 77）、「GoF」50 處／20 個檔案——**站內概念密度很高，但三本 wanted 的作者 portal 全部掛零**（Eric Freeman、Buschmann、Nystrom 各 0 本）；這本是公認最好的入門教材，站上卻只能靠 GoF 原典轉述；有繁中《深入淺出設計模式》 |
-| 15 | **Game Programming Patterns** | Robert Nystrom |  | 2014 | design-patterns(2) | design-patterns 的第二本；GoF 在遊戲場景的再詮釋，是站內唯一一條「模式用在特定領域」的線；**免費線上版可先讀**，所以排在 POSA 前面；薄 |
-| 16 | **Pattern-Oriented Software Architecture Vol.1 (POSA)** | Frank Buschmann 等 |  | 1996 | design-patterns(2) | design-patterns 的第三本；架構層級模式的學院正典（Layers、Broker、Pipes and Filters），站主自註為「學院正典」；「架構模式」全星系只有 7 處／4 個檔案／跨 3 站（design-patterns 4、fowler 2、system-design 1）——這個層級目前整個星系都薄；厚，排在這批最後 |
+| 14 | **Head First Design Patterns** | Eric Freeman & Elisabeth Robson 等 | 深入淺出設計模式 | 2004 | design-patterns(1) | design-patterns 站 owned 18／wanted 3——**這三本收齊就歸零**；「設計模式」全星系 94 處／55 個檔案／跨 5 站（design-patterns 77）、「GoF」50 處／20 個檔案——**站內概念密度很高，但三本 wanted 的作者 portal 全部掛零**（Eric Freeman、Buschmann、Nystrom 各 0 本）；這本是公認最好的入門教材，站上卻只能靠 GoF 原典轉述；有繁中《深入淺出設計模式》 |
+| 15 | **Game Programming Patterns** | Robert Nystrom |  | 2014 | design-patterns(1) | design-patterns 的第二本；GoF 在遊戲場景的再詮釋，是站內唯一一條「模式用在特定領域」的線；**免費線上版可先讀**，所以排在 POSA 前面；薄 |
+| 16 | ⚠ `pattern-oriented-software-architecture-vol-1-posa` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | design-patterns 的第三本；架構層級模式的學院正典（Layers、Broker、Pipes and Filters），站主自註為「學院正典」；「架構模式」全星系只有 7 處／4 個檔案／跨 3 站（design-patterns 4、fowler 2、system-design 1）——這個層級目前整個星系都薄；厚，排在這批最後 |
 | 17 | **The Practice of the Presence of God** | Brother Lawrence 勞倫斯弟兄 | 與神同在 | 1692 | spiritual-formation(2) | spiritual-formation 站 owned 32／wanted 3——**這三本收齊就歸零**；「操練」全星系 265 處／73 個檔案／跨 22 站，其中 spiritual-formation 站內 96 處——**散布最廣的概念之一**，而三本 wanted 的作者 portal 全部掛零（勞倫斯弟兄、慕安德烈、沃特斯托夫各 0 本）；這本是「日常勞動中與神同在」的源頭，站內「與神同在」只有 1 處；**最薄的一本**，有繁中《與神同在》 |
 | 18 | **Lament for a Son** | Nicholas Wolterstorff 沃特斯托夫 | 為兒子哀哭 | 1987 | spiritual-formation(2) | spiritual-formation 的第二本；「哀歌」全星系 23 處／13 個檔案／跨 5 站（pastoral-psychology 10、spiritual-formation 6、biblical-studies 5）——**引用最多的是 pastoral-psychology 不是本站**，而哀傷書寫這一側沒有任何原典；薄 |
 | 19 | **With Christ in the School of Prayer** | Andrew Murray 慕安德烈 | 基督的禱告學校 | 1885 | spiritual-formation(2) | spiritual-formation 的第三本；「禱告」全星系 459 處／90 個檔案／跨 17 站（keller 101、biblical-studies 98、spiritual-formation 94）——**全星系被引用最多的概念**，本站的代禱操練這條線卻只有 2 處在轉述；中等厚度，排在這批最後 |
@@ -59,8 +59,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1745 筆（去重 1262 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **188 筆（去重 188 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 55 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **184 筆（去重 184 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 59 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 79 筆 |
 
 > `owned` 去重後的 1262 是**已建成書站的書**（1745 是含跨站重複的登錄筆數，
@@ -96,7 +96,7 @@
 | Globalization and Its Discontents | Joseph E. Stiglitz | `globalization-and-its-discontents-revisited` | 80% | Globalization and Its Discontents Revisited | economics-note |
 | HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
 
-## 快歸零的站：4 站只差 1–2 本
+## 快歸零的站：7 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
@@ -105,6 +105,9 @@
 | `startup-note` | 61 | **1** | Running Lean（Ash Maurya） |
 | `management-note` | 46 | **1** | Managing（Henry Mintzberg） |
 | `wujun-note` | 17 | **1** | 信息傳（吳軍） |
+| `stott-note` | 13 | **1** | Understanding the Bible（John Stott） |
+| `design-patterns-note` | 18 | **2** | Game Programming Patterns（Robert Nystrom）、Head First Design Patterns（Eric Freeman & Elisabeth Robson 等） |
+| `agile-note` | 13 | **2** | Impact Mapping（Gojko Adzic）、The Principles of Product Development Flow（Donald G. Reinertsen） |
 | `damodaran-note` | 3 | **2** | The Dark Side of Valuation（Aswath Damodaran）、Investment Philosophies（Aswath Damodaran） |
 
 ## 優先收：0 本有兩個以上的站在等
@@ -114,7 +117,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 188 筆）
+## 完整清單（依站，共 184 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -410,14 +413,6 @@
 | Becoming a Person of Influence | John C. Maxwell & Jim Dornan | 成為有影響力的人 | 1997 | 與 Jim Dornan 合著；影響力四階段的早期系統化 |
 | Today Matters | John C. Maxwell | 今天很重要 | 2004 | 把成長落到「每日例程」的實踐手冊，補齊行動層 |
 
-### agile-note — 3 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| The Principles of Product Development Flow | Donald G. Reinertsen |  | 2009 | Reinertsen 的排隊理論基礎，解釋「為什麼限制在製品有效」 |
-| Impact Mapping | Gojko Adzic |  | 2012 | 把商業目標接到交付項的地圖法，補使用者故事「為誰、為什麼」那一段 |
-| Project Retrospectives | Norman L. Kerth |  | 2001 | Norm Kerth 的原典，聚焦專案結束時的長型回顧，尚未收 |
-
 ### clean-code-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -425,14 +420,6 @@
 | The Art of Readable Code | Dustin Boswell & Trevor Foucher |  | 2011 | 可讀性專書的標準入門 |
 | Growing Object-Oriented Software, Guided by Tests | Steve Freeman & Nat Pryce |  | 2009 | GOOS；倫敦學派 mock 驅動設計的正典 |
 | The Software Craftsman | Sandro Mancuso |  | 2014 | Mancuso；軟體工藝運動的宣言 |
-
-### design-patterns-note — 3 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Head First Design Patterns | Eric Freeman & Elisabeth Robson 等 | 深入淺出設計模式 | 2004 | 公認最好的模式入門教材 |
-| Pattern-Oriented Software Architecture Vol.1 (POSA) | Frank Buschmann 等 |  | 1996 | 架構層級模式的學院正典（Layers、Broker、Pipes and Filters） |
-| Game Programming Patterns | Robert Nystrom |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
 
 ### economics-note — 3 本
 
@@ -458,14 +445,6 @@
 | With Christ in the School of Prayer | Andrew Murray 慕安德烈 | 基督的禱告學校 | 1885 | 慕安德烈：代禱操練的經典 |
 | Lament for a Son | Nicholas Wolterstorff 沃特斯托夫 | 為兒子哀哭 | 1987 | 沃特斯托夫：哀傷書寫的另一座標 |
 
-### stott-note — 3 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Why I Am a Christian | John Stott |  | 2003 | 晚年的個人見證版《真理的尋索》——「基督的獵犬」追上他的故事 |
-| Understanding the Bible | John Stott | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
-| Christian Mission in the Modern World | John Stott |  | 1975 | 洛桑運動時期的宣教神學：整全使命（佈道＋社會責任）的定調之作 |
-
 ### system-design-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
@@ -474,12 +453,26 @@
 | API Design Patterns | JJ Geewax |  | 2021 | Geewax；API 設計決策的模式目錄 |
 | Acing the System Design Interview | Zhiyong Tan |  | 2024 | Zhiyong Tan；比 Alex Xu 更深入權衡討論的面試書 |
 
+### agile-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| The Principles of Product Development Flow | Donald G. Reinertsen |  | 2009 | Reinertsen 的排隊理論基礎，解釋「為什麼限制在製品有效」 |
+| Impact Mapping | Gojko Adzic |  | 2012 | 把商業目標接到交付項的地圖法，補使用者故事「為誰、為什麼」那一段 |
+
 ### damodaran-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | The Dark Side of Valuation | Aswath Damodaran | 估值的黑暗面 | 2001 | 年輕、高成長與困境公司的估值難題——正典外最值得補的一塊 |
 | Investment Philosophies | Aswath Damodaran | 投資哲學 | 2003 | 把估值放進完整光譜：從價值、成長到交易，各流派的證據與適配者 |
+
+### design-patterns-note — 2 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Head First Design Patterns | Eric Freeman & Elisabeth Robson 等 | 深入淺出設計模式 | 2004 | 公認最好的模式入門教材 |
+| Game Programming Patterns | Robert Nystrom |  | 2014 | Nystrom；GoF 在遊戲場景的再詮釋，免費線上版可先讀 |
 
 ### management-note — 1 本
 
@@ -492,6 +485,12 @@
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Running Lean | Ash Maurya |  | 2012 | Maurya 前作：Lean Canvas 的原典（Scaling Lean 已收） |
+
+### stott-note — 1 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| Understanding the Bible | John Stott | 認識聖經 | 1972 | 聖經總論入門：地理、故事、信息到讀法的一冊鳥瞰 |
 
 ### wujun-note — 1 本
 
