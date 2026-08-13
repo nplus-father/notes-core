@@ -134,40 +134,43 @@ from pathlib import Path
 # 改這裡時順手重查一次——`/note-wanted` 每次重挑都會重查。
 # key = 該書英文主標（冒號前）的 slug，也就是 by_main 的鍵；華文原著用 "cjk::原書名"。
 # 不必手動維護「收到了沒」：key 對不上 wanted 時腳本會自己在表裡標出來。
-# 2026-08-13（`/note-wanted` 全跑）：portal 一天之內新增 41 個 repo（1754 → 1795），「先扣掉」
-# 一次抓到 **45 本**（跨 18 站），全部逐筆對過作者才回填；作者書櫃反查這輪**沒有再挖出新的**
-# （17 筆候選全是同作者的不同書：`software-developers-career-guide` ≠ Soft Skills、
-# `emotionally-healthy-leader` ≠《建立高EQ的教會》、`when-good-men-are-tempted` 是另一個
-# Bill Perkins）——上一輪的三種盲區這輪沒有復發。
-# 另外修掉 matcher 的一個假否決（見 author_ok）：`art-of-war` 早就建好，卻因為想收的作者寫
-# `孫子`、repo 寫 `Sun Tzu` 被判成同名不同書。修好後這本也一併回填，合計 46 本。
+# 2026-08-14（Andrew 裁決輪，資料源：GitHub 現況 1794 個 repo）：這輪沒有新的「先扣掉」，
+# 動的是**狀態裁決**，wanted 從 138 → 116 筆：
+#   a. **三筆懸案裁掉**（上兩輪都掛在 TOP20 上等 Andrew）：
+#      - fromm 的《禪與心理分析》→ 以 `psychoanalysis-and-zen-buddhism`（Fromm 那半，
+#        README 標「精神分析與禪佛教」）算收錄，鈴木大拙與 De Martino 兩篇不另收。
+#      - economics 的《Globalization and Its Discontents》→ 以 2017 增訂版
+#        `globalization-and-its-discontents-revisited` 收錄，不另收 2002 初版。
+#      - management 的《Managing》→ **以 `simply-managing` 代替**（Mintzberg 2013 自己的濃縮
+#        改寫本）。下面「兩本書」那段的 simply-managing 那條因此作廢——比對規則沒錯，是
+#        Andrew 決定這本就夠了；三筆都已在各站改成 owned ＋ 補 slug，所以從清單消失。
+#      - 同一輪查證：wujun 的《信息傳》**portal 上真的沒有**（吳軍書櫃 17 本逐個看過，
+#        `wujun-information-theory-40` 的 README 標「吳軍．信息論40講」，確認是兩本書），
+#        所以它留在 wanted，仍在 TOP20。
+#   b. **19 筆判定 unavailable**（Andrew 指名，各站 note 補「2026-08 判定暫無來源」）：
+#      de-botton 1（The News）、nt-wright 4（整站）、pastoral-psychology 5（整站）、
+#      nouwen 5（整站）、image-style 4（只留 Take Ivy）。**四個站的 wanted 直接歸零**，
+#      上一輪 TOP20 裡的 5 格（The News、賴特 4 本）跟著作廢。
 #
-# 回填後近零名單變成 **10 站各差 1 本**，準則①一口氣吃掉一半版面；準則②照樣是 0
-# （多站共等的都回填成 owned 了）。剩下 10 格：nt-wright 差 4，是 1 以外最接近終點的站，
-# 整站收滿佔 4 格；再一個 5 本的站整站收滿佔 5 格；最後 1 格給準則③。
-#
-# **5 本的站有 7 個（hbr 42、drucker 18、nouwen 16、gardner 11、cloud 8、image-style 6、
-# pastoral-psychology 5），這輪選 cloud**，理由是準則④問的是「原典缺不缺」：
-#   - cloud：「界線」是全星系散布最廣的概念——461 處／146 檔／**48 站**，而 portal 的 Cloud
-#     書櫃 8 本全是應用篇（婚姻、約會、領導、結束），神學基座《成長神學》站內只有 1 處孤證。
-#   - hbr 讓位的理由寫在這裡免得下輪重議：那 5 卷是 HBR 名文**合輯**，內容與各站既有原典重複
-#     （Porter、Drucker、Christensen 在 portal 都已經有自己的書櫃）——合輯正是 `skipped` 的
-#     典型理由，拿 5 格去收它，準則④的「原典」兩個字就空了。書櫃 37 本這個數字很漂亮，但
-#     漂亮不是準則。
-#   - drucker（18）與 nouwen（16）書櫃更深，但 5 本缺口是早期／晚期的邊緣作（《工業人的未來》
-#     1942、《杜拉克看亞洲》對談錄）與早期小冊，不是哪條概念線的源頭；gardner 的「多元智能」
-#     39 處裡 37 處在自己站內，跨站槓桿最小；image-style 與 pastoral-psychology 的五位作者
-#     portal 全部掛零，準則④無從施力。
-#
-# 排序 = 消化順序：準則①的 10 本在前（批內薄／有繁中的先，兩筆待裁決的殿後），接著
-# nt-wright 4 本、cloud 5 本（批內薄→厚），最後 1 格是準則③。
+# 於是近零名單重排成 **7 站各差 1 本**（image-style 因為那 4 本出局而新進榜，剩 Take Ivy），
+# 準則②照樣是 0（多站共等的都回填成 owned 了）。剩下 13 格這樣分：
+#   - **security 整站 6 本**（第 8–13 格）：站主自標的《The Web Application Hacker's Handbook》
+#     領頭（準則③），六本收齊就把一個 owned 8 的站歸零。作者側證據極乾淨——Stuttard、
+#     Shostack、Anley、Sikorski、Ferguson/Schneier、Zalewski 在 portal **全部 0 本**。
+#   - **cloud 5 本**（第 14–18 格）：理由沿用上輪並重查過（界線 461 處／146 檔／48 站、
+#     「成長神學」1 處孤證），這批是準則④。
+#   - NICNT 代表卷（第 19 格，準則③「系列級缺口」）與 Good Habits, Bad Habits（第 20 格，準則④）。
+#   - hbr（5）／drucker（5）／gardner（5）三站讓位的理由沿用上輪，免得下輪重議：hbr 那 5 卷是
+#     **合輯**（Porter、Drucker、Christensen 在 portal 都已有自己的書櫃）；drucker 的 5 本是
+#     早期／晚期邊緣作，不是哪條概念線的源頭；gardner 的「多元智能」跨站槓桿最小。
 #
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
 # README 的中文書名或章節才判的）：`wujun-information-theory-40` 是《信息論 40 講》，不是
-# 吳軍想收的《信息傳》；`simply-managing` 是 Mintzberg 2013 自己的濃縮改寫本，不是 2009 的
-# 《Managing》原典；`software-developers-career-guide` 是 Sonmez 2017 的另一本，不是 2014 的
-# Soft Skills；`emotionally-healthy-leader` 不是《建立高EQ的教會》；`when-good-men-are-tempted`
-# 的 Bill Perkins 是牧師，不是寫 Die with Zero 的那位。
+# 吳軍想收的《信息傳》（2026-08-14 再對過一次 README）；`software-developers-career-guide`
+# 是 Sonmez 2017 的另一本，不是 2014 的 Soft Skills；`emotionally-healthy-leader` 不是
+# 《建立高EQ的教會》；`when-good-men-are-tempted` 的 Bill Perkins 是牧師，不是寫 Die with
+# Zero 的那位。（`simply-managing` 曾經也在這張表上，2026-08-14 Andrew 裁決以它代替原典，
+# 判斷本身仍然成立——它確實不是 2009 年的《Managing》。）
 #
 # `how-to-be-a-high-school-superstar` 這筆的狀態 2026-08-13 變了一半：portal 補建了正名的
 # `how-to-win-at-college`，所以 newport 的《How to Win at College》已回填成 owned；但同名
@@ -175,26 +178,26 @@ from pathlib import Path
 # 連結指向 How to Win at College），於是現在是**兩個 repo 裝同一本書**，而真正的 Superstar
 # 仍然沒有站。NAME_COLLISIONS 那筆要留著，重複的 repo 是 SOURCING-DEBT 的事。
 TOP20 = [
-    ("the-news", "de-botton 站 owned 12／wanted 1——**收了就歸零**；portal 的 de Botton 12 本已經把「慰藉方法」套在建築、工作、藝術、宗教、地位上（這輪剛回填 art-as-therapy、pleasures-and-sorrows-of-work、school-of-life 三本），**獨缺套在新聞上的這本**；站內「新聞」只有 2 處——書櫃裡沒有一本處理媒體；薄，有繁中《新聞的騷動》"),
-    ("how-to-be-a-high-school-superstar", "newport 站 owned 8／wanted 1——**收了就歸零**；這輪 portal 補建了正名的 `how-to-win-at-college`，Newport 學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；portal 的 Newport 8 本；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》"),
-    ("playing-to-win", "business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**（description 裡 22 個「Martin」全是別人：Martin Fowler、Martin Kleppmann…）；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》"),
-    ("managing", "management 站 owned 46／wanted 1——**收了就歸零**（上輪排第 2，這輪其餘全回填完，它是最後一本）；portal 的 Mintzberg 只有 `simply-managing`，那是他 2013 年**自己把這本濃縮改寫**的版本，2009 年的原典不在——比對時特地讀了 README 確認是兩本書；站內「經理人角色」1 處孤證，而「知識工作者」全星系 94 處／34 檔／跨 7 站（drucker 34、management 23、business-strategy 18）——管理者實際在做什麼這條線目前全靠 Drucker 轉述"),
-    ("hold-me-tight", "relationships 站 owned 45／wanted 1——**收了就歸零**；portal 的 Sue Johnson **0 本**；「依附」全星系 62 處／38 檔／**跨 22 站**（thinking 10、de-botton 8、relationships 8）——散得極開卻沒有情緒取向治療（EFT）的原典，站內「情緒取向」只有 1 處孤證；有繁中《抱緊我》"),
-    ("into-the-woods", "writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；writing 站這輪剛回填 4 本（save-the-cat、artists-way、draft-no-4、writing-tools），結構理論卻只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中"),
-    ("cjk::信息傳", "wujun 站 owned 17／wanted 1——**收了就歸零**；portal 的吳軍 17 本是**全星系最深的華文作者書櫃**，獨缺這本；站內「資訊論」3 處、「香農」1 處——資訊論當方法論這條線目前只有轉述；**別買錯**：portal 的 `wujun-information-theory-40` 是《信息論 40 講》，不是這本（已對過 README）；無繁中版，要買簡中"),
-    ("the-dark-side-of-valuation", "damodaran 站 owned 4／wanted 1——**收了就歸零**（Investment Philosophies 這輪查出早有書站、已回填）；portal 的 Damodaran 4 本；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中"),
-    ("zen-buddhism-and-psychoanalysis", "fromm 站 owned 15／wanted 1——收了就歸零，**但這筆待 Andrew 裁決**：portal 2026-08-12 建了 `psychoanalysis-and-zen-buddhism`（《精神分析與禪佛教》，六章全是 Fromm 那半的內容），站上想收的是 1960 年 Fromm＋鈴木大拙＋De Martino 的**合集**《禪與心理分析》——若判定 Fromm 那半就算收了，這格空出來；portal 的 Fromm 16 本；站內「存在樣式」3 處；薄"),
-    ("globalization-and-its-discontents", "economics 站 owned 49／wanted 1——收了就歸零，**同樣待裁決**（上輪就掛著）：portal 的 `globalization-and-its-discontents-revisited` 是 2017 增訂版，報告的「疑似漏報」列它 80% 相似；「全球化」全星系 39 處／12 檔／跨 10 站（economics 29），體制內人批判 IMF／世銀這條線只有增訂版的視角；厚，有繁中《全球化的許諾與失落》"),
-    ("scripture-and-the-authority-of-god", "nt-wright 站 owned 11／wanted 4——**這四本收齊就歸零**，是差 1 本那批之外最接近終點的站；portal 的 N. T. Wright 11 本（含這輪回填的 simply-jesus）；這本排第一是因為它是**方法論的出處**：五幕劇詮釋框架全星系都在用（biblical-studies 站「五幕」23 處），而「聖經權柄」只有 1 處孤證；薄"),
-    ("justification", "nt-wright 的第二本；「稱義」全星系 69 處／21 檔／跨 7 站，其中 **stott 41 處、theology 10、keller 8，賴特自己的站只有 4 處**——引用最多的站都不是他的，而他與 Piper 那場論戰的正面陳述不在"),
-    ("how-god-became-king", "nt-wright 的第三本；福音書「被遺忘的中段」——「神的國」全星系 31 處／14 檔／跨 5 站（theology 16、nt-wright 6）、「天國」117 處（willard 71），兩個詞都在用，而把四福音讀成「上帝作王的故事」的這本不在"),
-    ("the-day-the-revolution-began", "nt-wright 的第四本；「十架」全星系 162 處／42 檔／跨 7 站（stott 57、biblical-studies 36、keller 29、nt-wright 15）——**十架論在星系裡幾乎都是斯托得的版本**，賴特的新出埃及重述沒有出處；厚，排這批最後"),
-    ("boundaries-with-kids", "cloud 站 owned 8／wanted 5——**這五本收齊就歸零**；選這站整批收的理由：「界線」是**全星系散布最廣的概念**，461 處／146 檔／**跨 48 站**（cloud 180、relationships 89、leadership 25、wellness 15），而 portal 的 Cloud 書櫃 8 本全是應用篇（婚姻、約會、領導、結束）。這本補教養那一側——relationships 站「教養」12 處、「界線」89 處，兩條線在那裡交會卻沒有這本；有繁中《為孩子立界線》"),
+    ("how-to-be-a-high-school-superstar", "newport 站 owned 8／wanted 1——**收了就歸零**；portal 的 Newport 8 本（deep-work、so-good、digital-minimalism、slow-productivity…），學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》"),
+    ("hold-me-tight", "relationships 站 owned 45／wanted 1——**收了就歸零**；portal 的 Sue Johnson **0 本**；「依附」全星系 62 處／38 檔／**跨 22 站**（thinking 10、relationships 8、de-botton 8）——散得極開卻沒有情緒取向治療（EFT）的原典，站內「情緒取向」只有 1 處孤證；有繁中《抱緊我》"),
+    ("take-ivy", "image-style 站 owned 6／wanted 1——**收了就歸零**，這輪新進榜：其餘 4 本（True Style、ABC of Men's Fashion、The Suit、Icons of Men's Style）2026-08-14 判定暫無來源，這本是唯一買得到的；站上 owned 6 本全是穿搭原則與禮儀（Flusser 兩本、Roetzel、Marshall Alexander、O'Brien、Bridges），portal 搜 menswear 也只有 2 本——**風格史那一側整個空白**；站內「Ivy」3 處、「石津」3 處都只在本站，沒有出處；薄（攝影集，2010 powerHouse 重印）"),
+    ("playing-to-win", "business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》"),
+    ("into-the-woods", "writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；結構理論目前只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中"),
+    ("cjk::信息傳", "wujun 站 owned 17／wanted 1——**收了就歸零**；portal 的吳軍 17 本是**全星系最深的華文作者書櫃**，2026-08-14 逐個看過，獨缺這本；站內「資訊論」3 處、「香農」1 處——資訊論當方法論這條線目前只有轉述；**別買錯**：portal 的 `wujun-information-theory-40` 是《信息論 40 講》，不是這本（README 再對過一次）；無繁中版，要買簡中"),
+    ("the-dark-side-of-valuation", "damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中"),
+    ("the-web-application-hacker-s-handbook", "security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚"),
+    ("threat-modeling", "security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面"),
+    ("the-tangled-web", "security 的第三本；「同源政策」3 處、「瀏覽器安全」1 處，都只在本站；portal 的 Zalewski **0 本**，而瀏覽器那一側已經有 `browser-hackers-handbook`（攻擊面）——**同源政策為何長成這樣**的歷史考據不在"),
+    ("cryptography-engineering", "security 的第四本；「密碼學」全星系 19 處／7 檔／跨 3 站（security 17、data-systems 1、wujun 1），portal 搜 cryptograph 只有 2 本（serious-cryptography、security-engineering），**Schneier 0 本**——把密碼學當工程紀律而非數學的那半不在"),
+    ("the-shellcoder-s-handbook", "security 的第五本；「緩衝區溢位」站內 2 處；portal 的 Anley **0 本**，記憶體漏洞這條線目前只有 `hacking-art-of-exploitation`（Erickson 講原理），各平台實務那半沒有；厚"),
+    ("practical-malware-analysis", "security 的第六本；「惡意程式」全星系只有 2 處／2 檔**且都在本站**、security 站內「逆向工程」0 處；portal 搜 malware **0 本**——防守方讀攻擊產物這條線在星系裡完全空白；厚，排這批最後"),
+    ("boundaries-with-kids", "cloud 站 owned 8／wanted 5——**這五本收齊就歸零**；選這站整批收的理由：「界線」是**全星系散布最廣的概念之一**，461 處／146 檔／**跨 48 站**（cloud 180、relationships 89、leadership 25、wellness 15），而 portal 的 Cloud 書櫃 8 本全是應用篇（婚姻、約會、領導、結束）。這本補教養那一側——relationships 站「教養」12 處、「界線」89 處，兩條線在那裡交會卻沒有這本；有繁中《為孩子立界線》"),
     ("safe-people", "cloud 的第二本；關係篩選那一側——「如何辨認並成為值得靠近的人」，站內「安全的人」只有 2 處；有繁中《安全的人》"),
     ("how-people-grow", "cloud 的第三本，**這批最該收的一本**：整套界線思想的神學基座（恩典—真理—時間）。站內「恩典」65 處、「真理」66 處都在用這組概念，而「成長神學」只有 **1 處孤證**——講了 131 次的東西沒有源頭；有繁中《成長神學》"),
     ("integrity", "cloud 的第四本；品格六面向——「品格」全星系 286 處／107 檔／跨 34 站（covey 72、growth 28、leadership 24），cloud 站內只有 6 處，能力之外的人格結構這條線在本站幾乎空白；無繁中"),
     ("trust", "cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後"),
-    ("the-web-application-hacker-s-handbook", "唯一按**準則③**進榜的一格：security 站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處，Web 攻防講到了卻沒有出處；security 站 owned 8／wanted 6，收了降到差 5，離歸零還遠，所以只給 1 格；厚"),
+    ("nicnt", "準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
+    ("good-habits-bad-habits", "habits 站 owned 38／wanted 6，按準則④進榜的最後一格：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
