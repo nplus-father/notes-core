@@ -10,7 +10,7 @@
 
 ## 先收這 20 本
 
-整份 116 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 115 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -23,21 +23,21 @@
 | 3 | **Take Ivy** | 石津謙介 企劃／林田昭慶 等 |  | 1965 | image-style(0) | image-style 站 owned 6／wanted 1——**收了就歸零**，這輪新進榜：其餘 4 本（True Style、ABC of Men's Fashion、The Suit、Icons of Men's Style）2026-08-14 判定暫無來源，這本是唯一買得到的；站上 owned 6 本全是穿搭原則與禮儀（Flusser 兩本、Roetzel、Marshall Alexander、O'Brien、Bridges），portal 搜 menswear 也只有 2 本——**風格史那一側整個空白**；站內「Ivy」3 處、「石津」3 處都只在本站，沒有出處；薄（攝影集，2010 powerHouse 重印） |
 | 4 | **Playing to Win** | A. G. Lafley & Roger L. Martin |  | 2013 | business-strategy(0) | business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》 |
 | 5 | **Into the Woods** | John Yorke |  | 2013 | writing(0) | writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；結構理論目前只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中 |
-| 6 | **（信息傳）** | 吳軍 |  | 2020 | wujun(0) | wujun 站 owned 17／wanted 1——**收了就歸零**；portal 的吳軍 17 本是**全星系最深的華文作者書櫃**，2026-08-14 逐個看過，獨缺這本；站內「資訊論」3 處、「香農」1 處——資訊論當方法論這條線目前只有轉述；**別買錯**：portal 的 `wujun-information-theory-40` 是《信息論 40 講》，不是這本（README 再對過一次）；無繁中版，要買簡中 |
-| 7 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(0) | damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中 |
-| 8 | **The Web Application Hacker's Handbook** | Dafydd Stuttard & Marcus Pinto |  | 2007 | security(5) | security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚 |
-| 9 | **Threat Modeling: Designing for Security** | Adam Shostack |  | 2014 | security(5) | security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面 |
-| 10 | **The Tangled Web** | Michal Zalewski |  | 2011 | security(5) | security 的第三本；「同源政策」3 處、「瀏覽器安全」1 處，都只在本站；portal 的 Zalewski **0 本**，而瀏覽器那一側已經有 `browser-hackers-handbook`（攻擊面）——**同源政策為何長成這樣**的歷史考據不在 |
-| 11 | **Cryptography Engineering** | Niels Ferguson, Bruce Schneier & Tadayoshi Kohno |  | 2010 | security(5) | security 的第四本；「密碼學」全星系 19 處／7 檔／跨 3 站（security 17、data-systems 1、wujun 1），portal 搜 cryptograph 只有 2 本（serious-cryptography、security-engineering），**Schneier 0 本**——把密碼學當工程紀律而非數學的那半不在 |
-| 12 | **The Shellcoder's Handbook** | Chris Anley, John Heasman, Felix Lindner & Gerardo Richarte |  | 2004 | security(5) | security 的第五本；「緩衝區溢位」站內 2 處；portal 的 Anley **0 本**，記憶體漏洞這條線目前只有 `hacking-art-of-exploitation`（Erickson 講原理），各平台實務那半沒有；厚 |
-| 13 | **Practical Malware Analysis** | Michael Sikorski & Andrew Honig |  | 2012 | security(5) | security 的第六本；「惡意程式」全星系只有 2 處／2 檔**且都在本站**、security 站內「逆向工程」0 處；portal 搜 malware **0 本**——防守方讀攻擊產物這條線在星系裡完全空白；厚，排這批最後 |
-| 14 | **Boundaries with Kids** | Henry Cloud & John Townsend | 為孩子立界線 | 1998 | cloud(4) | cloud 站 owned 8／wanted 5——**這五本收齊就歸零**；選這站整批收的理由：「界線」是**全星系散布最廣的概念之一**，461 處／146 檔／**跨 48 站**（cloud 180、relationships 89、leadership 25、wellness 15），而 portal 的 Cloud 書櫃 8 本全是應用篇（婚姻、約會、領導、結束）。這本補教養那一側——relationships 站「教養」12 處、「界線」89 處，兩條線在那裡交會卻沒有這本；有繁中《為孩子立界線》 |
-| 15 | **Safe People** | Henry Cloud & John Townsend | 安全的人 | 1995 | cloud(4) | cloud 的第二本；關係篩選那一側——「如何辨認並成為值得靠近的人」，站內「安全的人」只有 2 處；有繁中《安全的人》 |
-| 16 | **How People Grow** | Henry Cloud & John Townsend | 成長神學 | 2001 | cloud(4) | cloud 的第三本，**這批最該收的一本**：整套界線思想的神學基座（恩典—真理—時間）。站內「恩典」65 處、「真理」66 處都在用這組概念，而「成長神學」只有 **1 處孤證**——講了 131 次的東西沒有源頭；有繁中《成長神學》 |
-| 17 | **Integrity: The Courage to Meet the Demands of Reality** | Henry Cloud | Integrity | 2006 | cloud(4) | cloud 的第四本；品格六面向——「品格」全星系 286 處／107 檔／跨 34 站（covey 72、growth 28、leadership 24），cloud 站內只有 6 處，能力之外的人格結構這條線在本站幾乎空白；無繁中 |
-| 18 | **Trust: Knowing When to Give It, When to Withhold It...** | Henry Cloud | Trust | 2023 | cloud(4) | cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後 |
-| 19 | **NICNT** | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | biblical-studies(8) | 準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中 |
-| 20 | **Good Habits, Bad Habits** | Wendy Wood |  | 2019 | habits(5) | habits 站 owned 38／wanted 6，按準則④進榜的最後一格：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中 |
+| 6 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(0) | damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中 |
+| 7 | **The Web Application Hacker's Handbook** | Dafydd Stuttard & Marcus Pinto |  | 2007 | security(5) | security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚 |
+| 8 | **Threat Modeling: Designing for Security** | Adam Shostack |  | 2014 | security(5) | security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面 |
+| 9 | **The Tangled Web** | Michal Zalewski |  | 2011 | security(5) | security 的第三本；「同源政策」3 處、「瀏覽器安全」1 處，都只在本站；portal 的 Zalewski **0 本**，而瀏覽器那一側已經有 `browser-hackers-handbook`（攻擊面）——**同源政策為何長成這樣**的歷史考據不在 |
+| 10 | **Cryptography Engineering** | Niels Ferguson, Bruce Schneier & Tadayoshi Kohno |  | 2010 | security(5) | security 的第四本；「密碼學」全星系 19 處／7 檔／跨 3 站（security 17、data-systems 1、wujun 1），portal 搜 cryptograph 只有 2 本（serious-cryptography、security-engineering），**Schneier 0 本**——把密碼學當工程紀律而非數學的那半不在 |
+| 11 | **The Shellcoder's Handbook** | Chris Anley, John Heasman, Felix Lindner & Gerardo Richarte |  | 2004 | security(5) | security 的第五本；「緩衝區溢位」站內 2 處；portal 的 Anley **0 本**，記憶體漏洞這條線目前只有 `hacking-art-of-exploitation`（Erickson 講原理），各平台實務那半沒有；厚 |
+| 12 | **Practical Malware Analysis** | Michael Sikorski & Andrew Honig |  | 2012 | security(5) | security 的第六本；「惡意程式」全星系只有 2 處／2 檔**且都在本站**、security 站內「逆向工程」0 處；portal 搜 malware **0 本**——防守方讀攻擊產物這條線在星系裡完全空白；厚，排這批最後 |
+| 13 | **Boundaries with Kids** | Henry Cloud & John Townsend | 為孩子立界線 | 1998 | cloud(4) | cloud 站 owned 8／wanted 5——**這五本收齊就歸零**；選這站整批收的理由：「界線」是**全星系散布最廣的概念之一**，461 處／146 檔／**跨 48 站**（cloud 180、relationships 89、leadership 25、wellness 15），而 portal 的 Cloud 書櫃 8 本全是應用篇（婚姻、約會、領導、結束）。這本補教養那一側——relationships 站「教養」12 處、「界線」89 處，兩條線在那裡交會卻沒有這本；有繁中《為孩子立界線》 |
+| 14 | **Safe People** | Henry Cloud & John Townsend | 安全的人 | 1995 | cloud(4) | cloud 的第二本；關係篩選那一側——「如何辨認並成為值得靠近的人」，站內「安全的人」只有 2 處；有繁中《安全的人》 |
+| 15 | **How People Grow** | Henry Cloud & John Townsend | 成長神學 | 2001 | cloud(4) | cloud 的第三本，**這批最該收的一本**：整套界線思想的神學基座（恩典—真理—時間）。站內「恩典」65 處、「真理」66 處都在用這組概念，而「成長神學」只有 **1 處孤證**——講了 131 次的東西沒有源頭；有繁中《成長神學》 |
+| 16 | **Integrity: The Courage to Meet the Demands of Reality** | Henry Cloud | Integrity | 2006 | cloud(4) | cloud 的第四本；品格六面向——「品格」全星系 286 處／107 檔／跨 34 站（covey 72、growth 28、leadership 24），cloud 站內只有 6 處，能力之外的人格結構這條線在本站幾乎空白；無繁中 |
+| 17 | **Trust: Knowing When to Give It, When to Withhold It...** | Henry Cloud | Trust | 2023 | cloud(4) | cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後 |
+| 18 | **NICNT** | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | biblical-studies(8) | 準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中 |
+| 19 | **Good Habits, Bad Habits** | Wendy Wood |  | 2019 | habits(5) | habits 站 owned 38／wanted 6，按準則④進榜：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中 |
+| 20 | **Why Zebras Don't Get Ulcers** | Robert M. Sapolsky | 為什麼斑馬不會得胃潰瘍 | 1994 | wellness(5) | wellness 站 owned 27／wanted 6，遞補《信息傳》結案空出來的那格，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -58,12 +58,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1791 筆（去重 1309 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **116 筆（去重 116 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1792 筆（去重 1310 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **115 筆（去重 115 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 78 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 82 筆 |
 
-> `owned` 去重後的 1309 是**已建成書站的書**（1791 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1310 是**已建成書站的書**（1792 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -94,7 +94,7 @@
 | --- | --- | --- | ---: | --- | --- |
 | HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
 
-## 快歸零的站：7 站只差 1–2 本
+## 快歸零的站：6 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
@@ -103,7 +103,6 @@
 | `business-strategy-note` | 49 | **1** | Playing to Win（A. G. Lafley & Roger L. Martin） |
 | `relationships-note` | 45 | **1** | Hold Me Tight（Sue Johnson） |
 | `writing-note` | 31 | **1** | Into the Woods（John Yorke） |
-| `wujun-note` | 17 | **1** | 信息傳（吳軍） |
 | `newport-note` | 8 | **1** | How to Be a High School Superstar（Cal Newport） |
 | `image-style-note` | 6 | **1** | Take Ivy（石津謙介 企劃／林田昭慶 等） |
 | `damodaran-note` | 4 | **1** | The Dark Side of Valuation（Aswath Damodaran） |
@@ -115,7 +114,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 116 筆）
+## 完整清單（依站，共 115 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -342,19 +341,12 @@
 | --- | --- | --- | --- | --- |
 | Into the Woods | John Yorke |  | 2013 | Yorke 的五幕論，把各家結構理論收攏成一套 |
 
-### wujun-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| （信息傳） | 吳軍 | 信息傳 | 2020 | 資訊史詩；香農資訊論如何成為理解未來的方法論（無繁中版） |
-
-## 沒有英文書名的 1 本（華文／日文原著）
+## 沒有英文書名的 0 本（華文／日文原著）
 
 這些本來就沒有英文版，照原書名收。
 
 | 原書名 | 作者 | 站 | 為何想收 |
 | --- | --- | --- | --- |
-| 信息傳 | 吳軍 | wujun-note | 資訊史詩；香農資訊論如何成為理解未來的方法論（無繁中版） |
 
 ## 重跑
 

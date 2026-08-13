@@ -144,33 +144,36 @@ from pathlib import Path
 #      - management 的《Managing》→ **以 `simply-managing` 代替**（Mintzberg 2013 自己的濃縮
 #        改寫本）。下面「兩本書」那段的 simply-managing 那條因此作廢——比對規則沒錯，是
 #        Andrew 決定這本就夠了；三筆都已在各站改成 owned ＋ 補 slug，所以從清單消失。
-#      - 同一輪查證：wujun 的《信息傳》**portal 上真的沒有**（吳軍書櫃 17 本逐個看過，
-#        `wujun-information-theory-40` 的 README 標「吳軍．信息論40講」，確認是兩本書），
-#        所以它留在 wanted，仍在 TOP20。
+#      - wujun 的《信息傳》→ **與《信息論 40 講》當同一本結案**（`wujun-information-theory-40`）。
+#        比對時查得很清楚：吳軍書櫃 17 本逐個看過，那個 repo 的 README 標「吳軍．信息論40講」，
+#        書目上是兩本；Andrew 2026-08-14 裁決不分了，以那個書站收錄，wujun 站因此歸零。
 #   b. **19 筆判定 unavailable**（Andrew 指名，各站 note 補「2026-08 判定暫無來源」）：
 #      de-botton 1（The News）、nt-wright 4（整站）、pastoral-psychology 5（整站）、
 #      nouwen 5（整站）、image-style 4（只留 Take Ivy）。**四個站的 wanted 直接歸零**，
 #      上一輪 TOP20 裡的 5 格（The News、賴特 4 本）跟著作廢。
 #
-# 於是近零名單重排成 **7 站各差 1 本**（image-style 因為那 4 本出局而新進榜，剩 Take Ivy），
-# 準則②照樣是 0（多站共等的都回填成 owned 了）。剩下 13 格這樣分：
-#   - **security 整站 6 本**（第 8–13 格）：站主自標的《The Web Application Hacker's Handbook》
+# 於是近零名單重排成 **6 站各差 1 本**（image-style 因為那 4 本出局而新進榜，剩 Take Ivy），
+# 準則②照樣是 0（多站共等的都回填成 owned 了）。剩下 14 格這樣分：
+#   - **security 整站 6 本**（第 7–12 格）：站主自標的《The Web Application Hacker's Handbook》
 #     領頭（準則③），六本收齊就把一個 owned 8 的站歸零。作者側證據極乾淨——Stuttard、
 #     Shostack、Anley、Sikorski、Ferguson/Schneier、Zalewski 在 portal **全部 0 本**。
-#   - **cloud 5 本**（第 14–18 格）：理由沿用上輪並重查過（界線 461 處／146 檔／48 站、
+#   - **cloud 5 本**（第 13–17 格）：理由沿用上輪並重查過（界線 461 處／146 檔／48 站、
 #     「成長神學」1 處孤證），這批是準則④。
-#   - NICNT 代表卷（第 19 格，準則③「系列級缺口」）與 Good Habits, Bad Habits（第 20 格，準則④）。
+#   - NICNT 代表卷（第 18 格，準則③「系列級缺口」）、Good Habits, Bad Habits（第 19 格）與
+#     Why Zebras Don't Get Ulcers（第 20 格，遞補《信息傳》結案空出來的那格）——都是準則④。
 #   - hbr（5）／drucker（5）／gardner（5）三站讓位的理由沿用上輪，免得下輪重議：hbr 那 5 卷是
 #     **合輯**（Porter、Drucker、Christensen 在 portal 都已有自己的書櫃）；drucker 的 5 本是
 #     早期／晚期邊緣作，不是哪條概念線的源頭；gardner 的「多元智能」跨站槓桿最小。
 #
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
-# README 的中文書名或章節才判的）：`wujun-information-theory-40` 是《信息論 40 講》，不是
-# 吳軍想收的《信息傳》（2026-08-14 再對過一次 README）；`software-developers-career-guide`
-# 是 Sonmez 2017 的另一本，不是 2014 的 Soft Skills；`emotionally-healthy-leader` 不是
-# 《建立高EQ的教會》；`when-good-men-are-tempted` 的 Bill Perkins 是牧師，不是寫 Die with
-# Zero 的那位。（`simply-managing` 曾經也在這張表上，2026-08-14 Andrew 裁決以它代替原典，
-# 判斷本身仍然成立——它確實不是 2009 年的《Managing》。）
+# README 的中文書名或章節才判的）：`software-developers-career-guide` 是 Sonmez 2017 的另一本，
+# 不是 2014 的 Soft Skills；`emotionally-healthy-leader` 不是《建立高EQ的教會》；
+# `when-good-men-are-tempted` 的 Bill Perkins 是牧師，不是寫 Die with Zero 的那位。
+#
+# 這張表上原本還有兩筆，2026-08-14 都被 Andrew 裁掉了——**書目判斷成立，但他決定不分**：
+# `simply-managing`（不是 2009 的《Managing》，裁決以它代替原典）、`wujun-information-theory-40`
+# （是《信息論 40 講》，不是《信息傳》，裁決當同一本結案）。留這段是為了讓下輪知道
+# **這兩筆是「已裁決」而不是「沒查過」**，不要再提名成漏報。
 #
 # `how-to-be-a-high-school-superstar` 這筆的狀態 2026-08-13 變了一半：portal 補建了正名的
 # `how-to-win-at-college`，所以 newport 的《How to Win at College》已回填成 owned；但同名
@@ -183,7 +186,6 @@ TOP20 = [
     ("take-ivy", "image-style 站 owned 6／wanted 1——**收了就歸零**，這輪新進榜：其餘 4 本（True Style、ABC of Men's Fashion、The Suit、Icons of Men's Style）2026-08-14 判定暫無來源，這本是唯一買得到的；站上 owned 6 本全是穿搭原則與禮儀（Flusser 兩本、Roetzel、Marshall Alexander、O'Brien、Bridges），portal 搜 menswear 也只有 2 本——**風格史那一側整個空白**；站內「Ivy」3 處、「石津」3 處都只在本站，沒有出處；薄（攝影集，2010 powerHouse 重印）"),
     ("playing-to-win", "business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》"),
     ("into-the-woods", "writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；結構理論目前只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中"),
-    ("cjk::信息傳", "wujun 站 owned 17／wanted 1——**收了就歸零**；portal 的吳軍 17 本是**全星系最深的華文作者書櫃**，2026-08-14 逐個看過，獨缺這本；站內「資訊論」3 處、「香農」1 處——資訊論當方法論這條線目前只有轉述；**別買錯**：portal 的 `wujun-information-theory-40` 是《信息論 40 講》，不是這本（README 再對過一次）；無繁中版，要買簡中"),
     ("the-dark-side-of-valuation", "damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中"),
     ("the-web-application-hacker-s-handbook", "security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚"),
     ("threat-modeling", "security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面"),
@@ -197,7 +199,8 @@ TOP20 = [
     ("integrity", "cloud 的第四本；品格六面向——「品格」全星系 286 處／107 檔／跨 34 站（covey 72、growth 28、leadership 24），cloud 站內只有 6 處，能力之外的人格結構這條線在本站幾乎空白；無繁中"),
     ("trust", "cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後"),
     ("nicnt", "準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
-    ("good-habits-bad-habits", "habits 站 owned 38／wanted 6，按準則④進榜的最後一格：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中"),
+    ("good-habits-bad-habits", "habits 站 owned 38／wanted 6，按準則④進榜：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中"),
+    ("why-zebras-don-t-get-ulcers", "wellness 站 owned 27／wanted 6，遞補《信息傳》結案空出來的那格，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
