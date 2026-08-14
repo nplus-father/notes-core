@@ -3118,8 +3118,9 @@ a {
   font-size: 1.45rem;
   text-wrap: balance;
 }
+/* v0.34.1 起不設行長上限——與 Overview 同一個裁定：文字用滿方框，不提早換行。 */
 .guide-body {
-  max-width: 42em;
+  max-width: none;
 }
 @media (max-width: 900px) {
   .guide-layout {
