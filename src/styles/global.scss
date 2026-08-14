@@ -2231,16 +2231,18 @@ a {
   padding-right: 0.4rem;
   border-bottom: 1px solid var(--border);
 }
+/* v0.34.2：flex＋固定 132px 每排都在右緣留一塊死空間（除不盡的餘數）。改 auto-fill
+ * grid＋流體封面：欄數由容器寬度決定、餘數平均分給每欄，桌機手機都貼滿右緣。
+ * 只影響書架；FurtherReading／reading-path 的小封面各自覆寫尺寸，不受牽連。 */
 .cover-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 1.1rem 1rem;
 }
 .cover-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 132px;
   color: var(--text);
   &:hover {
     text-decoration: none;
@@ -2260,6 +2262,12 @@ a {
   border: 1px solid var(--border);
   background: var(--surface-2);
   box-shadow: var(--shadow);
+}
+/* 書架格內的封面跟著欄寬伸縮（比例鎖 132:190）；其他場合維持基底固定尺寸。 */
+.cover-row .cover-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 132 / 190;
 }
 .cover-cap {
   margin-top: 0.5rem;
