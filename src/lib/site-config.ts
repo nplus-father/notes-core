@@ -103,18 +103,23 @@ export function defineSite(c: SiteConfig): SiteConfig {
 
 /**
  * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
- *   🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/ …extraNav / 🔍 Search
- * 全星系固定這四個詞彙、只出 emoji（hover／aria-label 帶英文全名）——
+ *   🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/（📖 Guide，僅 hasGuide）/ …extraNav / 🔍 Search
+ * 全星系固定這幾個詞彙、只出 emoji（hover／aria-label 帶英文全名）——
  * conceptLabelEn / problemLabelEn 不再影響 nav。不含「首頁」——左上人像已連 home。
- * hasCheck 由 BaseLayout 依 categories 的 mastery 判定（有檢核資料才出 ✅）。
+ * hasCheck / hasGuide 由 BaseLayout 依內容集合判定（有資料才出 tab）。
+ * /library/ 不進 nav——藏書盤點是工作文件，入口在首頁書架區，nav 留給閱讀動線。
  * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
  */
-export function buildNav(c: SiteConfig, opts: { hasCheck?: boolean } = {}): NavLink[] {
+export function buildNav(
+  c: SiteConfig,
+  opts: { hasCheck?: boolean; hasGuide?: boolean } = {}
+): NavLink[] {
   if (c.nav) return c.nav;
   return [
     { href: "/concepts/", label: "🧠", title: "Concepts" },
     ...(c.hasProblems ? [{ href: "/problems/", label: "📝", title: "Problems" }] : []),
     ...(opts.hasCheck ? [{ href: "/check/", label: "✅", title: "Check" }] : []),
+    ...(opts.hasGuide ? [{ href: "/guide/", label: "📖", title: "Guide" }] : []),
     ...(c.extraNav ?? []),
     { href: "/search/", label: "🔍", title: "Search" },
   ];

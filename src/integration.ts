@@ -85,6 +85,11 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
         // 檢核頁（出師條件）。恆注入——有沒有 mastery 資料是建置期內容問題，
         // 這裡不知道；沒資料時頁面出空狀態、nav 不出 ✅（見 BaseLayout / check.astro）。
         inject("/check", "check.astro");
+        // 導覽頁（策展層長文）。恆注入，同 /check/ 的理由——有沒有 guide 內容是建置期
+        // 內容問題；沒資料時頁面出空狀態、nav 不出 📖（見 BaseLayout / guide.astro）。
+        inject("/guide", "guide.astro");
+        // 藏書頁：盤點表＋開採度（v0.30.0 起自首頁遷出——收藏狀態是工作文件，不是門面）。
+        inject("/library", "library.astro");
         inject("/search", "search.astro");
         inject("/404", "404.astro");
         // 本站概念的機器可讀索引，給站外消費者（每日書摘推播靠它選材）。

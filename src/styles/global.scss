@@ -2986,3 +2986,262 @@ a {
     opacity: 1;
   }
 }
+
+/* ───────────────────────── 導覽頁（Guide /guide/） ───────────────────────── */
+/* 策展層長文：單頁五章＋左側 sticky 目錄。行長紀律與首頁總覽相同（42em），
+ * 章序用襯線中文數字、accent 上色——accent 由 data-axis 分岔（人物暖褐／主題冷藍），
+ * 導覽因此天生帶著站型的識別，這裡不另立顏色。 */
+.guide-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  h1 {
+    margin: 0;
+  }
+}
+.guide-stamp {
+  margin-left: auto;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  font-family: $mono;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.guide-empty {
+  color: var(--muted);
+}
+.guide-layout {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 2.8rem;
+  align-items: start;
+  margin-top: 1.2rem;
+}
+.guide-toc {
+  position: sticky;
+  top: 1.2rem;
+  font-size: 0.82rem;
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--accent);
+  }
+  a {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0.3rem 0.2rem 0.3rem 0.85rem;
+    color: var(--text-2);
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+.guide-toc-num {
+  font-family: $serif;
+  color: var(--accent);
+}
+.guide-chapter {
+  /* 目錄跳轉時別讓章標題貼住視窗頂。 */
+  scroll-margin-top: 1.2rem;
+}
+.guide-chapter + .guide-chapter {
+  margin-top: 3.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2.6rem;
+}
+.guide-eyebrow {
+  margin: 0 0 0.15rem;
+  font-family: $serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+}
+.guide-title {
+  margin: 0 0 1.1rem;
+  font-size: 1.45rem;
+  text-wrap: balance;
+}
+.guide-body {
+  max-width: 42em;
+}
+@media (max-width: 900px) {
+  .guide-layout {
+    display: block;
+  }
+  .guide-toc {
+    position: static;
+    margin-bottom: 2.2rem;
+  }
+}
+
+/* ───────────────────────── 首頁導覽入口（GuideCard） ───────────────────────── */
+/* 與 overview / bookshelf 同一個平面語彙：無框、無陰影，靠上緣間距分區。 */
+.guidecard {
+  margin: 2.2rem 0 0;
+}
+.guidecard-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+  h2 {
+    margin: 0;
+  }
+}
+.guidecard-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.guidecard-stamp {
+  margin-left: auto;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  font-family: $mono;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.guidecard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 42em;
+  li + li {
+    border-top: 1px solid var(--border);
+  }
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    padding: 0.42rem 0.2rem;
+    color: var(--text-2);
+    font-size: 0.93rem;
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+.guidecard-num {
+  flex: none;
+  font-family: $serif;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.guidecard-cta {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ───────────────────────── 藏書頁（Library /library/）＋開採度 ───────────────────────── */
+.library-empty {
+  color: var(--muted);
+}
+.bookshelf-more {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.mining {
+  margin: 0.4rem 0 0;
+}
+.mining-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+  h2 {
+    margin: 0;
+  }
+}
+.mining-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* 條列圖：一行一本書。細條、貼齊左基線、圓端收在 2px（版面走切邊語彙，不用膠囊）。
+ * 行數多的站（leadership 54 行）收進固定高度捲動窗——同 bookshelf / biblio 的做法。 */
+.mining-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 24rem;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+}
+.mining-row {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 2.2rem;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 1.35rem;
+}
+.mining-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+.mining-track {
+  display: block;
+  height: 8px;
+  border-radius: $radius-sm;
+  background: var(--surface-2);
+}
+.mining-bar {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  border-radius: $radius-sm;
+  background: var(--accent);
+}
+.mining-count {
+  font-family: $mono;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+/* 未挖的書不畫零長條（看不見的條不是資訊）——列成工作清單，它們的身分本來就是待辦。 */
+.mining-undug {
+  margin-top: 1.1rem;
+  font-size: 0.82rem;
+  line-height: 2;
+}
+.mining-undug-label {
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+.mining-chip {
+  display: inline-block;
+  margin: 0 0.35rem 0.35rem 0;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  color: var(--text-2);
+  font-size: 0.78rem;
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-weak);
+  }
+  &.is-plain:hover {
+    color: var(--text-2);
+    border-color: var(--border);
+    background: none;
+  }
+}
+@media (max-width: 640px) {
+  .mining-row {
+    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 2rem;
+  }
+}

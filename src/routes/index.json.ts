@@ -37,6 +37,13 @@ export const GET: APIRoute = async (ctx) => {
   const concepts = await getCollection("concepts");
   // 雙集合站（hasProblems）另有題庫；索引要一併輸出，消費端才能算全站進度。
   const problems = site.hasProblems ? await getCollection("problems") : [];
+  // 導覽（v0.30.0）：章數＋最新 writtenAt。/note-check 拿它比對 enrichedAt——
+  // 站再深化過而導覽沒跟上，就該列 warning；portal 也能看出哪些站有導覽。
+  const guide = await getCollection("guide");
+  const guideWrittenAt = guide.reduce<string>(
+    (acc, e) => ((e.data as { writtenAt: string }).writtenAt > acc ? (e.data as { writtenAt: string }).writtenAt : acc),
+    ""
+  );
 
   // 星系 registry（sites.ts）是知識軸的正本；站台不重複宣告，這裡查表帶出去，
   // 讓 nplus.wiki portal 不必靠 GitHub repo description（那 62 個 repo 全是空的）
@@ -52,6 +59,8 @@ export const GET: APIRoute = async (ctx) => {
     // 保養戳記（/note-check 收工日）。portal 拿它顯示「這站體檢／補齊過沒、多久前」；
     // 沒蓋過章就是 null，消費端自行退回不顯示。
     curation: site.curation ?? null,
+    // 導覽戳記：沒有導覽的站為 null，消費端自行退回不顯示。
+    guide: guide.length > 0 ? { chapters: guide.length, writtenAt: guideWrittenAt } : null,
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。

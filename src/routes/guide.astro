@@ -1,0 +1,99 @@
+---
+// 導覽頁 /guide/（v0.30.0）：策展層長文——「我們收完、讀完這批書之後，怎麼帶你走」。
+// 資料源 = guide collection（src/content/guide/NN-<slug>.md，一章一檔，檔名 NN 定序），
+// 由 /note-guide skill 產出。單頁長文＋側欄章節目錄：五章是一份導覽的分節，不是五篇
+// 文章——分頁會打斷「一口氣讀完」的敘事，所以不做每章一頁。
+// 站台完全沒有 guide 內容時 nav 不出 📖（見 BaseLayout），此頁仍會建置——
+// 直接打網址看到空狀態說明，不是 404（同 /check/ 的處理）。
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
+import FurtherReading from "../components/FurtherReading.astro";
+import { site, profile } from "virtual:notes-core/site";
+import { getCollection, render } from "astro:content";
+
+// id 帶 guide/ 前綴（loader base 釘在 src/content，見 content.ts）；檔名 NN- 前綴定序。
+const entries = (await getCollection("guide")).sort((a, b) => a.id.localeCompare(b.id));
+const chapters = await Promise.all(
+  entries.map(async (entry) => {
+    const { Content } = await render(entry);
+    const slug = entry.id.replace(/^guide\//, "");
+    return { entry, Content, slug };
+  })
+);
+
+// 口味詞彙由站型決定（有 profile ⟺ 人物站），站台不寫自由文字——同 Overview 的做法。
+const kind = profile ? "person" : "domain";
+const LEDE = {
+  person: "帶你走進這個人——生平、思想主線、經典著作與讀法。",
+  domain: "帶你走進這個領域——問題、流派、經典書與閱讀路徑。",
+};
+
+// 章序用中文數字：導覽是書卷語境，「第一章」比「第 1 章」貼合襯線版面。
+const NUMS = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+const numOf = (i: number) => NUMS[i] ?? String(i + 1);
+// 目錄與章標題的短名：取「主標：副標」的主標，側欄塞得下。
+const shortTitle = (t: string) => t.split("：")[0];
+
+// 時效戳記：取最新一章的 writtenAt（各章可能不同天寫成）。
+const writtenAt = chapters.reduce<string>(
+  (acc, c) => (c.entry.data.writtenAt > acc ? c.entry.data.writtenAt : acc),
+  ""
+);
+---
+
+<BaseLayout title={`Guide · ${site.brand}`} site={site} noindex={chapters.length === 0}>
+  <Crumbs site={site} items={[{ label: "Guide" }]} />
+  <header class="page-head">
+    <div class="guide-head">
+      <h1>Guide</h1>
+      {
+        writtenAt && (
+          <span class="guide-stamp" title="這份導覽依當時的站況寫成">
+            {writtenAt}
+          </span>
+        )
+      }
+    </div>
+    <p class="lede">{LEDE[kind]}</p>
+  </header>
+
+  {
+    chapters.length === 0 && (
+      <p class="guide-empty">
+        這一站還沒有導覽——用 /note-guide 產出 src/content/guide/ 的章節後，這裡就會長出來。
+      </p>
+    )
+  }
+
+  {
+    chapters.length > 0 && (
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="章節目錄">
+          <ol>
+            {chapters.map((c, i) => (
+              <li>
+                <a href={`#${c.slug}`}>
+                  <span class="guide-toc-num">{numOf(i)}</span>
+                  {shortTitle(c.entry.data.title)}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </aside>
+
+        <div class="guide-chapters">
+          {chapters.map((c, i) => (
+            <article id={c.slug} class="guide-chapter">
+              <p class="guide-eyebrow">第{numOf(i)}章</p>
+              <h2 class="guide-title">{c.entry.data.title}</h2>
+              <div class="guide-body prose">
+                <c.Content />
+              </div>
+              <FurtherReading items={c.entry.data.furtherReading} />
+            </article>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</BaseLayout>

@@ -87,6 +87,25 @@ export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso
     }),
   });
 
+  // 導覽（v0.30.0）：策展層長文，一章一個 md（src/content/guide/NN-<slug>.md，檔名 NN 定序）。
+  // base 釘在 src/content（必存在）而非 src/content/guide——後者在 72 個沒有導覽的站
+  // 每次 build 都會印一條 "base directory does not exist" 警語。代價是 id 帶 guide/ 前綴，
+  // 消費端（guide.astro / index.json）自行剝掉。
+  const guide = defineCollection({
+    loader: glob({ pattern: "guide/**/*.md", base: "./src/content" }),
+    schema: z.object({
+      title: z.string(),
+      // 章的撰寫日（時效訊號，流進 index.json 供 /note-check 比對 enrichedAt）。
+      // YAML 會把不加引號的 2026-08-14 解析成 Date——這裡收成字串，別讓引號成為每輪
+      // /note-guide 產出的隱形地雷。
+      writtenAt: z.preprocess(
+        (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v),
+        z.string().regex(DATE_RE)
+      ),
+      furtherReading,
+    }),
+  });
+
   // 概念：一頁一個觀念（排除 _index.md，那是分類設定不是概念頁）
   const concepts = defineCollection({
     loader: glob({
@@ -104,7 +123,7 @@ export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso
   });
 
   if (!opts.hasProblems) {
-    return { concepts, categories };
+    return { concepts, categories, guide };
   }
 
   // 領域設定：每個領域資料夾一個 _index.md，frontmatter 當 config（name/icon/order/intro）。
@@ -135,5 +154,5 @@ export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso
     }),
   });
 
-  return { concepts, categories, problems, domains };
+  return { concepts, categories, guide, problems, domains };
 }

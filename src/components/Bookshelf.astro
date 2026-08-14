@@ -13,11 +13,14 @@ interface Props {
   books: Book[];
   heading?: string;
   note?: string;
+  /** 選用：「完整盤點」入口（/library/）。首頁書架只擺 owned 封面，狀態與缺口在那邊。 */
+  moreHref?: string;
 }
 const {
   books,
   heading = "Sources",
   note = "The books this site distills from — every page traces back",
+  moreHref,
 } = Astro.props;
 ---
 
@@ -28,6 +31,13 @@ const {
         <h2>{heading}</h2>
         <span class="bookshelf-note">{note}</span>
         <span class="bookshelf-count">{books.length}</span>
+        {
+          moreHref && (
+            <a class="bookshelf-more" href={moreHref}>
+              盤點與開採度 →
+            </a>
+          )
+        }
       </div>
       {/* 固定高度的捲動窗（v0.29.0）：書多的站（tracy 35 本、startup 61 本）攤開會是
           好幾排 190px 高的封面，把下面的盤點表整個推出首屏。高度收在 CSS

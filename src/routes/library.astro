@@ -1,0 +1,115 @@
+---
+// 藏書頁 /library/（v0.30.0）：盤點表自首頁遷來＋開採度圖。
+// 收藏狀態（owned/wanted/…）是工作文件（採購 roadmap），不是門面——首頁留給
+// 總覽／導覽／側寫，這裡承接「收了什麼、缺什麼、挖到哪」的全部數字。
+//
+// 開採度 = 每本已收書被幾頁筆記（concepts＋problems 的 furtherReading）引用。
+// 全自動、零人工欄位：0 頁的書就是「已收未挖」——note-check --enrich 的下一批材料，
+// 這裡把那張隱形的欠條畫成常駐圖表。
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Crumbs from "../components/Crumbs.astro";
+import Bibliography from "../components/Bibliography.astro";
+import { bookUrl } from "../lib/links";
+import type { BibliographyEntry } from "../lib/library";
+import { site, bibliography } from "virtual:notes-core/site";
+import { getCollection } from "astro:content";
+
+const entries = bibliography as BibliographyEntry[];
+
+const concepts = await getCollection("concepts");
+const problems = site.hasProblems ? await getCollection("problems") : [];
+const refCount = new Map<string, number>();
+for (const page of [...concepts, ...problems]) {
+  for (const fr of page.data.furtherReading) {
+    refCount.set(fr.book, (refCount.get(fr.book) ?? 0) + 1);
+  }
+}
+
+const owned = entries.filter((e) => e.status === "owned");
+const rows = owned
+  .map((e) => ({ e, n: e.slug ? (refCount.get(e.slug) ?? 0) : 0 }))
+  .sort((a, b) => b.n - a.n);
+const dug = rows.filter((r) => r.n > 0);
+const undug = rows.filter((r) => r.n === 0);
+const peak = Math.max(1, ...dug.map((r) => r.n));
+const totalRefs = dug.reduce((s, r) => s + r.n, 0);
+// 一兩本書畫不成分佈；開採度要到「架上有規模」才有意義。
+const showMining = owned.length >= 4;
+---
+
+<BaseLayout title={`Library · ${site.brand}`} site={site} noindex={entries.length === 0}>
+  <Crumbs site={site} items={[{ label: "Library" }]} />
+  <header class="page-head">
+    <h1>Library</h1>
+    <p class="lede">藏書盤點與開採度——收了什麼、缺什麼、挖到哪。</p>
+  </header>
+
+  {
+    entries.length === 0 && (
+      <p class="library-empty">
+        這一站還沒有藏書盤點——用 /note-inventory 產出 src/data/bibliography.ts 後，這裡就會長出來。
+      </p>
+    )
+  }
+
+  {
+    showMining && (
+      <section class="mining">
+        <div class="mining-head">
+          <h2>開採度</h2>
+          <span class="mining-note">
+            每本已收書被幾頁筆記引用 · 已挖 {dug.length} 本 · 未挖 {undug.length} 本 · 共{" "}
+            {totalRefs} 處引用
+          </span>
+        </div>
+
+        <div
+          class="mining-rows"
+          role="img"
+          aria-label={`開採度：${owned.length} 本已收書中 ${dug.length} 本已被筆記引用、${undug.length} 本尚未；逐筆資料見下方盤點表。`}
+        >
+          {
+            dug.map((r) => (
+              <div class="mining-row" title={`${r.e.title} · ${r.n} 頁引用`}>
+                <span class="mining-label">{r.e.title}</span>
+                <span class="mining-track">
+                  <span class="mining-bar" style={`width:${(r.n / peak) * 100}%`} />
+                </span>
+                <span class="mining-count">{r.n}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        {
+          undug.length > 0 && (
+            <div class="mining-undug">
+              <span class="mining-undug-label">已收未挖 {undug.length} 本——下一批材料：</span>
+              <span class="mining-undug-chips">
+                {undug.map((r) =>
+                  r.e.slug ? (
+                    <a
+                      class="mining-chip"
+                      href={bookUrl(r.e.slug)}
+                      target="_blank"
+                      rel="noopener"
+                      title={`${r.e.title}——已建書站、尚無筆記頁引用`}
+                    >
+                      {r.e.title}
+                    </a>
+                  ) : (
+                    <span class="mining-chip is-plain" title={`${r.e.title}——已收、尚無筆記頁引用`}>
+                      {r.e.title}
+                    </span>
+                  )
+                )}
+              </span>
+            </div>
+          )
+        }
+      </section>
+    )
+  }
+
+  <Bibliography entries={entries} />
+</BaseLayout>
