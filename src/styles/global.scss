@@ -2124,8 +2124,9 @@ a {
   font-size: 0.7rem;
   color: var(--muted);
 }
+/* v0.34.0 起不設行長上限——tab 化後一次只有一段，讓文字用滿方框（Andrew 裁定）。 */
 .overview-body {
-  max-width: 42em;
+  max-width: none;
 }
 .overview-lede {
   margin: 0 0 1.2rem;
@@ -3200,15 +3201,36 @@ a {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-/* 未挖的書不畫零長條（看不見的條不是資訊）——列成工作清單，它們的身分本來就是待辦。 */
+/* 未挖的書不畫零長條（看不見的條不是資訊）——v0.34.0 起列成書封牆：
+ * 一排小封面比一串書名 chip 簡潔有力，這排就是下一輪 enrich 的材料清單。 */
 .mining-undug {
-  margin-top: 1.1rem;
-  font-size: 0.82rem;
-  line-height: 2;
+  margin-top: 1.4rem;
 }
 .mining-undug-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  margin-right: 0.4rem;
+}
+.mining-undug-covers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+.mining-cover {
+  display: block;
+  line-height: 0;
+  img {
+    width: 66px;
+    height: 95px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    transition: border-color 0.16s ease;
+  }
+  &:hover img {
+    border-color: var(--accent);
+  }
 }
 .mining-chip {
   display: inline-block;

@@ -9,7 +9,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Bibliography from "../components/Bibliography.astro";
-import { bookUrl } from "../lib/links";
+import { bookUrl, bookCoverUrl } from "../lib/links";
 import type { BibliographyEntry } from "../lib/library";
 import { site, bibliography } from "virtual:notes-core/site";
 import { getCollection } from "astro:content";
@@ -56,7 +56,7 @@ const showMining = owned.length >= 4;
     showMining && (
       <section class="mining">
         <div class="mining-head">
-          <h2>開採度</h2>
+          <h2>Coverage</h2>
           <span class="mining-note">
             每本已收書被幾頁筆記引用 · 已挖 {dug.length} 本 · 未挖 {undug.length} 本 · 共{" "}
             {totalRefs} 處引用
@@ -82,20 +82,35 @@ const showMining = owned.length >= 4;
         </div>
 
         {
+          /* 未挖＝已收進書庫、但站上還沒有任何筆記頁引用的書——書庫先於筆記，
+             這一排是下一輪深化（note-check --enrich）的現成材料清單。
+             v0.34.0 起用書封呈現（一排小封面比一串書名 chip 簡潔有力）；
+             沒 slug 的少數例外退回文字 chip。 */
           undug.length > 0 && (
             <div class="mining-undug">
-              <span class="mining-undug-label">已收未挖 {undug.length} 本——下一批材料：</span>
-              <span class="mining-undug-chips">
+              <p class="mining-undug-label">
+                這 {undug.length} 本已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料。
+              </p>
+              <div class="mining-undug-covers">
                 {undug.map((r) =>
                   r.e.slug ? (
                     <a
-                      class="mining-chip"
+                      class="mining-cover"
                       href={bookUrl(r.e.slug)}
                       target="_blank"
                       rel="noopener"
                       title={`${r.e.title}——已建書站、尚無筆記頁引用`}
                     >
-                      {r.e.title}
+                      <img
+                        class="cover-img"
+                        src={bookCoverUrl(r.e.slug)}
+                        data-fallback={bookUrl(r.e.slug, "cover.png")}
+                        alt={r.e.title}
+                        loading="lazy"
+                        decoding="async"
+                        width="66"
+                        height="95"
+                      />
                     </a>
                   ) : (
                     <span class="mining-chip is-plain" title={`${r.e.title}——已收、尚無筆記頁引用`}>
@@ -103,7 +118,7 @@ const showMining = owned.length >= 4;
                     </span>
                   )
                 )}
-              </span>
+              </div>
             </div>
           )
         }
@@ -113,3 +128,19 @@ const showMining = owned.length >= 4;
 
   <Bibliography entries={entries} />
 </BaseLayout>
+
+<script>
+  // 書封代理退路：與 Bookshelf 同一套（本頁沒有書架，要自帶）。
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement) || !img.classList.contains("cover-img")) return;
+      const fallback = img.dataset.fallback;
+      if (!fallback || img.src === fallback) return;
+      img.src = fallback;
+      delete img.dataset.fallback; // 只退一次，原圖再壞就讓它壞，別無限重試
+    },
+    true
+  );
+</script>

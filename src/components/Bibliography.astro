@@ -10,7 +10,8 @@ interface Props {
   heading?: string;
   note?: string;
 }
-const { entries, heading = "全集盤點", note } = Astro.props;
+// 標題預設 "Inventory"（v0.34.0）——chrome 一律簡短英文。
+const { entries, heading = "Inventory", note } = Astro.props;
 
 // 狀態只出 emoji（hover 有全名），第一欄一掃就知道收藏進度；文字 badge 退役（v0.19.0）。
 const STATUS: Record<BibliographyStatus, { icon: string; label: string }> = {

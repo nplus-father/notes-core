@@ -7,25 +7,23 @@
 // 機制沿 Bibliography 分組鍵的同一套語彙：鍵預設 hidden、由 script 打開，無 JS 退回全段攤開；
 // 非當前段 hidden="until-found"（伺服端就標好，不閃版），Ctrl+F 搜得到、搜到自動切段，
 // 無 JS 由 <noscript> 樣式攤開。
-import type { SiteOverview, OverviewKind } from "../lib/library";
+import type { SiteOverview } from "../lib/library";
 
 interface Props {
   overview?: SiteOverview | null;
 }
 const { overview } = Astro.props;
-
-const KINDS: Record<OverviewKind, string> = {
-  domain: "領域總覽",
-  person: "人物總覽",
-};
-const heading = overview ? (KINDS[overview.kind] ?? KINDS.domain) : KINDS.domain;
+// 標題固定 "Overview"（v0.34.0）——chrome 一律簡短英文（Andrew 裁定：中文長標拗口）；
+// 人物／領域之分由內容自明，不必印在標題上。段落 heading（tab 標籤）由站台資料提供，
+// 標準詞彙：person = Background / Contributions / Claims（+ Verdict 選配）；
+// domain = Landscape / Threads / Verdict（正本見 DESIGN.md §4.2）。
 ---
 
 {
   overview && overview.sections.length > 0 && (
     <section class="overview">
       <div class="overview-head">
-        <h2>{heading}</h2>
+        <h2>Overview</h2>
         {/* 判讀會過期（書單再進新書、概念頁再翻修），所以把「依哪一版站況寫的」印出來，
             與頁尾的 curation 徽章同一個理由。沒填就不出，不要假裝新鮮。 */}
         {overview.writtenAt && (

@@ -16,12 +16,9 @@ interface Props {
   /** 選用：「完整盤點」入口（/library/）。首頁書架只擺 owned 封面，狀態與缺口在那邊。 */
   moreHref?: string;
 }
-const {
-  books,
-  heading = "Sources",
-  note = "The books this site distills from — every page traces back",
-  moreHref,
-} = Astro.props;
+// note 預設為空（v0.34.0）——「The books this site distills from…」那句說明移除，
+// 標題＋書數已經講完了（chrome 省話原則，Andrew 裁定）。
+const { books, heading = "Sources", note = "", moreHref } = Astro.props;
 ---
 
 {
@@ -29,7 +26,7 @@ const {
     <section class="bookshelf">
       <div class="bookshelf-head">
         <h2>{heading}</h2>
-        <span class="bookshelf-note">{note}</span>
+        {note && <span class="bookshelf-note">{note}</span>}
         <span class="bookshelf-count">{books.length}</span>
         {
           moreHref && (

@@ -19,10 +19,12 @@
 
 ## 2. 首頁（notes-core `routes/index.astro`）
 
+> **Chrome 語彙原則（v0.34.0，Andrew 裁定）**：固定標題與標籤一律**簡短英文**（Overview／Schools／Methods／Themes／Thesis／Contributions／Reading Path／Influences／Sources／Inventory／Coverage…），中文長標拗口；區塊副標說明句一律**省略**（標題自己講完了）；**內文維持繁中**。guide 章內小標屬內容、不在此列（2026-08-15 裁決：只動 chrome）。
+
 由上而下：
 
 1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
-2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。反過來排的話，讀者得自己從卡片拼出全貌，而那正是總覽要代勞的事。標題由 `kind` 二選一（領域總覽／人物總覽），**v0.31.0 起無副標**（標題自己講完了）；**lede 常駐、三段收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 📖。
+2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。標題固定 **"Overview"**（v0.34.0，無副標）；**lede 常駐、段落收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段），段落 heading＝tab 標籤，**標準英文詞彙**：人物站 `Background / Contributions / Claims`（＋選配 `Verdict`）、主題站 `Landscape / Threads / Verdict`；行長不設上限（tab 化後一次只有一段，文字用滿方框）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 📖。
 3. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
 4. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
 3. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。**v0.29.0 起固定高度**（約兩排半封面）＋垂直捲動，標題列右端補書數——書多的站（startup 61 本）攤開就是五六排 190px 的封面。有 bibliography 的站，標題列再補「盤點與開採度 →」連 `/library/`。
@@ -152,7 +154,7 @@ export const overview = defineOverview({
 
 盤點表（§2 的遷移注記）＋**開採度圖**。入口兩個：首頁書架標題列的「盤點與開採度 →」＋ topnav 的 **📚（v0.33.0，排在 🔍 右邊、整列最右）**——工作文件收在閱讀動線的尾端；有 bibliography 的站才出。
 
-- **開採度**＝每本 owned 書被幾頁筆記（concepts＋problems 的 `furtherReading`）引用，**build 時全自動計算、零人工欄位**。水平條列、單一色相（站台 accent）、行多收捲動窗；**未挖（0 頁）的書不畫零長條**——列成 chip 工作清單，它們的身分本來就是 `note-check --enrich` 的下一批材料。
+- **開採度（頁面標題 "Coverage"，v0.34.0）**＝每本 owned 書被幾頁筆記（concepts＋problems 的 `furtherReading`）引用，**build 時全自動計算、零人工欄位**。水平條列、單一色相（站台 accent）、行多收捲動窗；**未挖（0 頁）的書不畫零長條**——v0.34.0 起列成**書封牆**（一排小封面，hover 書名，附一句白話說明「已收進書庫、尚無筆記頁引用——下一輪深化的現成材料」），它們的身分本來就是 `note-check --enrich` 的下一批材料。
 - 少於 4 本 owned 不畫（一兩本畫不成分佈）；無 bibliography 時整頁空狀態＋noindex。
 
 ## 7. 技術注記

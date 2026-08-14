@@ -16,11 +16,11 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
 
 <section class="profile">
   <blockquote class="profile-thesis">
-    <span class="profile-thesis-label">中心思想</span>
+    <span class="profile-thesis-label">Thesis</span>
     <p set:html={profile.thesis} />
   </blockquote>
 
-  <h2>特定貢獻——研究他的幾條主軸</h2>
+  <h2>Contributions</h2>
   <div class="contrib-grid">
     {
       profile.contributions.map((c) => (
@@ -41,7 +41,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
   {
     profile.readingPath && profile.readingPath.length > 0 && (
       <>
-        <h2>建議閱讀路徑</h2>
+        <h2>Reading Path</h2>
         {/* 直式 stepper：節點編號沿用學派卡的 N° 裝置；書封與書架同一個代理
             （.cover-img 掛的是 Bookshelf 的退路監聽——首頁書架必在，共用即可）。 */}
         <ol class="reading-path">
@@ -82,7 +82,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
   {
     profile.influences && profile.influences.length > 0 && (
       <>
-        <h2>思想脈絡</h2>
+        <h2>Influences</h2>
         <ul class="influences">
           {profile.influences.map((i) => (
             <li>
