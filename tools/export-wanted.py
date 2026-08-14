@@ -175,6 +175,19 @@ from pathlib import Path
 #     晚期邊緣作，概念側證據撐不起來——「合法性」全星系 13 處裡 8 處在 leetcode 站是
 #     **字面假命中**（輸入合法性），drucker 站真命中只有 3 處。下輪若要排，先補概念頁再說。
 #
+# 2026-08-14 第三輪（Andrew 再裁決 7 筆 unavailable，wanted 105 → 98）：
+#   newport 1（How to Be a High School Superstar）、gardner 3（Art, Mind, and Brain／
+#   The Mind's New Science／Extraordinary Minds）、drucker 3（The Future of Industrial Man／
+#   Managing in Turbulent Times／Managing the Non-Profit Organization）。
+#   **newport 站直接歸零**（那是它最後一本 wanted），TOP20 第 1、2 格同時作廢。
+#   於是近零名單重排成 drucker 與 gardner **各差 2 本**，沒有差 1 本的站；兩格空缺塞不下
+#   兩站四本，所以照準則①的本意「讓一個站真的歸零」，整批給 drucker。
+#   **選 drucker 不選 gardner 的實查依據**：「知識工作者」94 處跨 4 站（drucker 34、
+#   management 23、business-strategy 18、newport 8）對上 gardner 那兩本的「真善美」3 處、
+#   「卓越與倫理」5 處（且都只在本站）。上面第二輪那句「drucker 讓位」因此作廢——讓位的
+#   理由是那 5 本裡的早期邊緣作，而它們 3 本已經被裁成 unavailable，剩下的 2 本是有槓桿的。
+#   gardner 的 2 本（The App Generation／Truth, Beauty, and Goodness Reframed）下輪再排。
+#
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
 # README 的中文書名或章節才判的）：`software-developers-career-guide` 是 Sonmez 2017 的另一本，
 # 不是 2014 的 Soft Skills；`emotionally-healthy-leader` 不是《建立高EQ的教會》；
@@ -191,8 +204,8 @@ from pathlib import Path
 # 連結指向 How to Win at College），於是現在是**兩個 repo 裝同一本書**，而真正的 Superstar
 # 仍然沒有站。NAME_COLLISIONS 那筆要留著，重複的 repo 是 SOURCING-DEBT 的事。
 TOP20 = [
-    ("how-to-be-a-high-school-superstar", "newport 站 owned 8／wanted 1——**收了就歸零**；portal 的 Newport 8 本（deep-work、so-good、digital-minimalism、slow-productivity…），學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》"),
-    ("extraordinary-minds", "gardner 站 owned 11／wanted 5，這輪第一本準則④：portal 的 Howard Gardner 書櫃 **11 本**（`superforecasting`、`how-big-things-get-done` 那兩本是 Dan Gardner，不算），是全星系第二深的單一作者書櫃，而且 `-minds` 那一系列幾乎收全了——frames／creating／changing／leading／unschooled／disciplined／synthesizing 都在，**獨缺這本《非凡心智》**；站內「非凡心智」7 處、「四種非凡」1 處都只在本站、沒有出處；薄，有繁中《非凡心智》，排這 5 格最前面"),
+    ("managing-in-the-next-society", "drucker 站 owned 18／wanted 2——**這兩本收齊就歸零**，準則①；這批選 drucker 而不是同樣差 2 本的 gardner，是因為概念側證據差很多：「知識工作者」全星系 **94 處跨 4 站**（drucker 34、management 23、business-strategy 18、newport 8），而這本正是講知識工作者成為下一個社會重心的那本——站內「下一個社會」只有 1 處、「高齡化」1 處，講了 94 次的主軸沒有終點站；portal 的 Drucker 書櫃 **18 本**是全星系最深的單一作者；有繁中《下一個社會》"),
+    ("drucker-on-asia", "drucker 的第二本，收了本站歸零。**這本本身的概念證據很薄**（「亞洲」全星系 19 處、drucker 站 0 處，「日本式經營」0 處）——排進來純粹是準則①：它是這站最後一本，不收就得為了一本書把整站留在採購清單上。與中內功的對談錄，薄；有繁中《杜拉克看亞洲》"),
     ("the-total-money-makeover", "personal-finance 站 owned 33／wanted 7，準則④裡**證據最乾淨的一筆**：portal 已經有它的續集 `baby-steps-millionaire`，那個 repo 自己的描述就寫著「The Total Money Makeover follow-up」——**衍生書在、原典不在**；「無債務」全星系只有 2 處且都在本站，Baby Steps 這套體系在星系裡沒有源頭（「債務」185 處看起來多，但 economics 97 處是主權債務、agile 28 處是技術債，不能算數）；薄，繁中在版與否未查證，下單前自己確認一下"),
     ("observability-engineering", "cloud-infra 站 owned 17／wanted 9（缺口 34.6%，僅次於已整批進榜的 security），這批第一本：「可觀測性」全星系 35 處／12 檔，其中 **34 處在本站**、「高基數」9 處（cloud-infra ＋ system-design）——本站已經在用這套詞彙講事情，而 portal 的 Charity Majors／Liz Fong-Jones **0 本**，整個可觀測性學派沒有原典；無繁中"),
     ("systems-performance", "cloud-infra 的第二本；「效能」是全星系散得最開的工程概念之一——276 處／133 檔／**跨 29 站**（system-design 43、drucker 34、data-systems 29、business-strategy 22），而 portal 的 Brendan Gregg **0 本**；站內「USE 方法」只有 1 處孤證，講了 276 次效能卻沒有一本系統性的量測方法論；厚，無繁中"),

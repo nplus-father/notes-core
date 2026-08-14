@@ -10,7 +10,7 @@
 
 ## 先收這 20 本
 
-整份 105 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 98 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -18,8 +18,8 @@
 
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | **How to Be a High School Superstar** | Cal Newport |  | 2010 | newport(0) | newport 站 owned 8／wanted 1——**收了就歸零**；portal 的 Newport 8 本（deep-work、so-good、digital-minimalism、slow-productivity…），學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》 |
-| 2 | **Extraordinary Minds** | Howard Gardner | 非凡心智 | 1997 | gardner(4) | gardner 站 owned 11／wanted 5，這輪第一本準則④：portal 的 Howard Gardner 書櫃 **11 本**（`superforecasting`、`how-big-things-get-done` 那兩本是 Dan Gardner，不算），是全星系第二深的單一作者書櫃，而且 `-minds` 那一系列幾乎收全了——frames／creating／changing／leading／unschooled／disciplined／synthesizing 都在，**獨缺這本《非凡心智》**；站內「非凡心智」7 處、「四種非凡」1 處都只在本站、沒有出處；薄，有繁中《非凡心智》，排這 5 格最前面 |
+| 1 | **Managing in the Next Society** | Peter F. Drucker | 下一個社會 | 2002 | drucker(1) | drucker 站 owned 18／wanted 2——**這兩本收齊就歸零**，準則①；這批選 drucker 而不是同樣差 2 本的 gardner，是因為概念側證據差很多：「知識工作者」全星系 **94 處跨 4 站**（drucker 34、management 23、business-strategy 18、newport 8），而這本正是講知識工作者成為下一個社會重心的那本——站內「下一個社會」只有 1 處、「高齡化」1 處，講了 94 次的主軸沒有終點站；portal 的 Drucker 書櫃 **18 本**是全星系最深的單一作者；有繁中《下一個社會》 |
+| 2 | **Drucker on Asia** | Peter F. Drucker & 中內功 | 杜拉克看亞洲 | 1997 | drucker(1) | drucker 的第二本，收了本站歸零。**這本本身的概念證據很薄**（「亞洲」全星系 19 處、drucker 站 0 處，「日本式經營」0 處）——排進來純粹是準則①：它是這站最後一本，不收就得為了一本書把整站留在採購清單上。與中內功的對談錄，薄；有繁中《杜拉克看亞洲》 |
 | 3 | **The Total Money Makeover** | Dave Ramsey |  | 2003 | personal-finance(6) | personal-finance 站 owned 33／wanted 7，準則④裡**證據最乾淨的一筆**：portal 已經有它的續集 `baby-steps-millionaire`，那個 repo 自己的描述就寫著「The Total Money Makeover follow-up」——**衍生書在、原典不在**；「無債務」全星系只有 2 處且都在本站，Baby Steps 這套體系在星系裡沒有源頭（「債務」185 處看起來多，但 economics 97 處是主權債務、agile 28 處是技術債，不能算數）；薄，繁中在版與否未查證，下單前自己確認一下 |
 | 4 | **Observability Engineering** | Charity Majors、Liz Fong-Jones & George Miranda |  | 2022 | cloud-infra(8) | cloud-infra 站 owned 17／wanted 9（缺口 34.6%，僅次於已整批進榜的 security），這批第一本：「可觀測性」全星系 35 處／12 檔，其中 **34 處在本站**、「高基數」9 處（cloud-infra ＋ system-design）——本站已經在用這套詞彙講事情，而 portal 的 Charity Majors／Liz Fong-Jones **0 本**，整個可觀測性學派沒有原典；無繁中 |
 | 5 | **Systems Performance** | Brendan Gregg |  | 2020 | cloud-infra(8) | cloud-infra 的第二本；「效能」是全星系散得最開的工程概念之一——276 處／133 檔／**跨 29 站**（system-design 43、drucker 34、data-systems 29、business-strategy 22），而 portal 的 Brendan Gregg **0 本**；站內「USE 方法」只有 1 處孤證，講了 276 次效能卻沒有一本系統性的量測方法論；厚，無繁中 |
@@ -59,8 +59,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1802 筆（去重 1320 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **105 筆（去重 105 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 78 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **98 筆（去重 98 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 85 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 82 筆 |
 
 > `owned` 去重後的 1320 是**已建成書站的書**（1802 是含跨站重複的登錄筆數，
@@ -92,13 +92,14 @@
 
 無——沒有書名相近卻沒對上的。
 
-## 快歸零的站：1 站只差 1–2 本
+## 快歸零的站：2 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
 | 站 | 已收 | 還差 | 差哪幾本 |
 | --- | ---: | ---: | --- |
-| `newport-note` | 8 | **1** | How to Be a High School Superstar（Cal Newport） |
+| `drucker-note` | 18 | **2** | Managing in the Next Society（Peter F. Drucker）、Drucker on Asia（Peter F. Drucker & 中內功） |
+| `gardner-note` | 11 | **2** | The App Generation（Howard Gardner & Katie Davis）、Truth, Beauty, and Goodness Reframed（Howard Gardner） |
 
 ## 優先收：0 本有兩個以上的站在等
 
@@ -107,7 +108,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 105 筆）
+## 完整清單（依站，共 98 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -268,31 +269,19 @@
 | Integrity: The Courage to Meet the Demands of Reality | Henry Cloud | Integrity | 2006 | 品格六面向——能力之外，讓成果留下來的是人格結構 |
 | Trust: Knowing When to Give It, When to Withhold It... | Henry Cloud | Trust | 2023 | 最新主著：信任的五要素與重建之路，界線思想的續篇 |
 
-### drucker-note — 5 本
+### drucker-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The Future of Industrial Man | Peter F. Drucker | 工業人的未來 | 1942 | 提出「合法性」與「地位與功能」問題，通往《企業的概念》 |
-| Managing in Turbulent Times | Peter F. Drucker | 動盪時代的管理 | 1980 | 不確定時代的經營綱領，與當下高度共鳴 |
-| Managing the Non-Profit Organization | Peter F. Drucker | 使命與領導：非營利組織的管理 | 1990 | 杜拉克晚年最重視的部門——社會部門 |
 | Drucker on Asia | Peter F. Drucker & 中內功 | 杜拉克看亞洲 | 1997 | 與中內功的對談錄；杜拉克與日本經營的互動 |
 | Managing in the Next Society | Peter F. Drucker | 下一個社會 | 2002 | 最後的社會預言：少子高齡化、資訊革命的下一步 |
 
-### gardner-note — 5 本
+### gardner-note — 2 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Art, Mind, and Brain: A Cognitive Approach to Creativity | Howard Gardner | 藝術、心智與大腦 | 1982 | MI 前夜的藝術認知研究；Project Zero 時期的成果 |
-| The Mind's New Science: A History of the Cognitive Revolution | Howard Gardner | 心智的新科學 | 1985 | 認知革命的權威史；理解加德納學術座標的背景書 |
-| Extraordinary Minds | Howard Gardner | 非凡心智 | 1997 | 大師（Mozart）、創造者（Freud）、內省者（Woolf）、影響者（Gandhi）四種非凡 |
 | Truth, Beauty, and Goodness Reframed | Howard Gardner | 重新定義真善美 | 2011 | 數位時代如何守住三大古典價值；《學習的紀律》的續章 |
 | The App Generation | Howard Gardner & Katie Davis | 破解 APP 世代 | 2013 | 與 Katie Davis 合著；app 心態如何形塑青少年的認同、親密與想像 |
-
-### newport-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| How to Be a High School Superstar | Cal Newport |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正；portal 上同名的 how-to-be-a-high-school-superstar 內容實為《How to Win at College》，作者同樣是 Newport，所以作者比對擋不掉，靠 NAME_COLLISIONS 人工排除 |
 
 ## 沒有英文書名的 0 本（華文／日文原著）
 
