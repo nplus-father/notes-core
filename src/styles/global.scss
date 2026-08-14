@@ -2701,10 +2701,6 @@ a {
     margin: 0;
   }
 }
-.schools-note {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
 /* 選配 lede：地圖上方一句話提綱挈領（defineSchools 第二參數）。 */
 .schools-lede {
   margin: -0.4rem 0 1rem;
@@ -3129,15 +3125,6 @@ a {
 /* v0.34.1 起不設行長上限——與 Overview 同一個裁定：文字用滿方框，不提早換行。 */
 .guide-body {
   max-width: none;
-}
-@media (max-width: 900px) {
-  .guide-layout {
-    display: block;
-  }
-  .guide-toc {
-    position: static;
-    margin-bottom: 2.2rem;
-  }
 }
 
 /* ───────────────────────── 藏書頁（Library /library/）＋開採度 ───────────────────────── */

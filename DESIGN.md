@@ -33,12 +33,10 @@
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
-## 3. 站縮圖 cover.svg
+## 3. 站縮圖（v0.13.0 起由 core 產生）
 
-- 位置：`public/cover.svg`，只用**英文站名** `site.brand` 構圖。
-- 尺寸 `1200×630`（og:image 比例），品牌漸層 `#4f46e5 → #7c3aed`。
-- 用途：首頁 Hero；亦可掛 `<meta property="og:image">`。
-- 原則：**每站一張、由 brand 生成**，不要手抄別站文字。
+- 路由 `/site-cover.svg`（`src/routes/site-cover.svg.ts`），資料取自 registry（`sites.ts`）——排版型圖版：紙色底＋襯線站名＋`N°` 編號，人物／主題各一種墨色（`#5c4433`／`#2f4858`，與 `data-axis` 的 accent 同源）。
+- 各站**不放** `public/cover.svg`（舊制已廢；殘留是死檔，路由刻意不叫 `/cover.svg` 所以不會被蓋）。favicon 同樣由 core 提供。
 
 ## 4. 書架 Bookshelf（書縮圖 = SSOT）
 
