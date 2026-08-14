@@ -150,7 +150,7 @@ export const overview = defineOverview({
 
 ## 6.3 藏書頁 `/library/`（v0.30.0）
 
-盤點表（§2 的遷移注記）＋**開採度圖**。首頁入口＝書架標題列的「盤點與開採度 →」；不進 topnav——nav 留給閱讀動線，工作文件走首頁動線。
+盤點表（§2 的遷移注記）＋**開採度圖**。入口兩個：首頁書架標題列的「盤點與開採度 →」＋ topnav 的 **📚（v0.33.0，排在 🔍 右邊、整列最右）**——工作文件收在閱讀動線的尾端；有 bibliography 的站才出。
 
 - **開採度**＝每本 owned 書被幾頁筆記（concepts＋problems 的 `furtherReading`）引用，**build 時全自動計算、零人工欄位**。水平條列、單一色相（站台 accent）、行多收捲動窗；**未挖（0 頁）的書不畫零長條**——列成 chip 工作清單，它們的身分本來就是 `note-check --enrich` 的下一批材料。
 - 少於 4 本 owned 不畫（一兩本畫不成分佈）；無 bibliography 時整頁空狀態＋noindex。

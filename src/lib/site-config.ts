@@ -103,8 +103,9 @@ export function defineSite(c: SiteConfig): SiteConfig {
 
 /**
  * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
- *   （📖 Guide，僅 hasGuide）/ 🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/ …extraNav / 🔍 Search
- * 📖 放最左（v0.32.0，Andrew 裁定）——導覽是「先讀我」的入口，排在概念庫之前。
+ *   （📖 Guide，僅 hasGuide）/ 🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/ …extraNav / 🔍 Search /（📚 Library，僅 hasLibrary）
+ * 📖 放最左（v0.32.0）——導覽是「先讀我」的入口，排在概念庫之前；
+ * 📚 放最右、在 🔍 之後（v0.33.0）——藏書盤點是工作文件，收在閱讀動線的尾端。皆 Andrew 裁定。
  * 全星系固定這幾個詞彙、只出 emoji（hover／aria-label 帶英文全名）——
  * conceptLabelEn / problemLabelEn 不再影響 nav。不含「首頁」——左上人像已連 home。
  * hasCheck / hasGuide 由 BaseLayout 依內容集合判定（有資料才出 tab）。
@@ -113,7 +114,7 @@ export function defineSite(c: SiteConfig): SiteConfig {
  */
 export function buildNav(
   c: SiteConfig,
-  opts: { hasCheck?: boolean; hasGuide?: boolean } = {}
+  opts: { hasCheck?: boolean; hasGuide?: boolean; hasLibrary?: boolean } = {}
 ): NavLink[] {
   if (c.nav) return c.nav;
   return [
@@ -123,5 +124,6 @@ export function buildNav(
     ...(opts.hasCheck ? [{ href: "/check/", label: "✅", title: "Check" }] : []),
     ...(c.extraNav ?? []),
     { href: "/search/", label: "🔍", title: "Search" },
+    ...(opts.hasLibrary ? [{ href: "/library/", label: "📚", title: "Library" }] : []),
   ];
 }

@@ -7,6 +7,7 @@ import { withBase } from "../lib/url";
 import faviconUrl from "../assets/favicon.png?url";
 import { buildNav, DEFAULT_PARENT_SITE, type SiteConfig } from "../lib/site-config";
 import { siteBySlug } from "../lib/sites";
+import { bibliography } from "virtual:notes-core/site";
 interface Props {
   title: string;
   site: SiteConfig;
@@ -18,13 +19,14 @@ const { title, site, noindex = false } = Astro.props;
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
 const axis = siteBySlug.get(stationSlug)?.axis ?? "topic";
-// nav 統一由 core 生成：固定詞彙、只出 emoji（📖 🧠 📝 ✅ 🔍，hover 帶英文全名）。
-// ✅ / 📖 只在站台真的有資料時出現——沒補 mastery／沒寫導覽的站不出空 tab。
+// nav 統一由 core 生成：固定詞彙、只出 emoji（📖 🧠 📝 ✅ 🔍 📚，hover 帶英文全名）。
+// ✅ / 📖 / 📚 只在站台真的有資料時出現——沒補 mastery／沒寫導覽／沒有盤點的站不出空 tab。
 const hasCheck = (await getCollection("categories")).some(
   (c) => ((c.data as { mastery?: unknown[] }).mastery ?? []).length > 0
 );
 const hasGuide = (await getCollection("guide")).length > 0;
-const nav = buildNav(site, { hasCheck, hasGuide });
+const hasLibrary = (bibliography as unknown[]).length > 0;
+const nav = buildNav(site, { hasCheck, hasGuide, hasLibrary });
 // 「回母站」連結：未設 → 預設連 nplus.wiki/notes/（各站零設定即有）；設 null 可隱藏。
 // v0.20.0 起同時出現在 topnav 最左（往上一層）與頁尾——原本只在頁尾，讀者滑到底才看得到。
 const parentSite = site.parentSite === undefined ? DEFAULT_PARENT_SITE : site.parentSite;
