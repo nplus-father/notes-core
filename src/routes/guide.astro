@@ -26,11 +26,12 @@ const chapters = await Promise.all(
   })
 );
 
-// 章序用中文數字：導覽是書卷語境，「第一章」比「第 1 章」貼合襯線版面。
-const NUMS = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
-const numOf = (i: number) => NUMS[i] ?? String(i + 1);
-// tab 標籤用短名：取「主標：副標」的主標。
+// tab 標籤（v0.32.0）：優先用 frontmatter `tab`（固定骨架的英文短標，中文長題塞 tab 列
+// 太拗口——Andrew 裁定）；缺省退回標題冒號前的主標。章序數字與「第N章」眉標一併退場，
+// tab 列本身已標示位置。
 const shortTitle = (t: string) => t.split("：")[0];
+const tabLabel = (c: (typeof chapters)[number]) =>
+  c.entry.data.tab ?? shortTitle(c.entry.data.title);
 
 // 時效戳記：取最新一章的 writtenAt（各章可能不同天寫成）。
 const writtenAt = chapters.reduce<string>(
@@ -73,8 +74,7 @@ const writtenAt = chapters.reduce<string>(
               aria-pressed={i === 0 ? "true" : "false"}
               data-ch={c.slug}
             >
-              <span class="guide-tab-num">{numOf(i)}</span>
-              {shortTitle(c.entry.data.title)}
+              {tabLabel(c)}
             </button>
           ))}
         </div>
@@ -87,7 +87,6 @@ const writtenAt = chapters.reduce<string>(
               data-ch={c.slug}
               hidden={i === 0 ? undefined : "until-found"}
             >
-              <p class="guide-eyebrow">第{numOf(i)}章</p>
               <h2 class="guide-title">{c.entry.data.title}</h2>
               <div class="guide-body prose">
                 <c.Content />
@@ -97,12 +96,17 @@ const writtenAt = chapters.reduce<string>(
           ))}
         </div>
 
-        {/* 無 JS：tab 列不出（死鍵不如不擺），五章攤開成一頁長文。 */}
+        {/* 無 JS：tab 列不出（死鍵不如不擺），五章攤開成一頁長文。
+            global.scss 為了 tab 模式把 [hidden] 章的分隔線歸零（content-visibility 藏內容
+            但不藏元素自己的 border，會留下一疊空分隔線）——攤開時在這裡補回來。 */}
         <noscript>
           <style>
             .guide-chapter[hidden] {
               display: block;
               content-visibility: visible;
+              margin-top: 3.6rem;
+              border-top: 1px solid var(--border);
+              padding-top: 2.6rem;
             }
           </style>
         </noscript>

@@ -141,11 +141,11 @@ export const overview = defineOverview({
 
 **策展層長文**——「我們收完、讀完這批書之後，怎麼帶你走」。站上的第三種聲音：概念頁正文＝書本位、`:::response`＝使用者層、導覽＝策展層（curator's voice）。由 **`/note-guide`** 產出。
 
-- 資料源＝**guide collection**：`src/content/guide/NN-<slug>.md`，一章一檔、檔名 `NN` 定序；frontmatter `{title, writtenAt, furtherReading}`（schema 在 content factory；loader base 釘 `src/content` 以免 72 個無導覽站每次 build 印 "base directory does not exist"）。
-- **章節收進 tab（v0.31.0）**：tab 列 sticky 貼在 topnav 下、一次只顯示一章、**章身自然高度**——固定形式給固定空間，但不固定高度（單章 1,500–7,500 字，固定高度必然框內捲動，頁捲＋框捲巢狀是長文閱讀大忌）。非當前章 `hidden="until-found"`（Ctrl+F 搜得到、命中自動切章）；`#<章id>` 錨點驅動切章，章際互連與站外深連不斷；無 JS 退回五章攤開。頁首無 lede（h1＋章節自己會說話），writtenAt 戳記保留。章序用**襯線中文數字**（第一章…），accent 沿 `data-axis` 分岔（人物暖褐／主題冷藍），導覽天生帶站型識別。
+- 資料源＝**guide collection**：`src/content/guide/NN-<slug>.md`，一章一檔、檔名 `NN` 定序；frontmatter `{title, tab?, writtenAt, furtherReading}`（schema 在 content factory；loader base 釘 `src/content` 以免 72 個無導覽站每次 build 印 "base directory does not exist"）。`tab`（v0.32.0）＝tab 列的**固定英文短標**（The Man／Themes／Books／Critiques／Reading；主題站 The Field／Schools…）——中文長題塞 tab 太拗口；缺省退回標題冒號前的主標。
+- **章節收進 tab（v0.31.0）**：tab 列 sticky 貼在 topnav 下、一次只顯示一章、**章身自然高度**——固定形式給固定空間，但不固定高度（單章 1,500–7,500 字，固定高度必然框內捲動，頁捲＋框捲巢狀是長文閱讀大忌）。非當前章 `hidden="until-found"`（Ctrl+F 搜得到、命中自動切章）；`#<章id>` 錨點驅動切章，章際互連與站外深連不斷；無 JS 退回五章攤開。頁首無 lede（h1＋章節自己會說話），writtenAt 戳記保留；**無章序數字、無「第N章」眉標**（v0.32.0——tab 列本身已標示位置）。accent 沿 `data-axis` 分岔（人物暖褐／主題冷藍），導覽天生帶站型識別。`[hidden]` 章的分隔線要歸零——`content-visibility` 藏內容不藏元素自身的 border，否則當前章下面留一疊空線（2026-08-15 抓到的 bug）。
 - 章尾 `furtherReading` 用概念頁同款卡片（`<FurtherReading>`）；行長紀律同總覽（42em）。
 - 骨架（`/note-guide` 產出的預設五章）：人物站＝這個人是誰／思想主線／經典著作導讀／爭議與侷限／怎麼讀；主題站＝領域在回答什麼問題／流派敘事／經典書導讀／共識與爭點／閱讀路徑。
-- topnav 的 📖 只在站台有 guide 內容時出現（同 ✅ 機制）；路由恆注入，沒資料時是空狀態頁。
+- topnav 的 📖 只在站台有 guide 內容時出現（同 ✅ 機制），**排在最左**（v0.32.0——導覽是「先讀我」的入口，在概念庫之前）；路由恆注入，沒資料時是空狀態頁。
 - `writtenAt` 流進 `/index.json` 的 `guide`（章數＋最新日期）——`note-check` 拿它比對 `enrichedAt`，站再深化過而導覽沒跟上就列 warning。
 
 ## 6.3 藏書頁 `/library/`（v0.30.0）

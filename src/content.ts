@@ -95,6 +95,9 @@ export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso
     loader: glob({ pattern: "guide/**/*.md", base: "./src/content" }),
     schema: z.object({
       title: z.string(),
+      // tab 短標（v0.32.0）：固定骨架的英文標籤（The Man / Themes / Books…）。
+      // 章標題是中文內容題，塞進 tab 列太長也太拗口；缺省時退回標題冒號前的主標。
+      tab: z.string().optional(),
       // 章的撰寫日（時效訊號，流進 index.json 供 /note-check 比對 enrichedAt）。
       // YAML 會把不加引號的 2026-08-14 解析成 Date——這裡收成字串，別讓引號成為每輪
       // /note-guide 產出的隱形地雷。

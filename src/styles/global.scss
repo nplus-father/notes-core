@@ -3095,27 +3095,22 @@ a {
     color: var(--accent);
   }
 }
-.guide-tab-num {
-  font-family: $serif;
-  font-size: 0.78rem;
-  color: var(--accent);
-}
 .guide-chapter {
   /* 錨點跳轉時讓章標題落在 topnav＋tab 列之下。 */
   scroll-margin-top: 6.8rem;
 }
-/* 無 JS 攤開時章與章之間仍要有界；tab 模式一次只有一章，規則不生效也無妨。 */
 .guide-chapter + .guide-chapter {
   margin-top: 3.6rem;
   border-top: 1px solid var(--border);
   padding-top: 2.6rem;
 }
-.guide-eyebrow {
-  margin: 0 0 0.15rem;
-  font-family: $serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
-  color: var(--accent);
+/* hidden="until-found" 的 content-visibility 只藏**內容**，不藏元素自己的 border——
+ * 不歸零的話，被藏起來的章會在當前章下面留一疊空分隔線（2026-08-15 線上抓到的 bug）。
+ * 無 JS 攤開時的分隔線由 guide.astro 的 <noscript> 樣式補回。 */
+.guide-chapter[hidden] {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
 }
 .guide-title {
   margin: 0 0 1.1rem;

@@ -18,7 +18,7 @@ const { title, site, noindex = false } = Astro.props;
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
 const axis = siteBySlug.get(stationSlug)?.axis ?? "topic";
-// nav 統一由 core 生成：固定詞彙、只出 emoji（🧠 📝 ✅ 📖 🔍，hover 帶英文全名）。
+// nav 統一由 core 生成：固定詞彙、只出 emoji（📖 🧠 📝 ✅ 🔍，hover 帶英文全名）。
 // ✅ / 📖 只在站台真的有資料時出現——沒補 mastery／沒寫導覽的站不出空 tab。
 const hasCheck = (await getCollection("categories")).some(
   (c) => ((c.data as { mastery?: unknown[] }).mastery ?? []).length > 0
