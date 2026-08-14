@@ -11,7 +11,7 @@
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| leadership-note | 主題 | 94 | 54 | 0.6 | 2026-08-06 | writtenAt 2026-08-14；enrich 進行中（七本正典） |
+| leadership-note | 主題 | 94 | 62 | 0.7 | 2026-08-15 | writtenAt 2026-08-15；七本正典已挖，開變革線（Coverage 未挖 33） |
 | thinking-note | 主題 | 56 | 46 | 0.8 | — | writtenAt 2026-08-14 |
 | covey-note | 人物 | 10 | 37 | 3.7 | 2026-08-04 | writtenAt 2026-08-14 |
 | keller-note | 人物 | 23 | 23 | 1.0 | — | writtenAt 2026-08-14 |
