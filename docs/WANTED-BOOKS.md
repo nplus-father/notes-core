@@ -6,11 +6,11 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1794 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1804 個 repo）。
 
 ## 先收這 20 本
 
-整份 115 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 105 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -19,12 +19,12 @@
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | **How to Be a High School Superstar** | Cal Newport |  | 2010 | newport(0) | newport 站 owned 8／wanted 1——**收了就歸零**；portal 的 Newport 8 本（deep-work、so-good、digital-minimalism、slow-productivity…），學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》 |
-| 2 | **Hold Me Tight** | Sue Johnson | 抱緊我 | 2008 | relationships(0) | relationships 站 owned 45／wanted 1——**收了就歸零**；portal 的 Sue Johnson **0 本**；「依附」全星系 62 處／38 檔／**跨 22 站**（thinking 10、relationships 8、de-botton 8）——散得極開卻沒有情緒取向治療（EFT）的原典，站內「情緒取向」只有 1 處孤證；有繁中《抱緊我》 |
-| 3 | **Take Ivy** | 石津謙介 企劃／林田昭慶 等 |  | 1965 | image-style(0) | image-style 站 owned 6／wanted 1——**收了就歸零**，這輪新進榜：其餘 4 本（True Style、ABC of Men's Fashion、The Suit、Icons of Men's Style）2026-08-14 判定暫無來源，這本是唯一買得到的；站上 owned 6 本全是穿搭原則與禮儀（Flusser 兩本、Roetzel、Marshall Alexander、O'Brien、Bridges），portal 搜 menswear 也只有 2 本——**風格史那一側整個空白**；站內「Ivy」3 處、「石津」3 處都只在本站，沒有出處；薄（攝影集，2010 powerHouse 重印） |
-| 4 | **Playing to Win** | A. G. Lafley & Roger L. Martin |  | 2013 | business-strategy(0) | business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》 |
-| 5 | **Into the Woods** | John Yorke |  | 2013 | writing(0) | writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；結構理論目前只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中 |
-| 6 | **The Dark Side of Valuation** | Aswath Damodaran | 估值的黑暗面 | 2001 | damodaran(0) | damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中 |
-| 7 | **The Web Application Hacker's Handbook** | Dafydd Stuttard & Marcus Pinto |  | 2007 | security(5) | security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚 |
+| 2 | **Extraordinary Minds** | Howard Gardner | 非凡心智 | 1997 | gardner(4) | gardner 站 owned 11／wanted 5，這輪第一本準則④：portal 的 Howard Gardner 書櫃 **11 本**（`superforecasting`、`how-big-things-get-done` 那兩本是 Dan Gardner，不算），是全星系第二深的單一作者書櫃，而且 `-minds` 那一系列幾乎收全了——frames／creating／changing／leading／unschooled／disciplined／synthesizing 都在，**獨缺這本《非凡心智》**；站內「非凡心智」7 處、「四種非凡」1 處都只在本站、沒有出處；薄，有繁中《非凡心智》，排這 5 格最前面 |
+| 3 | **The Total Money Makeover** | Dave Ramsey |  | 2003 | personal-finance(6) | personal-finance 站 owned 33／wanted 7，準則④裡**證據最乾淨的一筆**：portal 已經有它的續集 `baby-steps-millionaire`，那個 repo 自己的描述就寫著「The Total Money Makeover follow-up」——**衍生書在、原典不在**；「無債務」全星系只有 2 處且都在本站，Baby Steps 這套體系在星系裡沒有源頭（「債務」185 處看起來多，但 economics 97 處是主權債務、agile 28 處是技術債，不能算數）；薄，繁中在版與否未查證，下單前自己確認一下 |
+| 4 | **Observability Engineering** | Charity Majors、Liz Fong-Jones & George Miranda |  | 2022 | cloud-infra(8) | cloud-infra 站 owned 17／wanted 9（缺口 34.6%，僅次於已整批進榜的 security），這批第一本：「可觀測性」全星系 35 處／12 檔，其中 **34 處在本站**、「高基數」9 處（cloud-infra ＋ system-design）——本站已經在用這套詞彙講事情，而 portal 的 Charity Majors／Liz Fong-Jones **0 本**，整個可觀測性學派沒有原典；無繁中 |
+| 5 | **Systems Performance** | Brendan Gregg |  | 2020 | cloud-infra(8) | cloud-infra 的第二本；「效能」是全星系散得最開的工程概念之一——276 處／133 檔／**跨 29 站**（system-design 43、drucker 34、data-systems 29、business-strategy 22），而 portal 的 Brendan Gregg **0 本**；站內「USE 方法」只有 1 處孤證，講了 276 次效能卻沒有一本系統性的量測方法論；厚，無繁中 |
+| 6 | **Streaming Systems** | Tyler Akidau、Slava Chernyak & Reuven Lax |  | 2018 | data-systems(7) | data-systems 站 owned 11／wanted 8（缺口 42.1%，全星系第二高），這輪只排一本當起手：「串流」全星系 54 處／26 檔／跨 11 站（system-design 22、data-systems 20）、「事件溯源」32 處（data-systems 22、system-design 10）、watermark 9 處全在本站——**兩個站在互相引用同一組概念卻共用不到一本原典**；portal 這條線只有 Kleppmann 的 `designing-data-intensive-applications` 一本撐著，Akidau、Stonebraker／Hellerstein、Karwin、Stopford、Reis/Housley、Greg Young **全部 0 本**；厚，無繁中 |
+| 7 | **The Web Application Hacker's Handbook** | Dafydd Stuttard & Marcus Pinto |  | 2007 | security(5) | security 站 owned 8／wanted 6——**這六本收齊就歸零**，缺口 42.9% 是全星系最高，也是唯一整站排進來的；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚 |
 | 8 | **Threat Modeling: Designing for Security** | Adam Shostack |  | 2014 | security(5) | security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面 |
 | 9 | **The Tangled Web** | Michal Zalewski |  | 2011 | security(5) | security 的第三本；「同源政策」3 處、「瀏覽器安全」1 處，都只在本站；portal 的 Zalewski **0 本**，而瀏覽器那一側已經有 `browser-hackers-handbook`（攻擊面）——**同源政策為何長成這樣**的歷史考據不在 |
 | 10 | **Cryptography Engineering** | Niels Ferguson, Bruce Schneier & Tadayoshi Kohno |  | 2010 | security(5) | security 的第四本；「密碼學」全星系 19 處／7 檔／跨 3 站（security 17、data-systems 1、wujun 1），portal 搜 cryptograph 只有 2 本（serious-cryptography、security-engineering），**Schneier 0 本**——把密碼學當工程紀律而非數學的那半不在 |
@@ -37,7 +37,7 @@
 | 17 | **Trust: Knowing When to Give It, When to Withhold It...** | Henry Cloud | Trust | 2023 | cloud(4) | cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後 |
 | 18 | **NICNT** | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | biblical-studies(8) | 準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中 |
 | 19 | **Good Habits, Bad Habits** | Wendy Wood |  | 2019 | habits(5) | habits 站 owned 38／wanted 6，按準則④進榜：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中 |
-| 20 | **Why Zebras Don't Get Ulcers** | Robert M. Sapolsky | 為什麼斑馬不會得胃潰瘍 | 1994 | wellness(5) | wellness 站 owned 27／wanted 6，遞補《信息傳》結案空出來的那格，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》 |
+| 20 | **Why Zebras Don't Get Ulcers** | Robert M. Sapolsky | 為什麼斑馬不會得胃潰瘍 | 1994 | wellness(5) | wellness 站 owned 27／wanted 6，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -58,12 +58,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1792 筆（去重 1310 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **115 筆（去重 115 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1802 筆（去重 1320 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **105 筆（去重 105 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 78 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 82 筆 |
 
-> `owned` 去重後的 1310 是**已建成書站的書**（1792 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1320 是**已建成書站的書**（1802 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -84,28 +84,21 @@
 | --- | --- | --- | --- | --- |
 | Christian Theology: An Introduction | Alister E. McGrath 麥葛福 | `erickson-christian-theology` | Millard J. Erickson | theology-note |
 
-## 疑似漏報：1 本可能其實已經有 repo
+## 疑似漏報：0 本可能其實已經有 repo
 
 書名**沒有**正規化後完全相同，但 portal 上有 repo 長得很像——改過書名（英美版不同、中譯轉寫）的書會落在這裡。**這節是提名，不是判決**：確認是同一本就寫進 `export-wanted.py` 的 `ALIASES`，下一輪它就走精確路徑並自動掉進「先扣掉」；確認是續集或同系列的不同書就不用管，下輪還會再問一次。
 
 門檻：兩邊書名的**雙向 Jaccard ≥70%**（詞相等的判準放寬到共同前綴 5 字元，才抓得到 `Forgiving` ↔ `Forgiveness` 這種詞形差異），且**作者沒有互相否決**。用雙向而不是單向覆蓋率，是因為單向會被系列卷洗版——`… on Leadership` 的詞有 75% 出現在 `… on Communication` 裡，但那是不同的一本。作者不符的已經在上一節擋掉；`NAME_COLLISIONS` 裁決過的不再提名。
 
-| 想收的書 | 作者 | 疑似 repo | 相似度 | repo 上的書名 | 登記在 |
-| --- | --- | --- | ---: | --- | --- |
-| HBR's 10 Must Reads: The Essentials | Harvard Business Review | `hbr-s-10-must-reads-on-communication` | 75% | HBR's 10 Must Reads on Communication | hbr-note |
+無——沒有書名相近卻沒對上的。
 
-## 快歸零的站：6 站只差 1–2 本
+## 快歸零的站：1 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
 | 站 | 已收 | 還差 | 差哪幾本 |
 | --- | ---: | ---: | --- |
-| `business-strategy-note` | 49 | **1** | Playing to Win（A. G. Lafley & Roger L. Martin） |
-| `relationships-note` | 45 | **1** | Hold Me Tight（Sue Johnson） |
-| `writing-note` | 31 | **1** | Into the Woods（John Yorke） |
 | `newport-note` | 8 | **1** | How to Be a High School Superstar（Cal Newport） |
-| `image-style-note` | 6 | **1** | Take Ivy（石津謙介 企劃／林田昭慶 等） |
-| `damodaran-note` | 4 | **1** | The Dark Side of Valuation（Aswath Damodaran） |
 
 ## 優先收：0 本有兩個以上的站在等
 
@@ -114,7 +107,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 115 筆）
+## 完整清單（依站，共 105 筆）
 
 ### biblical-studies-note — 9 本
 
@@ -295,51 +288,11 @@
 | Truth, Beauty, and Goodness Reframed | Howard Gardner | 重新定義真善美 | 2011 | 數位時代如何守住三大古典價值；《學習的紀律》的續章 |
 | The App Generation | Howard Gardner & Katie Davis | 破解 APP 世代 | 2013 | 與 Katie Davis 合著；app 心態如何形塑青少年的認同、親密與想像 |
 
-### hbr-note — 5 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| HBR's 10 Must Reads: The Essentials | Harvard Business Review |  | 2010 | 主系列的總綱卷——Porter/Drucker/Kotter/Christensen 名文合輯 |
-| HBR's 10 Must Reads on Leadership | Harvard Business Review |  | 2011 | 主系列領導卷——Goleman〈What Makes a Leader?〉、Kotter 名文 |
-| HBR's 10 Must Reads on Managing People | Harvard Business Review |  | 2011 | 主系列帶人卷——One Minute Manager 級的經典選文 |
-| HBR's 10 Must Reads on Strategy | Harvard Business Review |  | 2011 | 主系列策略卷——Porter〈What Is Strategy?〉所在 |
-| HBR's 10 Must Reads on Innovation | Harvard Business Review |  | 2013 | 主系列創新卷——Christensen 破壞式創新名文 |
-
-### business-strategy-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Playing to Win | A. G. Lafley & Roger L. Martin |  | 2013 | Lafley & Martin；P&G 的五問策略級聯 |
-
-### damodaran-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| The Dark Side of Valuation | Aswath Damodaran | 估值的黑暗面 | 2001 | 年輕、高成長與困境公司的估值難題——正典外最值得補的一塊 |
-
-### image-style-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Take Ivy | 石津謙介 企劃／林田昭慶 等 |  | 1965 | 石津謙介企劃；美式 Ivy 風格的攝影聖經 |
-
 ### newport-note — 1 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | How to Be a High School Superstar | Cal Newport |  | 2010 | 「鬆弛悖論」：不靠更多課外活動，靠深耕一件事到引人好奇的深度——原誤標在深度學習力的 repo 上，2026-08-06 校正；portal 上同名的 how-to-be-a-high-school-superstar 內容實為《How to Win at College》，作者同樣是 Newport，所以作者比對擋不掉，靠 NAME_COLLISIONS 人工排除 |
-
-### relationships-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Hold Me Tight | Sue Johnson | 抱緊我 | 2008 | Sue Johnson：情緒取向治療（EFT） |
-
-### writing-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Into the Woods | John Yorke |  | 2013 | Yorke 的五幕論，把各家結構理論收攏成一套 |
 
 ## 沒有英文書名的 0 本（華文／日文原著）
 

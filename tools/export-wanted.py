@@ -153,17 +153,27 @@ from pathlib import Path
 #      上一輪 TOP20 裡的 5 格（The News、賴特 4 本）跟著作廢。
 #
 # 於是近零名單重排成 **6 站各差 1 本**（image-style 因為那 4 本出局而新進榜，剩 Take Ivy），
-# 準則②照樣是 0（多站共等的都回填成 owned 了）。剩下 14 格這樣分：
-#   - **security 整站 6 本**（第 7–12 格）：站主自標的《The Web Application Hacker's Handbook》
-#     領頭（準則③），六本收齊就把一個 owned 8 的站歸零。作者側證據極乾淨——Stuttard、
-#     Shostack、Anley、Sikorski、Ferguson/Schneier、Zalewski 在 portal **全部 0 本**。
-#   - **cloud 5 本**（第 13–17 格）：理由沿用上輪並重查過（界線 461 處／146 檔／48 站、
-#     「成長神學」1 處孤證），這批是準則④。
-#   - NICNT 代表卷（第 18 格，準則③「系列級缺口」）、Good Habits, Bad Habits（第 19 格）與
-#     Why Zebras Don't Get Ulcers（第 20 格，遞補《信息傳》結案空出來的那格）——都是準則④。
-#   - hbr（5）／drucker（5）／gardner（5）三站讓位的理由沿用上輪，免得下輪重議：hbr 那 5 卷是
-#     **合輯**（Porter、Drucker、Christensen 在 portal 都已有自己的書櫃）；drucker 的 5 本是
-#     早期／晚期邊緣作，不是哪條概念線的源頭；gardner 的「多元智能」跨站槓桿最小。
+# 準則②照樣是 0（多站共等的都回填成 owned 了）；其餘 14 格分給 security 整站 6 本（準則③領頭）、
+# cloud 5 本（準則④）、NICNT、Good Habits, Bad Habits、Why Zebras Don't Get Ulcers。
+#
+# 2026-08-14 第二輪（同日晚間，資料源：GitHub 現況 1804 個 repo）：Andrew 在裁決輪之後
+# **一口氣建了 10 個書站**，其中 8 本正是上一版 TOP20 裡的——所以這輪是真正的「買到了」對帳。
+#   a. **10 本回填 owned**：dark-side-of-valuation、hold-me-tight、into-the-woods、
+#      playing-to-win、take-ivy（以上 5 本是上版 TOP20 的第 2–6 格）＋ HBR Must Reads 5 卷
+#      （the-essentials／on-strategy／on-innovation／on-leadership／on-managing-people）。
+#      wanted 115 → 105，**business-strategy／relationships／writing／image-style／damodaran
+#      五站同時歸零**，近零名單只剩 newport 一站。
+#   b. **比對規則補了 EDITION_TAIL**（見 norm_title 上方）：HBR 的 on-leadership 與
+#      on-managing-people 明明已經有 repo 卻沒進「先扣掉」——portal 描述書名帶
+#      `, Updated and Expanded`，精確比對打不中，連「疑似漏報」都撈不到（尾綴三個詞灌進
+#      Jaccard 分母，真命中只剩 57%，輸給同系列另一卷的假命中 75%）。砍掉版次尾綴後兩本都歸位。
+#      **hbr 站因此也不再是「讓位」而是收乾淨了**——上一輪那句「hbr 5 卷是合輯所以讓位」作廢。
+#   c. 準則①這輪只剩 newport 一格（第 1 格），準則②仍是 0，準則③兩筆（Web Hacker's
+#      Handbook、NICNT）都已在榜——所以空出來的 5 格全由準則④填，選的是「portal 書櫃夠深
+#      ／衍生書已在、原典卻缺」那種（第 2–6 格，數字都現查過）。
+#   - drucker（5）這輪仍讓位：portal 書櫃 18 本是全星系最深的單一作者，但那 5 本是早期／
+#     晚期邊緣作，概念側證據撐不起來——「合法性」全星系 13 處裡 8 處在 leetcode 站是
+#     **字面假命中**（輸入合法性），drucker 站真命中只有 3 處。下輪若要排，先補概念頁再說。
 #
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
 # README 的中文書名或章節才判的）：`software-developers-career-guide` 是 Sonmez 2017 的另一本，
@@ -182,12 +192,12 @@ from pathlib import Path
 # 仍然沒有站。NAME_COLLISIONS 那筆要留著，重複的 repo 是 SOURCING-DEBT 的事。
 TOP20 = [
     ("how-to-be-a-high-school-superstar", "newport 站 owned 8／wanted 1——**收了就歸零**；portal 的 Newport 8 本（deep-work、so-good、digital-minimalism、slow-productivity…），學生三部曲只剩這本真的沒有（同名的 `how-to-be-a-high-school-superstar` repo 內容仍是 How to Win at College，見 SOURCING-DEBT.md——**下單前別被 portal 上那個 slug 騙了**）；「鬆弛悖論」站內 1 處孤證；薄，有繁中《深度學習力》"),
-    ("hold-me-tight", "relationships 站 owned 45／wanted 1——**收了就歸零**；portal 的 Sue Johnson **0 本**；「依附」全星系 62 處／38 檔／**跨 22 站**（thinking 10、relationships 8、de-botton 8）——散得極開卻沒有情緒取向治療（EFT）的原典，站內「情緒取向」只有 1 處孤證；有繁中《抱緊我》"),
-    ("take-ivy", "image-style 站 owned 6／wanted 1——**收了就歸零**，這輪新進榜：其餘 4 本（True Style、ABC of Men's Fashion、The Suit、Icons of Men's Style）2026-08-14 判定暫無來源，這本是唯一買得到的；站上 owned 6 本全是穿搭原則與禮儀（Flusser 兩本、Roetzel、Marshall Alexander、O'Brien、Bridges），portal 搜 menswear 也只有 2 本——**風格史那一側整個空白**；站內「Ivy」3 處、「石津」3 處都只在本站，沒有出處；薄（攝影集，2010 powerHouse 重印）"),
-    ("playing-to-win", "business-strategy 站 owned 49／wanted 1——**收了就歸零**，而這是全星系第三深的主題站；portal 的 Lafley 與 Roger Martin **各 0 本**；站內「策略級聯」1 處孤證、「五問」全星系 13 處但 business-strategy 只佔 1 處——P&G 那套五問框架整套沒有出處；有繁中《策略就是要贏》"),
-    ("into-the-woods", "writing 站 owned 31／wanted 1——**收了就歸零**；portal 的 John Yorke **0 本**；結構理論目前只剩 Snyder 的十五節拍一家之言——「故事結構」全星系 22 處／13 檔／跨 5 站，writing 站內 11 處，而把三幕／五幕各家收攏成一套的這本不在；無繁中"),
-    ("the-dark-side-of-valuation", "damodaran 站 owned 4／wanted 1——**收了就歸零**；portal 的 Damodaran 4 本（investment-valuation、investment-philosophies、narrative-and-numbers、little-book-of-valuation）；「估值」全星系 236 處／40 檔／跨 10 站，其中 damodaran 站內 178 處——**全星系概念密度最高的主題**，而這本處理的年輕、高成長與困境公司，站內「困境」「高成長」各只有 3 處；厚，無繁中"),
-    ("the-web-application-hacker-s-handbook", "security 站 owned 8／wanted 6——**這六本收齊就歸零**，是差 1 本那批之外這輪唯一整批排進來的站；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚"),
+    ("extraordinary-minds", "gardner 站 owned 11／wanted 5，這輪第一本準則④：portal 的 Howard Gardner 書櫃 **11 本**（`superforecasting`、`how-big-things-get-done` 那兩本是 Dan Gardner，不算），是全星系第二深的單一作者書櫃，而且 `-minds` 那一系列幾乎收全了——frames／creating／changing／leading／unschooled／disciplined／synthesizing 都在，**獨缺這本《非凡心智》**；站內「非凡心智」7 處、「四種非凡」1 處都只在本站、沒有出處；薄，有繁中《非凡心智》，排這 5 格最前面"),
+    ("the-total-money-makeover", "personal-finance 站 owned 33／wanted 7，準則④裡**證據最乾淨的一筆**：portal 已經有它的續集 `baby-steps-millionaire`，那個 repo 自己的描述就寫著「The Total Money Makeover follow-up」——**衍生書在、原典不在**；「無債務」全星系只有 2 處且都在本站，Baby Steps 這套體系在星系裡沒有源頭（「債務」185 處看起來多，但 economics 97 處是主權債務、agile 28 處是技術債，不能算數）；薄，繁中在版與否未查證，下單前自己確認一下"),
+    ("observability-engineering", "cloud-infra 站 owned 17／wanted 9（缺口 34.6%，僅次於已整批進榜的 security），這批第一本：「可觀測性」全星系 35 處／12 檔，其中 **34 處在本站**、「高基數」9 處（cloud-infra ＋ system-design）——本站已經在用這套詞彙講事情，而 portal 的 Charity Majors／Liz Fong-Jones **0 本**，整個可觀測性學派沒有原典；無繁中"),
+    ("systems-performance", "cloud-infra 的第二本；「效能」是全星系散得最開的工程概念之一——276 處／133 檔／**跨 29 站**（system-design 43、drucker 34、data-systems 29、business-strategy 22），而 portal 的 Brendan Gregg **0 本**；站內「USE 方法」只有 1 處孤證，講了 276 次效能卻沒有一本系統性的量測方法論；厚，無繁中"),
+    ("streaming-systems", "data-systems 站 owned 11／wanted 8（缺口 42.1%，全星系第二高），這輪只排一本當起手：「串流」全星系 54 處／26 檔／跨 11 站（system-design 22、data-systems 20）、「事件溯源」32 處（data-systems 22、system-design 10）、watermark 9 處全在本站——**兩個站在互相引用同一組概念卻共用不到一本原典**；portal 這條線只有 Kleppmann 的 `designing-data-intensive-applications` 一本撐著，Akidau、Stonebraker／Hellerstein、Karwin、Stopford、Reis/Housley、Greg Young **全部 0 本**；厚，無繁中"),
+    ("the-web-application-hacker-s-handbook", "security 站 owned 8／wanted 6——**這六本收齊就歸零**，缺口 42.9% 是全星系最高，也是唯一整站排進來的；這本領頭是準則③：站主在該筆 `note` 自註「本站 Web 這條線最大的原典缺口」。站內證據對得上——XSS 5 處、SQL 10 處、OWASP 只有 1 處、「滲透測試」1 處，Web 攻防講到了卻沒有出處；portal 的 Stuttard **0 本**，搜 penetration 也是 0；厚"),
     ("threat-modeling", "security 的第二本；「威脅建模」全星系 4 處／3 檔**全在本站**、STRIDE 只有 1 處孤證；portal 的 Shostack **0 本**——站上 Anderson《Security Engineering》講的是「對手是誰」，「怎麼系統性地問哪裡會被打」這條線沒有出處；薄，排這批前面"),
     ("the-tangled-web", "security 的第三本；「同源政策」3 處、「瀏覽器安全」1 處，都只在本站；portal 的 Zalewski **0 本**，而瀏覽器那一側已經有 `browser-hackers-handbook`（攻擊面）——**同源政策為何長成這樣**的歷史考據不在"),
     ("cryptography-engineering", "security 的第四本；「密碼學」全星系 19 處／7 檔／跨 3 站（security 17、data-systems 1、wujun 1），portal 搜 cryptograph 只有 2 本（serious-cryptography、security-engineering），**Schneier 0 本**——把密碼學當工程紀律而非數學的那半不在"),
@@ -200,7 +210,7 @@ TOP20 = [
     ("trust", "cloud 的第五本，2023 年的最新主著；站內「信任」只有 6 處，而全星系 1176 處裡 covey 一站就佔 356——**信任這條線目前是柯維的版本**，界線思想的當代續篇不在；厚，無繁中，排這批最後"),
     ("nicnt", "準則③：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 69 本，背景註釋（IVP 新約背景、校園舊約背景）、釋經學手冊、聖經神學都齊了，**逐節的學術註釋一本都沒有**；站內「註釋」22 處、「註釋書」5 處在講它，而「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8）——起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
     ("good-habits-bad-habits", "habits 站 owned 38／wanted 6，按準則④進榜：「習慣」全星系 827 處／346 檔／**跨 56 站**（habits 189、covey 116、career 43、leadership 43），而 portal 的習慣書櫃是通俗三本（atomic-habits、power-of-habit、tiny-habits），**Wendy Wood 0 本**；站內「習慣迴路」19 處全是 Duhigg 那套模型，「習慣科學」只有 1 處孤證——情境與摩擦力的學院派證據沒有出處；無繁中"),
-    ("why-zebras-don-t-get-ulcers", "wellness 站 owned 27／wanted 6，遞補《信息傳》結案空出來的那格，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》"),
+    ("why-zebras-don-t-get-ulcers", "wellness 站 owned 27／wanted 6，同樣按準則④：「壓力」全星系 587 處／248 檔／**跨 56 站**（navarro 79、life-meaning 74、wellness 57、thinking 28）——散得極開，而 portal 的 Sapolsky 只有 `behave`（行為的起源），壓力生理學那本不在；「皮質醇」全星系只有 4 處／4 站，講了 587 次的東西幾乎沒有機制層的出處；厚，有繁中《為什麼斑馬不會得胃潰瘍》"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -327,9 +337,17 @@ def author_ok(want, repo):
     return bool(wl & rl) or bool(wc and rc and (wc in rc or rc in wc))
 
 
+# 版次尾綴：portal 的 description 書名常帶 `, Updated and Expanded`（HBR Must Reads
+# 那批都是），wanted 那側只寫本名，精確比對就打不中。2026-08-14 的 `on Leadership`
+# 與 `on Managing People` 就是這樣漏掉的——更糟的是連「疑似漏報」也撈不出來：尾綴
+# 那三個詞全灌進 Jaccard 的分母，真命中只剩 57%，反而輸給同系列另一卷的假命中 75%。
+# 改版與原版當同一本收（Andrew 一本書只建一個 repo），所以砍掉尾綴再比。
+EDITION_TAIL = re.compile(r",\s*(updated|revised|expanded|new)\b.*$", re.I)
+
+
 def norm_title(s):
-    """書名正規化：砍副標與冠詞、去標點——兩邊都過這關才能比。"""
-    s = re.sub(r"[:：].*", "", s or "").lower()
+    """書名正規化：砍版次尾綴與副標、砍冠詞、去標點——兩邊都過這關才能比。"""
+    s = re.sub(r"[:：].*", "", EDITION_TAIL.sub("", s or "")).lower()
     s = re.sub(r"[^a-z0-9一-鿿]+", " ", s).strip()
     return re.sub(r"^(the|a|an) ", "", s)
 
