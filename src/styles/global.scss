@@ -2114,10 +2114,6 @@ a {
     margin: 0;
   }
 }
-.overview-note {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
 /* 「依哪一版站況寫的」——與頁尾 curation 徽章同一個語彙：單框、等寬、不搶戲。 */
 .overview-stamp {
   margin-left: auto;
@@ -2151,6 +2147,49 @@ a {
   font-size: 0.95rem;
   line-height: 1.85;
   color: var(--text);
+}
+/* 段落切換鍵（v0.31.0）：沿 biblio-tab 的同一套控件語彙。tab 化後段內 h3 與鍵重複，收掉；
+ * 無 JS 時鍵不出、三段攤開，h3 回歸段標。 */
+.overview-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 1rem 0 0.8rem;
+  &[hidden] {
+    display: none;
+  }
+}
+.overview-tab {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease,
+    color 0.16s ease;
+  &:hover {
+    @include lift;
+  }
+  &:focus-visible {
+    @include focus-ring;
+  }
+  &.is-active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+.overview.is-tabbed .overview-section-name {
+  display: none;
+}
+.overview.is-tabbed .overview-section + .overview-section {
+  margin-top: 0;
 }
 
 /* ───────────────────────── 書架縮圖（cover.png） ───────────────────────── */
@@ -3012,42 +3051,60 @@ a {
 .guide-empty {
   color: var(--muted);
 }
-.guide-layout {
-  display: grid;
-  grid-template-columns: 11rem minmax(0, 1fr);
-  gap: 2.8rem;
-  align-items: start;
-  margin-top: 1.2rem;
-}
-.guide-toc {
+/* 章節切換鍵（v0.31.0，取代側欄目錄）：貼在 topnav（56px）下——長章讀到一半也換得了章。
+ * 底色配方同 .filterbar：半透明＋模糊，捲動時內文從底下滑過不打架。 */
+.guide-tabs {
   position: sticky;
-  top: 1.2rem;
-  font-size: 0.82rem;
-  ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-left: 2px solid var(--accent);
-  }
-  a {
-    display: flex;
-    gap: 0.55rem;
-    padding: 0.3rem 0.2rem 0.3rem 0.85rem;
-    color: var(--text-2);
-    &:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
+  top: 56px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.6rem 0 1.8rem;
+  padding: 0.55rem 0;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  &[hidden] {
+    display: none;
   }
 }
-.guide-toc-num {
+.guide-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-sm;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease,
+    color 0.16s ease;
+  &:hover {
+    @include lift;
+  }
+  &:focus-visible {
+    @include focus-ring;
+  }
+  &.is-active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+.guide-tab-num {
   font-family: $serif;
+  font-size: 0.78rem;
   color: var(--accent);
 }
 .guide-chapter {
-  /* 目錄跳轉時別讓章標題貼住視窗頂。 */
-  scroll-margin-top: 1.2rem;
+  /* 錨點跳轉時讓章標題落在 topnav＋tab 列之下。 */
+  scroll-margin-top: 6.8rem;
 }
+/* 無 JS 攤開時章與章之間仍要有界；tab 模式一次只有一章，規則不生效也無妨。 */
 .guide-chapter + .guide-chapter {
   margin-top: 3.6rem;
   border-top: 1px solid var(--border);
@@ -3076,68 +3133,6 @@ a {
     position: static;
     margin-bottom: 2.2rem;
   }
-}
-
-/* ───────────────────────── 首頁導覽入口（GuideCard） ───────────────────────── */
-/* 與 overview / bookshelf 同一個平面語彙：無框、無陰影，靠上緣間距分區。 */
-.guidecard {
-  margin: 2.2rem 0 0;
-}
-.guidecard-head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.7rem;
-  h2 {
-    margin: 0;
-  }
-}
-.guidecard-note {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-.guidecard-stamp {
-  margin-left: auto;
-  padding: 0.1rem 0.4rem;
-  border: 1px solid var(--border);
-  border-radius: $radius-sm;
-  font-family: $mono;
-  font-size: 0.7rem;
-  color: var(--muted);
-}
-.guidecard-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: 42em;
-  li + li {
-    border-top: 1px solid var(--border);
-  }
-  a {
-    display: flex;
-    align-items: baseline;
-    gap: 0.7rem;
-    padding: 0.42rem 0.2rem;
-    color: var(--text-2);
-    font-size: 0.93rem;
-    &:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
-  }
-}
-.guidecard-num {
-  flex: none;
-  font-family: $serif;
-  font-size: 0.8rem;
-  color: var(--accent);
-}
-.guidecard-cta {
-  display: inline-block;
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  font-weight: 600;
 }
 
 /* ───────────────────────── 藏書頁（Library /library/）＋開採度 ───────────────────────── */

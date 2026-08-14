@@ -4,16 +4,16 @@ import Bookshelf from "../components/Bookshelf.astro";
 import SchoolsMap from "../components/SchoolsMap.astro";
 import AuthorProfile from "../components/AuthorProfile.astro";
 import Overview from "../components/Overview.astro";
-import GuideCard from "../components/GuideCard.astro";
 import { withBase } from "../lib/url";
 import { shelfFromBibliography, normalizeSchools } from "../lib/library";
 import { site, books, bibliography, schools, profile, overview } from "virtual:notes-core/site";
 
-// 首頁由上而下：hero → 總覽 → 導覽入口 → 思想側寫（人物站）／學派地圖（主題站）→ 參考書架。
+// 首頁由上而下：hero → 總覽 → 思想側寫（人物站）／學派地圖（主題站）→ 參考書架。
 // 總覽排在最前（v0.29.0）：先用一段散文讀懂「這是什麼」，再往下看結構化的卡片與表格；
 // 反過來的話，讀者得自己從卡片拼出全貌，而那正是總覽要代勞的事。
 // 藏書盤點自 v0.30.0 遷往 /library/——收藏狀態是工作文件（採購 roadmap），不是門面；
 // 首頁書架保留（owned 封面牆是「這站有多少料」最直觀的證明），入口連過去。
+// 導覽入口卡於 v0.31.0 移除（Andrew 裁定）——導覽動線交給 topnav 的 📖，首頁不重複目錄。
 // 總覽／導覽／側寫／地圖皆為選配，依站台是否提供資料決定；概念入口走 topnav 的 Concepts，
 // 不在首頁重複分類格——避免與 /concepts/ 學習路徑頁重覆。
 // 書架：站台給了 bibliography 就自動取其中 owned 項（單一資料源），不必再維護 books.ts。
@@ -40,7 +40,6 @@ const schoolsData = normalizeSchools(schools);
   </header>
 
   <Overview overview={overview} />
-  <GuideCard />
   {profile && <AuthorProfile profile={profile} bibliography={bibliography} />}
   <SchoolsMap schools={schoolsData} />
   <Bookshelf books={shelf} moreHref={bibliography.length > 0 ? withBase("library/") : undefined} />
