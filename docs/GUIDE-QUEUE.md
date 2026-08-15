@@ -16,19 +16,19 @@
 | covey-note | 人物 | 10 | 38 | 3.8 | 2026-08-15 | writtenAt 2026-08-15；PCL 已開採，未挖僅剩 Families（應用衍生，合理不挖） |
 | keller-note | 人物 | 23 | 23 | 1.0 | — | writtenAt 2026-08-14；未挖 5 本全為靈修日課／選集＝工具書層，該挖=0，判定免 enrich |
 | peterson-note | 人物 | 4 | 24 | 6.0 | — | writtenAt 2026-08-15；四本全脊梁全挖、wanted=0，全星系挖最深的人物站之一 |
+| clean-code-note | 主題 | 25 | 69 | 2.8 | — | writtenAt 2026-08-15；25 挖 8、17 本待挖已分層記帳（脊梁：CC/APoSD/Refactoring/WELC/TDD/SEG） |
+| design-patterns-note | 主題 | 20 | 43 | 2.1 | — | writtenAt 2026-08-15；9 挖 11 待挖；企業／架構層整群懸置記帳，POSA unavailable |
+| system-design-note | 主題 | 25 | 41+20題 | 1.6 | — | writtenAt 2026-08-15；雙脊 SDI+DDIA；12 本待挖（最急：Evans/Release It/EIP）；existing 頁「回中信封估算」疑錯字待 note-check --fix |
+| writing-note | 主題 | 32 | 38 | 1.2 | — | writtenAt 2026-08-15；16 挖／5 借聲未掛錨／11 待挖；最大債 Science of Storytelling；find-the-core 頁錨錯書名待 --fix |
 
 ## 第一批——站深料足，直接可做
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| clean-code-note | 主題 | 25 | 69 | 2.8 | — |  |
 | agile-note | 主題 | 15 | 61 | 4.1 | 2026-08-04 |  |
 | design-note | 主題 | 12 | 46 | 3.8 | 2026-08-04 |  |
 | economics-note | 主題 | 50 | 45 | 0.9 | — |  |
 | startup-note | 主題 | 62 | 44 | 0.7 | — |  |
-| design-patterns-note | 主題 | 20 | 43 | 2.1 | — |  |
-| system-design-note | 主題 | 25 | 41 | 1.6 | — |  |
-| writing-note | 主題 | 32 | 38 | 1.2 | — |  |
 | communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
 | learning-note | 主題 | 33 | 34 | 1.0 | — |  |
 | relationships-note | 主題 | 46 | 34 | 0.7 | — |  |
