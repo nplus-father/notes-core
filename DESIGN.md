@@ -23,7 +23,7 @@
 
 由上而下：
 
-1. **Hero**：左 `site-cover`（站縮圖 `public/cover.svg`）＋ 右 `site.brand` 標題與 `site.heroLede`。
+1. **Hero**：左 `site-cover`（站縮圖走注入路由 `/site-cover.svg`，見 §3）＋ 右 `site.brand` 標題與 `site.heroLede`。
 2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。標題固定 **"Overview"**（v0.34.0，無副標）；**lede 常駐、段落收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段），段落 heading＝tab 標籤，**標準英文詞彙**：人物站 `Background / Contributions / Claims`（＋選配 `Verdict`）、主題站 `Landscape / Threads / Verdict`；行長不設上限（tab 化後一次只有一段，文字用滿方框）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 📖。
 3. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
 4. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
@@ -36,7 +36,8 @@
 ## 3. 站縮圖（v0.13.0 起由 core 產生）
 
 - 路由 `/site-cover.svg`（`src/routes/site-cover.svg.ts`），資料取自 registry（`sites.ts`）——排版型圖版：紙色底＋襯線站名＋`N°` 編號，人物／主題各一種墨色（`#5c4433`／`#2f4858`，與 `data-axis` 的 accent 同源）。
-- 各站**不放** `public/cover.svg`（舊制已廢；殘留是死檔，路由刻意不叫 `/cover.svg` 所以不會被蓋）。favicon 同樣由 core 提供。
+- 各站**不放** `public/cover.svg`（舊制已廢；2026-08-15 已把 62 站的殘留檔掃掉，全星系歸零）。路由刻意不叫 `/cover.svg`——同名的話各站 public 的靜態檔會蓋掉注入路由，core 改了卻看不出變化。favicon 同樣由 core 提供。
+- 站縮圖 `/site-cover.svg` 與各站 `public/cover.png` 是**兩回事**：後者是入口站 nplus-father.github.io 的卡片縮圖（3:4 直式，人物站＝傳主肖像），靠 HEAD 探測 `nplus.wiki/<slug>/cover.png` 決定出圖或走排版占位——**不可刪**。
 
 ## 4. 書架 Bookshelf（書縮圖 = SSOT）
 

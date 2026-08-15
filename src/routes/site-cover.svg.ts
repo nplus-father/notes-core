@@ -9,8 +9,8 @@
 //   - 主題站 / 人物站各一種墨色，其餘一律相同——刻意的一致，這是套書不是個展
 //
 // 路由刻意叫 /site-cover.svg 而不是 /cover.svg：各站 public/cover.svg 還在時會蓋掉
-// 同名注入路由，那會讓 core 改了卻看不出變化（靜默無效比壞掉更糟）。舊檔留著無害，
-// 之後掃掉即可。
+// 同名注入路由，那會讓 core 改了卻看不出變化（靜默無效比壞掉更糟）。62 站的殘留舊檔
+// 已於 2026-08-15 掃除，新站的 template 也不再帶——這層保險留著，別把路由改名成 /cover.svg。
 import type { APIRoute } from "astro";
 import { site } from "virtual:notes-core/site";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
