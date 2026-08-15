@@ -20,6 +20,8 @@
 | design-patterns-note | 主題 | 20 | 43 | 2.1 | — | writtenAt 2026-08-15；9 挖 11 待挖；企業／架構層整群懸置記帳，POSA unavailable |
 | system-design-note | 主題 | 25 | 41+20題 | 1.6 | — | writtenAt 2026-08-15；雙脊 SDI+DDIA；12 本待挖（最急：Evans/Release It/EIP）；existing 頁「回中信封估算」疑錯字待 note-check --fix |
 | writing-note | 主題 | 32 | 38 | 1.2 | — | writtenAt 2026-08-15；16 挖／5 借聲未掛錨／11 待挖；最大債 Science of Storytelling；find-the-core 頁錨錯書名待 --fix |
+| navarro-note | 人物 | 6 | 23 | 3.8 | — | writtenAt 2026-08-15；一脊梁（WEBIS）三支架；待挖 Three Minutes、Be Exceptional |
+| peck-note | 人物 | 9 | 17 | 1.9 | — | writtenAt 2026-08-15；脊梁三本一線一根；友善的雪花書站已寫、站內未開頁 |
 
 ## 第一批——站深料足，直接可做
 
@@ -38,8 +40,6 @@
 | behaviour-interview-note | 主題 | 20 | 30 | 1.5 | — |  |
 | history-note | 主題 | 34 | 30 | 0.9 | — |  |
 | tracy-note | 人物 | 36 | 25 | 0.7 | — |  |
-| navarro-note | 人物 | 6 | 23 | 3.8 | — |  |
-| peck-note | 人物 | 9 | 17 | 1.9 | — |  |
 | greene-note | 人物 | 7 | 16 | 2.3 | — |  |
 | wan-weigang-note | 人物 | 11 | 15 | 1.4 | — |  |
 
