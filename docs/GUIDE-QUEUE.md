@@ -12,9 +12,9 @@
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | leadership-note | 主題 | 94 | 62 | 0.7 | 2026-08-15 | writtenAt 2026-08-15；七本正典已挖，開變革線（Coverage 未挖 33） |
-| thinking-note | 主題 | 56 | 46 | 0.8 | — | writtenAt 2026-08-14 |
-| covey-note | 人物 | 10 | 37 | 3.7 | 2026-08-04 | writtenAt 2026-08-14 |
-| keller-note | 人物 | 23 | 23 | 1.0 | — | writtenAt 2026-08-14 |
+| thinking-note | 主題 | 56 | 60 | 1.1 | 2026-08-15 | writtenAt 2026-08-15；十三本正典一次還清（Kahneman 線×3、判斷偏誤×5、Barrett、Greene、Seth、語言辯論×2），Coverage 未挖 27→14，餘為支架／姊妹站分工 |
+| covey-note | 人物 | 10 | 38 | 3.8 | 2026-08-15 | writtenAt 2026-08-15；PCL 已開採，未挖僅剩 Families（應用衍生，合理不挖） |
+| keller-note | 人物 | 23 | 23 | 1.0 | — | writtenAt 2026-08-14；未挖 5 本全為靈修日課／選集＝工具書層，該挖=0，判定免 enrich |
 
 ## 第一批——站深料足，直接可做
 
