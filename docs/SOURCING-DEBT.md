@@ -192,3 +192,15 @@ grep -rn '[乃乙乔乏乌泽]' . --include='*.md' \
 
 **成因推測與預防**：損壞集中在 AI 批次產書期的輸出（非 OCR）；書 repo 產線（hugo-book-manager / 相關 skill）
 的收尾檢查應加上面的掃描一鍵。
+
+## 校正紀錄：借聲債（anchor 掛錯書）— 2026-08-15，writing-note
+
+**新型態的債**：頁面有 anchor、掃描器抓不到，但部分主張實出自另一本書——「借聲」。發現途徑是 `/note-guide` 第三章逐本對帳（Coverage 引用數 vs 行文取材），掃描腳本抓不到這種債，**導覽的書帳是目前唯一的偵測器**。
+
+| 頁 | 原寫 | 書中實際 | 修法 |
+| --- | --- | --- | --- |
+| story-structure/desire-and-conflict | 「設定期望→違反期望，意外是機制本身」 | Storr：注意力雙鑰＝偵測改變＋資訊缺口；打破預期只是誘發好奇四式之一 | 照書改寫＋補 science-of-storytelling anchor |
+| story-structure/character-arc | 「缺陷內建進信念與控制理論、故不可見」 | Storr：缺陷內建進**受控幻覺（知覺）**才不可見；控制理論是另一概念（信念的加總） | 拆開照書寫＋補 anchor |
+| nonfiction-copy/find-the-core | 「找核心＝核心＋緊湊」；掃不是讀／電梯測試／Why it matters 掛 made-to-stick | 「簡單＝核心＋緊湊」；該三組素材實出自 Smart Brevity（一件大事／為什麼重要） | 改掛 smart-brevity 正確 anchor；made-to-stick 僅留真屬它的 |
+
+同輪已還：science-of-storytelling 開機制頁（storytelling-brain）。其餘借聲債（writing 站剩 Ueland／Storynomics／Ogilvy 三筆）記在該站導覽 ch3，待下輪。
