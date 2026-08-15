@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# render.sh — 產生主題站封面 (Style A・深色編輯風・3:4 直式・900x1200)
+# render.sh — 產生主題站封面 (Style B・印刷風・3:4 直式・900x1200)
 #
 # 站名與英文副題取自 src/lib/sites.ts，配色與符號取自 src/lib/site-covers.ts，
 # 由 cover-gen.mjs 組成 HTML，這裡負責把 HTML 變成 PNG 並（可選）安裝到各 note repo。
