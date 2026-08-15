@@ -16,10 +16,10 @@
 | covey-note | 人物 | 10 | 38 | 3.8 | 2026-08-15 | writtenAt 2026-08-15；PCL 已開採，未挖僅剩 Families（應用衍生，合理不挖） |
 | keller-note | 人物 | 23 | 23 | 1.0 | — | writtenAt 2026-08-14；未挖 5 本全為靈修日課／選集＝工具書層，該挖=0，判定免 enrich |
 | peterson-note | 人物 | 4 | 24 | 6.0 | — | writtenAt 2026-08-15；四本全脊梁全挖、wanted=0，全星系挖最深的人物站之一 |
-| clean-code-note | 主題 | 25 | 69 | 2.8 | — | writtenAt 2026-08-15；25 挖 8、17 本待挖已分層記帳（脊梁：CC/APoSD/Refactoring/WELC/TDD/SEG） |
-| design-patterns-note | 主題 | 20 | 43 | 2.1 | — | writtenAt 2026-08-15；9 挖 11 待挖；企業／架構層整群懸置記帳，POSA unavailable |
-| system-design-note | 主題 | 25 | 41+20題 | 1.6 | — | writtenAt 2026-08-15；雙脊 SDI+DDIA；12 本待挖（最急：Evans/Release It/EIP）；existing 頁「回中信封估算」疑錯字待 note-check --fix |
-| writing-note | 主題 | 32 | 38 | 1.2 | — | writtenAt 2026-08-15；16 挖／5 借聲未掛錨／11 待挖；最大債 Science of Storytelling；find-the-core 頁錨錯書名待 --fix |
+| clean-code-note | 主題 | 25 | 71 | 2.8 | 2026-08-15 | writtenAt 2026-08-15；挖 10（＋Pragmatic、GOOS——mock 官司兩造到齊）、待挖 15＝支架層 |
+| design-patterns-note | 主題 | 20 | 44 | 2.2 | 2026-08-15 | writtenAt 2026-08-15；挖 10（＋RtP）；企業層判姊妹站分工緩挖，POSA unavailable |
+| system-design-note | 主題 | 25 | 44+20題 | 1.8 | 2026-08-15 | writtenAt 2026-08-15；三筆最急債已還（Evans/Release It/EIP）、挖 16 待挖 9；估算頁錯字已修 |
+| writing-note | 主題 | 32 | 39 | 1.2 | 2026-08-15 | writtenAt 2026-08-15；Storr 開頁＋借聲債還清（校正表在 SOURCING-DEBT.md）；餘借聲 3 筆待下輪 |
 | navarro-note | 人物 | 6 | 23 | 3.8 | — | writtenAt 2026-08-15；一脊梁（WEBIS）三支架；待挖 Three Minutes、Be Exceptional |
 | peck-note | 人物 | 9 | 17 | 1.9 | — | writtenAt 2026-08-15；脊梁三本一線一根；友善的雪花書站已寫、站內未開頁 |
 
