@@ -31,6 +31,7 @@
 | lewis-note | 人物 | 14 | 12 | 0.86 | 2026-08-15 | writtenAt 2026-08-15；神蹟＋納尼亞已挖（護教三部曲齊、安斯康姆改寫入站）；剩裸顏、詩篇擷思 |
 | stott-note | 人物 | 14 | 14 | 1.0 | 2026-08-15 | writtenAt 2026-08-15；講道藝術＋認識聖經已挖，14 本全數開採、未挖歸零 |
 | uncle-bob-note | 人物 | 7 | 14 | 2.0 | 2026-08-15 | writtenAt 2026-08-15；工匠篇標準／倫理＋Coder 預估壓力已挖；剩函數式篇、PPP 獨有章 |
+| tools-note | 主題 | 46 | 20 | 0.4 | 2026-07-31 | writtenAt 2026-08-15；23 挖／23 待挖，火力序：習慣三部曲→Four Thousand Weeks→Flow+Indistractable；「半天工」補錨五本；enrich 未做 |
 
 ## 第一批——站深料足，直接可做
 
@@ -53,7 +54,6 @@
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | management-note | 主題 | 47 | 20 | 0.4 | 2026-08-01 |  |
-| tools-note | 主題 | 46 | 20 | 0.4 | 2026-07-31 |  |
 | problem-solving-note | 主題 | 26 | 17 | 0.7 | 2026-08-06 |  |
 | image-style-note | 主題 | 7 | 13 | 1.9 | — |  |
 | spiritual-formation-note | 主題 | 35 | 13 | 0.4 | 2026-07-31 |  |
@@ -73,7 +73,7 @@
 | bogle-note | 人物 | 6 | 8 | 1.3 | — | 站太薄 |
 | fengtang-note | 人物 | 10 | 8 | 0.8 | — | 站太薄 |
 | nouwen-note | 人物 | 16 | 8 | 0.5 | — | 站太薄 |
-| taleb-note | 人物 | 6 | 8 | 1.3 | — | 站太薄 |
+| taleb-note | 人物 | 6 | 8 | 1.3 | — | enrich 中（拓站） |
 | damodaran-note | 人物 | 5 | 7 | 1.4 | — | 站太薄 |
 | nt-wright-note | 人物 | 11 | 7 | 0.6 | — | 站太薄 |
 | templar-note | 人物 | 9 | 7 | 0.8 | — | 站太薄 |
@@ -83,7 +83,7 @@
 | collins-note | 人物 | 6 | 3 | 0.5 | — | 站太薄 |
 | grant-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
 | grove-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
-| jung-note | 人物 | 7 | 3 | 0.4 | — | 站太薄 |
-| kent-beck-note | 人物 | 6 | 3 | 0.5 | — | 站太薄 |
+| jung-note | 人物 | 7 | 3 | 0.4 | — | enrich 中（拓站） |
+| kent-beck-note | 人物 | 6 | 14 | 2.3 | 2026-08-15 | enrich 完（3→14 頁，Beck 全弧線）；待導覽 |
 | fowler-note | 人物 | 6 | 2 | 0.3 | — | 站太薄 |
 
