@@ -91,7 +91,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 標題與品牌字走襯線體，正文留無襯線——與 site-cover.svg 同一套字，
+/* 標題與品牌字走襯線體，正文留無襯線——與站封面（cover.png）同一套字，
  * 62 站因此讀起來像一套書系而不是一批生成頁。 */
 h1,
 h2,
@@ -230,7 +230,7 @@ a {
     display: none;
   }
 }
-// 人物站主色：暖褐，與 site-cover.svg 的 INK.person 同色。主題站沿用 :root 的冷灰藍。
+// 人物站主色：暖褐（INK.person，portal 占位卡同值）。主題站沿用 :root 的冷灰藍。
 // 放在兩個主題區塊之後，故亮/暗色都吃得到；站台自己的 accentOverride 特異度更高，仍勝出。
 [data-axis="person"] {
   --accent: #5c4433;
@@ -2074,27 +2074,71 @@ a {
   }
 }
 
-/* ───────────────────────── 首頁 Hero + 站縮圖 ───────────────────────── */
+/* ───────────────────────── 首頁 Hero + 站封面 ───────────────────────── */
+/* v0.36.0：hero 改放直式站封面（portal 同一張 public/cover.png——人物站＝傳主肖像、
+ * 主題站＝印刷風設計圖），扉頁的排版元素（眉標／襯線大字／短橫線／寬字距副題）攤成
+ * 活字排在右欄。橫式 site-cover.svg 退役：它把旁邊 h1 / heroLede 的內容用圖片再印
+ * 一次，而 portal 上讀者憑直式封面挑站，點進來就該再看到同一張圖。 */
 .home-hero {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 2rem;
   flex-wrap: wrap;
   margin: 0.5rem 0 1.8rem;
 }
-/* 站縮圖現在是 core 產生的排版型圖版（自帶髮絲外框），所以外層不再加圓角與陰影
- * ——那層「浮卡」效果會把印刷感又拉回 SaaS 卡片。 */
-.site-cover {
-  width: min(460px, 100%);
+/* 3:4 書封尺寸感：寬固定 ~224px（460px 的直式圖會高 613px，把 Overview 推出首屏）。
+ * 髮絲框沿用、不加圓角陰影——浮卡效果會把印刷感拉回 SaaS 卡片。白底肖像照靠這條框
+ * 在紙色底上讀成「印刷品裡貼的一張照片」，而不是浮著的白色矩形。 */
+.hero-cover {
+  width: 224px;
+  max-width: 42vw;
+  /* height 屬性（1200）是 presentational hint，必須明確蓋掉，否則圖被拉高。 */
   height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
   border: 1px solid var(--border);
+}
+/* 深色模式下白底肖像刺眼，壓一階亮度即可——不做反色，照片不是 UI。 */
+[data-theme="dark"] .hero-cover {
+  filter: brightness(0.85);
 }
 .home-hero-body {
   flex: 1;
   min-width: 260px;
   h1 {
-    margin: 0 0 0.5rem;
+    margin: 0;
+    font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+    line-height: 1.15;
   }
+}
+/* 眉標：軸別＋同軸編號，與封面左上／右上角同一組資訊，收成一行。 */
+.hero-kicker {
+  margin: 0 0 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  color: var(--muted);
+  opacity: 0.8;
+}
+.hero-serial {
+  margin-left: 0.9em;
+  font-family: $serif;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+/* 短橫線走 data-axis 的 accent（人物暖褐／主題冷藍）——封面上那條 ink 短線的活字版。 */
+.hero-rule {
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 0.85rem 0;
+  background: var(--accent);
+}
+.hero-brand {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
 }
 
 /* ───────────────────────── 首頁總覽（Overview） ───────────────────────── */
@@ -2457,10 +2501,13 @@ a {
 
 @media (max-width: 640px) {
   .home-hero {
-    gap: 1rem;
+    gap: 1.2rem;
   }
-  .site-cover {
-    width: 100%;
+  /* 窄螢幕封面縮到報紙人物欄的尺寸——3:4 全寬會比整個視窗還高。
+   * 文字欄 min-width 260px 裝不下時自然折行到圖下方。 */
+  .hero-cover {
+    width: 148px;
+    max-width: none;
   }
 }
 

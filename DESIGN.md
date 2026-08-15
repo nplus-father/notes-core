@@ -23,7 +23,7 @@
 
 由上而下：
 
-1. **Hero**：左 `site-cover`（站縮圖走注入路由 `/site-cover.svg`，見 §3）＋ 右 `site.brand` 標題與 `site.heroLede`。
+1. **Hero（v0.36.0）**：左＝**直式站封面 `public/cover.png`**（224px 寬、髮絲框，portal 卡片同一張——人物站肖像／主題站印刷風設計圖，見 §3；無封面的新站純文字呈現、不出破圖）＋ 右＝扉頁排版攤成活字：眉標（軸別＋同軸 `N°` 編號）→ registry `label` 襯線大字 h1 → accent 短橫線 → `site.brand` 寬字距副題 → `site.heroLede`。h1 自此是 label 不是 brand——與封面的主從一致；`<title>` 仍用 brand。
 2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。標題固定 **"Overview"**（v0.34.0，無副標）；**lede 常駐、段落收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段），段落 heading＝tab 標籤，**標準英文詞彙**：人物站 `Background / Contributions / Claims`（＋選配 `Verdict`）、主題站 `Landscape / Threads / Verdict`；行長不設上限（tab 化後一次只有一段，文字用滿方框）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 📖。
 3. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
 4. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
@@ -33,11 +33,11 @@
 
 > 首頁文案（brand / tagline / heroLede / searchLede / searchPlaceholder）全在 `src/site.config.ts`，各站自訂。
 
-## 3. 站縮圖（v0.13.0 起由 core 產生）
+## 3. 站封面（v0.36.0 起 hero 與 portal 同一張）
 
-- 路由 `/site-cover.svg`（`src/routes/site-cover.svg.ts`），資料取自 registry（`sites.ts`）——排版型圖版：紙色底＋襯線站名＋`N°` 編號，人物／主題各一種墨色（`#5c4433`／`#2f4858`，與 `data-axis` 的 accent 同源）。
-- 各站**不放** `public/cover.svg`（舊制已廢；2026-08-15 已把 62 站的殘留檔掃掉，全星系歸零）。路由刻意不叫 `/cover.svg`——同名的話各站 public 的靜態檔會蓋掉注入路由，core 改了卻看不出變化。favicon 同樣由 core 提供。
-- 站縮圖 `/site-cover.svg` 與各站 `public/cover.png` 是**兩回事**：後者是入口站 nplus-father.github.io 的卡片縮圖（3:4 直式，人物站＝傳主肖像），靠 HEAD 探測 `nplus.wiki/<slug>/cover.png` 決定出圖或走排版占位——**不可刪**。
+- **每站一張直式 3:4 封面 `public/cover.png`（900×1200）**：人物站＝傳主肖像照（人工挑選）、主題站＝**印刷風設計圖**（`tools/cover/` 生成——紙色底＋髮絲框＋襯線大字＋`N°` 編號＋accent2 符號；配色與符號在 `src/lib/site-covers.ts`，一符號一站，生成器啟動時對帳）。portal 卡片（HEAD 探測 `nplus.wiki/<slug>/cover.png`）與首頁 hero 消費**同一張圖**——讀者在 portal 憑封面挑站，點進來看到的就是那張，身分交接不斷。**不可刪**。
+- **`/site-cover.svg` 已退役（v0.36.0）**：橫式扉頁卡是「用圖片印出來的文字」，內容與 hero 的 h1／heroLede 逐字重複，且 portal 明確不用它；其排版元素（眉標／襯線大字／短橫線／寬字距副題）攤成活字進了首頁 hero（見 §2）。主題站封面的深色編輯風（Style A：#0e1220 底、glow、點陣格）同批退役——那套語彙與站內的印刷風打架，v2 生成器改走同一套紙色墨階。
+- 各站**不放** `public/cover.svg`（舊制已廢；2026-08-15 已把 62 站的殘留檔掃掉，全星系歸零）。favicon 由 core 提供。
 
 ## 4. 書架 Bookshelf（書縮圖 = SSOT）
 

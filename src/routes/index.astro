@@ -1,4 +1,6 @@
 ---
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Bookshelf from "../components/Bookshelf.astro";
 import SchoolsMap from "../components/SchoolsMap.astro";
@@ -6,6 +8,7 @@ import AuthorProfile from "../components/AuthorProfile.astro";
 import Overview from "../components/Overview.astro";
 import { withBase } from "../lib/url";
 import { shelfFromBibliography, normalizeSchools } from "../lib/library";
+import { siteBySlug, topicSites, personSites } from "../lib/sites";
 import { site, books, bibliography, schools, profile, overview } from "virtual:notes-core/site";
 
 // 首頁由上而下：hero → 總覽 → 思想側寫（人物站）／學派地圖（主題站）→ 參考書架。
@@ -22,19 +25,48 @@ const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
 const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : books;
 // 舊 schools.ts（純 array）與新 defineSchools 物件形式兩收，歸一後交給 SchoolsMap。
 const schoolsData = normalizeSchools(schools);
+
+// Hero（v0.36.0）：直式站封面（portal 同一張 public/cover.png——人物站＝傳主肖像、
+// 主題站＝印刷風設計圖）＋扉頁排版攤成活字。先前的橫式 site-cover.svg 是「用圖片印
+// 出來的文字」，且內容與旁邊的 h1 / heroLede 逐字重複；讀者在 portal 憑直式封面挑站，
+// 點進來卻再也看不到那張圖——身分交接斷了。排版元素（眉標／襯線大字／短橫線／寬字距
+// 副題）全數保留，但改成可選取、吃深淺色主題的 HTML；圖那格只放文字做不到的事。
+const slug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "") || "";
+const entry = siteBySlug.get(slug);
+const axis = entry?.axis ?? "topic";
+// 主標＝registry 的 label（主題站＝中文短名、人物站＝該人物通行的寫法）；brand 退為
+// 寬字距副題——與封面的主從一致。registry 查不到就退回站台 titleBase。
+const heading = entry?.label ?? site.titleBase ?? site.brand;
+// 同軸內編號——新站 append 在該軸尾端，既有編號因此穩定（沿退役的 site-cover.svg 編法）。
+const pool = axis === "person" ? personSites : topicSites;
+const idx = pool.findIndex((s) => s.slug === slug);
+const serial = idx >= 0 ? String(idx + 1).padStart(2, "0") : "";
+// 建置期檢查 public/cover.png 是否存在（astro build 的 cwd＝站台根目錄）——
+// 沒有封面的站（如剛開的新站）hero 純文字呈現，不出破圖。
+const hasCover = existsSync(resolve("public/cover.png"));
 ---
 
 <BaseLayout title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand} site={site}>
   <header class="home-hero">
-    <img
-      class="site-cover"
-      src={withBase("site-cover.svg")}
-      alt={site.brand}
-      width="480"
-      height="252"
-    />
+    {
+      hasCover && (
+        <img
+          class="hero-cover"
+          src={withBase("cover.png")}
+          alt={heading}
+          width="900"
+          height="1200"
+          fetchpriority="high"
+        />
+      )
+    }
     <div class="home-hero-body">
-      <h1>{site.brand}</h1>
+      <p class="hero-kicker">
+        {axis === "person" ? "人物" : "主題"}{serial && <span class="hero-serial">N°{serial}</span>}
+      </p>
+      <h1>{heading}</h1>
+      <span class="hero-rule" aria-hidden="true"></span>
+      <p class="hero-brand">{site.brand}</p>
       {heroLede && <p class="lede" set:html={heroLede} />}
     </div>
   </header>

@@ -94,9 +94,9 @@ export default function notesCore(data: NotesCoreData): AstroIntegration {
         inject("/404", "404.astro");
         // 本站概念的機器可讀索引，給站外消費者（每日書摘推播靠它選材）。
         inject("/index.json", "index.json.ts");
-        // 站縮圖（首頁 hero）。由 core 產生，故改版面只需改 core；不叫 /cover.svg 是
-        // 因為各站 public/cover.svg 會蓋掉同名注入路由（見 site-cover.svg.ts 開頭）。
-        inject("/site-cover.svg", "site-cover.svg.ts");
+        // 橫式扉頁 /site-cover.svg 於 v0.36.0 退役：hero 改放直式站封面
+        // （public/cover.png，portal 同一張），排版元素攤成活字進 index.astro。
+        // 它是「用圖片印出來的文字」且唯一消費者就是 hero；portal 明確不用它。
 
         if (data.site.hasProblems) {
           inject("/problems", "problems/index.astro");
