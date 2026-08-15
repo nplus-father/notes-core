@@ -22,13 +22,15 @@
 | writing-note | 主題 | 32 | 39 | 1.2 | 2026-08-15 | writtenAt 2026-08-15；Storr 開頁＋借聲債還清（校正表在 SOURCING-DEBT.md）；餘借聲 3 筆待下輪 |
 | navarro-note | 人物 | 6 | 23 | 3.8 | — | writtenAt 2026-08-15；一脊梁（WEBIS）三支架；待挖 Three Minutes、Be Exceptional |
 | peck-note | 人物 | 9 | 17 | 1.9 | — | writtenAt 2026-08-15；脊梁三本一線一根；友善的雪花書站已寫、站內未開頁 |
+| agile-note | 主題 | 15 | 61 | 4.1 | 2026-08-04 | writtenAt 2026-08-15；六脊梁二支架、7 本待挖（最優先 XP Explained／Anderson Kanban／Reinertsen） |
+| design-note | 主題 | 12 | 46 | 3.8 | 2026-08-04 | writtenAt 2026-08-15；最大債 Norman 原典零頁；Refactoring UI 次之；BOOKS.md 缺兩列待補 |
+| behaviour-interview-note | 主題 | 20 | 30+14題 | 2.2 | — | writtenAt 2026-08-15；MBI 體系為主幹；16 本待挖（火力序：Made to Stick／Stories That Stick→So Good＋Parachute） |
+| greene-note | 人物 | 7 | 16 | 2.3 | — | writtenAt 2026-08-15；待挖 50th Law（零頁）、誘惑的藝術半接應 |
 
 ## 第一批——站深料足，直接可做
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| agile-note | 主題 | 15 | 61 | 4.1 | 2026-08-04 |  |
-| design-note | 主題 | 12 | 46 | 3.8 | 2026-08-04 |  |
 | economics-note | 主題 | 50 | 45 | 0.9 | — |  |
 | startup-note | 主題 | 62 | 44 | 0.7 | — |  |
 | communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
@@ -37,10 +39,8 @@
 | growth-note | 主題 | 44 | 33 | 0.8 | — |  |
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
 | life-meaning-note | 主題 | 39 | 31 | 0.8 | — |  |
-| behaviour-interview-note | 主題 | 20 | 30 | 1.5 | — |  |
 | history-note | 主題 | 34 | 30 | 0.9 | — |  |
 | tracy-note | 人物 | 36 | 25 | 0.7 | — |  |
-| greene-note | 人物 | 7 | 16 | 2.3 | — |  |
 | wan-weigang-note | 人物 | 11 | 15 | 1.4 | — |  |
 
 ## 第二批——可做；導讀章的「待挖」比例會偏高
