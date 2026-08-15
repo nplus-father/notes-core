@@ -213,14 +213,14 @@ from pathlib import Path
 #      Goldingay《Old Testament Theology》三卷（同作者單卷《聖經神學》已收）、
 #      Currey《Daily Rituals》（「作息」habits 站只有 5 處，且是田野調查不是機制）、
 #      Pang《Rest》（「刻意休息」1 處孤證，portal 休息線已有 why-we-sleep／
-#      stanford-method-of-sleep／hbr-guide-to-beating-burnout 三本）、
-#      Gentry & Wellum《Kingdom through Covenant》（**這本是等 Andrew 裁決**，不是輸給證據——
-#      見下面「疑似漏報」那筆）。
-#   e. **待裁決一筆**：portal 的 `gods-kingdom-through-gods-covenants` README 標
-#      「神的國度藉著神的聖約」、副標 `A Concise Biblical Theology`，是 2012 那本
-#      《Kingdom through Covenant》的**濃縮改寫本**（同兩位作者）。書目上是兩本；要不要
-#      比照 `simply-managing` 代替《Managing》的前例當同一本收，Andrew 決定。
-#      在他裁決前不排進 TOP20，也不動狀態。
+#      stanford-method-of-sleep／hbr-guide-to-beating-burnout 三本）。
+#      落選第 6 本原是 Gentry & Wellum《Kingdom through Covenant》，當天就被裁掉了，見 e。
+#   e. **Andrew 同日裁決**：Gentry & Wellum 的《Kingdom through Covenant》（2012）
+#      **以 `gods-kingdom-through-gods-covenants` 算收錄**，不另收原典。那個 repo 的 README
+#      標「神的國度藉著神的聖約」、副標 `A Concise Biblical Theology`，是同兩位作者把 2012
+#      那本濃縮改寫的版本——書目上是兩本，比照 `simply-managing` 代替《Managing》的前例
+#      當同一本結案。wanted 26 → 25，biblical-studies 從 5 本降到 4 本。
+#      **這是「已裁決」不是「沒查過」**，下輪的「疑似漏報」不要再提名它。
 #
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
 # README 的中文書名或章節才判的）：`software-developers-career-guide` 是 Sonmez 2017 的另一本，
