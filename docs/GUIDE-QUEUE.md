@@ -26,11 +26,11 @@
 | design-note | 主題 | 12 | 49 | 4.1 | 2026-08-15 | writtenAt 2026-08-15；Norman×2＋RUI 已挖（「錯是誰的錯」開庭判給設計）；BOOKS.md 已補齊 |
 | behaviour-interview-note | 主題 | 20 | 32+14題 | 2.3 | 2026-08-15 | writtenAt 2026-08-15；Stories That Stick＋Parachute 已挖；Made to Stick 歸 writing、So Good 歸 newport（分工）；餘 14 本支架 |
 | greene-note | 人物 | 7 | 18 | 2.6 | 2026-08-15 | writtenAt 2026-08-15；50th Law＋誘惑的藝術已挖，七本正典全開採 |
-| philosophy-note | 主題 | 32 | 24 | 0.75 | — | writtenAt 2026-08-15；「導讀層站」，18 挖／14 待挖；Way to Wisdom 錯帳（實為 Keller 箴言書）已移出書單；enrich 中 |
-| hbr-note | 主題 | 47 | 22 | 0.5 | 2026-07-31 | writtenAt 2026-08-15；操作層 HBR，35 進站／12 待挖，九卷正典六卷待挖；enrich 中 |
-| lewis-note | 人物 | 14 | 10 | 0.7 | — | writtenAt 2026-08-15；火力序 神蹟→納尼亞→裸顏；抽驗抓到「大老師」自譯已修；enrich 中 |
-| stott-note | 人物 | 14 | 12 | 0.9 | — | writtenAt 2026-08-15；中心穩半徑未挖完，火力序 講道藝術→認識聖經；enrich 中 |
-| uncle-bob-note | 人物 | 7 | 12 | 1.7 | — | writtenAt 2026-08-15；姊妹站分工（Clean Code→clean-code、Clean Agile→agile）；火力序 工匠篇→Coder；enrich 中 |
+| philosophy-note | 主題 | 32 | 28 | 0.9 | 2026-08-15 | writtenAt 2026-08-15；Rawls／Aristotle／Epictetus／Seneca 已挖（正義官司三造到齊）、5 筆借聲債還清；原典 7 挖 5，剩柏拉圖、卡繆 |
+| hbr-note | 主題 | 47 | 25 | 0.5 | 2026-08-15 | writtenAt 2026-08-15；Essentials／Innovation／Managing People 已挖（Feedback 官司兩造到齊）；Kotter「70%」查無原文已記帳 |
+| lewis-note | 人物 | 14 | 12 | 0.86 | 2026-08-15 | writtenAt 2026-08-15；神蹟＋納尼亞已挖（護教三部曲齊、安斯康姆改寫入站）；剩裸顏、詩篇擷思 |
+| stott-note | 人物 | 14 | 14 | 1.0 | 2026-08-15 | writtenAt 2026-08-15；講道藝術＋認識聖經已挖，14 本全數開採、未挖歸零 |
+| uncle-bob-note | 人物 | 7 | 14 | 2.0 | 2026-08-15 | writtenAt 2026-08-15；工匠篇標準／倫理＋Coder 預估壓力已挖；剩函數式篇、PPP 獨有章 |
 
 ## 第一批——站深料足，直接可做
 

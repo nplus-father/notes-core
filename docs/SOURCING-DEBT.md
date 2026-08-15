@@ -204,3 +204,15 @@ grep -rn '[乃乙乔乏乌泽]' . --include='*.md' \
 | nonfiction-copy/find-the-core | 「找核心＝核心＋緊湊」；掃不是讀／電梯測試／Why it matters 掛 made-to-stick | 「簡單＝核心＋緊湊」；該三組素材實出自 Smart Brevity（一件大事／為什麼重要） | 改掛 smart-brevity 正確 anchor；made-to-stick 僅留真屬它的 |
 
 同輪已還：science-of-storytelling 開機制頁（storytelling-brain）。其餘借聲債（writing 站剩 Ueland／Storynomics／Ogilvy 三筆）記在該站導覽 ch3，待下輪。
+
+### 追加：philosophy-note 借聲債五筆（2026-08-15，同輪還清）
+
+| 頁 | 主張 | 原掛 | 實補 |
+| --- | --- | --- | --- |
+| what-is-philosophy | Nagel「不能外包給科學」 | Durant | what-does-it-all-mean docs/01-introduction/ |
+| three-paths-of-justice | Fromm「德性＝實現自身潛能」 | Sandel | man-for-himself docs/02-humanistic-ethics/ |
+| dichotomy-of-control | 愛比克泰德開篇引言 | 奧理略 | Epictetus handbook |
+| premeditatio-malorum | 塞內卡預想語 | Daily Stoic 選本 | 書簡 26 |
+| philosophy-as-consolation | 塞內加藥方 | 僅 de Botton | 書簡 91 |
+
+另 hbr-note 一筆**查無原文**的引用：Kotter「70% 變革失敗」不在 Kotter 原文（Essentials 的 Leading Change），是 Guide to Leading Through Change 的轉述——已在該站導覽記帳，防未來誤掛。
