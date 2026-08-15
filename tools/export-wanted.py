@@ -222,6 +222,34 @@ from pathlib import Path
 #      當同一本結案。wanted 26 → 25，biblical-studies 從 5 本降到 4 本。
 #      **這是「已裁決」不是「沒查過」**，下輪的「疑似漏報」不要再提名它。
 #
+# 2026-08-16（資料源：GitHub 現況 1901 個 repo，前一輪是 1882）：**又一次整表重挑，而且
+# 這輪表比書多**——Andrew 再建了 17 個書站，上一版 TOP20 有 **14 格**（第 1–5、7–8、
+# 10–11、13、15–18）當場作廢，全星系 wanted 25 → 8。8 本裝不滿 20 格，所以工作變成
+# 「把剩下的全部排出順序」而不是「挑 20 本」。
+#   a. **只剩 4 個站還有 wanted**：biblical-studies 4、theology 2、personal-finance 1、
+#      data-systems 1。其餘四十幾站的採購缺口全部歸零。
+#   b. **產生器跟著改**：`## 先收這 N 本` 的 N 改成 `len(TOP20)`，且當 TOP20 已涵蓋全部
+#      wanted 時，開場白從「整份 N 筆太長，這是從裡面挑出來的」換成「只剩 N 筆，這節就是
+#      全部」——原本的寫法會讓人以為還有沒排進來的書。這是星系收乾淨之後的新常態。
+#   c. **準則①吃掉前 4 格**：差 1 本的 personal-finance、data-systems（第 1–2 格），
+#      差 2 本的 theology（第 3–4 格）。第 5 格給準則③（NICNT，唯一站主自標的一筆），
+#      第 6–8 格是準則④的 biblical-studies 三本。準則②照樣是 0（沒有多站共等的書）。
+#   d. **作者反查（docstring 第 6 點）這輪 0 收穫，但撈到兩個「配套在、本體不在」的證據**，
+#      都寫進了排序理由：`christian-theology-reader` 是 McGrath 那本教科書的**配套讀本**、
+#      `thomas-aquinas-summa-theologiae` 其實是 **Bernard McGinn 寫的《神學大全》傳記**
+#      （Princeton 名著傳記系列），阿奎那本人 0 本。**後者是個 matcher 陷阱**：repo 名長得
+#      像原典，但精確比對打不中（portal 標題是 `Thomas Aquinas's Summa theologiae: A
+#      Biography`，去副標後仍多兩個詞），作者因子也會否決——**不要為了「讓它對上」去放寬
+#      norm_title**，那會把一堆傳記／導讀併進原典。
+#   e. **Goldingay《Old Testament Theology》排最後，理由誠實寫在表裡**：portal 的舊約神學線
+#      已有 Brueggemann、Waltke 兩本，他自己的單卷《聖經神學》也已收——那格不是空的，是想
+#      多收一種進路。順手把該筆 title 的 `（三卷）` 移進 note：括號會被 latin_of 切在
+#      中譯欄印成「三卷）」（第 6b 點那個老形狀的表親）。
+#   f. **theology 的《改革宗教理學》以 `reformed-dogmatics` 回填**——那個 repo 是 John Bolt
+#      編的**單卷精簡本**（描述標 `Abridged in One Volume`），不是巴文克四卷全譯。比照
+#      `simply-managing`／`gods-kingdom-through-gods-covenants` 兩個前例：**同作者（或授權
+#      編者）的濃縮本算同一本結案**，已寫進該筆的 note。這條現在是慣例，不是個案。
+#
 # **同作者、書名接近、但確實是兩本書**——擋下來沒回填的，記在這裡免得每輪重查（都比對過
 # README 的中文書名或章節才判的）：`software-developers-career-guide` 是 Sonmez 2017 的另一本，
 # 不是 2014 的 Soft Skills；`emotionally-healthy-leader` 不是《建立高EQ的教會》；
@@ -242,26 +270,14 @@ from pathlib import Path
 # 連結指向 How to Win at College），於是現在是**兩個 repo 裝同一本書**，而真正的 Superstar
 # 仍然沒有站。NAME_COLLISIONS 那筆要留著，重複的 repo 是 SOURCING-DEBT 的事。
 TOP20 = [
-    ("technical-analysis-of-the-financial-markets", "investing 站 owned 61／wanted 1——**收了就歸零**，準則①，而且是全星系缺口最小的站（1.6%）；證據形狀很乾淨：「技術分析」全星系 37 處裡 **35 處在 schwager 站、investing 站只有 2 處**，而 portal 這條線的 7 本全是 Schwager（含入門冊 `getting-started-in-technical-analysis` 與 Market Wizards 五卷）——**入門冊與訪談錄都在，教科書不在**，Murphy 0 本；厚，無繁中"),
-    ("purple-cow", "marketing 站 owned 30／wanted 1——**收了就歸零**，準則①；portal 的 Godin 書櫃 3 本（`linchpin`、`permission-marketing`、`this-is-marketing`）獨缺這本成名作，而定位／差異化那條線在 portal 只有 Ries & Trout 的 `positioning` 一本撐著——「值得談論才叫差異化」這半沒有源頭；薄，有繁中《紫牛》，排第一批消化"),
-    ("observability-engineering", "cloud-infra 站 owned 24／wanted 2——**這兩本收齊就歸零**，準則①，這批第一本：「可觀測性」全星系 35 處／12 檔，其中 **34 處在本站**、「高基數」9 處（cloud-infra 7、system-design 2）——本站已經在用這套詞彙講事情，而 portal 只有一本華文《可觀測性入門指南》（`observability-beginners-guide`），**Charity Majors／Liz Fong-Jones 0 本**，學派原典不在；無繁中"),
-    ("practical-monitoring", "cloud-infra 的第二本，收了本站歸零；「監控」全星系 132 處／76 檔／跨 25 站（cloud-infra 29 居首、system-design 19、data-systems 9），而站內「監控反模式」只有 **1 處孤證**——講了 132 次監控，反模式那一側只有一句話；portal 搜 monitoring 除了那本華文入門指南之外 0 本；薄，排這批前面，無繁中"),
-    ("the-automatic-millionaire", "personal-finance 站 owned 38／wanted 2——**這兩本收齊就歸零**，準則①；「複利」全星系 235 處／107 檔／跨 30 站（tracy 53、personal-finance 39、habits 21、bogle 17），而 portal 的 David Bach 只有 `latte-factor`（拿鐵因子是他的比喻書），**把儲蓄自動化的那本操作手冊不在**；薄，有繁中《讓錢為你工作的自動理財法》"),
-    ("the-wealthy-barber", "personal-finance 的第二本，收了本站歸零；這是準則④裡**證據形狀最乾淨的一筆**——portal 已經有 `wealthy-barber-returns`（Chilton 2011 的續集，README 標「富足理髮師回來了」），**續集在、1989 的原典不在**；北美國民理財入門的敘事體始祖，薄，無繁中"),
-    ("the-shellcoder-s-handbook", "security 站 owned 12／wanted 2——**這兩本收齊就歸零**，準則①；缺口 14.3% 是這批三個站裡最高的。站內「緩衝區溢位」2 處全在本站；portal 記憶體漏洞這條線只有 `hacking-art-of-exploitation`（Erickson 講原理），**Anley 0 本**，各平台實務那半沒有；厚，無繁中，所以排在歸零批的後段"),
-    ("practical-malware-analysis", "security 的第二本，收了本站歸零；「惡意程式」全星系只有 2 處／2 檔**且都在本站**，security 站內「逆向工程」**0 處**（全星系那 6 處在 de-botton／marketing／writing／management，是比喻用法，不算數）；portal 搜 malware **0 本**——防守方讀攻擊產物這條線在星系裡完全空白。缺口最大但概念證據最薄，所以排準則①批的最後；厚，無繁中"),
-    ("nicnt", "**準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」。biblical-studies 站 owned 73 本，背景註釋（IVP 新約／舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，單卷學術註釋也有 Waltke 的 `genesis-waltke`——**但新約那側一卷都沒有**：「羅馬書」全星系 34 處／14 檔／跨 4 站（stott 23、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
-    ("designing-event-driven-systems", "data-systems 站 owned 16／wanted 3，缺口 15.8% 是四個候選站裡最高的，**整批排進來就是第四個歸零的站**（準則①的本意延伸）；這本排頭是準則⑤——O'Reilly 免費電子書，**零成本起手**。「事件驅動」全星系 42 處／21 檔／跨 6 站（system-design 24、data-systems 5、design-patterns 5），而 portal 這條線只有 `kafka-definitive-guide`，**Stopford 0 本**；薄"),
-    ("streaming-systems", "data-systems 的第二本，**這批最該收的一本**：「串流」全星系 56 處／28 檔／跨 11 站（system-design 24、data-systems 20）、「事件溯源」35 處只跨 2 站（data-systems 22、system-design 13）、watermark 9 處全在本站——**兩個站在互相引用同一組概念，卻共用不到一本原典**；portal 這條線目前是 Kleppmann 的 `designing-data-intensive-applications` ＋ `kafka-definitive-guide` 兩本在撐，**Akidau 0 本**，watermark／trigger 的語意出處不在；厚，無繁中"),
-    ("versioning-in-an-event-sourced-system", "data-systems 的第三本，收了本站歸零；「事件溯源」那 35 處講的是模型，**版本演進**（事件 schema 改了舊事件怎麼辦）在站內沒有出處，而那正是這本的全部內容；portal 的 Greg Young **0 本**——事件溯源這個詞的提出者本人不在架上；Leanpub 小冊，薄且便宜，排這批最後當補完"),
-    ("the-reformed-pastor", "theology 站 owned 60／wanted 4，準則④這批第一本，選它排頭是因為**薄、有繁中、而且 portal 完全空白**：搜 puritan／Baxter **0 本**，牧養線只有 Peterson 的 `contemplative-pastor`（當代默觀進路）。概念側對得上——「牧養」全星系 129 處／45 檔／跨 7 站（theology 58、pastoral-psychology 25、nouwen 20、stott 16）、「清教徒」26 處（theology 22）——清教徒牧養講了 22 次，正典不在；有繁中《改革宗的牧師》"),
-    ("christian-theology", "theology 的第二本；「系統神學」全星系 60 處／19 檔／跨 5 站（theology 49、biblical-studies 5），portal 的系統神學線有 Grudem、加爾文《基督教要義》、林鴻信《系統神學》——**福音派、改革宗、華人各一本，缺的是英美神學院最通行的那本教科書式導論**。⚠ portal 的 `erickson-christian-theology` 是 Millard Erickson 的同名書，**要收的是麥葛福（McGrath）那本**，下單前對作者；有繁中《基督教神學手冊》"),
-    ("willpower", "habits 站 owned 38／wanted 6，準則④這批第一本，也是 habits 六本裡證據最強的：「意志力」全星系 **167 處／94 檔／跨 32 站**（habits 30、tools 16、tracy 12、cloud 12、newport 11、growth 10）——散得極開，而站內「自我耗損」只有 **1 處孤證**；portal 的 Baumeister **0 本**，意志力線只有 Meadows 的 `365-days-with-self-discipline` 這種通俗冊。講了 167 次的東西沒有機制層的出處；有繁中《增強你的意志力》"),
-    ("good-habits-bad-habits", "habits 的第二本；「習慣」線在 portal 是通俗三本當家（`atomic-habits`、`power-of-habit`、`tiny-habits`），**Wendy Wood 0 本**；站內「習慣迴路」22 處裡 **19 處在本站**且全是 Duhigg 那套模型，而「習慣科學」只有 **1 處孤證**——情境與摩擦力的學院派證據沒有出處；無繁中"),
-    ("discipline-is-destiny", "habits 的第三本；「自律」全星系 196 處／81 檔／跨 23 站（peck 53、habits 35、tracy 33、thinking 12、leadership 12），portal 的 Ryan Holiday 書櫃 3 本（`daily-stoic`、`ego-is-the-enemy`、`obstacle-is-the-way`）——**四樞德系列獨缺自律卷**（那 3 本加 Seneca `letters-from-a-stoic`、Salzgeber `little-book-of-stoicism` 就是 portal 斯多噶線的全部 5 本）；薄，無繁中"),
-    ("stolen-focus", "habits 的第四本；「專注力」全星系 40 處／19 檔／跨 8 站（tools 24、habits 5、newport 4），portal 這條線已經有 `indistractable`（Eyal）、`hyperfocus`（Bailey）等個人對策書——**缺的是「為什麼整代人的專注力被拿走」那個系統性成因**，Hari 0 本；有繁中《誰偷走了你的專注力？》"),
-    ("echoes-of-scripture-in-the-letters-of-paul", "biblical-studies 的第二本（NICNT 之後）；portal 已經有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃有 1 本、1989 的開山之作不在**；站內「互文」7 處裡 6 處在本站、「聖約」23 處裡 20 處在本站，舊約在新約裡怎麼迴響是本站的主軸之一，卻沒有這本；薄，無繁中"),
-    ("jesus-and-the-eyewitnesses", "biblical-studies 的第三本；「目擊者」全星系 17 處／8 檔（biblical-studies 6、keller 6），portal 搜 eyewitness／historical Jesus／Bauckham **0 本**——新約書櫃已有 9 本掛 new testament（Carson 導論、賴特三本、`state-of-new-testament-studies` 等），**福音書史料可信度這一格是空的**；厚（500+ 頁），無繁中，排最後"),
+    ("the-wealthy-barber", "personal-finance 站 owned 39／wanted 1——**收了就歸零**，準則①，而且是全星系缺口最小的站（2.5%）；證據形狀是這輪最乾淨的一筆——portal 已經有 `wealthy-barber-returns`（David Barr Chilton 2011 的續集，README 標「富足理髮師回來了」），**續集在、1989 的原典不在**，Chilton 書櫃就這一本。「理財」全星系 51 處／32 檔／跨 17 站（personal-finance 16 居首、kiyosaki 10、investing 4）；北美國民理財入門的敘事體始祖，薄，無繁中"),
+    ("versioning-in-an-event-sourced-system", "data-systems 站 owned 18／wanted 1——**收了就歸零**，準則①；「事件溯源」全星系 35 處／12 檔**只跨 2 站**（data-systems 22、system-design 13）、`schema` 112 處／27 檔（data-systems 66 居首、system-design 23）——兩個站都在談事件與 schema，而「事件 schema 改了、舊事件怎麼辦」這個演進期問題在星系裡**沒有任何出處**，那正是這本的全部內容；portal 的事件溯源線這輪剛補上 `designing-event-driven-systems`（Stopford）與 `cqrs-command-query-responsibility-segregation`（Ajay Kumar）兩本，**Greg Young 仍是 0 本**——提出這個詞的人不在架上；Leanpub 小冊，薄且便宜"),
+    ("christian-theology", "theology 站 owned 62／wanted 2——**這兩本收齊就歸零**，準則①，這批排頭是準則⑤（薄、有繁中）；準則④的證據這輪變強了：portal 有 McGrath 的 `christian-theology-reader`，那正是**這本教科書的配套讀本**（原始文獻選輯）——**配套在、本體不在**；McGrath 書櫃 2 本（另一本是他寫的巴刻傳記 `j-i-packer-his-life-and-thought`）。「系統神學」全星系 62 處／21 檔／跨 6 站（theology 49、biblical-studies 5），portal 系統神學線 4 本（Grudem、Erickson、Vos、林鴻信）——福音派、改革宗、華人都有，缺的是英美神學院最通行的那本導論。⚠ `erickson-christian-theology` 是 Millard Erickson 的**同名書**，下單前對作者；有繁中《基督教神學手冊》"),
+    ("summa-theologiae", "theology 的第二本，收了本站歸零；準則④同樣是「配套在、本體不在」——portal 的 `thomas-aquinas-summa-theologiae` 其實是 Bernard McGinn 寫的**這本書的傳記**（Princeton 名著傳記系列），**阿奎那本人 0 本**。概念側承認是薄的：「阿奎那」全星系 8 處／6 檔／跨 4 站（theology 4、peterson 2）、「中世紀」50 處／33 檔（theology 14 居首），但「經院」只有 **3 處**（lewis 2、theology 1）——所以它排在 McGrath 後面而不是前面；部頭極鉅，中譯有全集，起手挑選讀本即可"),
+    ("nicnt", "**準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 8 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 4（缺口 5.1%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
+    ("echoes-of-scripture-in-the-letters-of-paul", "biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中，所以排在 Bauckham 前面"),
+    ("jesus-and-the-eyewitnesses", "biblical-studies 的第三本，準則④；「目擊者」全星系 17 處／8 檔／跨 6 站（keller 6、biblical-studies 6 並列）——**護教站與聖經研究站在講同一件事**，而 portal 搜 eyewitness／historical Jesus 只撈到賴特的 `jesus-and-the-victory-of-god`（歷史耶穌的神學重構，不是史料可信度），**Bauckham 0 本**；福音書作為目擊者見證這一格是空的；厚（500+ 頁），無繁中"),
+    ("old-testament-theology", "biblical-studies 的第四本，排最後——**準則④的證據是這 8 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -708,10 +724,19 @@ def main():
 
 """)
 
-    w("## 先收這 20 本\n\n")
+    w(f"## 先收這 {len(TOP20)} 本\n\n")
+    # 星系收得夠乾淨時，wanted 會少於表格容量——那時這節就不是「挑出來的」而是全部，
+    # 講成「從裡面挑」會讓人以為還有沒排進來的書（2026-08-16 只剩 8 本時第一次發生）。
+    covers_all = len({r["main"] for r in rows}) <= len(TOP20)
     w(
-        f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
-        "起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
+        (
+            f"全星系的 wanted 只剩 {len(rows)} 筆，**這節就是全部**，順序即建議的採購與消化順序"
+            "（薄的、起手容易的排前面）。"
+            if covers_all
+            else f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
+            "起手容易的排前面）。"
+        )
+        + "**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
         "`TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」"
         "的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是"
         "它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 "
@@ -726,7 +751,7 @@ def main():
     built = sum(1 for key, _ in TOP20 if any(r.get("repo") for r in by_main.get(key, [])))
     if built:
         w(
-            f"> ⚠ **這 20 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
+            f"> ⚠ **這 {len(TOP20)} 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
             "跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。\n\n"
         )
     w("| # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- | --- |\n")
