@@ -245,6 +245,10 @@ from pathlib import Path
 #      已有 Brueggemann、Waltke 兩本，他自己的單卷《聖經神學》也已收——那格不是空的，是想
 #      多收一種進路。順手把該筆 title 的 `（三卷）` 移進 note：括號會被 latin_of 切在
 #      中譯欄印成「三卷）」（第 6b 點那個老形狀的表親）。
+#   e2. **Andrew 同日裁決**：Bauckham《Jesus and the Eyewitnesses》**找不到，改
+#      `unavailable`**（原第 7 格，表縮成 7 本）。缺口本身沒有消失——「目擊者」17 處、
+#      keller 與 biblical-studies 各 6 處那個證據仍然成立，只是不再佔採購清單版面。
+#      依 2026-08-10 的決議**不要撈出來提醒複查**；他自己找到了會主動說。
 #   f. **theology 的《改革宗教理學》以 `reformed-dogmatics` 回填**——那個 repo 是 John Bolt
 #      編的**單卷精簡本**（描述標 `Abridged in One Volume`），不是巴文克四卷全譯。比照
 #      `simply-managing`／`gods-kingdom-through-gods-covenants` 兩個前例：**同作者（或授權
@@ -274,10 +278,9 @@ TOP20 = [
     ("versioning-in-an-event-sourced-system", "data-systems 站 owned 18／wanted 1——**收了就歸零**，準則①；「事件溯源」全星系 35 處／12 檔**只跨 2 站**（data-systems 22、system-design 13）、`schema` 112 處／27 檔（data-systems 66 居首、system-design 23）——兩個站都在談事件與 schema，而「事件 schema 改了、舊事件怎麼辦」這個演進期問題在星系裡**沒有任何出處**，那正是這本的全部內容；portal 的事件溯源線這輪剛補上 `designing-event-driven-systems`（Stopford）與 `cqrs-command-query-responsibility-segregation`（Ajay Kumar）兩本，**Greg Young 仍是 0 本**——提出這個詞的人不在架上；Leanpub 小冊，薄且便宜"),
     ("christian-theology", "theology 站 owned 62／wanted 2——**這兩本收齊就歸零**，準則①，這批排頭是準則⑤（薄、有繁中）；準則④的證據這輪變強了：portal 有 McGrath 的 `christian-theology-reader`，那正是**這本教科書的配套讀本**（原始文獻選輯）——**配套在、本體不在**；McGrath 書櫃 2 本（另一本是他寫的巴刻傳記 `j-i-packer-his-life-and-thought`）。「系統神學」全星系 62 處／21 檔／跨 6 站（theology 49、biblical-studies 5），portal 系統神學線 4 本（Grudem、Erickson、Vos、林鴻信）——福音派、改革宗、華人都有，缺的是英美神學院最通行的那本導論。⚠ `erickson-christian-theology` 是 Millard Erickson 的**同名書**，下單前對作者；有繁中《基督教神學手冊》"),
     ("summa-theologiae", "theology 的第二本，收了本站歸零；準則④同樣是「配套在、本體不在」——portal 的 `thomas-aquinas-summa-theologiae` 其實是 Bernard McGinn 寫的**這本書的傳記**（Princeton 名著傳記系列），**阿奎那本人 0 本**。概念側承認是薄的：「阿奎那」全星系 8 處／6 檔／跨 4 站（theology 4、peterson 2）、「中世紀」50 處／33 檔（theology 14 居首），但「經院」只有 **3 處**（lewis 2、theology 1）——所以它排在 McGrath 後面而不是前面；部頭極鉅，中譯有全集，起手挑選讀本即可"),
-    ("nicnt", "**準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 8 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 4（缺口 5.1%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
-    ("echoes-of-scripture-in-the-letters-of-paul", "biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中，所以排在 Bauckham 前面"),
-    ("jesus-and-the-eyewitnesses", "biblical-studies 的第三本，準則④；「目擊者」全星系 17 處／8 檔／跨 6 站（keller 6、biblical-studies 6 並列）——**護教站與聖經研究站在講同一件事**，而 portal 搜 eyewitness／historical Jesus 只撈到賴特的 `jesus-and-the-victory-of-god`（歷史耶穌的神學重構，不是史料可信度），**Bauckham 0 本**；福音書作為目擊者見證這一格是空的；厚（500+ 頁），無繁中"),
-    ("old-testament-theology", "biblical-studies 的第四本，排最後——**準則④的證據是這 8 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後"),
+    ("nicnt", "**準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 7 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 3（缺口 3.9%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
+    ("echoes-of-scripture-in-the-letters-of-paul", "biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中"),
+    ("old-testament-theology", "biblical-studies 的第三本，排最後——**準則④的證據是這 7 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])

@@ -8,9 +8,9 @@
 
 **已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1901 個 repo）。
 
-## 先收這 8 本
+## 先收這 7 本
 
-全星系的 wanted 只剩 8 筆，**這節就是全部**，順序即建議的採購與消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+全星系的 wanted 只剩 7 筆，**這節就是全部**，順序即建議的採購與消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -22,10 +22,9 @@
 | 2 | **Versioning in an Event Sourced System** | Greg Young |  | 2017 | data-systems(0) | data-systems 站 owned 18／wanted 1——**收了就歸零**，準則①；「事件溯源」全星系 35 處／12 檔**只跨 2 站**（data-systems 22、system-design 13）、`schema` 112 處／27 檔（data-systems 66 居首、system-design 23）——兩個站都在談事件與 schema，而「事件 schema 改了、舊事件怎麼辦」這個演進期問題在星系裡**沒有任何出處**，那正是這本的全部內容；portal 的事件溯源線這輪剛補上 `designing-event-driven-systems`（Stopford）與 `cqrs-command-query-responsibility-segregation`（Ajay Kumar）兩本，**Greg Young 仍是 0 本**——提出這個詞的人不在架上；Leanpub 小冊，薄且便宜 |
 | 3 | **Christian Theology: An Introduction** | Alister E. McGrath 麥葛福 | 基督教神學手冊 | 1994 | theology(1) | theology 站 owned 62／wanted 2——**這兩本收齊就歸零**，準則①，這批排頭是準則⑤（薄、有繁中）；準則④的證據這輪變強了：portal 有 McGrath 的 `christian-theology-reader`，那正是**這本教科書的配套讀本**（原始文獻選輯）——**配套在、本體不在**；McGrath 書櫃 2 本（另一本是他寫的巴刻傳記 `j-i-packer-his-life-and-thought`）。「系統神學」全星系 62 處／21 檔／跨 6 站（theology 49、biblical-studies 5），portal 系統神學線 4 本（Grudem、Erickson、Vos、林鴻信）——福音派、改革宗、華人都有，缺的是英美神學院最通行的那本導論。⚠ `erickson-christian-theology` 是 Millard Erickson 的**同名書**，下單前對作者；有繁中《基督教神學手冊》 |
 | 4 | **Summa Theologiae** | Thomas Aquinas 阿奎那 | 神學大全 | 1274 | theology(1) | theology 的第二本，收了本站歸零；準則④同樣是「配套在、本體不在」——portal 的 `thomas-aquinas-summa-theologiae` 其實是 Bernard McGinn 寫的**這本書的傳記**（Princeton 名著傳記系列），**阿奎那本人 0 本**。概念側承認是薄的：「阿奎那」全星系 8 處／6 檔／跨 4 站（theology 4、peterson 2）、「中世紀」50 處／33 檔（theology 14 居首），但「經院」只有 **3 處**（lewis 2、theology 1）——所以它排在 McGrath 後面而不是前面；部頭極鉅，中譯有全集，起手挑選讀本即可 |
-| 5 | **NICNT** | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | biblical-studies(3) | **準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 8 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 4（缺口 5.1%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中 |
-| 6 | **Echoes of Scripture in the Letters of Paul** | Richard B. Hays |  | 1989 | biblical-studies(3) | biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中，所以排在 Bauckham 前面 |
-| 7 | **Jesus and the Eyewitnesses** | Richard Bauckham |  | 2006 | biblical-studies(3) | biblical-studies 的第三本，準則④；「目擊者」全星系 17 處／8 檔／跨 6 站（keller 6、biblical-studies 6 並列）——**護教站與聖經研究站在講同一件事**，而 portal 搜 eyewitness／historical Jesus 只撈到賴特的 `jesus-and-the-victory-of-god`（歷史耶穌的神學重構，不是史料可信度），**Bauckham 0 本**；福音書作為目擊者見證這一格是空的；厚（500+ 頁），無繁中 |
-| 8 | **Old Testament Theology** | John Goldingay |  | 2003 | biblical-studies(3) | biblical-studies 的第四本，排最後——**準則④的證據是這 8 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後 |
+| 5 | **NICNT** | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | biblical-studies(2) | **準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 7 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 3（缺口 3.9%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中 |
+| 6 | **Echoes of Scripture in the Letters of Paul** | Richard B. Hays |  | 1989 | biblical-studies(2) | biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中 |
+| 7 | **Old Testament Theology** | John Goldingay |  | 2003 | biblical-studies(2) | biblical-studies 的第三本，排最後——**準則④的證據是這 7 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -47,8 +46,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1891 筆（去重 1410 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **8 筆（去重 8 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 85 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **7 筆（去重 7 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 86 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 82 筆 |
 
 > `owned` 去重後的 1410 是**已建成書站的書**（1891 是含跨站重複的登錄筆數，
@@ -97,14 +96,13 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 8 筆）
+## 完整清單（依站，共 7 筆）
 
-### biblical-studies-note — 4 本
+### biblical-studies-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
 | Old Testament Theology | John Goldingay |  | 2003 | Goldingay 的敘事進路大部頭，共三卷（其單卷《聖經神學》已收） |
-| Jesus and the Eyewitnesses | Richard Bauckham |  | 2006 | Bauckham——福音書作為目擊者見證 |
 | Echoes of Scripture in the Letters of Paul | Richard B. Hays |  | 1989 | Hays——互文性讀保羅的開山之作 |
 | NICNT | NICNT 系列（各卷作者不同：Moo《Romans》、Fee《1 Corinthians》…） | ／NICOT 系列代表卷 |  | 學術註釋的系列級缺口——如 Moo《Romans》、Fee《1 Corinthians》、Wenham《Genesis》 |
 
