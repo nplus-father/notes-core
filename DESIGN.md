@@ -162,6 +162,8 @@ export const overview = defineOverview({
 - **站內連結**由 notes-core `withBase()` 處理（base = `/<slug>`）；各站不寫 shim。
 - **跨站連結**用 frontmatter `seeAlso`（`site` + `path` + `label`）；schema factory `openSeeAlso: true` 時不寫死 enum。
 - **Node** ≥ 20（Astro 需求；`.nvmrc` 釘 22）。若曾在 Node 18 裝過依賴、build 報缺 `@rolldown/binding-linux-x64-gnu`，`rm -rf node_modules package-lock.json` 後在 Node ≥ 20 重裝。
+- **站台資料在 dev 會熱更新（v0.37.0）**：`src/site.config.ts` 與 `src/data/*.ts` 只被 `astro.config.mjs` import，不在 Vite 的 module graph 裡，改了不會有任何反應——v0.36.0 以前必須重跑 `npm run dev` 才看得到。現在整合器在 dev 時把 `virtual:notes-core/site` 從「啟動時的 JSON 快照」換成**轉發到真檔案**（`import { overview } from "/src/data/overview.ts"`），Vite 因此會監看它們，存檔約 1 秒生效。前提是站台 config 原封不動轉交同名 export（68 站現行寫法）；名稱對不上就自動退回快照，維持舊行為。**build 路徑不變**（仍是快照，產出經位元比對相同）。
+  - 別改用 `addWatchFile` 讓 dev server 重啟解這題：實測 Astro 7.0.7 在 config restart 之後，content layer 的檔案監看不會重新掛上，markdown 從此靜悄悄不再熱更新，直到完整重跑 `npm run dev`。同理，`touch astro.config.mjs` 這個手動招式也有這個副作用。
 
 ## 8. 星系成員與撈取
 
