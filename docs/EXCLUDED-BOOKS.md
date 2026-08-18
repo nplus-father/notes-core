@@ -22,7 +22,6 @@ bibliography**——note 星系留下來考量的每一本都該撐得起 ground
 | `quantitative-investment-analysis` | Quantitative Investment Analysis | CFA 課綱教科書卷——同上 | 2026-08-13 |
 | `29-pawn-tickets` | 29張當票：典當不到的人生啟發 | 當舖人生故事集——勵志小品，無主題站可歸，人物軸也不為其開站 | 2026-08-13 |
 | `29-pawn-tickets-2` | 29張當票2：當舖裡特有的人生風景 | 同上 | 2026-08-13 |
-| `29-pawn-tickets-3` | 29張當票3：門簾外的人生鑑定 | 同上 | 2026-08-13 |
 | `learning-to-be-deceived` | 學上當 | 同上（秦嗣林系列第四本） | 2026-08-13 |
 
 ## 重跑
