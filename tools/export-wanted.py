@@ -273,14 +273,51 @@ from pathlib import Path
 # repo 的**內容仍是** How to Win at College（README 標「深度學習力」、`_index.md` 的 Amazon
 # 連結指向 How to Win at College），於是現在是**兩個 repo 裝同一本書**，而真正的 Superstar
 # 仍然沒有站。NAME_COLLISIONS 那筆要留著，重複的 repo 是 SOURCING-DEBT 的事。
+# 2026-08-20（Andrew 裁決一筆，表 7 → 6）：**NICNT／NICOT 系列代表卷改 `skipped`**——
+# 「整套收不齊全，這系列省略」。這是唯一一筆準則③（站主自標「系列級缺口」），拿掉之後
+# **準則③歸零，剩下的全是準則①與④**。與 Bauckham 那筆（2026-08-16 e2）的差別要記清楚：
+# 那本是**找不到**（`unavailable`），這筆是**刻意不收**（`skipped`）——一筆代表一套書而非
+# 一本，跟「勵志小品群」那種彙總列同一類。缺口本身沒有消失（新約側逐節學術註釋仍是 0 卷，
+# 「羅馬書」全星系 54 處只對到 Stott 的 `message-of-romans`），只是不再佔採購清單版面；
+# 日後要補是單卷單收（Moo《Romans》起手），**不要再把整套提名回 TOP20**。
+# biblical-studies 因此從 3 本降到 2 本，第 5–6 格順位往前挪。
+#
+# 2026-08-20 第二段（同日 `/note-wanted` 對帳，資料源：GitHub 現況 1895 個 repo，前一輪
+# 是 1901——repo 數往下走是因為中間刪過站，不是查漏了）：**上一版 TOP20 六格作廢四格**，
+# wanted 6 → 2，這張表縮成 2 本。
+#   a. **回填 4 本**（逐筆核對過 portal description 的作者欄）：`wealthy-barber`
+#      （David Chilton，1989 原典；續集 `wealthy-barber-returns` 是另一個 repo，沒認錯）、
+#      `versioning-in-an-event-sourced-system`（Gregory Young）、
+#      `echoes-of-scripture-in-the-letters-of-paul`（Richard B. Hays）、
+#      `summa-theologica`（Thomas Aquinas）。**personal-finance 與 data-systems 兩站歸零。**
+#   b. **`summa-theologica` 是「疑似漏報」那節撈到的**（雙向 Jaccard 100%）：portal 用的是
+#      舊英譯書名 Summa Theologica，wanted 寫 Summa Theologiae，精確比對差一個字母。
+#      **不寫進 ALIASES**——照 2026-08-15 a 的前例，回填成 owned 之後它就離開 wanted，
+#      alias 只會變成死條目。順帶把 `thomas-aquinas-summa-theologiae`（McGinn 寫的傳記）
+#      與它的分別寫進該筆 note，免得下次又混。
+#   c. **Goldingay 那筆維持 wanted，是裁決不是遺漏**：portal 的
+#      `old-testament-theology-israels-faith` 是三部曲的第二卷，Andrew 2026-08-20 決定
+#      繼續等整套（見 NAME_COLLISIONS 那筆）。因為進了 NAME_COLLISIONS，「先扣掉」與
+#      「疑似漏報」兩節都不會再提名它，`先扣掉 = 0` 這條驗收才回得去。
+#   d. **McGrath 那本在同一輪之內就建好站了**（`christian-theology-introduction`，
+#      2026-08-19 建）——Andrew 答「已買到／建站中」，重跑一次腳本它就自己掉進「先扣掉」，
+#      當場回填成 owned，**theology 站歸零**。這也是「權威資料源要現況不要快照」的又一個
+#      實例：同一輪跑兩次 `gh repo list`，第二次才有這個 repo（1895 → 1886 是同時間
+#      Andrew 也在刪站，數字上下跳動很正常，不要拿它當「查漏了」的訊號）。
+#   d2. **Goldingay 三部曲的實際持有狀況**（2026-08-20 清點 ~/Downloads/BookMaterials）：
+#      第二卷 Israel's Faith 已建站、**第三卷 Israel's Life 的 epub 已在手**、缺的是
+#      **第一卷 Israel's Gospel（IVP 2003）**。所以這筆的採購動作是明確的：補第一卷。
+#      同一個資料夾裡那份 `theology-of-the-old-testament-vol-1` 的 PDF **不是** Goldingay，
+#      是 Walther Eichrodt 的 OTL 同名經典（1961 J. A. Baker 英譯），別混。
+#   e. **作者反查（docstring 第 6 點）這輪 0 收穫**：McGrath 書櫃 2 本（配套讀本
+#      `christian-theology-reader`、巴刻傳記 `j-i-packer-his-life-and-thought`），
+#      Goldingay 書櫃 3 本（`biblical-theology-goldingay`、`ezra-nehemiah-esther-for-everyone`、
+#      三部曲第二卷）——兩本想收的都真的不在。落空是結果，不是可以省略這關的理由。
+#   f. 於是表只剩 **1 本**（Goldingay 第一卷），準則①（收了 biblical-studies 歸零），
+#      準則②③④都沒有可排的。**全星系 78 站裡只剩這一站還有採購缺口**——TOP20 這個
+#      人工區塊接下來的意義比較接近「最後一本的追蹤欄」，等新站開起來才會再長回來。
 TOP20 = [
-    ("the-wealthy-barber", "personal-finance 站 owned 39／wanted 1——**收了就歸零**，準則①，而且是全星系缺口最小的站（2.5%）；證據形狀是這輪最乾淨的一筆——portal 已經有 `wealthy-barber-returns`（David Barr Chilton 2011 的續集，README 標「富足理髮師回來了」），**續集在、1989 的原典不在**，Chilton 書櫃就這一本。「理財」全星系 51 處／32 檔／跨 17 站（personal-finance 16 居首、kiyosaki 10、investing 4）；北美國民理財入門的敘事體始祖，薄，無繁中"),
-    ("versioning-in-an-event-sourced-system", "data-systems 站 owned 18／wanted 1——**收了就歸零**，準則①；「事件溯源」全星系 35 處／12 檔**只跨 2 站**（data-systems 22、system-design 13）、`schema` 112 處／27 檔（data-systems 66 居首、system-design 23）——兩個站都在談事件與 schema，而「事件 schema 改了、舊事件怎麼辦」這個演進期問題在星系裡**沒有任何出處**，那正是這本的全部內容；portal 的事件溯源線這輪剛補上 `designing-event-driven-systems`（Stopford）與 `cqrs-command-query-responsibility-segregation`（Ajay Kumar）兩本，**Greg Young 仍是 0 本**——提出這個詞的人不在架上；Leanpub 小冊，薄且便宜"),
-    ("christian-theology", "theology 站 owned 62／wanted 2——**這兩本收齊就歸零**，準則①，這批排頭是準則⑤（薄、有繁中）；準則④的證據這輪變強了：portal 有 McGrath 的 `christian-theology-reader`，那正是**這本教科書的配套讀本**（原始文獻選輯）——**配套在、本體不在**；McGrath 書櫃 2 本（另一本是他寫的巴刻傳記 `j-i-packer-his-life-and-thought`）。「系統神學」全星系 62 處／21 檔／跨 6 站（theology 49、biblical-studies 5），portal 系統神學線 4 本（Grudem、Erickson、Vos、林鴻信）——福音派、改革宗、華人都有，缺的是英美神學院最通行的那本導論。⚠ `erickson-christian-theology` 是 Millard Erickson 的**同名書**，下單前對作者；有繁中《基督教神學手冊》"),
-    ("summa-theologiae", "theology 的第二本，收了本站歸零；準則④同樣是「配套在、本體不在」——portal 的 `thomas-aquinas-summa-theologiae` 其實是 Bernard McGinn 寫的**這本書的傳記**（Princeton 名著傳記系列），**阿奎那本人 0 本**。概念側承認是薄的：「阿奎那」全星系 8 處／6 檔／跨 4 站（theology 4、peterson 2）、「中世紀」50 處／33 檔（theology 14 居首），但「經院」只有 **3 處**（lewis 2、theology 1）——所以它排在 McGrath 後面而不是前面；部頭極鉅，中譯有全集，起手挑選讀本即可"),
-    ("nicnt", "**準則③**：站主在該筆 `note` 自註「學術註釋的系列級缺口」，是這 7 本裡唯一一筆站主自標。biblical-studies 站 owned 74／wanted 3（缺口 3.9%），背景註釋（IVP 舊約背景）、釋經學（`hermeneutical-spiral`）、Beale/Carson 的舊約引用註釋都齊了，逐節學術註釋也有 Waltke 的 `genesis-waltke`——**但那是舊約，新約那側一卷都沒有**：「羅馬書」全星系 54 處／19 檔／跨 4 站（stott 43、theology 8），portal 卻只有 Stott 的 `message-of-romans`（BST 講道式），**牧養式的在、逐節學術的不在**；起手就買 Moo 的《Romans》那一卷，別想一次收整套；厚，無繁中"),
-    ("echoes-of-scripture-in-the-letters-of-paul", "biblical-studies 的第二本，準則④；portal 有 Hays 的 `moral-vision-of-the-new-testament`——**同作者書櫃 1 本、1989 的開山之作不在**；概念側是本站的主軸：「互文」全星系 9 處**只跨 2 站**（biblical-studies 6、lewis 3）、「聖約」23 處裡 **20 處在本站**，而 portal 搜 intertextual **0 本**——舊約在新約裡怎麼迴響，講了但沒有出處；薄，無繁中"),
-    ("old-testament-theology", "biblical-studies 的第三本，排最後——**準則④的證據是這 7 本裡最弱的，誠實記下來**：portal 的舊約神學線已經有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke` 兩本，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他還有 `ezra-nehemiah-esther-for-everyone`，書櫃 2 本）——**不是空格，是想多收一種進路**；站內「舊約神學」只有 3 處／2 檔且全在本站。三卷大部頭、無繁中，收了 biblical-studies 才歸零，但排序上讓它殿後"),
+    ("old-testament-theology", "**全星系最後一本還沒收的書**。biblical-studies 站 owned 75／wanted 1——收了就歸零，準則①（同輪 Hays 回填成 owned、NICNT 系列改 skipped 之後，這是本站最後一筆）。**要買的是第一卷 `Israel's Gospel`（IVP 2003）**，不是整套：2026-08-20 清點手上的檔案，三部曲的第二卷 Israel's Faith 早已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 的 epub 也在手，**只缺第一卷**；Andrew 同日裁決三卷齊了才結案，不以單卷收錄（見 NAME_COLLISIONS 那筆）。準則④的證據仍是全星系最弱的一批，誠實記著：舊約神學線已有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke`，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他書櫃 3 本）——**不是空格，是想多收一種進路**；「舊約神學」全星系只有 **3 處／2 檔且全在本站**（2026-08-20 現查）。大部頭、無繁中"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -550,6 +587,11 @@ def main():
     #   understanding-the-bible：repo 是 Dorothy L. Johns 的函授查經課程
     #   (Methods of Bible Study)，stott-note 想收的是斯托得 1972 年的《認識聖經》
     #   ——書名一字不差，作者與書種完全不同（2026-08-10 加）。
+    #   old-testament-theology-israels-faith：repo 是 Goldingay 三部曲的**第二卷**
+    #   （Israel's Faith，2006），biblical-studies-note 想收的是 2003 年第一卷起的
+    #   **整套三卷**；第一卷 Israel's Gospel 與第三卷 Israel's Life 都還沒有站。
+    #   Andrew 2026-08-20 裁決**繼續等整套**，不比照 simply-managing 那條「同作者
+    #   濃縮本算同一本」——部分卷不是濃縮本，收到的內容就是缺兩卷（2026-08-20 加）。
     NAME_COLLISIONS = {
         ("change-your-thinking-change-your-life", "tracy-note"),
         ("how-to-be-a-high-school-superstar", "newport-note"),
@@ -557,6 +599,7 @@ def main():
         ("erickson-christian-theology", "theology-note"),
         ("servant-leadership", "leadership-note"),
         ("understanding-the-bible", "stott-note"),
+        ("old-testament-theology-israels-faith", "biblical-studies-note"),
     }
 
     def match_repo(r):
