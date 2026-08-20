@@ -219,6 +219,11 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 
 ## 跨站遺留帳
 
+- **cloud-infra 兩本無分類承接的書——Andrew 2026-08-21 裁決判姊妹站分工，不開新分類**：
+  Building Secure and Reliable Systems → security-note（已收 owned、有 security-engineering 分類；它是 ③檔拓站的好材料）、
+  Team Topologies → agile-note（已收 owned、導覽已完工，下次增量 enrich 處理）。cloud-infra 導覽第三章的判層
+  從「落點薄，如實記帳」改「姊妹站分工」＝帳平（照 keller／navarro「未挖 ≠ 欠債」前例）。
+
 - [GUIDE-QUEUE.md](./GUIDE-QUEUE.md) 有 12 站已達標未登錄：data-systems、career、investing、cloud-infra、habits、marketing、
   science、drucker、wellness、cloud、gardner、security——下次動它時一併補。
 - portal `health.json`（08-18）過期：21 本剛填完的書仍標 thin/near-empty，書站部署後重跑 fetch-health。
