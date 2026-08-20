@@ -115,6 +115,18 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 | skin-in-the-game | 兩句加引號的「語錄」：「用工作摧毀閒暇的人不懂閒暇為何物」「被雇用就是被馴化」 | 書 repo 查無此二句——主題有支撐（ch7 視閒暇為高尚、ch5 薪資奴役），但**轉述被包裝成直引**。改為轉述＋書中實句「讓奴隸相信自己是自由的，是現代社會控制最高明的手段」，並補 ch5/ch7 anchor |
 | black-swan-and-extremistan | 🖼️ 段整段講《隨機騙局》（牙醫、俄羅斯債券交易員），furtherReading 卻無該書 | 內容回查可驗（非杜撰）；補 fooled-by-randomness 卷一 Solon's Warning anchor——**段落引書也要錨**，頁級 ≥1 本不夠 |
 
+## 2026-08-20 追加校正（investing-note enrich 抓到）
+
+教訓同 08-06「有 anchor ≠ 掛對章」——`this-time-is-different` 頁錨齊全、卻是**錯掛＋漏掛**（站 commit `6907574`）：
+
+| 問題 | 原狀 | 處置 |
+| --- | --- | --- |
+| Montier 兩 anchor 錯掛 | 掛 `01-in-the-heat-of-the-moment`／`02-afraid-of-big-bad-market`（同理鴻溝、損失恐懼章，與本頁主張無關） | 改掛 `11-this-time-is-different`（Templeton 四字、五階段、五大障礙全在此章，逐項核實） |
+| 席勒主張整批無錨 | 詞頻 1997/7、占卜板、Fisher 高原、36 國 94%/65% 等主張無 anchor 覆蓋 | 逐項對 `irrational-exuberance` ch05/06 核實後補掛（內容無錯，免改寫） |
+| Bernstein 引句無錨 | 「泡沫高點最大的謊言」 | 補掛 four-pillars `01-tops-history-of-manias` |
+
+同輪兩筆 bibliography 帳（非溯源債、記脈絡）：economics `capitalist-manifesto` note/year 誤植 Norberg 2023（實為 Kiyosaki 2022，`9ad4f77` 修）；investing `trend-following` note 誤記只收訪談集（實收 2017 五版本傳，`6907574` 修）。
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
