@@ -138,6 +138,23 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 | isolation-levels／mvcc | HPJP label「並發控制與隔離級別」「MVCC 與快照」 | 隔離級別表與各家 MVCC 實作（SCN／xmin-xmax／rollback segment）在 Part 1 Transactions 章 |
 | rebalancing | DBI label「Part II：叢集與分片」（無此章） | 分片與一致性雜湊在 Distributed Transactions 章末 |
 
+## 2026-08-21 追加校正（wan-weigang-note enrich 抓到——迄今最大一張 B 型債）
+
+拐點兩頁＋human-uniqueness 的核心框架**書稿全文零命中**（主代理獨立複核屬實），共 16 筆校正（站 commit `83ea32e`）。三筆是**方向相反**級：
+
+| 頁 | 原本寫的 | 原文實際說的 |
+| --- | --- | --- |
+| 拐點頁 | 「脆弱的智能」／分布內外、元認知、索馬提克標記、「三種角色」框架 | 全書查無；實際框架＝底牌（預測下一詞長出類人思維）／命門（「用來思考不是用來計算」，可用工具彌補）、門檻領導力四途徑＋自由技藝六項 |
+| 拐點頁 | 「原始突破仍屬人類」 | **方向相反**：書主張 AI「不但有創造力，而且可以有更好的創造力」（GPT-4 勝 MBA、AlphaGo 創造新棋知識） |
+| 拐點頁 | 「AI 放大勞動市場贏家通吃」 | **方向偏移**：勝者通吃指 AI 公司；就業反而「自動化最高的行業就業增加最多」 |
+| 拐點頁 | 「人腦 CPU vs AI GPU 不分高下」 | **方向相反**：「啟發模式重要性在下降，窮舉模式在上升」 |
+| t-shaped-talent | 「T 型人才」整頁（連 slug） | 全書零命中——整頁廢棄，改立 `more-yourself-in-ai-era`（ch03 置身智能＋人比AI兇微決策） |
+| human-uniqueness | 四項清單錨 ch04＋「三大根本缺陷」 | 四項清單真實但在**序言**；「局域上下文」是變形；末那識論證在 ch01 sec-2（缺身體邊界感＋連貫敘事兩前提） |
+| relativity-for-masters | 惠勒（Wheeler）歸屬＋「四大驗證」 | 引句逐字在書但**無惠勒歸屬**；書為**三大**驗證，「引力時間延遲」查無 |
+| elite-vs-common-sense | 狐狸刺蝟錨 `02-worldview-demystified` | 實際在 `01-preface` 與 `04-eighteen-arts/10-reliable-knowledge` |
+
+另 bibliography《人比AI兇》year 2024→2025（序言署名 2025-07）。教訓：**種子頁的「聽起來像那本書會講的框架」最危險**——T 型人才、元認知這類流行語彙極易被腦補進轉譯者的書；防線仍是導覽書帳（逐本回原文）＋enrich 逐段核對。
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
