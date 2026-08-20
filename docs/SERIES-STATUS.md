@@ -219,6 +219,15 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 
 ## 跨站遺留帳
 
+- **第三波進行中（2026-08-21 01:15 Andrew 就寢時的斷點快照）**：五站代理平行跑，**全部未 commit**、寫檔即落盤：
+  `security-note`（一條龍 enrich→guide；BSRS 判歸它）、`fowler-note`（一條龍；已動 bibliography/profile/兩分類 _index）、
+  `nouwen-note`（一條龍；已改 3 頁概念頁）、`nt-wright-note`（一條龍；尚無落盤）、`drucker-note`（直接 guide；尚無落盤）。
+  **明天續跑方式**：本 session 若已結束，舊代理不可續（SendMessage 只在原 session 有效）——逐站 `git status`＋
+  `ls src/content/guide/` 盤點磁碟現況，**per 站派新代理從斷點接**（prompt 註明「磁碟上已有的不重做」，比照 08-21 凌晨
+  tracy／wan-weigang 的救回法）；已完整的站直接進主代理驗收（anchor `[ -d ]` 逐條、dist 連結、具名事實 grep、build＋
+  format 獨立重跑、`:::response` 零觸碰）→ commit＋push → GUIDE-QUEUE／本檔記帳。驗收與收帳流程照第一、二波（帳例：
+  GUIDE-QUEUE 已完成表、SOURCING-DEBT 校正表格式）。
+
 - **cloud-infra 兩本無分類承接的書——Andrew 2026-08-21 裁決判姊妹站分工，不開新分類**：
   Building Secure and Reliable Systems → security-note（已收 owned、有 security-engineering 分類；它是 ③檔拓站的好材料）、
   Team Topologies → agile-note（已收 owned、導覽已完工，下次增量 enrich 處理）。cloud-infra 導覽第三章的判層
