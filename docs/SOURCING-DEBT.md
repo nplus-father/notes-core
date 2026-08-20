@@ -162,6 +162,13 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 and Purpose"、`07-how-do-you-get-there/` 實為 "Back from the Future"，主代理複核屬實）。label 取章題是對的。
 教訓：**判 label 錯章前先開 `_index.md` 對章題，別只看目錄名**。書 repo 的 slug／章題不一致本身是書庫小債，暫不動。
 
+### 同輪 cloud-infra-note：label 書名錯掛＋事實升級（站 commit `5101ebf`）
+
+| 原本寫的 | 原文實際 | 處置 |
+| --- | --- | --- |
+| 四頁 label 書名「Observability Engineering — …」，`book:` 實指 `observability-beginners-guide`（《可觀測性入門指南》，另一本書） | 兩本不同書——頁首 byline 與頁尾卡印錯書名 | 四頁 label 改「Observability 入門指南 — …」（observability-vs-monitoring、three-pillars、four-golden-signals、distributed-tracing）。「有 anchor ≠ 掛對書」的 label 變體 |
+| 「1960 年代匈牙利數學家 Rudolf Kálmán」（轉引自入門指南） | 原典 OE ch1：「工程師 Rudolf E. Kálmán 在 **1960 年**提出」＋與可控制性互為對偶 | 骨幹改掛原典；兩書衝突以原典優先 |
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
