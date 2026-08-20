@@ -54,7 +54,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `management-note` | 主題 | 47 | 20 | 0.43 | 100% | 4/4 | 100% | 0 | 08-01/08-01 | nit1 |  |
 | `problem-solving-note` | 主題 | 26 | 17 | 0.65 | 100% | 4/4 | 100% | 0 | 08-06/08-06 | CLEAN |  |
 | `science-note` | 主題 | 48 | 16 | 0.33 | 100% | 4/4 | 100% | 0 | 07-31/07-31 | nit1 |  |
-| `drucker-note` | 人物 | 19 | 14 | 0.74 | 100% | 4/4 | 100% | 0 | — | CLEAN |  |
+| `drucker-note` | 人物 | 19 | 14 | 0.74 | 100% | 4/4 | 100% | 0 | — | CLEAN | 2026-08-21 |
 | `image-style-note` | 主題 | 7 | 13 | 1.86 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
 | `de-botton-note` | 人物 | 12 | 12 | 1.00 | 100% | 4/4 | 100% | 0 | — | nit1（blocker 08-20 已清） |  |
 | `maxwell-note` | 人物 | 18 | 12 | 0.67 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
@@ -72,18 +72,18 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `bogle-note` | 人物 | 6 | 8 | 1.33 | 100% | 2/2 | 100% | 0 | — | nit1 |  |
 | `fengtang-note` | 人物 | 10 | 8 | 0.80 | 100% | 3/3 | 100% | 1 | — | CLEAN |  |
 | `gardner-note` | 人物 | 13 | 8 | 0.62 | 100% | 3/3 | 100% | 0 | — | CLEAN |  |
-| `nouwen-note` | 人物 | 16 | 8 | 0.50 | 100% | 3/3 | 100% | 4 | — | nit1 |  |
+| `nouwen-note` | 人物 | 16 | 8 | 0.50 | 100% | 3/3 | 100% | 4 | — | nit1 | 2026-08-21 |
 | `damodaran-note` | 人物 | 5 | 7 | 1.40 | 100% | 2/2 | 100% | 0 | — | CLEAN |  |
-| `nt-wright-note` | 人物 | 11 | 7 | 0.64 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
+| `nt-wright-note` | 人物 | 11 | 7 | 0.64 | 100% | 3/3 | 100% | 0 | — | nit1 | 2026-08-21 |
 | `templar-note` | 人物 | 9 | 7 | 0.78 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
 | `willard-note` | 人物 | 8 | 7 | 0.88 | 100% | 3/3 | 100% | 2 | — | CLEAN |  |
 | `pastoral-psychology-note` | 主題 | 5 | 5 | 1.00 | 0% | 4/4 | 0% | 0 | — | 必改2·warning1·nit1 |  |
 | `christensen-note` | 人物 | 9 | 4 | 0.44 | 100% | 4/4 | 100% | 6 | — | nit1 |  |
-| `security-note` | 主題 | 14 | 4 | 0.29 | 100% | 4/4 | 100% | 8 | — | nit1 |  |
+| `security-note` | 主題 | 14 | 4 | 0.29 | 100% | 4/4 | 100% | 8 | — | nit1 | 2026-08-21 |
 | `collins-note` | 人物 | 6 | 3 | 0.50 | 100% | 3/3 | 100% | 7 | — | CLEAN |  |
 | `grant-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
 | `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
-| `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN |  |
+| `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN | 2026-08-21 |
 
 ## 書端未過、也還沒導覽的 7 站（站側體檢一併做完，等書端清帳後入列）
 
@@ -219,14 +219,9 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 
 ## 跨站遺留帳
 
-- **第三波進行中（2026-08-21 01:15 Andrew 就寢時的斷點快照）**：五站代理平行跑，**全部未 commit**、寫檔即落盤：
-  `security-note`（一條龍 enrich→guide；BSRS 判歸它）、`fowler-note`（一條龍；已動 bibliography/profile/兩分類 _index）、
-  `nouwen-note`（一條龍；已改 3 頁概念頁）、`nt-wright-note`（一條龍；尚無落盤）、`drucker-note`（直接 guide；尚無落盤）。
-  **明天續跑方式**：本 session 若已結束，舊代理不可續（SendMessage 只在原 session 有效）——逐站 `git status`＋
-  `ls src/content/guide/` 盤點磁碟現況，**per 站派新代理從斷點接**（prompt 註明「磁碟上已有的不重做」，比照 08-21 凌晨
-  tracy／wan-weigang 的救回法）；已完整的站直接進主代理驗收（anchor `[ -d ]` 逐條、dist 連結、具名事實 grep、build＋
-  format 獨立重跑、`:::response` 零觸碰）→ commit＋push → GUIDE-QUEUE／本檔記帳。驗收與收帳流程照第一、二波（帳例：
-  GUIDE-QUEUE 已完成表、SOURCING-DEBT 校正表格式）。
+- **第三波完工（2026-08-21 02:06）**：Andrew 親選五站全 push——drucker guide、nt-wright／fowler／nouwen／security 一條龍。
+  途中全部代理撞兩次 session 額度，靠 SendMessage 續跑＋主代理代落盤子代理成稿救回零重工。**新紀律**：子代理起草必須直接寫檔、
+  不能只回傳文字（security 兩份遲到稿因錨點對不上被棄用）。待裁決：security 的 malware／防守方線（practical-malware-analysis 零引用）要不要開分類。
 
 - **cloud-infra 兩本無分類承接的書——Andrew 2026-08-21 裁決判姊妹站分工，不開新分類**：
   Building Secure and Reliable Systems → security-note（已收 owned、有 security-engineering 分類；它是 ③檔拓站的好材料）、

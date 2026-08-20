@@ -41,6 +41,11 @@
 | cloud-infra-note | 主題 | 26 | 39 | 1.5 | 2026-08-21 | writtenAt 2026-08-21；OE/SP/IaC 三本已挖（77 條/10 本開口）、爭點一造反者進場；TT→agile、BSRS→security 判姊妹站分工（Andrew 裁決）；次輪火力 K8s/Terraform |
 | tracy-note | 人物 | 36 | 27 | 0.75 | 2026-08-21 | writtenAt 2026-08-21；總綱＋習慣兩新頁、銷售起源加厚（25→27 頁）；strategic-thinking 判假警報（書 repo slug/章題不一致）；餘 CYT-CYL 當佐證不開頁 |
 | wan-weigang-note | 人物 | 11 | 16 | 1.5 | 2026-08-21 | writtenAt 2026-08-21；**B 型債 16 筆校正**（拐點兩頁重寫、t-shaped-talent 廢棄改 more-yourself-in-ai-era）＋計劃書開頁（15→16 頁）；校正表在 SOURCING-DEBT |
+| drucker-note | 人物 | 19 | 14 | 0.7 | — | writtenAt 2026-08-21；19 本帳（脊梁 7 缺 Landmarks of Tomorrow unavailable）；GM 冷遇史當爭議軸；enrich 未做，火力序在導覽 ch3 |
+| nt-wright-note | 人物 | 11 | 10 | 0.9 | 2026-08-21 | 一條龍：7→10 頁（PFG 卷補齊 COQG 四卷、Simply Jesus、After You Believe）；11/11 已挖、該挖未挖＝0；Justification unavailable 是最痛缺口 |
+| fowler-note | 人物 | 6 | 9 | 1.5 | 2026-08-21 | 一條龍：2→9 頁、新開 Modeling 分類；bibliography Refactoring 1999→2018 二版（實書）；code-smells 節點判 clean-code 分工移除 |
+| nouwen-note | 人物 | 16 | 12 | 0.75 | 2026-08-21 | 一條龍：8→12 頁、16/16 全引用；校正 3 筆（刪子代理腦補句、兩句引文貼回原文）；In the Name of Jesus unavailable 最大缺口 |
+| security-note | 主題 | 14 | 12 | 0.86 | 2026-08-21 | 一條龍：4→12 頁；BSRS 自 cloud-infra 判歸本站已挖；零引用剩 threat-modeling、practical-malware-analysis（malware 線要不要開分類待裁決） |
 
 ## 第一批——站深料足，直接可做
 
@@ -78,9 +83,7 @@
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | bogle-note | 人物 | 6 | 8 | 1.3 | — | 站太薄 |
 | fengtang-note | 人物 | 10 | 8 | 0.8 | — | 站太薄 |
-| nouwen-note | 人物 | 16 | 8 | 0.5 | — | 站太薄 |
 | damodaran-note | 人物 | 5 | 7 | 1.4 | — | 站太薄 |
-| nt-wright-note | 人物 | 11 | 7 | 0.6 | — | 站太薄 |
 | templar-note | 人物 | 9 | 7 | 0.8 | — | 站太薄 |
 | willard-note | 人物 | 8 | 7 | 0.9 | — | 站太薄 |
 | pastoral-psychology-note | 主題 | 5 | 5 | 1.0 | — | 未溯源 5 頁，先還債 |
@@ -88,5 +91,4 @@
 | collins-note | 人物 | 6 | 3 | 0.5 | — | 站太薄 |
 | grant-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
 | grove-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
-| fowler-note | 人物 | 6 | 2 | 0.3 | — | 站太薄 |
 

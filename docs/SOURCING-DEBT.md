@@ -169,6 +169,17 @@ and Purpose"、`07-how-do-you-get-there/` 實為 "Back from the Future"，主代
 | 四頁 label 書名「Observability Engineering — …」，`book:` 實指 `observability-beginners-guide`（《可觀測性入門指南》，另一本書） | 兩本不同書——頁首 byline 與頁尾卡印錯書名 | 四頁 label 改「Observability 入門指南 — …」（observability-vs-monitoring、three-pillars、four-golden-signals、distributed-tracing）。「有 anchor ≠ 掛對書」的 label 變體 |
 | 「1960 年代匈牙利數學家 Rudolf Kálmán」（轉引自入門指南） | 原典 OE ch1：「工程師 Rudolf E. Kálmán 在 **1960 年**提出」＋與可控制性互為對偶 | 骨幹改掛原典；兩書衝突以原典優先 |
 
+## 2026-08-21 第三波校正（nouwen／fowler 一條龍抓到）
+
+| 站 | 原本寫的 | 原文實際 | 處置 |
+| --- | --- | --- | --- |
+| nouwen `downward-mobility` | 子代理稿「召命就隱藏在目前的光景、目前的居處」 | road-to-daybreak 全書查無 | 刪除，改以 selfless epilogue 有據的「處方比診斷薄」收尾 |
+| nouwen guide 01／03 | 兩句引文被改寫（班伯格地圖句、living-reminder「把心丟了」） | 原句各多一個限定語 | 貼回原句（主代理逐字複核） |
+| fowler bibliography | Refactoring year 1999 | repo 實為 2018 二版（published 2018-11-20、Extract Function 術語） | 改 2018，導覽如實交代 |
+| fowler bibliography | 4 本 owned 掛「缺口」group | 收書後未更新 | 重新分組 |
+
+子代理稿的 `&amp;gt;` 跳脫實體污染在 nt-wright／fowler／nouwen 三站都出現，母代理落盤時全清；主代理驗收加了 entities 掃描。
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
