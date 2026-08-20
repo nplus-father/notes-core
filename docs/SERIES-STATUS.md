@@ -30,10 +30,10 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 
 | 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| `data-systems-note` | 主題 | 19 | 50 | 2.63 | 100% | 13/13 | 100% | 0 | — | CLEAN |  |
-| `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 |  |
+| `data-systems-note` | 主題 | 19 | 50 | 2.63 | 100% | 13/13 | 100% | 0 | — | CLEAN | 2026-08-20 |
+| `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 | 2026-08-20 |
 | `startup-note` | 主題 | 62 | 44 | 0.71 | 100% | 6/6 | 100% | 0 | — | CLEAN |  |
-| `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
+| `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 | 2026-08-20 |
 | `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN |  |
 | `communication-note` | 主題 | 49 | 37 | 0.76 | 100% | 6/6 | 100% | 0 | 07-31/07-31 | nit1 |  |
 | `learning-note` | 主題 | 33 | 34 | 1.03 | 100% | 6/6 | 82% | 0 | — | warning1·nit1 |  |

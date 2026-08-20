@@ -35,12 +35,14 @@
 | jung-note | 人物 | 7 | 14 | 2.0 | 2026-08-15 | writtenAt 2026-08-15；3→14 頁、七本原典全開採；bibliography「缺口」group 名失真待 note-inventory |
 | kent-beck-note | 人物 | 6 | 14 | 2.3 | 2026-08-15 | writtenAt 2026-08-15；3→14 頁 Beck 全弧線；XP 二版未收待 note-inventory 補帳 |
 | taleb-note | 人物 | 6 | 15 | 2.5 | 2026-08-15 | writtenAt 2026-08-15；8→15 頁、開肥尾技術線；profile readingPath 掛 skipped 書待 --fix |
+| data-systems-note | 主題 | 19 | 50 | 2.6 | — | writtenAt 2026-08-20；兩脊梁（DDIA/DB Internals）已挖穿；待挖 14 支架，火力序：串流三本（enrich 波同日進行） |
+| economics-note | 主題 | 50 | 45 | 0.9 | — | writtenAt 2026-08-20；已挖 29／待挖 21，火力序 1＝通論＋動物本能（enrich 波同日進行）；roadmap 孤兒 7 歸線建議在導覽 |
+| investing-note | 主題 | 62 | 43 | 0.7 | — | writtenAt 2026-08-20；已挖 36／待挖 26，脊梁級待挖＝金融煉金術＋Kindleberger（enrich 波同日進行） |
 
 ## 第一批——站深料足，直接可做
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| economics-note | 主題 | 50 | 45 | 0.9 | — |  |
 | startup-note | 主題 | 62 | 44 | 0.7 | — |  |
 | communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
 | learning-note | 主題 | 33 | 34 | 1.0 | — |  |
