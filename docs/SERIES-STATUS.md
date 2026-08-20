@@ -33,7 +33,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `data-systems-note` | 主題 | 19 | 50 | 2.63 | 100% | 13/13 | 100% | 0 | — | CLEAN |  |
 | `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 |  |
 | `startup-note` | 主題 | 62 | 44 | 0.71 | 100% | 6/6 | 100% | 0 | — | CLEAN |  |
-| `career-note` | 主題 | 68 | 43 | 0.63 | 98% | 6/6 | 100% | 0 | 08-06/08-06 | 必改1·nit1 |  |
+| `career-note` | 主題 | 68 | 43 | 0.63 | 98% | 6/6 | 100% | 0 | 08-06/08-06 | 必改1（待裁決）·nit1 |  |
 | `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
 | `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN |  |
 | `communication-note` | 主題 | 49 | 37 | 0.76 | 100% | 6/6 | 100% | 0 | 07-31/07-31 | nit1 |  |
@@ -57,13 +57,13 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `science-note` | 主題 | 48 | 16 | 0.33 | 100% | 4/4 | 100% | 0 | 07-31/07-31 | nit1 |  |
 | `drucker-note` | 人物 | 19 | 14 | 0.74 | 100% | 4/4 | 100% | 0 | — | CLEAN |  |
 | `image-style-note` | 主題 | 7 | 13 | 1.86 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
-| `de-botton-note` | 人物 | 12 | 12 | 1.00 | 100% | 4/4 | 100% | 0 | — | blocker1·nit1 |  |
+| `de-botton-note` | 人物 | 12 | 12 | 1.00 | 100% | 4/4 | 100% | 0 | — | nit1（blocker 08-20 已清） |  |
 | `maxwell-note` | 人物 | 18 | 12 | 0.67 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
 | `kiyosaki-note` | 人物 | 23 | 11 | 0.48 | 100% | 3/3 | 100% | 0 | 08-06/08-06 | CLEAN |  |
 | `liurun-note` | 人物 | 12 | 11 | 0.92 | 100% | 4/4 | 100% | 1 | — | nit1 |  |
 | `wellness-note` | 主題 | 33 | 11 | 0.33 | 100% | 4/4 | 100% | 0 | 07-31/07-31 | CLEAN |  |
 | `fromm-note` | 人物 | 16 | 10 | 0.62 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
-| `newport-note` | 人物 | 8 | 10 | 1.25 | 100% | 4/4 | 100% | 0 | — | 必改1·nit1 |  |
+| `newport-note` | 人物 | 8 | 10 | 1.25 | 100% | 4/4 | 100% | 0 | — | nit1（必改 08-20 已清） |  |
 
 ### ③太薄——check → enrich 拓站 → guide（16 站，jung／kent-beck／taleb 模式）
 
@@ -101,14 +101,20 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 > peck（`further-along-the-road-less-traveled` 僅 954 字、無概覽、躺在 `archive/`；`world-waiting-to-be-born` 空 2 章）、
 > system-design（`building-microservices` 空 3 章＋`microservices-patterns`）。只欠書端補洞，不佔本系列產能。
 
-## 必改帳（進場前就能清，幾乎零 token）
+## 必改帳（2026-08-20 清帳輪結果）
 
-1. **schwager-note**：bibliography slug `complete-guide-to-futures-market` → 實際 repo 是 `complete-guide-to-futures-markets`（少個 s）；
-   同一錯 slug 也出現在 4 筆 `furtherReading`（options-and-spreads ×2、risk-management、technical-analysis）——站上這些引用現在是 404。
-2. **de-botton-note**：bibliography slug `status-anxiety-book` → 實際 repo 是 `status-anxiety`（頁面的 furtherReading 是對的，只有書單錯）。
-3. **newport-note**：`career-capital/career-capital-over-passion` 的 anchor `how-to-be-a-high-school-superstar/docs/04-personal-growth` 不存在
-   （該 repo 即 2026-08-06 的身分錯配書，實為《How to Win at College》）——回書 repo 對實際章節重掛。
-4. **career-note**：`meaning-direction/beyond-the-business-card` 未溯源——回原文核對後補 anchor（必改不是選改）。
+1. ✅ **schwager-note**（`46b107a`，build 綠）：查明是**版本併帳**不是打錯字——repo `complete-guide-to-futures-markets`
+   實為 2017 二版（出版日／Amazon 連結／七章結構皆符），初版與二版卻各立一筆 owned。已併成一筆 owned（二版，真 slug）、
+   另一筆改 skipped 留譯名對照；三頁中兩頁的重複引用刪除、technical-analysis 一筆改錨 `02-technical-analysis`。
+2. ✅ **de-botton-note**（`e5a74da`，build 綠）：同書雙譯本各立 owned、repo 只有一個——《我愛身分地位》改 skipped 留帳對照，
+   站以《身份的焦慮》（`status-anxiety`）收錄。
+3. ✅ **newport-note**（`2974408`，build 綠）：書端已把錯配 repo 換回真 Superstar 正文、另立 `how-to-win-at-college`
+   （repo log `69dbca4`），站帳沒跟上——「深度學習力」重複筆改 skipped、Superstar 由 unavailable 轉 owned＋slug；
+   死 anchor 換成 win-at-college 實錨兩筆（ch11 精通一項技能／ch16 grand project，皆 grep 核實）。
+4. ⏸ **career-note**：`meaning-direction/beyond-the-business-card` 未溯源——查明**母書整本不在書庫**：
+   內容出自大人學（姚詩豪、張國洋）談「拿掉名片」的那本（應為《沒了名片，你還剩下什麼？》，收書時對作者），
+   career-note 書單也沒登記；站上唯一的大人學書《大人學選擇》筆記無這些主張（02 章講槓桿彈性／小實驗，掛上去＝假溯源）。
+   **待 Andrew 裁決**：(a) 列 wanted＋頁面記溯源債等書到核對；(b) 照 self-made-talent 前例先移除頁面、收書後重寫。
 
 （pastoral-psychology 的 5 頁全未溯源＋3 本引用書不存在＝enrich 級工程，不算小帳，見 ③檔。）
 
@@ -118,7 +124,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
   - warning: roadmap 孤兒頁 ×7: econ-foundations/inflation-and-deflation, econ-foundations/schools-of-economic-thought, econ-foundations/gdp-and-economic-indicators, globalization-order/globalization-and-trade, markets-incentives/game-theory-basics, markets-incentives/creative-destruction, money-central-banks/gold-standard-and-fetters
   - nit:related 單向 ×12（`--fix` 可機械清）
 - **career-note**
-  - 必改: 未溯源頁 ×1: meaning-direction/beyond-the-business-card
+  - 必改（待裁決）: 未溯源頁 ×1: meaning-direction/beyond-the-business-card——母書不在庫，見「必改帳」第 4 筆
   - nit:related 單向 ×18（`--fix` 可機械清）
 - **investing-note**
   - nit:related 單向 ×9（`--fix` 可機械清）
@@ -151,8 +157,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
   - nit:related 單向 ×11（`--fix` 可機械清）
 - **image-style-note**
   - nit:related 單向 ×14（`--fix` 可機械清）
-- **de-botton-note**
-  - blocker: bibliography owned slug 對不到書 repo: ['status-anxiety-book']
+- **de-botton-note**（blocker 08-20 已清，e5a74da）
   - nit:related 單向 ×4（`--fix` 可機械清）
 - **maxwell-note**
   - nit:related 單向 ×11（`--fix` 可機械清）
@@ -160,8 +165,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
   - nit:related 單向 ×1（`--fix` 可機械清）
 - **fromm-note**
   - nit:related 單向 ×5（`--fix` 可機械清）
-- **newport-note**
-  - 必改: anchor 死連 ×1: career-capital/career-capital-over-passion→how-to-be-a-high-school-superstar/docs/04-personal-growth
+- **newport-note**（必改 08-20 已清，2974408——順帶把 win-at-college／superstar 分家後的書單歸位）
   - nit:related 單向 ×3（`--fix` 可機械清）
 - **cloud-note**
   - nit:related 單向 ×6（`--fix` 可機械清）
@@ -186,9 +190,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
   - nit:related 單向 ×21（`--fix` 可機械清）
 - **theology-note**
   - nit:related 單向 ×11（`--fix` 可機械清）
-- **schwager-note**
-  - blocker: bibliography owned slug 對不到書 repo: ['complete-guide-to-futures-market']
-  - 必改: furtherReading book 不存在 ×4: analysis/options-and-spreads→complete-guide-to-futures-market, analysis/options-and-spreads→complete-guide-to-futures-market, analysis/risk-management→complete-guide-to-futures-market, analysis/technical-analysis→complete-guide-to-futures-market
+- **schwager-note**（blocker＋必改 08-20 已清，46b107a——初版／二版併帳）
 - **wujun-note**
   - nit:related 單向 ×9（`--fix` 可機械清）
 
