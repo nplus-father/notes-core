@@ -38,6 +38,9 @@
 | data-systems-note | 主題 | 19 | 50 | 2.6 | 2026-08-20 | writtenAt 2026-08-20；串流三本已挖（爭點二升格原生書源）＋15 條補錨；餘待挖 6 支架（indexing 兩本→Greg Young→Red Book/NoSQL/Kimball） |
 | economics-note | 主題 | 50 | 45 | 0.9 | 2026-08-20 | writtenAt 2026-08-20；通論＋動物本能已挖（31/19）、roadmap 孤兒 7 頁歸零、capitalist-manifesto 錯帳修；火力序 2＝國富論 |
 | investing-note | 主題 | 62 | 43 | 0.7 | 2026-08-20 | writtenAt 2026-08-20；煉金術＋Kindleberger 已挖（38/24，脊梁級歸零）、導覽開爭點五；this-time-is-different 錨錯掛已修（SOURCING-DEBT） |
+| cloud-infra-note | 主題 | 26 | 39 | 1.5 | — | writtenAt 2026-08-21；兩本 Google SRE 書挖穿、19 本零引用帳攤開；火力序①Observability Eng②Systems Perf③IaC（enrich 進行中）；TT/BSRS 需開新分類待裁決 |
+| tracy-note | 人物 | 36 | 25 | 0.7 | — | writtenAt 2026-08-21；36 本三層帳（脊梁 7）；火力①Maximum Achievement 總綱②Million Dollar Habits③Advanced Selling（enrich 進行中）；strategic-thinking label 錯章待修 |
+| wan-weigang-note | 人物 | 11 | 15 | 1.4 | — | writtenAt 2026-08-21；一條弧線判讀；**拐點兩頁 B 型債**（T 型人才等框架書中查無，主代理已複核）＋計劃書零錨（enrich 進行中） |
 
 ## 第一批——站深料足，直接可做
 
@@ -51,8 +54,6 @@
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
 | life-meaning-note | 主題 | 39 | 31 | 0.8 | — |  |
 | history-note | 主題 | 34 | 30 | 0.9 | — |  |
-| tracy-note | 人物 | 36 | 25 | 0.7 | — |  |
-| wan-weigang-note | 人物 | 11 | 15 | 1.4 | — |  |
 
 ## 第二批——可做；導讀章的「待挖」比例會偏高
 

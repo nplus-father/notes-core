@@ -34,7 +34,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 | 2026-08-20 |
 | `startup-note` | 主題 | 62 | 44 | 0.71 | 100% | 6/6 | 100% | 0 | — | CLEAN |  |
 | `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 | 2026-08-20 |
-| `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN |  |
+| `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN | 2026-08-21 |
 | `communication-note` | 主題 | 49 | 37 | 0.76 | 100% | 6/6 | 100% | 0 | 07-31/07-31 | nit1 |  |
 | `learning-note` | 主題 | 33 | 34 | 1.03 | 100% | 6/6 | 82% | 0 | — | warning1·nit1 |  |
 | `relationships-note` | 主題 | 46 | 34 | 0.74 | 100% | 6/6 | 91% | 0 | — | warning1 |  |
@@ -42,8 +42,8 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `business-strategy-note` | 主題 | 50 | 31 | 0.62 | 100% | 6/6 | 100% | 0 | — | nit2 |  |
 | `life-meaning-note` | 主題 | 39 | 31 | 0.79 | 100% | 6/6 | 90% | 0 | — | warning1·nit1 |  |
 | `history-note` | 主題 | 34 | 30 | 0.88 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
-| `tracy-note` | 人物 | 36 | 25 | 0.69 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
-| `wan-weigang-note` | 人物 | 11 | 15 | 1.36 | 100% | 4/4 | 100% | 0 | — | CLEAN |  |
+| `tracy-note` | 人物 | 36 | 25 | 0.69 | 100% | 4/4 | 100% | 0 | — | nit1 | 2026-08-21 |
+| `wan-weigang-note` | 人物 | 11 | 15 | 1.36 | 100% | 4/4 | 100% | 0 | — | CLEAN | 2026-08-21 |
 
 ### ②可 guide，導讀章「待挖」比例會偏高（14 站）
 
