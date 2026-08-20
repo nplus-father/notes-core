@@ -35,9 +35,9 @@
 | jung-note | 人物 | 7 | 14 | 2.0 | 2026-08-15 | writtenAt 2026-08-15；3→14 頁、七本原典全開採；bibliography「缺口」group 名失真待 note-inventory |
 | kent-beck-note | 人物 | 6 | 14 | 2.3 | 2026-08-15 | writtenAt 2026-08-15；3→14 頁 Beck 全弧線；XP 二版未收待 note-inventory 補帳 |
 | taleb-note | 人物 | 6 | 15 | 2.5 | 2026-08-15 | writtenAt 2026-08-15；8→15 頁、開肥尾技術線；profile readingPath 掛 skipped 書待 --fix |
-| data-systems-note | 主題 | 19 | 50 | 2.6 | — | writtenAt 2026-08-20；兩脊梁（DDIA/DB Internals）已挖穿；待挖 14 支架，火力序：串流三本（enrich 波同日進行） |
-| economics-note | 主題 | 50 | 45 | 0.9 | — | writtenAt 2026-08-20；已挖 29／待挖 21，火力序 1＝通論＋動物本能（enrich 波同日進行）；roadmap 孤兒 7 歸線建議在導覽 |
-| investing-note | 主題 | 62 | 43 | 0.7 | — | writtenAt 2026-08-20；已挖 36／待挖 26，脊梁級待挖＝金融煉金術＋Kindleberger（enrich 波同日進行） |
+| data-systems-note | 主題 | 19 | 50 | 2.6 | 2026-08-20 | writtenAt 2026-08-20；串流三本已挖（爭點二升格原生書源）＋15 條補錨；餘待挖 6 支架（indexing 兩本→Greg Young→Red Book/NoSQL/Kimball） |
+| economics-note | 主題 | 50 | 45 | 0.9 | 2026-08-20 | writtenAt 2026-08-20；通論＋動物本能已挖（31/19）、roadmap 孤兒 7 頁歸零、capitalist-manifesto 錯帳修；火力序 2＝國富論 |
+| investing-note | 主題 | 62 | 43 | 0.7 | 2026-08-20 | writtenAt 2026-08-20；煉金術＋Kindleberger 已挖（38/24，脊梁級歸零）、導覽開爭點五；this-time-is-different 錨錯掛已修（SOURCING-DEBT） |
 
 ## 第一批——站深料足，直接可做
 

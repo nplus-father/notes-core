@@ -127,6 +127,17 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 
 同輪兩筆 bibliography 帳（非溯源債、記脈絡）：economics `capitalist-manifesto` note/year 誤植 Norberg 2023（實為 Kiyosaki 2022，`9ad4f77` 修）；investing `trend-following` note 誤記只收訪談集（實收 2017 五版本傳，`6907574` 修）。
 
+## 2026-08-20 追加校正（data-systems-note enrich 抓到）
+
+同輪第二批（站 commit `fa363e3`）——一筆主張改寫＋三筆 label 錯章（「有 anchor ≠ 掛對章」再驗證）：
+
+| 頁 | 原本寫的 | 原文實際說的 |
+| --- | --- | --- |
+| stream-processing | 「沒有完美解：『資料到齊』本質上不可知，只能啟發式逼近」 | Streaming Systems ch3：**完美浮水印在特定來源可建**（入口時間戳、靜態分區＋分區內單調的 Kafka topic），多數真實來源才退回啟發式——已改寫並補專段 |
+| clustered-vs-secondary | HPJP label「索引與執行計畫」（書中無此章） | 實出處 Mapping Types and Identifiers（UUID vs 序列鍵、叢集索引碎裂） |
+| isolation-levels／mvcc | HPJP label「並發控制與隔離級別」「MVCC 與快照」 | 隔離級別表與各家 MVCC 實作（SCN／xmin-xmax／rollback segment）在 Part 1 Transactions 章 |
+| rebalancing | DBI label「Part II：叢集與分片」（無此章） | 分片與一致性雜湊在 Distributed Transactions 章末 |
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
