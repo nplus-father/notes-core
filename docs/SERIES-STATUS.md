@@ -14,7 +14,7 @@
   content fill **以本機實測為準**——portal `health.json`（08-18 產）過期，21 本 08-19～20 剛填完的書被誤標 thin/near-empty。
   空葉章節 ≥2 的書算未完；恰 1 個空葉（多為附錄）不擋站、只註記；watch 級（8–15k 字）不擋。
 
-**結果：65 站達標＝A 20（連導覽都完工）＋ B 45（本系列的工作範圍）**；10 站書端未過（其中 4 站導覽已寫、只欠書端補洞）。
+**結果（08-20 清帳輪後）：64 站達標＝A 20（連導覽都完工）＋ B 44（本系列的工作範圍）**；11 站書端未過（其中 4 站導覽已寫、只欠書端補洞；career 因移除未溯源頁改列 wanted 1，見必改帳第 4 筆）。
 
 ## A 組——全流程完工（20 站，僅存查）
 
@@ -26,14 +26,13 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 分檔依 note-guide 深度門檻（主題 ≥30 頁／人物 ≥15 頁）。「待寫」＝roadmap 已排、檔案未寫的節點（enrich 素材）。
 「體檢」欄是本輪機械掃描的 findings 計數，細節在下面「逐站 findings」。
 
-### ①站深料足——check 後可直接 guide，enrich 還導覽點名的債（15 站）
+### ①站深料足——check 後可直接 guide，enrich 還導覽點名的債（14 站）
 
 | 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
 | `data-systems-note` | 主題 | 19 | 50 | 2.63 | 100% | 13/13 | 100% | 0 | — | CLEAN |  |
 | `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 |  |
 | `startup-note` | 主題 | 62 | 44 | 0.71 | 100% | 6/6 | 100% | 0 | — | CLEAN |  |
-| `career-note` | 主題 | 68 | 43 | 0.63 | 98% | 6/6 | 100% | 0 | 08-06/08-06 | 必改1（待裁決）·nit1 |  |
 | `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
 | `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN |  |
 | `communication-note` | 主題 | 49 | 37 | 0.76 | 100% | 6/6 | 100% | 0 | 07-31/07-31 | nit1 |  |
@@ -86,10 +85,11 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
 | `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN |  |
 
-## 書端未過、也還沒導覽的 6 站（站側體檢一併做完，等書端清帳後入列）
+## 書端未過、也還沒導覽的 7 站（站側體檢一併做完，等書端清帳後入列）
 
 | 站 | 型 | 頁 | 站側體檢 | 卡在哪（書端） | 清帳後入檔 |
 | --- | --- | ---: | --- | --- | --- |
+| `career-note` | 主題 | 42 | nit1 | 2026-08-20 移除未溯源頁後，母書《沒了名片，你還剩下什麼？》（姚詩豪、張國洋）列 wanted——差這 1 本歸零 | ① |
 | `biblical-studies-note` | 主題 | 44 | nit1 | wanted 1（Goldingay《OT Theology》卷一，三卷齊才結案）；`dictionary-of-paul-and-his-letters` 448 條目空 227（辭典型，是否 waive 待裁決） | ① |
 | `theology-note` | 主題 | 24 | nit1 | `christian-theology-introduction`（new-books，內容已滿 21/21）＋`contemplative-pastor`、`reformed-dogmatics`（tmp）3 本待深度概覽；`cost-of-discipleship` 空 9/34 章 | ② |
 | `personal-finance-note` | 主題 | 29 | CLEAN | `automatic-millionaire`（tmp，內容已滿）待深度概覽 | ② |
@@ -111,10 +111,10 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 3. ✅ **newport-note**（`2974408`，build 綠）：書端已把錯配 repo 換回真 Superstar 正文、另立 `how-to-win-at-college`
    （repo log `69dbca4`），站帳沒跟上——「深度學習力」重複筆改 skipped、Superstar 由 unavailable 轉 owned＋slug；
    死 anchor 換成 win-at-college 實錨兩筆（ch11 精通一項技能／ch16 grand project，皆 grep 核實）。
-4. ⏸ **career-note**：`meaning-direction/beyond-the-business-card` 未溯源——查明**母書整本不在書庫**：
-   內容出自大人學（姚詩豪、張國洋）談「拿掉名片」的那本（應為《沒了名片，你還剩下什麼？》，收書時對作者），
-   career-note 書單也沒登記；站上唯一的大人學書《大人學選擇》筆記無這些主張（02 章講槓桿彈性／小實驗，掛上去＝假溯源）。
-   **待 Andrew 裁決**：(a) 列 wanted＋頁面記溯源債等書到核對；(b) 照 self-made-talent 前例先移除頁面、收書後重寫。
+4. ✅ **career-note**（`8b5d448`，build 綠）：查明**母書整本不在書庫**（內容出自大人學談「拿掉名片」的那本，
+   《大人學選擇》筆記無這些主張、掛上去＝假溯源）。Andrew 裁決照 self-made-talent 前例**移除頁面、收書後重寫**——
+   頁已刪、roadmap／related／內文連結全同步（站內 0 殘留），《沒了名片，你還剩下什麼？》列 wanted 追帳。
+   副作用：career-note wanted 0→1，暫退出達標系列（見上表）。
 
 （pastoral-psychology 的 5 頁全未溯源＋3 本引用書不存在＝enrich 級工程，不算小帳，見 ③檔。）
 
@@ -123,8 +123,7 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 - **economics-note**
   - warning: roadmap 孤兒頁 ×7: econ-foundations/inflation-and-deflation, econ-foundations/schools-of-economic-thought, econ-foundations/gdp-and-economic-indicators, globalization-order/globalization-and-trade, markets-incentives/game-theory-basics, markets-incentives/creative-destruction, money-central-banks/gold-standard-and-fetters
   - nit:related 單向 ×12（`--fix` 可機械清）
-- **career-note**
-  - 必改（待裁決）: 未溯源頁 ×1: meaning-direction/beyond-the-business-card——母書不在庫，見「必改帳」第 4 筆
+- **career-note**（必改 08-20 已清：頁面移除，8b5d448）
   - nit:related 單向 ×18（`--fix` 可機械清）
 - **investing-note**
   - nit:related 單向 ×9（`--fix` 可機械清）
