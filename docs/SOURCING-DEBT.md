@@ -155,6 +155,13 @@ book repo `how-to-be-a-high-school-superstar` 的**內容實為《How to Win at 
 
 另 bibliography《人比AI兇》year 2024→2025（序言署名 2025-07）。教訓：**種子頁的「聽起來像那本書會講的框架」最危險**——T 型人才、元認知這類流行語彙極易被腦補進轉譯者的書；防線仍是導覽書帳（逐本回原文）＋enrich 逐段核對。
 
+### 同輪 tracy-note：一筆假警報（記檢核脈絡）
+
+導覽點名 strategic-thinking 兩條 label「與 anchor 錯章」，enrich 回書查證判**非錯配**：`business-strategy`
+書 repo 的**目錄 slug 與 `_index.md` 章題系統性不一致**（`05-where-are-you-now/` 章題實為 "Values, Vision,
+and Purpose"、`07-how-do-you-get-there/` 實為 "Back from the Future"，主代理複核屬實）。label 取章題是對的。
+教訓：**判 label 錯章前先開 `_index.md` 對章題，別只看目錄名**。書 repo 的 slug／章題不一致本身是書庫小債，暫不動。
+
 ## 自動化工具
 
 第二批（456 頁）用腳本完成，**label 與章節名直接取自 `books-done` 原文的 frontmatter，不自行編造**：
