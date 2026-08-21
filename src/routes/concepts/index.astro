@@ -48,10 +48,7 @@ const tracks = cats
   <Crumbs site={site} items={[{ label: conceptLabel }]} />
   <header class="page-head">
     <h1>{conceptLabel}</h1>
-    <p class="lede">
-      Each track runs <strong>Basic → Advanced</strong>.
-      {hasSister && <> Tracks marked ↘ dive deeper into a sister site.</>}
-    </p>
+    {hasSister && <p class="lede">Tracks marked ↘ dive deeper into a sister site.</p>}
   </header>
 
   <section class="tracks">
