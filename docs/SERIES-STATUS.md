@@ -228,8 +228,8 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
   Team Topologies → agile-note（已收 owned、導覽已完工，下次增量 enrich 處理）。cloud-infra 導覽第三章的判層
   從「落點薄，如實記帳」改「姊妹站分工」＝帳平（照 keller／navarro「未挖 ≠ 欠債」前例）。
 
-- [GUIDE-QUEUE.md](./GUIDE-QUEUE.md) 有 12 站已達標未登錄：data-systems、career、investing、cloud-infra、habits、marketing、
-  science、drucker、wellness、cloud、gardner、security——下次動它時一併補。
+- ~~GUIDE-QUEUE 12 站已達標未登錄~~：2026-08-21 已補齊——5 站已進「已完成」，餘 7 站（career、habits、marketing、science、
+  wellness、cloud、gardner）補進對應批次表。
 - portal `health.json`（08-18）過期：21 本剛填完的書仍標 thin/near-empty，書站部署後重跑 fetch-health。
 - `archive/further-along-the-road-less-traveled`：躺在 archive/ 但 GitHub repo 未 archive、topics 照舊——除役還是補寫，待裁決。
 - `dictionary-of-paul-and-his-letters`：448 條目空 227（辭典型參考書）——是否 waive 待裁決。

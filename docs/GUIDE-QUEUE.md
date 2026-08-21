@@ -59,13 +59,17 @@
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
 | life-meaning-note | 主題 | 39 | 31 | 0.8 | — |  |
 | history-note | 主題 | 34 | 30 | 0.9 | — |  |
+| career-note | 主題 | 68 | 42 | 0.6 | — | 書端卡 wanted 1（《沒了名片，你還剩下什麼？》），收書歸零後進場 |
 
 ## 第二批——可做；導讀章的「待挖」比例會偏高
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
+| habits-note | 主題 | 44 | 28 | 0.6 | — |  |
+| marketing-note | 主題 | 31 | 27 | 0.9 | — |  |
 | management-note | 主題 | 47 | 20 | 0.4 | 2026-08-01 |  |
 | problem-solving-note | 主題 | 26 | 17 | 0.7 | 2026-08-06 |  |
+| science-note | 主題 | 48 | 16 | 0.3 | 2026-07-31 |  |
 | image-style-note | 主題 | 7 | 13 | 1.9 | — |  |
 | spiritual-formation-note | 主題 | 35 | 13 | 0.4 | 2026-07-31 |  |
 | de-botton-note | 人物 | 12 | 12 | 1.0 | — |  |
@@ -76,12 +80,15 @@
 | fromm-note | 人物 | 16 | 10 | 0.6 | — |  |
 | newport-note | 人物 | 8 | 10 | 1.2 | — |  |
 | wujun-note | 人物 | 18 | 10 | 0.6 | — |  |
+| wellness-note | 主題 | 33 | 11 | 0.3 | 2026-07-31 |  |
 
 ## 先 enrich 再 guide（頁數不足或有溯源債）
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
+| cloud-note | 人物 | 13 | 9 | 0.7 | — | 站太薄 |
 | bogle-note | 人物 | 6 | 8 | 1.3 | — | 站太薄 |
+| gardner-note | 人物 | 13 | 8 | 0.6 | — | 站太薄 |
 | fengtang-note | 人物 | 10 | 8 | 0.8 | — | 站太薄 |
 | damodaran-note | 人物 | 5 | 7 | 1.4 | — | 站太薄 |
 | templar-note | 人物 | 9 | 7 | 0.8 | — | 站太薄 |
