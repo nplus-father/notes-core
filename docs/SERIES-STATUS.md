@@ -69,19 +69,19 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
 | `cloud-note` | 人物 | 13 | 9 | 0.69 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
-| `bogle-note` | 人物 | 6 | 8 | 1.33 | 100% | 2/2 | 100% | 0 | — | nit1 |  |
+| `bogle-note` | 人物 | 6 | 8 | 1.33 | 100% | 2/2 | 100% | 0 | — | nit1 | 2026-08-21 |
 | `fengtang-note` | 人物 | 10 | 8 | 0.80 | 100% | 3/3 | 100% | 1 | — | CLEAN |  |
 | `gardner-note` | 人物 | 13 | 8 | 0.62 | 100% | 3/3 | 100% | 0 | — | CLEAN |  |
 | `nouwen-note` | 人物 | 16 | 8 | 0.50 | 100% | 3/3 | 100% | 4 | — | nit1 | 2026-08-21 |
-| `damodaran-note` | 人物 | 5 | 7 | 1.40 | 100% | 2/2 | 100% | 0 | — | CLEAN |  |
+| `damodaran-note` | 人物 | 5 | 7 | 1.40 | 100% | 2/2 | 100% | 0 | — | CLEAN | 2026-08-21 |
 | `nt-wright-note` | 人物 | 11 | 7 | 0.64 | 100% | 3/3 | 100% | 0 | — | nit1 | 2026-08-21 |
-| `templar-note` | 人物 | 9 | 7 | 0.78 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
-| `willard-note` | 人物 | 8 | 7 | 0.88 | 100% | 3/3 | 100% | 2 | — | CLEAN |  |
+| `templar-note` | 人物 | 9 | 7 | 0.78 | 100% | 4/4 | 100% | 0 | — | nit1 | 2026-08-21 |
+| `willard-note` | 人物 | 8 | 7 | 0.88 | 100% | 3/3 | 100% | 2 | — | CLEAN | 2026-08-21 |
 | `pastoral-psychology-note` | 主題 | 5 | 5 | 1.00 | 0% | 4/4 | 0% | 0 | — | 必改2·warning1·nit1 |  |
 | `christensen-note` | 人物 | 9 | 4 | 0.44 | 100% | 4/4 | 100% | 6 | — | nit1 | 2026-08-21 |
 | `security-note` | 主題 | 14 | 4 | 0.29 | 100% | 4/4 | 100% | 8 | — | nit1 | 2026-08-21 |
 | `collins-note` | 人物 | 6 | 3 | 0.50 | 100% | 3/3 | 100% | 7 | — | CLEAN | 2026-08-21 |
-| `grant-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
+| `grant-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
 | `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
 | `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN | 2026-08-21 |
 
@@ -218,6 +218,12 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 完成一站：本檔該行「導覽完成」欄填日期，GUIDE-QUEUE 同步搬「已完成」。
 
 ## 跨站遺留帳
+
+- **第五波完工（2026-08-21）**：grant／bogle／damodaran／templar／willard 五站一條龍全 push（ad68bd5／cd2d8fe／c1359bf／33005e2／bd8c26d）。
+  戰績：3→13（potential＋resilience）、8→14（vanguard）、7→13（dark-side＋philosophy）、7→13（home）、7→12（renovation 線補齊），合計 32→65 頁。
+  **本波 B 型債豐收 23 筆**（bogle 10＋templar 6＋willard 7，見 SOURCING-DEBT）——bogle 抓到一句三書查無的杜撰引語，willard 抓到兩個外加比喻冒充書語。
+  途中三度撞額度（Fable 5／weekly／session），SendMessage 續跑＋子代理直接寫檔紀律全程生效，零重工。
+  backlog（導覽 ch3 點名）：grant 各書人際層、damodaran 金融股／困境公司、templar People 第二頁、bogle 無。
 
 - **第四波完工（2026-08-21）**：grove／collins／christensen 三站一條龍全 push（16026a3／7f3ab18／7205252）。
   戰績：3→12、3→12（新開 decline）、4→14（新開 applications），合計 10→38 頁。內容債僅 1 筆（collins AMD，見 SOURCING-DEBT）。

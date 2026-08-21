@@ -291,3 +291,45 @@ grep -rn '[乃乙乔乏乌泽]' . --include='*.md' \
 | collins discipline/twenty-mile-march | AMD 宣告「十年內」成為積體電路第一名 | GBC ch.3：目標是「該十年（1980 年代）結束前」 | 照書改寫 |
 
 機械修正（非溯源債）：grove bibliography 的 measure-what-matters 掛「缺口」組但 status owned → 改「他的遺產」組；grove profile 一處 conceptPath 占位改指新頁；christensen「缺口」組內兩本 owned（prescription、disrupting-class）併入新設「應用領域」組；christensen 既有 related 兩處單向補雙向。
+
+## 校正紀錄：第五波一條龍（2026-08-21，grant／bogle／damodaran／templar／willard）
+
+grant、damodaran 內容債 0。其餘三站合計 **23 筆**——本波教訓：**早期薄站的既有頁（多為 AI 批次期產物）比書 repo 產線直改的頁髒得多**，bogle 尤其是重災區。
+
+### bogle-note（10 筆，重災區）
+
+| 頁 | 原寫 | 書中實際 | 修法 |
+| --- | --- | --- | --- |
+| reversion | 引語「不是人有投資問題，而是投資有人的問題」 | 三本書查無 | **整句刪除** |
+| fiduciary-duty | 「跟自己談判，很難打架」掛柏格 | clash ch5：凱因斯「情況改變，我也改變看法——你呢？」 | 換回原語原主 |
+| enough | 「前言由柯林頓撰寫」 | 書稿無據 | 刪除 |
+| enough | 蘇格拉底「未經檢視的人生」 | 導論實引「在意累積金錢…不在意智慧、真理與靈魂」 | 換回實引 |
+| cost-matters | 「柏格稱 CMH 為卑微算術的鐵律」 | 該詞出自布蘭迪斯大法官、柏格借用 | 標明出處 |
+| reversion | 「跟上市場只是平常事」 | 「**超越**市場的表現只不過是平常事」（方向反） | 照書改 |
+| little-book | 「1975 年推出」＋「全球」「1970 年諾獎」 | 1975 創立、1976 上市；其餘無據 | 改＋刪 |
+| investment-vs-speculation | 「SEC 前主席」等職銜 | 夏皮洛時任主席；Turner 同 | 照書改 |
+| fiduciary-duty | 「加權換算」「ICI 主席抱怨」「CBS 編輯」 | 無加權／年會主持人／CBS MoneyWatch 編輯 | 照書改 |
+| stewardship 等 | 溯源缺 anchor 4 處 | — | 補 clash ch4、ch1、little-book ch2 等 |
+
+### templar-note（6 筆）
+
+| 頁 | 原寫 | 書中實際 | 修法 |
+| --- | --- | --- | --- |
+| work/manage-the-process | 「管自己近 70 條」 | 恰 70 條（38–107） | 精確化 |
+| people/understand-before-influence | 「控制狂源於恐懼」 | 法則 85：補償自己生活中的失控感 | 照書改 |
+| the-code/rules-not-theories | 「Life 為後續提供總體框架」 | Work 2002 早於 Life 2005（時序反）；母體說出自書 repo 總覽 | 照書改 |
+| bibliography | parenting／to-break 掛「尚未收」組但 owned | — | 歸「家庭」「反手」組 |
+| （導覽驗收抓）ch3、ch4 | To Break 第 90／91 條標題對調 | — | 對調 |
+| （導覽驗收抓）ch2 | Love「法則 3」誤標＋「提醒不是啟示」出處誤標 | 相處部第 3 條／總覽 | 照書改 |
+
+### willard-note（7 筆）
+
+| 頁 | 原寫 | 書中實際 | 修法 |
+| --- | --- | --- | --- |
+| gospel-of-the-kingdom | 「悔改＝換掉人生的操作系統」 | 書中原語「重新檢視你的人生規劃」 | 外加比喻換回原語（三處） |
+| gospel-of-the-kingdom | 「吸血鬼基督徒」掛 DC | 實出 great-omission | 補正確 anchor |
+| gospel-of-the-kingdom | 「耶穌是史上最聰明的人」未掛 anchor | DC ch3 | 補 anchor |
+| hearing-god | 辨識框架「內容／質地／效果」 | 書中三要素「質感／靈／內容」 | 照書改（含 mastery） |
+| hearing-god | 「留言信箱／自動販賣機」比喻 | ch3 實際三種錯誤觀 | 外加比喻換回書中內容 |
+| hearing-god | 僅卷層級 anchor | — | 補五個章級 anchor |
+| （其餘五頁） | 逐條 grep 全命中 | — | 無債 |

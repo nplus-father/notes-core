@@ -48,6 +48,11 @@
 | grove-note | 人物 | 5 | 12 | 2.4 | 2026-08-21 | 一條龍：3→12 頁；內容債 0；measure-what-matters 改判「他的遺產」組；backlog：OPS 六力與 10 倍速可再開一頁 |
 | collins-note | 人物 | 7 | 12 | 1.7 | 2026-08-21 | 一條龍：3→12 頁、新開 decline 分類；校正 1（AMD 十年內→1980 年代結束前）；wanted 新增 turning-the-flywheel；backlog：return-on-luck、stage-4 兩節點 planned |
 | christensen-note | 人物 | 9 | 14 | 1.6 | 2026-08-21 | 一條龍：4→14 頁、新開 applications 分類；內容債 0；「缺口」組兩本 owned 併入應用領域組 |
+| grant-note | 人物 | 5 | 13 | 2.6 | 2026-08-21 | 一條龍：3→13 頁、新開 potential／resilience 兩分類；內容債 0；backlog：各書人際／組織層（導覽 ch3 點名） |
+| bogle-note | 人物 | 6 | 14 | 2.3 | 2026-08-21 | 一條龍：8→14 頁、新開 vanguard 分類；**B 型債 10 筆**（杜撰引語刪除、凱因斯引語張冠李戴、方向反寫等，見 SOURCING-DEBT） |
+| damodaran-note | 人物 | 5 | 13 | 2.6 | 2026-08-21 | 一條龍：7→13 頁、新開 dark-side／philosophy 兩分類；內容債 0；backlog：金融股／困境公司 |
+| templar-note | 人物 | 9 | 13 | 1.4 | 2026-08-21 | 一條龍：7→13 頁、新開 home 家庭分類；校正 6 筆（母體時序、控制狂補償等）；backlog：People 第二頁、Management 管自己 70 條 |
+| willard-note | 人物 | 8 | 12 | 1.5 | 2026-08-21 | 一條龍：7→12 頁、renovation 線補齊、待寫債 2 筆還清；校正 7 筆（兩個自創比喻換回書中原語、吸血鬼基督徒出處歸位） |
 | security-note | 主題 | 14 | 12 | 0.86 | 2026-08-21 | 一條龍：4→12 頁；BSRS 自 cloud-infra 判歸本站已挖；零引用剩 threat-modeling、practical-malware-analysis（malware 線要不要開分類待裁決） |
 
 ## 第一批——站深料足，直接可做
@@ -90,12 +95,7 @@
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | cloud-note | 人物 | 13 | 9 | 0.7 | — | 站太薄 |
-| bogle-note | 人物 | 6 | 8 | 1.3 | — | 站太薄 |
 | gardner-note | 人物 | 13 | 8 | 0.6 | — | 站太薄 |
 | fengtang-note | 人物 | 10 | 8 | 0.8 | — | 站太薄 |
-| damodaran-note | 人物 | 5 | 7 | 1.4 | — | 站太薄 |
-| templar-note | 人物 | 9 | 7 | 0.8 | — | 站太薄 |
-| willard-note | 人物 | 8 | 7 | 0.9 | — | 站太薄 |
 | pastoral-psychology-note | 主題 | 5 | 5 | 1.0 | — | 未溯源 5 頁，先還債 |
-| grant-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
 
