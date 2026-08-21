@@ -281,3 +281,13 @@ grep -rn '[乃乙乔乏乌泽]' . --include='*.md' \
 | philosophy-as-consolation | 塞內加藥方 | 僅 de Botton | 書簡 91 |
 
 另 hbr-note 一筆**查無原文**的引用：Kotter「70% 變革失敗」不在 Kotter 原文（Essentials 的 Leading Change），是 Guide to Leading Through Change 的轉述——已在該站導覽記帳，防未來誤掛。
+
+## 校正紀錄：第四波一條龍（2026-08-21，grove／collins／christensen）
+
+三站既有頁具名事實逐條 grep 回書：**內容矛盾僅 1 筆**（迄今最乾淨的一波——三站原頁少、且原頁多出自書 repo 產線直改）。
+
+| 站/頁 | 原寫 | 書中實際 | 修法 |
+| --- | --- | --- | --- |
+| collins discipline/twenty-mile-march | AMD 宣告「十年內」成為積體電路第一名 | GBC ch.3：目標是「該十年（1980 年代）結束前」 | 照書改寫 |
+
+機械修正（非溯源債）：grove bibliography 的 measure-what-matters 掛「缺口」組但 status owned → 改「他的遺產」組；grove profile 一處 conceptPath 占位改指新頁；christensen「缺口」組內兩本 owned（prescription、disrupting-class）併入新設「應用領域」組；christensen 既有 related 兩處單向補雙向。

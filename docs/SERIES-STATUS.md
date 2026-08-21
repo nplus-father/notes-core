@@ -78,11 +78,11 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `templar-note` | 人物 | 9 | 7 | 0.78 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
 | `willard-note` | 人物 | 8 | 7 | 0.88 | 100% | 3/3 | 100% | 2 | — | CLEAN |  |
 | `pastoral-psychology-note` | 主題 | 5 | 5 | 1.00 | 0% | 4/4 | 0% | 0 | — | 必改2·warning1·nit1 |  |
-| `christensen-note` | 人物 | 9 | 4 | 0.44 | 100% | 4/4 | 100% | 6 | — | nit1 |  |
+| `christensen-note` | 人物 | 9 | 4 | 0.44 | 100% | 4/4 | 100% | 6 | — | nit1 | 2026-08-21 |
 | `security-note` | 主題 | 14 | 4 | 0.29 | 100% | 4/4 | 100% | 8 | — | nit1 | 2026-08-21 |
-| `collins-note` | 人物 | 6 | 3 | 0.50 | 100% | 3/3 | 100% | 7 | — | CLEAN |  |
+| `collins-note` | 人物 | 6 | 3 | 0.50 | 100% | 3/3 | 100% | 7 | — | CLEAN | 2026-08-21 |
 | `grant-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
-| `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN |  |
+| `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
 | `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN | 2026-08-21 |
 
 ## 書端未過、也還沒導覽的 7 站（站側體檢一併做完，等書端清帳後入列）
@@ -218,6 +218,11 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 完成一站：本檔該行「導覽完成」欄填日期，GUIDE-QUEUE 同步搬「已完成」。
 
 ## 跨站遺留帳
+
+- **第四波完工（2026-08-21）**：grove／collins／christensen 三站一條龍全 push（16026a3／7f3ab18／7205252）。
+  戰績：3→12、3→12（新開 decline）、4→14（新開 applications），合計 10→38 頁。內容債僅 1 筆（collins AMD，見 SOURCING-DEBT）。
+  現成 backlog（roadmap planned 節點，下輪增量 enrich 素材）：grove OPS「六力與 10 倍速」、collins return-on-luck＋HTMF stage-4（grasping-for-salvation）。
+  collins 新增 wanted：turning-the-flywheel（飛輪單行本）。
 
 - **第三波完工（2026-08-21 02:06）**：Andrew 親選五站全 push——drucker guide、nt-wright／fowler／nouwen／security 一條龍。
   途中全部代理撞兩次 session 額度，靠 SendMessage 續跑＋主代理代落盤子代理成稿救回零重工。**新紀律**：子代理起草必須直接寫檔、

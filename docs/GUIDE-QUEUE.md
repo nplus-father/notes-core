@@ -45,6 +45,9 @@
 | nt-wright-note | 人物 | 11 | 10 | 0.9 | 2026-08-21 | 一條龍：7→10 頁（PFG 卷補齊 COQG 四卷、Simply Jesus、After You Believe）；11/11 已挖、該挖未挖＝0；Justification unavailable 是最痛缺口 |
 | fowler-note | 人物 | 6 | 9 | 1.5 | 2026-08-21 | 一條龍：2→9 頁、新開 Modeling 分類；bibliography Refactoring 1999→2018 二版（實書）；code-smells 節點判 clean-code 分工移除 |
 | nouwen-note | 人物 | 16 | 12 | 0.75 | 2026-08-21 | 一條龍：8→12 頁、16/16 全引用；校正 3 筆（刪子代理腦補句、兩句引文貼回原文）；In the Name of Jesus unavailable 最大缺口 |
+| grove-note | 人物 | 5 | 12 | 2.4 | 2026-08-21 | 一條龍：3→12 頁；內容債 0；measure-what-matters 改判「他的遺產」組；backlog：OPS 六力與 10 倍速可再開一頁 |
+| collins-note | 人物 | 7 | 12 | 1.7 | 2026-08-21 | 一條龍：3→12 頁、新開 decline 分類；校正 1（AMD 十年內→1980 年代結束前）；wanted 新增 turning-the-flywheel；backlog：return-on-luck、stage-4 兩節點 planned |
+| christensen-note | 人物 | 9 | 14 | 1.6 | 2026-08-21 | 一條龍：4→14 頁、新開 applications 分類；內容債 0；「缺口」組兩本 owned 併入應用領域組 |
 | security-note | 主題 | 14 | 12 | 0.86 | 2026-08-21 | 一條龍：4→12 頁；BSRS 自 cloud-infra 判歸本站已挖；零引用剩 threat-modeling、practical-malware-analysis（malware 線要不要開分類待裁決） |
 
 ## 第一批——站深料足，直接可做
@@ -94,8 +97,5 @@
 | templar-note | 人物 | 9 | 7 | 0.8 | — | 站太薄 |
 | willard-note | 人物 | 8 | 7 | 0.9 | — | 站太薄 |
 | pastoral-psychology-note | 主題 | 5 | 5 | 1.0 | — | 未溯源 5 頁，先還債 |
-| christensen-note | 人物 | 9 | 4 | 0.4 | — | 站太薄 |
-| collins-note | 人物 | 6 | 3 | 0.5 | — | 站太薄 |
 | grant-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
-| grove-note | 人物 | 5 | 3 | 0.6 | — | 站太薄 |
 
