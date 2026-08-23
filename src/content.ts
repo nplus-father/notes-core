@@ -118,6 +118,10 @@ export function defineNoteCollections(opts: { hasProblems?: boolean; openSeeAlso
     schema: z.object({
       title: z.string(),
       category: z.string(), // 對應 src/data/categories.ts
+      // 頁型（v0.38.0）：claim＝單一主張（預設，一頁一觀念）｜debate＝議題對照——
+      // 一個問題、多本書的主張並排（各方都要有 furtherReading 出處）。
+      // 站主的裁決與閱讀順序屬 guide（Verdict），不寫進 debate 頁。
+      kind: z.enum(["claim", "debate"]).default("claim"),
       problems: z.array(z.string()).default([]), // 用到此概念的 problem slug（反向連結）
       ...commonItemFields,
       furtherReading,

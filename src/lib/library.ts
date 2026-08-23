@@ -10,6 +10,17 @@
 
 export type BibliographyStatus = "owned" | "wanted" | "unavailable" | "skipped";
 
+/**
+ * 要點收錄判層（v0.38.0）——「收進書庫」與「織進要點」是兩回事，這一欄記後者的承諾：
+ *   spine 脊梁＝領域正典，該被概念頁引用，0 引用＝真欠債（enrich 的火力目標）
+ *   support 支架＝既有頁或導覽一句帶到即可，不欠概念頁
+ *   tool 工具書層＝合集／系列書，列盤點即可，不必被引用
+ *   delegated 姊妹站分工＝深挖歸 delegatedTo 那站（如 leadership 站的 Drucker 冊歸 drucker）
+ * 未標＝待判層（Coverage 圖視同待挖）。判層在 /note-guide 第三章寫經典導讀時回填；
+ * note-check audit 只對「spine 且 0 引用」開罰——未挖 ≠ 欠債，先分層再判讀。
+ */
+export type BibliographyTier = "spine" | "support" | "tool" | "delegated";
+
 export interface BibliographyEntry {
   /** 書名（有中譯用中譯；未收錄的可用原文） */
   title: string;
@@ -39,6 +50,10 @@ export interface BibliographyEntry {
   note?: string;
   /** 分組（人物站常用分期，主題站常用流派）；依首次出現順序渲染 */
   group?: string;
+  /** 要點收錄判層（見 BibliographyTier）；未標＝待判層 */
+  tier?: BibliographyTier;
+  /** tier="delegated" 時：歸屬姊妹站的站代號（sites.ts 的 key，如 "uncle-bob"） */
+  delegatedTo?: string;
 }
 
 export interface SchoolFigure {

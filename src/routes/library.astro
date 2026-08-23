@@ -31,6 +31,16 @@ const rows = owned
   .sort((a, b) => b.n - a.n);
 const dug = rows.filter((r) => r.n > 0);
 const undug = rows.filter((r) => r.n === 0);
+// 判層對帳（v0.38.0）：未挖 ≠ 欠債。spine（或未判層）的 0 引用才是待挖的債；
+// support / tool / delegated 是「刻意不深挖」的決定，另列一排，不再被誤讀成不完整。
+const TIER_LABEL: Record<string, string> = {
+  support: "支架",
+  tool: "工具書",
+  delegated: "姊妹站",
+};
+const debt = undug.filter((r) => !r.e.tier || r.e.tier === "spine");
+const spineDebt = debt.filter((r) => r.e.tier === "spine");
+const excused = undug.filter((r) => r.e.tier && r.e.tier !== "spine");
 const peak = Math.max(1, ...dug.map((r) => r.n));
 const totalRefs = dug.reduce((s, r) => s + r.n, 0);
 // 一兩本書畫不成分佈；開採度要到「架上有規模」才有意義。
@@ -57,8 +67,9 @@ const showMining = owned.length >= 4;
         <div class="mining-head">
           <h2>Coverage</h2>
           <span class="mining-note">
-            每本已收書被幾頁筆記引用 · 已挖 {dug.length} 本 · 未挖 {undug.length} 本 · 共{" "}
-            {totalRefs} 處引用
+            每本已收書被幾頁筆記引用 · 已挖 {dug.length} 本 · 待挖 {debt.length} 本
+            {spineDebt.length > 0 && ` （脊梁 ${spineDebt.length}）`}
+            {excused.length > 0 && ` · 分層豁免 ${excused.length} 本`} · 共 {totalRefs} 處引用
           </span>
         </div>
 
@@ -85,20 +96,22 @@ const showMining = owned.length >= 4;
              這一排是下一輪深化（note-check --enrich）的現成材料清單。
              v0.34.0 起用書封呈現（一排小封面比一串書名 chip 簡潔有力）；
              沒 slug 的少數例外退回文字 chip。 */
-          undug.length > 0 && (
+          debt.length > 0 && (
             <div class="mining-undug">
               <p class="mining-undug-label">
-                這 {undug.length} 本已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料。
+                這 {debt.length}{" "}
+                本已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料
+                {spineDebt.length > 0 && `（其中 ${spineDebt.length} 本已判層為脊梁＝真欠債）`}。
               </p>
               <div class="mining-undug-covers">
-                {undug.map((r) =>
+                {debt.map((r) =>
                   r.e.slug ? (
                     <a
                       class="mining-cover"
                       href={bookUrl(r.e.slug)}
                       target="_blank"
                       rel="noopener"
-                      title={`${r.e.title}——已建書站、尚無筆記頁引用`}
+                      title={`${r.e.title}——已建書站、尚無筆記頁引用${r.e.tier === "spine" ? "（脊梁）" : ""}`}
                     >
                       <img
                         class="cover-img"
@@ -118,6 +131,28 @@ const showMining = owned.length >= 4;
                   )
                 )}
               </div>
+            </div>
+          )
+        }
+
+        {
+          /* 分層豁免＝判過層、刻意不深挖的書：支架（一句帶到）／工具書（列盤點即可）／
+             姊妹站分工（深挖歸那站）。列出來是讓「不收」成為看得見的決定。 */
+          excused.length > 0 && (
+            <div class="mining-undug">
+              <p class="mining-undug-label">
+                另 {excused.length} 本已判層、刻意不在本站深挖：
+                {excused
+                  .map(
+                    (r) =>
+                      `${r.e.title}（${
+                        r.e.tier === "delegated" && r.e.delegatedTo
+                          ? `→ ${r.e.delegatedTo} 站`
+                          : TIER_LABEL[r.e.tier ?? ""]
+                      }）`
+                  )
+                  .join("、")}
+              </p>
             </div>
           )
         }
