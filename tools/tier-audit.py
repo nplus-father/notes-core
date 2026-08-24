@@ -1,0 +1,265 @@
+#!/usr/bin/env python3
+"""判層履約稽核：檢查每本書的 tier 承諾有沒有兌現。
+
+判層不是貼標籤，四層各自是一個承諾：
+
+  spine      該有專屬概念頁        違約 → 真欠債
+  support    guide 要一句帶到      違約 → 空頭支票
+  tool       列進盤點表即可        恆真（體裁對不對只能人工看）
+  delegated  深挖歸姊妹站          違約 → 漏接
+
+**真欠債是「知道要做還沒做」，空頭支票與漏接是「以為做過了其實沒有」。**
+後兩者才是會靜靜把缺口藏起來的那種——判錯一本脊梁只是多寫一頁，
+判錯一本豁免，那個洞就再也不會有人看見。所以稽核的重點在豁免那一邊：
+一個站豁免掉愈多書，愈該被檢查，而不是愈健康。
+
+用法（在星系根目錄或任何地方都可以）：
+    notes-core/tools/tier-audit.py                # 全星系總表
+    notes-core/tools/tier-audit.py --detail       # 附逐本違約清單
+    notes-core/tools/tier-audit.py leadership-note writing-note
+    notes-core/tools/tier-audit.py --json         # 給程式吃
+
+NOTES_ROOT 可覆寫星系根目錄（預設＝本檔往上兩層）。
+"""
+import json
+import os
+import re
+import sys
+
+ROOT = os.environ.get("NOTES_ROOT") or os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+CORE = os.path.join(ROOT, "notes-core", "src", "lib", "sites.ts")
+TIERS = ("spine", "support", "tool", "delegated")
+
+
+def stations():
+    return sorted(d for d in os.listdir(ROOT) if d.endswith("-note") and os.path.isdir(os.path.join(ROOT, d)))
+
+
+def site_registry():
+    """{slug: key} 與 {key: slug}——delegatedTo 填的是 key，目錄名是 slug。"""
+    if not os.path.exists(CORE):
+        return {}, {}
+    src = open(CORE, encoding="utf-8").read()
+    pairs = re.findall(r'\{\s*key:\s*"([^"]+)",\s*slug:\s*"([^"]+)"', src)
+    return {s: k for k, s in pairs}, {k: s for k, s in pairs}
+
+
+def bibliography(station):
+    """{slug: {title, original, status, tier, delegatedTo}}。"""
+    p = os.path.join(ROOT, station, "src", "data", "bibliography.ts")
+    if not os.path.exists(p):
+        return {}
+    src = open(p, encoding="utf-8").read()
+    out = {}
+    for m in re.finditer(r"\{[^{}]*?\btitle:[^{}]*?\}", src, re.S):
+        blk = m.group(0)
+
+        def f(k):
+            mm = re.search(r'\b%s:\s*"([^"]*)"' % k, blk)
+            return mm.group(1) if mm else None
+
+        slug = f("slug")
+        if slug:
+            out[slug] = {k: f(k) for k in ("title", "original", "status", "tier", "delegatedTo")}
+    return out
+
+
+def citations(station):
+    """concepts / problems 的 furtherReading 指到每本書幾次。guide 不計——
+    脊梁的債要用概念頁還，導覽提再多次都不算。"""
+    n = {}
+    for sub in ("concepts", "problems"):
+        base = os.path.join(ROOT, station, "src", "content", sub)
+        for dirpath, _, files in os.walk(base):
+            for fn in files:
+                if fn.endswith(".md"):
+                    txt = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+                    for b in re.findall(r"^\s*-\s*book:\s*([\w\-.]+)", txt, re.M):
+                        n[b] = n.get(b, 0) + 1
+    return n
+
+
+def guide_reach(station):
+    """guide 碰過哪些書：furtherReading 的 slug（強訊號）＋內文（弱訊號）。"""
+    base = os.path.join(ROOT, station, "src", "content", "guide")
+    slugs, prose = set(), []
+    for dirpath, _, files in os.walk(base):
+        for fn in sorted(files):
+            if not fn.endswith(".md"):
+                continue
+            txt = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+            slugs.update(re.findall(r"^\s*-\s*book:\s*([\w\-.]+)", txt, re.M))
+            parts = txt.split("---", 2)
+            prose.append(parts[2] if len(parts) >= 3 else txt)
+    return slugs, "\n".join(prose)
+
+
+def touched(slug, entry, gslugs, prose):
+    if slug in gslugs:
+        return "furtherReading"
+    if "/%s/" % slug in prose:
+        return "連結"
+    for key in ("title", "original"):
+        t = (entry.get(key) or "").strip()
+        # 書名常帶副標，比對主標即可；太短的名字（「高手」「重構」）會誤命中，設下限
+        stem = re.split(r"[:：（(]", t)[0].strip()
+        if len(stem) >= 5 and stem in prose:
+            return "內文"
+    return None
+
+
+def audit(only=None):
+    slug2key, key2slug = site_registry()
+    all_st = stations()
+    cite_cache, bib_cache = {}, {}
+
+    def cites(st):
+        if st not in cite_cache:
+            cite_cache[st] = citations(st)
+        return cite_cache[st]
+
+    def bib(st):
+        if st not in bib_cache:
+            bib_cache[st] = bibliography(st)
+        return bib_cache[st]
+
+    rows = []
+    for st in all_st:
+        if only and st not in only:
+            continue
+        entries = bib(st)
+        owned = {s: e for s, e in entries.items() if e.get("status") == "owned"}
+        if not owned:
+            continue
+        gslugs, prose = guide_reach(st)
+        has_guide = bool(gslugs or prose.strip())
+        n = cites(st)
+        counts = dict.fromkeys(TIERS, 0)
+        untiered, debt, empty, dropped, conflict = [], [], [], [], []
+        for slug, e in owned.items():
+            t = e.get("tier")
+            title = e.get("title") or slug
+            c = n.get(slug, 0)
+            if t not in TIERS:
+                untiered.append((slug, title))
+                continue
+            counts[t] += 1
+            if t == "spine" and c == 0:
+                debt.append((slug, title))
+            if t != "spine" and c >= 3:
+                conflict.append((slug, title, c, t))
+            if t == "support" and has_guide and not touched(slug, e, gslugs, prose):
+                # 完全隱形＝guide 沒提、概念頁也沒引：這本書在站上只剩盤點表那一行
+                empty.append((slug, title, "完全隱形" if c == 0 else "概念頁引用 %d 次" % c))
+            if t == "delegated":
+                to = e.get("delegatedTo")
+                tgt = key2slug.get(to)
+                te = bib(tgt).get(slug) if tgt and tgt in all_st else None
+                tc = cites(tgt).get(slug, 0) if tgt and tgt in all_st else 0
+                tt = (te or {}).get("tier")
+                if not tgt or tgt not in all_st:
+                    dropped.append((slug, title, to, "姊妹站不存在", "壞標籤"))
+                elif not te or te.get("status") != "owned":
+                    dropped.append((slug, title, to, "該站根本沒收這本", "真漏接"))
+                elif tc == 0 and tt != "spine":
+                    if tt in ("tool", "support"):
+                        # 兩站都判「不深挖」——本站不該說「歸那站」，該直接標成同一層
+                        dropped.append((slug, title, to, "該站也判 %s，兩邊都不會挖" % tt, "標籤下錯"))
+                    else:
+                        dropped.append((slug, title, to, "該站判 %s 但零引用" % (tt or "未判層"), "真漏接"))
+        tot = len(owned)
+        rows.append(
+            {
+                "station": st, "hasGuide": has_guide, "owned": tot, "counts": counts,
+                "excused": tot - counts["spine"] - len(untiered),
+                "untiered": untiered, "debt": debt, "empty": empty,
+                "dropped": dropped, "conflict": conflict,
+            }
+        )
+    return rows
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    detail = "--detail" in sys.argv
+    rows = audit(args or None)
+    if "--json" in sys.argv:
+        json.dump(rows, sys.stdout, ensure_ascii=False, indent=1)
+        return
+
+    def viol(r):
+        return len(r["empty"]) + len(r["dropped"]) + len(r["untiered"])
+
+    # 判層是 guide 帶出來的動作——沒寫過導覽的站還沒輪到，別讓它們稀釋數字。
+    pending = [r for r in rows if not r["hasGuide"]]
+    if "--all" not in sys.argv:
+        rows = [r for r in rows if r["hasGuide"]]
+
+    rows.sort(key=lambda r: -viol(r))
+    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "衝突", "未判層")
+    print("%-26s%5s%5s%7s%7s%9s%6s%6s%7s" % hdr)
+    t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered"), 0)
+    for r in rows:
+        ratio = r["excused"] / r["owned"] * 100 if r["owned"] else 0
+        print(
+            "%-26s%5d%5d%6.0f%%%7d%9d%6d%6d%7d%s"
+            % (r["station"], r["owned"], r["excused"], ratio, len(r["debt"]), len(r["empty"]),
+               len(r["dropped"]), len(r["conflict"]), len(r["untiered"]), " ⚠" if viol(r) else "")
+        )
+        t["owned"] += r["owned"]; t["excused"] += r["excused"]
+        for k in ("debt", "empty", "dropped", "conflict", "untiered"):
+            t[k] += len(r[k])
+    print(
+        "%-26s%5d%5d%6.0f%%%7d%9d%6d%6d%7d"
+        % ("TOTAL", t["owned"], t["excused"], t["excused"] / max(t["owned"], 1) * 100,
+           t["debt"], t["empty"], t["dropped"], t["conflict"], t["untiered"])
+    )
+
+    if pending and "--all" not in sys.argv:
+        print(
+            "\n另有 %d 站尚無導覽、共 %d 本未判層（判層跟著 /note-guide 走，還沒輪到）——加 --all 一併列出。"
+            % (len(pending), sum(r["owned"] for r in pending))
+        )
+
+    if not detail:
+        print("\n（加 --detail 看逐本違約清單）")
+        return
+
+    def section(title, note, pick, fmt):
+        print("\n\n=== %s ===" % title)
+        print(note)
+        for r in rows:
+            items = pick(r)
+            if items:
+                print("\n[%s]" % r["station"])
+                for it in items:
+                    print("  - " + fmt(it))
+
+    section(
+        "空頭支票：判 support，卻連 guide 都沒提到",
+        "support 的承諾是「導覽一句帶到」。沒提＝這本書判了不挖、也沒人介紹過它，等於默默消失。",
+        lambda r: r["empty"], lambda it: "%s  [%s]  (%s)" % (it[1], it[2], it[0]),
+    )
+    section(
+        "漏接：判 delegated，姊妹站卻沒接住",
+        "標籤下錯＝兩站都判不深挖，本站該把它改成同一層而不是說「歸那站」；真漏接＝那站根本沒收。",
+        lambda r: r["dropped"], lambda it: "[%s] %s → %s 站：%s" % (it[4], it[1], it[2], it[3]),
+    )
+    section(
+        "既成事實衝突：引用 ≥3 次卻判成非脊梁",
+        "站上自己的頁面已經投過票了。查閱型體裁（辭典、題庫、合輯）可以是例外，其餘該升 spine。",
+        lambda r: r["conflict"], lambda it: "%s（引用 %d 次 → 判 %s）" % (it[1], it[2], it[3]),
+    )
+    section(
+        "未判層：owned 但沒有 tier 欄",
+        "判層是決策紀錄，缺一本就是缺一個決定。",
+        lambda r: r["untiered"], lambda it: "%s  (%s)" % (it[1], it[0]),
+    )
+    section(
+        "真欠債：判 spine 卻零引用",
+        "唯一「知道要做還沒做」的一類——下一輪 enrich 的現成材料。",
+        lambda r: r["debt"], lambda it: "%s  (%s)" % (it[1], it[0]),
+    )
+
+
+main()
