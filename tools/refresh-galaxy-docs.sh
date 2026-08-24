@@ -45,7 +45,10 @@ echo
 echo "── 與 committed 版的落差 ─────────────────────────"
 # 只看 docs/ 底下這四份；其他 docs 是手維護的，不該被這支影響。
 TRACKED=(WANTED-BOOKS.md ORPHAN-BOOKS.md DEEPEN-READY.md MISSING-YEARS.md)
-DIFF="$(git -C "$DOCS" diff --stat -- "${TRACKED[@]}" 2>/dev/null || true)"
+# -I 忽略戳記行：每份生成物的 H1 底下有一行「生成於 <ISO>」，那一行**每次重算必變**，
+# 不忽略的話這個落差檢查會永遠報「有變動」，等於沒有檢查。改戳記格式時要一起改這裡
+# （格式的正本在 tools/_stamp.py 的 STAMP_RE）。
+DIFF="$(git -C "$DOCS" diff --stat -I'^> \*\*生成於' -- "${TRACKED[@]}" 2>/dev/null || true)"
 UNTRACKED="$(git -C "$DOCS" ls-files --others --exclude-standard -- "${TRACKED[@]}" 2>/dev/null || true)"
 
 if [[ -z "$DIFF" && -z "$UNTRACKED" ]]; then

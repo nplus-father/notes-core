@@ -1,5 +1,7 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
+> **生成於 2026-08-24T17:18:14+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。
 
@@ -9,7 +11,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：75 站 / 2062 筆，缺 year **96 筆**（4.7%），分佈在 24 站；其中 0 筆查得到版次日線索。
+目前：75 站 / 2066 筆，缺 year **98 筆**（4.7%），分佈在 24 站；其中 0 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -22,7 +24,7 @@
 | tracy-note | 39 | 27 | 12 |
 | leadership-note | 98 | 87 | 11 |
 | biblical-studies-note | 78 | 70 | 8 |
-| career-note | 70 | 63 | 7 |
+| career-note | 72 | 64 | 8 |
 | cloud-infra-note | 26 | 20 | 6 |
 | startup-note | 64 | 58 | 6 |
 | management-note | 47 | 42 | 5 |
@@ -37,10 +39,10 @@
 | greene-note | 9 | 7 | 2 |
 | history-note | 36 | 34 | 2 |
 | keller-note | 27 | 25 | 2 |
+| learning-note | 34 | 32 | 2 |
 | relationships-note | 47 | 45 | 2 |
 | habits-note | 45 | 44 | 1 |
 | hbr-note | 46 | 45 | 1 |
-| learning-note | 33 | 32 | 1 |
 | life-meaning-note | 40 | 39 | 1 |
 | thinking-note | 58 | 57 | 1 |
 
@@ -65,12 +67,13 @@
 - [owned] 雅各書的信息 / The Message of James · 逐卷解經（BST 系列）
 - [skipped] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
 
-### career-note（7 筆）
+### career-note（8 筆）
 
 - [owned] 將世界菁英的工作方式整理成冊 · 恆毅力與精通
 - [owned] 馮唐成事心法 · 自我管理
 - [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理
 - [owned] HBR Guide to Your Professional Growth · 自我管理
+- [wanted] Where Will You Be in the Next Decade? · 意義與方向
 - [owned] 軟體工程師的行為面試 / Behavioral Interviews for Software Engineers · 求職與轉職
 - [owned] 精通行為面試：科技業說故事指南 / Mastering Behavioral Interviews: The Guide to Storytelling in Tech · 求職與轉職
 - [owned] STAR 面試法 / The STAR Interview · 求職與轉職
@@ -132,9 +135,10 @@
 - [owned] 選民進化論 / Won't Get Fooled Again · 決策與判斷
 - [owned] 黑道商學院 / I Will Make You an Offer You Can't Refuse · 領導者修練與權力
 
-### learning-note（1 筆）
+### learning-note（2 筆）
 
 - [owned] 刻意進化 · 刻意練習與精熟
+- [wanted] 人才，自造者 · 自學與超速學習
 
 ### life-meaning-note（1 筆）
 

@@ -115,6 +115,9 @@ import os
 import re
 import subprocess
 import sys
+import datetime as _dt
+
+from _stamp import stamp
 from pathlib import Path
 
 # ── 手選 Top 20：全檔唯一的人工區塊 ──────────────────────────────
@@ -980,7 +983,8 @@ notes-core/tools/export-wanted.py
 重跑就會從這裡消失。
 """)
 
-    text = o.getvalue()
+    # 新鮮度戳記：生成物看起來永遠跟剛跑完一樣，不寫上去就沒人分得出今天算的還是三週前算的。
+    text = stamp(o.getvalue(), "tools/export-wanted.py", _dt.datetime.now().astimezone().isoformat(timespec="seconds"))
     if len(sys.argv) > 1 and sys.argv[1] == "-":
         sys.stdout.write(text)
     else:

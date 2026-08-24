@@ -51,6 +51,9 @@ import os
 import re
 import subprocess
 import sys
+import datetime as _dt
+
+from _stamp import stamp
 from io import StringIO
 from pathlib import Path
 
@@ -473,7 +476,8 @@ notes-core/tools/export-orphan-books.py
 """
     )
 
-    text = o.getvalue()
+    # 新鮮度戳記：生成物看起來永遠跟剛跑完一樣，不寫上去就沒人分得出今天算的還是三週前算的。
+    text = stamp(o.getvalue(), "tools/export-orphan-books.py", _dt.datetime.now().astimezone().isoformat(timespec="seconds"))
     if len(sys.argv) > 1 and sys.argv[1] == "-":
         sys.stdout.write(text)
     else:
