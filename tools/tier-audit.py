@@ -114,6 +114,46 @@ def name_candidates(entry):
     return {c for c in out if len(c) >= 4}
 
 
+# 導覽第三章寫判層的句式很固定：「**書名（作者，年）**判**工具書層，不排隊**」，
+# 可以拿來跟 tier 資料對帳——散文與資料不一致，讀者會看到兩個互相矛盾的說法。
+#
+# **只認「工具書」與「姊妹站分工」兩個詞。** 「支架」「脊梁」看起來也能用，實際上不行：
+# 那批導覽寫在判層體系定案之前，各站的用法不一樣。cloud-infra 的第三章把「支架」
+# 當結構承重件用（「借來的支架換自己的柱子」＝那本書該撐起一頁），語意接近 spine，
+# 和判層裡「支架＝一句帶到就好」正好相反。拿它對帳會整站誤報。
+PROSE_TIER = [
+    ("tool", ("工具書層", "工具書", "查閱型")),
+    ("delegated", ("姊妹站分工", "姊妹站")),
+]
+
+
+def prose_tier(entry, prose, cands):
+    """導覽散文替這本書標的層（找不到或含糊就回 None）。
+
+    只認「**書名（作者，年）**判**支架待挖**」這個句式：書名後緊接著「判」，
+    標籤詞就在那個「判」的後面十幾個字內。放寬一點就會把比喻吃進來——
+    「Kubernetes in Action 仍在待挖區——借來的支架換自己的柱子」裡的「支架」
+    不是在標這本書的層，而寬鬆版把它當成了判層句。
+    """
+    found = set()
+    for cand in cands:
+        start = 0
+        while True:
+            i = prose.find(cand, start)
+            if i < 0:
+                break
+            start = i + len(cand)
+            head = prose[start:start + 25]
+            j = head.find("判")
+            if j < 0:
+                continue
+            seg = prose[start + j:start + j + 16]
+            for tier, words in PROSE_TIER:
+                if any(w in seg for w in words):
+                    found.add(tier)
+    return found.pop() if len(found) == 1 else None
+
+
 def touched(slug, entry, gslugs, prose):
     if slug in gslugs:
         return "furtherReading"
@@ -152,7 +192,7 @@ def audit(only=None):
         has_guide = bool(gslugs or prose.strip())
         n = cites(st)
         counts = dict.fromkeys(TIERS, 0)
-        untiered, debt, empty, dropped, conflict = [], [], [], [], []
+        untiered, debt, empty, dropped, conflict, mismatch = [], [], [], [], [], []
         for slug, e in owned.items():
             t = e.get("tier")
             title = e.get("title") or slug
@@ -165,6 +205,10 @@ def audit(only=None):
                 debt.append((slug, title))
             if t != "spine" and c >= 3:
                 conflict.append((slug, title, c, t))
+            if has_guide:
+                pt = prose_tier(e, prose, name_candidates(e))
+                if pt and pt != t:
+                    mismatch.append((slug, title, pt, t))
             if t == "support" and has_guide and not touched(slug, e, gslugs, prose):
                 # 完全隱形＝guide 沒提、概念頁也沒引：這本書在站上只剩盤點表那一行
                 empty.append((slug, title, "完全隱形" if c == 0 else "概念頁引用 %d 次" % c))
@@ -194,7 +238,7 @@ def audit(only=None):
                 "station": st, "hasGuide": has_guide, "owned": tot, "counts": counts,
                 "excused": tot - counts["spine"] - len(untiered),
                 "untiered": untiered, "debt": debt, "empty": empty,
-                "dropped": dropped, "conflict": conflict,
+                "dropped": dropped, "conflict": conflict, "mismatch": mismatch,
             }
         )
     return rows
@@ -209,7 +253,7 @@ def main():
         return
 
     def viol(r):
-        return len(r["empty"]) + len(r["dropped"]) + len(r["untiered"])
+        return len(r["empty"]) + len(r["dropped"]) + len(r["untiered"]) + len(r["mismatch"])
 
     # 判層是 guide 帶出來的動作——沒寫過導覽的站還沒輪到，別讓它們稀釋數字。
     pending = [r for r in rows if not r["hasGuide"]]
@@ -217,23 +261,24 @@ def main():
         rows = [r for r in rows if r["hasGuide"]]
 
     rows.sort(key=lambda r: -viol(r))
-    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "衝突", "未判層")
-    print("%-26s%5s%5s%7s%7s%9s%6s%6s%7s" % hdr)
-    t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered"), 0)
+    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "文資不符", "衝突", "未判層")
+    print("%-26s%5s%5s%7s%7s%9s%6s%9s%6s%7s" % hdr)
+    t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered", "mismatch"), 0)
     for r in rows:
         ratio = r["excused"] / r["owned"] * 100 if r["owned"] else 0
         print(
-            "%-26s%5d%5d%6.0f%%%7d%9d%6d%6d%7d%s"
+            "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d%s"
             % (r["station"], r["owned"], r["excused"], ratio, len(r["debt"]), len(r["empty"]),
-               len(r["dropped"]), len(r["conflict"]), len(r["untiered"]), " ⚠" if viol(r) else "")
+               len(r["dropped"]), len(r["mismatch"]), len(r["conflict"]), len(r["untiered"]),
+               " ⚠" if viol(r) else "")
         )
         t["owned"] += r["owned"]; t["excused"] += r["excused"]
-        for k in ("debt", "empty", "dropped", "conflict", "untiered"):
+        for k in ("debt", "empty", "dropped", "conflict", "untiered", "mismatch"):
             t[k] += len(r[k])
     print(
-        "%-26s%5d%5d%6.0f%%%7d%9d%6d%6d%7d"
+        "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d"
         % ("TOTAL", t["owned"], t["excused"], t["excused"] / max(t["owned"], 1) * 100,
-           t["debt"], t["empty"], t["dropped"], t["conflict"], t["untiered"])
+           t["debt"], t["empty"], t["dropped"], t["mismatch"], t["conflict"], t["untiered"])
     )
 
     if pending and "--all" not in sys.argv:
@@ -265,6 +310,11 @@ def main():
         "漏接：判 delegated，姊妹站卻沒接住",
         "標籤下錯＝兩站都判不深挖，本站該把它改成同一層而不是說「歸那站」；真漏接＝那站根本沒收。",
         lambda r: r["dropped"], lambda it: "[%s] %s → %s 站：%s" % (it[4], it[1], it[2], it[3]),
+    )
+    section(
+        "文資不符：導覽散文寫的層，和 tier 資料不一樣",
+        "讀者會看到兩個互相矛盾的說法。改資料還是改散文都行，但要一致。",
+        lambda r: r["mismatch"], lambda it: "%s：導覽說 %s，資料是 %s" % (it[1], it[2], it[3]),
     )
     section(
         "既成事實衝突：引用 ≥3 次卻判成非脊梁",
