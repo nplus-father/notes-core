@@ -41,9 +41,12 @@ const conceptChips = d.concepts.map((s: string) => {
     : { slug: s, title: s, icon: "", href: null };
 });
 
-// related problems
+// related problems（同 ConceptLayout：related 是對稱關係，這裡補上手寫時漏掉的反向）
 const problemBySlug = bySlug(allProblems);
-const related = d.related.map((s: string) => {
+const backlinks = allProblems
+  .filter((p: any) => p.data.related.includes(slug) && !d.related.includes(bareSlug(p.id)))
+  .map((p: any) => bareSlug(p.id));
+const related = [...d.related, ...backlinks].map((s: string) => {
   const t = problemBySlug.get(s);
   return t ? { slug: s, title: t.data.title, href: withBase(`problems/${t.id}/`) } : { slug: s };
 });

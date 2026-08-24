@@ -25,8 +25,17 @@ const cat = categoryBySlug.get(d.category);
 const slug = bareSlug(entry.id);
 
 // related concept slug → entry
+//
+// 「相關」在語意上是對稱的，但 related 是手寫的，所以實際上幾乎都只有單向：
+// 後寫的頁面知道先寫的，先寫的那頁不知道後來有人指向它。2026-08-24 全星系掃出
+// 581 筆這種單向連結（science 15、security 12、navarro 13…），代表被指向的那頁
+// 讀者完全看不到指過來的頁。與其手改 581 筆 frontmatter，這裡直接補上反向：
+// 誰在 related 裡列了我，我就把誰也算進來。
 const conceptBySlug = bySlug(allConcepts);
-const related = d.related.map((s: string) => {
+const backlinks = allConcepts
+  .filter((c: any) => c.data.related.includes(slug) && !d.related.includes(bareSlug(c.id)))
+  .map((c: any) => bareSlug(c.id));
+const related = [...d.related, ...backlinks].map((s: string) => {
   const t = conceptBySlug.get(s);
   return t ? { slug: s, title: t.data.title, href: withBase(`concepts/${t.id}/`) } : { slug: s };
 });
