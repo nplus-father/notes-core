@@ -87,6 +87,14 @@ const authorClusters = [...byAuthor.values()]
       ),
   }))
   .sort((a, b) => b.books.length - a.books.length);
+
+// **一叢吃掉整份清單就不要顯示**——那不是判讀，是把清單再抄一次。
+// 人物站尤其明顯：tracy 站豁免 12 本全是 Brian Tracy、drucker 站 9 本全是杜拉克、
+// keller 站 4 本全是 Keller。「同一位作者」在人物站上恆真，講了等於沒講。
+// 反過來，一叢只佔一小半（如 cloud-infra 的 10 本裡有 2 本同作者）仍然有訊息。
+const showClusters =
+  authorClusters.length >= 2 ||
+  (authorClusters.length === 1 && authorClusters[0].books.length * 2 < excused.length);
 const peak = Math.max(1, ...dug.map((r) => r.n));
 const totalRefs = dug.reduce((s, r) => s + r.n, 0);
 // 一兩本書畫不成分佈；開採度要到「架上有規模」才有意義。
@@ -260,7 +268,7 @@ const showMining = owned.length >= 4;
 
                 {/* 作者叢集：平表看不見的那一層。七本杜拉克全數豁免這種事，
                     導覽第三章用散文寫得出來，一列一本的表格寫不出來。 */}
-                {authorClusters.length > 0 && (
+                {showClusters && (
                   <section class="ex-grp">
                     <h4>
                       作者叢集
