@@ -165,8 +165,12 @@ def audit(only=None):
                     if tt in ("tool", "support"):
                         # 兩站都判「不深挖」——本站不該說「歸那站」，該直接標成同一層
                         dropped.append((slug, title, to, "該站也判 %s，兩邊都不會挖" % tt, "標籤下錯"))
+                    elif not tt:
+                        # 姊妹站還沒判層（多半是還沒寫導覽）——承諾未到期，不是違約，
+                        # 但要記著：那站判層時如果也判非 spine，這裡就會翻成標籤下錯。
+                        dropped.append((slug, title, to, "該站尚未判層，承諾未到期", "待姊妹站"))
                     else:
-                        dropped.append((slug, title, to, "該站判 %s 但零引用" % (tt or "未判層"), "真漏接"))
+                        dropped.append((slug, title, to, "該站判 %s 但零引用" % tt, "真漏接"))
         tot = len(owned)
         rows.append(
             {
