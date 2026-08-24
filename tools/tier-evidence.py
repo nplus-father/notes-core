@@ -115,6 +115,16 @@ def judge(slug, entry, pages, index, self_station, key_by_slug):
 
     # 姊妹站在挖同一本 → 深挖歸它。要求那站判 spine **且真的有頁在引**，
     # 否則只是把債推給一個同樣沒動的站（那正是「漏接」的成因）。
+    #
+    # **只跑一輪，不要拿自己的輸出再餵一次。** 2026-08-24 第一輪套用後再跑，
+    # 又冒出 62 筆「可自動判 delegated」，追下去**全部**是姊妹站在第一輪被自動判成
+    # spine 的書——判斷疊判斷。那是判斷洗白：「被引用 1 次」這個弱訊號，經過兩層
+    # 就變成「深挖歸那站」的強承諾，而且結論常常是錯的（business-strategy 會把
+    # 《藍海策略》讓給 startup-note，只因為那站引過它一次——但藍海按主題本來就
+    # 該歸 business-strategy）。
+    #
+    # 委託是**主題歸屬**的判斷，不是「誰先引到誰就贏」。第二輪起的 delegated
+    # 一律留給人裁決。
     for other in index.get(slug, []):
         if other["station"] == self_station or other["status"] != "owned":
             continue
