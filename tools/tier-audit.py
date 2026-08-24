@@ -65,18 +65,27 @@ def bibliography(station):
 
 
 def citations(station):
-    """concepts / problems 的 furtherReading 指到每本書幾次。guide 不計——
-    脊梁的債要用概念頁還，導覽提再多次都不算。"""
-    n = {}
+    """每本書被 concepts／problems 引用幾次，以及**散在幾個不同的頁**。
+    回傳 {slug: (次數, 頁數)}。guide 不計——脊梁的債要用概念頁還，導覽提再多次都不算。
+
+    **頁數才是判「載重」的指標，次數不是。** 同一頁掛四個 anchor 就是四次，
+    但那本書仍然只撐著一頁。2026-08-24 用「次數 ≥3」當既成事實門檻，12 筆警報裡
+    有 9 筆是這種假象（covey 的語錄 7 次全在同一頁、taleb 的動態避險 3 次全在同一頁）。
+    改看頁數之後，剩下的才是真的在跨頁承重。
+    """
+    n, pages = {}, {}
     for sub in ("concepts", "problems"):
         base = os.path.join(ROOT, station, "src", "content", sub)
         for dirpath, _, files in os.walk(base):
             for fn in files:
-                if fn.endswith(".md"):
-                    txt = open(os.path.join(dirpath, fn), encoding="utf-8").read()
-                    for b in re.findall(r"^\s*-\s*book:\s*([\w\-.]+)", txt, re.M):
-                        n[b] = n.get(b, 0) + 1
-    return n
+                if not fn.endswith(".md") or fn == "_index.md":
+                    continue
+                path = os.path.join(dirpath, fn)
+                txt = open(path, encoding="utf-8").read()
+                for b in re.findall(r"^\s*-\s*book:\s*([\w\-.]+)", txt, re.M):
+                    n[b] = n.get(b, 0) + 1
+                    pages.setdefault(b, set()).add(path)
+    return {b: (c, len(pages.get(b, ()))) for b, c in n.items()}
 
 
 def guide_lag(station):
@@ -242,15 +251,16 @@ def audit(only=None):
         for slug, e in owned.items():
             t = e.get("tier")
             title = e.get("title") or slug
-            c = n.get(slug, 0)
+            c, npages = n.get(slug, (0, 0))
             if t not in TIERS:
                 untiered.append((slug, title))
                 continue
             counts[t] += 1
             if t == "spine" and c == 0:
                 debt.append((slug, title))
-            if t != "spine" and c >= 3:
-                conflict.append((slug, title, c, t))
+            # 載重看「散在幾頁」，不看次數——同頁多 anchor 不代表跨頁承重。
+            if t != "spine" and npages >= 3:
+                conflict.append((slug, title, npages, t))
             if has_guide:
                 pt = prose_tier(e, prose, name_candidates(e))
                 if pt and pt != t:
@@ -262,7 +272,7 @@ def audit(only=None):
                 to = e.get("delegatedTo")
                 tgt = key2slug.get(to)
                 te = bib(tgt).get(slug) if tgt and tgt in all_st else None
-                tc = cites(tgt).get(slug, 0) if tgt and tgt in all_st else 0
+                tc = cites(tgt).get(slug, (0, 0))[0] if tgt and tgt in all_st else 0
                 tt = (te or {}).get("tier")
                 if not tgt or tgt not in all_st:
                     dropped.append((slug, title, to, "姊妹站不存在", "壞標籤"))
@@ -367,9 +377,10 @@ def main():
         lambda r: r["mismatch"], lambda it: "%s：導覽說 %s，資料是 %s" % (it[1], it[2], it[3]),
     )
     section(
-        "既成事實衝突：引用 ≥3 次卻判成非脊梁",
-        "站上自己的頁面已經投過票了。查閱型體裁（辭典、題庫、合輯）可以是例外，其餘該升 spine。",
-        lambda r: r["conflict"], lambda it: "%s（引用 %d 次 → 判 %s）" % (it[1], it[2], it[3]),
+        "既成事實衝突：被 ≥3 個不同的頁引用，卻判成非脊梁",
+        "散在多頁＝它在跨頁承重，站上自己的頁面已經投過票了。集中在一兩頁的書不算——"
+        "那是那一頁的素材，判查閱型完全誠實。",
+        lambda r: r["conflict"], lambda it: "%s（散在 %d 頁 → 判 %s）" % (it[1], it[2], it[3]),
     )
     section(
         "未判層：owned 但沒有 tier 欄",
