@@ -1,10 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
+> **生成於 2026-08-24T17:38:45+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1896 個 repo），其中 `nplus-kind-book` 的書 repo 1769 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1900 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -18,14 +20,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **357** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **360** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
-| 死鏈 slug（bibliography 指到不存在的 repo） | **2** | 首頁書架封面 404 |
+| 死鏈 slug（bibliography 指到不存在的 repo） | **1** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
-| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **4** | 延伸閱讀連結 404 |
+| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：357 本沒有任何站認領
+## 一、孤兒書：360 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -47,47 +49,48 @@
 | --- | --- | ---: | ---: | --- |
 | `investing` | finance | 36/84 | 43% | investing(31)、bogle(6)、personal-finance(6) |
 | `commentary` | theology | 34/59 | 58% | biblical-studies(20)、stott(6) |
-| `persuasion` | communication | 29/66 | 44% | communication(19)、covey(3)、business-strategy(3) |
+| `persuasion` | communication | 29/66 | 44% | communication(19)、maxwell(3)、covey(3) |
 | `coding-practice` | engineering | 27/74 | 36% | clean-code(21)、design-patterns(14)、uncle-bob(5) |
 | `growth` | mindset | 25/85 | 29% | growth(21)、tracy(10)、wan-weigang(8) |
 | `systematic` | theology | 22/43 | 51% | theology(19)、peterson(1)、biblical-studies(1) |
 | `ethics` | philosophy | 14/49 | 29% | philosophy(12)、fromm(10)、taleb(3) |
-| `biblical-studies` | theology | 11/68 | 16% | biblical-studies(49)、nt-wright(8)、keller(7) |
+| `biblical-studies` | theology | 13/70 | 19% | biblical-studies(49)、nt-wright(8)、keller(7) |
 | `productivity` | habit | 10/53 | 19% | tools(26)、habits(21)、tracy(5) |
+| `self-learning` | education | 9/34 | 26% | learning(19)、growth(4)、newport(3) |
 | `life-philosophy` | philosophy | 9/25 | 36% | de-botton(8)、life-meaning(5)、philosophy(4) |
 | `personal-finance` | finance | 9/55 | 16% | personal-finance(33)、kiyosaki(15)、tracy(3) |
-| `self-learning` | education | 8/33 | 24% | learning(19)、growth(4)、newport(3) |
-| `community` | relationships | 8/27 | 30% | relationships(15)、communication(2)、peck(2) |
 | `critical-thinking` | mindset | 8/27 | 30% | thinking(12)、science(9)、investing(3) |
+| `community` | relationships | 8/27 | 30% | relationships(15)、communication(2)、peck(2) |
 | `practical-theology` | theology | 7/30 | 23% | keller(13)、theology(10)、spiritual-formation(5) |
-| `value-investing` | finance | 6/21 | 29% | investing(15) |
-| `strategy` | business | 6/38 | 16% | business-strategy(20)、startup(5)、liurun(5) |
-| `civilization` | history | 6/29 | 21% | history(16)、wujun(4)、economics(2) |
-| `economics` | finance | 6/46 | 13% | economics(40)、investing(3)、kiyosaki(2) |
+| `civilization` | history | 6/29 | 21% | history(16)、wujun(4)、fengtang(2) |
 | `systems-design` | engineering | 6/35 | 17% | system-design(17)、design-patterns(6)、data-systems(5) |
-| `trading` | finance | 5/18 | 28% | investing(7)、schwager(7) |
+| `value-investing` | finance | 6/21 | 29% | investing(15) |
+| `economics` | finance | 6/46 | 13% | economics(40)、investing(3)、kiyosaki(2) |
+| `strategy` | business | 6/38 | 16% | business-strategy(20)、startup(5)、liurun(5) |
+| `trading` | finance | 5/18 | 28% | schwager(7)、investing(7) |
 | `public-speaking` | communication | 5/13 | 38% | communication(5)、hbr(3)、tracy(1) |
-| `political-philosophy` | philosophy | 4/10 | 40% | philosophy(4)、economics(1)、fromm(1) |
+| `political-philosophy` | philosophy | 4/10 | 40% | philosophy(4)、fromm(1)、economics(1) |
 | `storytelling` | communication | 4/12 | 33% | communication(6)、writing(2)、behaviour-interview(1) |
-| `negotiation` | communication | 3/17 | 18% | communication(11)、hbr(2)、templar(1) |
-| `emotion` | mindset | 3/13 | 23% | life-meaning(9)、thinking(2)、maxwell(1) |
-| `fiction` | writing | 3/8 | 38% | writing(4)、lewis(1) |
 | `historical` | theology | 3/9 | 33% | theology(6)、stott(1) |
+| `emotion` | mindset | 3/13 | 23% | life-meaning(9)、thinking(2)、de-botton(1) |
+| `fiction` | writing | 3/8 | 38% | writing(4)、lewis(1) |
+| `negotiation` | communication | 3/17 | 18% | communication(11)、hbr(2)、relationships(1) |
 | `cognitive` | science | 2/45 | 4% | thinking(28)、science(13)、gardner(8) |
-| `vision` | leadership | 2/50 | 4% | leadership(39)、management(7)、business-strategy(5) |
+| `cultural` | history | 2/8 | 25% | history(6)、science(1)、economics(1) |
 
 > 另有 25 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
 
-### 1d. 同一作者 ≥3 本沒人認領：2 位
+### 1d. 同一作者 ≥3 本沒人認領：3 位
 
 作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），沒有站才是開站候選——COVERAGE-GAPS 的人物缺口就是這樣抓出 covey／templar／navarro 三站的。
 
 | 作者 | 孤兒本數 | 已有作者站？ | 書 |
 | --- | ---: | --- | --- |
 | David J. Atkinson | 3 | — | The Message of Job、The Message of Proverbs、The Message of Ruth |
+| John Goldingay | 3 | — | Ezra, Nehemiah, and Esther for Everyone、Old Testament Theology: Israel's Faith (Vol. 2)、Old Testament Theology: Israel's Life (Vol. 3) |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 357 本（依 leaf 分組）
+### 1e. 全部 360 本（依 leaf 分組）
 
 #### `investing` — 36/84 沒人認領（目前：investing(31)、bogle(6)、personal-finance(6)）
 
@@ -169,7 +172,7 @@
 | `message-of-song-of-songs` | The Message of the Song of Songs | Tom Gledhill |
 | `message-of-zechariah` | The Message of Zechariah | Barry Webb |
 
-#### `persuasion` — 29/66 沒人認領（目前：communication(19)、covey(3)、business-strategy(3)）
+#### `persuasion` — 29/66 沒人認領（目前：communication(19)、maxwell(3)、covey(3)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -311,7 +314,7 @@
 | `theory-and-practice-of-counseling-and-psychotherapy` | Theory and Practice of Counseling and Psychotherapy | Gerald Corey |
 | `wait-what-book` | Wait, What? | James E. Ryan |
 
-#### `biblical-studies` — 11/68 沒人認領（目前：biblical-studies(49)、nt-wright(8)、keller(7)）
+#### `biblical-studies` — 13/70 沒人認領（目前：biblical-studies(49)、nt-wright(8)、keller(7)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -320,10 +323,12 @@
 | `books-of-the-pentateuch` | The Books of the Pentateuch | William Evans |
 | `nt-wright-and-the-revolutionary-cross` | N.T. Wright and the Revolutionary Cross: A Reader's Guide to The Day the Revolution Began | Derek Vreeland |
 | `old-testament-theology-israels-faith` | Old Testament Theology: Israel's Faith (Vol. 2) | John Goldingay |
+| `old-testament-theology-israels-life` | Old Testament Theology: Israel's Life (Vol. 3) | John Goldingay |
 | `on-the-holy-spirit` | On the Holy Spirit | Basil the Great |
 | `sherlock-who-2-biblical-world` | 胡爾摩斯Ⅱ重返聖經現場 | 胡維華 |
 | `sherlock-who-3-new-light` | 胡爾摩斯Ⅲ新世紀拉比探案 | 胡維華 |
 | `state-of-new-testament-studies` | The State of New Testament Studies | Scot McKnight & Nijay K. Gupta (eds.) |
+| `theology-of-the-old-testament-eichrodt-vol-1` | Theology of the Old Testament, Volume One | Walther Eichrodt |
 | `understanding-the-bible` | Understanding the Bible: Methods of Bible Study | Dorothy L. Johns |
 | `when-good-men-are-tempted` | When Good Men Are Tempted | Bill Perkins |
 
@@ -341,6 +346,20 @@
 | `rich-kids` | Rich Kids: How to Raise Our Children to Be Happy and Successful in Life | Tom Corley |
 | `world-only-readers-can-reach` | 只有讀書能抵達的境界 | 齋藤孝 |
 | `worries-are-all-in-your-head` | 煩惱都是自己想出來的 | 古川武士 |
+
+#### `self-learning` — 9/34 沒人認領（目前：learning(19)、growth(4)、newport(3)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `english-is-not-easy` | English Is Not Easy | Luci Gutiérrez |
+| `grid-notebook` | 為什麼聰明人都用方格筆記本？ | 高橋政史 |
+| `life-signposts` | 人生路引：我從閱讀中練就的28個基本功 | 楊斯棓 |
+| `living-loving-and-learning` | Living, Loving and Learning | Leo F. Buscaglia |
+| `online-teaching-technique` | 線上教學的技術 | 福哥（王永福） |
+| `sociology-for-everyone` | 寫給每個人的社會學讀本 | 岩本茂樹 |
+| `teaching-technique` | 教學的技術 | 福哥（王永福） |
+| `where-do-top-performers-draw-the-line-when-reading` | 一流的人讀書，都在哪裡畫線？ | 土井英司 |
+| `why-study-the-past` | Why Study the Past | Rowan Williams |
 
 #### `life-philosophy` — 9/25 沒人認領（目前：de-botton(8)、life-meaning(5)、philosophy(4)）
 
@@ -370,18 +389,18 @@
 | `who-stole-my-pension` | Who Stole My Pension? | Robert Kiyosaki & Edward Siedle |
 | `why-a-students-work-for-c-students` | Why "A" Students Work for "C" Students | Robert T. Kiyosaki |
 
-#### `self-learning` — 8/33 沒人認領（目前：learning(19)、growth(4)、newport(3)）
+#### `critical-thinking` — 8/27 沒人認領（目前：thinking(12)、science(9)、investing(3)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `english-is-not-easy` | English Is Not Easy | Luci Gutiérrez |
-| `grid-notebook` | 為什麼聰明人都用方格筆記本？ | 高橋政史 |
-| `living-loving-and-learning` | Living, Loving and Learning | Leo F. Buscaglia |
-| `online-teaching-technique` | 線上教學的技術 | 福哥（王永福） |
-| `sociology-for-everyone` | 寫給每個人的社會學讀本 | 岩本茂樹 |
-| `teaching-technique` | 教學的技術 | 福哥（王永福） |
-| `where-do-top-performers-draw-the-line-when-reading` | 一流的人讀書，都在哪裡畫線？ | 土井英司 |
-| `why-study-the-past` | Why Study the Past | Rowan Williams |
+| `50-erfolgsmodelle` | The Decision Book | Mikael Krogerus & Roman Tschappeler |
+| `art-of-action` | The Art of Thinking Clearly: Acting Wisely | Rolf Dobelli |
+| `asking-the-right-questions` | Asking the Right Questions | M. Neil Browne & Stuart M. Keeley |
+| `biased` | Biased | Jennifer L. Eberhardt |
+| `chancing-it` | Chancing It | Robert Matthews |
+| `critical-thinking-concepts-and-tools` | Critical Thinking: Concepts and Tools | Richard Paul & Linda Elder |
+| `think-twice-harnessing-the-power-of-counterintuition` | 再想一下-好決策的關鍵思考術 | Michael J. Mauboussin |
+| `thinking-101` | 思考 101：耶魯大學改變人生的一堂思辨課 | Woo-kyoung Ahn (安宇敬) |
 
 #### `community` — 8/27 沒人認領（目前：relationships(15)、communication(2)、peck(2)）
 
@@ -396,19 +415,6 @@
 | `whos-pulling-your-strings` | Who's Pulling Your Strings? | Harriet B. Braiker |
 | `your-anxiety-comes-from-being-too-used-to-getting-hurt` | 你的不安，是因為太習慣受傷害 | 中島輝 |
 
-#### `critical-thinking` — 8/27 沒人認領（目前：thinking(12)、science(9)、investing(3)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `50-erfolgsmodelle` | The Decision Book | Mikael Krogerus & Roman Tschappeler |
-| `art-of-action` | The Art of Thinking Clearly: Acting Wisely | Rolf Dobelli |
-| `asking-the-right-questions` | Asking the Right Questions | M. Neil Browne & Stuart M. Keeley |
-| `biased` | Biased | Jennifer L. Eberhardt |
-| `chancing-it` | Chancing It | Robert Matthews |
-| `critical-thinking-concepts-and-tools` | Critical Thinking: Concepts and Tools | Richard Paul & Linda Elder |
-| `think-twice-harnessing-the-power-of-counterintuition` | 再想一下-好決策的關鍵思考術 | Michael J. Mauboussin |
-| `thinking-101` | 思考 101：耶魯大學改變人生的一堂思辨課 | Woo-kyoung Ahn (安宇敬) |
-
 #### `practical-theology` — 7/30 沒人認領（目前：keller(13)、theology(10)、spiritual-formation(5)）
 
 | 書 repo | 書名 | 作者 |
@@ -421,29 +427,7 @@
 | `who-is-this-man` | Who Is This Man? | John Ortberg |
 | `you-are-what-you-love` | You Are What You Love | James K. A. Smith |
 
-#### `value-investing` — 6/21 沒人認領（目前：investing(15)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `invested` | Invested | Charles Schwab |
-| `invested-town` | Invested: How Warren Buffett and Charlie Munger Taught Me to Master My Mind, My Emotions, and My Money | Danielle Town & Phil Town |
-| `new-tao-of-warren-buffett` | The New Tao of Warren Buffett | Mary Buffett & David Clark |
-| `payback-time` | Payback Time | Phil Town |
-| `tap-dancing-to-work` | Tap Dancing to Work | Carol J. Loomis |
-| `warren-buffetts-ground-rules` | Warren Buffett's Ground Rules | Jeremy C. Miller |
-
-#### `strategy` — 6/38 沒人認領（目前：business-strategy(20)、startup(5)、liurun(5)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `50-success-classics` | 50 Business Classics | Tom Butler-Bowdon |
-| `bad-blood` | Bad Blood | John Carreyrou |
-| `billion-dollar-secret` | The Billion Dollar Secret | Rafael Badziag |
-| `competitive-advantage-of-nations` | The Competitive Advantage of Nations | Michael E. Porter |
-| `podcast-producer-guide` | 破億下載 Podcast 製作人的經營指南 | 粘瀚文 Billy Nien |
-| `post-corona` | Post Corona | Scott Galloway |
-
-#### `civilization` — 6/29 沒人認領（目前：history(16)、wujun(4)、economics(2)）
+#### `civilization` — 6/29 沒人認領（目前：history(16)、wujun(4)、fengtang(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -453,17 +437,6 @@
 | `sovereign-individual` | The Sovereign Individual | James Dale Davidson & Lord William Rees-Mogg |
 | `wealth-of-humans` | The Wealth of Humans | Ryan Avent |
 | `working-poor` | The Working Poor | David K. Shipler |
-
-#### `economics` — 6/46 沒人認領（目前：economics(40)、investing(3)、kiyosaki(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `algebra-of-wealth` | The Algebra of Wealth | Scott Galloway |
-| `from-here-to-financial-happiness` | From Here to Financial Happiness | Jonathan Clements |
-| `how-economy-grows` | How an Economy Grows and Why It Crashes | Peter D. Schiff & Andrew J. Schiff |
-| `little-book-that-builds-wealth` | The Little Book That Builds Wealth | Pat Dorsey |
-| `superfreakonomics` | SuperFreakonomics | Steven D. Levitt & Stephen J. Dubner |
-| `undercover-economist-strikes-back` | The Undercover Economist Strikes Back | Tim Harford |
 
 #### `systems-design` — 6/35 沒人認領（目前：system-design(17)、design-patterns(6)、data-systems(5)）
 
@@ -476,7 +449,40 @@
 | `system-architecture-design` | 系統架構設計：從程式設計師向架構師轉型之路 | 鄭天民 |
 | `tcpip-illustrated-volume-2` | TCP/IP Illustrated, Volume 2: The Implementation | Gary R. Wright & W. Richard Stevens |
 
-#### `trading` — 5/18 沒人認領（目前：investing(7)、schwager(7)）
+#### `value-investing` — 6/21 沒人認領（目前：investing(15)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `invested` | Invested | Charles Schwab |
+| `invested-town` | Invested: How Warren Buffett and Charlie Munger Taught Me to Master My Mind, My Emotions, and My Money | Danielle Town & Phil Town |
+| `new-tao-of-warren-buffett` | The New Tao of Warren Buffett | Mary Buffett & David Clark |
+| `payback-time` | Payback Time | Phil Town |
+| `tap-dancing-to-work` | Tap Dancing to Work | Carol J. Loomis |
+| `warren-buffetts-ground-rules` | Warren Buffett's Ground Rules | Jeremy C. Miller |
+
+#### `economics` — 6/46 沒人認領（目前：economics(40)、investing(3)、kiyosaki(2)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `algebra-of-wealth` | The Algebra of Wealth | Scott Galloway |
+| `from-here-to-financial-happiness` | From Here to Financial Happiness | Jonathan Clements |
+| `how-economy-grows` | How an Economy Grows and Why It Crashes | Peter D. Schiff & Andrew J. Schiff |
+| `little-book-that-builds-wealth` | The Little Book That Builds Wealth | Pat Dorsey |
+| `superfreakonomics` | SuperFreakonomics | Steven D. Levitt & Stephen J. Dubner |
+| `undercover-economist-strikes-back` | The Undercover Economist Strikes Back | Tim Harford |
+
+#### `strategy` — 6/38 沒人認領（目前：business-strategy(20)、startup(5)、liurun(5)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `50-success-classics` | 50 Business Classics | Tom Butler-Bowdon |
+| `bad-blood` | Bad Blood | John Carreyrou |
+| `billion-dollar-secret` | The Billion Dollar Secret | Rafael Badziag |
+| `competitive-advantage-of-nations` | The Competitive Advantage of Nations | Michael E. Porter |
+| `podcast-producer-guide` | 破億下載 Podcast 製作人的經營指南 | 粘瀚文 Billy Nien |
+| `post-corona` | Post Corona | Scott Galloway |
+
+#### `trading` — 5/18 沒人認領（目前：schwager(7)、investing(7)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -496,7 +502,7 @@
 | `speaking-up` | Speaking Up | Frederick Gilbert |
 | `stage-presentation-skills` | 上台的技術 | 王永福 |
 
-#### `political-philosophy` — 4/10 沒人認領（目前：philosophy(4)、economics(1)、fromm(1)）
+#### `political-philosophy` — 4/10 沒人認領（目前：philosophy(4)、fromm(1)、economics(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -514,15 +520,15 @@
 | `leading-matters` | Leading Matters | John L. Hennessy |
 | `reputation-game` | The Reputation Game | David Waller |
 
-#### `negotiation` — 3/17 沒人認領（目前：communication(11)、hbr(2)、templar(1)）
+#### `historical` — 3/9 沒人認領（目前：theology(6)、stott(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `code-of-trust` | The Code of Trust | Robin Dreeke |
-| `getting-to-yes-with-yourself` | Getting to Yes with Yourself | William Ury |
-| `secrets-of-power-negotiating-for-salespeople` | Secrets of Power Negotiating for Salespeople | Roger Dawson |
+| `christianity-very-short-introduction` | Christianity: A Very Short Introduction | Linda Woodhead |
+| `story-of-christianity-vol-2` | The Story of Christianity, Vol. 2 | Justo L. González |
+| `thomas-aquinas-summa-theologiae` | Thomas Aquinas's Summa theologiae: A Biography | Bernard McGinn |
 
-#### `emotion` — 3/13 沒人認領（目前：life-meaning(9)、thinking(2)、maxwell(1)）
+#### `emotion` — 3/13 沒人認領（目前：life-meaning(9)、thinking(2)、de-botton(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -538,13 +544,13 @@
 | `brothers-karamazov` | The Brothers Karamazov | Fyodor Dostoyevsky |
 | `crime-and-punishment` | Crime and Punishment | Fyodor Dostoevsky |
 
-#### `historical` — 3/9 沒人認領（目前：theology(6)、stott(1)）
+#### `negotiation` — 3/17 沒人認領（目前：communication(11)、hbr(2)、relationships(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `christianity-very-short-introduction` | Christianity: A Very Short Introduction | Linda Woodhead |
-| `story-of-christianity-vol-2` | The Story of Christianity, Vol. 2 | Justo L. González |
-| `thomas-aquinas-summa-theologiae` | Thomas Aquinas's Summa theologiae: A Biography | Bernard McGinn |
+| `code-of-trust` | The Code of Trust | Robin Dreeke |
+| `getting-to-yes-with-yourself` | Getting to Yes with Yourself | William Ury |
+| `secrets-of-power-negotiating-for-salespeople` | Secrets of Power Negotiating for Salespeople | Roger Dawson |
 
 #### `cognitive` — 2/45 沒人認領（目前：thinking(28)、science(13)、gardner(8)）
 
@@ -553,7 +559,49 @@
 | `jung-schmid-question-of-psychological-types` | The Question of Psychological Types: The Correspondence of C. G. Jung and Hans Schmid-Guisan, 1915-1916 | C. G. Jung & Hans Schmid-Guisan |
 | `less-is-more` | Less Is More | Jason Hickel |
 
-#### `vision` — 2/50 沒人認領（目前：leadership(39)、management(7)、business-strategy(5)）
+#### `cultural` — 2/8 沒人認領（目前：history(6)、science(1)、economics(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `hustle-and-gig` | Hustle and Gig | Alexandrea J. Ravenelle |
+| `making-a-monster` | Making a Monster | Dawn Keetley |
+
+#### `pastoral` — 2/21 沒人認領（目前：theology(13)、biblical-studies(4)、pastoral-psychology(3)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `emotionally-healthy-leader` | The Emotionally Healthy Leader | Peter Scazzero |
+| `moses-in-the-clinic` | 在診療室遇見摩西：精神科醫師帶你探索隱藏在聖經裡的心靈祕密 | 林信男 |
+
+#### `mental-health` — 2/22 沒人認領（目前：wellness(19)、life-meaning(7)、hbr(4)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `forgiveness-and-reconciliation` | Forgiveness and Reconciliation: Initiating Individuation and Enabling Liberation | Monika Renz |
+| `running-on-empty` | Running on Empty | Jonice Webb |
+
+#### `databases` — 2/15 沒人認領（目前：data-systems(13)、fowler(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `art-of-postgresql` | The Art of PostgreSQL | Dimitri Fontaine |
+| `postgresql-14-internals` | PostgreSQL 14 Internals | Egor Rogov |
+
+#### `devops` — 2/21 沒人認領（目前：cloud-infra(19)、system-design(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `kubernetes-patterns` | Kubernetes Patterns | Bilgin Ibryam & Roland Huß |
+| `mis-server-82` | MIS 一定要懂的 82 個伺服器建置與管理知識 | きはし まさひろ |
+
+#### `engineering-management` — 2/6 沒人認領（目前：career(1)、behaviour-interview(1)、management(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `become-an-effective-software-engineering-manager` | Become an Effective Software Engineering Manager | James Stanier |
+| `effective-engineer` | The Effective Engineer | Edmond Lau |
+
+#### `vision` — 2/50 沒人認領（目前：leadership(39)、management(7)、maxwell(5)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -566,20 +614,6 @@
 | --- | --- | --- |
 | `be-a-better-dad-today` | Be a Better Dad Today | Gregory W. Slayton |
 | `flying-together-a-christian-marriage-guide` | Flying Together: A Christian Marriage Guide | Mike Mason |
-
-#### `mental-health` — 2/22 沒人認領（目前：wellness(19)、life-meaning(7)、hbr(4)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `forgiveness-and-reconciliation` | Forgiveness and Reconciliation: Initiating Individuation and Enabling Liberation | Monika Renz |
-| `running-on-empty` | Running on Empty | Jonice Webb |
-
-#### `cultural` — 2/8 沒人認領（目前：history(6)、economics(1)、science(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `hustle-and-gig` | Hustle and Gig | Alexandrea J. Ravenelle |
-| `making-a-monster` | Making a Monster | Dawn Keetley |
 
 #### `parenting` — 2/12 沒人認領（目前：relationships(6)、templar(2)、covey(1)）
 
@@ -595,28 +629,7 @@
 | `beast-gentleman` | 野獸紳士 | 巫家民 |
 | `secrets-of-sexual-body-language` | Secrets of Sexual Body Language | Martin Lloyd-Elliott |
 
-#### `pastoral` — 2/21 沒人認領（目前：theology(13)、biblical-studies(4)、pastoral-psychology(3)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `emotionally-healthy-leader` | The Emotionally Healthy Leader | Peter Scazzero |
-| `moses-in-the-clinic` | 在診療室遇見摩西：精神科醫師帶你探索隱藏在聖經裡的心靈祕密 | 林信男 |
-
-#### `devops` — 2/21 沒人認領（目前：cloud-infra(19)、system-design(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `kubernetes-patterns` | Kubernetes Patterns | Bilgin Ibryam & Roland Huß |
-| `mis-server-82` | MIS 一定要懂的 82 個伺服器建置與管理知識 | きはし まさひろ |
-
-#### `databases` — 2/15 沒人認領（目前：data-systems(13)、fowler(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `art-of-postgresql` | The Art of PostgreSQL | Dimitri Fontaine |
-| `postgresql-14-internals` | PostgreSQL 14 Internals | Egor Rogov |
-
-#### `apologetics` — 2/10 沒人認領（目前：theology(8)、lewis(4)、spiritual-formation(1)）
+#### `apologetics` — 2/10 沒人認領（目前：theology(8)、lewis(4)、nt-wright(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -630,12 +643,11 @@
 | `uncommon-grounds` | Uncommon Grounds | Mark Pendergrast |
 | `world-atlas-of-coffee` | The World Atlas of Coffee | James Hoffmann |
 
-#### `engineering-management` — 2/6 沒人認領（目前：career(1)、behaviour-interview(1)、management(1)）
+#### `modern` — 1/9 沒人認領（目前：history(7)、drucker(2)、fromm(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `become-an-effective-software-engineering-manager` | Become an Effective Software Engineering Manager | James Stanier |
-| `effective-engineer` | The Effective Engineer | Edmond Lau |
+| `whats-wrong-with-the-world` | What's Wrong with the World | G. K. Chesterton |
 
 #### `eastern` — 1/3 沒人認領（目前：philosophy(1)、fromm(1)）
 
@@ -643,13 +655,25 @@
 | --- | --- | --- |
 | `seven-stages-of-money-maturity` | The Seven Stages of Money Maturity | George Kinder |
 
-#### `modern` — 1/9 沒人認領（目前：history(7)、fromm(2)、drucker(2)）
+#### `screenwriting` — 1/4 沒人認領（目前：writing(3)、communication(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `whats-wrong-with-the-world` | What's Wrong with the World | G. K. Chesterton |
+| `action-mckee` | Action | Robert McKee & Bassim El-Wakil |
 
-#### `self-awareness` — 1/8 沒人認領（目前：growth(5)、science(1)、career(1)）
+#### `job-search` — 1/12 沒人認領（目前：behaviour-interview(9)、career(9)、hbr(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `cracking-the-pm-interview` | Cracking the PM Interview | Gayle Laakmann McDowell & Jackie Bavaro |
+
+#### `marketing` — 1/30 沒人認領（目前：marketing(27)、startup(2)、tracy(2)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `30-day-mba` | The 30 Day MBA | Colin Barrow |
+
+#### `self-awareness` — 1/8 沒人認領（目前：growth(5)、navarro(1)、science(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -667,19 +691,7 @@
 | --- | --- | --- |
 | `wtf-what-is-the-future` | WTF? What's the Future and Why It's Up to Us | Tim O'Reilly |
 
-#### `marketing` — 1/30 沒人認領（目前：marketing(27)、startup(2)、tracy(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `30-day-mba` | The 30 Day MBA | Colin Barrow |
-
-#### `job-search` — 1/12 沒人認領（目前：behaviour-interview(9)、career(9)、hbr(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `cracking-the-pm-interview` | Cracking the PM Interview | Gayle Laakmann McDowell & Jackie Bavaro |
-
-#### `discipline` — 1/7 沒人認領（目前：habits(4)、writing(1)、cloud(1)）
+#### `discipline` — 1/7 沒人認領（目前：habits(4)、tracy(1)、writing(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -690,12 +702,6 @@
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
 | `rootkits` | Rootkits | Greg Hoglund & James Butler |
-
-#### `screenwriting` — 1/4 沒人認領（目前：writing(3)、communication(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `action-mckee` | Action | Robert McKee & Bassim El-Wakil |
 
 #### `devotional` — 1/15 沒人認領（目前：spiritual-formation(9)、lewis(6)、nouwen(5)）
 
@@ -721,14 +727,13 @@
 | --- | --- | --- |
 | `timeless-way-of-building` | The Timeless Way of Building | Christopher Alexander |
 
-## 二、死鏈 slug：2 個
+## 二、死鏈 slug：1 個
 
 bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的封面會 404**。兩種收法（2026-08-04 那批 8 個就是這樣分的）：書其實該有就**補建書 repo**，書根本不存在就**撤掉這筆 `slug`**，不要掛死鏈。
 
 | slug | 登記在 |
 | --- | --- |
-| `complete-guide-to-futures-market` | schwager-note |
-| `status-anxiety-book` | de-botton-note |
+| `turning-the-flywheel` | collins-note |
 
 ## 三、`owned` 沒有 slug：0 筆
 
@@ -736,13 +741,12 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 
 無——每一筆 `owned` 都有 slug。
 
-## 四、死鏈 anchor：4 個 slug
+## 四、死鏈 anchor：3 個 slug
 
 內容頁 `furtherReading` 的 `book:` 指到不存在的書 repo——延伸閱讀連結 404。[SOURCING-DEBT](./SOURCING-DEBT.md) 只驗過「頁有沒有 anchor」，沒驗過「anchor 到的書在不在」。
 
 | book slug | 出現在哪些頁 |
 | --- | --- |
-| `complete-guide-to-futures-market` | `schwager-note/concepts/analysis/options-and-spreads.md`、`schwager-note/concepts/analysis/risk-management.md`、`schwager-note/concepts/analysis/technical-analysis.md` |
 | `forgiveness-and-reconciling` | `pastoral-psychology-note/concepts/ministry-practice/forgiveness-two-kinds.md` |
 | `psychology-and-christianity-five-views` | `pastoral-psychology-note/concepts/integration/five-views.md` |
 | `suffering-and-the-heart-of-god` | `pastoral-psychology-note/concepts/trauma-grief/trauma-informed-reading.md` |
