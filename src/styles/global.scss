@@ -3275,6 +3275,50 @@ a {
     border-color: var(--accent);
   }
 }
+/* 分層豁免（v0.38.1）：決策紀錄不是待辦，預設摺疊；展開是書名｜理由對照表。 */
+.mining-excused {
+  margin-top: 1.4rem;
+  > summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::before {
+      content: "▸";
+      color: var(--accent);
+      transition: transform 0.18s ease;
+    }
+  }
+  &[open] > summary::before {
+    transform: rotate(90deg);
+  }
+}
+.mining-excused-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  th,
+  td {
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.7rem;
+    text-align: left;
+  }
+  th {
+    background: var(--surface-2);
+    color: var(--text-2);
+    font-weight: 600;
+  }
+  td {
+    color: var(--text-2);
+  }
+}
 .mining-chip {
   display: inline-block;
   margin: 0 0.35rem 0.35rem 0;

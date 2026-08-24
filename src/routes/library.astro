@@ -9,7 +9,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Bibliography from "../components/Bibliography.astro";
-import { bookUrl, bookCoverUrl } from "../lib/links";
+import { bookUrl, bookCoverUrl, siteUrl, siteLabel } from "../lib/links";
 import type { BibliographyEntry } from "../lib/library";
 import { site, bibliography } from "virtual:notes-core/site";
 import { getCollection } from "astro:content";
@@ -33,10 +33,9 @@ const dug = rows.filter((r) => r.n > 0);
 const undug = rows.filter((r) => r.n === 0);
 // 判層對帳（v0.38.0）：未挖 ≠ 欠債。spine（或未判層）的 0 引用才是待挖的債；
 // support / tool / delegated 是「刻意不深挖」的決定，另列一排，不再被誤讀成不完整。
-const TIER_LABEL: Record<string, string> = {
-  support: "支架",
-  tool: "工具書",
-  delegated: "姊妹站",
+const TIER_REASON: Record<string, string> = {
+  support: "支架——一句帶到即可，不設專頁",
+  tool: "工具書——查閱用，列盤點即可",
 };
 const debt = undug.filter((r) => !r.e.tier || r.e.tier === "spine");
 const spineDebt = debt.filter((r) => r.e.tier === "spine");
@@ -137,23 +136,48 @@ const showMining = owned.length >= 4;
 
         {
           /* 分層豁免＝判過層、刻意不深挖的書：支架（一句帶到）／工具書（列盤點即可）／
-             姊妹站分工（深挖歸那站）。列出來是讓「不收」成為看得見的決定。 */
+             姊妹站分工（深挖歸那站）。列出來是讓「不收」成為看得見的決定；
+             摺疊起來是因為它是決策紀錄不是待辦，展開才看書名｜理由對照表。 */
           excused.length > 0 && (
-            <div class="mining-undug">
-              <p class="mining-undug-label">
-                另 {excused.length} 本已判層、刻意不在本站深挖：
-                {excused
-                  .map(
-                    (r) =>
-                      `${r.e.title}（${
-                        r.e.tier === "delegated" && r.e.delegatedTo
-                          ? `→ ${r.e.delegatedTo} 站`
-                          : TIER_LABEL[r.e.tier ?? ""]
-                      }）`
-                  )
-                  .join("、")}
-              </p>
-            </div>
+            <details class="mining-excused">
+              <summary>另 {excused.length} 本已判層、刻意不在本站深挖</summary>
+              <table class="mining-excused-table">
+                <thead>
+                  <tr>
+                    <th>書名</th>
+                    <th>理由</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {excused.map((r) => (
+                    <tr>
+                      <td>
+                        {r.e.slug ? (
+                          <a href={bookUrl(r.e.slug)} target="_blank" rel="noopener">
+                            {r.e.title}
+                          </a>
+                        ) : (
+                          r.e.title
+                        )}
+                      </td>
+                      <td>
+                        {r.e.tier === "delegated" && r.e.delegatedTo ? (
+                          <>
+                            姊妹站分工——深挖歸{" "}
+                            <a href={siteUrl(r.e.delegatedTo)} target="_blank" rel="noopener">
+                              {siteLabel(r.e.delegatedTo)}
+                            </a>{" "}
+                            站
+                          </>
+                        ) : (
+                          TIER_REASON[r.e.tier ?? ""]
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </details>
           )
         }
       </section>
