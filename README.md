@@ -120,6 +120,41 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 > 裡那張手寫的「頁少書多」排序表已由 DEEPEN-READY 取代——手寫的掃描日一停就過期
 > （2026-08-09 那份還停在 07-31，中間 68 站的 bibliography 已經翻過好幾輪）。
 
+## 資料的三種身分（防漂移的規則）
+
+星系裡每一份資料檔只能是兩種身分之一，**第三種禁止存在**：
+
+| 身分 | 是什麼 | 規則 |
+| --- | --- | --- |
+| **正本** | 手寫、唯一權威。`bibliography.ts`（本站收了哪些書、判什麼層）、concept frontmatter 的 `furtherReading`（誰引了誰）、books-done 的 repo 與 topics（書庫有哪些書）、`goals.yaml`／`health-waivers.yaml`／`EXCLUDED-BOOKS.md`（決定與裁決） | 只有它能被手改 |
+| **衍生** | 從正本算出來。`docs/` 那四份、portal 的 `health.json`／`overview.json`／`stations.json`／`site-meta.json`、各站的 `/index.json` | **不准手改**，必須有一鍵重生的指令，而且要**自報生成時間** |
+| ~~手抄交集~~ | 兩個正本的交集被抄成第三份 | **不要建**。它對兩邊同時漂移 |
+
+第三種是真的發生過：各站的 `BOOKS.md` 是 `bibliography.ts` 與 books-done 的手抄交集，
+2026-08-24 實測 75 站裡有 65 站對不上——往後**落後 640 筆**、往前**超前 112 筆**、
+外加 7 條死鏈。**兩個方向同時漂**，正是「抄交集」的特徵。該檔已全數退役。
+想再抄一份清單出來之前，先問它會對誰過期。
+
+三條配套原則：
+
+1. **衍生物一停更就開始騙人，而且看起來跟剛跑完一模一樣。** 所以 `docs/` 的四份在 H1
+   底下有一行生成戳記（`tools/_stamp.py`），portal 的每份 JSON 有 `generatedAt`。
+   `refresh-galaxy-docs.sh` 的落差檢查用 `git diff -I` 忽略戳記行，否則它會永遠報「有變動」。
+2. **沿用前值（carry-over）要能被看見。** 抓不到就沿用是對的，但沿用值與新鮮值在資料上
+   長得一模一樣——書站 404 之後那一筆會永遠留著，而且在頁面上看起來完全健康。
+   所以筆數要寫進資料本身（`health.json` 的 `carriedOver`）並顯示在 `/health/`，
+   不能只印在沒人會翻的 CI log。
+3. **正本之間的一致性靠稽核，不靠同步。** 同步會製造第三份副本；稽核不會。
+   `tier-audit.py` 是這個形狀：不產生資料、不修改資料，只報「A 說的和 B 說的不一致」。
+
+判層稽核的邏輯刻意有兩份實作——`src/lib/audit.ts`（build 時算完，隨 `/index.json`
+發佈給 portal 與 CLI 消費）與 `tools/tier-audit.py`（讀工作區，給「剛改完想馬上看」）。
+兩份是必要的（發佈的結論不能要求消費端 clone 76 個 repo；工作區的回饋不能等部署），
+但**兩份實作就是兩份會各自演化的東西**，所以用 `tier-audit.py --verify` 逐站對帳六個數字。
+它上線第一次就抓到一個真 bug：TS 的 `[\s,.:-—]` 被讀成字元範圍（U+003A–U+2014，
+涵蓋整個英文字母表），把 `"The Unicorn Project"` 這類候選詞整段剝成空字串，
+於是 4 站 5 本書被誤判成空頭支票。**被監控的重複，比沒人看的重複安全得多。**
+
 ## 發布
 
 版本以 `package.json` 為準。**沒有 publish workflow**——各站是 `github:nplus-father/notes-core#<tag>`
