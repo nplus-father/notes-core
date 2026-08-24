@@ -94,16 +94,33 @@ def guide_reach(station):
     return slugs, "\n".join(prose)
 
 
+def name_candidates(entry):
+    """書名在導覽裡可能長什麼樣。
+
+    盤點表的 title 常把中英名串在一起（「Head First Design Patterns 深入淺出設計模式」），
+    導覽行文卻只用其中一半——拿整串去比對會漏掉，把談了整段的書誤判成空頭支票。
+    所以要把雙語名拆成可獨立辨識的片段。長度下限是防誤命中：太短的片段
+    （「重構」「高手」「Design」）會在散文裡到處撞到，反而把真的空頭支票蓋掉。
+    """
+    out = set()
+    for key in ("title", "original"):
+        t = (entry.get(key) or "").strip()
+        if not t:
+            continue
+        out.add(t)
+        out.add(re.split(r"[:：（(]", t)[0].strip())  # 去副標
+        out.update(r.strip(" ,.:-—") for r in re.findall(r"[A-Za-z][A-Za-z0-9 '’&.,:!?\-]{9,}", t))
+        out.update(re.findall(r"[一-鿿]{4,}", t))
+    return {c for c in out if len(c) >= 4}
+
+
 def touched(slug, entry, gslugs, prose):
     if slug in gslugs:
         return "furtherReading"
     if "/%s/" % slug in prose:
         return "連結"
-    for key in ("title", "original"):
-        t = (entry.get(key) or "").strip()
-        # 書名常帶副標，比對主標即可；太短的名字（「高手」「重構」）會誤命中，設下限
-        stem = re.split(r"[:：（(]", t)[0].strip()
-        if len(stem) >= 5 and stem in prose:
+    for cand in name_candidates(entry):
+        if cand in prose:
             return "內文"
     return None
 
