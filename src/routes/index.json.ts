@@ -126,6 +126,9 @@ export const GET: APIRoute = async (ctx) => {
               url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site).href,
               essence: essence(entry.body ?? ""),
               related: d.related,
+              // 題目頁一樣會掛書（v0.40.0 補上）。少了它，有題庫的站在站外算判層
+              // 會少算引用，把「其實有題目在引它」的脊梁誤報成真欠債。
+              furtherReading: d.furtherReading,
             };
           }),
         }
