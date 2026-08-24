@@ -79,6 +79,39 @@ def citations(station):
     return n
 
 
+def guide_lag(station):
+    """導覽是不是落後於內容：curation.enrichedAt 比所有 guide 章節的 writtenAt 都新。
+
+    還債會把導覽寫過時——第三章白紙黑字寫著「這本還沒挖」，而那本書昨天剛開了頁。
+    2026-08-24 那輪 enrich 三個站獨立回報同一件事，所以把它變成常駐檢查：
+    兩邊都是日期，這是少數機器判得準的內容一致性訊號。
+
+    **限制：同日打平就抓不到。** 導覽若在同一天因為別的原因被動過（改一個標籤、修一個
+    計數），writtenAt 會跟 enrichedAt 一樣新，這裡就報「—」，但正文可能還寫著那本書
+    「未挖」。所以「—」只代表日期沒落後，不代表內容同步過——動過 tier 或補過頁之後，
+    導覽第三章仍然要人眼讀一遍。
+    """
+    cfg = os.path.join(ROOT, station, "src", "site.config.ts")
+    if not os.path.exists(cfg):
+        return None
+    m = re.search(r'enrichedAt:\s*"(\d{4}-\d{2}-\d{2})"', open(cfg, encoding="utf-8").read())
+    if not m:
+        return None
+    enriched = m.group(1)
+    base = os.path.join(ROOT, station, "src", "content", "guide")
+    written = []
+    for dirpath, _, files in os.walk(base):
+        for fn in files:
+            if fn.endswith(".md"):
+                w = re.search(r'^writtenAt:\s*"?(\d{4}-\d{2}-\d{2})', open(os.path.join(dirpath, fn), encoding="utf-8").read(), re.M)
+                if w:
+                    written.append(w.group(1))
+    if not written:
+        return None
+    newest = max(written)
+    return (newest, enriched) if newest < enriched else None
+
+
 def guide_reach(station):
     """guide 碰過哪些書：furtherReading 的 slug（強訊號）＋內文（弱訊號）。
 
@@ -240,13 +273,14 @@ def audit(only=None):
                         dropped.append((slug, title, to, "該站尚未判層，承諾未到期", "待姊妹站"))
                     else:
                         dropped.append((slug, title, to, "該站判 %s 但零引用" % tt, "真漏接"))
+        lag = guide_lag(st) if has_guide else None
         tot = len(owned)
         rows.append(
             {
                 "station": st, "hasGuide": has_guide, "owned": tot, "counts": counts,
                 "excused": tot - counts["spine"] - len(untiered),
                 "untiered": untiered, "debt": debt, "empty": empty,
-                "dropped": dropped, "conflict": conflict, "mismatch": mismatch,
+                "dropped": dropped, "conflict": conflict, "mismatch": mismatch, "lag": lag,
             }
         )
     return rows
@@ -269,16 +303,16 @@ def main():
         rows = [r for r in rows if r["hasGuide"]]
 
     rows.sort(key=lambda r: -viol(r))
-    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "文資不符", "衝突", "未判層")
-    print("%-26s%5s%5s%7s%7s%9s%6s%9s%6s%7s" % hdr)
+    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "文資不符", "衝突", "未判層", "導覽落後")
+    print("%-26s%5s%5s%7s%7s%9s%6s%9s%6s%7s%9s" % hdr)
     t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered", "mismatch"), 0)
     for r in rows:
         ratio = r["excused"] / r["owned"] * 100 if r["owned"] else 0
         print(
-            "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d%s"
+            "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d%s%s"
             % (r["station"], r["owned"], r["excused"], ratio, len(r["debt"]), len(r["empty"]),
                len(r["dropped"]), len(r["mismatch"]), len(r["conflict"]), len(r["untiered"]),
-               " ⚠" if viol(r) else "")
+               "  是" if r["lag"] else "   —", " ⚠" if viol(r) else "")
         )
         t["owned"] += r["owned"]; t["excused"] += r["excused"]
         for k in ("debt", "empty", "dropped", "conflict", "untiered", "mismatch"):
@@ -319,6 +353,9 @@ def main():
         "標籤下錯＝兩站都判不深挖，本站該把它改成同一層而不是說「歸那站」；真漏接＝那站根本沒收。",
         lambda r: r["dropped"], lambda it: "[%s] %s → %s 站：%s" % (it[4], it[1], it[2], it[3]),
     )
+    print("\n導覽落後＝enrichedAt 比所有 guide 章節的 writtenAt 都新：內容補過了，策展層還在講舊帳。"
+          "不是 gate（補內容本來就會領先），但那是 /note-guide 的待辦。")
+
     section(
         "文資不符：導覽散文寫的層，和 tier 資料不一樣",
         "讀者會看到兩個互相矛盾的說法。改資料還是改散文都行，但要一致。",
