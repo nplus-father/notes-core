@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-24T17:38:45+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-24T21:37:53+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -23,7 +23,7 @@
 | 孤兒書（沒有任何站的 bibliography 指到） | **360** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
-| 死鏈 slug（bibliography 指到不存在的 repo） | **1** | 首頁書架封面 404 |
+| 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
 
@@ -727,13 +727,11 @@
 | --- | --- | --- |
 | `timeless-way-of-building` | The Timeless Way of Building | Christopher Alexander |
 
-## 二、死鏈 slug：1 個
+## 二、死鏈 slug：0 個
 
 bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的封面會 404**。兩種收法（2026-08-04 那批 8 個就是這樣分的）：書其實該有就**補建書 repo**，書根本不存在就**撤掉這筆 `slug`**，不要掛死鏈。
 
-| slug | 登記在 |
-| --- | --- |
-| `turning-the-flywheel` | collins-note |
+無——所有 `slug` 都指得到真的 repo。
 
 ## 三、`owned` 沒有 slug：0 筆
 
