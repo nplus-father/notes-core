@@ -6,7 +6,8 @@
 // 消費端要怎麼排序、怎麼呈現由消費端決定。
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { site } from "virtual:notes-core/site";
+import { site, bibliography } from "virtual:notes-core/site";
+import type { BibliographyEntry } from "../lib/library";
 import { withBase } from "../lib/url";
 import { siteBySlug } from "../lib/sites";
 
@@ -60,7 +61,37 @@ export const GET: APIRoute = async (ctx) => {
     // 沒蓋過章就是 null，消費端自行退回不顯示。
     curation: site.curation ?? null,
     // 導覽戳記：沒有導覽的站為 null，消費端自行退回不顯示。
-    guide: guide.length > 0 ? { chapters: guide.length, writtenAt: guideWrittenAt } : null,
+    // `books` = 導覽章節 furtherReading 指到的書（去重）。判「支架有沒有被導覽一句帶到」
+    // 要用它——**這是強訊號，不含內文提及**：tier-audit.py 另外會用書名片段掃導覽散文，
+    // 那個比對在這裡做不到（要原文），所以消費端算出來的空頭支票是**上界**，
+    // 只被 furtherReading 認證過的才算「確定提過」。
+    guide:
+      guide.length > 0
+        ? {
+            chapters: guide.length,
+            writtenAt: guideWrittenAt,
+            books: [
+              ...new Set(
+                guide.flatMap((e) => ((e.data as { furtherReading?: { book: string }[] }).furtherReading ?? []).map((f) => f.book))
+              ),
+            ],
+          }
+        : null,
+    // 盤點表（v0.40.0）：本站收了哪些書、各判什麼層。**這是判層稽核的另一半**——
+    // 另一半（誰引了誰）本來就在下面的 concepts[].furtherReading 裡。兩半都在同一份
+    // JSON 之後，nplus.wiki portal 每天抓 /index.json 時就能算出全星系的判層違約
+    // （脊梁零引用＝真欠債、支架沒被導覽提到＝空頭支票、姊妹站沒接住＝漏接），
+    // 不必 clone 76 個 repo 才跑得動 tier-audit.py。
+    //
+    // 只吐判層需要的欄位，不吐 note/year/author——那些是站內呈現用的，
+    // 讓消費端拿 slug 回頭查書 repo 比較誠實（書名的正本在書那邊，不在這裡）。
+    library: (bibliography as BibliographyEntry[]).map((b) => ({
+      slug: b.slug ?? null,
+      title: b.title,
+      status: b.status,
+      tier: b.tier ?? null,
+      delegatedTo: b.delegatedTo ?? null,
+    })),
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。
