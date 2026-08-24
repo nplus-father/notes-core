@@ -8,6 +8,44 @@
 
 ---
 
+## 開 Fable session 時：從這裡起手
+
+**這份就是入口**，但它只寫原則，不存清單——清單會過期，指令不會。
+
+```bash
+cd /home/andrew/workspace/andrew/notes
+
+# 這輪該做什麼？兩條主線，挑一條：
+notes-core/tools/tier-evidence.py --detail   # ① 判層待裁決（逐站清單＋每本的 note）
+cat notes-core/docs/DEEPEN-READY.md          # ② enrich 排序（頁/書愈低＝架上材料愈沒用到）
+```
+
+貼給 Fable 的話術，兩條主線各一句：
+
+> **判層**：「讀 `notes-core/docs/MODEL-ROUTING.md` 與 `note-check` §1.3–1.4，
+> 跑 `notes-core/tools/tier-evidence.py <station> --detail`，逐本裁決那些書該判哪一層。
+> **只輸出 JSON 決策，不要改檔**——套用另外走腳本。」
+>
+> **enrich**：「讀 `note-check` §6 的書本位紀律，進 `<station>` 跑 `/note-check --enrich`。
+> 每個主張都要掛得住 anchor，掛不住就不要寫。」
+
+**判層為什麼要「只輸出決策、不改檔」**：讓模型逐筆改 TS entry 必壞語法（2026-08-24
+首輪實測，90 筆就壞）。決策用 JSON 交回，套用走腳本，語法零風險而且可對帳：
+
+```bash
+notes-core/tools/apply-tiers.py <decisions.json>          # 先乾跑看筆數
+notes-core/tools/apply-tiers.py <decisions.json> --apply  # 寫入
+notes-core/tools/tier-audit.py                            # **必跑**：套用後有沒有製造違約
+```
+
+決策 JSON 的格式在 `apply-tiers.py` 檔頭，跟 `tier-evidence.py --json` 同形狀，
+所以模型只要照著那份的樣子回填 `tier` 就行。
+
+**交回來之後是我的工作**（不必再花高階額度）：套用、跑 `tier-audit.py`、修違約、
+升版鋪開。分工是**來回交錯**，不是單向接力。
+
+---
+
 ## 判準：貴的額度要花在「難、而且不會被下一輪推翻」的工作
 
 兩個條件缺一不可。
@@ -110,5 +148,11 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 
 ## 重跑
 
-判層證據包：`tools/tier-evidence.py`（見該檔頂端說明）。
-深化排序：`tools/refresh-galaxy-docs.sh`。
+| 指令 | 給什麼 |
+| --- | --- |
+| `tools/tier-evidence.py --detail` | 判層待裁決清單（逐站、逐本、附 note） |
+| `tools/apply-tiers.py <json> --apply` | 把裁決套進 bibliography.ts |
+| `tools/tier-audit.py` | 套用後的違約檢查（**每次套用必跑**） |
+| `tools/tier-audit.py --verify` | 對帳 python 與站台兩份稽核實作 |
+| `tools/refresh-galaxy-docs.sh` | 重算 DEEPEN-READY 等四份報表 |
+| `tools/bump-notes-core.sh <old> <new>` | 全隊升版（改了 notes-core 才需要） |
