@@ -309,8 +309,17 @@ def main():
         json.dump(rows, sys.stdout, ensure_ascii=False, indent=1)
         return
 
+    def missed(r):
+        """真漏接：不含「待姊妹站」。
+
+        姊妹站還沒寫導覽＝還沒判層，那本書的承諾根本還沒到期。把它算進違約
+        欄，等於要求一個尚未開始的站先還債——那個數字會永遠掛在那裡，讀者
+        看久了就不看了。--detail 仍會把它列出來，只是不計入。
+        """
+        return [d for d in r["dropped"] if d[4] != "待姊妹站"]
+
     def viol(r):
-        return len(r["empty"]) + len(r["dropped"]) + len(r["untiered"]) + len(r["mismatch"])
+        return len(r["empty"]) + len(missed(r)) + len(r["untiered"]) + len(r["mismatch"])
 
     # 判層是 guide 帶出來的動作——沒寫過導覽的站還沒輪到，別讓它們稀釋數字。
     pending = [r for r in rows if not r["hasGuide"]]
@@ -326,12 +335,13 @@ def main():
         print(
             "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d%s%s"
             % (r["station"], r["owned"], r["excused"], ratio, len(r["debt"]), len(r["empty"]),
-               len(r["dropped"]), len(r["mismatch"]), len(r["conflict"]), len(r["untiered"]),
+               len(missed(r)), len(r["mismatch"]), len(r["conflict"]), len(r["untiered"]),
                "  是" if r["lag"] else "   —", " ⚠" if viol(r) else "")
         )
         t["owned"] += r["owned"]; t["excused"] += r["excused"]
-        for k in ("debt", "empty", "dropped", "conflict", "untiered", "mismatch"):
+        for k in ("debt", "empty", "conflict", "untiered", "mismatch"):
             t[k] += len(r[k])
+        t["dropped"] += len(missed(r))
     print(
         "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d"
         % ("TOTAL", t["owned"], t["excused"], t["excused"] / max(t["owned"], 1) * 100,
@@ -394,4 +404,5 @@ def main():
     )
 
 
-main()
+if __name__ == "__main__":
+    main()
