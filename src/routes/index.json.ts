@@ -8,6 +8,7 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { site, bibliography } from "virtual:notes-core/site";
 import type { BibliographyEntry } from "../lib/library";
+import { auditStation, type Citation } from "../lib/audit";
 import { withBase } from "../lib/url";
 import { siteBySlug } from "../lib/sites";
 
@@ -42,14 +43,57 @@ export const GET: APIRoute = async (ctx) => {
   // 站再深化過而導覽沒跟上，就該列 warning；portal 也能看出哪些站有導覽。
   const guide = await getCollection("guide");
   const guideWrittenAt = guide.reduce<string>(
-    (acc, e) => ((e.data as { writtenAt: string }).writtenAt > acc ? (e.data as { writtenAt: string }).writtenAt : acc),
-    ""
+    (acc, e) =>
+      (e.data as { writtenAt: string }).writtenAt > acc
+        ? (e.data as { writtenAt: string }).writtenAt
+        : acc,
+    "",
   );
 
   // 星系 registry（sites.ts）是知識軸的正本；站台不重複宣告，這裡查表帶出去，
   // 讓 nplus.wiki portal 不必靠 GitHub repo description（那 62 個 repo 全是空的）
   // 就能把筆記分成「主題 / 人物」兩區。查不到（尚未入列）就給 null，消費端自行退回。
   const entry = siteBySlug.get(stationSlug()) ?? null;
+
+  // 判層稽核（v0.42.0）——在站台這裡算，因為空頭支票要比對導覽散文，而散文只有
+  // 站台有。算完發佈結論，portal 與 CLI 消費同一份，不各寫一份實作。
+  const guideBooks = new Set(
+    guide.flatMap((e) =>
+      (
+        (e.data as { furtherReading?: { book: string }[] }).furtherReading ?? []
+      ).map((f) => f.book),
+    ),
+  );
+  const guideProse = guide.map((e) => e.body ?? "").join("\n");
+  const cites: Record<string, Citation> = {};
+  for (const e of [...concepts, ...problems]) {
+    const seen = new Set<string>();
+    for (const f of (e.data as { furtherReading?: { book: string }[] })
+      .furtherReading ?? []) {
+      cites[f.book] ??= { n: 0, pages: 0 };
+      cites[f.book].n += 1;
+      if (!seen.has(f.book)) {
+        seen.add(f.book);
+        cites[f.book].pages += 1;
+      }
+    }
+  }
+  const library = (bibliography as BibliographyEntry[]).map((b) => ({
+    slug: b.slug ?? null,
+    title: b.title,
+    original: b.original,
+    status: b.status,
+    tier: b.tier ?? null,
+    delegatedTo: b.delegatedTo ?? null,
+  }));
+  const audit = auditStation({
+    bibliography: library,
+    citations: cites,
+    guideBooks,
+    guideProse,
+    guideWrittenAt,
+    enrichedAt: site.curation?.enrichedAt ?? null,
+  });
 
   const payload = {
     station: stationSlug(),
@@ -61,20 +105,15 @@ export const GET: APIRoute = async (ctx) => {
     // 沒蓋過章就是 null，消費端自行退回不顯示。
     curation: site.curation ?? null,
     // 導覽戳記：沒有導覽的站為 null，消費端自行退回不顯示。
-    // `books` = 導覽章節 furtherReading 指到的書（去重）。判「支架有沒有被導覽一句帶到」
-    // 要用它——**這是強訊號，不含內文提及**：tier-audit.py 另外會用書名片段掃導覽散文，
-    // 那個比對在這裡做不到（要原文），所以消費端算出來的空頭支票是**上界**，
-    // 只被 furtherReading 認證過的才算「確定提過」。
+    // `books` = 導覽章節 furtherReading 掛到的書（去重）。這是**強訊號**——導覽正文
+    // 另外會用書名提到書，那個弱訊號只有站台看得到原文，所以判空頭支票是在上面的
+    // audit 裡算完才發佈的，消費端不必也不該拿這串自己重算。
     guide:
       guide.length > 0
         ? {
             chapters: guide.length,
             writtenAt: guideWrittenAt,
-            books: [
-              ...new Set(
-                guide.flatMap((e) => ((e.data as { furtherReading?: { book: string }[] }).furtherReading ?? []).map((f) => f.book))
-              ),
-            ],
+            books: [...guideBooks],
           }
         : null,
     // 盤點表（v0.40.0）：本站收了哪些書、各判什麼層。**這是判層稽核的另一半**——
@@ -83,15 +122,15 @@ export const GET: APIRoute = async (ctx) => {
     // （脊梁零引用＝真欠債、支架沒被導覽提到＝空頭支票、姊妹站沒接住＝漏接），
     // 不必 clone 76 個 repo 才跑得動 tier-audit.py。
     //
-    // 只吐判層需要的欄位，不吐 note/year/author——那些是站內呈現用的，
+    // 只吐判層需要的欄位，不吐 note/year——那些是站內呈現用的，
     // 讓消費端拿 slug 回頭查書 repo 比較誠實（書名的正本在書那邊，不在這裡）。
-    library: (bibliography as BibliographyEntry[]).map((b) => ({
-      slug: b.slug ?? null,
-      title: b.title,
-      status: b.status,
-      tier: b.tier ?? null,
-      delegatedTo: b.delegatedTo ?? null,
-    })),
+    library,
+    // 每本書被幾頁引用（n＝次數、pages＝散在幾個不同的頁）。判「跨頁承重」看 pages，
+    // 不看 n；聚合端另外要用它判姊妹站有沒有接住 delegated 的書。
+    citations: cites,
+    // 判層稽核結論（站台自己算，見 lib/audit.ts）。`delegated` 那欄不是違約清單，
+    // 是「請聚合端去問姊妹站」的待判項——本站無從得知別站收了沒。
+    audit,
     conceptCount: concepts.length,
     concepts: concepts.map((entry) => {
       // glob loader 的 id 就是 '<category>/<slug>'，與概念頁路由同源。
@@ -123,7 +162,8 @@ export const GET: APIRoute = async (ctx) => {
               importance: d.importance,
               status: d.status,
               lastReviewed: d.lastReviewed ?? null,
-              url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site).href,
+              url: new URL(withBase(`problems/${domain}/${slug}/`), ctx.site)
+                .href,
               essence: essence(entry.body ?? ""),
               related: d.related,
               // 題目頁一樣會掛書（v0.40.0 補上）。少了它，有題庫的站在站外算判層
