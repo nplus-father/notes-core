@@ -10,7 +10,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Bibliography from "../components/Bibliography.astro";
 import { bookUrl, bookCoverUrl, siteUrl, siteLabel } from "../lib/links";
-import type { BibliographyEntry } from "../lib/library";
+import { TIER_META, authorKey, type BibliographyEntry } from "../lib/library";
 import { site, bibliography } from "virtual:notes-core/site";
 import { getCollection } from "astro:content";
 
@@ -33,13 +33,60 @@ const dug = rows.filter((r) => r.n > 0);
 const undug = rows.filter((r) => r.n === 0);
 // 判層對帳（v0.38.0）：未挖 ≠ 欠債。spine（或未判層）的 0 引用才是待挖的債；
 // support / tool / delegated 是「刻意不深挖」的決定，另列一排，不再被誤讀成不完整。
-const TIER_REASON: Record<string, string> = {
-  support: "支架——一句帶到即可，不設專頁",
-  tool: "工具書——查閱用，列盤點即可",
-};
 const debt = undug.filter((r) => !r.e.tier || r.e.tier === "spine");
 const spineDebt = debt.filter((r) => r.e.tier === "spine");
 const excused = undug.filter((r) => r.e.tier && r.e.tier !== "spine");
+
+// 豁免書依層分組（v0.43.0）。理由只在群組標題講一次——先前每一列都重印一次整句，
+// leadership 站 26 列裡有 12 列是同一句「工具書——查閱用，列盤點即可」。
+// 順序跟色階一致：支架→工具書是同一族由重到輕，姊妹站在尺度之外所以擺最後。
+// 群組、摘要行、叢集組成全部共用這一個順序——同一頁出現兩種排法，讀者要學兩次。
+const EXCUSED_TIERS = ["support", "tool", "delegated"] as const;
+const excusedGroups = EXCUSED_TIERS.map((tier) => ({
+  tier,
+  meta: TIER_META[tier],
+  books: excused.filter((r) => r.e.tier === tier),
+})).filter((g) => g.books.length > 0);
+
+// 姊妹站分工再依「歸哪一站」分：6 列各寫一次「深挖歸 X 站」，不如一排晶片，
+// 而且這樣才看得出這一站跟哪些站有分工、深淺如何。
+const delegatedBy = new Map<string, number>();
+for (const r of excused) {
+  if (r.e.tier === "delegated" && r.e.delegatedTo) {
+    delegatedBy.set(r.e.delegatedTo, (delegatedBy.get(r.e.delegatedTo) ?? 0) + 1);
+  }
+}
+const delegatedChips = [...delegatedBy.entries()].sort((a, b) => b[1] - a[1]);
+
+// 作者叢集：同一位作者 ≥2 本才列。這是平表看不見的那一層——leadership 站架上
+// 七本杜拉克全數豁免（兩本主線歸 Drucker 站、兩本背景、三本查閱），
+// 導覽第三章早就用散文寫過，盤點表卻顯示不出來。
+// 只涵蓋「同一作者」；談某人而非某人所著的書（如 Linkletter 寫杜拉克）抓不到，
+// 那一格差距是真的，不要讓自動叢集假裝完整。
+const byAuthor = new Map<string, { author: string; books: typeof excused }>();
+for (const r of excused) {
+  const key = authorKey(r.e.author);
+  if (!key) continue;
+  const cur = byAuthor.get(key);
+  if (cur) cur.books.push(r);
+  else byAuthor.set(key, { author: r.e.author ?? key, books: [r] });
+}
+const authorClusters = [...byAuthor.values()]
+  .filter((c) => c.books.length >= 2)
+  .map((c) => ({
+    // 顯示用最完整的那個寫法（「Peter F. Drucker」而不是姓氏鍵 "drucker"）。
+    author: c.books
+      .map((r) => (r.e.author ?? "").split(/\s+with\s+|\s*&\s*|\s*\(|\s*（/)[0].trim())
+      .reduce((a, b) => (b.length > a.length ? b : a), ""),
+    books: c.books
+      .slice()
+      .sort(
+        (a, b) =>
+          EXCUSED_TIERS.indexOf(a.e.tier as (typeof EXCUSED_TIERS)[number]) -
+          EXCUSED_TIERS.indexOf(b.e.tier as (typeof EXCUSED_TIERS)[number])
+      ),
+  }))
+  .sort((a, b) => b.books.length - a.books.length);
 const peak = Math.max(1, ...dug.map((r) => r.n));
 const totalRefs = dug.reduce((s, r) => s + r.n, 0);
 // 一兩本書畫不成分佈；開採度要到「架上有規模」才有意義。
@@ -77,17 +124,15 @@ const showMining = owned.length >= 4;
           role="img"
           aria-label={`開採度：${owned.length} 本已收書中 ${dug.length} 本已被筆記引用、${undug.length} 本尚未；逐筆資料見下方盤點表。`}
         >
-          {
-            dug.map((r) => (
-              <div class="mining-row" title={`${r.e.title} · ${r.n} 頁引用`}>
-                <span class="mining-label">{r.e.title}</span>
-                <span class="mining-track">
-                  <span class="mining-bar" style={`width:${(r.n / peak) * 100}%`} />
-                </span>
-                <span class="mining-count">{r.n}</span>
-              </div>
-            ))
-          }
+          {dug.map((r) => (
+            <div class="mining-row" title={`${r.e.title} · ${r.n} 頁引用`}>
+              <span class="mining-label">{r.e.title}</span>
+              <span class="mining-track">
+                <span class="mining-bar" style={`width:${(r.n / peak) * 100}%`} />
+              </span>
+              <span class="mining-count">{r.n}</span>
+            </div>
+          ))}
         </div>
 
         {
@@ -98,8 +143,7 @@ const showMining = owned.length >= 4;
           debt.length > 0 && (
             <div class="mining-undug">
               <p class="mining-undug-label">
-                這 {debt.length}{" "}
-                本已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料
+                這 {debt.length} 本已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料
                 {spineDebt.length > 0 && `（其中 ${spineDebt.length} 本已判層為脊梁＝真欠債）`}。
               </p>
               <div class="mining-undug-covers">
@@ -135,48 +179,120 @@ const showMining = owned.length >= 4;
         }
 
         {
-          /* 分層豁免＝判過層、刻意不深挖的書：支架（一句帶到）／工具書（列盤點即可）／
-             姊妹站分工（深挖歸那站）。列出來是讓「不收」成為看得見的決定；
-             摺疊起來是因為它是決策紀錄不是待辦，展開才看書名｜理由對照表。 */
+          /* 分層豁免＝判過層、刻意不深挖的書。列出來是讓「不收」成為看得見的決定；
+             維持摺疊是因為它是決策紀錄不是待辦。
+
+             理由只在群組標題講一次——先前每一列都重印整句，leadership 站 26 列裡
+             有 12 列是同一句「工具書——查閱用，列盤點即可」，約 370 字純重複。
+             分組之後每一列也不需要記號了：26 個記號是雜訊，3 個是路標。
+
+             摘要行自己帶組成，收合時就看得出形狀，不必為了知道「大概是些什麼」而點開。 */
           excused.length > 0 && (
             <details class="mining-excused">
-              <summary>另 {excused.length} 本已判層、刻意不在本站深挖</summary>
-              <table class="mining-excused-table">
-                <thead>
-                  <tr>
-                    <th>書名</th>
-                    <th>理由</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {excused.map((r) => (
-                    <tr>
-                      <td>
-                        {r.e.slug ? (
-                          <a href={bookUrl(r.e.slug)} target="_blank" rel="noopener">
-                            {r.e.title}
+              <summary>
+                <span class="ex-title">另 {excused.length} 本已判層、刻意不在本站深挖</span>
+                <span class="ex-mix">
+                  {excusedGroups.map((g) => (
+                    <span class="ex-mixdot">
+                      <i class={`tier-dot ${g.meta.dot}`} />
+                      {g.meta.label} {g.books.length}
+                    </span>
+                  ))}
+                </span>
+              </summary>
+
+              <div class="ex-body">
+                {excusedGroups.map((g) => (
+                  <section class="ex-grp">
+                    <h4>
+                      <i class={`tier-dot ${g.meta.dot}`} />
+                      {g.meta.label}
+                      <span class="ex-n">{g.books.length} 本</span>
+                      <span class="ex-why">{g.meta.reason}</span>
+                    </h4>
+
+                    {/* 姊妹站那一組多一排晶片：6 列各寫一次「深挖歸 X 站」不如一排可點的
+                        分工圖，而且這樣才看得出這一站跟哪些站有分工、深淺如何。 */}
+                    {g.tier === "delegated" && delegatedChips.length > 0 && (
+                      <div class="ex-chips">
+                        {delegatedChips.map(([key, n]) => (
+                          <a class="ex-chip" href={siteUrl(key)} target="_blank" rel="noopener">
+                            <i class="tier-dot tier-delegated" />
+                            {siteLabel(key)} <b>{n}</b>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* 書封而非書名列——待挖那排 v0.34.0 就改成書封了，這排不該還停在文字表格。 */}
+                    <div class="ex-shelf">
+                      {g.books.map((r) =>
+                        r.e.slug ? (
+                          <a
+                            class="ex-bk"
+                            href={bookUrl(r.e.slug)}
+                            target="_blank"
+                            rel="noopener"
+                            title={`${r.e.title}｜${g.meta.label}——${g.meta.reason}`}
+                          >
+                            <img
+                              class="cover-img"
+                              src={bookCoverUrl(r.e.slug)}
+                              data-fallback={bookUrl(r.e.slug, "cover.png")}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              width="66"
+                              height="95"
+                            />
+                            <span class="ex-cap">{r.e.title}</span>
                           </a>
                         ) : (
-                          r.e.title
-                        )}
-                      </td>
-                      <td>
-                        {r.e.tier === "delegated" && r.e.delegatedTo ? (
-                          <>
-                            姊妹站分工——深挖歸{" "}
-                            <a href={siteUrl(r.e.delegatedTo)} target="_blank" rel="noopener">
-                              {siteLabel(r.e.delegatedTo)}
-                            </a>{" "}
-                            站
-                          </>
-                        ) : (
-                          TIER_REASON[r.e.tier ?? ""]
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          <span class="ex-bk is-plain" title={`${r.e.title}｜${g.meta.label}`}>
+                            <span class="ex-ph" />
+                            <span class="ex-cap">{r.e.title}</span>
+                          </span>
+                        )
+                      )}
+                    </div>
+                  </section>
+                ))}
+
+                {/* 作者叢集：平表看不見的那一層。七本杜拉克全數豁免這種事，
+                    導覽第三章用散文寫得出來，一列一本的表格寫不出來。 */}
+                {authorClusters.length > 0 && (
+                  <section class="ex-grp">
+                    <h4>
+                      作者叢集
+                      <span class="ex-why">同一位作者 ≥2 本才列</span>
+                    </h4>
+                    <ul class="ex-cl">
+                      {authorClusters.map((c) => (
+                        <li>
+                          <span class="ex-who">{c.author}</span>
+                          <span class="ex-cn">{c.books.length} 本</span>
+                          <span class="ex-comp">
+                            {c.books.map((r) => (
+                              <i
+                                class={`tier-dot sm ${TIER_META[r.e.tier!].dot}`}
+                                title={TIER_META[r.e.tier!].label}
+                              />
+                            ))}
+                          </span>
+                          <span class="ex-cmix">
+                            {EXCUSED_TIERS.filter((t) => c.books.some((r) => r.e.tier === t))
+                              .map(
+                                (t) =>
+                                  `${TIER_META[t].label} ${c.books.filter((r) => r.e.tier === t).length}`
+                              )
+                              .join(" · ")}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+              </div>
             </details>
           )
         }

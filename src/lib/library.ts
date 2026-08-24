@@ -21,6 +21,55 @@ export type BibliographyStatus = "owned" | "wanted" | "unavailable" | "skipped";
  */
 export type BibliographyTier = "spine" | "support" | "tool" | "delegated";
 
+/**
+ * 四層的語彙正本（v0.43.0）。
+ *
+ * **為什麼要有這張表**：在這之前，「支架——一句帶到即可，不設專頁」這種句子是各消費端
+ * 自己寫的字面值，`/library/` 裡就硬編碼了兩處。結果是 leadership 站那 26 本豁免書，
+ * 同一句理由被印了 12 次（約 370 字純重複），而且要改用詞就得四處找。
+ * 語彙跟資料一樣需要正本：**這句話只有一個地方能改。**
+ *
+ * `reason` 寫在**群組標題**上，一層只講一次——不是每一列都掛一次。
+ * `dot` 是 CSS 類名：前三層同一族由重到輕（脊梁→支架→工具書是一個深度尺度），
+ * 姊妹站另給暖褐（它不在那個尺度上，意思是「帳記到別本去了」）。
+ * 刻意不用紅／黃／綠：那是嚴重度語意，而判層不是好壞，是分工。
+ */
+export const TIER_META: Record<BibliographyTier, { label: string; reason: string; dot: string }> = {
+  spine: {
+    label: "脊梁",
+    reason: "領域正典，該有專屬概念頁",
+    dot: "tier-spine",
+  },
+  support: {
+    label: "支架",
+    reason: "導覽一句帶到，不設專頁",
+    dot: "tier-support",
+  },
+  tool: { label: "工具書", reason: "查閱用，列盤點即可", dot: "tier-tool" },
+  delegated: { label: "姊妹站", reason: "深挖歸別站", dot: "tier-delegated" },
+};
+
+/**
+ * 作者叢集用的姓氏鍵：**只取第一作者的最後一個詞**。
+ *
+ * 不能拿整串作者字串去 group——同一位作者的寫法根本不統一（leadership 站上的杜拉克有
+ * 「Peter F. Drucker」「…with Joseph A. Maciariello」「…& Joseph A. Maciarello」
+ * 「…(edited by Rick Wartzman)」四種），直接比對會把一叢裂成四叢。
+ *
+ * 也不能拿 token 集合比對：2026-08-24 實測，那會把 David M. Dodson／David Heinemeier
+ * Hansson／David Cottrell **三個不同的人**併成一叢（撞名 David），還會把共同作者
+ * Maciariello 當成叢主。姓氏才是識別鍵，名字不是。
+ *
+ * 中文作者沒有可切的姓名結構，整串當鍵。
+ */
+export function authorKey(author?: string): string {
+  const primary = (author ?? "").split(/\s+with\s+|\s*&\s*|\s*\(|\s*（/)[0].trim();
+  if (!primary) return "";
+  if (!/[A-Za-z]/.test(primary)) return primary;
+  const toks = primary.match(/[A-Za-z][A-Za-z'’-]*/g);
+  return toks ? toks[toks.length - 1].toLowerCase() : "";
+}
+
 export interface BibliographyEntry {
   /** 書名（有中譯用中譯；未收錄的可用原文） */
   title: string;
