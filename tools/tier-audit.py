@@ -154,6 +154,40 @@ def prose_tier(entry, prose, cands):
     return found.pop() if len(found) == 1 else None
 
 
+CN_NUM = {c: i for i, c in enumerate("〇一二三四五六七八九", 0)}
+COUNT_CLAIM = re.compile(r"(脊梁|支架|工具書|姊妹站)[^，。；、\n]{0,3}?([一二三四五六七八九十]+|\d+)\s*本")
+CLAIM_TIER = {"脊梁": "spine", "支架": "support", "工具書": "tool", "姊妹站": "delegated"}
+
+
+def cn_int(s):
+    if s.isdigit():
+        return int(s)
+    if s == "十":
+        return 10
+    if s.startswith("十"):
+        return 10 + CN_NUM.get(s[1], 0)
+    if "十" in s:
+        a, _, b = s.partition("十")
+        return CN_NUM.get(a, 0) * 10 + (CN_NUM.get(b, 0) if b else 0)
+    return CN_NUM.get(s, -1)
+
+
+def count_claims(prose, counts):
+    """導覽散文自報的分層本數 vs 實際資料。
+
+    第三章常有「脊梁三本、支架四本、工具書兩本」這種總結句。判層一改，這些數字就過期，
+    讀者會同時看到散文的舊帳和 /library/ 的新帳。逐本的判層句由 prose_tier 對帳，
+    這裡對的是總數宣稱。
+    """
+    out = []
+    for m in COUNT_CLAIM.finditer(prose):
+        word, num = m.group(1), cn_int(m.group(2))
+        tier = CLAIM_TIER[word]
+        if num >= 0 and num != counts.get(tier, 0):
+            out.append((word, num, counts.get(tier, 0), m.group(0)))
+    return out
+
+
 def touched(slug, entry, gslugs, prose):
     if slug in gslugs:
         return "furtherReading"
@@ -232,6 +266,7 @@ def audit(only=None):
                         dropped.append((slug, title, to, "該站尚未判層，承諾未到期", "待姊妹站"))
                     else:
                         dropped.append((slug, title, to, "該站判 %s 但零引用" % tt, "真漏接"))
+        claims = count_claims(prose, counts) if has_guide else []
         tot = len(owned)
         rows.append(
             {
@@ -239,6 +274,7 @@ def audit(only=None):
                 "excused": tot - counts["spine"] - len(untiered),
                 "untiered": untiered, "debt": debt, "empty": empty,
                 "dropped": dropped, "conflict": conflict, "mismatch": mismatch,
+                "claims": claims,
             }
         )
     return rows
@@ -253,6 +289,8 @@ def main():
         return
 
     def viol(r):
+        # claims 不進 gate：導覽的「支架四本」常是分群小計，拿全站總數比會誤報。
+        # 它只當提示，人眼掃一遍就知道哪些是真的過期。
         return len(r["empty"]) + len(r["dropped"]) + len(r["untiered"]) + len(r["mismatch"])
 
     # 判層是 guide 帶出來的動作——沒寫過導覽的站還沒輪到，別讓它們稀釋數字。
@@ -261,24 +299,25 @@ def main():
         rows = [r for r in rows if r["hasGuide"]]
 
     rows.sort(key=lambda r: -viol(r))
-    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "文資不符", "衝突", "未判層")
-    print("%-26s%5s%5s%7s%7s%9s%6s%9s%6s%7s" % hdr)
-    t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered", "mismatch"), 0)
+    hdr = ("station", "藏書", "豁免", "豁免率", "真欠債", "空頭支票", "漏接", "文資不符", "計數?", "衝突", "未判層")
+    print("%-26s%5s%5s%7s%7s%9s%6s%9s%9s%6s%7s" % hdr)
+    t = dict.fromkeys(("owned", "excused", "debt", "empty", "dropped", "conflict", "untiered", "mismatch", "claims"), 0)
     for r in rows:
         ratio = r["excused"] / r["owned"] * 100 if r["owned"] else 0
         print(
-            "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d%s"
+            "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%9d%6d%7d%s"
             % (r["station"], r["owned"], r["excused"], ratio, len(r["debt"]), len(r["empty"]),
-               len(r["dropped"]), len(r["mismatch"]), len(r["conflict"]), len(r["untiered"]),
-               " ⚠" if viol(r) else "")
+               len(r["dropped"]), len(r["mismatch"]), len(r["claims"]), len(r["conflict"]),
+               len(r["untiered"]), " ⚠" if viol(r) else "")
         )
         t["owned"] += r["owned"]; t["excused"] += r["excused"]
-        for k in ("debt", "empty", "dropped", "conflict", "untiered", "mismatch"):
+        for k in ("debt", "empty", "dropped", "conflict", "untiered", "mismatch", "claims"):
             t[k] += len(r[k])
     print(
-        "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%6d%7d"
+        "%-26s%5d%5d%6.0f%%%7d%9d%6d%9d%9d%6d%7d"
         % ("TOTAL", t["owned"], t["excused"], t["excused"] / max(t["owned"], 1) * 100,
-           t["debt"], t["empty"], t["dropped"], t["mismatch"], t["conflict"], t["untiered"])
+           t["debt"], t["empty"], t["dropped"], t["mismatch"], t["claims"], t["conflict"],
+           t["untiered"])
     )
 
     if pending and "--all" not in sys.argv:
@@ -315,6 +354,12 @@ def main():
         "文資不符：導覽散文寫的層，和 tier 資料不一樣",
         "讀者會看到兩個互相矛盾的說法。改資料還是改散文都行，但要一致。",
         lambda r: r["mismatch"], lambda it: "%s：導覽說 %s，資料是 %s" % (it[1], it[2], it[3]),
+    )
+    section(
+        "計數?：導覽自報的分層本數，和全站資料對不上（提示，不是 gate）",
+        "第三章的「脊梁三本、支架四本」判層一改就過期。但這些句子常常是分群小計"
+        "（那一節裡四本），拿全站總數比一定誤報——**逐條人眼確認，不要照數字改**。",
+        lambda r: r["claims"], lambda it: "「%s」→ 資料是 %d 本" % (it[3], it[2]),
     )
     section(
         "既成事實衝突：引用 ≥3 次卻判成非脊梁",
