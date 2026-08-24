@@ -301,6 +301,59 @@ def audit(only=None):
     return rows
 
 
+def verify(rows):
+    """把本檔算的結果，跟各站自己算完發佈在 dist/index.json 的 audit 對帳。
+
+    **為什麼要有這個**：judgement 的邏輯從 2026-08-24 起有兩份實作——
+    這支（python，讀工作區，給「剛改完想馬上看」）與 notes-core 的 `src/lib/audit.ts`
+    （TypeScript，build 時算完發佈給 portal 與其他消費端）。兩份是刻意的：
+    工作區的即時回饋不能等部署，發佈的結論不能要求消費端 clone 76 個 repo。
+
+    但兩份實作就是兩份會各自演化的東西。**與其假裝沒事，不如把它變成被監控的不變式**：
+    這裡逐站比六個數字，對不上就印出來。修其中一邊的判準時，另一邊沒跟上，
+    下次跑這個就會知道——而不是等到兩個地方的數字被拿去做不同的決定。
+
+    只比對已經 build 過的站（讀 `<station>/dist/index.json`）。沒 build 的跳過並列出，
+    因為「沒資料」跟「對不上」是兩回事。
+    """
+    checked, skipped, bad = 0, [], []
+    for r in rows:
+        p = os.path.join(ROOT, r["station"], "dist", "index.json")
+        if not os.path.exists(p):
+            skipped.append(r["station"])
+            continue
+        try:
+            pub = json.load(open(p, encoding="utf-8")).get("audit")
+        except Exception:
+            skipped.append(r["station"])
+            continue
+        if not pub:
+            skipped.append(r["station"])
+            continue
+        checked += 1
+        # dropped 不比——那是跨站判定，站台自己算不出來，本檔與 portal 各自解析。
+        for key, mine in (
+            ("debt", len(r["debt"])),
+            ("empty", len(r["empty"])),
+            ("conflict", len(r["conflict"])),
+            ("untiered", len(r["untiered"])),
+            ("owned", r["owned"]),
+            ("excused", r["excused"]),
+        ):
+            theirs = pub[key] if isinstance(pub.get(key), int) else len(pub.get(key, []))
+            if mine != theirs:
+                bad.append((r["station"], key, mine, theirs))
+    print("── 實作對帳：python（本檔）vs 站台發佈的 audit ──")
+    print("已比對 %d 站；跳過 %d 站（未 build，沒有 dist/index.json）" % (checked, len(skipped)))
+    if bad:
+        print("\n✘ 對不上 %d 筆——兩份實作已經分歧，先修好再信任任何一邊：" % len(bad))
+        for st, key, mine, theirs in bad:
+            print("   %-24s %-10s python=%s  發佈=%s" % (st, key, mine, theirs))
+    else:
+        print("兩份實作結果一致。")
+    return 1 if bad else 0
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     detail = "--detail" in sys.argv
@@ -308,6 +361,8 @@ def main():
     if "--json" in sys.argv:
         json.dump(rows, sys.stdout, ensure_ascii=False, indent=1)
         return
+    if "--verify" in sys.argv:
+        sys.exit(verify([r for r in rows if r["hasGuide"]]))
 
     def missed(r):
         """真漏接：不含「待姊妹站」。

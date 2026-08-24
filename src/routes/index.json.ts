@@ -6,7 +6,7 @@
 // 消費端要怎麼排序、怎麼呈現由消費端決定。
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { site, bibliography } from "virtual:notes-core/site";
+import { site, bibliography, overview } from "virtual:notes-core/site";
 import type { BibliographyEntry } from "../lib/library";
 import { auditStation, type Citation } from "../lib/audit";
 import { withBase } from "../lib/url";
@@ -64,7 +64,13 @@ export const GET: APIRoute = async (ctx) => {
       ).map((f) => f.book),
     ),
   );
-  const guideProse = guide.map((e) => e.body ?? "").join("\n");
+  // 導覽散文要連首頁總覽一起算——那是讀者最先看到的策展文字，一本書在那裡被介紹過，
+  // 就不是「從導覽消失」。漏掉它會多報空頭支票：2026-08-24 的實作對帳就抓到 4 筆
+  // （cloud-infra／design-patterns／investing／writing），全是只在 overview 提過的書。
+  const guideProse = [
+    JSON.stringify(overview ?? null),
+    ...guide.map((e) => e.body ?? ""),
+  ].join("\n");
   const cites: Record<string, Citation> = {};
   for (const e of [...concepts, ...problems]) {
     const seen = new Set<string>();

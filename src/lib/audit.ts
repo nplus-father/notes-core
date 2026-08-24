@@ -65,7 +65,10 @@ export function nameCandidates(e: AuditEntry): string[] {
     out.add(s);
     out.add(s.split(/[:：（(]/)[0].trim());
     for (const m of s.match(/[A-Za-z][A-Za-z0-9 '’&.,:!?-]{9,}/g) ?? [])
-      out.add(m.replace(/^[\s,.:-—]+|[\s,.:-—]+$/g, ""));
+      // 連字號要跳脫。`[\s,.:-—]` 裡的 `:-—` 會被讀成**字元範圍**（U+003A 到 U+2014），
+      // 那個範圍涵蓋整個英文字母表，於是 "The Unicorn Project" 會被整段剝成空字串，
+      // 候選詞消失、書被誤判成空頭支票。2026-08-24 的實作對帳抓到這個 bug（4 站 5 本）。
+      out.add(m.replace(/^[\s,.:\-—]+|[\s,.:\-—]+$/g, ""));
     for (const m of s.match(/[一-鿿]{4,}/g) ?? []) out.add(m);
   }
   return [...out].filter((c) => c.length >= 4);
