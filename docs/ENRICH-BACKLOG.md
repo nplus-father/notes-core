@@ -19,6 +19,20 @@
 
 （無）
 
+## spiritual-formation-note 批次 2（2026-08-25 完成，Fable session 第三站）
+
+13→20 頁。判層 10 本（7 spine／1 delegated／1 support／1 tool）。裁決亮點：problem-of-pain 由
+**本站 spine 接手深挖、lewis-note 維持 support**——主題站深挖、作者站一句帶到的互補分工；
+friendly-snowflake 與 peck-note 同判 support 口徑一致。7 頁新開：prayer-pilgrimage 3（懺悔錄／
+勞倫斯與神同在／慕安德烈禱告學校）、discipleship 2（效法基督／消滅匆忙）、suffering-grief 2
+（痛苦的奧秘／為兒子哀哭——與既有的卿卿如晤頁組成理性面＋兩座哀歌的完整苦難軸）。
+收工稽核全零：未判層 10→0、真欠債 7→0。
+
+- 驗收：47 項具名事實／引文逐一回源章節 grep 全數命中（零杜撰）、40 組 book/anchor 零死鏈、
+  溯源掃描空、entity 零殘留、related 全站雙向（含 grief-and-faith 原本空著的 related 一併接上）。
+- 刻意不寫：50-spiritual-classics（tool，跨信仰合輯，批次 1 已有決議）、friendly-snowflake（support）、
+  desiring-god（delegated:theology，該站已開採）。
+
 ## wellness-note 批次 2（2026-08-25 完成，Fable session 第二站，配方同 science-note）
 
 11→19 頁。判層 16 本（8 spine／6 delegated／1 support／1 tool——delegated 全是批次 1 已文件化的
