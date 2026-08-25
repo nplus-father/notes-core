@@ -19,6 +19,19 @@
 
 （無）
 
+## 兩站連打（2026-08-26 完成，Fable session 第十五〜十六站：startup＋personal-finance）
+
+判層 54 本一次套用（startup 29：7 spine／11 support／4 tool／7 delegated；personal-finance 25：
+8 spine／10 support／1 tool／6 delegated），兩站收工稽核全零。頁數：startup 44→51（創辦人兩難／
+顧客開發／閃電擴張／Traction 靶心／Venture Deals／Rework／開卷管理）、personal-finance 29→36
+（4HWW／F-You Money／Die with Zero／ERE／巴比倫／快車道／自動理財）＋Ramsey 原典補 anchor 進
+baby-steps 頁（時程差異經核對相容）。
+
+- 驗收：15 個代理共約 75 項具名事實／數字回源 grep 全數命中。兩筆術語修正：die-with-zero 的
+  「記憶股息」改從書譯「記憶紅利」；fastlane 五誡書中作 **NECST** 非通行的 CENTS——代理照文本寫，
+  又一次接住指揮層的預設。babylon 的「財富像一棵樹」為頁面逐字引文（抽驗樣式假警報）。
+- 兩站單向邊共清 24 處；兩站首蓋 curation 戳記（僅 enrichedAt）。
+
 ## 四站連打（2026-08-26 完成，Fable session 第十一〜十四站：business-strategy／fromm／habits／marketing）
 
 判層 51 本一次套用（BS 17：7 spine／1 support／9 delegated；fromm 6：5 spine／1 support；
