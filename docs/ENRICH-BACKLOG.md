@@ -19,6 +19,17 @@
 
 （無）
 
+## management-note 批次 3（2026-08-25 完成，Fable session 第五站）
+
+20→26 頁。判層 8 本（6 spine／2 delegated——批次 2 之後新進的 8 本書全數消化，5-min-mba-tools→
+liurun、first-break-all-the-rules→career 皆為既有文件化決議）。6 頁新開：動機 3.0（Pink）、
+執行力（Bossidy/Charan）、限制理論（The Goal，小說體 40 章實讀 11 章、anchor 落章）、戴明十四要點、
+管理者實際在做什麼（明茲伯格）、逆向工作法（亞馬遜）。收工稽核全零：未判層 8→0、真欠債 6→0。
+
+- 驗收：約 40 項具名事實／實驗／數字回源章節 grep 全數命中（零杜撰）、28 組 book/anchor 零死鏈、
+  溯源掃描空、entity 零殘留。
+- 順手清掉既有頁 16 條 related 單向邊（本站首次跑雙向檢查，managerial-leverage 作為樞紐頁補回 7 條反向）。
+
 ## theology-note 批次 3（2026-08-25 完成，Fable session 第四站——本輪最大站）
 
 24→34 頁。判層 19 本（10 spine／5 delegated／4 support）。裁決亮點：奧古斯丁懺悔錄、效法基督、
