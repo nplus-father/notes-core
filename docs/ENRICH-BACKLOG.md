@@ -19,6 +19,28 @@
 
 （無）
 
+## 四站連打（2026-08-26 完成，Fable session 第十一〜十四站：business-strategy／fromm／habits／marketing）
+
+判層 51 本一次套用（BS 17：7 spine／1 support／9 delegated；fromm 6：5 spine／1 support；
+habits 13：5 spine／5 support／2 tool；marketing 15：8 spine／4 support／1 tool／2 delegated），
+四站收工稽核全零。裁決亮點：**blue-ocean 依 MODEL-ROUTING 明文推翻自動 delegated、判 spine 於
+business-strategy 並開頁**（該文件點名的「判斷疊判斷」教案例正式兌現）；marketing 的 storybrand／
+permission／100m-offers 三本原典判 spine 後以「補 anchor 進既有頁」兌現（頁在、原典沒被引的型態，
+比開重複頁便宜且正確）。
+
+頁數：business-strategy 31→38（Porter 五力／價值鏈／策略核／五問級聯／孫子／藍海／SPIN）、
+fromm 10→15（開新分類「宗教與象徵」；思想自傳／釋夢／論不服從／精神分析與宗教／希望的革命）、
+habits 28→33（Wood 情境摩擦／意志力科學／War of Art／Stolen Focus／刻意休息）、
+marketing 27→32＋3 頁補強原典 anchor（Sharp／奧格威／STEPPS／成長駭客／峰值體驗 MOT）。
+
+- 驗收：wave 1＋wave 2 共 22 頁新開＋3 頁補強，約 110 項具名事實／引句回源 grep 全數命中
+  （幾筆初判查無均為抽驗 grep 樣式問題——孫子譯注本用譯文非古文、瘋潮的「社交身價」正是章名）。
+- 補強代理順帶抓到兩筆忠實紀錄：permission 頁的「33%／1000 倍」出自 this-is-marketing 的今昔對比
+  （原典數字為 35–36%／1800%，引用歸屬正確不改）；StoryBrand 2.0 已把嚮導特徵 authority 改為
+  competency（頁面沿用通行舊版措辭，原典章節有明文說明修訂）。
+- habits 站 related 是 YAML 破折號格式——補邊腳本已升級為雙格式（close-scan2.py 型）。
+- BS／fromm／habits／marketing 四站單向邊共清 49 處；BS 與 fromm 首蓋 curation 戳記。
+
 ## career-note 批次 2（2026-08-26 完成，Fable session 第十站——本輪存量最大的裁決批）
 
 42→49 頁。判層 23 本（7 spine／9 support／6 tool／1 delegated）。裁決要點：刻意練習軸由既有兩頁
