@@ -19,6 +19,18 @@
 
 （無）
 
+## career-note 批次 2（2026-08-26 完成，Fable session 第十站——本輪存量最大的裁決批）
+
+42→49 頁。判層 23 本（7 spine／9 support／6 tool／1 delegated）。裁決要點：刻意練習軸由既有兩頁
+承重（talent-is-overrated 判 support）、work-optional 的 FIRE 軸偏 personal-finance 但該站未收
+（support 一句定位）、工程師手冊群與 HBR guide 照合輯決議判 tool。7 頁新開：求職轉職 3
+（Ibarra 轉行／聯盟世代／別自己一個人吃飯）、意義方向 2（決定性的十年／無路之路）、
+職涯資本 1（Godin 關鍵人物）、通才跨域 1（Pink 感性時代六感）。收工稽核全零：未判層 23→0、真欠債 7→0。
+
+- 驗收：40 項具名事實／研究／案例回源章節 grep 全數命中（零杜撰）、96 組 book/anchor 零死鏈、
+  溯源掃描空、entity 零殘留。
+- 用腳本一口氣清掉 24 處 related 單向邊（含既有頁遺留＋本批跨頁鏡射），全站 49 頁雙向歸零。
+
 ## gardner-note 批次 2（2026-08-25 完成，Fable session 第九站）
 
 8→11 頁。判層 5 本（3 spine／2 support——MI 應用彙編由 theory＋myths 兩頁承重、真善美續章掛
