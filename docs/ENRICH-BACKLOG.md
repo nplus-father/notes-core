@@ -19,6 +19,17 @@
 
 （無）
 
+## kiyosaki-note 批次 2（2026-08-25 完成，Fable session 第六站）
+
+11→14 頁。判層 14 本（3 spine／9 support／2 tool）——清崎書系重複度高，嚴判是本輪重點：
+豁免率 48%，但每筆都有可對帳的理由（before-you-quit 的 B-I 三角已有頁、who-took-my-money 等
+四本與 five-iqs／fake 頁重疊、for-teens／rich-brother／rich-kid 沿用批次 1 決議、兩本合集判 tool）。
+3 頁新開：90/10 與內行投資人（投資指南）、不公平的優勢（五重紅利）、三種槓桿（提早享受財富）。
+收工稽核全零：未判層 14→0、真欠債 3→0。
+
+- 驗收：18 項具名事實／數字回源章節 grep 全數命中（零杜撰）、35 組 book/anchor 零死鏈、
+  溯源掃描空、entity 零殘留、related 全站雙向。
+
 ## management-note 批次 3（2026-08-25 完成，Fable session 第五站）
 
 20→26 頁。判層 8 本（6 spine／2 delegated——批次 2 之後新進的 8 本書全數消化，5-min-mba-tools→
