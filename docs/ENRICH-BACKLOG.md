@@ -19,6 +19,15 @@
 
 （無）
 
+## gardner-note 批次 2（2026-08-25 完成，Fable session 第九站）
+
+8→11 頁。判層 5 本（3 spine／2 support——MI 應用彙編由 theory＋myths 兩頁承重、真善美續章掛
+disciplined-mind 頁作延伸）。3 頁新開：APP 世代（賦能 vs 依賴，認同／親密／想像三軸）、
+學習的紀律（真善美三範例深挖）、領導心智（認同故事與反故事）。收工稽核全零：未判層 5→0、真欠債 3→0。
+
+- 驗收：17 項具名事實／研究／術語回源章節 grep 全數命中（零杜撰）、34 組 book/anchor 零死鏈、
+  溯源掃描空、entity 零殘留、related 全站雙向。本站首蓋 curation 戳記（僅 enrichedAt）。
+
 ## biblical-studies-note 批次 3（2026-08-25 完成，Fable session 第八站——單書開頁部分）
 
 44→51 頁。判層 20 本（7 spine／8 support／4 tool／1 delegated）。裁決要點：basic-christianity 與
