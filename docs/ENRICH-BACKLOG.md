@@ -19,6 +19,22 @@
 
 （無）
 
+## biblical-studies-note 批次 3（2026-08-25 完成，Fable session 第八站——單書開頁部分）
+
+44→51 頁。判層 20 本（7 spine／8 support／4 tool／1 delegated）。裁決要點：basic-christianity 與
+邪惡與上帝新世界的姊妹站（stott／nt-wright）皆判 support 不挖，本站同判 support 不互踢；
+Beale 聖殿專論作既有聖殿主線頁的深化源、work-matters 由 gospel-and-work 頁承重、Waltke／Goldingay
+的 OT 神學軸由 Brueggemann 新頁＋既有 toledot 頁承重；IVP 背景註釋等 4 本照既有「工具書不立頁」
+決議判 tool。7 頁新開：釋經方法 3（卡森釋經謬誤／Alter 敘事的藝術／釋經之旅五步過河）、
+聖經神學 2（Vos 奠基／漸進聖約論）、舊約 1（Brueggemann 見證與反見證）、新約 1（Hays 迴聲）。
+收工稽核全零：未判層 20→0、真欠債 7→0。
+
+- 驗收：41 項具名事實／術語／經文例回源章節 grep 全數命中。**本輪抓到一筆「結構數字錯」——
+  在我開單的規格裡**：我把 Grasping God's Word 的釋經之旅寫成「四步走」，代理讀原文發現是五步、
+  如實照書寫並在回報標出，標題已全面改為「五步過河」。這正是 §1.2 預言的病，只是這次錯在指揮層。
+- 112 組 book/anchor 零死鏈；順手用腳本清掉既有頁 21 條 related 單向邊（本站存量最多的一站）。
+- **BST 38 卷系列債本輪未動**（比照批次 1 卷冊框架逐批寫，獨立工項，仍掛在「批次 3+ 剩餘」）。
+
 ## wujun-note 批次 2（2026-08-25 完成，Fable session 第七站）
 
 10→17 頁。判層 7 本**全 spine**——與 kiyosaki 相反的形狀：吳軍的待判書全是重量級獨立正典
