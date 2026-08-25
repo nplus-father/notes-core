@@ -19,6 +19,24 @@
 
 （無）
 
+## theology-note 批次 3（2026-08-25 完成，Fable session 第四站——本輪最大站）
+
+24→34 頁。判層 19 本（10 spine／5 delegated／4 support）。裁決亮點：奧古斯丁懺悔錄、效法基督、
+天路歷程、痛苦的奧秘四本 delegated:spiritual-formation——姊妹站頁正是本 session 剛開的，委託
+即時兌現；incomparable-christ→stott（該站有同名專頁在挖）。10 頁新開：doctrine 3（認識神／
+道成肉身／巴文克恩典恢復自然）、apologetics 3（巴斯卡思想錄／阿奎那五路／切斯特頓永恆的人）、
+historical 2（上帝之城兩座城／奧爾森神學的故事）、牧養 2（巴克斯特改革宗的牧師／畢德生返璞歸真）。
+收工稽核全零：未判層 19→0、真欠債 10→0。
+
+- 驗收：約 65 項具名事實／引文回源章節 grep 全數命中（兩筆初判「查無」實為我抽驗樣式比原文措辭嚴，
+  對原文後確認頁面皆逐字引用——零杜撰）、60 組 book/anchor 零死鏈、溯源掃描空、entity 零殘留。
+- 代理紀律兩例可貴：亞他那修名句「祂成為人使我們成為神」因落在未指定章節而拒用、改以實讀章節
+  措辭承載同一邏輯；巴刻 balconeer/traveler 因文本未用該譯名而改用文本實際用語「旁觀者／旅人」。
+- 順手清掉既有頁 11 條 related 單向邊（遺留債）＋1 條本批漏鏡射。
+- 刻意不寫：christian-theology-introduction（support，survey 教科書）、journey-of-modern-theology
+  （support，20 世紀地圖頁已涵蓋軸線）、lectures-to-my-students（support，牧養軸由兩本正典承重）、
+  war-of-words（support）。
+
 ## spiritual-formation-note 批次 2（2026-08-25 完成，Fable session 第三站）
 
 13→20 頁。判層 10 本（7 spine／1 delegated／1 support／1 tool）。裁決亮點：problem-of-pain 由
