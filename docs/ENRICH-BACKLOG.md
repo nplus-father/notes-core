@@ -19,6 +19,19 @@
 
 - **pastoral-psychology-note 開站（2026-08-10）：種子概念 5 頁未溯源（路徑 B）**。封閉集合站，書單十本皆 wanted、本機無書源，furtherReading 全數不掛 anchor。收書後跑 `note-check --enrich` 逐頁改寫成書本位並補 anchor，才算完工。
 
+## science-note 批次 2（2026-08-25 完成，首個 Fable session，判層＋enrich 同站串打）
+
+16→27 頁。先判層（21 本裁決：11 spine／6 tool／2 support／2 delegated，套用走 `apply-tiers.py`），
+再對 11 本 0 引用 spine 各開一頁：scientific-method 4（可否證性／典範轉移／鬼扯偵測／草包族科學）、
+physics-cosmos 3（原子假說／膨脹的宇宙／星塵）、evolution-life 3（天擇原典／基因視角／累積選擇）、
+mind-cognition 1（GEB 怪圈）。收工稽核全零：未判層 48→0、真欠債 11→0、空頭支票／漏接／衝突 0。
+
+- 驗收：53 項具名事實逐一回源章節 grep 全數命中（零杜撰）、37 組 book/anchor 零死鏈、溯源掃描空、entity 零殘留。
+- 順手清掉既有頁 8 條 related 單向邊（遺留債，非本批製造）；四分類 roadmap＋mastery 已跟上。
+- 刻意不寫：brain-rules 與 pleased-to-meet-me（support——thinking-note 同判 support，兩站口徑一致，不互踢）、
+  6 冊藥學 handbook（tool，依既定決議不進站）、frames-of-mind→gardner、槍炮病菌→history（delegated）。
+- 工作流備忘：子代理交回的稿經 task 通知轉手會帶 `&gt;` entity 污染，主代理寫檔時逐一還原——§共通紀律的 grep 果然每輪都有用。
+
 ## 下次開工第一件事
 
 (無——v0.19.3 全站 bump 已於 2026-08-06 當日完成,68 站 0 失敗。)

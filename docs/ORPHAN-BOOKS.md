@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-24T21:37:53+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-25T20:25:39+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1900 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1902 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -25,7 +25,7 @@
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
-| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **3** | 延伸閱讀連結 404 |
+| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
 ## 一、孤兒書：360 本沒有任何站認領
 
@@ -739,15 +739,11 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 
 無——每一筆 `owned` 都有 slug。
 
-## 四、死鏈 anchor：3 個 slug
+## 四、死鏈 anchor：0 個 slug
 
 內容頁 `furtherReading` 的 `book:` 指到不存在的書 repo——延伸閱讀連結 404。[SOURCING-DEBT](./SOURCING-DEBT.md) 只驗過「頁有沒有 anchor」，沒驗過「anchor 到的書在不在」。
 
-| book slug | 出現在哪些頁 |
-| --- | --- |
-| `forgiveness-and-reconciling` | `pastoral-psychology-note/concepts/ministry-practice/forgiveness-two-kinds.md` |
-| `psychology-and-christianity-five-views` | `pastoral-psychology-note/concepts/integration/five-views.md` |
-| `suffering-and-the-heart-of-god` | `pastoral-psychology-note/concepts/trauma-grief/trauma-informed-reading.md` |
+無——所有 anchor 都指得到真的 repo。
 
 ## 重跑
 
