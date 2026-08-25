@@ -17,7 +17,26 @@
 
 ## 進行中
 
-- **pastoral-psychology-note 開站（2026-08-10）：種子概念 5 頁未溯源（路徑 B）**。封閉集合站，書單十本皆 wanted、本機無書源，furtherReading 全數不掛 anchor。收書後跑 `note-check --enrich` 逐頁改寫成書本位並補 anchor，才算完工。
+（無）
+
+## wellness-note 批次 2（2026-08-25 完成，Fable session 第二站，配方同 science-note）
+
+11→19 頁。判層 16 本（8 spine／6 delegated／1 support／1 tool——delegated 全是批次 1 已文件化的
+跨站決議，複核後照套），再對 8 本 0 引用 spine 各開一頁：stress-mental-health 3（斑馬壓力生理學／
+CBT 認知扭曲／創傷與身體）、nutrition-sleep 2（營養主義批判／每日十二清單）、fitness-body 2
+（醫學 3.0／運動改造大腦）、happiness-wellbeing 1（PERMA）。收工稽核全零：未判層 16→0、真欠債 8→0。
+
+- 驗收：約 80 項具名事實逐一回源章節 grep，唯一偏差是譯名（頁面寫「零時體育課」、書用「第零節體育課」，已改從書）；
+  41 組 book/anchor 零死鏈、溯源掃描空、entity 零殘留、related 全站雙向。
+- 工作流改良：子代理改為**直接寫檔＋回覆驗收摘要**，science 輪 task 通知轉手的 `&gt;` entity 污染這輪零發生。
+- 刻意不寫：lets-eat-right-to-keep-fit（support，1954 先驅、科學過時，一句定位即可）、
+  living-without-gout（tool，單病查閱型）、fengtang×2→fengtang、happier 等 4 本→life-meaning（delegated）。
+
+> **pastoral-psychology-note 溯源債已清（2026-08-24 晚，帳本 08-25 才補記）**：五本可收的書已到架
+> （其餘五本同日判 `unavailable`），兩個 commit（a11e359、254b40e）把 5 頁全數掛上實 anchor，
+> 溯源率 0%→100%（本輪 DEEPEN-READY 重算已確認）。**殘債記在各頁 frontmatter 註解**：five-views
+> 的中間三觀點、forgiveness 的 REACH 五步、trauma 的哀歌＋Herman 三階段——都得等 unavailable
+> 的來源書（Johnson／Worthington／Langberg）才能溯源。站尚未蓋 curation 戳記，留給收尾那輪。
 
 ## science-note 批次 2（2026-08-25 完成，首個 Fable session，判層＋enrich 同站串打）
 
