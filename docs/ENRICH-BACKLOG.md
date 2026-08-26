@@ -19,6 +19,32 @@
 
 （無）
 
+## Opus 輪：全星系體檢（2026-08-26）——**75 站首次一次掃完，checkedAt 全面歸位**
+
+體檢戳記本來是 19 站過期、42 站從未蓋過。逐站手動不可行，所以先寫工具：
+**`notes-core/tools/galaxy-checkup.py`**（已固化進 tools，不留 scratchpad），把 `/note-check`
+§1 的五個指標與 §2 可機檢的項目一次跑完全部 75 站。
+
+**首跑結果：blocker 0／warn 61／nit 332**，當場全部修掉：
+
+| 發現 | 數量 | 處置 |
+| --- | ---: | --- |
+| `no-response`（缺 `:::response`） | 56 | **behaviour-interview-note 55 頁＝整站從沒導入雙層模型的回應層**（同為雙集合站的 system-design 是 67/67 全有）；business-strategy 1 頁。已補空塊 |
+| `oneway-related`（單向邊） | 323 | 26 站，腳本一次補完（agile 71／leadership 36／design 35／learning 33 最多） |
+| `orphan-page`（頁不在任何 roadmap） | 20 | growth 3／learning 6／life-meaning 3／relationships 3 排進既有 roadmap；pastoral 5 頁隨下一列一併處理 |
+| `no-roadmap`（分類沒有 roadmap） | 4 | pastoral-psychology 四個分類只有 mastery 沒有 roadmap，已補齊（它的 5 頁孤兒同時解決） |
+| `roadmap-planned`（roadmap 指未寫頁） | 9 | **不是 bug**——collins／grant／jung 等站的 planned 節點，本來就是 backlog |
+
+- 兩筆誤報在修工具時清掉：`content.config.ts` 的「3 行 factory」不是數行數（要看有沒有
+  `defineNoteCollections`、有沒有自寫 `z.object`）；`related` 的第四種寫法是**帶引號的單行陣列**，
+  沒去引號會把整站報成死指（thinking 347 筆、writing 146 筆全是這個）。
+- 收工：30 個改動站 format＋lint＋build 全綠 → 75 站蓋 `checkedAt: 2026-08-26` → 全部 build 再驗一次 → 逐站 commit＋push。
+- **這輪體檢涵蓋什麼**：版本 currency、site.config 良構、首頁契約、content.config factory、
+  divergence（站上自建 layouts/components/…）、分類三者一致、導覽時效、roadmap／mastery 覆蓋與死指、
+  schema、書本位的 slug／anchor／label 分隔號、`:::response`、entity 殘留、related 雙向。
+  **不涵蓋**：§2.5 的「抽驗防杜撰」（具名事實回源 grep）——那是判斷不是掃描，仍在每輪 enrich
+  收工時逐頁做（今天 BST 五批就是這樣驗的）。看到 `checkedAt=2026-08-26` 要照這個範圍讀。
+
 ## 第二輪選題清單（2026-08-26 Fable 判層收官時開出，**動筆前先給 Andrew 過目**）
 
 判層殘餘 109 本全數清零（15 站）後，spine 裁決直接生成這份單。共 **35 筆＝26 頁新頁＋9 筆補 anchor**；

@@ -139,7 +139,7 @@ spine）、姊妹站有沒有收（→ delegated）、`group`／`note` 的既有
 | 工作 | 為什麼 |
 | --- | --- |
 | **判層的明確案例** | 證據躺在 repo 裡，而且有 `tier-audit.py` 四種違約檢查＋`--verify` 對帳兩份實作 |
-| **稽核與對帳** | 純機械，跑工具 |
+| **稽核與對帳** | 純機械，跑工具（`tier-audit.py`；全站健康度用 `galaxy-checkup.py`，75 站一次掃完） |
 | **版面／樣式／升版** | 改 notes-core 一處、`bump-notes-core.sh` 鋪全隊，有 lockfile 驗證與 build gate |
 | **盤點表機械修正** | 補 `year`、修死鏈 slug、清理格式——有生成報表指出來 |
 | **導覽的「事實對帳」** | 「38 本進站」改成「43 本」不需要文采，需要的是數對。查證比寫作便宜得多 |
@@ -162,7 +162,7 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | 導覽（策展層，站不再長時） | `/note-guide` | **Fable**——最難的寫作，但時機比模型重要 |
 | 舊導覽過期的事實對帳 | 導覽對帳（保語氣、只改數字） | Opus |
 | BST 38 卷系列債（biblical-studies） | `/note-check --enrich`（照批次 1 卷冊框架） | Opus——框架已定，照模子逐批寫 |
-| 全站體檢、蓋 `checkedAt` | `/note-check`（唯讀／`--fix`） | Opus |
+| ~~全站體檢、蓋 `checkedAt`~~ **首輪完成（2026-08-26，75 站全面歸位）** | `galaxy-checkup.py` 掃機檢項；判斷項（§2.5 抽驗）仍隨 enrich 做 | Opus |
 | ~~判層殘餘 81 本~~ **已收官（2026-08-26 歸零）** | `tier-evidence.py` → 裁決 JSON | **Fable**——日後新書進站的零星未判層比照辦理 |
 | `:::response` 層 | `/note-master` | 非批次——由 Andrew 實際使用驅動 |
 | 已深化站要廣度 | `/note-wanted` | Opus，盤點性質 |
