@@ -19,6 +19,34 @@
 
 （無）
 
+## 第三輪選題清單（2026-08-26 Fable 開單）——**已過 Fable 目，Opus 可直接動筆**
+
+判層與 roadmap 債全部歸零後，深挖的訊號換成「**spine 被引頁數 vs 書的分量**」：theology-note
+49 本 spine 每本恰好 1 頁、management-note 42 本裡 37 本只有 1 頁——健康但薄。本輪從
+DEEPEN-READY 頭兩名各開 4 筆，共 **8 筆新頁**。選題原則沿第二輪：每頁要有獨立概念角度、
+明確避開既有頁、anchor 落得住（書 repo 結構已逐一查過）。
+
+**theology-note（4 筆）**：
+
+| 頁（分類/slug） | 原典 | 角度與邊界 |
+| --- | --- | --- |
+| doctrine/calvin-double-knowledge | 基督教要義 | 卷一開卷的迴環：認識神與認識自己互為條件；配卷三「領受恩典之道」。**避開** what-is-systematic-theology（那頁是方法論總覽，五本合引）。anchor: `01-knowledge-of-god-the-creator/`、`03-way-of-receiving-grace/` |
+| doctrine/aquinas-on-happiness | 神學大全 | 第二部的道德神學：人的終極目的是幸福（榮福直觀）、德性論。**避開** five-ways（只講第一部五路論證）。anchor: `02-prima-secundae/` |
+| historical/moltmann-hope-and-cross | 莫特曼神學 | 雙支柱：盼望神學＋十架神學，及其終末論收束。**避開** twentieth-century-theology-map（地圖頁僅一段帶過）。anchor: `05-hope-theology/`、`06-theology-of-the-cross/`、`10-eschatology/` |
+| doctrine/four-characteristics-of-scripture | 系統神學（古德恩） | 聖經論四特性：權威、清晰、必需、充足。**避開** what-is-systematic-theology。anchor: `02-doctrine-of-the-word-of-god/` |
+
+**management-note（4 筆）**：
+
+| 頁（分類/slug） | 原典 | 角度與邊界 |
+| --- | --- | --- |
+| principles/eight-attributes-of-excellence | In Search of Excellence | 八大特質＋方法論的謙卑（樣本公司後來的跌落——正好與 collins 的配對比較法對照）。**避開** jelled-teams（那頁主軸是 Peopleware）。anchor: `02-toward-new-theory/`、`03-back-to-basics/` |
+| org-people/shared-consciousness | Team of Teams | 從 complicated 到 complex、共享意識、賦能執行。**避開** intent-based-leadership（那頁主軸是 Turn the Ship Around 的意圖式領導；兩頁互鏈）。anchor: `05-from-complicated-to-complex/`、`09-team-of-teams/`、`10-sharing/` |
+| managers-work/idea-meritocracy | Principles（Dalio） | 創意擇優：極度透明＋可信度加權。**避開** effective-decisions（只引決策段）。anchor: `2-life-principles/`、`3-work-principles/` |
+| principles/terry-cheng-on-culture | 程天縱《管理力》 | 企業文化的力量：文化如何被建、如何被摧毀。**避開** terry-cheng-rethinking（綜覽頁，未涉文化）。anchor: `02-power-of-corporate-culture/` |
+
+起草照既有流水線（站掃描→補邊→roadmap+mastery→build→回源抽驗→單行英文 commit→push），
+逐站清完即銷帳；兩站收工都要蓋 `enrichedAt` 並回頭檢查 `guide-stale`（兩站尚無導覽，不會觸發）。
+
 ## Opus 輪：roadmap 承諾債結案（2026-08-26）——**9 頁，5 站**
 
 `galaxy-checkup.py` 收工只剩 9 個 nit，而它們全是同一類：**`roadmap-planned`——roadmap 列了
