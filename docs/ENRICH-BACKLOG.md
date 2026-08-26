@@ -19,6 +19,34 @@
 
 （無）
 
+## Opus 輪：roadmap 承諾債結案（2026-08-26）——**9 頁，5 站**
+
+`galaxy-checkup.py` 收工只剩 9 個 nit，而它們全是同一類：**`roadmap-planned`——roadmap 列了
+slug 與標題，頁卻沒寫**。這類跟「真欠債」同構（承諾寫在資料裡、東西沒交），差別只在承諾的
+載體是 roadmap 而不是 tier。**選題判斷早就做完了**（標題都定好了），所以起草直接照單走。
+
+| 站 | 頁 | 原典 |
+| --- | --- | --- |
+| collins-note | 第四階段：病急亂投醫 | 為什麼 A+ 巨人也會倒下 ch.6 |
+| collins-note | 運氣報酬率 | 十倍勝 ch.7 |
+| fengtang-note | 九字箴言：不著急、不害怕、不要臉 | 無所畏 1-5 |
+| grant-note | 刻意玩樂：把磨練變好玩 | 隱藏潛能 2-1 |
+| grant-note | 友誼的白金法則 | 擁抱 B 選項 ch.4 |
+| jung-note | 夢的系列：為什麼單一夢不可靠 | 尋求靈魂的現代人 ch.1 |
+| jung-note | 理性功能與非理性功能 | 心理類型 ch.10／ch.11 定義 |
+| jung-note | 阿尼瑪與阿尼姆斯 | 原型與集體無意識 ch.1／人及其象徵 ch.3 |
+| liurun-note | 趨勢紅利：短暫供需失衡中的機會 | 進化的力量 ch.6／ch.2 |
+
+五站全部跑完流水線並 push。收工：`galaxy-checkup` **nit 歸零**。
+
+兩個副產品：
+
+- **jung-note《人及其象徵》由 support 升 spine**。新頁讓它的跨頁引用達到 3，觸發 tier-audit
+  的「既成事實衝突」判準（站上自己的頁面已經投過票）。這是記帳更正不是選題——升層後
+  零欠債，全星系六類違規回到 **0**。
+- **collins／grant／jung 三站亮 `guide-stale`**（導覽日期早於今天的 enrichedAt）。這**不是 gate**
+  ——補內容本來就會領先策展層——但它是 `/note-guide` 的待辦，依 MODEL-ROUTING 歸 **Fable**。
+
 ## Opus 輪：出版年跨站一致性（2026-08-26）——**新增第五份生成盤點**
 
 第二輪 35 筆結案後回頭清 MISSING-YEARS，過程中發現一類**現有四份盤點全都抓不到**的錯誤：
