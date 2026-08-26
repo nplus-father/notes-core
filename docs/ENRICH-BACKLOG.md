@@ -19,6 +19,28 @@
 
 （無）
 
+## 第四輪選題清單（2026-08-26 Fable 開單）——**已過 Fable 目，Opus 可直接動筆**
+
+首輪用 `DEEPEN-TARGETS.md` 開的單（工具修正後 142 本候選）。逐本判讀過的取捨：
+清單式雜文集（Rules of Management、見識、態度）不易切出第二頁的**論證**，跳過；
+EQ 與 Seeking Wisdom 的剩餘部分與站上既有 bias 頁重疊，不硬開；Book You Wish Your
+Parents Had Read 的「接住感受」與法伯頁撞題，跳過。**Road Less Traveled 不開頁改判層**
+（見 relationships 站 2026-08-26 commit：peck-note 已多頁承重，spine→delegated）。
+
+共 **7 筆新頁**，每筆已核對書 repo 結構與站上既有頁的分工：
+
+| 站 | 頁（分類/slug） | 原典 | 角度與邊界 |
+| --- | --- | --- | --- |
+| thinking-note | self-knowledge/teleology-not-trauma | 被討厭的勇氣 | 第一、二夜：目的論 vs 原因論（否定心理創傷——人為現在的目的選用過去）、一切煩惱皆人際。**避開** task-separation（第三夜）。anchor: `01-first-night-deny-trauma/`、`02-second-night-all-problems-are-interpersonal/` |
+| thinking-note | judgment-bias/decision-hygiene | Noise 雜訊 | 「怎麼辦」那一半：決策保健、雜訊審查、最適雜訊（何時容忍雜訊反而划算）。**避開** noise-in-judgment（「是什麼」概念頁）。anchor: `06-improving-judgments/`、`07-optimal-noise/` |
+| thinking-note | language-perception/metaphor-highlighting-hiding | Metaphors We Live By | 凸顯與隱藏（每個隱喻照亮一面、遮住一面）＋方位/本體隱喻的分類。**避開** conceptual-metaphor（核心論題總覽）。anchor: `03-metaphorical-systematicity-highlighting-and-hiding/`、`04-orientational-metaphors/`、`06-ontological-metaphors/` |
+| relationships-note | connection/nurturer-rescuer-kinsman | The Ten Types of Human | 照顧者、救援者、親族三型——關係站最核心的三種人性原型。**避開**「浪漫者與觀看者」（08/04 兩型）。anchor: `07-the-nurturer/`、`09-the-rescuer/`、`10-again-came-the-kinsman/` |
+| spiritual-formation-note | discipleship/inward-consolation | 效法基督 | 卷三「論內在安慰」：全書最長、基督與門徒的對話體。**避開**「知識不如愛慕」（卷一勸言）。anchor: `03-on-inward-consolation/` |
+| system-design-note | （依站規放）integration-styles | Enterprise Integration Patterns | 四種整合風格（檔案/共享資料庫/RPC/訊息）與訊息為何勝出——全書的論證地基。**避開**「訊息整合模式語彙」（模式總覽頁）。anchor: `02-integration-styles/`、`01-solving-integration-problems-using-patterns/` |
+| communication-note | （依站規放）presentation-sparkline | Resonate | 簡報的形狀：現況↔願景的來回擺盪（sparkline 分析，賈伯斯與金恩演講的結構圖）＋STAR moment。**避開**「讓聽眾成為英雄的簡報」（hero/journey 頁）。anchor: `06-structure-reveals-insights/`、`07-deliver-something-memorable/` |
+
+起草照既有流水線；system-design 與 communication 兩站的分類名起草時查站上 `_index` 再定。
+
 ## 第三輪選題清單（2026-08-26 Fable 開單）——**同日 Opus 全數結案**
 
 判層與 roadmap 債全部歸零後，深挖的訊號換成「**spine 被引頁數 vs 書的分量**」：theology-note
