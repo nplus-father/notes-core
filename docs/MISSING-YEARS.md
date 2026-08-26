@@ -1,6 +1,6 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
-> **生成於 2026-08-26T17:37:37+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T18:02:21+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。
@@ -11,7 +11,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：75 站 / 2098 筆，缺 year **130 筆**（6.2%），分佈在 24 站；其中 0 筆查得到版次日線索。
+目前：75 站 / 2098 筆，缺 year **116 筆**（5.5%），分佈在 24 站；其中 0 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -23,26 +23,26 @@
 | --- | ---: | ---: | ---: |
 | biblical-studies-note | 110 | 70 | 40 |
 | tracy-note | 39 | 27 | 12 |
-| leadership-note | 98 | 87 | 11 |
-| career-note | 72 | 64 | 8 |
+| career-note | 72 | 66 | 6 |
 | cloud-infra-note | 26 | 20 | 6 |
-| startup-note | 64 | 58 | 6 |
-| management-note | 47 | 42 | 5 |
+| leadership-note | 98 | 93 | 5 |
+| startup-note | 64 | 59 | 5 |
 | theology-note | 66 | 61 | 5 |
-| wellness-note | 34 | 29 | 5 |
+| management-note | 47 | 43 | 4 |
 | science-note | 49 | 45 | 4 |
 | behaviour-interview-note | 20 | 17 | 3 |
 | fengtang-note | 15 | 12 | 3 |
 | marketing-note | 33 | 30 | 3 |
 | system-design-note | 25 | 22 | 3 |
+| wellness-note | 34 | 31 | 3 |
 | design-patterns-note | 21 | 19 | 2 |
 | greene-note | 9 | 7 | 2 |
-| history-note | 36 | 34 | 2 |
 | keller-note | 27 | 25 | 2 |
-| learning-note | 34 | 32 | 2 |
 | relationships-note | 47 | 45 | 2 |
 | habits-note | 45 | 44 | 1 |
 | hbr-note | 46 | 45 | 1 |
+| history-note | 36 | 35 | 1 |
+| learning-note | 34 | 33 | 1 |
 | life-meaning-note | 40 | 39 | 1 |
 | thinking-note | 58 | 57 | 1 |
 
@@ -99,12 +99,10 @@
 - [owned] 彼得後書與猶大書的信息 / The Message of 2 Peter & Jude · 逐卷解經（BST 系列）
 - [skipped] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
 
-### career-note（8 筆）
+### career-note（6 筆）
 
 - [owned] 將世界菁英的工作方式整理成冊 · 恆毅力與精通
-- [owned] 馮唐成事心法 · 自我管理
 - [owned] 創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言 · 自我管理
-- [owned] HBR Guide to Your Professional Growth · 自我管理
 - [wanted] Where Will You Be in the Next Decade? · 意義與方向
 - [owned] 軟體工程師的行為面試 / Behavioral Interviews for Software Engineers · 求職與轉職
 - [owned] 精通行為面試：科技業說故事指南 / Mastering Behavioral Interviews: The Guide to Storytelling in Tech · 求職與轉職
@@ -143,45 +141,36 @@
 
 - [owned] HBR Guide Collection（合輯） · 溝通協作
 
-### history-note（2 筆）
+### history-note（1 筆）
 
 - [owned] 舊約背景與年代表 · 古代與起源
-- [owned] 脈絡：小我與大勢 · 文明興衰
 
 ### keller-note（2 筆）
 
 - [owned] 順服的主 · 福音核心
 - [owned] 智慧之道 / The Way of Wisdom · 靈修與智慧
 
-### leadership-note（11 筆）
+### leadership-note（5 筆）
 
 - [owned] 彼得·杜拉克與管理學：歐洲、社會、思想 · 管理正典
-- [skipped] 5分鐘商學院 管理篇 · 管理正典
-- [owned] 我用軍隊學到的8堂領導課 / 8 Lessons in Military Leadership for Entrepreneurs · 帶人與團隊
 - [owned] Sales Management: The Brian Tracy Success Library · 帶人與團隊
-- [owned] 哈佛教你高EQ管理術 / HBR's 10 Must Reads on Emotional Intelligence · 帶人與團隊
-- [owned] 哈佛商業評論：領導變革指南 / HBR Guide to Leading Through Change · 帶人與團隊
-- [owned] HBR Guide to Retaining Your Best People · 帶人與團隊
-- [owned] Meetings That Get Results · 帶人與團隊
 - [owned] 可複製的領導力 · 教練與回饋
 - [owned] 選民進化論 / Won't Get Fooled Again · 決策與判斷
 - [owned] 黑道商學院 / I Will Make You an Offer You Can't Refuse · 領導者修練與權力
 
-### learning-note（2 筆）
+### learning-note（1 筆）
 
-- [owned] 刻意進化 · 刻意練習與精熟
 - [wanted] 人才，自造者 · 自學與超速學習
 
 ### life-meaning-note（1 筆）
 
 - [owned] The Harvard Guide to a Healthy Life · 老化與有限性
 
-### management-note（5 筆）
+### management-note（4 筆）
 
 - [owned] 程天縱《經營學》 · 管理者的工作
 - [owned] 程天縱《管理力》 · 管理者的工作
 - [owned] 程天縱《專業力》 · 管理者的工作
-- [owned] 5 分鐘商學院・管理工具篇 · 管理者的工作
 - [owned] Peter Drucker Café 杜拉克咖啡館 · 管理者的工作
 
 ### marketing-note（3 筆）
@@ -202,10 +191,9 @@
 - [owned] 藥物治療學案例集 / Pharmacotherapy Casebook · 專業教科書
 - [skipped] 牛津臨床藥學手冊 / Oxford Handbook of Clinical Pharmacy · 專業教科書
 
-### startup-note（6 筆）
+### startup-note（5 筆）
 
 - [owned] Entrepreneurship · 機會與創新
-- [owned] HBR on Entrepreneurship · 機會與創新
 - [owned] The Fail-Safe Startup · 驗證與精實
 - [owned] The 10X Entrepreneur · 創辦人實戰
 - [owned] 6 Essentials to Start & Succeed in Your Own Business · 創辦人實戰
@@ -244,13 +232,11 @@
 - [skipped] How the Best Leaders Lead / TurboStrategy · 經營與領導
 - [owned] 立即致富 / Get Rich Now · 財富
 
-### wellness-note（5 筆）
+### wellness-note（3 筆）
 
 - [owned] 間歇性斷食減醣全書 · 飲食與睡眠
 - [owned] 不再痛風的生活 · 飲食與睡眠
 - [owned] 哈佛教你打造健康人生 · 飲食與睡眠
-- [owned] 有本事 · 幸福與安適
-- [owned] 了不起 · 幸福與安適
 
 ## 補不上來的那幾筆
 

@@ -19,6 +19,40 @@
 
 （無）
 
+## Opus 輪：出版年跨站一致性（2026-08-26）——**新增第五份生成盤點**
+
+第二輪 35 筆結案後回頭清 MISSING-YEARS，過程中發現一類**現有四份盤點全都抓不到**的錯誤：
+同一本書被多站收錄時，各站的 `year` 可以彼此矛盾而永遠沒人發現。tier-audit 看 tier、
+orphan-books 看 slug 存不存在、missing-years 看有沒有填——**填錯不會被抓，只有沒填會**。
+而 `year` 是首頁年代分佈圖的軸，兩站對同一本書填不同年，圖上就落在兩個年代。
+
+於是新增 `tools/export-year-conflicts.py` → `docs/YEAR-CONFLICTS.md`，並掛進
+`refresh-galaxy-docs.sh`（四份變五份，`--check` 的 TRACKED 也一起加）。首跑：
+**1925 個有 slug 的條目，23 本跨站矛盾、15 筆缺 year 但別站有現成答案。**
+
+本輪處理（全部 11 站已 push）：
+
+- **零判斷補漏 14 筆**：別站同 slug 已填 year，直接抄。剩下 1 筆（`wan-weigang-scientific-thinker`）
+  因為來源自身就有兩個版本而留著。缺 year 從 130 → **116 筆**。
+- **解衝突 11 筆**：只改「該站填的明顯是後出版次、schema 要初版年」而且初版年是公認事實的——
+  `effective-executive` 1967→1966（三站）、`high-output-management` 1985→1983、
+  `refactoring` 2018→1999、`nonviolent-communication` 2003→1999、
+  `cracking-the-coding-interview` 2015→2008、`turn-the-ship-around` 2013→2012、
+  `small-giants` 2006→2005、`judgment-in-managerial-decision-making` 1994→1986、
+  `bigger-leaner-stronger` 2014→2012。矛盾 23 → **14 本**。
+
+**刻意不動的 14 本**，兩種原因，都寫進工具的 docstring 當判準：
+
+1. **不是債**——`message-of-romans`：biblical-studies-note 拿它當「聖經信息系列（全 52 冊）」
+   的代表列填 1968（系列起始年），stott-note 填 1994（該卷初版年）。**兩邊都對**。
+   工具因此連 `title` 一起印，就是為了讓這種情況一眼看得出來。
+2. **不能無腦取小**——早年份可能指的是同名的錄音課程或講座，書本身晚很多年才出。
+   `psychology-of-selling`（1985 錄音課程 vs 2004 書）與 `selfless-way-of-christ`
+   （1981 講章發表 vs 2007 Orbis 成書）就是這型；`investment-valuation`（1994/1995，
+   而我查不到哪個是初版）、Tracy 幾本小書、三本麥肯錫日譯本、萬維鋼兩本、
+   `soft-skills-thirty-letters`（順帶發現兩站的 title 與書 repo 標題不一致）同理。
+   **這些寧可留白／留矛盾，也不要寫進一個會餵年代圖的欄位。**
+
 ## Opus 輪：全星系體檢（2026-08-26）——**75 站首次一次掃完，checkedAt 全面歸位**
 
 體檢戳記本來是 19 站過期、42 站從未蓋過。逐站手動不可行，所以先寫工具：
