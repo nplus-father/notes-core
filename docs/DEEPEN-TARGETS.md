@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-26T23:49:02+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-27T00:09:38+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **128** |
+| **候選（大部頭 × ≤1 頁）** | **123** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -27,32 +27,32 @@
 | 2 | 104 | 1 | `templar-note` | The Rules of People |
 | 3 | 101 | 1 | `thinking-note` | The Art of Thinking Clearly 思考的藝術 |
 | 4 | 101 | 1 | `startup-note` | Rework 工作大解放 |
-| 5 | 93 | 1 | `leadership-note` | EMPOWERED: Ordinary People, Extraordinary Products |
-| 6 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
-| 7 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
-| 8 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
-| 9 | 76 | 1 | `newport-note` | How to Win at College |
-| 10 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
-| 11 | 69 | 1 | `fengtang-note` | 穩贏 |
-| 12 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 13 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
-| 14 | 64 | 1 | `tools-note` | Flow 心流 |
-| 15 | 63 | 1 | `wujun-note` | 大學之路 |
-| 16 | 63 | 1 | `investing-note` | Security Analysis |
-| 17 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
-| 18 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
-| 19 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 20 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
-| 21 | 60 | 1 | `science-note` | 高手相對論 |
-| 22 | 59 | 1 | `fengtang-note` | 能人謀勢 |
-| 23 | 59 | 1 | `design-note` | Refactoring UI |
-| 24 | 58 | 1 | `career-note` | The Passionate Programmer |
-| 25 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 26 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
-| 27 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 28 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 29 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 30 | 53 | 1 | `startup-note` | Anything You Want |
+| 5 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
+| 6 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
+| 7 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
+| 8 | 76 | 1 | `newport-note` | How to Win at College |
+| 9 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
+| 10 | 69 | 1 | `fengtang-note` | 穩贏 |
+| 11 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
+| 12 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
+| 13 | 64 | 1 | `tools-note` | Flow 心流 |
+| 14 | 63 | 1 | `wujun-note` | 大學之路 |
+| 15 | 63 | 1 | `investing-note` | Security Analysis |
+| 16 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 17 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
+| 18 | 61 | 1 | `stott-note` | 當代講道藝術 |
+| 19 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 20 | 60 | 1 | `science-note` | 高手相對論 |
+| 21 | 59 | 1 | `fengtang-note` | 能人謀勢 |
+| 22 | 59 | 1 | `design-note` | Refactoring UI |
+| 23 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 24 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 25 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 26 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 27 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 28 | 53 | 1 | `startup-note` | Anything You Want |
+| 29 | 52 | 1 | `wujun-note` | 見識 |
+| 30 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
 
 ## 二、依站分組
 
@@ -103,15 +103,6 @@
 - **HBR Guide to Navigating the Toxic Workplace** — 33 章 / 1 頁（`hbr-guide-to-navigating-the-toxic-workplace`）
 - **HBR Guide to Making Better Decisions** — 31 章 / 1 頁（`hbr-guide-to-making-better-decisions`）
 
-### `career-note`（6 本）
-
-- **The Passionate Programmer** — 58 章 / 1 頁（`passionate-programmer`）
-- **First, Break All the Rules** — 50 章 / 1 頁（`first-break-all-the-rules`）
-- **Staff Engineer: Leadership beyond the management track** — 45 章 / 1 頁（`staff-engineer`）
-- **創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言** — 40 章 / 1 頁（`terry-cheng-workplace-power`）
-- **Never Eat Alone 別自己一個人吃飯** — 39 章 / 1 頁（`never-eat-alone`）
-- **精通行為面試：科技業說故事指南** — 38 章 / 1 頁（`mastering-behavioral-interviews`）
-
 ### `management-note`（6 本）
 
 - **The Five Dysfunctions of a Team 團隊領導的五大障礙** — 52 章 / 1 頁（`five-dysfunctions-of-a-team`）
@@ -150,6 +141,13 @@
 - **The General Theory of Employment, Interest and Money 就業、利息與貨幣的一般理論** — 31 章 / 1 頁（`general-theory-of-employment-interest-and-money`）
 - **Lords of Finance** — 30 章 / 1 頁（`lords-of-finance`）
 
+### `career-note`（4 本）
+
+- **Staff Engineer: Leadership beyond the management track** — 45 章 / 1 頁（`staff-engineer`）
+- **創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言** — 40 章 / 1 頁（`terry-cheng-workplace-power`）
+- **Never Eat Alone 別自己一個人吃飯** — 39 章 / 1 頁（`never-eat-alone`）
+- **精通行為面試：科技業說故事指南** — 38 章 / 1 頁（`mastering-behavioral-interviews`）
+
 ### `thinking-note`（3 本）
 
 - **The Art of Thinking Clearly 思考的藝術** — 101 章 / 1 頁（`art-of-thinking-clearly`）
@@ -161,12 +159,6 @@
 - **Rework 工作大解放** — 101 章 / 1 頁（`rework`）
 - **Anything You Want** — 53 章 / 1 頁（`anything-you-want`）
 - **Blitzscaling 閃電擴張** — 38 章 / 1 頁（`blitzscaling`）
-
-### `leadership-note`（3 本）
-
-- **EMPOWERED: Ordinary People, Extraordinary Products** — 93 章 / 1 頁（`empowered-ordinary-people-extraordinary-products`）
-- **Leaders Eat Last** — 36 章 / 1 頁（`leaders-eat-last`）
-- **Turn the Ship Around!** — 35 章 / 1 頁（`turn-the-ship-around`）
 
 ### `personal-finance-note`（3 本）
 
@@ -197,12 +189,6 @@
 - **The Pragmatic Programmer** — 62 章 / 1 頁（`pragmatic-programmer`）
 - **Test-Driven Development** — 35 章 / 1 頁（`test-driven-development`）
 - **Growing Object-Oriented Software, Guided by Tests** — 34 章 / 1 頁（`growing-object-oriented-software`）
-
-### `science-note`（3 本）
-
-- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
-- **別鬧了，費曼先生** — 46 章 / 1 頁（`surely-youre-joking-mr-feynman`）
-- **物理之美** — 37 章 / 1 頁（`six-easy-pieces`）
 
 ### `maxwell-note`（3 本）
 
@@ -261,6 +247,11 @@
 - **關鍵躍升：新任管理者的底層邏輯** — 36 章 / 1 頁（`liurun-key-leap`）
 - **商業簡史** — 32 章 / 1 頁（`liurun-evolution-of-business`）
 
+### `leadership-note`（2 本）
+
+- **Leaders Eat Last** — 36 章 / 1 頁（`leaders-eat-last`）
+- **Turn the Ship Around!** — 35 章 / 1 頁（`turn-the-ship-around`）
+
 ### `communication-note`（2 本）
 
 - **Thank You for Arguing 說理** — 35 章 / 1 頁（`thank-you-for-arguing`）
@@ -277,6 +268,10 @@
 ### `stott-note`（1 本）
 
 - **當代講道藝術** — 61 章 / 1 頁（`i-believe-in-preaching`）
+
+### `science-note`（1 本）
+
+- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
 
 ### `design-note`（1 本）
 

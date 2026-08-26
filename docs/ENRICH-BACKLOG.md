@@ -19,7 +19,7 @@
 
 （無）
 
-## 第五輪選題清單（2026-08-26 Fable 開單）——**裁決已執行，5 筆新頁待 Opus 起草**
+## 第五輪選題清單（2026-08-26 Fable 開單）——**2026-08-27 Opus 全數結案**
 
 從 DEEPEN-TARGETS 134 本候選逐本判讀。**本輪最大的發現是工具的固有盲區：頁數 ≠ 深度**——
 Peopleware／The Goal／Turn the Ship Around／Staff Engineer／釋經謬誤／數學之美／信息傳這批
@@ -47,6 +47,20 @@ Peopleware／The Goal／Turn the Ship Around／Staff Engineer／釋經謬誤／�
 
 起草照既有流水線；三個「依站規放」的分類名起草時查站上 `_index` 再定。
 **開單方法沿革**：本輪起開單一律先讀「引該書的既有頁」的 core 全文再判（第四輪教訓的制度化）。
+
+**結案（2026-08-27）**：5 筆全數 push——career 49→51 頁（Q12＋四把鑰匙、職涯當產品）、
+science 27→29（費曼好奇心、量子行為）、leadership 69→70（產品領導者即教練）。
+分類落點：費曼那筆放 `scientific-method`（與 cargo-cult 同區、互為來歷）、量子放
+`physics-cosmos`、教練那筆放 `coaching`。各站掃描收工 0 問題、`enrichedAt` 已蓋，
+回源抽驗 12 筆具名事實全中（Q12 前後 25% 差 4.56%／1.04 億、彼得原理、Pat Metheny、
+career planning by coincidence、五瓦燈泡、第三場會飲、唯一的那個謎、把燈關掉、
+Bill Campbell、一對一 30 分鐘、放棄管理者的責任、書面敘事被「強迫」）。
+
+**起草時修正一筆 slug 錯**：leadership 的 `related` 原寫 `empowered-teams`，實際頁名是
+`empowered-product-teams` 且在 `team` 分類（不在 coaching）——掃描的 dead-related 擋下來了。
+
+收工留給 Fable：**leadership-note 亮 `guide-stale`**（導覽 08-24 早於 enrichedAt）。
+DEEPEN-TARGETS 候選 128 → 123。
 
 ## 出版年清債（2026-08-26，Andrew 豁免精確度）——**衝突歸零、缺格 116 → 9**
 
