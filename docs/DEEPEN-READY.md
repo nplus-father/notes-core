@@ -1,6 +1,6 @@
 # 可深化的站（哪些 note repo 的書收齊了）
 
-> **生成於 2026-08-26T12:13:56+08:00**｜由 `tools/export-deepen-ready.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T12:28:36+08:00**｜由 `tools/export-deepen-ready.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：全星系每一站「書單收齊了沒、手上的書挖了多少」的盤點，用來回答**現在該進哪一站做深化**。由 `notes-core/tools/export-deepen-ready.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -38,8 +38,8 @@
 | `tracy-note` | 36 | 0 | 27 | **0.8** | 100% | 4/4 |
 | `nouwen-note` | 16 | 0 | 12 | **0.8** | 100% | 3/3 |
 | `communication-note` | 49 | 0 | 37 | **0.8** | 100% | 6/6 |
-| `biblical-studies-note` | 99 | 1 | 75 | **0.8** | 100% | 5/5 |
 | `business-strategy-note` | 50 | 0 | 38 | **0.8** | 100% | 6/6 |
+| `biblical-studies-note` | 107 | 1 | 83 | **0.8** | 100% | 5/5 |
 | `life-meaning-note` | 39 | 0 | 31 | **0.8** | 100% | 6/6 |
 | `fengtang-note` | 10 | 0 | 8 | **0.8** | 100% | 3/3 |
 | `startup-note` | 62 | 0 | 51 | **0.8** | 100% | 6/6 |
