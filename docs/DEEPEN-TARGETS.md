@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-26T19:29:21+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T22:45:20+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **142** |
+| **候選（大部頭 × ≤1 頁）** | **134** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -23,36 +23,36 @@
 
 | # | 章節 | 頁 | 站 | 書 |
 | ---: | ---: | ---: | --- | --- |
-| 1 | 119 | 1 | `spiritual-formation-note` | The Imitation of Christ 效法基督 |
-| 2 | 109 | 1 | `templar-note` | The Rules of Management |
-| 3 | 104 | 1 | `templar-note` | The Rules of People |
-| 4 | 101 | 1 | `thinking-note` | The Art of Thinking Clearly 思考的藝術 |
-| 5 | 101 | 1 | `system-design-note` | Enterprise Integration Patterns |
-| 6 | 101 | 1 | `startup-note` | Rework 工作大解放 |
-| 7 | 101 | 1 | `communication-note` | Resonate 簡報女王的故事力 |
-| 8 | 93 | 1 | `leadership-note` | EMPOWERED: Ordinary People, Extraordinary Products |
-| 9 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
-| 10 | 88 | 1 | `relationships-note` | The Ten Types of Human |
-| 11 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
-| 12 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
-| 13 | 76 | 1 | `newport-note` | How to Win at College |
-| 14 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
-| 15 | 69 | 1 | `fengtang-note` | 穩贏 |
-| 16 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 17 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
-| 18 | 64 | 1 | `tools-note` | Flow 心流 |
-| 19 | 63 | 1 | `wujun-note` | 大學之路 |
-| 20 | 63 | 1 | `investing-note` | Security Analysis |
-| 21 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
-| 22 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
-| 23 | 61 | 1 | `thinking-note` | 被討厭的勇氣 |
-| 24 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 25 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
-| 26 | 60 | 1 | `science-note` | 高手相對論 |
-| 27 | 59 | 1 | `fengtang-note` | 能人謀勢 |
-| 28 | 59 | 1 | `design-note` | Refactoring UI |
-| 29 | 58 | 1 | `science-note` | 進化的力量 |
-| 30 | 58 | 1 | `career-note` | The Passionate Programmer |
+| 1 | 109 | 1 | `templar-note` | The Rules of Management |
+| 2 | 104 | 1 | `templar-note` | The Rules of People |
+| 3 | 101 | 1 | `thinking-note` | The Art of Thinking Clearly 思考的藝術 |
+| 4 | 101 | 1 | `startup-note` | Rework 工作大解放 |
+| 5 | 93 | 1 | `leadership-note` | EMPOWERED: Ordinary People, Extraordinary Products |
+| 6 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
+| 7 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
+| 8 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
+| 9 | 76 | 1 | `newport-note` | How to Win at College |
+| 10 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
+| 11 | 69 | 1 | `fengtang-note` | 穩贏 |
+| 12 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
+| 13 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
+| 14 | 64 | 1 | `tools-note` | Flow 心流 |
+| 15 | 63 | 1 | `wujun-note` | 大學之路 |
+| 16 | 63 | 1 | `investing-note` | Security Analysis |
+| 17 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 18 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
+| 19 | 61 | 1 | `stott-note` | 當代講道藝術 |
+| 20 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 21 | 60 | 1 | `science-note` | 高手相對論 |
+| 22 | 59 | 1 | `fengtang-note` | 能人謀勢 |
+| 23 | 59 | 1 | `design-note` | Refactoring UI |
+| 24 | 58 | 1 | `science-note` | 進化的力量 |
+| 25 | 58 | 1 | `career-note` | The Passionate Programmer |
+| 26 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 27 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 28 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 29 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 30 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
 
 ## 二、依站分組
 
@@ -105,15 +105,6 @@
 - **Managing in a Time of Great Change 巨變時代的管理** — 32 章 / 1 頁（`managing-in-a-time-of-great-change`）
 - **The Essential Drucker 杜拉克精選** — 31 章 / 1 頁（`essential-drucker`）
 
-### `thinking-note`（6 本）
-
-- **The Art of Thinking Clearly 思考的藝術** — 101 章 / 1 頁（`art-of-thinking-clearly`）
-- **被討厭的勇氣** — 61 章 / 1 頁（`courage-to-be-disliked`）
-- **Noise 雜訊** — 37 章 / 1 頁（`noise`）
-- **Emotional Intelligence EQ** — 35 章 / 1 頁（`emotional-intelligence`）
-- **Metaphors We Live By 我們賴以生存的譬喻** — 33 章 / 1 頁（`metaphors-we-live-by`）
-- **Seeking Wisdom** — 31 章 / 1 頁（`seeking-wisdom`）
-
 ### `hbr-note`（6 本）
 
 - **HBR Guide to Persuasive Presentations** — 65 章 / 1 頁（`hbr-guide-to-persuasive-presentations`）
@@ -140,14 +131,6 @@
 - **創客創業導師程天縱的職場力：解析職場的人與事，提升工作與管理績效的34條建言** — 40 章 / 1 頁（`terry-cheng-workplace-power`）
 - **Never Eat Alone 別自己一個人吃飯** — 39 章 / 1 頁（`never-eat-alone`）
 - **精通行為面試：科技業說故事指南** — 38 章 / 1 頁（`mastering-behavioral-interviews`）
-
-### `relationships-note`（5 本）
-
-- **The Ten Types of Human** — 88 章 / 1 頁（`ten-types-of-human`）
-- **The Book You Wish Your Parents Had Read** — 76 章 / 1 頁（`book-you-wish-your-parents-had-read`）
-- **The Road Less Traveled 心靈地圖** — 52 章 / 1 頁（`road-less-traveled`）
-- **Winning with People** — 32 章 / 1 頁（`winning-with-people`）
-- **Bowling Alone** — 30 章 / 1 頁（`bowling-alone`）
 
 ### `wellness-note`（5 本）
 
@@ -185,17 +168,11 @@
 - **The General Theory of Employment, Interest and Money 就業、利息與貨幣的一般理論** — 31 章 / 1 頁（`general-theory-of-employment-interest-and-money`）
 - **Lords of Finance** — 30 章 / 1 頁（`lords-of-finance`）
 
-### `spiritual-formation-note`（3 本）
+### `thinking-note`（3 本）
 
-- **The Imitation of Christ 效法基督** — 119 章 / 1 頁（`imitation-of-christ`）
-- **The Cost of Discipleship 追隨基督** — 38 章 / 1 頁（`cost-of-discipleship`）
-- **With Christ in the School of Prayer 基督的禱告學校** — 32 章 / 1 頁（`with-christ-in-the-school-of-prayer`）
-
-### `system-design-note`（3 本）
-
-- **Enterprise Integration Patterns** — 101 章 / 1 頁（`enterprise-integration-patterns`）
-- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
-- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
+- **The Art of Thinking Clearly 思考的藝術** — 101 章 / 1 頁（`art-of-thinking-clearly`）
+- **Emotional Intelligence EQ** — 35 章 / 1 頁（`emotional-intelligence`）
+- **Seeking Wisdom** — 31 章 / 1 頁（`seeking-wisdom`）
 
 ### `startup-note`（3 本）
 
@@ -203,17 +180,17 @@
 - **Anything You Want** — 53 章 / 1 頁（`anything-you-want`）
 - **Blitzscaling 閃電擴張** — 38 章 / 1 頁（`blitzscaling`）
 
-### `communication-note`（3 本）
-
-- **Resonate 簡報女王的故事力** — 101 章 / 1 頁（`resonate-visual-stories-transform-audiences`）
-- **Thank You for Arguing 說理** — 35 章 / 1 頁（`thank-you-for-arguing`）
-- **The Speed of Trust 高效信任力** — 30 章 / 1 頁（`speed-of-trust`）
-
 ### `personal-finance-note`（3 本）
 
 - **Early Retirement Extreme** — 78 章 / 1 頁（`early-retirement-extreme`）
 - **The Millionaire Fastlane 快速致富** — 55 章 / 1 頁（`millionaire-fastlane`）
 - **The Simple Path to Wealth** — 41 章 / 1 頁（`simple-path-to-wealth`）
+
+### `relationships-note`（3 本）
+
+- **The Book You Wish Your Parents Had Read** — 76 章 / 1 頁（`book-you-wish-your-parents-had-read`）
+- **Winning with People** — 32 章 / 1 頁（`winning-with-people`）
+- **Bowling Alone** — 30 章 / 1 頁（`bowling-alone`）
 
 ### `wan-weigang-note`（3 本）
 
@@ -270,6 +247,16 @@
 - **文學的40堂公開課** — 40 章 / 1 頁（`little-history-of-literature`）
 - **餐桌儀式** — 34 章 / 1 頁（`rituals-of-dinner`）
 
+### `system-design-note`（2 本）
+
+- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
+- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
+
+### `spiritual-formation-note`（2 本）
+
+- **The Cost of Discipleship 追隨基督** — 38 章 / 1 頁（`cost-of-discipleship`）
+- **With Christ in the School of Prayer 基督的禱告學校** — 32 章 / 1 頁（`with-christ-in-the-school-of-prayer`）
+
 ### `lewis-note`（2 本）
 
 - **返璞歸真** — 38 章 / 1 頁（`mere-christianity`）
@@ -279,6 +266,11 @@
 
 - **關鍵躍升：新任管理者的底層邏輯** — 36 章 / 1 頁（`liurun-key-leap`）
 - **商業簡史** — 32 章 / 1 頁（`liurun-evolution-of-business`）
+
+### `communication-note`（2 本）
+
+- **Thank You for Arguing 說理** — 35 章 / 1 頁（`thank-you-for-arguing`）
+- **The Speed of Trust 高效信任力** — 30 章 / 1 頁（`speed-of-trust`）
 
 ### `keller-note`（1 本）
 

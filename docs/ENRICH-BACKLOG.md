@@ -19,7 +19,7 @@
 
 （無）
 
-## 第四輪選題清單（2026-08-26 Fable 開單）——**已過 Fable 目，Opus 可直接動筆**
+## 第四輪選題清單（2026-08-26 Fable 開單）——**同日 Opus 全數結案**
 
 首輪用 `DEEPEN-TARGETS.md` 開的單（工具修正後 142 本候選）。逐本判讀過的取捨：
 清單式雜文集（Rules of Management、見識、態度）不易切出第二頁的**論證**，跳過；
@@ -40,6 +40,21 @@ Parents Had Read 的「接住感受」與法伯頁撞題，跳過。**Road Less 
 | communication-note | （依站規放）presentation-sparkline | Resonate | 簡報的形狀：現況↔願景的來回擺盪（sparkline 分析，賈伯斯與金恩演講的結構圖）＋STAR moment。**避開**「讓聽眾成為英雄的簡報」（hero/journey 頁）。anchor: `06-structure-reveals-insights/`、`07-deliver-something-memorable/` |
 
 起草照既有流水線；system-design 與 communication 兩站的分類名起草時查站上 `_index` 再定。
+
+**結案（2026-08-26）**：7 筆全數 push（thinking 65→68 頁、relationships 39→40、
+spiritual-formation 20→21、system-design 47→48、communication 38→39）。各站掃描收工 0 問題、
+`enrichedAt` 已蓋。回源抽驗 17 筆具名事實全中。
+
+**起草時修正了一筆開單失準**（書本位紀律接住指揮層規格錯的又一例）：
+thinking 那筆原訂寫「第一、二夜：目的論 vs 原因論」，但實查發現 **`task-separation` 的引言
+與 core 已完整涵蓋第一夜**（連母女爭吵的細節都在 details 裡），第二夜自卑也有
+`inferiority-and-striving`（走 science-of-living 另一本書）。真正沒被挖的是**後兩夜的正面
+主張**——前三夜是拆解，後兩夜才是建設。改寫成 `community-feeling-and-here-now`
+（共同體感覺、不責罵也不稱讚、自我接納、人生是剎那的連續）。
+**教訓：開單前要讀既有頁的 core，不能只看標題。**
+
+收工留給 Fable：**thinking-note 與 system-design-note 亮 `guide-stale`**（導覽 08-24 早於
+今天的 enrichedAt）——依 MODEL-ROUTING 歸 `/note-guide`。
 
 ## 第三輪選題清單（2026-08-26 Fable 開單）——**同日 Opus 全數結案**
 
