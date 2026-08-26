@@ -602,7 +602,11 @@ def main():
         ("erickson-christian-theology", "theology-note"),
         ("servant-leadership", "leadership-note"),
         ("understanding-the-bible", "stott-note"),
+        # Goldingay 三部曲：wanted 要的是**第一卷** Israel's Gospel，而第二、三卷各自
+        # 有書站。同作者同書名主幹，第二因子擋不下來——但 2026-08-20 Andrew 裁決
+        # 「三卷齊了才結案，不以單卷收錄」，所以這兩卷都不算滿足那筆 wanted。
         ("old-testament-theology-israels-faith", "biblical-studies-note"),
+        ("old-testament-theology-israels-life", "biblical-studies-note"),
     }
 
     def match_repo(r):

@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-08-26T19:23:43+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T22:51:21+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -18,11 +18,9 @@
 
 「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
 
-> ⚠ **這 1 本裡有 1 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。
-
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | **Old Testament Theology** | John Goldingay |  | 2003 | biblical-studies(0) | ✅ 已建站 `old-testament-theology-israels-life`——**全星系最後一本還沒收的書**。biblical-studies 站 owned 75／wanted 1——收了就歸零，準則①（同輪 Hays 回填成 owned、NICNT 系列改 skipped 之後，這是本站最後一筆）。**要買的是第一卷 `Israel's Gospel`（IVP 2003）**，不是整套：2026-08-20 清點手上的檔案，三部曲的第二卷 Israel's Faith 早已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 的 epub 也在手，**只缺第一卷**；Andrew 同日裁決三卷齊了才結案，不以單卷收錄（見 NAME_COLLISIONS 那筆）。準則④的證據仍是全星系最弱的一批，誠實記著：舊約神學線已有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke`，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他書櫃 3 本）——**不是空格，是想多收一種進路**；「舊約神學」全星系只有 **3 處／2 檔且全在本站**（2026-08-20 現查）。大部頭、無繁中 |
+| 1 | **Old Testament Theology** | John Goldingay |  | 2003 | biblical-studies(0) | **全星系最後一本還沒收的書**。biblical-studies 站 owned 75／wanted 1——收了就歸零，準則①（同輪 Hays 回填成 owned、NICNT 系列改 skipped 之後，這是本站最後一筆）。**要買的是第一卷 `Israel's Gospel`（IVP 2003）**，不是整套：2026-08-20 清點手上的檔案，三部曲的第二卷 Israel's Faith 早已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 的 epub 也在手，**只缺第一卷**；Andrew 同日裁決三卷齊了才結案，不以單卷收錄（見 NAME_COLLISIONS 那筆）。準則④的證據仍是全星系最弱的一批，誠實記著：舊約神學線已有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke`，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他書櫃 3 本）——**不是空格，是想多收一種進路**；「舊約神學」全星系只有 **3 處／2 檔且全在本站**（2026-08-20 現查）。大部頭、無繁中 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -52,13 +50,12 @@
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：1 本其實已經有書站了
+## 先扣掉：0 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
-| `old-testament-theology-israels-life` | Old Testament Theology | biblical-studies-note | Old Testament Theology: Israel's Life (Vol. 3) \| John Goldin |
 
 ## 作者這一關擋下的：0 筆同名不同書
 
@@ -109,7 +106,7 @@
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Old Testament Theology ⟵ 已有書站 `old-testament-theology-israels-life` | John Goldingay |  | 2003 | Goldingay 的敘事進路大部頭，共三卷（其單卷《聖經神學》已收）。2026-08-20 清點：第二卷 Israel's Faith 已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 檔案已在手，**缺的是第一卷 Israel's Gospel（IVP 2003）**；裁決是等整套齊了再結案，不以單卷收錄 |
+| Old Testament Theology | John Goldingay |  | 2003 | Goldingay 的敘事進路大部頭，共三卷（其單卷《聖經神學》已收）。2026-08-20 清點：第二卷 Israel's Faith 已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 檔案已在手，**缺的是第一卷 Israel's Gospel（IVP 2003）**；裁決是等整套齊了再結案，不以單卷收錄 |
 
 ### collins-note — 1 本
 
