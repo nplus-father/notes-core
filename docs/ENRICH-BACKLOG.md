@@ -19,7 +19,7 @@
 
 （無）
 
-## 第三輪選題清單（2026-08-26 Fable 開單）——**已過 Fable 目，Opus 可直接動筆**
+## 第三輪選題清單（2026-08-26 Fable 開單）——**同日 Opus 全數結案**
 
 判層與 roadmap 債全部歸零後，深挖的訊號換成「**spine 被引頁數 vs 書的分量**」：theology-note
 49 本 spine 每本恰好 1 頁、management-note 42 本裡 37 本只有 1 頁——健康但薄。本輪從
@@ -46,6 +46,13 @@ DEEPEN-READY 頭兩名各開 4 筆，共 **8 筆新頁**。選題原則沿第二
 
 起草照既有流水線（站掃描→補邊→roadmap+mastery→build→回源抽驗→單行英文 commit→push），
 逐站清完即銷帳；兩站收工都要蓋 `enrichedAt` 並回頭檢查 `guide-stale`（兩站尚無導覽，不會觸發）。
+
+**結案（2026-08-26）**：8 筆全數起草完成並 push（theology 34→38 頁、management 26→30 頁），
+兩站掃描收工 0 問題、`enrichedAt` 已蓋。回源抽驗 17 筆具名事實全中（加爾文「灰塵／撒拉弗」、
+quid sit Deus、阿奎那日蝕與「味覺最好的人」、莫特曼布拉格之春與海德堡 1518、古德恩「人工避孕」
+與「準確但非窮盡」；IBM Means Service、Mitchell 的 1,000 人、蜘蛛網流程圖、醫療錯誤 210,000、
+O&I 七千人、WikiLeaks 75 萬份、可信度「成功三次」、Coffee Break、洋蔥圈第二層十到十五年）。
+全星系收工：`tier-audit --all` 六類違規仍全 0、`galaxy-checkup` 75 站 blocker/warn/nit 全 0。
 
 ## Opus 輪：roadmap 承諾債結案（2026-08-26）——**9 頁，5 站**
 
