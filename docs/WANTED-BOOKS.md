@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-08-27T01:01:46+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-27T01:07:59+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -12,7 +12,7 @@
 
 ## 先收這 1 本
 
-整份 2 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+全星系的 wanted 只剩 1 筆，**這節就是全部**，順序即建議的採購與消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -20,7 +20,7 @@
 
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | **Old Testament Theology** | John Goldingay |  | 2003 | biblical-studies(0) | **全星系最後一本還沒收的書**。biblical-studies 站 owned 75／wanted 1——收了就歸零，準則①（同輪 Hays 回填成 owned、NICNT 系列改 skipped 之後，這是本站最後一筆）。**要買的是第一卷 `Israel's Gospel`（IVP 2003）**，不是整套：2026-08-20 清點手上的檔案，三部曲的第二卷 Israel's Faith 早已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 的 epub 也在手，**只缺第一卷**；Andrew 同日裁決三卷齊了才結案，不以單卷收錄（見 NAME_COLLISIONS 那筆）。準則④的證據仍是全星系最弱的一批，誠實記著：舊約神學線已有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke`，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他書櫃 3 本）——**不是空格，是想多收一種進路**；「舊約神學」全星系只有 **3 處／2 檔且全在本站**（2026-08-20 現查）。大部頭、無繁中 |
+| 1 | **Turning the Flywheel** | Jim Collins | 飛輪效應 | 2019 | collins(0) | **全星系最後一本還沒收的書**（2026-08-27 那輪把 Goldingay 卷一判 unavailable、另外三筆一併結清之後，wanted 只剩這一筆）。collins-note owned 6／wanted 1——收了就歸零，準則①。準則②③④都沒有可排的：只有這一站還有採購缺口。內容上不是空格而是**補畫飛輪的方法**——這本是 Collins 自己把《從 A 到 A+》第八章擴寫成的單行本（畫飛輪的步驟＋案例集），站上的飛輪頁目前是拿三本書拼出來的（見該筆 note），收了才有專講飛輪的正典可掛 anchor。準則⑤也站在它這邊：**薄、有繁中在版（遠流《飛輪效應》）**，是全清單裡最好起手的一本 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -42,8 +42,8 @@
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
 | `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1922 筆（去重 1440 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **2 筆（去重 2 本）** |
-| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 87 筆 |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **1 筆（去重 1 本）** |
+| `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 88 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 86 筆 |
 
 > `owned` 去重後的 1440 是**已建成書站的書**（1922 是含跨站重複的登錄筆數，
@@ -73,13 +73,12 @@
 
 無——沒有書名相近卻沒對上的。
 
-## 快歸零的站：2 站只差 1–2 本
+## 快歸零的站：1 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
 | 站 | 已收 | 還差 | 差哪幾本 |
 | --- | ---: | ---: | --- |
-| `biblical-studies-note` | 107 | **1** | Old Testament Theology（John Goldingay） |
 | `collins-note` | 6 | **1** | Turning the Flywheel（Jim Collins） |
 
 ## 優先收：0 本有兩個以上的站在等
@@ -89,13 +88,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 2 筆）
-
-### biblical-studies-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Old Testament Theology | John Goldingay |  | 2003 | Goldingay 的敘事進路大部頭，共三卷（其單卷《聖經神學》已收）。2026-08-20 清點：第二卷 Israel's Faith 已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 檔案已在手，**缺的是第一卷 Israel's Gospel（IVP 2003）**；裁決是等整套齊了再結案，不以單卷收錄 |
+## 完整清單（依站，共 1 筆）
 
 ### collins-note — 1 本
 

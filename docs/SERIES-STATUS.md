@@ -14,7 +14,8 @@
   content fill **以本機實測為準**——portal `health.json`（08-18 產）過期，21 本 08-19～20 剛填完的書被誤標 thin/near-empty。
   空葉章節 ≥2 的書算未完；恰 1 個空葉（多為附錄）不擋站、只註記；watch 級（8–15k 字）不擋。
 
-**結果（08-20 清帳輪後）：64 站達標＝A 20（連導覽都完工）＋ B 44（本系列的工作範圍）**；11 站書端未過（其中 4 站導覽已寫、只欠書端補洞；career 因移除未溯源頁改列 wanted 1，見必改帳第 4 筆）。
+**結果（08-20 清帳輪後）：64 站達標＝A 20（連導覽都完工）＋ B 44（本系列的工作範圍）**；11 站書端未過（其中 4 站導覽已寫、只欠書端補洞）。
+**2026-08-27 更新**：career 那筆 wanted（《沒了名片，你還剩下什麼？》）Andrew 判 unavailable，**career 書端回到歸零**（見必改帳第 4 筆的後記）；同輪 biblical-studies 的 Goldingay 卷一也判 unavailable，該站只剩辭典那一項未裁。
 
 ## A 組——全流程完工（20 站，僅存查）
 
@@ -85,17 +86,20 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 | `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
 | `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN | 2026-08-21 |
 
-## 書端未過、也還沒導覽的 7 站（站側體檢一併做完，等書端清帳後入列）
+## 書端未過、也還沒導覽的 6 站（站側體檢一併做完，等書端清帳後入列）
 
 | 站 | 型 | 頁 | 站側體檢 | 卡在哪（書端） | 清帳後入檔 |
 | --- | --- | ---: | --- | --- | --- |
-| `career-note` | 主題 | 42 | nit1 | 2026-08-20 移除未溯源頁後，母書《沒了名片，你還剩下什麼？》（姚詩豪、張國洋）列 wanted——差這 1 本歸零 | ① |
-| `biblical-studies-note` | 主題 | 44 | nit1 | wanted 1（Goldingay《OT Theology》卷一，三卷齊才結案）；`dictionary-of-paul-and-his-letters` 448 條目空 227（辭典型，是否 waive 待裁決） | ① |
+| `biblical-studies-note` | 主題 | 44 | nit1 | wanted 已歸零（2026-08-27 Goldingay 卷一判 unavailable）；只剩 `dictionary-of-paul-and-his-letters` 448 條目空 227（辭典型，是否 waive 待裁決） | ① |
 | `theology-note` | 主題 | 24 | nit1 | `christian-theology-introduction`（new-books，內容已滿 21/21）＋`contemplative-pastor`、`reformed-dogmatics`（tmp）3 本待深度概覽；`cost-of-discipleship` 空 9/34 章 | ② |
 | `personal-finance-note` | 主題 | 29 | CLEAN | `automatic-millionaire`（tmp，內容已滿）待深度概覽 | ② |
 | `spiritual-formation-note` | 主題 | 13 | CLEAN | `cost-of-discipleship` 空 9/34 章；`weight-of-glory` 空 3/14 章 | ② |
 | `schwager-note` | 人物 | 12 | 必改1·blocker1 | `new-market-wizards` 7 篇訪談章全空 | ② |
 | `wujun-note` | 人物 | 10 | nit1 | `on-top-of-tides` 空 5/24 章 | ② |
+
+> **2026-08-27 出列：`career-note`（主題，42 頁，站側 nit1）。** 卡它的那本《沒了名片，你還剩下什麼？》
+> Andrew 判 unavailable（收不到），書端 wanted 回到 0——本表不再列它。①表的欄位（溯源／mastery／roadmap／待寫）
+> 這輪沒有重掃，**下次跑站側掃描時補齊再正式入列**；在那之前它的隊列身分看 [GUIDE-QUEUE.md](./GUIDE-QUEUE.md) 第一批。
 
 > 另 4 站書端未過但**導覽已寫**：design-patterns（`microservices-patterns` 空 7 章）、lewis（`weight-of-glory` 空 3 章）、
 > peck（`further-along-the-road-less-traveled` 僅 954 字、無概覽、躺在 `archive/`；`world-waiting-to-be-born` 空 2 章）、
@@ -115,6 +119,8 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
    《大人學選擇》筆記無這些主張、掛上去＝假溯源）。Andrew 裁決照 self-made-talent 前例**移除頁面、收書後重寫**——
    頁已刪、roadmap／related／內文連結全同步（站內 0 殘留），《沒了名片，你還剩下什麼？》列 wanted 追帳。
    副作用：career-note wanted 0→1，暫退出達標系列（見上表）。
+   **2026-08-27 後記**：那本收不到，Andrew 判 `unavailable`——wanted 回到 0、career-note 重新達標；
+   概念頁維持不寫（未溯源紀律不因狀態改變而放寬），書真的到手再回原文核對重寫。
 
 （pastoral-psychology 的 5 頁全未溯源＋3 本引用書不存在＝enrich 級工程，不算小帳，見 ③檔。）
 

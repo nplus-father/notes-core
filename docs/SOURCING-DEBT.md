@@ -208,6 +208,14 @@ and Purpose"、`07-how-do-you-get-there/` 實為 "Back from the Future"，主代
 > 反方向的落差（bibliography 說 `wanted`、書 repo 其實**已經存在**）另有 14 筆，
 > 見 [WANTED-BOOKS.md](./WANTED-BOOKS.md) 的「先扣掉」一節——那是 status 沒跟上，不是死鏈。
 
+> **2026-08-27 後記——這張表要在「接手退役清單」時先扣一次。** 上表撤過 slug 的兩筆
+> （career-note 的 `where-will-you-be-in-the-next-decade`、learning-note 的 `self-made-talent`
+> ＝《人才，自造者》）在 2026-08-24 又從**退役的 `BOOKS.md`** 被接手登記成 `wanted`——
+> 那份手抄清單裡它們本來就是指向不存在書 repo 的死鏈，等於同一條死鏈換個 status 復活。
+> 這輪的收法：`Where Will You Be in the Next Decade?` **整筆刪除**（`gh repo view` 兩個 owner
+> 都無此 repo，也查不到對得上的實體書，不留追帳筆）；《人才，自造者》**判 `unavailable`**
+> （書名是真的、作者始終查不到）。**從退役清單接手書目前，先對這張表扣一次再決定要不要登記成 `wanted`。**
+
 ```bash
 # 重跑（在 portal repo 下）
 python3 - <<'EOF'
