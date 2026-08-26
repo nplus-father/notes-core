@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""跨站比對同一本書的 `year`，把矛盾與可補的缺口匯出（docs/YEAR-CONFLICTS.md）。
+"""跨站比對同一本書的欄位（year／author／original），把矛盾匯出（docs/YEAR-CONFLICTS.md）。
 
 用法：
     notes-core/tools/export-year-conflicts.py       # 寫進 notes-core/docs/YEAR-CONFLICTS.md
@@ -18,6 +18,16 @@ tier-audit 看 tier、orphan-books 看 slug 存不存在、missing-years 看有�
 
 這支同時回答第二個問題：**缺 year 的條目，別站有沒有現成答案**。有的話那是零判斷的
 補漏——直接抄，不必查書。首跑 123 個缺口裡有 15 個可以這樣補掉。
+
+**2026-08-26 擴充**：同一套跨站視角也套用到另外兩個欄位。
+- **slug 撞號**（最嚴重）：同一個 `slug` 在不同站被填成不同作者（比**姓氏鍵**，與
+  `src/lib/library.ts` 的 `authorKey` 同規則）——多半代表兩站指到**不同的書**，
+  而封面與延伸連結會全部指錯。首跑 0 本。
+- **`original` 語言不一致**：schema 說它是**原文書名**，但有站填了英譯（《懺悔錄》
+  被填成 `Confessions` 而非 `Confessiones`）。**只報「一邊不是另一邊前綴」的組**——
+  短標題 vs 帶副標題兩者都對，不算債（17 組差異裡只有 3 組是真的）。
+`title` 刻意不檢查：259 組差異全是同一本書的不同寫法（有的站寫中譯、有的寫中英合併），
+而作者姓氏鍵全部一致，證明沒有指錯書——那是設計，不是債。
 
 **兩種矛盾要分開看，工具不替人判**：
 
@@ -43,6 +53,16 @@ import datetime as _dt
 from _stamp import stamp
 from pathlib import Path
 
+
+# 已裁決「不是債」的 slug：同一個 slug 被一站當「整套書的代表列」、另一站當「單卷」用，
+# 於是 year 與 original 天生就會不一致，而**兩邊都對**。列在這裡的不再報進矛盾節，
+# 但會在檔尾的「已知例外」節列出來，免得下一輪重新判斷一次。
+# 新增前先確認是這一類；「初版 vs 改版」不屬於此，那要挑一個年份。
+KNOWN_SERIES_ROWS = {
+    # biblical-studies-note 拿它當「聖經信息系列（全 52 冊）」的代表列（1968＝系列起始年），
+    # stott-note 則是《羅馬書的信息》單卷（1994＝該卷初版年）。
+    "message-of-romans",
+}
 
 HERE = Path(__file__).resolve().parent
 ROOT = Path(os.environ.get("NOTES_ROOT", HERE.parent.parent))
@@ -99,10 +119,40 @@ def field(entry: str, name: str) -> str | None:
     return m.group(1) if m else None
 
 
-def collect() -> tuple[dict, list, int]:
-    """slug → {year: [(station, title)]}、缺 year 的 (station, slug, title)、總條目數。"""
+def author_key(author: str) -> str:
+    """姓氏 token 當識別鍵——與 notes-core src/lib/library.ts 的 authorKey 同一套規則。
+
+    不能拿整串作者字串比對：同一位作者的寫法本來就不統一（schema 明說「寫法不必統一」），
+    也不能拿 token 集合比對（會把三個 David 併成一人）。姓氏才是識別鍵。
+    """
+    primary = re.split(r"\s+with\s+|\s*&\s*|\s*\(|\s*（|,", author)[0].strip()
+    if not primary:
+        return ""
+    if not re.search(r"[A-Za-z]", primary):
+        return primary
+    toks = re.findall(r"[A-Za-z][A-Za-z'’-]*", primary)
+    return toks[-1].lower() if toks else ""
+
+
+# `original` 的差異多半**不是債**：一站寫短標題、另一站連副標題一起寫，兩者都對。
+# 真正要報的只有「同一本書被填成不同語言」——schema 說 original 是**原文書名**，
+# 所以《懺悔錄》該是 Confessiones 而非 Confessions（英譯）。判準：一邊不是另一邊的前綴。
+def original_conflict(vals: list[str]) -> bool:
+    norm = [re.sub(r"[\s:：,，.。'’\"-]", "", v).lower() for v in vals]
+    for i, a in enumerate(norm):
+        for b in norm[i + 1 :]:
+            if not (a.startswith(b) or b.startswith(a)):
+                return True
+    return False
+
+
+def collect() -> tuple[dict, list, int, dict, dict]:
+    """slug → {year: [(station, title)]}、缺 year 的 (station, slug, title)、總條目數、
+    slug → {author: [station]}、slug → {original: [station]}。"""
     have: dict[str, dict[int, list[tuple[str, str]]]] = {}
     missing: list[tuple[str, str, str]] = []
+    authors: dict[str, dict[str, list[str]]] = {}
+    originals: dict[str, dict[str, list[str]]] = {}
     total = 0
     for f in sorted(ROOT.glob("*/src/data/bibliography.ts")):
         station = f.parts[-4]
@@ -117,13 +167,31 @@ def collect() -> tuple[dict, list, int]:
                 missing.append((station, slug, title))
             else:
                 have.setdefault(slug, {}).setdefault(int(y), []).append((station, title))
-    return have, missing, total
+            au = field(e, "author")
+            if au:
+                authors.setdefault(slug, {}).setdefault(au, []).append(station)
+            og = field(e, "original")
+            if og:
+                originals.setdefault(slug, {}).setdefault(og, []).append(station)
+    return have, missing, total, authors, originals
 
 
 def main() -> None:
-    have, missing, total = collect()
-    conflicts = {s: d for s, d in have.items() if len(d) > 1}
+    have, missing, total, authors, originals = collect()
+    conflicts = {
+        s: d for s, d in have.items() if len(d) > 1 and s not in KNOWN_SERIES_ROWS
+    }
     fillable = [(st, sl, ti, have[sl]) for st, sl, ti in missing if sl in have]
+    # slug 撞號：同一個 slug 在不同站被填成不同作者（姓氏鍵不同）＝多半指到不同的書
+    collisions = {
+        s: d for s, d in authors.items() if len({author_key(a) for a in d} - {""}) > 1
+    }
+    # original 語言不一致（前綴關係不算）
+    orig_bad = {
+        s: d
+        for s, d in originals.items()
+        if len(d) > 1 and s not in KNOWN_SERIES_ROWS and original_conflict(list(d))
+    }
 
     buf: list[str] = []
     w = buf.append
@@ -147,6 +215,8 @@ def main() -> None:
     w(f"| 有 slug 的條目 | {total} | — |")
     w(f"| **跨站 year 矛盾** | **{len(conflicts)}** | 同一本書在年代圖上出現在兩個年代 |")
     w(f"| 缺 year、但別站已填 | **{len(fillable)}** | 零判斷可補（直接抄，不必查書） |")
+    w(f"| **slug 撞號嫌疑** | **{len(collisions)}** | 兩站可能指到不同的書，封面與連結全指錯 |")
+    w(f"| `original` 語言不一致 | **{len(orig_bad)}** | 原文書名欄填了譯名 |")
     w("")
 
     w(f"## 一、跨站矛盾：{len(conflicts)} 本\n")
@@ -179,6 +249,43 @@ def main() -> None:
             w(f"| `{st}` | `{sl}` | {ti} | {src}{flag} |")
         w("")
 
+    w(f"## 三、slug 撞號嫌疑：{len(collisions)} 本\n")
+    if not collisions:
+        w("無——被多站收錄的書，作者姓氏鍵都一致。\n")
+    else:
+        w(
+            "同一個 `slug` 在不同站被填成不同作者（**姓氏鍵**不同）。這是最嚴重的一類——"
+            "多半代表兩站其實指到**不同的書**，而封面與延伸連結會全部指錯。\n"
+        )
+        for slug in sorted(collisions):
+            w(f"- `{slug}`：" + "；".join(
+                f"「{a}」（{'、'.join(sts)}）" for a, sts in collisions[slug].items()))
+        w("")
+
+    w(f"## 四、`original` 語言不一致：{len(orig_bad)} 本\n")
+    if not orig_bad:
+        w("無。\n")
+    else:
+        w(
+            "schema 說 `original` 是**原文書名**，所以《懺悔錄》該是 `Confessiones` 而非英譯 "
+            "`Confessions`。**只報「一邊不是另一邊前綴」的組**——短標題 vs 帶副標題兩者都對，"
+            "不列入。\n"
+        )
+        for slug in sorted(orig_bad):
+            w(f"- `{slug}`：" + "；".join(
+                f"「{o}」（{'、'.join(sts)}）" for o, sts in orig_bad[slug].items()))
+        w("")
+
+    w(f"## 已知例外（不報進上面各節）：{len(KNOWN_SERIES_ROWS)} 本\n")
+    w(
+        "同一個 slug 被一站當「整套書的代表列」、另一站當「單卷」用，於是 `year` 與 "
+        "`original` 天生不一致，而**兩邊都對**。清單寫在 `export-year-conflicts.py` 的 "
+        "`KNOWN_SERIES_ROWS`；要加新的，先確認它是這一類——「初版 vs 改版」不屬於此。\n"
+    )
+    for s in sorted(KNOWN_SERIES_ROWS):
+        w(f"- `{s}`")
+    w("")
+
     w("## 重跑\n")
     w("```bash")
     w("notes-core/tools/export-year-conflicts.py")
@@ -195,7 +302,10 @@ def main() -> None:
         print(text)
     else:
         OUT.write_text(text + "\n", encoding="utf-8")
-        print(f"→ {OUT}（矛盾 {len(conflicts)}、可補 {len(fillable)}）")
+        print(
+            f"→ {OUT}（year 矛盾 {len(conflicts)}、可補 {len(fillable)}、"
+            f"slug 撞號 {len(collisions)}、original 語言不一致 {len(orig_bad)}）"
+        )
 
 
 if __name__ == "__main__":
