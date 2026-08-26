@@ -75,6 +75,46 @@ def related_of(text):
     return []
 
 
+# seeAlso.site 有 sites.ts 的 enum 擋拼字（strict 站群），但 **path 從來沒有人驗**——
+# 它是一個自由字串，指到別站的 URL 路徑，寫錯就是靜默 404。2026-08-26 首次驗證 239 條
+# 全部有效，但那是運氣不是保證：這份 docstring 早就宣稱檢查「seeAlso 合法」，實作卻不存在。
+SITE_DIRS = {d.name[:-5]: d for d in NOTES.glob("*-note")}
+
+# 這些 path 不對應內容檔，而是 notes-core 產生的站級路由（見 core src/routes/）。
+INDEX_ROUTES = {"", "concepts", "guide", "library", "search", "problems"}
+
+
+def see_also_of(fm):
+    """[(site, path)]；四種寫法只出現過 `- site:` / `path:` 這一種，故只解這種。"""
+    m = re.search(r"^seeAlso:\s*\n((?:\s+-.*\n|\s{4,}.*\n)+)", fm, re.M)
+    if not m:
+        return []
+    return [
+        (s.strip().strip("\"'"), p.strip())
+        for s, p in re.findall(r'-\s+site:\s*(\S+)\s*\n\s+path:\s*"?([^"\n]*)"?', m.group(1))
+    ]
+
+
+def see_also_bad(site, path):
+    """回傳壞掉的原因；合法回 None。"""
+    d = SITE_DIRS.get(site)
+    if d is None:
+        return f"site「{site}」不是星系裡的站"
+    seg = path.strip("/").split("/") if path.strip("/") else []
+    if not seg or seg[0] in INDEX_ROUTES and len(seg) == 1:
+        return None                                   # 站首頁／總覽路由
+    if seg[0] not in ("concepts", "problems"):
+        return f"路徑前綴不認得（{seg[0]}）"
+    rest = seg[1:]
+    if not rest:
+        return None
+    c = d / "src" / "content" / seg[0]
+    c = c.joinpath(*rest)
+    if c.with_suffix(".md").exists() or (c / "_index.md").exists():
+        return None
+    return "目標頁不存在"
+
+
 def check(st):
     f = []          # findings: (level, code, msg)
     add = lambda lv, code, msg: f.append((lv, code, msg))
@@ -205,6 +245,12 @@ def check(st):
                 add("warn", "dead-related", f"{rel}: related → {t} 不存在")
             elif slug not in related_of(fm_of(pages[t].read_text(encoding="utf8"))):
                 add("nit", "oneway-related", f"{rel} → {t}（未指回）")
+
+        # 2.7 seeAlso：site 走 registry、path 要指得到真的頁（寫錯是靜默 404）
+        for site, path in see_also_of(fm):
+            why = see_also_bad(site, path)
+            if why:
+                add("warn", "dead-seealso", f"{rel}: seeAlso → {site}/{path}（{why}）")
 
     # ---- 2.2 roadmap / mastery ----
     in_roadmap = {s for c in cats.values() for s in c["roadmap"]}
