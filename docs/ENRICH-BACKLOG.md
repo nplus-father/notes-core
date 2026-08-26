@@ -19,6 +19,29 @@
 
 （無）
 
+## 導覽補齊輪・第一站（2026-08-27 Fable）——**theology-note 五章導覽完工**
+
+深化收官後「站不再長」的時機條件對缺導覽的 31 站成立，開始補齊。**「補齊」的三層定義**
+記錄在案：①**有**（guide/ 五章）②**新**（writtenAt ≥ enrichedAt，checkup 的 guide-stale 管）
+③**完整**（帳目正確＋每本 support 導覽帶到一句——tier-audit「空頭支票」靠此兌現）。
+現況：43 站俱全，31 站全缺（無半套）。
+
+**首站 theology-note**（38 頁、64 本，本 session 三輪深化過、脈絡最熟）：
+- 01 三個問題（怎麼知道神／神做了什麼／怎麼活）＋「三問是一條因果鏈」的判讀
+- 02 五條主線，中心＝恩典先行（「沒有一頁的主詞是你要開頭的」）
+- 03 書架導讀：原典四地標、教科書三本分工、當代三群、**四本 support 逐本一句帶到**、
+  **十本 delegated 的跨站分工清單**、兩本 unavailable 誠實列缺
+- 04 共識（尼西亞公分母）＋四場家族內爭議（護教頭 vs 心、法理 vs 參與、
+  Volf vs Hauerwas、屬靈爭戰紀實的認識論）＋書架缺口四塊（巴特/東正教/全球南方/聖靈論）
+- 05 四階主線＋三支線（懷疑者/服事者/原典攀登）＋三個 mastery 檢核
+
+導覽的站內連結與 furtherReading anchor 全數腳本驗證（0 死鏈）；tier-audit 過
+（**空頭支票 0**——四本 support 兌現）；build 過、push 完。
+
+**剩 30 站**，建議節奏每輪 1–2 站，順序照頁數：biblical-studies 83、startup 51、
+career 51、relationships 40、communication 39、business-strategy 38…（小站 fengtang 9、
+pastoral-psychology 5 可能還會長，最後做）。
+
 ## 第六輪（2026-08-27 Fable）——**收官判斷：深化紅利已盡，0 筆新頁**
 
 照制度逐本讀候選的既有頁 core，這輪 **19 查 0 開**：War of Art 的抗拒論述、How Not to Die

@@ -1,6 +1,6 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
-> **生成於 2026-08-26T23:03:44+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-27T01:02:17+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。
@@ -11,7 +11,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：75 站 / 2098 筆，缺 year **9 筆**（0.4%），分佈在 8 站；其中 0 筆查得到版次日線索。
+目前：75 站 / 2097 筆，缺 year **8 筆**（0.4%），分佈在 7 站；其中 0 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -23,7 +23,6 @@
 | --- | ---: | ---: | ---: |
 | tracy-note | 39 | 37 | 2 |
 | biblical-studies-note | 110 | 109 | 1 |
-| career-note | 72 | 71 | 1 |
 | design-patterns-note | 21 | 20 | 1 |
 | greene-note | 9 | 8 | 1 |
 | hbr-note | 46 | 45 | 1 |
@@ -37,10 +36,6 @@
 ### biblical-studies-note（1 筆）
 
 - [skipped] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
-
-### career-note（1 筆）
-
-- [wanted] Where Will You Be in the Next Decade? · 意義與方向
 
 ### design-patterns-note（1 筆）
 
@@ -56,7 +51,7 @@
 
 ### learning-note（1 筆）
 
-- [wanted] 人才，自造者 · 自學與超速學習
+- [unavailable] 人才，自造者 · 自學與超速學習
 
 ### science-note（1 筆）
 
