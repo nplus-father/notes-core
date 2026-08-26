@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-26T23:03:45+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T23:49:02+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **134** |
+| **候選（大部頭 × ≤1 頁）** | **128** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -46,13 +46,13 @@
 | 21 | 60 | 1 | `science-note` | 高手相對論 |
 | 22 | 59 | 1 | `fengtang-note` | 能人謀勢 |
 | 23 | 59 | 1 | `design-note` | Refactoring UI |
-| 24 | 58 | 1 | `science-note` | 進化的力量 |
-| 25 | 58 | 1 | `career-note` | The Passionate Programmer |
-| 26 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 27 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
-| 28 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 29 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 30 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 24 | 58 | 1 | `career-note` | The Passionate Programmer |
+| 25 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 26 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 27 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 28 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 29 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 30 | 53 | 1 | `startup-note` | Anything You Want |
 
 ## 二、依站分組
 
@@ -94,17 +94,6 @@
 - **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
 - **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
 
-### `management-note`（8 本）
-
-- **The Five Dysfunctions of a Team 團隊領導的五大障礙** — 52 章 / 1 頁（`five-dysfunctions-of-a-team`）
-- **程天縱《專業力》** — 47 章 / 1 頁（`terry-cheng-professional-power`）
-- **Peopleware 腦力密集產業的人才管理之道** — 46 章 / 1 頁（`peopleware`）
-- **The Goal 目標** — 43 章 / 1 頁（`goal-ongoing-improvement`）
-- **程天縱《經營學》** — 35 章 / 1 頁（`terry-cheng-business-management`）
-- **Turn the Ship Around! 當責領導** — 35 章 / 1 頁（`turn-the-ship-around`）
-- **Managing in a Time of Great Change 巨變時代的管理** — 32 章 / 1 頁（`managing-in-a-time-of-great-change`）
-- **The Essential Drucker 杜拉克精選** — 31 章 / 1 頁（`essential-drucker`）
-
 ### `hbr-note`（6 本）
 
 - **HBR Guide to Persuasive Presentations** — 65 章 / 1 頁（`hbr-guide-to-persuasive-presentations`）
@@ -113,15 +102,6 @@
 - **HBR Guide to Better Recruiting and Hiring** — 35 章 / 1 頁（`hbr-guide-to-better-recruiting-and-hiring`）
 - **HBR Guide to Navigating the Toxic Workplace** — 33 章 / 1 頁（`hbr-guide-to-navigating-the-toxic-workplace`）
 - **HBR Guide to Making Better Decisions** — 31 章 / 1 頁（`hbr-guide-to-making-better-decisions`）
-
-### `science-note`（6 本）
-
-- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
-- **進化的力量** — 58 章 / 1 頁（`liurun-power-of-evolution`）
-- **別鬧了，費曼先生** — 46 章 / 1 頁（`surely-youre-joking-mr-feynman`）
-- **快思慢想** — 43 章 / 1 頁（`thinking-fast-and-slow`）
-- **雜訊** — 37 章 / 1 頁（`noise`）
-- **物理之美** — 37 章 / 1 頁（`six-easy-pieces`）
 
 ### `career-note`（6 本）
 
@@ -132,6 +112,15 @@
 - **Never Eat Alone 別自己一個人吃飯** — 39 章 / 1 頁（`never-eat-alone`）
 - **精通行為面試：科技業說故事指南** — 38 章 / 1 頁（`mastering-behavioral-interviews`）
 
+### `management-note`（6 本）
+
+- **The Five Dysfunctions of a Team 團隊領導的五大障礙** — 52 章 / 1 頁（`five-dysfunctions-of-a-team`）
+- **程天縱《專業力》** — 47 章 / 1 頁（`terry-cheng-professional-power`）
+- **Peopleware 腦力密集產業的人才管理之道** — 46 章 / 1 頁（`peopleware`）
+- **The Goal 目標** — 43 章 / 1 頁（`goal-ongoing-improvement`）
+- **程天縱《經營學》** — 35 章 / 1 頁（`terry-cheng-business-management`）
+- **Turn the Ship Around! 當責領導** — 35 章 / 1 頁（`turn-the-ship-around`）
+
 ### `wellness-note`（5 本）
 
 - **The 4-Hour Body 身體調校聖經** — 51 章 / 1 頁（`4-hour-body`）
@@ -139,13 +128,6 @@
 - **Tools of Titans 巨人的工具** — 36 章 / 1 頁（`tools-of-titans`）
 - **HBR Guide to Managing Stress** — 34 章 / 1 頁（`hbr-guide-to-managing-stress`）
 - **How Not to Die 食療聖經** — 33 章 / 1 頁（`how-not-to-die`）
-
-### `leadership-note`（4 本）
-
-- **EMPOWERED: Ordinary People, Extraordinary Products** — 93 章 / 1 頁（`empowered-ordinary-people-extraordinary-products`）
-- **假說思考：培養邊做邊學的能力，讓你迅速解決問題** — 40 章 / 1 頁（`hypothesis-driven-thinking`）
-- **Leaders Eat Last** — 36 章 / 1 頁（`leaders-eat-last`）
-- **Turn the Ship Around!** — 35 章 / 1 頁（`turn-the-ship-around`）
 
 ### `fengtang-note`（4 本）
 
@@ -180,6 +162,12 @@
 - **Anything You Want** — 53 章 / 1 頁（`anything-you-want`）
 - **Blitzscaling 閃電擴張** — 38 章 / 1 頁（`blitzscaling`）
 
+### `leadership-note`（3 本）
+
+- **EMPOWERED: Ordinary People, Extraordinary Products** — 93 章 / 1 頁（`empowered-ordinary-people-extraordinary-products`）
+- **Leaders Eat Last** — 36 章 / 1 頁（`leaders-eat-last`）
+- **Turn the Ship Around!** — 35 章 / 1 頁（`turn-the-ship-around`）
+
 ### `personal-finance-note`（3 本）
 
 - **Early Retirement Extreme** — 78 章 / 1 頁（`early-retirement-extreme`）
@@ -209,6 +197,12 @@
 - **The Pragmatic Programmer** — 62 章 / 1 頁（`pragmatic-programmer`）
 - **Test-Driven Development** — 35 章 / 1 頁（`test-driven-development`）
 - **Growing Object-Oriented Software, Guided by Tests** — 34 章 / 1 頁（`growing-object-oriented-software`）
+
+### `science-note`（3 本）
+
+- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
+- **別鬧了，費曼先生** — 46 章 / 1 頁（`surely-youre-joking-mr-feynman`）
+- **物理之美** — 37 章 / 1 頁（`six-easy-pieces`）
 
 ### `maxwell-note`（3 本）
 
