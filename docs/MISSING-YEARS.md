@@ -1,6 +1,6 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
-> **生成於 2026-08-26T12:00:00+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T12:13:56+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。
@@ -11,7 +11,7 @@
 **填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。
 下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。
 
-目前：75 站 / 2084 筆，缺 year **116 筆**（5.6%），分佈在 24 站；其中 0 筆查得到版次日線索。
+目前：75 站 / 2090 筆，缺 year **122 筆**（5.8%），分佈在 24 站；其中 0 筆查得到版次日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 
@@ -21,7 +21,7 @@
 
 | 站 | 總筆數 | 有 year | 缺 year |
 | --- | ---: | ---: | ---: |
-| biblical-studies-note | 96 | 70 | 26 |
+| biblical-studies-note | 102 | 70 | 32 |
 | tracy-note | 39 | 27 | 12 |
 | leadership-note | 98 | 87 | 11 |
 | career-note | 72 | 64 | 8 |
@@ -56,7 +56,7 @@
 - [owned] Behavioral Interviews for Software Engineers · 行為面試核心
 - [owned] The STAR Interview · 行為面試核心
 
-### biblical-studies-note（26 筆）
+### biblical-studies-note（32 筆）
 
 - [owned] 21世紀聖經講道學 · 釋經方法與讀經
 - [owned] 出埃及記的信息 / The Message of Exodus · 逐卷解經（BST 系列）
@@ -83,6 +83,12 @@
 - [owned] 哥林多前書的信息 / The Message of 1 Corinthians · 逐卷解經（BST 系列）
 - [owned] 哥林多後書的信息：軟弱中的能力 / The Message of 2 Corinthians · 逐卷解經（BST 系列）
 - [owned] 彼得前書的信息 / The Message of 1 Peter · 逐卷解經（BST 系列）
+- [owned] 路得記的信息 / The Message of Ruth · 逐卷解經（BST 系列）
+- [owned] 約拿書的信息 / The Message of Jonah · 逐卷解經（BST 系列）
+- [owned] 耶利米哀歌的信息 / The Message of Lamentations · 逐卷解經（BST 系列）
+- [owned] 雅歌的信息 / The Message of the Song of Songs · 逐卷解經（BST 系列）
+- [owned] 歌羅西書與腓利門書的信息 / The Message of Colossians & Philemon · 逐卷解經（BST 系列）
+- [owned] 約翰書信的信息 / The Message of John's Letters · 逐卷解經（BST 系列）
 - [skipped] NICNT／NICOT 系列代表卷 · 逐卷解經（BST 系列）
 
 ### career-note（8 筆）

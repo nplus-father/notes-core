@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-26T11:59:59+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T12:13:55+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -20,14 +20,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **342** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **336** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：342 本沒有任何站認領
+## 一、孤兒書：336 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -52,9 +52,9 @@
 | `coding-practice` | engineering | 27/74 | 36% | clean-code(21)、design-patterns(14)、uncle-bob(5) |
 | `growth` | mindset | 25/85 | 29% | growth(21)、tracy(10)、wan-weigang(8) |
 | `systematic` | theology | 22/43 | 51% | theology(19)、peterson(1)、biblical-studies(1) |
-| `commentary` | theology | 16/59 | 27% | biblical-studies(38)、stott(6) |
 | `ethics` | philosophy | 14/49 | 29% | philosophy(12)、fromm(10)、taleb(3) |
 | `biblical-studies` | theology | 13/70 | 19% | biblical-studies(49)、nt-wright(8)、keller(7) |
+| `commentary` | theology | 10/59 | 17% | biblical-studies(44)、stott(6) |
 | `productivity` | habit | 10/53 | 19% | tools(26)、habits(21)、tracy(5) |
 | `self-learning` | education | 9/34 | 26% | learning(19)、growth(4)、newport(3) |
 | `life-philosophy` | philosophy | 9/25 | 36% | de-botton(8)、life-meaning(5)、philosophy(4) |
@@ -89,7 +89,7 @@
 | John Goldingay | 3 | — | Ezra, Nehemiah, and Esther for Everyone、Old Testament Theology: Israel's Faith (Vol. 2)、Old Testament Theology: Israel's Life (Vol. 3) |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 342 本（依 leaf 分組）
+### 1e. 全部 336 本（依 leaf 分組）
 
 #### `investing` — 36/84 沒人認領（目前：investing(31)、bogle(6)、personal-finance(6)）
 
@@ -255,27 +255,6 @@
 | `wound-of-knowledge` | Wound of Knowledge | Rowan Williams |
 | `written-in-stone` | Written in Stone | Philip Graham Ryken |
 
-#### `commentary` — 16/59 沒人認領（目前：biblical-studies(38)、stott(6)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `dictionary-of-the-later-new-testament` | Dictionary of the Later New Testament & Its Developments | Ralph P. Martin & Peter H. Davids (eds.) |
-| `ezra-nehemiah-esther-for-everyone` | Ezra, Nehemiah, and Esther for Everyone | John Goldingay |
-| `message-of-2-peter-jude` | The Message of 2 Peter & Jude | Dick Lucas & Christopher Green |
-| `message-of-colossians-philemon` | The Message of Colossians & Philemon | Dick Lucas |
-| `message-of-esther` | The Message of Esther | David G. Firth |
-| `message-of-ezra-and-haggai` | The Message of Ezra & Haggai | Robert Fyall |
-| `message-of-genesis-bst` | The Message of Genesis | David Atkinson & Joyce G. Baldwin |
-| `message-of-joel-micah-habakkuk` | The Message of Joel, Micah & Habakkuk | David Prior |
-| `message-of-johns-letters` | The Message of John's Letters | David Jackman |
-| `message-of-jonah` | The Message of Jonah | Rosemary Nixon |
-| `message-of-lamentations` | The Message of Lamentations | Christopher J. H. Wright |
-| `message-of-malachi` | The Message of Malachi | Peter Adam |
-| `message-of-obadiah-nahum-zephaniah` | The Message of Obadiah, Nahum and Zephaniah | Gordon Bridger |
-| `message-of-ruth` | The Message of Ruth | David J. Atkinson |
-| `message-of-song-of-songs` | The Message of the Song of Songs | Tom Gledhill |
-| `message-of-zechariah` | The Message of Zechariah | Barry Webb |
-
 #### `ethics` — 14/49 沒人認領（目前：philosophy(12)、fromm(10)、taleb(3)）
 
 | 書 repo | 書名 | 作者 |
@@ -312,6 +291,21 @@
 | `theology-of-the-old-testament-eichrodt-vol-1` | Theology of the Old Testament, Volume One | Walther Eichrodt |
 | `understanding-the-bible` | Understanding the Bible: Methods of Bible Study | Dorothy L. Johns |
 | `when-good-men-are-tempted` | When Good Men Are Tempted | Bill Perkins |
+
+#### `commentary` — 10/59 沒人認領（目前：biblical-studies(44)、stott(6)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `dictionary-of-the-later-new-testament` | Dictionary of the Later New Testament & Its Developments | Ralph P. Martin & Peter H. Davids (eds.) |
+| `ezra-nehemiah-esther-for-everyone` | Ezra, Nehemiah, and Esther for Everyone | John Goldingay |
+| `message-of-2-peter-jude` | The Message of 2 Peter & Jude | Dick Lucas & Christopher Green |
+| `message-of-esther` | The Message of Esther | David G. Firth |
+| `message-of-ezra-and-haggai` | The Message of Ezra & Haggai | Robert Fyall |
+| `message-of-genesis-bst` | The Message of Genesis | David Atkinson & Joyce G. Baldwin |
+| `message-of-joel-micah-habakkuk` | The Message of Joel, Micah & Habakkuk | David Prior |
+| `message-of-malachi` | The Message of Malachi | Peter Adam |
+| `message-of-obadiah-nahum-zephaniah` | The Message of Obadiah, Nahum and Zephaniah | Gordon Bridger |
+| `message-of-zechariah` | The Message of Zechariah | Barry Webb |
 
 #### `productivity` — 10/53 沒人認領（目前：tools(26)、habits(21)、tracy(5)）
 
