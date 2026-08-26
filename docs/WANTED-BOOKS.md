@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-08-26T11:25:39+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T11:45:07+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -43,12 +43,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1896 筆（去重 1415 本） |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 1902 筆（去重 1421 本） |
 | `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **5 筆（去重 5 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 85 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 86 筆 |
 
-> `owned` 去重後的 1415 是**已建成書站的書**（1896 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1421 是**已建成書站的書**（1902 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -82,7 +82,7 @@
 
 | 站 | 已收 | 還差 | 差哪幾本 |
 | --- | ---: | ---: | --- |
-| `biblical-studies-note` | 81 | **1** | Old Testament Theology（John Goldingay） |
+| `biblical-studies-note` | 87 | **1** | Old Testament Theology（John Goldingay） |
 | `learning-note` | 33 | **1** | 人才，自造者（⚠ 作者未登錄） |
 | `collins-note` | 6 | **1** | Turning the Flywheel（Jim Collins） |
 | `career-note` | 68 | **2** | Where Will You Be in the Next Decade?（⚠ 作者未登錄）、沒了名片，你還剩下什麼？（姚詩豪、張國洋） |
