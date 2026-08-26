@@ -69,6 +69,38 @@ ROOT = Path(os.environ.get("NOTES_ROOT", HERE.parent.parent))
 OUT = HERE.parent / "docs" / "YEAR-CONFLICTS.md"
 
 
+BOOKS = Path("/home/andrew/workspace/andrew/books-management/books-done")
+
+# 第五節「早於書 repo 的 published」已逐本查證、裁定**我們的 year 才對**的 slug。
+# published 欄位是「做摘要時手上那一版」，早於初版是常態（預告上架），所以會有假陽性。
+SETTLED_AGAINST_PUBLISHED = {
+    "knowing-doing-gap",                    # HBS 初版 2000-01；repo 的 1999 是預告年
+    "hbr-guide-to-managing-stress-at-work",  # HBR 初版 2014-01；repo 的 2013 是預告年
+    "hbr-guide-to-managing-stress",         # 同一本書的短標題寫法，也是 2014
+    "hbr-guide-to-beating-burnout",         # HBR 出版 2021（版權頁 2020）
+    "j-i-packer-his-life-and-thought",      # McGrath，IVP 2020-11
+    "journey-of-modern-theology",           # Olson，IVP Academic 2013（1992 那本是前身《20 世紀神學評論》）
+}
+
+
+def published_years() -> dict[str, int]:
+    """書 repo `site/content/_index.md` frontmatter 的 `published`。1777 本 100% 都有。
+
+    **它不是初版年**，是做摘要時手上那一版（High Performance MySQL 標第 3 版 2012、
+    Release It! 標第 2 版 2017）。所以它不能拿來直接覆蓋 `year`——但當我們的 `year`
+    **晚於**它時必錯：初版年不可能晚於一個已經存在的印次。當偵測器用，別當答案用。
+    """
+    out: dict[str, int] = {}
+    for d in BOOKS.glob("*/*/*/*"):
+        f = d / "site" / "content" / "_index.md"
+        if not f.is_file():
+            continue
+        m = re.search(r'^\s*published:\s*"?([^"\n]+)', f.read_text(encoding="utf-8", errors="ignore")[:2000], re.M)
+        if m and (y := re.search(r"(1[5-9]\d\d|20\d\d)", m.group(1))):
+            out[d.name] = int(y.group(1))
+    return out
+
+
 def entries_of(src: str) -> list[str]:
     """抓 defineBibliography([...]) 裡 depth-1 的物件字面值。
 
@@ -193,6 +225,18 @@ def main() -> None:
         if len(d) > 1 and s not in KNOWN_SERIES_ROWS and original_conflict(list(d))
     }
 
+    # `have` 是 slug → {year: [(station, title)]}；這一節只看書，不看它被幾站收
+    pub = published_years()
+    later = sorted(
+        {
+            (sl, sts[0][1], y, pub[sl])
+            for sl, years in have.items()
+            if sl in pub and sl not in SETTLED_AGAINST_PUBLISHED
+            for y, sts in years.items()
+            if y > pub[sl]
+        }
+    )
+
     buf: list[str] = []
     w = buf.append
     w("# 出版年跨站矛盾（同一本書、兩個年份）\n")
@@ -217,6 +261,7 @@ def main() -> None:
     w(f"| 缺 year、但別站已填 | **{len(fillable)}** | 零判斷可補（直接抄，不必查書） |")
     w(f"| **slug 撞號嫌疑** | **{len(collisions)}** | 兩站可能指到不同的書，封面與連結全指錯 |")
     w(f"| `original` 語言不一致 | **{len(orig_bad)}** | 原文書名欄填了譯名 |")
+    w(f"| **year 晚於書 repo 的 published** | **{len(later)}** | 填的是某個改版年，不是初版年 |")
     w("")
 
     w(f"## 一、跨站矛盾：{len(conflicts)} 本\n")
@@ -274,6 +319,27 @@ def main() -> None:
         for slug in sorted(orig_bad):
             w(f"- `{slug}`：" + "；".join(
                 f"「{o}」（{'、'.join(sts)}）" for o, sts in orig_bad[slug].items()))
+        w("")
+
+    w(f"## 五、`year` 晚於書 repo 的 `published`：{len(later)} 本\n")
+    w(
+        "書 repo 的 `_index.md` frontmatter 有 `published` 欄位（1777 本 **100% 都有**），"
+        "是做摘要時手上那一版的出版日。**我們的 `year` 晚於它就必錯**——初版年不可能晚於"
+        "一個已經存在的印次，代表這格填的是某次改版的年份。\n"
+    )
+    w(
+        "**但 `published` 也不是初版年**（High Performance MySQL 標的是第 3 版 2012、"
+        "Release It! 標的是第 2 版 2017），所以**不能直接抄過來**——要查真初版。反向也有"
+        "假陽性：`published` 偶爾是預告上架年而早於實際出版（HBR 那批），查證後把 slug "
+        "加進 `SETTLED_AGAINST_PUBLISHED` 就不會再報。\n"
+    )
+    if not later:
+        w("無。\n")
+    else:
+        w("| slug | 書名 | 我們填的 | repo published |")
+        w("| --- | --- | ---: | ---: |")
+        for sl, ti, y, p in later:
+            w(f"| `{sl}` | {ti} | {y} | {p} |")
         w("")
 
     w(f"## 已知例外（不報進上面各節）：{len(KNOWN_SERIES_ROWS)} 本\n")

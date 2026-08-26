@@ -19,6 +19,36 @@
 
 （無）
 
+## 年份查證輪（2026-08-27 Opus）——**14 本改成真初版年，靠新的交叉比對抓出來**
+
+年份債本來已依豁免結案（線索最佳值，非查證值）。這輪不是盲目重查 122 筆，而是先找到一個
+**以前整套流程都漏掉的權威欄位**：書 repo 的 `site/content/_index.md` frontmatter 有
+`published`，**1777 本 100% 都有**。上一輪的探勘用散文 grep，所以漏了它——也因此把
+凱勒《順服的主》填成 **1989**，那其實是「凱勒 1989 年在曼哈頓創立救贖主教會」的**創會年**。
+
+`published` **不能直接抄**（它是做摘要時手上那一版：High Performance MySQL 標第 3 版 2012、
+Release It! 標第 2 版 2017）。但它是很好的**偵測器**：我們的 `year` 晚於它就必錯——初版年
+不可能晚於一個已經存在的印次。這條規則已加成 `export-year-conflicts.py` 的第五節。
+
+首跑 25 筆（19 本相異書），逐本網路查證後：**14 本真錯已改、5 本是假陽性**（`published`
+偶爾是預告上架年而早於實際出版）。假陽性登記在 `SETTLED_AGAINST_PUBLISHED` 不再報。
+
+改掉的（→ 是查到的真初版）：
+- 版次錯當初版：high-performance-mysql 2021→**2004**（第 4 版）、release-it 2018→**2007**（第 2 版）、
+  distributed-systems 2017→**2002**（第 3 版）、10x-entrepreneur 2018→**2011**、
+  traction 2015→**2014**（Portfolio 版 vs S-curve 初版）、all-the-money-in-the-world 2012→**2007**、
+  breaking-roberts-rules 2007→**2006**
+- **中譯年當初版**：mckinsey-problem-solving 2012→**2006**（日文原著『問題解決のセオリー』
+  日經 2006-08）——這一類最容易漏，schema 要的是原著初版年
+- 中文原著（`published` 即初版）：程天縱經營學 2020→**2017**、管理力 2021→**2018**、
+  專業力 2019→**2018**、吳軍脈絡 2025→**2024**、元智慧 2024→**2023**
+- 傳記年誤當出版年：keller obedient-master 1989→**2013**
+
+假陽性（我們本來就對）：knowing-doing-gap 2000、hbr-guide-to-managing-stress(-at-work) 2014、
+hbr-guide-to-beating-burnout 2021、j-i-packer 2020、journey-of-modern-theology 2013。
+
+收工：YEAR-CONFLICTS 五項全 0、MISSING-YEARS 8 筆（全是設計上該留白的）。
+
 ## anchor 覆蓋輪（2026-08-27 Opus）——**新開一類債，73 頁一輪修完歸零**
 
 **這一類以前沒人查過。** 既有的六份盤點都在問「書有沒有被引、頁有沒有溯源」，
