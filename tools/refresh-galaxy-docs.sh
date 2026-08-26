@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# 一次重算所有生成型星系盤點文件（docs/ 下的五份），並印出這一輪的落差。
+# 一次重算所有生成型星系盤點文件（docs/ 下的六份），並印出這一輪的落差。
 #
 # 用法：
-#   tools/refresh-galaxy-docs.sh            # 重算五份，印摘要與 diffstat
+#   tools/refresh-galaxy-docs.sh            # 重算六份，印摘要與 diffstat
 #   tools/refresh-galaxy-docs.sh --check    # 同上，但有落差就 exit 1（給 cron／CI 用）
 #
 # **為什麼要有這支**：四個生成器各跑各的，於是「只重算其中一份就下判斷」變成常態。
@@ -10,12 +10,13 @@
 # ——採購清單前 20 名裡有 2 本其實早就建好書站了。生成物一旦停更就會開始騙人，而它
 # 看起來跟剛跑完一模一樣。**重算要是一個動作，不是四個。**
 #
-# 做的事（順序無關，五份彼此獨立）：
+# 做的事（順序無關，六份彼此獨立）：
 #   1. export-wanted.py        → WANTED-BOOKS.md  （書還沒收）        ※ 需要 gh
 #   2. export-orphan-books.py  → ORPHAN-BOOKS.md  （書有了沒站在管）  ※ 需要 gh
 #   3. export-deepen-ready.py  → DEEPEN-READY.md  （哪站可以進場深化）
 #   4. export-missing-years.py → MISSING-YEARS.md  （缺初版年）
-#   5. export-year-conflicts.py→ YEAR-CONFLICTS.md（同一本書兩個年份）
+#   5. export-year-conflicts.py→ YEAR-CONFLICTS.md（跨站欄位不一致）
+#   6. export-deepen-targets.py→ DEEPEN-TARGETS.md（大部頭卻只有一鏟的書）
 #
 # 前兩份的權威資料源是 GitHub 現況（`gh repo list`），問不到會退回站台的 repos.json
 # 快照——快照落後好幾天很正常，拿它下判斷出過事（2026-08-07，20 本裡漏報 16 本）。
@@ -36,17 +37,18 @@ if ! gh auth status >/dev/null 2>&1; then
   exit 2
 fi
 
-echo "── 重算五份生成文件 ──────────────────────────────"
+echo "── 重算六份生成文件 ──────────────────────────────"
 "$HERE/export-wanted.py"
 "$HERE/export-orphan-books.py"
 "$HERE/export-deepen-ready.py"
 "$HERE/export-missing-years.py"
 "$HERE/export-year-conflicts.py"
+"$HERE/export-deepen-targets.py"
 
 echo
 echo "── 與 committed 版的落差 ─────────────────────────"
 # 只看 docs/ 底下這四份；其他 docs 是手維護的，不該被這支影響。
-TRACKED=(WANTED-BOOKS.md ORPHAN-BOOKS.md DEEPEN-READY.md MISSING-YEARS.md YEAR-CONFLICTS.md)
+TRACKED=(WANTED-BOOKS.md ORPHAN-BOOKS.md DEEPEN-READY.md MISSING-YEARS.md YEAR-CONFLICTS.md DEEPEN-TARGETS.md)
 # -I 忽略戳記行：每份生成物的 H1 底下有一行「生成於 <ISO>」，那一行**每次重算必變**，
 # 不忽略的話這個落差檢查會永遠報「有變動」，等於沒有檢查。改戳記格式時要一起改這裡
 # （格式的正本在 tools/_stamp.py 的 STAMP_RE）。
@@ -54,7 +56,7 @@ DIFF="$(git -C "$DOCS" diff --stat -I'^> \*\*生成於' -- "${TRACKED[@]}" 2>/de
 UNTRACKED="$(git -C "$DOCS" ls-files --others --exclude-standard -- "${TRACKED[@]}" 2>/dev/null || true)"
 
 if [[ -z "$DIFF" && -z "$UNTRACKED" ]]; then
-  echo "無落差——五份都還是最新的。"
+  echo "無落差——六份都還是最新的。"
   exit 0
 fi
 [[ -n "$DIFF" ]] && echo "$DIFF"
@@ -68,7 +70,8 @@ cat <<'EOF'
   DEEPEN-READY  「可深化」那批 → 挑一站進 `/note-check --enrich`
   MISSING-YEARS 逐筆補初版年（不是手上這版、也不是中譯版的年份）
   YEAR-CONFLICTS 第一節每組挑一個年份（先分清是「初版 vs 改版」還是「系列列 vs 單卷列」）；
-                第二節可直接抄別站的答案
+                第二節可直接抄別站的答案；第三節（slug 撞號）出現任何一筆都要立刻查
+  DEEPEN-TARGETS 「依站分組」挑一站 → 進 `/note-check --enrich` 開單（開單本身留 Fable）
 EOF
 
 [[ $CHECK -eq 1 ]] && exit 1
