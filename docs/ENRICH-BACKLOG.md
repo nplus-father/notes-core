@@ -19,6 +19,35 @@
 
 （無）
 
+## 第五輪選題清單（2026-08-26 Fable 開單）——**裁決已執行，5 筆新頁待 Opus 起草**
+
+從 DEEPEN-TARGETS 134 本候選逐本判讀。**本輪最大的發現是工具的固有盲區：頁數 ≠ 深度**——
+Peopleware／The Goal／Turn the Ship Around／Staff Engineer／釋經謬誤／數學之美／信息傳這批
+「1 頁」候選，實查那一頁全是深挖級專頁（TOC 頁連鼓繩與三指標都收了），**不開第二頁**。
+候選 ≠ 待辦是設計；篩選只能靠讀既有頁的 core，這一步無法自動化。
+
+**判層裁決 6 筆（已執行、已 push）**：
+
+| 站 | 書 | 裁決 |
+| --- | --- | --- |
+| science | 快思慢想、雜訊 | spine→**delegated(thinking)**——該站各以 2 頁承重 |
+| science | 進化的力量 | spine→**delegated(liurun)**——2 頁承重 |
+| leadership | 假說思考 | spine→**delegated(problem-solving)**——2 頁承重 |
+| management | 杜拉克精選、巨變時代的管理 | spine→**support**——文選/訪談集體裁切不出第二頁論證，knowledge-worker 頁已引為入口；drucker-note 同判 support |
+
+**新頁 5 筆（待起草）**：
+
+| 站 | 頁（分類/slug） | 原典 | 角度與邊界 |
+| --- | --- | --- | --- |
+| career-note | manage-yourself/q12-and-four-keys | First, Break All the Rules | 蓋洛普百萬訪談：Q12 十二問（衡量工作場所的量尺）＋四把鑰匙（選才幹非經驗、定義結果非步驟、發揮優勢非補短、因才適用非升遷）。**避開** first-year-manager（初任主管的日常，多本合引）。anchor: `01-the-measuring-stick/`、`03-the-first-key-select-for-talent/`～`06-the-fourth-key-find-the-right-fit/` |
+| career-note | career-capital/career-as-product | The Passionate Programmer | 把職涯當產品經營：選市場（供需與趨勢）、投資產品、行銷自己。**避開** mission-through-little-bets（主軸是 So Good 的小賭注）與 staff-path。anchor: `01-choosing-your-market/`、`02-investing-in-your-product/`、`04-marketing-not-just-for-suits/` |
+| science-note | （依站規放）feynman-curiosity | 別鬧了，費曼先生 | 好奇心作為方法：Far Rockaway 修收音機起手，到巴西物理教育批判（會背不會用——「O Americano, Outra Vez!」）。**避開**「草包族科學」頁（書末講稿：不欺騙自己）。anchor: `01-from-far-rockaway-to-mit/`、`04-from-cornell-to-caltech/` |
+| science-note | （依站規放）quantum-behavior | 物理之美 | 第六講「量子行為」：雙縫實驗、電子既非粒子也非波、機率幅、「沒有人懂量子力學」。**避開**「原子假說」頁（第一講）。anchor: `06-quantum-behavior/`、`02-basic-physics/` |
+| leadership-note | （依站規放）product-leader-as-coach | EMPOWERED | Cagan：領導者的第一職責是教練（評估、教練計畫、一對一、書面敘事）；賦權的前提是先把人帶到能被賦權的水位。**避開**「賦能型團隊」頁（問題 vs 功能清單）。anchor: `02-coaching/`、`03-staffing/` |
+
+起草照既有流水線；三個「依站規放」的分類名起草時查站上 `_index` 再定。
+**開單方法沿革**：本輪起開單一律先讀「引該書的既有頁」的 core 全文再判（第四輪教訓的制度化）。
+
 ## 出版年清債（2026-08-26，Andrew 豁免精確度）——**衝突歸零、缺格 116 → 9**
 
 Andrew 裁示：「有查到任何可能年份線索，就直接用，不用管精確度。」據此一次清掉兩份帳：
