@@ -45,10 +45,29 @@
   **不涵蓋**：§2.5 的「抽驗防杜撰」（具名事實回源 grep）——那是判斷不是掃描，仍在每輪 enrich
   收工時逐頁做（今天 BST 五批就是這樣驗的）。看到 `checkedAt=2026-08-26` 要照這個範圍讀。
 
-## 第二輪選題清單（2026-08-26 Fable 判層收官時開出，**動筆前先給 Andrew 過目**）
+## 第二輪選題清單（2026-08-26 開出）——**同日 Opus 輪全數結案**
 
-判層殘餘 109 本全數清零（15 站）後，spine 裁決直接生成這份單。共 **35 筆＝26 頁新頁＋9 筆補 anchor**；
-起草交 Opus（照既有流水線），逐站清完即銷帳。
+判層殘餘 109 本全數清零（15 站）後，spine 裁決直接生成這份單。共 **35 筆＝26 頁新頁＋9 筆補 anchor**，
+**已於 2026-08-26 由 Opus 逐站清完並全部 push**（Andrew 當場指示「不用，直接做」，略過過目步驟）。
+收工狀態：`tier-audit.py --all` 全星系 1922 本藏書，真欠債／空頭支票／漏接／文資不符／衝突／未判層**六類全數 0**。
+
+逐站落點（每站都跑完站掃描→單向邊補齊→roadmap+mastery→format/lint/build→查證具名事實→單行英文 commit→push）：
+
+| 站 | 產出 | commit |
+| --- | --- | --- |
+| problem-solving-note | 2 新頁＋4 補 anchor | bulletproof 七步、look-see-imagine-show |
+| maxwell-note | 2 新頁＋1 補 anchor | 21 法則、團隊 17 法則 |
+| communication-note | 1 新頁＋1 補 anchor | 三種對話 |
+| relationships-note | 5 新頁＋1 補 anchor | Gottman 七原則、Hold Me Tight、怎麼說孩子才會聽、全腦教養、獨自打保齡 |
+| cloud-note | 3 新頁＋1 補 anchor | 為婚姻立界線、Integrity、Trust |
+| growth-note | 2 新頁 | The Formula 五法則、Insight |
+| learning-note | 2 新頁 | Dehaene 四支柱、學習的王道 |
+| life-meaning-note | 3 新頁 | 凝視死亡、最後 14 堂星期二的課、值得活的人生 |
+| de-botton-note | 3 新頁 | 擁抱似水年華、旅行的藝術、工作！工作！ |
+| liurun-note | 1 新頁＋1 補 anchor | 關鍵躍升 |
+| history-note | 2 新頁 | 大崩壞、絲綢之路 |
+
+十一站全部蓋上 `enrichedAt: 2026-08-26`。原始清單保留在下方供追溯。
 
 **補 anchor 型（不開新頁，把原典掛進既有頁；起草者要先核對頁面主張與原典對得上）**：
 
