@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-26T01:08:51+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T11:26:09+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -20,14 +20,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **360** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **354** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：360 本沒有任何站認領
+## 一、孤兒書：354 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -48,8 +48,8 @@
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
 | `investing` | finance | 36/84 | 43% | investing(31)、bogle(6)、personal-finance(6) |
-| `commentary` | theology | 34/59 | 58% | biblical-studies(20)、stott(6) |
 | `persuasion` | communication | 29/66 | 44% | communication(19)、maxwell(3)、covey(3) |
+| `commentary` | theology | 28/59 | 47% | biblical-studies(26)、stott(6) |
 | `coding-practice` | engineering | 27/74 | 36% | clean-code(21)、design-patterns(14)、uncle-bob(5) |
 | `growth` | mindset | 25/85 | 29% | growth(21)、tracy(10)、wan-weigang(8) |
 | `systematic` | theology | 22/43 | 51% | theology(19)、peterson(1)、biblical-studies(1) |
@@ -80,17 +80,16 @@
 
 > 另有 25 個 leaf 各有 1–2 本孤兒，逐本列在下面「全部孤兒書」那節。
 
-### 1d. 同一作者 ≥3 本沒人認領：3 位
+### 1d. 同一作者 ≥3 本沒人認領：2 位
 
 作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），沒有站才是開站候選——COVERAGE-GAPS 的人物缺口就是這樣抓出 covey／templar／navarro 三站的。
 
 | 作者 | 孤兒本數 | 已有作者站？ | 書 |
 | --- | ---: | --- | --- |
-| David J. Atkinson | 3 | — | The Message of Job、The Message of Proverbs、The Message of Ruth |
 | John Goldingay | 3 | — | Ezra, Nehemiah, and Esther for Everyone、Old Testament Theology: Israel's Faith (Vol. 2)、Old Testament Theology: Israel's Life (Vol. 3) |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 360 本（依 leaf 分組）
+### 1e. 全部 354 本（依 leaf 分組）
 
 #### `investing` — 36/84 沒人認領（目前：investing(31)、bogle(6)、personal-finance(6)）
 
@@ -133,45 +132,6 @@
 | `yale-finance-course` | 受用一生的耶魯金融投資課 | 陳志武 |
 | `yale-financial-literacy` | 耶魯最受歡迎的金融通識課 | 陳志武 |
 
-#### `commentary` — 34/59 沒人認領（目前：biblical-studies(20)、stott(6)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `dictionary-of-the-later-new-testament` | Dictionary of the Later New Testament & Its Developments | Ralph P. Martin & Peter H. Davids (eds.) |
-| `ezra-nehemiah-esther-for-everyone` | Ezra, Nehemiah, and Esther for Everyone | John Goldingay |
-| `message-of-1-corinthians` | The Message of 1 Corinthians | David Prior |
-| `message-of-1-peter` | The Message of 1 Peter | Edmund Clowney |
-| `message-of-2-corinthians` | The Message of 2 Corinthians | Paul Barnett |
-| `message-of-2-peter-jude` | The Message of 2 Peter & Jude | Dick Lucas & Christopher Green |
-| `message-of-colossians-philemon` | The Message of Colossians & Philemon | Dick Lucas |
-| `message-of-daniel` | The Message of Daniel | Ronald S. Wallace |
-| `message-of-ecclesiastes` | The Message of Ecclesiastes | Derek Kidner |
-| `message-of-esther` | The Message of Esther | David G. Firth |
-| `message-of-ezekiel` | The Message of Ezekiel | Christopher J. H. Wright |
-| `message-of-ezra-and-haggai` | The Message of Ezra & Haggai | Robert Fyall |
-| `message-of-genesis-bst` | The Message of Genesis | David Atkinson & Joyce G. Baldwin |
-| `message-of-hosea` | The Message of Hosea | Derek Kidner |
-| `message-of-isaiah` | The Message of Isaiah | Barry G. Webb |
-| `message-of-jeremiah` | The Message of Jeremiah | Derek Kidner & Hywel R. Jones |
-| `message-of-job` | The Message of Job | David J. Atkinson |
-| `message-of-joel-micah-habakkuk` | The Message of Joel, Micah & Habakkuk | David Prior |
-| `message-of-john` | The Message of John | Bruce Milne |
-| `message-of-johns-letters` | The Message of John's Letters | David Jackman |
-| `message-of-jonah` | The Message of Jonah | Rosemary Nixon |
-| `message-of-joshua` | The Message of Joshua | David G. Firth |
-| `message-of-kings` | The Message of Kings | John W. Olley |
-| `message-of-lamentations` | The Message of Lamentations | Christopher J. H. Wright |
-| `message-of-leviticus` | The Message of Leviticus | Derek Tidball |
-| `message-of-malachi` | The Message of Malachi | Peter Adam |
-| `message-of-mark` | The Message of Mark | Donald English |
-| `message-of-matthew` | The Message of Matthew | Michael Green |
-| `message-of-obadiah-nahum-zephaniah` | The Message of Obadiah, Nahum and Zephaniah | Gordon Bridger |
-| `message-of-proverbs` | The Message of Proverbs | David J. Atkinson |
-| `message-of-ruth` | The Message of Ruth | David J. Atkinson |
-| `message-of-samuel` | The Message of Samuel | Mary J. Evans |
-| `message-of-song-of-songs` | The Message of the Song of Songs | Tom Gledhill |
-| `message-of-zechariah` | The Message of Zechariah | Barry Webb |
-
 #### `persuasion` — 29/66 沒人認領（目前：communication(19)、maxwell(3)、covey(3)）
 
 | 書 repo | 書名 | 作者 |
@@ -205,6 +165,39 @@
 | `winning` | Winning | Jack Welch & Suzy Welch |
 | `you-can-read-anyone` | You Can Read Anyone | David J. Lieberman |
 | `youve-got-8-seconds` | You've Got 8 Seconds | Paul Hellman |
+
+#### `commentary` — 28/59 沒人認領（目前：biblical-studies(26)、stott(6)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `dictionary-of-the-later-new-testament` | Dictionary of the Later New Testament & Its Developments | Ralph P. Martin & Peter H. Davids (eds.) |
+| `ezra-nehemiah-esther-for-everyone` | Ezra, Nehemiah, and Esther for Everyone | John Goldingay |
+| `message-of-1-corinthians` | The Message of 1 Corinthians | David Prior |
+| `message-of-1-peter` | The Message of 1 Peter | Edmund Clowney |
+| `message-of-2-corinthians` | The Message of 2 Corinthians | Paul Barnett |
+| `message-of-2-peter-jude` | The Message of 2 Peter & Jude | Dick Lucas & Christopher Green |
+| `message-of-colossians-philemon` | The Message of Colossians & Philemon | Dick Lucas |
+| `message-of-daniel` | The Message of Daniel | Ronald S. Wallace |
+| `message-of-esther` | The Message of Esther | David G. Firth |
+| `message-of-ezekiel` | The Message of Ezekiel | Christopher J. H. Wright |
+| `message-of-ezra-and-haggai` | The Message of Ezra & Haggai | Robert Fyall |
+| `message-of-genesis-bst` | The Message of Genesis | David Atkinson & Joyce G. Baldwin |
+| `message-of-hosea` | The Message of Hosea | Derek Kidner |
+| `message-of-jeremiah` | The Message of Jeremiah | Derek Kidner & Hywel R. Jones |
+| `message-of-joel-micah-habakkuk` | The Message of Joel, Micah & Habakkuk | David Prior |
+| `message-of-johns-letters` | The Message of John's Letters | David Jackman |
+| `message-of-jonah` | The Message of Jonah | Rosemary Nixon |
+| `message-of-kings` | The Message of Kings | John W. Olley |
+| `message-of-lamentations` | The Message of Lamentations | Christopher J. H. Wright |
+| `message-of-leviticus` | The Message of Leviticus | Derek Tidball |
+| `message-of-malachi` | The Message of Malachi | Peter Adam |
+| `message-of-mark` | The Message of Mark | Donald English |
+| `message-of-matthew` | The Message of Matthew | Michael Green |
+| `message-of-obadiah-nahum-zephaniah` | The Message of Obadiah, Nahum and Zephaniah | Gordon Bridger |
+| `message-of-proverbs` | The Message of Proverbs | David J. Atkinson |
+| `message-of-ruth` | The Message of Ruth | David J. Atkinson |
+| `message-of-song-of-songs` | The Message of the Song of Songs | Tom Gledhill |
+| `message-of-zechariah` | The Message of Zechariah | Barry Webb |
 
 #### `coding-practice` — 27/74 沒人認領（目前：clean-code(21)、design-patterns(14)、uncle-bob(5)）
 
