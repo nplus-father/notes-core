@@ -23,6 +23,10 @@ management-note 42 本裡 37 本只有 1 頁——健康，但薄得看不出來
 **這份只排序，不開單。** 每頁該切哪個概念、跟既有頁怎麼分工、anchor 落哪幾章，
 仍是 `/note-check --enrich` 進站後的判斷（依 MODEL-ROUTING 留給 Fable 開單）。
 
+**兩種排除，理由不同**：`SETTLED_DEPTH_PREFIXES` 是站方**決議過開採深度就是一頁**的書
+（BST 52 卷「逐本列出、每卷一頁」——那是已兌現的設計，不是薄）；`EXCLUDED_KINDS` 才是
+體裁排除。前者連例外節都不列（決議在 ENRICH-BACKLOG 有案），後者列出來供覆核。
+
 **排除清單（EXCLUDED_KINDS）**：有些書天生就不該被挖成多頁——工具書／辭典（按條目查，
 不是按論證讀）、小說與文學（本站不是文評站）、條目式合輯。它們章節數必然很高，
 不排除的話會永遠霸佔排行前段。判準是**體裁**，不是「我暫時不想挖」；後者屬於選題，
@@ -45,6 +49,13 @@ OUT = HERE.parent / "docs" / "DEEPEN-TARGETS.md"
 # 章節數 ≥ 此值才算「大部頭」。書庫 1776 本的章節數中位數是 18、90 百分位是 48，
 # 取 30 約當前三成——低於這個的書，一頁挖完是誠實的。
 HEAVY = 30
+
+# 站方決議過「開採深度就是一頁」的書——不是薄，是**已兌現的設計**。
+# 與 EXCLUDED_KINDS 的差別：那邊是體裁不適合挖，這邊是深度已被人為裁定。
+# 目前只有一類：BST《聖經信息系列》52 卷，2026-08-26 決議「逐本列出、每卷一頁挖進
+# biblical-studies-note（Stott 六卷歸 stott-note）」——批次 1–7 已照此兌現。
+# 判準用 slug 前綴，因為整個系列共用 `message-of-` 命名。
+SETTLED_DEPTH_PREFIXES = ("message-of-",)
 
 # 體裁上就不該挖成多頁的書（見 docstring）。加新的要說明體裁理由。
 EXCLUDED_KINDS = {
@@ -138,6 +149,8 @@ def main() -> None:
             if ch < HEAVY or pg > 1:
                 continue
             title = field(e, "title") or slug
+            if slug.startswith(SETTLED_DEPTH_PREFIXES):
+                continue  # 深度已裁定（見 SETTLED_DEPTH_PREFIXES），連例外節都不列
             if slug in EXCLUDED_KINDS:
                 excluded_hits.append((station, title, EXCLUDED_KINDS[slug]))
                 continue

@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-26T19:24:18+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T19:29:21+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **156** |
+| **候選（大部頭 × ≤1 頁）** | **142** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -32,56 +32,31 @@
 | 7 | 101 | 1 | `communication-note` | Resonate 簡報女王的故事力 |
 | 8 | 93 | 1 | `leadership-note` | EMPOWERED: Ordinary People, Extraordinary Products |
 | 9 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
-| 10 | 90 | 1 | `biblical-studies-note` | 詩篇的信息（下）73–150 |
-| 11 | 88 | 1 | `relationships-note` | The Ten Types of Human |
-| 12 | 87 | 1 | `biblical-studies-note` | 箴言的信息 |
-| 13 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
-| 14 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
-| 15 | 76 | 1 | `newport-note` | How to Win at College |
-| 16 | 76 | 1 | `biblical-studies-note` | 詩篇的信息（上）1–72 |
-| 17 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
-| 18 | 75 | 1 | `biblical-studies-note` | 馬可福音的信息 |
-| 19 | 72 | 1 | `biblical-studies-note` | 馬太福音的信息 |
-| 20 | 69 | 1 | `fengtang-note` | 穩贏 |
-| 21 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 22 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
-| 23 | 64 | 1 | `tools-note` | Flow 心流 |
-| 24 | 63 | 1 | `wujun-note` | 大學之路 |
-| 25 | 63 | 1 | `investing-note` | Security Analysis |
-| 26 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
-| 27 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
-| 28 | 61 | 1 | `thinking-note` | 被討厭的勇氣 |
-| 29 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 30 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 10 | 88 | 1 | `relationships-note` | The Ten Types of Human |
+| 11 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
+| 12 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
+| 13 | 76 | 1 | `newport-note` | How to Win at College |
+| 14 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
+| 15 | 69 | 1 | `fengtang-note` | 穩贏 |
+| 16 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
+| 17 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
+| 18 | 64 | 1 | `tools-note` | Flow 心流 |
+| 19 | 63 | 1 | `wujun-note` | 大學之路 |
+| 20 | 63 | 1 | `investing-note` | Security Analysis |
+| 21 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 22 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
+| 23 | 61 | 1 | `thinking-note` | 被討厭的勇氣 |
+| 24 | 61 | 1 | `stott-note` | 當代講道藝術 |
+| 25 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 26 | 60 | 1 | `science-note` | 高手相對論 |
+| 27 | 59 | 1 | `fengtang-note` | 能人謀勢 |
+| 28 | 59 | 1 | `design-note` | Refactoring UI |
+| 29 | 58 | 1 | `science-note` | 進化的力量 |
+| 30 | 58 | 1 | `career-note` | The Passionate Programmer |
 
 ## 二、依站分組
 
 開單時整站一起看比較省力——同一站的候選常常共享脈絡。
-
-### `biblical-studies-note`（22 本）
-
-- **詩篇的信息（下）73–150** — 90 章 / 1 頁（`message-of-psalms-73-150`）
-- **箴言的信息** — 87 章 / 1 頁（`message-of-proverbs`）
-- **詩篇的信息（上）1–72** — 76 章 / 1 頁（`message-of-psalms-1-72`）
-- **馬可福音的信息** — 75 章 / 1 頁（`message-of-mark`）
-- **馬太福音的信息** — 72 章 / 1 頁（`message-of-matthew`）
-- **Exegetical Fallacies** — 63 章 / 1 頁（`exegetical-fallacies`）
-- **雅歌的信息** — 60 章 / 1 頁（`message-of-song-of-songs`）
-- **聖經導覽手冊：逐卷讀經的藝術** — 58 章 / 1 頁（`how-to-read-the-bible-book-by-book`）
-- **約翰福音的信息** — 52 章 / 1 頁（`message-of-john`）
-- **聖經經典500問** — 51 章 / 1 頁（`hard-sayings-of-the-bible`）
-- **上帝子民的新約導論** — 46 章 / 1 頁（`new-testament-in-its-world`）
-- **耶利米書的信息** — 45 章 / 1 頁（`message-of-jeremiah`）
-- **走入中東看耶穌** — 39 章 / 1 頁（`jesus-through-middle-eastern-eyes`）
-- **新約的聖經神學** — 38 章 / 1 頁（`a-new-testament-biblical-theology`）
-- **民數記的信息** — 37 章 / 1 頁（`message-of-numbers`）
-- **申命記的信息** — 35 章 / 1 頁（`message-of-deuteronomy`）
-- **按照計畫** — 35 章 / 1 頁（`according-to-plan`）
-- **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
-- **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
-- **希伯來書的信息** — 31 章 / 1 頁（`message-of-hebrews`）
-- **利未記的信息** — 31 章 / 1 頁（`message-of-leviticus`）
-- **彼得後書與猶大書的信息** — 30 章 / 1 頁（`message-of-2-peter-jude`）
 
 ### `theology-note`（9 本）
 
@@ -106,6 +81,18 @@
 - **脈絡** — 38 章 / 1 頁（`wujun-context`）
 - **境界** — 36 章 / 1 頁（`wujun-realm`）
 - **卓越** — 36 章 / 1 頁（`wujun-excellence`）
+
+### `biblical-studies-note`（9 本）
+
+- **Exegetical Fallacies** — 63 章 / 1 頁（`exegetical-fallacies`）
+- **聖經導覽手冊：逐卷讀經的藝術** — 58 章 / 1 頁（`how-to-read-the-bible-book-by-book`）
+- **聖經經典500問** — 51 章 / 1 頁（`hard-sayings-of-the-bible`）
+- **上帝子民的新約導論** — 46 章 / 1 頁（`new-testament-in-its-world`）
+- **走入中東看耶穌** — 39 章 / 1 頁（`jesus-through-middle-eastern-eyes`）
+- **新約的聖經神學** — 38 章 / 1 頁（`a-new-testament-biblical-theology`）
+- **按照計畫** — 35 章 / 1 頁（`according-to-plan`）
+- **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
+- **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
 
 ### `management-note`（8 本）
 
@@ -268,11 +255,6 @@
 - **Flow 心流** — 64 章 / 1 頁（`flow-psychology-of-happiness`）
 - **Indistractable 專注力協定** — 44 章 / 1 頁（`indistractable`）
 
-### `stott-note`（2 本）
-
-- **當代講道藝術** — 61 章 / 1 頁（`i-believe-in-preaching`）
-- **羅馬書的信息** — 34 章 / 1 頁（`message-of-romans`）
-
 ### `data-systems-note`（2 本）
 
 - **Versioning in an Event Sourced System** — 56 章 / 1 頁（`versioning-in-an-event-sourced-system`）
@@ -305,6 +287,10 @@
 ### `newport-note`（1 本）
 
 - **How to Win at College** — 76 章 / 1 頁（`how-to-win-at-college`）
+
+### `stott-note`（1 本）
+
+- **當代講道藝術** — 61 章 / 1 頁（`i-believe-in-preaching`）
 
 ### `design-note`（1 本）
 
