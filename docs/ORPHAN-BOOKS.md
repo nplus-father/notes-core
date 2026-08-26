@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-26T19:24:16+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T23:03:43+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -14,7 +14,6 @@
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
 | [WANTED-BOOKS.md](./WANTED-BOOKS.md) | **書本身**還沒有 | 去收書 |
-| [DEEPEN-TARGETS.md](./DEEPEN-TARGETS.md) | 書挖得**太淺**（大部頭只有一鏟） | 開第二頁 |
 | **本檔** | **書有了、沒有站在管**（或指到的書不存在） | 認領／開站／修 slug |
 
 ## 摘要
