@@ -14,6 +14,18 @@ anchor 底下 → 這頁的 anchor 太窄或指錯章，讀者點「延伸閱讀
 不是全文，全書才有的細節（Webvan 花 1,800 萬美元開發軟體）本來就不會進摘要。
 這類只列數量供抽查，不當違規。
 
+**2026-08-27 首輪結案**：開工時證據充分 73 頁，逐頁對書核完全部修掉，收在 0。
+修法幾乎都是「另加一條」而非「擴大母章」（70:2）——因為既有 anchor 多半是精確的
+子章、指的也是對的主題，問題出在頁面**還用了同一本書別章的材料**卻沒掛出去。
+最典型的一種：頁面 label 自己就寫著「⋯⋯與策略性聯盟」，anchor 卻只有可分享內容那章。
+
+核對時學到的兩件事，下一輪別重犯：
+  1. **建議章的排名不可盡信**。工具按命中數排序，但排第一的可能是撞號——睡眠那頁
+     的「40%」在書裡是「食物渴望提高 40%」、在頁面是「晨型人佔 40%」。加語境比對
+     之後好很多（73 頁裡只剩少數要人工推翻），但掛上去前仍要看一眼那章在講什麼。
+  2. **查不到不代表沒有**。用 grep 找「1300萬」找不到，是因為書裡寫「1,300 萬」有
+     逗號——這害我一度誤判 1929 那頁不用補。要查就用工具的正規化比對，別手打 grep。
+
 用法：
     python3 tools/export-anchor-gaps.py            # 全星系，寫 docs/ANCHOR-GAPS.md
     python3 tools/export-anchor-gaps.py <station>  # 只看一站，印到畫面
@@ -39,6 +51,14 @@ UNIT = r"%|％|億|萬|美元|英尺|英里|公里|磅|公斤|公分|歲|次|倍
 MIN_MEANINGFUL = 11
 # 一頁掛的 anchor 太多時本來就覆蓋得廣，剩下的落空多半是別本書的事實
 MAX_SUGGEST = 3
+
+# 已裁決「不是缺口」的（頁面, 數字）。這些數字在該書裡到處都是，撞上不代表出處。
+# 新增前先確認是「同一個比例被反覆引用」，而不是「頁面真的在講那一章的事」。
+KNOWN_FALSE_POSITIVES = {
+    # 80/20 是這本書從頭到尾的骨架（銷售章講前 20% 業務員賺 80% 傭金、時間管理章
+    # 講 20% 的事產生 80% 價值⋯⋯）。頁面講的是「集中法則」，撞號不代表出處在那些章。
+    ("tracy-note", "business/100-absolutely-unbreakable-laws-of-business.md"): {"80%", "20%"},
+}
 
 
 YEAR = re.compile(r"(1[89]|20)\d\d年$")
@@ -138,7 +158,7 @@ def text_under(book: str, anchor: str) -> str:
     return norm(f.read_text(encoding="utf8", errors="ignore")) if f.is_file() else ""
 
 
-def scan_page(p: Path):
+def scan_page(p: Path, station: str, rel: str):
     parts = p.read_text(encoding="utf8").split("---", 2)
     if len(parts) < 3:
         return None
@@ -154,9 +174,10 @@ def scan_page(p: Path):
 
     # 判「有沒有缺口」用寬鬆比對（數字在 anchor 底下就算數），寧可少報；
     # 判「該掛哪一章」才要求語境相符，寧可準。
+    skip = KNOWN_FALSE_POSITIVES.get((station, rel), set())
     gaps, unfound = [], []
     for shown, needle, ctx in numbers_of(body):
-        if needle in covered:
+        if needle in covered or shown in skip:
             continue
         where = [
             (b, ch)
@@ -198,7 +219,7 @@ def main() -> None:
         for p in sorted(cdir.rglob("*.md")):
             if p.stem == "_index":
                 continue
-            r = scan_page(p)
+            r = scan_page(p, st.name, str(p.relative_to(cdir)))
             if not r:
                 continue
             unfound_n += len(r[1])

@@ -319,8 +319,27 @@ from pathlib import Path
 #   f. 於是表只剩 **1 本**（Goldingay 第一卷），準則①（收了 biblical-studies 歸零），
 #      準則②③④都沒有可排的。**全星系 78 站裡只剩這一站還有採購缺口**——TOP20 這個
 #      人工區塊接下來的意義比較接近「最後一本的追蹤欄」，等新站開起來才會再長回來。
+#
+# 2026-08-27（Andrew 逐筆裁決，四筆一次收乾淨）：wanted 5 → 1，**上一版 TOP20 唯一那格作廢**。
+#   a. **三筆判 unavailable**（各站 note 補「2026-08-27 判定暫無來源」）：
+#      - career-note《沒了名片，你還剩下什麼？》（姚詩豪、張國洋）——2026-08-20 移除未溯源頁時
+#        列的追帳筆，收不到；概念頁維持不寫，卷書到手再回原文核對重寫。
+#      - learning-note《人才，自造者》——作者始終查不到（`self-made-talent` 那條死鏈 2026-08-04
+#        就撤過 slug、連頁一起移除），沒有作者就防不了同名不同書，不再掛在採購清單上。
+#      - biblical-studies《Old Testament Theology》**第一卷 Israel's Gospel 收不到**，
+#        於是「三卷齊才結案」的裁決永遠達不到條件——整筆轉 unavailable。第二卷已建站、
+#        第三卷 epub 在手的事實不變，日後卷一到手再轉回 wanted。**biblical-studies 因此歸零。**
+#   b. **一筆整條刪掉**（不是 unavailable，是**查無此書**）：career-note
+#      `Where Will You Be in the Next Decade?`。2026-08-24 從退役的 BOOKS.md 接手時當成
+#      「只活在手抄檔裡」的待收書登記，但那份手抄清單裡它本來就是一條指向不存在書 repo 的
+#      死鏈——SOURCING-DEBT.md 2026-08-04 那張表已經裁過「撤掉這筆 slug（書不存在就不掛死鏈）」。
+#      查證：`gh repo view` 兩個 owner 都無此 repo，書名也查不到對得上的實體書。
+#      **同一條死鏈被手抄檔洗成 wanted 兩次，這次連條目一起移除**，不留追帳筆。
+#      → 教訓：從退役清單接手時，先對 SOURCING-DEBT 的死鏈表扣一次，再決定要不要登記成 wanted。
+#   c. career-note 與 learning-note 的 wanted 同時歸零（各只欠這一筆），
+#      **全星系只剩 collins-note 一本**——TOP20 這一格換成它。
 TOP20 = [
-    ("old-testament-theology", "**全星系最後一本還沒收的書**。biblical-studies 站 owned 75／wanted 1——收了就歸零，準則①（同輪 Hays 回填成 owned、NICNT 系列改 skipped 之後，這是本站最後一筆）。**要買的是第一卷 `Israel's Gospel`（IVP 2003）**，不是整套：2026-08-20 清點手上的檔案，三部曲的第二卷 Israel's Faith 早已建站 `old-testament-theology-israels-faith`、第三卷 Israel's Life 的 epub 也在手，**只缺第一卷**；Andrew 同日裁決三卷齊了才結案，不以單卷收錄（見 NAME_COLLISIONS 那筆）。準則④的證據仍是全星系最弱的一批，誠實記著：舊約神學線已有 Brueggemann 的 `theology-of-the-old-testament` 與 Waltke 的 `old-testament-theology-waltke`，Goldingay 自己的單卷 `biblical-theology-goldingay` 也已收（他書櫃 3 本）——**不是空格，是想多收一種進路**；「舊約神學」全星系只有 **3 處／2 檔且全在本站**（2026-08-20 現查）。大部頭、無繁中"),
+    ("turning-the-flywheel", "**全星系最後一本還沒收的書**（2026-08-27 那輪把 Goldingay 卷一判 unavailable、另外三筆一併結清之後，wanted 只剩這一筆）。collins-note owned 6／wanted 1——收了就歸零，準則①。準則②③④都沒有可排的：只有這一站還有採購缺口。內容上不是空格而是**補畫飛輪的方法**——這本是 Collins 自己把《從 A 到 A+》第八章擴寫成的單行本（畫飛輪的步驟＋案例集），站上的飛輪頁目前是拿三本書拼出來的（見該筆 note），收了才有專講飛輪的正典可掛 anchor。準則⑤也站在它這邊：**薄、有繁中在版（遠流《飛輪效應》）**，是全清單裡最好起手的一本"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -605,6 +624,8 @@ def main():
         # Goldingay 三部曲：wanted 要的是**第一卷** Israel's Gospel，而第二、三卷各自
         # 有書站。同作者同書名主幹，第二因子擋不下來——但 2026-08-20 Andrew 裁決
         # 「三卷齊了才結案，不以單卷收錄」，所以這兩卷都不算滿足那筆 wanted。
+        # 2026-08-27 起那筆已判 unavailable（卷一收不到），這兩行因此暫時**不會被走到**；
+        # 留著是因為卷一到手就會轉回 wanted，屆時這個擋板還要在——不要當死條目清掉。
         ("old-testament-theology-israels-faith", "biblical-studies-note"),
         ("old-testament-theology-israels-life", "biblical-studies-note"),
     }

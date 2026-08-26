@@ -176,6 +176,7 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | `:::response` 層 | `/note-master` | 非批次——由 Andrew 實際使用驅動 |
 | 已深化站要廣度 | `/note-wanted` | Opus，盤點性質 |
 | ~~挑下一本該挖的書~~ **紅利已盡（2026-08-27，六輪收官）** | `DEEPEN-TARGETS.md` 轉為新書進站的增量監測 | 判準是面向覆蓋非頁厚，不可自動化 |
+| ~~anchor 覆蓋不足 73 頁~~ **首輪結案（2026-08-27 歸零）** | `ANCHOR-GAPS.md`「證據充分」那節，逐頁對書核完再改 `furtherReading` | Opus——工具指得出來，但建議章會撞號，要人工看一眼那章在講什麼 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——
 **判層裁決**（主題歸屬）、**開單**（每頁的邊界、避開哪些既有頁、anchor 落哪幾章）、
@@ -212,5 +213,6 @@ memory 的 `fable-session-entrypoint` 與 ENRICH-BACKLOG 各輪紀錄）。
 | `tools/apply-tiers.py <json> --apply` | 把裁決套進 bibliography.ts |
 | `tools/tier-audit.py` | 套用後的違約檢查（**每次套用必跑**） |
 | `tools/tier-audit.py --verify` | 對帳 python 與站台兩份稽核實作 |
-| `tools/refresh-galaxy-docs.sh` | 重算 DEEPEN-READY 等四份報表 |
+| `tools/export-anchor-gaps.py [站]` | 頁面的數字有沒有掛到含它的章（新頁寫完值得單站跑一次） |
+| `tools/refresh-galaxy-docs.sh` | 重算 DEEPEN-READY 等七份報表 |
 | `tools/bump-notes-core.sh <old> <new>` | 全隊升版（改了 notes-core 才需要） |
