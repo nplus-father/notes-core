@@ -19,15 +19,61 @@
 
 （無）
 
-## 留單給 Fable（Opus 這輪遇到、依規則不硬判）
+## 第二輪選題清單（2026-08-26 Fable 判層收官時開出，**動筆前先給 Andrew 過目**）
 
-- **peck-note 有一筆真欠債清不掉**：《與心靈對話》（`further-along-the-road-less-traveled`）判為 spine，
-  但**書庫沒有這本 repo**，掛不住 anchor，照書本位紀律不能寫。要嘛降層（判層＝Fable），
-  要嘛先把書做進 `books-done`。這是全星系目前僅存的 1 筆 `真欠債`。
-- **philosophy-note 導覽第一章「問題三」那段判讀被稀釋**：原句「站上六頁幾乎全部站在德性／共善
-  那條路徑上發言」，寫時倫理＋政治共 6 頁、其中 5 頁骨架來自 Sandel；本輪加入柏拉圖與 Rawls 之後
-  該區已到 10 頁，「幾乎全部」不再成立。**改數字會讓那句判讀變假話，屬導覽寫作不是對帳**，
-  因此本輪沒動，留給 Fable 決定怎麼改一句。
+判層殘餘 109 本全數清零（15 站）後，spine 裁決直接生成這份單。共 **35 筆＝26 頁新頁＋9 筆補 anchor**；
+起草交 Opus（照既有流水線），逐站清完即銷帳。
+
+**補 anchor 型（不開新頁，把原典掛進既有頁；起草者要先核對頁面主張與原典對得上）**：
+
+| 站 | 原典 | 掛進哪頁 |
+| --- | --- | --- |
+| problem-solving | 金字塔原理（Minto） | pyramid-principle-in-writing（現引 BCG＋麥肯錫寫作術） |
+| problem-solving | 真正的問題你想通了嗎（Gause & Weinberg） | reframe-the-problem／spot-the-real-issue |
+| problem-solving | Say It with Charts（Zelazny） | good-charts-that-persuade（現只引 Berinato） |
+| problem-solving | The McKinsey Way（Rasiel） | mece-and-logic-tree／build-and-verify-hypotheses |
+| maxwell | 領導力的 5 個層次 | five-levels-of-leadership（現引 2.0 合訂本） |
+| relationships | Attached 依附（Levine） | attachment-and-attraction（**現引搭訕書**，科學正典缺席） |
+| communication | The Storytelling Animal（Gottschall） | brain-on-story（現引 Storr） |
+| cloud | 成長神學（How People Grow） | grace-truth-time（現引改變帶來醫治） |
+| liurun | 商業簡史 | transaction-cost（現引 5 分鐘商學院） |
+
+**新頁型（26 頁）**：problem-solving 2（Bulletproof 七步解題、餐巾紙的背後視覺化解題）；
+communication 1（Supercommunicators 三種對話與配對）；maxwell 2（21 法則總綱、團隊 17 法則）；
+relationships 5（Gottman 七原則、Hold Me Tight EFT、怎麼說孩子才會聽、全腦教養、獨自打保齡）；
+cloud 3（為婚姻立界線、Integrity、Trust）；growth 2（The Formula 成功的科學、Insight 自我覺察實證）；
+learning 2（Dehaene 學習四支柱、學習的王道劃小圈）；life-meaning 3（凝視死亡、最後 14 堂星期二的課、
+值得活的人生）；de-botton 3（擁抱似水年華、旅行的藝術、工作！工作！）；liurun 1（關鍵躍升）；
+history 2（大崩壞、絲綢之路）。
+
+## Fable 輪：留單結案＋判層收官（2026-08-26）
+
+**兩筆留單當日結案**：
+
+- **peck《與心靈對話》**：地面真相翻案——repo 不是不存在，是躺在 `books-management/archive/`
+  （內容完整、被刻意下架；Opus 只搜了 books-done）。裁決降 support：中段由首部曲深挖＋
+  《心靈成熟的旅程》兩頁承重，書站若回歸 books-done 再議升層。**留單前提不完整的教訓：
+  查書要連 archive 一起搜**。
+- **philosophy 導覽問題三**：整節重寫非只改一句——節標題改「從 Sandel 的一人講堂，到三造對質」、
+  開頭改「十頁裡五頁骨架來自 Sandel，依賴稀釋成一半但座標仍是他畫的」、判讀改「多數仍在德性／
+  共善側發言，但已不是獨白」，並把柏拉圖兩頁補進「對手到庭」清單；「Lukes 是唯一非 Sandel 聲音」
+  一併修掉。
+
+**判層殘餘 109 本（15 站）全數清零**：growth 20、learning 13、problem-solving 9、communication 10、
+maxwell 7、relationships 10、cloud 7、de-botton 5、life-meaning 9、liurun 5、history 6、fengtang 3、
+image-style 2、newport 2、pastoral-psychology 1。每站裁決 JSON 走 apply-tiers → tier-audit →
+build → 單站 commit＋push；`--verify` 兩份稽核實作對帳一致。
+
+- 裁決要點：**原典補 anchor 型 9 筆**（最傳神＝relationships 的 attachment 頁引搭訕書、科學正典
+  《依附》缺席；problem-solving 四本麥肯錫／Minto／Weinberg 原典的概念頁全引衍生書）；
+  **重複書系嚴判**（fengtang 三本全 support、newport 學生二書 support、liurun 網路時代舊作 support、
+  life-meaning 臨終回憶錄三本取一［Morrie spine，當呼吸化為空氣與最後的演講 support］）；
+  **人物站正典從寬**（maxwell 21 法則／5 層次／團隊 17 法則、de-botton 普魯斯特／旅行／工作、
+  cloud 婚姻界線／Integrity／Trust／成長神學）。
+- **又抓到一筆書庫重複建站**：《刻意進化》＝ `mental-fitness` 與 `learned-excellence` 同書兩 repo；
+  learning-note 的 slug 已改指正本（life-meaning 已挖的那個），`mental-fitness` 將出現在
+  ORPHAN-BOOKS 孤兒清單——**books-management 端的合併／刪除留給 Andrew**。
+- 抽查 Opus 批次 3～7 產出：四頁跨四批、十筆事實獨立回源 grep 全中，通過。
 
 ## Opus 輪：導覽事實對帳（43 站）＋BST 批次 3（2026-08-26）
 

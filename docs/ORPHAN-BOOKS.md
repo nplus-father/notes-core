@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-26T12:28:36+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-26T12:58:54+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -20,14 +20,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **328** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **329** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **8** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：328 本沒有任何站認領
+## 一、孤兒書：329 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -54,8 +54,8 @@
 | `systematic` | theology | 22/43 | 51% | theology(19)、peterson(1)、biblical-studies(1) |
 | `ethics` | philosophy | 14/49 | 29% | philosophy(12)、fromm(10)、taleb(3) |
 | `biblical-studies` | theology | 13/70 | 19% | biblical-studies(49)、nt-wright(8)、keller(7) |
+| `self-learning` | education | 10/34 | 29% | learning(18)、growth(4)、newport(3) |
 | `productivity` | habit | 10/53 | 19% | tools(26)、habits(21)、tracy(5) |
-| `self-learning` | education | 9/34 | 26% | learning(19)、growth(4)、newport(3) |
 | `life-philosophy` | philosophy | 9/25 | 36% | de-botton(8)、life-meaning(5)、philosophy(4) |
 | `personal-finance` | finance | 9/55 | 16% | personal-finance(33)、kiyosaki(15)、tracy(3) |
 | `critical-thinking` | mindset | 8/27 | 30% | thinking(12)、science(9)、investing(3) |
@@ -89,7 +89,7 @@
 | John Goldingay | 3 | — | Ezra, Nehemiah, and Esther for Everyone、Old Testament Theology: Israel's Faith (Vol. 2)、Old Testament Theology: Israel's Life (Vol. 3) |
 | John Ortberg | 3 | — | God Is Closer Than You Think、行在水面上、Who Is This Man? |
 
-### 1e. 全部 328 本（依 leaf 分組）
+### 1e. 全部 329 本（依 leaf 分組）
 
 #### `investing` — 36/84 沒人認領（目前：investing(31)、bogle(6)、personal-finance(6)）
 
@@ -292,6 +292,21 @@
 | `understanding-the-bible` | Understanding the Bible: Methods of Bible Study | Dorothy L. Johns |
 | `when-good-men-are-tempted` | When Good Men Are Tempted | Bill Perkins |
 
+#### `self-learning` — 10/34 沒人認領（目前：learning(18)、growth(4)、newport(3)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `english-is-not-easy` | English Is Not Easy | Luci Gutiérrez |
+| `grid-notebook` | 為什麼聰明人都用方格筆記本？ | 高橋政史 |
+| `life-signposts` | 人生路引：我從閱讀中練就的28個基本功 | 楊斯棓 |
+| `living-loving-and-learning` | Living, Loving and Learning | Leo F. Buscaglia |
+| `mental-fitness` | 刻意進化:突破極限的心智鍛鍊 | Eric Potterat, Alan Eagle |
+| `online-teaching-technique` | 線上教學的技術 | 福哥（王永福） |
+| `sociology-for-everyone` | 寫給每個人的社會學讀本 | 岩本茂樹 |
+| `teaching-technique` | 教學的技術 | 福哥（王永福） |
+| `where-do-top-performers-draw-the-line-when-reading` | 一流的人讀書，都在哪裡畫線？ | 土井英司 |
+| `why-study-the-past` | Why Study the Past | Rowan Williams |
+
 #### `productivity` — 10/53 沒人認領（目前：tools(26)、habits(21)、tracy(5)）
 
 | 書 repo | 書名 | 作者 |
@@ -306,20 +321,6 @@
 | `rich-kids` | Rich Kids: How to Raise Our Children to Be Happy and Successful in Life | Tom Corley |
 | `world-only-readers-can-reach` | 只有讀書能抵達的境界 | 齋藤孝 |
 | `worries-are-all-in-your-head` | 煩惱都是自己想出來的 | 古川武士 |
-
-#### `self-learning` — 9/34 沒人認領（目前：learning(19)、growth(4)、newport(3)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `english-is-not-easy` | English Is Not Easy | Luci Gutiérrez |
-| `grid-notebook` | 為什麼聰明人都用方格筆記本？ | 高橋政史 |
-| `life-signposts` | 人生路引：我從閱讀中練就的28個基本功 | 楊斯棓 |
-| `living-loving-and-learning` | Living, Loving and Learning | Leo F. Buscaglia |
-| `online-teaching-technique` | 線上教學的技術 | 福哥（王永福） |
-| `sociology-for-everyone` | 寫給每個人的社會學讀本 | 岩本茂樹 |
-| `teaching-technique` | 教學的技術 | 福哥（王永福） |
-| `where-do-top-performers-draw-the-line-when-reading` | 一流的人讀書，都在哪裡畫線？ | 土井英司 |
-| `why-study-the-past` | Why Study the Past | Rowan Williams |
 
 #### `life-philosophy` — 9/25 沒人認領（目前：de-botton(8)、life-meaning(5)、philosophy(4)）
 
