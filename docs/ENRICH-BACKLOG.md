@@ -59,6 +59,28 @@
   完成後四站進導覽輪（人物站骨架：gardner／fengtang 人物站、cloud 人物站、
   pastoral-psychology 主題站），屆時判層跟著 /note-guide 走（四站共 41 本未判層）。
 
+## Opus 產出抽查輪（2026-08-27 Fable）——**四輪 21 筆樣本全過，補掛 1 筆殘欠**
+
+依 MODEL-ROUTING §三的分工協議，對 08-27 當天四個 Opus 輪做獨立抽查（上次抽查停在
+08-26 批次 3～7）。抽法：每輪抽樣本、避開 Opus 自驗清單裡的筆目、逐筆回源。
+
+- **導覽數字輪** 8/8：thinking 68／jung 17／stott 14／system-design 48 重數皆符；
+  taleb「randomness 五頁裡的四頁」與 agile「product 七頁裡五頁、adoption 十頁裡八頁」
+  逐分類 ls＋grep 重驗成立（子集宣稱的修法正確，沒有把對句改錯）。
+- **年份查證輪** 5/5：MySQL 2004、Release It! 2007 知識面確認初版年（均早於 published
+  版次年）；traction 2014＝published 同年；凱勒 1989 創會年誤植已換成與 published 一致
+  的 2013；高杉尚孝日文原著 2006-08 與 published 逐字吻合。
+- **anchor 覆蓋輪** 6 頁 11 anchor：目錄全實存，內容逐字命中（Tracy 定價章「小變動→
+  獲利大改變」、niche 章 Gates 720 億、genius 的「第一件事永遠是看內部人的薪酬條款」、
+  睡眠頁的十二到十六小時腺苷高峰——撞號風險頁修對了章）。**發現 1 筆殘欠**：investing
+  edge 頁的 E-ratio 實驗數字（E5=1.01 等）出自 turtle ch07 未掛——小數點數字低於工具的
+  具名數字門檻，已補掛 commit（`anchor the e-ratio experiment…`）。
+- **第五輪新頁** 2 頁：q12（4.56%／0.84%／1.04 億／2.6%／費茲傑羅引文逐字）、
+  quantum-behavior（三次實驗路線、P=|φ|² 機率幅逐字，與領域知識相符）全數命中。
+
+**判讀**：Opus 四輪品質全過，驗證網如常接住（唯一漏網是工具門檻外的小數，不是模型錯）。
+值得留給工具的一筆：export-anchor-gaps 的數字抽取可考慮納入帶小數點的實驗值。
+
 ## 導覽補齊輪・第二十六站（2026-08-27 Fable）——**wujun-note 五章導覽完工，可直接做的佇列清空**
 
 18 本、17 頁（0.94 頁/書）。近滿編站的**第三種理由**集齊：schwager 一人一文類、fromm
