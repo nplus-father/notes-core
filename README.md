@@ -102,6 +102,9 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/DEEPEN-TARGETS.md`            | **大部頭卻只被挖一鏟**的書（排序表，開單仍留 Fable）；由 `tools/export-deepen-targets.py` 生成 |
 | `docs/ANCHOR-GAPS.md`               | **頁面掛的章不含它引用的事實**（缺口靠改 `furtherReading` 補）；由 `tools/export-anchor-gaps.py` 生成 |
 | `docs/GUIDE-DRIFT.md`               | **導覽的數字跟不上現況**（站上幾頁、某分類幾頁、收了幾本）；由 `tools/export-guide-drift.py` 生成 |
+| `docs/MODEL-ROUTING.md`             | **哪些工作值得花高階模型額度**（分工原則與各輪判準，手維護）        |
+| `docs/SERIES-STATUS.md`             | **系列產線帳本**（各波導覽與 enrich 的進度，手維護）                |
+| `docs/GUIDE-QUEUE.md`               | **導覽佇列**（哪些站的導覽該寫、順序為何，手維護）                  |
 | `docs/EXCLUDED-BOOKS.md`            | **裁定不進任何站**的書（品質把關的裁決紀錄，手維護）；orphan 掃描讀它，命中者不列孤兒不再提醒 |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
