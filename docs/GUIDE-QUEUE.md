@@ -54,12 +54,15 @@
 | templar-note | 人物 | 9 | 13 | 1.4 | 2026-08-21 | 一條龍：7→13 頁、新開 home 家庭分類；校正 6 筆（母體時序、控制狂補償等）；backlog：People 第二頁、Management 管自己 70 條 |
 | willard-note | 人物 | 8 | 12 | 1.5 | 2026-08-21 | 一條龍：7→12 頁、renovation 線補齊、待寫債 2 筆還清；校正 7 筆（兩個自創比喻換回書中原語、吸血鬼基督徒出處歸位） |
 | security-note | 主題 | 14 | 12 | 0.86 | 2026-08-21 | 一條龍：4→12 頁；BSRS 自 cloud-infra 判歸本站已挖；零引用剩 threat-modeling、practical-malware-analysis（malware 線要不要開分類待裁決） |
+| theology-note | 主題 | 64 | 38 | 0.6 | — | writtenAt 2026-08-27；導覽補齊輪首站——五章全新；四本 support 兌現、十本 delegated 跨站分工清單 |
+| biblical-studies-note | 主題 | 107 | 83 | 0.8 | — | writtenAt 2026-08-27；全星系最大站；BST 52 卷兌現史入導覽；9 support 逐本帶到；書名連寫防空頭支票假報 |
+| startup-note | 主題 | 62 | 51 | 0.8 | — | writtenAt 2026-08-27；驗證學派正典鏈＋小而美戰線；11 support 逐本帶到；每階配驗收動作 |
+| career-note | 主題 | 68 | 51 | 0.75 | 2026-08-27 | writtenAt 2026-08-27；三問一暗線（共同敵人=追隨熱情）；四場官司含一萬小時公案（被告本人出庭）；9 support 兌現、8 delegated 指路；讀序=底盤＋處境分流 |
 
 ## 第一批——站深料足，直接可做
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| startup-note | 主題 | 62 | 44 | 0.7 | — |  |
 | communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
 | learning-note | 主題 | 33 | 34 | 1.0 | — |  |
 | relationships-note | 主題 | 46 | 34 | 0.7 | — |  |
@@ -67,7 +70,6 @@
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
 | life-meaning-note | 主題 | 39 | 31 | 0.8 | — |  |
 | history-note | 主題 | 34 | 30 | 0.9 | — |  |
-| career-note | 主題 | 68 | 42 | 0.6 | — | 2026-08-27 解卡：唯一那本 wanted（《沒了名片，你還剩下什麼？》）判 unavailable，書端歸零、可進場 |
 
 ## 第二批——可做；導讀章的「待挖」比例會偏高
 
