@@ -17,7 +17,47 @@
 
 ## 進行中
 
-（無）
+- **末四站深化選題清單（2026-08-27 Fable 開單，起草交 Opus）**——導覽補齊輪剩下的四站
+  照 GUIDE-QUEUE 判準「先 enrich 再 guide」。tier-audit 四站六欄全 0（pastoral 的 5 頁
+  未溯源債已還清，帳上註記過期），問題是純粹的薄。選題已逐站看過分類分佈、spine 引用實況
+  與候選書章節目錄，**anchor 全部驗過目錄實存**。起草照 `/note-check` §6 書本位紀律，
+  每個主張掛得住 anchor 才寫；寫完單站跑 `export-anchor-gaps.py` 與 build。
+
+  **cloud-note（12→15 頁，3 筆）**：
+  1. 與人連結（bonding）——`changes-that-heal` `docs/03-bonding/`；四任務之首、體系地基的
+     第一根柱；避開 changes-that-heal（總論頁）與 grace-truth-time；growth 分類
+  2. 分辨善惡：接納好壞並存——`changes-that-heal` `docs/05-discerning-good-and-evil/`；
+     分裂與理想化的臨床核心；同上避開；growth 分類
+  3. 信任的修復模型——`trust` `docs/04-the-model-for-repairing-trust/`（可補
+     `docs/03-growing-in-trust/`）；five-essentials-of-trust 頁只蓋五要素、重建之路是
+     書的下半部；relationships 分類
+  **gardner-note（11→13 頁，2 筆）**：
+  4. 什麼才算一種智能：八項判準——`frames-of-mind` `docs/02-the-theory/`；判準是 MI 的
+     方法論核心、theory-of-multiple-intelligences 頁蓋七智能總覽而判準常被跳過；
+     multiple-intelligences 分類（全站最薄，2 頁）
+  5. 五歲的心智勝過學校：頑固的直覺理論——`unschooled-mind` `docs/02-natural-learner/`
+     ＋`docs/03-understanding-educational-institutions/`；這本 spine 有引用但無專屬承載頁，
+     直覺理論的頑固性是 Gardner 教育診斷的核心；education-future 分類
+  **fengtang-note（9→12 頁，3 筆）**：
+  6. 本事：成事之後談什麼——`fengtang-have-capability`（五部各撐一節，anchor 落
+     `part-1-financial-freedom-explained/` 起）；三部曲之三無專屬頁；success-method 分類
+  7. 勢：一千三百年的局勢判讀——`fengtang-winner-method`（周紀五部）＋
+     `fengtang-capable-strategy` 合撐；兩本資治通鑑書各只 1 頁引用；management 分類（最薄）
+  8. 讀經典的方法：與第一流的靈魂對話——`fengtang-incredible`；《了不起》2 頁引用但
+     無方法論專頁（reading-classics 蓋品讀對象、這頁蓋「怎麼讀」）；literature-life 分類
+     ——起草前先核對 reading-classics 頁實際內容，重疊就換題（站內以實況為準）
+  **pastoral-psychology-note（5→8 頁，3 筆）**：
+  9. 懼怕人的解方：敬畏神——`when-people-are-big-and-god-is-small`
+     `docs/03-overcoming-the-fear-of-others/`；現有頁蓋 fear of man 的解剖、解方章是
+     書的下半場；inner-life 分類
+  10. 依附三型遇見神——`attached-to-god` `docs/03-anxious-spirituality/`＋
+      `docs/04-shutdown-spirituality/`＋`docs/05-shame-filled-spirituality/`；現有頁蓋
+      still face 與依附總論、三種靈性樣態值得專頁；inner-life 分類
+  11. 羞恥的解藥：脆弱與群體——`soul-of-shame` `docs/06-shames-remedy-vulnerability/`＋
+      `docs/08-redeeming-shame-in-our-nurturing-communities/`；shame-vs-guilt 蓋定義、
+      解藥半部未開；trauma-grief 或 inner-life 分類（起草時看鄰頁定）
+  完成後四站進導覽輪（人物站骨架：gardner／fengtang 人物站、cloud 人物站、
+  pastoral-psychology 主題站），屆時判層跟著 /note-guide 走（四站共 41 本未判層）。
 
 ## 導覽補齊輪・第二十六站（2026-08-27 Fable）——**wujun-note 五章導覽完工，可直接做的佇列清空**
 
