@@ -338,8 +338,18 @@ from pathlib import Path
 #      → 教訓：從退役清單接手時，先對 SOURCING-DEBT 的死鏈表扣一次，再決定要不要登記成 wanted。
 #   c. career-note 與 learning-note 的 wanted 同時歸零（各只欠這一筆），
 #      **全星系只剩 collins-note 一本**——TOP20 這一格換成它。
+# 2026-08-27（同日第二輪，`/note-wanted` 全跑）：wanted 1 → **0，全星系採購清單清空**。
+#   a. 唯一那筆（collins-note《飛輪效應》Turning the Flywheel）在上一輪之後就建好站了——
+#      repo `turning-the-flywheel` 2026-08-26 17:09Z 建、2026-08-27 05:44Z 推，
+#      作者、書名、portal 描述三項都對得上，回填成 owned ＋ 補 slug，collins-note 歸零。
+#      注意這個 slug 2026-08-24 才被 db27d4c 拿掉過（「書站不存在就不掛死鏈」），
+#      這次是 repo 真的建好了才加回去——**加 slug 前要先確認 repo 非空**，兩件事別搞混。
+#   b. **TOP20 因此清空**。這是這個人工區塊第一次沒有東西可排，所以產生器補了 `if not TOP20`
+#      的分支：原路徑會印「先收這 0 本」＋空表頭，讀起來像產生器壞了，而不是「收齊了」。
+#   c. 清空是「wanted 歸零」，不是「書都收齊了」——88 筆 unavailable、86 筆 skipped 仍在，
+#      只是照 2026-08-10 的決議不撈出來複查。下一筆 wanted 會從新開的站長回來。
 TOP20 = [
-    ("turning-the-flywheel", "**全星系最後一本還沒收的書**（2026-08-27 那輪把 Goldingay 卷一判 unavailable、另外三筆一併結清之後，wanted 只剩這一筆）。collins-note owned 6／wanted 1——收了就歸零，準則①。準則②③④都沒有可排的：只有這一站還有採購缺口。內容上不是空格而是**補畫飛輪的方法**——這本是 Collins 自己把《從 A 到 A+》第八章擴寫成的單行本（畫飛輪的步驟＋案例集），站上的飛輪頁目前是拿三本書拼出來的（見該筆 note），收了才有專講飛輪的正典可掛 anchor。準則⑤也站在它這邊：**薄、有繁中在版（遠流《飛輪效應》）**，是全清單裡最好起手的一本"),
+    # 目前是空的——全星系沒有 wanted。新增時照 (key, 為何排這裡)，key ＝英文主標的 slug。
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
@@ -798,57 +808,74 @@ def main():
 
 """)
 
-    w(f"## 先收這 {len(TOP20)} 本\n\n")
-    # 星系收得夠乾淨時，wanted 會少於表格容量——那時這節就不是「挑出來的」而是全部，
-    # 講成「從裡面挑」會讓人以為還有沒排進來的書（2026-08-16 只剩 8 本時第一次發生）。
-    covers_all = len({r["main"] for r in rows}) <= len(TOP20)
-    w(
-        (
-            f"全星系的 wanted 只剩 {len(rows)} 筆，**這節就是全部**，順序即建議的採購與消化順序"
-            "（薄的、起手容易的排前面）。"
-            if covers_all
-            else f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
-            "起手容易的排前面）。"
-        )
-        + "**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
-        "`TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」"
-        "的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是"
-        "它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 "
-        "③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——"
-        "nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），"
-        "書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） "
-        "⑤同等重要時，薄的、有繁中在版的排前面。\n\n"
-        "「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。\n\n"
-        "「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、"
-        "各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。\n\n"
-    )
-    built = sum(1 for key, _ in TOP20 if any(r.get("repo") for r in by_main.get(key, [])))
-    if built:
+    # TOP20 清空＝全星系沒有任何一筆 wanted（2026-08-27 第二輪首次發生）。
+    # 走原路徑會印出「先收這 0 本」＋空表頭，看起來像產生器壞了而不是「收齊了」，
+    # 所以這裡分流講清楚：採購缺口歸零，不等於內容沒有缺口。
+    if not TOP20:
+        w("## 先收這 0 本——採購清單清空了\n\n")
         w(
-            f"> ⚠ **這 {len(TOP20)} 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
-            "跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。\n\n"
+            f"全星系 {len(station_left)} 個有書單的站，**沒有任何一筆 `wanted`**："
+            "想收的書都已經建成書站，剩下的都判過 `unavailable`（想收但收不到）或 "
+            "`skipped`（不打算收）——兩者都不佔採購清單版面。\n\n"
+            "**這節平常是全檔唯一的人工區塊**（`export-wanted.py` 的 `TOP20`），"
+            "清空時沒有東西可排；等新站開起來、或既有站再登記新的 wanted，它才會長回來。\n\n"
+            "> 採購缺口歸零 **不等於**內容沒有缺口——書有了而內容沒寫完看 "
+            "[ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)，寫了而查不到出處看 "
+            "[SOURCING-DEBT.md](./SOURCING-DEBT.md)，連站都還沒有看 "
+            "[COVERAGE-GAPS.md](./COVERAGE-GAPS.md)。\n\n"
         )
-    w("| # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- | --- |\n")
-    for i, (key, why) in enumerate(TOP20, 1):
-        v = by_main.get(key)
-        if not v:
-            w(f"| {i} | ⚠ `{key}` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | {esc(why)} |\n")
-            continue
-        best = max(v, key=lambda r: len(r["en"] or ""))
-        name = best["en"] or f"（{best['title']}）"
-        year = best["year"] or next((r["year"] for r in v if r["year"]), "")
-        # 站欄帶「收了之後還剩幾本」，讓歸零槓桿在表上直接看得出來，不必翻下面那節。
-        stations = sorted(
-            f"{r['station'].replace('-note', '')}({max(0, station_left.get(r['station'], 0) - 1)})"
-            for r in {r["station"]: r for r in v}.values()
-        )
-        repo = next((r["repo"] for r in v if r.get("repo")), None)
-        flag = f"✅ 已建站 `{repo}`——" if repo else ""
+    else:
+        w(f"## 先收這 {len(TOP20)} 本\n\n")
+        # 星系收得夠乾淨時，wanted 會少於表格容量——那時這節就不是「挑出來的」而是全部，
+        # 講成「從裡面挑」會讓人以為還有沒排進來的書（2026-08-16 只剩 8 本時第一次發生）。
+        covers_all = len({r["main"] for r in rows}) <= len(TOP20)
         w(
-            f"| {i} | **{esc(name)}** | {esc(best['author']) or '⚠ 作者未登錄'} "
-            f"| {esc(zh(best)) if best['en'] else ''} | {year} "
-            f"| {', '.join(stations)} | {flag}{esc(why)} |\n"
+            (
+                f"全星系的 wanted 只剩 {len(rows)} 筆，**這節就是全部**，順序即建議的採購與消化順序"
+                "（薄的、起手容易的排前面）。"
+                if covers_all
+                else f"整份 {len(rows)} 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、"
+                "起手容易的排前面）。"
+            )
+            + "**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 "
+            "`TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」"
+            "的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是"
+            "它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 "
+            "③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——"
+            "nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），"
+            "書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） "
+            "⑤同等重要時，薄的、有繁中在版的排前面。\n\n"
+            "「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。\n\n"
+            "「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、"
+            "各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。\n\n"
         )
+        built = sum(1 for key, _ in TOP20 if any(r.get("repo") for r in by_main.get(key, [])))
+        if built:
+            w(
+                f"> ⚠ **這 {len(TOP20)} 本裡有 {built} 本已經建好書站了**（下表標 ✅），代表這張採購清單該重挑——"
+                "跑 `/note-wanted` 把 bibliography 回填成 `owned` 之後重排。\n\n"
+            )
+        w("| # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |\n| --- | --- | --- | --- | --- | --- | --- |\n")
+        for i, (key, why) in enumerate(TOP20, 1):
+            v = by_main.get(key)
+            if not v:
+                w(f"| {i} | ⚠ `{key}` 已不在 wanted（收到了或書名改了，請更新 `TOP20`） | | | | | {esc(why)} |\n")
+                continue
+            best = max(v, key=lambda r: len(r["en"] or ""))
+            name = best["en"] or f"（{best['title']}）"
+            year = best["year"] or next((r["year"] for r in v if r["year"]), "")
+            # 站欄帶「收了之後還剩幾本」，讓歸零槓桿在表上直接看得出來，不必翻下面那節。
+            stations = sorted(
+                f"{r['station'].replace('-note', '')}({max(0, station_left.get(r['station'], 0) - 1)})"
+                for r in {r["station"]: r for r in v}.values()
+            )
+            repo = next((r["repo"] for r in v if r.get("repo")), None)
+            flag = f"✅ 已建站 `{repo}`——" if repo else ""
+            w(
+                f"| {i} | **{esc(name)}** | {esc(best['author']) or '⚠ 作者未登錄'} "
+                f"| {esc(zh(best)) if best['en'] else ''} | {year} "
+                f"| {', '.join(stations)} | {flag}{esc(why)} |\n"
+            )
 
     w(f"""
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
