@@ -975,6 +975,7 @@ Bill Campbell、一對一 30 分鐘、放棄管理者的責任、書面敘事被
 `empowered-product-teams` 且在 `team` 分類（不在 coaching）——掃描的 dead-related 擋下來了。
 
 收工留給 Fable：**leadership-note 亮 `guide-stale`**（導覽 08-24 早於 enrichedAt）。
+（後續：同日 `weave the coaching page into the guide` 已織補 ch03/ch05，旗標清掉、checkup 乾淨——此筆不再是待辦。）
 DEEPEN-TARGETS 候選 128 → 123。
 
 ## 出版年清債（2026-08-26，Andrew 豁免精確度）——**衝突歸零、缺格 116 → 9**
