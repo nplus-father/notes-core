@@ -1,11 +1,19 @@
 # SERIES-STATUS — check → enrich → guide 系列帳本
 
 **這份是什麼**：全星系「書收齊＋相關書都做完（content fill＋deep overview）」的站，推進
-**check → enrich → guide** 產線的執行帳本。Andrew 固定在 notes-core 下執行本系列。
-本檔手動維護：完成一站就在該行「導覽完成」欄填日期；體檢快照為 2026-08-20 唯讀掃描（範圍與方法見文末）。
+**check → enrich → guide** 產線的執行帳本。
 
-**與其他 docs 的分工**：[GUIDE-QUEUE.md](./GUIDE-QUEUE.md)＝`/note-guide` 佇列正本（完成後搬「已完成」也記在那）；
-[DEEPEN-READY.md](./DEEPEN-READY.md)＝每次重算的自動排序表；本檔＝**系列定義＋逐站體檢快照＋優先順序＋進度**。
+**站側數字是重算的，不是手打的**（2026-08-28 起）：`tools/galaxy-checkup.py --json` 一次掃完
+75 站（頁數／溯源／mastery／roadmap／findings），導覽日期取 `src/content/guide/*.md` 的最大
+`writtenAt`，owned 數來自各站 `bibliography.ts`。要刷新就重跑那支再更新本檔——
+08-20 那輪用的一次性 scratchpad 腳本已被它取代。**書端狀態仍要手工判讀**（空葉章數＋
+`audit-overview.py`），那半是本檔留著手動維護的理由。
+
+**與其他 docs 的分工**：[GUIDE-QUEUE.md](./GUIDE-QUEUE.md)＝`/note-guide` 佇列正本；
+[DEEPEN-READY.md](./DEEPEN-READY.md)＝每次重算的自動排序表；本檔＝**系列定義＋站側快照＋書端卡點＋進度**。
+
+> **注意 leetcode-note 不在這 75 站裡**：它 2026-07 起自維護前端（`src/content/` 是
+> `guides`／`overviews`／`problems`，沒有 `concepts`），`galaxy-checkup` 不掃它，本系列也不涵蓋。
 
 ## 系列判準（2026-08-20 對帳定案）
 
@@ -14,96 +22,130 @@
   content fill **以本機實測為準**——portal `health.json`（08-18 產）過期，21 本 08-19～20 剛填完的書被誤標 thin/near-empty。
   空葉章節 ≥2 的書算未完；恰 1 個空葉（多為附錄）不擋站、只註記；watch 級（8–15k 字）不擋。
 
-**結果（08-20 清帳輪後）：64 站達標＝A 20（連導覽都完工）＋ B 44（本系列的工作範圍）**；11 站書端未過（其中 4 站導覽已寫、只欠書端補洞）。
-**2026-08-27 更新**：career 那筆 wanted（《沒了名片，你還剩下什麼？》）Andrew 判 unavailable，**career 書端回到歸零**（見必改帳第 4 筆的後記）；同輪 biblical-studies 的 Goldingay 卷一也判 unavailable，該站只剩辭典那一項未裁。
+**結果（2026-08-28 重算）：達標 75 站全數 `wanted = 0`、站側 findings 0；其中 69 站導覽已完工（A 組）、
+6 站只差導覽（B 組）。** 書端仍有 8 本帶空葉章的書（見下表），但它們卡的站導覽多半已寫完——
+書端補洞與導覽產線現在是兩條可並行的線，不再互相擋路。
 
-## A 組——全流程完工（20 站，僅存查）
+## A 組——導覽已完工（69 站，2026-08-28 重算）
 
-agile、behaviour-interview、clean-code、covey、design、greene、hbr、jung、keller、kent-beck、
-leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools、uncle-bob、writing
+依導覽 `writtenAt` 排序。全數 `wanted = 0`、溯源 100%、`galaxy-checkup` findings 0。
 
-## B 組——體檢快照（45 站，2026-08-20 唯讀掃描，未蓋 `checkedAt`）
+| 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 導覽完成 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `greene-note` | 人物 | 7 | 18 | 2.57 | 100% | 100% | 100% | 2026-08-15 |
+| `kent-beck-note` | 人物 | 6 | 14 | 2.33 | 100% | 100% | 100% | 2026-08-15 |
+| `lewis-note` | 人物 | 14 | 12 | 0.86 | 100% | 100% | 100% | 2026-08-15 |
+| `peterson-note` | 人物 | 4 | 24 | 6.00 | 100% | 100% | 100% | 2026-08-15 |
+| `stott-note` | 人物 | 14 | 14 | 1.00 | 100% | 100% | 100% | 2026-08-15 |
+| `fowler-note` | 人物 | 6 | 9 | 1.50 | 100% | 100% | 100% | 2026-08-21 |
+| `grove-note` | 人物 | 5 | 12 | 2.40 | 100% | 100% | 100% | 2026-08-21 |
+| `nouwen-note` | 人物 | 16 | 12 | 0.75 | 100% | 100% | 100% | 2026-08-21 |
+| `tracy-note` | 人物 | 36 | 27 | 0.75 | 100% | 100% | 100% | 2026-08-21 |
+| `willard-note` | 人物 | 8 | 12 | 1.50 | 100% | 100% | 100% | 2026-08-21 |
+| `bogle-note` | 人物 | 6 | 14 | 2.33 | 100% | 100% | 100% | 2026-08-24 |
+| `christensen-note` | 人物 | 9 | 14 | 1.56 | 100% | 100% | 100% | 2026-08-24 |
+| `clean-code-note` | 主題 | 25 | 75 | 3.00 | 100% | 100% | 100% | 2026-08-24 |
+| `cloud-infra-note` | 主題 | 26 | 44 | 1.69 | 100% | 100% | 100% | 2026-08-24 |
+| `covey-note` | 人物 | 10 | 40 | 4.00 | 100% | 100% | 100% | 2026-08-24 |
+| `damodaran-note` | 人物 | 5 | 13 | 2.60 | 100% | 100% | 100% | 2026-08-24 |
+| `data-systems-note` | 主題 | 19 | 53 | 2.79 | 100% | 100% | 100% | 2026-08-24 |
+| `design-note` | 主題 | 12 | 49 | 4.08 | 100% | 100% | 100% | 2026-08-24 |
+| `design-patterns-note` | 主題 | 20 | 46 | 2.30 | 100% | 100% | 100% | 2026-08-24 |
+| `drucker-note` | 人物 | 19 | 17 | 0.89 | 100% | 100% | 100% | 2026-08-24 |
+| `economics-note` | 主題 | 50 | 51 | 1.02 | 100% | 100% | 100% | 2026-08-24 |
+| `hbr-note` | 主題 | 46 | 30 | 0.65 | 100% | 100% | 100% | 2026-08-24 |
+| `investing-note` | 主題 | 62 | 45 | 0.73 | 100% | 100% | 100% | 2026-08-24 |
+| `keller-note` | 人物 | 23 | 24 | 1.04 | 100% | 100% | 100% | 2026-08-24 |
+| `navarro-note` | 人物 | 6 | 25 | 4.17 | 100% | 100% | 100% | 2026-08-24 |
+| `nt-wright-note` | 人物 | 11 | 10 | 0.91 | 100% | 100% | 100% | 2026-08-24 |
+| `peck-note` | 人物 | 9 | 17 | 1.89 | 100% | 100% | 100% | 2026-08-24 |
+| `philosophy-note` | 主題 | 32 | 34 | 1.06 | 100% | 100% | 100% | 2026-08-24 |
+| `security-note` | 主題 | 14 | 14 | 1.00 | 100% | 100% | 100% | 2026-08-24 |
+| `templar-note` | 人物 | 9 | 13 | 1.44 | 100% | 100% | 100% | 2026-08-24 |
+| `tools-note` | 主題 | 46 | 30 | 0.65 | 100% | 100% | 100% | 2026-08-24 |
+| `uncle-bob-note` | 人物 | 7 | 16 | 2.29 | 100% | 100% | 100% | 2026-08-24 |
+| `wan-weigang-note` | 人物 | 11 | 16 | 1.45 | 100% | 100% | 100% | 2026-08-24 |
+| `writing-note` | 主題 | 32 | 41 | 1.28 | 100% | 100% | 100% | 2026-08-24 |
+| `grant-note` | 人物 | 5 | 15 | 3.00 | 100% | 100% | 100% | 2026-08-26 |
+| `jung-note` | 人物 | 7 | 17 | 2.43 | 100% | 100% | 100% | 2026-08-26 |
+| `agile-note` | 主題 | 15 | 66 | 4.40 | 100% | 100% | 100% | 2026-08-27 |
+| `behaviour-interview-note` | 主題 | 20 | 36 | 1.80 | 100% | 100% | 100% | 2026-08-27 |
+| `biblical-studies-note` | 主題 | 107 | 83 | 0.78 | 100% | 100% | 100% | 2026-08-27 |
+| `business-strategy-note` | 主題 | 50 | 38 | 0.76 | 100% | 100% | 100% | 2026-08-27 |
+| `career-note` | 主題 | 68 | 51 | 0.75 | 100% | 100% | 100% | 2026-08-27 |
+| `collins-note` | 人物 | 7 | 15 | 2.14 | 100% | 100% | 100% | 2026-08-27 |
+| `communication-note` | 主題 | 49 | 39 | 0.80 | 100% | 100% | 100% | 2026-08-27 |
+| `de-botton-note` | 人物 | 11 | 15 | 1.36 | 100% | 100% | 100% | 2026-08-27 |
+| `fromm-note` | 人物 | 16 | 15 | 0.94 | 100% | 100% | 100% | 2026-08-27 |
+| `growth-note` | 主題 | 44 | 35 | 0.80 | 100% | 100% | 100% | 2026-08-27 |
+| `habits-note` | 主題 | 44 | 33 | 0.75 | 100% | 100% | 100% | 2026-08-27 |
+| `history-note` | 主題 | 34 | 32 | 0.94 | 100% | 100% | 100% | 2026-08-27 |
+| `image-style-note` | 主題 | 7 | 13 | 1.86 | 100% | 100% | 100% | 2026-08-27 |
+| `kiyosaki-note` | 人物 | 23 | 14 | 0.61 | 100% | 100% | 100% | 2026-08-27 |
+| `leadership-note` | 主題 | 94 | 70 | 0.74 | 100% | 100% | 100% | 2026-08-27 |
+| `learning-note` | 主題 | 33 | 36 | 1.09 | 100% | 100% | 100% | 2026-08-27 |
+| `liurun-note` | 人物 | 12 | 13 | 1.08 | 100% | 100% | 100% | 2026-08-27 |
+| `management-note` | 主題 | 47 | 30 | 0.64 | 100% | 100% | 100% | 2026-08-27 |
+| `marketing-note` | 主題 | 31 | 32 | 1.03 | 100% | 100% | 100% | 2026-08-27 |
+| `maxwell-note` | 人物 | 18 | 14 | 0.78 | 100% | 100% | 100% | 2026-08-27 |
+| `newport-note` | 人物 | 8 | 10 | 1.25 | 100% | 100% | 100% | 2026-08-27 |
+| `problem-solving-note` | 主題 | 26 | 19 | 0.73 | 100% | 100% | 100% | 2026-08-27 |
+| `relationships-note` | 主題 | 46 | 40 | 0.87 | 100% | 100% | 100% | 2026-08-27 |
+| `schwager-note` | 人物 | 9 | 12 | 1.33 | 100% | 100% | 100% | 2026-08-27 |
+| `science-note` | 主題 | 48 | 29 | 0.60 | 100% | 100% | 100% | 2026-08-27 |
+| `spiritual-formation-note` | 主題 | 35 | 21 | 0.60 | 100% | 100% | 100% | 2026-08-27 |
+| `startup-note` | 主題 | 62 | 51 | 0.82 | 100% | 100% | 100% | 2026-08-27 |
+| `system-design-note` | 主題 | 25 | 48 | 1.92 | 100% | 100% | 100% | 2026-08-27 |
+| `taleb-note` | 人物 | 6 | 15 | 2.50 | 100% | 100% | 100% | 2026-08-27 |
+| `theology-note` | 主題 | 64 | 38 | 0.59 | 100% | 100% | 100% | 2026-08-27 |
+| `thinking-note` | 主題 | 56 | 68 | 1.21 | 100% | 100% | 100% | 2026-08-27 |
+| `wellness-note` | 主題 | 33 | 19 | 0.58 | 100% | 100% | 100% | 2026-08-27 |
+| `wujun-note` | 人物 | 18 | 17 | 0.94 | 100% | 100% | 100% | 2026-08-27 |
 
-分檔依 note-guide 深度門檻（主題 ≥30 頁／人物 ≥15 頁）。「待寫」＝roadmap 已排、檔案未寫的節點（enrich 素材）。
-「體檢」欄是本輪機械掃描的 findings 計數，細節在下面「逐站 findings」。
+## B 組——本系列剩下的工作範圍（6 站，全部只差導覽）
 
-### ①站深料足——check 後可直接 guide，enrich 還導覽點名的債（14 站）
+**六站的站側指標全部乾淨**（溯源／mastery／roadmap 皆 100%、findings 0、wanted 0），
+差的只有導覽本身——那是 `/note-guide` 的活，判斷密度高，留給 Fable。
 
-| 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| `data-systems-note` | 主題 | 19 | 50 | 2.63 | 100% | 13/13 | 100% | 0 | — | CLEAN | 2026-08-20 |
-| `economics-note` | 主題 | 50 | 45 | 0.90 | 100% | 6/6 | 84% | 0 | — | warning1·nit1 | 2026-08-20 |
-| `startup-note` | 主題 | 62 | 44 | 0.71 | 100% | 6/6 | 100% | 0 | — | CLEAN |  |
-| `investing-note` | 主題 | 62 | 43 | 0.69 | 100% | 6/6 | 100% | 0 | — | nit1 | 2026-08-20 |
-| `cloud-infra-note` | 主題 | 26 | 39 | 1.50 | 100% | 9/9 | 100% | 0 | — | CLEAN | 2026-08-21 |
-| `communication-note` | 主題 | 49 | 37 | 0.76 | 100% | 6/6 | 100% | 0 | 07-31/07-31 | nit1 |  |
-| `learning-note` | 主題 | 33 | 34 | 1.03 | 100% | 6/6 | 82% | 0 | — | warning1·nit1 |  |
-| `relationships-note` | 主題 | 46 | 34 | 0.74 | 100% | 6/6 | 91% | 0 | — | warning1 |  |
-| `growth-note` | 主題 | 44 | 33 | 0.75 | 100% | 6/6 | 91% | 0 | — | warning1 |  |
-| `business-strategy-note` | 主題 | 50 | 31 | 0.62 | 100% | 6/6 | 100% | 0 | — | nit2 |  |
-| `life-meaning-note` | 主題 | 39 | 31 | 0.79 | 100% | 6/6 | 90% | 0 | — | warning1·nit1 |  |
-| `history-note` | 主題 | 34 | 30 | 0.88 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
-| `tracy-note` | 人物 | 36 | 25 | 0.69 | 100% | 4/4 | 100% | 0 | — | nit1 | 2026-08-21 |
-| `wan-weigang-note` | 人物 | 11 | 15 | 1.36 | 100% | 4/4 | 100% | 0 | — | CLEAN | 2026-08-21 |
+| 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 導覽完成 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `personal-finance-note` | 主題 | 40 | 36 | 0.90 | 100% | 100% | 100% | — |
+| `life-meaning-note` | 主題 | 39 | 34 | 0.87 | 100% | 100% | 100% | — |
+| `cloud-note` | 人物 | 13 | 15 | 1.15 | 100% | 100% | 100% | — |
+| `gardner-note` | 人物 | 13 | 13 | 1.00 | 100% | 100% | 100% | — |
+| `fengtang-note` | 人物 | 10 | 12 | 1.20 | 100% | 100% | 100% | — |
+| `pastoral-psychology-note` | 主題 | 5 | 8 | 1.60 | 100% | 100% | 100% | — |
 
-### ②可 guide，導讀章「待挖」比例會偏高（14 站）
+- **cloud／gardner／fengtang／pastoral-psychology**：2026-08-27 深化完成（11 頁），
+  人物站三站都過了 ≥15 頁／≥12 頁的門檻；pastoral 是主題站只有 5 本 owned，
+  導覽要誠實寫「書架就這麼大」。詳帳見 ENRICH-BACKLOG 的「末四站深化輪」。
+- **life-meaning（34 頁）與 personal-finance（36 頁）是導覽輪掉隊的兩站**——
+  兩站條件都足（主題站 ≥30 頁），沒被寫到純粹是排程漏接：life-meaning 一直躺在
+  GUIDE-QUEUE 第一批沒被領走，personal-finance 則卡在書端（`automatic-millionaire`
+  待深度概覽），而**那個卡點已經解除**（2026-08-28 實測 `audit-overview.py` 全數通過、
+  11 個葉章 0 空）。兩站現在都可以直接進導覽。
 
-| 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| `habits-note` | 主題 | 44 | 28 | 0.64 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
-| `marketing-note` | 主題 | 31 | 27 | 0.87 | 100% | 6/6 | 100% | 0 | — | nit1 |  |
-| `management-note` | 主題 | 47 | 20 | 0.43 | 100% | 4/4 | 100% | 0 | 08-01/08-01 | nit1 |  |
-| `problem-solving-note` | 主題 | 26 | 17 | 0.65 | 100% | 4/4 | 100% | 0 | 08-06/08-06 | CLEAN |  |
-| `science-note` | 主題 | 48 | 16 | 0.33 | 100% | 4/4 | 100% | 0 | 07-31/07-31 | nit1 |  |
-| `drucker-note` | 人物 | 19 | 14 | 0.74 | 100% | 4/4 | 100% | 0 | — | CLEAN | 2026-08-21 |
-| `image-style-note` | 主題 | 7 | 13 | 1.86 | 100% | 4/4 | 100% | 0 | — | nit1 |  |
-| `de-botton-note` | 人物 | 12 | 12 | 1.00 | 100% | 4/4 | 100% | 0 | — | nit1（blocker 08-20 已清） |  |
-| `maxwell-note` | 人物 | 18 | 12 | 0.67 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
-| `kiyosaki-note` | 人物 | 23 | 11 | 0.48 | 100% | 3/3 | 100% | 0 | 08-06/08-06 | CLEAN |  |
-| `liurun-note` | 人物 | 12 | 11 | 0.92 | 100% | 4/4 | 100% | 1 | — | nit1 |  |
-| `wellness-note` | 主題 | 33 | 11 | 0.33 | 100% | 4/4 | 100% | 0 | 07-31/07-31 | CLEAN |  |
-| `fromm-note` | 人物 | 16 | 10 | 0.62 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
-| `newport-note` | 人物 | 8 | 10 | 1.25 | 100% | 4/4 | 100% | 0 | — | nit1（必改 08-20 已清） |  |
+## 書端卡點（2026-08-28 重掃空葉章）
 
-### ③太薄——check → enrich 拓站 → guide（16 站，jung／kent-beck／taleb 模式）
+判準同上：空葉章 ≥2 算未完；恰 1 個空葉不擋站、只註記。空葉＝該章 `_index.md` 去掉
+frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/audit-overview.py` 驗。
 
-| 站 | 型 | owned | 頁 | 頁/書 | 溯源 | mastery | roadmap | 待寫 | 上次 check/enrich | 體檢 | 導覽完成 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| `cloud-note` | 人物 | 13 | 9 | 0.69 | 100% | 3/3 | 100% | 0 | — | nit1 |  |
-| `bogle-note` | 人物 | 6 | 8 | 1.33 | 100% | 2/2 | 100% | 0 | — | nit1 | 2026-08-21 |
-| `fengtang-note` | 人物 | 10 | 8 | 0.80 | 100% | 3/3 | 100% | 1 | — | CLEAN |  |
-| `gardner-note` | 人物 | 13 | 8 | 0.62 | 100% | 3/3 | 100% | 0 | — | CLEAN |  |
-| `nouwen-note` | 人物 | 16 | 8 | 0.50 | 100% | 3/3 | 100% | 4 | — | nit1 | 2026-08-21 |
-| `damodaran-note` | 人物 | 5 | 7 | 1.40 | 100% | 2/2 | 100% | 0 | — | CLEAN | 2026-08-21 |
-| `nt-wright-note` | 人物 | 11 | 7 | 0.64 | 100% | 3/3 | 100% | 0 | — | nit1 | 2026-08-21 |
-| `templar-note` | 人物 | 9 | 7 | 0.78 | 100% | 4/4 | 100% | 0 | — | nit1 | 2026-08-21 |
-| `willard-note` | 人物 | 8 | 7 | 0.88 | 100% | 3/3 | 100% | 2 | — | CLEAN | 2026-08-21 |
-| `pastoral-psychology-note` | 主題 | 5 | 5 | 1.00 | 0% | 4/4 | 0% | 0 | — | 必改2·warning1·nit1 |  |
-| `christensen-note` | 人物 | 9 | 4 | 0.44 | 100% | 4/4 | 100% | 6 | — | nit1 | 2026-08-21 |
-| `security-note` | 主題 | 14 | 4 | 0.29 | 100% | 4/4 | 100% | 8 | — | nit1 | 2026-08-21 |
-| `collins-note` | 人物 | 6 | 3 | 0.50 | 100% | 3/3 | 100% | 7 | — | CLEAN | 2026-08-21 |
-| `grant-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
-| `grove-note` | 人物 | 5 | 3 | 0.60 | 100% | 3/3 | 100% | 6 | — | CLEAN | 2026-08-21 |
-| `fowler-note` | 人物 | 6 | 2 | 0.33 | 100% | 2/2 | 100% | 4 | — | CLEAN | 2026-08-21 |
+| 書 | 葉章 | 空葉 | 卡哪一站 | 現況 |
+| --- | ---: | ---: | --- | --- |
+| `dictionary-of-paul-and-his-letters` | 448 | 231 | biblical-studies | 辭典型參考書，**是否 waive 待 Andrew 裁決**（導覽已完工） |
+| `cost-of-discipleship` | 34 | 10 | theology、spiritual-formation | 兩站導覽皆已完工，只欠書端補洞 |
+| `new-market-wizards` | 29 | 7 | schwager | 7 篇訪談章全空；導覽已完工 |
+| `microservices-patterns` | 29 | 7 | design-patterns、system-design | 兩站導覽皆已完工 |
+| `on-top-of-tides` | 24 | 5 | wujun | 導覽已完工 |
+| `weight-of-glory` | 14 | 3 | lewis、spiritual-formation | 兩站導覽皆已完工 |
+| `building-microservices` | 17 | 3 | system-design | 導覽已完工 |
+| `world-waiting-to-be-born` | 23 | 2 | peck | 導覽已完工 |
 
-## 書端未過、也還沒導覽的 6 站（站側體檢一併做完，等書端清帳後入列）
-
-| 站 | 型 | 頁 | 站側體檢 | 卡在哪（書端） | 清帳後入檔 |
-| --- | --- | ---: | --- | --- | --- |
-| `biblical-studies-note` | 主題 | 44 | nit1 | wanted 已歸零（2026-08-27 Goldingay 卷一判 unavailable）；只剩 `dictionary-of-paul-and-his-letters` 448 條目空 227（辭典型，是否 waive 待裁決） | ① |
-| `theology-note` | 主題 | 24 | nit1 | `christian-theology-introduction`（new-books，內容已滿 21/21）＋`contemplative-pastor`、`reformed-dogmatics`（tmp）3 本待深度概覽；`cost-of-discipleship` 空 9/34 章 | ② |
-| `personal-finance-note` | 主題 | 29 | CLEAN | `automatic-millionaire`（tmp，內容已滿）待深度概覽 | ② |
-| `spiritual-formation-note` | 主題 | 13 | CLEAN | `cost-of-discipleship` 空 9/34 章；`weight-of-glory` 空 3/14 章 | ② |
-| `schwager-note` | 人物 | 12 | 必改1·blocker1 | `new-market-wizards` 7 篇訪談章全空 | ② |
-| `wujun-note` | 人物 | 10 | nit1 | `on-top-of-tides` 空 5/24 章 | ② |
-
-> **2026-08-27 出列：`career-note`（主題，42 頁，站側 nit1）。** 卡它的那本《沒了名片，你還剩下什麼？》
-> Andrew 判 unavailable（收不到），書端 wanted 回到 0——本表不再列它。①表的欄位（溯源／mastery／roadmap／待寫）
-> 這輪沒有重掃，**下次跑站側掃描時補齊再正式入列**；在那之前它的隊列身分看 [GUIDE-QUEUE.md](./GUIDE-QUEUE.md) 第一批。
-
-> 另 4 站書端未過但**導覽已寫**：design-patterns（`microservices-patterns` 空 7 章）、lewis（`weight-of-glory` 空 3 章）、
-> peck（`further-along-the-road-less-traveled` 僅 954 字、無概覽、躺在 `archive/`；`world-waiting-to-be-born` 空 2 章）、
-> system-design（`building-microservices` 空 3 章＋`microservices-patterns`）。只欠書端補洞，不佔本系列產能。
+**這一輪清掉的卡點（08-20 還掛著、現已通過）**：`christian-theology-introduction`、
+`contemplative-pastor`、`reformed-dogmatics`（theology）與 `automatic-millionaire`
+（personal-finance）四本的深度概覽**全數 `audit-overview.py` PASS**、葉章 0 空。
+**personal-finance-note 因此完全解鎖**——它是 B 組裡唯一曾被書端擋住的站。
+`further-along-the-road-less-traveled`（peck）仍躺在 `archive/`、books-done 查無，除役或補寫待裁決。
 
 ## 必改帳（2026-08-20 清帳輪結果）
 
@@ -124,83 +166,11 @@ leadership、navarro、peterson、philosophy、stott、taleb、thinking、tools�
 
 （pastoral-psychology 的 5 頁全未溯源＋3 本引用書不存在＝enrich 級工程，不算小帳，見 ③檔。）
 
-## 逐站 findings（唯讀掃描；nit 級只記數量，進場時由 `--fix` 機械清）
+## 逐站 findings（2026-08-28 重掃）
 
-- **economics-note**
-  - warning: roadmap 孤兒頁 ×7: econ-foundations/inflation-and-deflation, econ-foundations/schools-of-economic-thought, econ-foundations/gdp-and-economic-indicators, globalization-order/globalization-and-trade, markets-incentives/game-theory-basics, markets-incentives/creative-destruction, money-central-banks/gold-standard-and-fetters
-  - nit:related 單向 ×12（`--fix` 可機械清）
-- **career-note**（必改 08-20 已清：頁面移除，8b5d448）
-  - nit:related 單向 ×18（`--fix` 可機械清）
-- **investing-note**
-  - nit:related 單向 ×9（`--fix` 可機械清）
-- **communication-note**
-  - nit:related 單向 ×17（`--fix` 可機械清）
-- **learning-note**
-  - warning: roadmap 孤兒頁 ×6: memory/memory-techniques, metacognition/growth-mindset, practice/desirable-difficulty, practice/value-and-target, reading/deconstruct-a-book, reading/purposeful-reading
-  - nit:related 單向 ×33（`--fix` 可機械清）
-- **relationships-note**
-  - warning: roadmap 孤兒頁 ×3: connection/reading-people-accurately, connection/empathy-as-skill, connection/rapport-vs-report
-- **growth-note**
-  - warning: roadmap 孤兒頁 ×3: deliberate-practice/path-to-mastery, growth-mindset/goal-pursuit-science, originals-potential/originals
-- **business-strategy-note**
-  - nit:related 單向 ×14（`--fix` 可機械清）
-  - nit:頁尾缺 :::response ×1（`--fix` 可機械清）
-- **life-meaning-note**
-  - warning: roadmap 孤兒頁 ×3: emotion/hopeful-skepticism, emotion/objectivity-illusion, mental-health/self-compassion
-  - nit:related 單向 ×7（`--fix` 可機械清）
-- **history-note**
-  - nit:related 單向 ×3（`--fix` 可機械清）
-- **tracy-note**
-  - nit:related 單向 ×5（`--fix` 可機械清）
-- **habits-note**
-  - nit:related 單向 ×1（`--fix` 可機械清）
-- **marketing-note**
-  - nit:related 單向 ×8（`--fix` 可機械清）
-- **management-note**
-  - nit:related 單向 ×16（`--fix` 可機械清）
-- **science-note**
-  - nit:related 單向 ×11（`--fix` 可機械清）
-- **image-style-note**
-  - nit:related 單向 ×14（`--fix` 可機械清）
-- **de-botton-note**（blocker 08-20 已清，e5a74da）
-  - nit:related 單向 ×4（`--fix` 可機械清）
-- **maxwell-note**
-  - nit:related 單向 ×11（`--fix` 可機械清）
-- **liurun-note**
-  - nit:related 單向 ×1（`--fix` 可機械清）
-- **fromm-note**
-  - nit:related 單向 ×5（`--fix` 可機械清）
-- **newport-note**（必改 08-20 已清，2974408——順帶把 win-at-college／superstar 分家後的書單歸位）
-  - nit:related 單向 ×3（`--fix` 可機械清）
-- **cloud-note**
-  - nit:related 單向 ×6（`--fix` 可機械清）
-- **bogle-note**
-  - nit:related 單向 ×3（`--fix` 可機械清）
-- **nouwen-note**
-  - nit:related 單向 ×5（`--fix` 可機械清）
-- **nt-wright-note**
-  - nit:related 單向 ×4（`--fix` 可機械清）
-- **templar-note**
-  - nit:related 單向 ×4（`--fix` 可機械清）
-- **pastoral-psychology-note**
-  - 必改: 未溯源頁 ×5: inner-life/shame-vs-guilt, integration/five-views, integration/ministerial-not-magisterial, ministry-practice/forgiveness-two-kinds, trauma-grief/trauma-informed-reading
-  - 必改: furtherReading book 不存在 ×3: integration/five-views→psychology-and-christianity-five-views, ministry-practice/forgiveness-two-kinds→forgiveness-and-reconciling, trauma-grief/trauma-informed-reading→suffering-and-the-heart-of-god
-  - warning: 無 roadmap 的分類 ×4: inner-life, integration, ministry-practice, trauma-grief
-  - nit:related 單向 ×1（`--fix` 可機械清）
-- **christensen-note**
-  - nit:related 單向 ×2（`--fix` 可機械清）
-- **security-note**
-  - nit:related 單向 ×1（`--fix` 可機械清）
-- **biblical-studies-note**
-  - nit:related 單向 ×21（`--fix` 可機械清）
-- **theology-note**
-  - nit:related 單向 ×11（`--fix` 可機械清）
-- **schwager-note**（blocker＋必改 08-20 已清，46b107a——初版／二版併帳）
-- **wujun-note**
-  - nit:related 單向 ×9（`--fix` 可機械清）
-
-CLEAN（18 站）：data-systems、startup、cloud-infra、problem-solving、wan-weigang、drucker、kiyosaki、wellness、
-fengtang、gardner、damodaran、willard、christensen、collins、grant、grove、fowler、personal-finance、spiritual-formation。
+**全星系 75 站：blocker 0／warn 0／nit 0。** 08-20 快照裡的那批（economics 7 個孤兒頁、
+learning 6 個、各站 related 單向數十筆⋯⋯）已在 08-26 體檢輪與其後各輪清畢，明細不再留檔——
+要看現況直接跑 `notes-core/tools/galaxy-checkup.py`，它就是這一節的正本。
 
 ## 推進流程設計（2026-08-20 定案）
 
@@ -225,6 +195,14 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 
 ## 跨站遺留帳
 
+- **導覽補齊輪完工（2026-08-27，Fable）**：一天 26 站，全星系導覽覆蓋 43 → **69/75**。
+  同日 Opus 補完末四站深化（cloud／gardner／fengtang／pastoral 共 11 頁），四站進 B 組待導覽。
+  **B 組另外兩站是排程漏接**：life-meaning 躺在 GUIDE-QUEUE 第一批沒被領走、
+  personal-finance 卡的書端已解除（見「書端卡點」節）——兩站現在都可直接寫導覽。
+
+- **內文死鏈輪（2026-08-28，Opus）**：101 條 `](../x/y/)` 靜默 404 散在 23 站，一輪清零；
+  檢查固化成 `galaxy-checkup` 的 `dead-inline-link`。詳帳見 ENRICH-BACKLOG。
+
 - **第五波完工（2026-08-21）**：grant／bogle／damodaran／templar／willard 五站一條龍全 push（ad68bd5／cd2d8fe／c1359bf／33005e2／bd8c26d）。
   戰績：3→13（potential＋resilience）、8→14（vanguard）、7→13（dark-side＋philosophy）、7→13（home）、7→12（renovation 線補齊），合計 32→65 頁。
   **本波 B 型債豐收 23 筆**（bogle 10＋templar 6＋willard 7，見 SOURCING-DEBT）——bogle 抓到一句三書查無的杜撰引語，willard 抓到兩個外加比喻冒充書語。
@@ -248,19 +226,24 @@ fengtang、gardner、damodaran、willard、christensen、collins、grant、grove
 - ~~GUIDE-QUEUE 12 站已達標未登錄~~：2026-08-21 已補齊——5 站已進「已完成」，餘 7 站（career、habits、marketing、science、
   wellness、cloud、gardner）補進對應批次表。
 - portal `health.json`（08-18）過期：21 本剛填完的書仍標 thin/near-empty，書站部署後重跑 fetch-health。
+  （本檔的書端數字一律本機實測，不吃 health.json——這條只影響 portal 顯示。）
 - `archive/further-along-the-road-less-traveled`：躺在 archive/ 但 GitHub repo 未 archive、topics 照舊——除役還是補寫，待裁決。
-- `dictionary-of-paul-and-his-letters`：448 條目空 227（辭典型參考書）——是否 waive 待裁決。
+- `dictionary-of-paul-and-his-letters`：448 條目空 **231**（2026-08-28 重掃；辭典型參考書）——是否 waive 待裁決。
 - 恰 1 空葉的書（不擋站、記帳）：four-loves（附錄）、lessons-of-history（ch3）、time-management、hearing-god、
   boundaries-in-dating、encounters-with-jesus 等 20 本，多為附錄或單章，逐站進場時順手判定補或放。
 
-## 本輪掃描做了什麼／沒做什麼（2026-08-20）
+## 掃描涵蓋範圍與重跑方式
 
-**做了（note-check 可腳本化的部分，51 站）**：§1.1 五指標；§1.2 雙向溯源（頁無 anchor＋anchor 對 books-done 實檔驗證＋
-furtherReading book slug 存在）；§2 結構——首頁契約檔、divergence 掃描、notes-core pin（51 站全 v0.36.0）、分類 `_index.md`
-與 name/icon/order、roadmap↔內容（孤兒頁／待寫節點）、mastery slug 有效性、label 分隔號、related 存在＋雙向、seeAlso 實檔、
-importance/status 值域、跳脫實體、`:::response` 存在。
+**站側（機器判得準的那半）已固化成 `notes-core/tools/galaxy-checkup.py`**，08-20 那份
+一次性 scratchpad 腳本退役。它涵蓋：§1.1 五指標、§1.2 雙向溯源（頁無 anchor＋anchor 對
+books-done 實檔驗證＋book slug 存在）、§2 結構（首頁契約、divergence、core pin、分類
+`_index.md`、roadmap↔內容、mastery slug、label 分隔號、related 存在＋雙向、seeAlso 實檔、
+importance/status 值域、跳脫實體、`:::response`），2026-08-28 起再加**內文相對連結**
+（`dead-inline-link`——seeAlso 之外的第二種靜默 404，首掃 101 條）。
 
-**沒做（進場逐站補）**：學語氣、§1.3 該挖而未挖分層、§3 backlog 撰寫、§2.5 抽驗防杜撰、§2.8 build/format/lint。
-所以本輪**不蓋 `checkedAt`**——蓋章留給進站跑完整 `/note-check` 的那次。
+**仍要進場逐站做的**：學語氣、§1.3 該挖而未挖分層、§3 backlog 撰寫、§2.5 抽驗防杜撰、
+§2.8 build/format/lint。所以跑 checkup **不蓋 `checkedAt`**——蓋章留給進站跑完整
+`/note-check` 的那次。
 
-**重跑方式**：掃描是一次性腳本（session scratchpad），不入 repo；要刷新就再請 Claude 依本節「做了」的清單重掃、更新本檔。
+**重跑本檔**：`galaxy-checkup.py --json` 出站側數字，書端那張表要手工重掃空葉章＋
+`audit-overview.py`。兩邊都更新完再改本檔的日期標記。
