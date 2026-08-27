@@ -59,12 +59,12 @@
 | startup-note | 主題 | 62 | 51 | 0.8 | — | writtenAt 2026-08-27；驗證學派正典鏈＋小而美戰線；11 support 逐本帶到；每階配驗收動作 |
 | career-note | 主題 | 68 | 51 | 0.75 | 2026-08-27 | writtenAt 2026-08-27；三問一暗線（共同敵人=追隨熱情）；四場官司含一萬小時公案（被告本人出庭）；9 support 兌現、8 delegated 指路；讀序=底盤＋處境分流 |
 | relationships-note | 主題 | 46 | 40 | 0.87 | 2026-08-26 | writtenAt 2026-08-27；三問一暗線（共同敵人=關係是自然的）；七卡六分類的橫切面判讀；寬恕官司（Lerner vs Forward）判分場景；spine 85% 給誠實解讀；讀序=分診不是課綱 |
+| communication-note | 主題 | 49 | 39 | 0.8 | 2026-08-26 | writtenAt 2026-08-27；暗線「主角是對面那個人／口才缺席」；權力卡整卡通往 greene 的門判讀；談判內戰（Voss 踢館回源驗證）；delegated 18% 判「十字路口不是孤島」；5 support 兌現、9 delegated 指路 |
 
 ## 第一批——站深料足，直接可做
 
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
 | learning-note | 主題 | 33 | 34 | 1.0 | — |  |
 | growth-note | 主題 | 44 | 33 | 0.8 | — |  |
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
