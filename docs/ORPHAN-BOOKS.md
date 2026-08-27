@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-27T01:05:07+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-27T15:35:22+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1902 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1903 個 repo），其中 `nplus-kind-book` 的書 repo 1773 本（8 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -569,7 +569,7 @@
 | `become-an-effective-software-engineering-manager` | Become an Effective Software Engineering Manager | James Stanier |
 | `effective-engineer` | The Effective Engineer | Edmond Lau |
 
-#### `vision` — 2/50 沒人認領（目前：leadership(39)、management(7)、maxwell(5)）
+#### `vision` — 2/51 沒人認領（目前：leadership(39)、management(7)、collins(6)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |

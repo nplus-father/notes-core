@@ -17,7 +17,38 @@
 
 ## 進行中
 
-（無）
+- **collins-note 的導覽缺第六節（留給 Fable）**：`guide/03-canon-tour.md` 是逐本開箱的體例
+  （脊梁一～五＋支架＋未收的帳），2026-08-27 收進《飛輪效應》並判 spine 之後，第六根脊梁
+  **沒有自己的一節**。這一輪照 MODEL-ROUTING §二只做了**事實對帳**——「未收的帳」改寫成
+  已收、頁數 12→15、owned 6→7、脊梁五本→六本，並在該章結尾明說「逐本開箱留待下一輪導覽
+  補上」，沒有硬寫那一節。**導覽寫作是 §一.3 的 Fable 工作**，開單留在這裡等。
+
+## 飛輪補書輪（2026-08-27 Opus）——**collins-note：收書 → 判層 → 新頁 → 導覽對帳**
+
+`/note-wanted` 那輪把全星系最後一筆 wanted（《飛輪效應》Turning the Flywheel）回填成 owned
+之後，這一輪把「書進站了」真正走完到內容層。**這是新書進站的標準流程樣本**，日後零星新書
+比照辦理：
+
+1. **掛既有頁的 anchor**（Opus）。flywheel 頁的 🖼️ 那節本來就在講這本書的材料，卻沒掛：
+   延伸飛輪（微軟／亞馬遜／西南航空的延伸表、先射子彈再打砲彈）落在 `06-extending-the-flywheel`、
+   「被下一件大事拉走」落在 `02-durability-of-a-great-flywheel`。**沒掛的也記帳**：蓋茨堡／林肯
+   那段與社會部門的品牌飛輪，正規化比對後確認**不在這本書裡**，維持原出處。
+2. **判層**（Opus，非 Fable）。`tier-evidence.py` 判 auto／contested = 1／0，建議 spine
+   confidence high，屬 MODEL-ROUTING §二「明確案例」→ 走 `apply-tiers.py --apply` ＋ 必跑
+   `tier-audit.py`：collins-note 六類違規全 0、未判層 0。
+3. **選題交人裁決**（硬規則）。七個步驟要「併進 flywheel 頁」還是「另開一頁」是選題判斷，
+   Andrew 選了另開——理由站得住：flywheel 頁講「是什麼」，新頁講「怎麼畫自己的那一台」，
+   而且 spine 的承諾本來就是要有專屬承載頁。
+4. **起草＋回源**（Opus）。新頁 `concepts/greatness/capture-your-flywheel.md`：七步驟、
+   四到六環上限、必然性判準、Giro 借 Nike 洞見（1989 環法 8 秒）、先進場不等於贏（Books.com
+   早於亞馬遜）、一環 3 分整台卡死（`05-execute-and-innovate`）。**27 條具名事實逐條回源比對**，
+   全數命中。過程中踩到一次「查不到不代表沒有」——`9、10、8、3、9、10` 因為書裡的 `**3**`
+   粗體標記沒對上，把 `*` 一起正規化後就命中，與 anchor 輪學到的是同一件事。
+5. **收尾**：roadmap／mastery 補登（否則變孤兒頁）、related 雙向補回、guide 兩章與 overview
+   事實對帳、`enrichedAt` 2026-08-27。驗證 `galaxy-checkup --station` blocker/warn/nit 全 0、
+   `export-anchor-gaps` 0 頁、astro check／lint／format／build 全過。
+
+站況：7 本 owned（6 spine ＋ 1 support）、15 頁、頁/書 2.1、溯源 100%、wanted 0。
 
 ## 年份查證輪（2026-08-27 Opus）——**14 本改成真初版年，靠新的交叉比對抓出來**
 
