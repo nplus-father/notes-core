@@ -94,10 +94,12 @@
 
 ## 先 enrich 再 guide（頁數不足或有溯源債）
 
+四站的深化選題單已開好（2026-08-27），見 ENRICH-BACKLOG「進行中」——起草交 Opus，寫完回這裡進導覽輪。
+
 | 站 | 型 | owned | 頁 | 頁/書 | enriched | 備註 |
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | cloud-note | 人物 | 13 | 9 | 0.7 | — | 站太薄 |
 | gardner-note | 人物 | 13 | 8 | 0.6 | — | 站太薄 |
 | fengtang-note | 人物 | 10 | 8 | 0.8 | — | 站太薄 |
-| pastoral-psychology-note | 主題 | 5 | 5 | 1.0 | — | 未溯源 5 頁，先還債 |
+| pastoral-psychology-note | 主題 | 5 | 5 | 1.0 | — | 站太薄（溯源債已還清，2026-08-27 實掃 0 頁無 anchor） |
 
