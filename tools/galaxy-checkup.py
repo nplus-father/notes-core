@@ -19,7 +19,7 @@ warn 61（全數當場修掉）、nit 332。
   2.4 schema（importance 1-5、status enum、lastReviewed 格式、category 存在）
   2.5 書本位（每頁 ≥1 book、slug 對得到書庫、anchor 實存、label 分隔號）
   2.6 :::response 存在（只適用 concepts／problems，guide 不需要）、跳脫實體殘留
-  2.7 related 雙向與死指、seeAlso 合法
+  2.7 related 雙向與死指、seeAlso 合法、**內文相對連結指得到頁**（見下）
 """
 import json
 import re
@@ -93,6 +93,52 @@ def see_also_of(fm):
         (s.strip().strip("\"'"), p.strip())
         for s, p in re.findall(r'-\s+site:\s*(\S+)\s*\n\s+path:\s*"?([^"\n]*)"?', m.group(1))
     ]
+
+
+# 內文相對連結（`](../x/y/)`）從來沒有人驗過，而它是 seeAlso 之外的第二種靜默 404。
+# 2026-08-28 首掃：112 條死鏈散在 26 站，全部躲過既有檢查——checkup 只驗 seeAlso 與
+# related 這兩個 **frontmatter 欄位**，內文連結不在任何一份盤點裡。
+#
+# 解析規則（踩過兩次 off-by-one，寫在這裡免得下次再踩）：
+#   * 概念頁 `concepts/<cat>/<slug>.md` 的 URL 是 `/concepts/<cat>/<slug>/`——
+#     **頁面自己就是一層目錄**，所以相對連結要從「頁面 URL 之下」起算，
+#     同站跨分類的正確寫法是 `../../<cat>/<slug>/`（不是 `../<cat>/<slug>/`）。
+#   * `guide/NN-*.md` 全部渲染進**單頁** `/guide/`（notes-core ≥ v0.30.0），
+#     所以各章的 URL 一律是 `/guide`，連概念頁要寫 `../concepts/<cat>/<slug>/`。
+#   * 分類 `_index.md` 的 URL 是 `/concepts/<cat>/`。
+#   * `/concepts/`、`/problems/`、`/guide/`、`/check/`、`/library/`、`/books/` 這些
+#     **區段路由由 core 產生**，不對應任何 content 檔，要當成合法目標白名單。
+# 校準方式（改這段前務必重跑）：拿剛 build 過、`dist` 逐條驗過的站當對照組，
+# 掃描結果必須是 0；2026-08-28 用 cloud／gardner／fengtang／pastoral 四站校準過。
+SECTION_ROUTES = {"/concepts", "/problems", "/guide", "/check", "/library", "/books", "/"}
+
+
+def page_url(rel_no_ext):
+    """content 相對路徑（去副檔名）→ 站上的 URL 路徑。"""
+    parts = rel_no_ext.split("/")
+    if parts[0] == "guide":
+        return "/guide"
+    if parts[-1] == "_index":
+        return "/" + "/".join(parts[:-1])
+    return "/" + rel_no_ext
+
+
+def dead_inline_links(content_dir):
+    """回傳 [(檔案相對路徑, 連結原文, 解析後路徑)]——指不到任何頁的內文相對連結。"""
+    import posixpath
+
+    files = [p for p in content_dir.rglob("*.md")]
+    urls = {page_url(str(p.relative_to(content_dir))[:-3]) for p in files}
+    urls |= SECTION_ROUTES
+    out = []
+    for p in files:
+        rel = str(p.relative_to(content_dir))
+        u = page_url(rel[:-3])
+        for href in re.findall(r"\]\((\.\.?/[^)#]*)\)", p.read_text(encoding="utf8")):
+            target = posixpath.normpath(posixpath.join(u + "/", href.rstrip("/")))
+            if target not in urls:
+                out.append((rel, href, target))
+    return out
 
 
 def see_also_bad(site, path):
@@ -251,6 +297,12 @@ def check(st):
             why = see_also_bad(site, path)
             if why:
                 add("warn", "dead-seealso", f"{rel}: seeAlso → {site}/{path}（{why}）")
+
+    # ---- 2.7 內文相對連結（seeAlso 之外的第二種靜默 404）----
+    content_dir = src / "content"
+    if content_dir.is_dir():
+        for rel, href, target in dead_inline_links(content_dir):
+            add("warn", "dead-inline-link", f"{rel}: {href} → {target}（指不到頁）")
 
     # ---- 2.2 roadmap / mastery ----
     in_roadmap = {s for c in cats.values() for s in c["roadmap"]}
