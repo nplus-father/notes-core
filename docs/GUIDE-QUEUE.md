@@ -58,6 +58,7 @@
 | biblical-studies-note | 主題 | 107 | 83 | 0.8 | — | writtenAt 2026-08-27；全星系最大站；BST 52 卷兌現史入導覽；9 support 逐本帶到；書名連寫防空頭支票假報 |
 | startup-note | 主題 | 62 | 51 | 0.8 | — | writtenAt 2026-08-27；驗證學派正典鏈＋小而美戰線；11 support 逐本帶到；每階配驗收動作 |
 | career-note | 主題 | 68 | 51 | 0.75 | 2026-08-27 | writtenAt 2026-08-27；三問一暗線（共同敵人=追隨熱情）；四場官司含一萬小時公案（被告本人出庭）；9 support 兌現、8 delegated 指路；讀序=底盤＋處境分流 |
+| relationships-note | 主題 | 46 | 40 | 0.87 | 2026-08-26 | writtenAt 2026-08-27；三問一暗線（共同敵人=關係是自然的）；七卡六分類的橫切面判讀；寬恕官司（Lerner vs Forward）判分場景；spine 85% 給誠實解讀；讀序=分診不是課綱 |
 
 ## 第一批——站深料足，直接可做
 
@@ -65,7 +66,6 @@
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | communication-note | 主題 | 49 | 37 | 0.8 | 2026-07-31 |  |
 | learning-note | 主題 | 33 | 34 | 1.0 | — |  |
-| relationships-note | 主題 | 46 | 34 | 0.7 | — |  |
 | growth-note | 主題 | 44 | 33 | 0.8 | — |  |
 | business-strategy-note | 主題 | 50 | 31 | 0.6 | — |  |
 | life-meaning-note | 主題 | 39 | 31 | 0.8 | — |  |
