@@ -67,7 +67,11 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/export-missing-years.py` | 匯出全星系 bibliography 缺 `year` 的條目成 `docs/MISSING-YEARS.md`        |
 | `tools/export-deepen-ready.py`  | 盤點各站書單完成度與頁/書，排出可深化順序 `docs/DEEPEN-READY.md`          |
 | `tools/export-orphan-books.py`  | 反向盤點：書庫的書沒站在管、slug 死鏈 `docs/ORPHAN-BOOKS.md`              |
-| `tools/refresh-galaxy-docs.sh`  | **一次重算上面四份生成文件**並印落差；`--check` 有落差就 exit 1          |
+| `tools/export-year-conflicts.py` | 跨站同一本書的 `year`／`original` 不一致 `docs/YEAR-CONFLICTS.md`        |
+| `tools/export-deepen-targets.py` | 大部頭卻只被挖一鏟的書 `docs/DEEPEN-TARGETS.md`（只排序，開單留 Fable）  |
+| `tools/export-anchor-gaps.py`   | 頁面用了書裡的事實、卻掛到不含它的章 `docs/ANCHOR-GAPS.md`                |
+| `tools/export-guide-drift.py`   | 導覽的數字宣稱跟不上站台現況 `docs/GUIDE-DRIFT.md`                        |
+| `tools/refresh-galaxy-docs.sh`  | **一次重算上面八份生成文件**並印落差；`--check` 有落差就 exit 1          |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
@@ -94,6 +98,10 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/MISSING-YEARS.md`             | **書收了但沒填出版年**（缺口靠查初版年補）；由 `tools/export-missing-years.py` 生成 |
 | `docs/DEEPEN-READY.md`              | **哪些站書收齊了、可以進場深化**（排序表）；由 `tools/export-deepen-ready.py` 生成 |
 | `docs/ORPHAN-BOOKS.md`              | **書有了但沒有站在管**，外加死鏈 slug／anchor（缺口靠認領或開站補）；由 `tools/export-orphan-books.py` 生成 |
+| `docs/YEAR-CONFLICTS.md`            | **同一本書在不同站填了不同年**（缺口靠挑一個對的補）；由 `tools/export-year-conflicts.py` 生成 |
+| `docs/DEEPEN-TARGETS.md`            | **大部頭卻只被挖一鏟**的書（排序表，開單仍留 Fable）；由 `tools/export-deepen-targets.py` 生成 |
+| `docs/ANCHOR-GAPS.md`               | **頁面掛的章不含它引用的事實**（缺口靠改 `furtherReading` 補）；由 `tools/export-anchor-gaps.py` 生成 |
+| `docs/GUIDE-DRIFT.md`               | **導覽的數字跟不上現況**（站上幾頁、某分類幾頁、收了幾本）；由 `tools/export-guide-drift.py` 生成 |
 | `docs/EXCLUDED-BOOKS.md`            | **裁定不進任何站**的書（品質把關的裁決紀錄，手維護）；orphan 掃描讀它，命中者不列孤兒不再提醒 |
 | `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
 | `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
@@ -101,13 +109,15 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
 | `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
 
-**前七份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 七者是不同的軸，別混用——
+**前十一份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 各自是不同的軸，別混用——
 「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
 「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS，
-「哪些站現在可以進場深化」看 DEEPEN-READY，「書有了卻沒有站在管」看 ORPHAN-BOOKS
-（後四份是生成物，改各站 bibliography／內容再重跑，不要手改）。
+「哪些站現在可以進場深化」看 DEEPEN-READY，「書有了卻沒有站在管」看 ORPHAN-BOOKS，
+「同一本書各站年份打架」看 YEAR-CONFLICTS，「大部頭只挖了一鏟」看 DEEPEN-TARGETS，
+「延伸閱讀掛錯章」看 ANCHOR-GAPS，「導覽數字過期」看 GUIDE-DRIFT
+（後八份是生成物，改各站 bibliography／內容再重跑，不要手改）。
 
-> **四份生成物用 `tools/refresh-galaxy-docs.sh` 一次重算，不要單獨跑其中一支。**
+> **八份生成物用 `tools/refresh-galaxy-docs.sh` 一次重算，不要單獨跑其中一支。**
 > 生成物停更會開始騙人，而它看起來跟剛跑完一模一樣——2026-08-10 實測，committed 的
 > WANTED-BOOKS 說「先扣掉 0 本」，當場重跑是 23 本，採購前 20 名裡 2 本早就建好書站了。
 

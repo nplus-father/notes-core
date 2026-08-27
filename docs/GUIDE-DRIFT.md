@@ -1,0 +1,66 @@
+# 導覽數字與現況不符
+
+> **生成於 2026-08-27T15:51:30+08:00**｜由 `tools/export-guide-drift.py` 產生，**不要手改**——改資料源再重跑。
+
+由 `tools/export-guide-drift.py` 產生。判準：導覽（`guide/*.md`）與首頁總覽（`overview.ts`）裡**指向站台自身規模的數字**——總頁數、某分類幾頁、收了幾本——回去數實際檔案對不對得上。
+
+**為什麼另立一支**：`tier-audit.py` 的「導覽落後」欄只比日期（`enrichedAt` vs `writtenAt`），抓的是「內容補過、策展層還沒回頭看」；但站台長大時**日期可以完全不動而內容照樣說謊**。2026-08-27 收《飛輪效應》那輪就是這樣被手動抓到的。
+
+- **強訊號（數字在講整站規模）：0 筆**——句子接得住「概念頁」「分 N 區」「互相連結」，或前面是「寫完／讀完／收完」。這種數字錯就是錯，逐筆對現況改。
+- 弱訊號：33 筆——光禿禿的「站上 N 頁」，**多數其實是子集宣稱**（「站上三頁以它為主引」＝有三頁引用這本書，不是站台總共三頁），列出來供抽查，不是判決。
+
+計數口徑同時接受「只算概念頁」與「概念頁＋題型頁」兩種，兩個都對不上才報。
+
+## 強訊號：0 筆
+
+無——導覽的規模數字都對得上現況。
+
+## 弱訊號（多半是子集宣稱，不是債）：33 筆
+
+| 站 | 檔 | 宣稱的是 | 導覽說 | 實際 | 上下文 |
+| --- | --- | --- | ---: | ---: | --- |
+| `behaviour-interview-note` | 04-consensus-and-disputes.md | 站台總頁 | **3** | 36（＋題型 14） | …。但誠實說：這條線很細。「主管指派」改寫成「我主動接下」，若事實就是純被指派，已經越界；站上三頁對同一類改寫給的溫度並不一致（big-tech 最寬… |
+| `bogle-note` | 03-canon-tour.md | 站台總頁 | **4** | 14 | …017 年增訂版在首版上補了股利、資產配置、退休規劃三個章節，站上的書稿是這個版本。  站上四頁以它為主引：[指數投資常識](../concepts… |
+| `bogle-note` | 03-canon-tour.md | 站台總頁 | **3** | 14 | …案是雙重代理的結構，公司經營者站在股東與企業之間，投資管理者又站在受益人與股票之間。所以站上三頁以它為主引：[投資對抗投機](../concepts… |
+| `bogle-note` | 05-how-to-read.md | 站台總頁 | **3** | 14 | …ETF，第七章退休制度，第八章威靈頓基金，第九章十條守則。  讀法是把前五章當診斷、配站上三頁：[投資對抗投機：兩種文化的衝突](../conce… |
+| `cloud-infra-note` | 03-canon-guide.md | infrastructure 分類 | **4** | 6 | …自己的柱子  這一群的帳翻得最徹底：四本都已收，2026-08-21 之前四本都零引用、infrastructure 分類四頁全靠 Continuous Delivery、Wor… |
+| `damodaran-note` | 03-canon-tour.md | 站台總頁 | **4** | 13 | …驅動因子的對照表與「上路的十條守則」，第十條是「把故事轉換成數字」，直接通向下一本。  站上四頁都掛它：[估值小書](../concepts/val… |
+| `damodaran-note` | 03-canon-tour.md | 站台總頁 | **3** | 13 | …回填進教科書：《投資估價》前言明說「本版新增專章說明如何搭建這座橋」，就是第 13 章。站上三頁：[為故事估值](../concepts/narra… |
+| `damodaran-note` | 03-canon-tour.md | 站台總頁 | **0** | 13 | …章：循環與大宗商品、金融服務、無形資產、新興市場、分拆、價值對價格）——三本書都有料，站上零頁。 - 《估值的黑暗面》第 10 到 12 章成長、… |
+| `data-systems-note` | 02-schools-in-dialogue.md | 站台總頁 | **3** | 53 | …：資料庫最誠實的部分其實是它的 log——複製靠它、復原靠它，那何不讓 log 當主角？站上三頁串成這條翻轉的邏輯鏈：[全序廣播的心智模型就是一條所… |
+| `design-note` | 05-reading-path.md | 站台總頁 | **11** | 49 | …疊空間與三個限制、「更快的馬」的教訓、原型的承諾成本、以及把設計從產品推到系統的整條路（站上十一頁全程陪跑，從[三個重疊的空間](../concept… |
+| `fowler-note` | 05-how-to-read.md | 站台總頁 | **4** | 9 | …A）與《重構》同一種長法：前八章敘事、後面型錄，第一部照章讀、第二部查。敘事章的順序就是站上四頁的順序：[分層，以及 Layer ≠ Tier](.… |
+| `fowler-note` | 05-how-to-read.md | 站台總頁 | **1** | 9 | …nce〉；用 Riak、MongoDB 等四個產品示範的章可以跳，書自己承認那些會過時。站上一頁收：[聚合導向與多元持久化](../concepts… |
+| `grant-note` | 03-canon-tour.md | 站台總頁 | **3** | 15 | …—你怎麼與人互動——然後端出那張反直覺的分佈圖：付出者同時佔據成功階梯的最底層與最頂層。站上三頁對應三個關節：[三種互惠風格](../concept… |
+| `grant-note` | 03-canon-tour.md | 站台總頁 | **3** | 15 | …把原創性從人格特質改寫成一個可觀察的日常動作——你上一次質疑沒人質疑的預設值是什麼時候。站上三頁：[vuja de 與預設值](../concept… |
+| `grant-note` | 03-canon-tour.md | 站台總頁 | **3** | 15 | …ja de 都需要「我可能錯」這個前提，而《逆思維》是唯一把這個前提本身拿出來講的一本。站上三頁全部來自第一部：[傳教士、檢察官、政客——與科學家]… |
+| `grant-note` | 04-critiques-and-limits.md | 站台總頁 | **13** | 15 | …的心理學經典正在經歷什麼、三分法有多粗、《擁抱 B 選項》的前提——每一筆先講批評，再看站上 13 頁的證據怎麼說，最後給本站的判讀。立場先講明：這些帳多… |
+| `grant-note` | overview.ts | 站台總頁 | **13** | 15 | …{       heading: "Claims",       body: "站上十三頁可以疊成一條由外而內、再往下扎根的線。先是對人（gi… |
+| `grove-note` | 03-canon-tour.md | 站台總頁 | **7** | 12 | …課》（High Output Management, 1983）**是本站的第一根脊梁，站上七頁概念頁的母體。它的地位可以用一句話講完：這是一本**管理的… |
+| `grove-note` | 03-canon-tour.md | 站台總頁 | **4** | 12 | …的製造者——葛洛夫的結論是，兩種角色都當過之後，**當承受者比當製造者艱難得多**。  站上四頁對應它的四個關節：[策略轉折點](../concep… |
+| `hbr-note` | 05-reading-path.md | 站台總頁 | **7** | 30 | …ing Matter → Making Better Decisions。四本，三個月，站上七頁陪跑。 - **個人貢獻者想被看見**：Managi… |
+| `kent-beck-note` | 02-threads.md | 站台總頁 | **4** | 14 | …DD 的六個基本模式](../concepts/tdd/tdd-patterns/)）。站上四頁蓋住這條主線的三層：**策略層**是六個模式——其中… |
+| `nt-wright-note` | 03-canon-tour.md | 站台總頁 | **1** | 10 | …既成事實：讀者是從它們進來的，不是從一千七百頁進來的。 - **支架**（各撐一條出口，站上一頁夠用）：《邪惡與上帝新世界》與《保羅傳》。前者代位撐… |
+| `philosophy-note` | 01-what-this-field-asks.md | 站台總頁 | **10** | 34 | …three-faces-of-power/)）。  本站對問題三的判讀仍帶著明確的傾向：站上十頁裡，多數聲音仍站在德性／共善那條路徑上發言——**但… |
+| `philosophy-note` | 02-schools-in-dialogue.md | 站台總頁 | **18** | 34 | …噶 ✕ 應用哲學 ✕ 東方思想 ✕ 人文主義——收心術的四種方言  這四張卡片合起來撐起站上十八頁，第一章已說它們講的是同一個動作：把柄收回自己手上。… |
+| `philosophy-note` | 04-consensus-and-disputes.md | 站台總頁 | **18** | 34 | …繆會說這就是希望的縮小版。站上仍不判勝負，但兩造現在都可溯源，而且力量對比反過來了：**站上十八頁收心術對兩頁荒謬，頁數上慰藉派壓倒；論證的完整度上，… |
+| `philosophy-note` | 05-reading-path.md | 站台總頁 | **18** | 34 | …/concepts/stoicism/view-from-above/)）。這兩個動作是站上十八頁「收心術」的地基。  **《正義：一場思辨之旅》**… |
+| `philosophy-note` | 05-reading-path.md | 站台總頁 | **3** | 34 | …；第四章那筆懸置，就是為讀到這裡的人留的。  **東方線**：《世界是這樣思考的》之後，站上三頁（[和諧](../concepts/eastern/harmony-over-truth/)、[無我與空](../concepts/eastern/no-self-and-emptiness/)、[無為](../concepts/eastern/way-of-water/)）可當先導；再讀**《令人神往的靜坐開悟》**（_Wh… |
+| `system-design-note` | 03-canon-guide.md | 站台總頁 | **4** | 48（＋題型 20） | …ication 兩個分類的大半：耦合四型態、DDD 建模、通訊樣式的決策樹、韌性三件套，站上四頁以它為骨架。它還有一個隱性角色——**轉運站**：R… |
+| `system-design-note` | 05-reading-path.md | 站台總頁 | **8** | 48（＋題型 20） | …DIA 的登山口。然後進正題——**DDIA 的資料三章**：複製、分片、一致性與共識。站上八頁全程陪跑：[複製](../concepts/data… |
+| `thinking-note` | 03-canon-guide.md | 站台總頁 | **6** | 68 | …梁：The Righteous Mind（Jonathan Haidt，2012）。**站上六頁的三頁由它撐起：直覺先行的社會直覺模型、六個道德基礎… |
+| `thinking-note` | 03-canon-guide.md | 站台總頁 | **3** | 68 | …uroscience（Jaak Panksepp，1998）。**七大情緒系統的教科書，站上三頁的來源，也是書單上技術密度最高的一本——SEEKIN… |
+| `thinking-note` | 05-reading-path.md | 站台總頁 | **3** | 68 | …要往腦的深處走，接《Affective Neuroscience》——它是教科書，硬，但站上三頁（[原始情緒系統](../concepts/affect/primal-emotion-systems/)、[社交情緒](../concepts/affect/social-emotions/)、[研究立場](../concepts/affect/studying-emotion/)）可當先導地圖。  **語言入口**：《換了語言，就換… |
+| `writing-note` | 03-canon-guide.md | 站台總頁 | **3** | 41 | …n Clarity and Grace（Joseph Williams，1981）。**站上三頁的骨架（[角色當主詞](../concepts/st… |
+
+## 修法
+
+**保語氣、只改被現況打臉的數字**（MODEL-ROUTING §二最後一列：導覽過期多數不必重寫，只要對帳）。改完把該章的 `writtenAt` 推到當天；如果是 `overview.ts`，順手看一眼`lede`／`Verdict` 有沒有一起過期。
+
+數字對不上時**不預設是導覽錯**：頁被合併或除役時，導覽反而可能是對的——先看那句話在講什麼。
+
+## 重跑
+
+```bash
+notes-core/tools/export-guide-drift.py
+```
