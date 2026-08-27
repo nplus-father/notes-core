@@ -17,47 +17,45 @@
 
 ## 進行中
 
-- **末四站深化選題清單（2026-08-27 Fable 開單，起草交 Opus）**——導覽補齊輪剩下的四站
-  照 GUIDE-QUEUE 判準「先 enrich 再 guide」。tier-audit 四站六欄全 0（pastoral 的 5 頁
-  未溯源債已還清，帳上註記過期），問題是純粹的薄。選題已逐站看過分類分佈、spine 引用實況
-  與候選書章節目錄，**anchor 全部驗過目錄實存**。起草照 `/note-check` §6 書本位紀律，
-  每個主張掛得住 anchor 才寫；寫完單站跑 `export-anchor-gaps.py` 與 build。
+（無）
 
-  **cloud-note（12→15 頁，3 筆）**：
-  1. 與人連結（bonding）——`changes-that-heal` `docs/03-bonding/`；四任務之首、體系地基的
-     第一根柱；避開 changes-that-heal（總論頁）與 grace-truth-time；growth 分類
-  2. 分辨善惡：接納好壞並存——`changes-that-heal` `docs/05-discerning-good-and-evil/`；
-     分裂與理想化的臨床核心；同上避開；growth 分類
-  3. 信任的修復模型——`trust` `docs/04-the-model-for-repairing-trust/`（可補
-     `docs/03-growing-in-trust/`）；five-essentials-of-trust 頁只蓋五要素、重建之路是
-     書的下半部；relationships 分類
-  **gardner-note（11→13 頁，2 筆）**：
-  4. 什麼才算一種智能：八項判準——`frames-of-mind` `docs/02-the-theory/`；判準是 MI 的
-     方法論核心、theory-of-multiple-intelligences 頁蓋七智能總覽而判準常被跳過；
-     multiple-intelligences 分類（全站最薄，2 頁）
-  5. 五歲的心智勝過學校：頑固的直覺理論——`unschooled-mind` `docs/02-natural-learner/`
-     ＋`docs/03-understanding-educational-institutions/`；這本 spine 有引用但無專屬承載頁，
-     直覺理論的頑固性是 Gardner 教育診斷的核心；education-future 分類
-  **fengtang-note（9→12 頁，3 筆）**：
-  6. 本事：成事之後談什麼——`fengtang-have-capability`（五部各撐一節，anchor 落
-     `part-1-financial-freedom-explained/` 起）；三部曲之三無專屬頁；success-method 分類
-  7. 勢：一千三百年的局勢判讀——`fengtang-winner-method`（周紀五部）＋
-     `fengtang-capable-strategy` 合撐；兩本資治通鑑書各只 1 頁引用；management 分類（最薄）
-  8. 讀經典的方法：與第一流的靈魂對話——`fengtang-incredible`；《了不起》2 頁引用但
-     無方法論專頁（reading-classics 蓋品讀對象、這頁蓋「怎麼讀」）；literature-life 分類
-     ——起草前先核對 reading-classics 頁實際內容，重疊就換題（站內以實況為準）
-  **pastoral-psychology-note（5→8 頁，3 筆）**：
-  9. 懼怕人的解方：敬畏神——`when-people-are-big-and-god-is-small`
-     `docs/03-overcoming-the-fear-of-others/`；現有頁蓋 fear of man 的解剖、解方章是
-     書的下半場；inner-life 分類
-  10. 依附三型遇見神——`attached-to-god` `docs/03-anxious-spirituality/`＋
-      `docs/04-shutdown-spirituality/`＋`docs/05-shame-filled-spirituality/`；現有頁蓋
-      still face 與依附總論、三種靈性樣態值得專頁；inner-life 分類
-  11. 羞恥的解藥：脆弱與群體——`soul-of-shame` `docs/06-shames-remedy-vulnerability/`＋
-      `docs/08-redeeming-shame-in-our-nurturing-communities/`；shame-vs-guilt 蓋定義、
-      解藥半部未開；trauma-grief 或 inner-life 分類（起草時看鄰頁定）
-  完成後四站進導覽輪（人物站骨架：gardner／fengtang 人物站、cloud 人物站、
-  pastoral-psychology 主題站），屆時判層跟著 /note-guide 走（四站共 41 本未判層）。
+## 末四站深化輪（2026-08-27 Opus）——**11 筆開單、11 頁交付，其中 5 筆按實況換題**
+
+Fable 開的末四站選題單全部結案。四站 44 本藏書、頁數 12→15（cloud）、11→13（gardner）、
+9→12（fengtang）、5→8（pastoral），四站 `enrichedAt` 已蓋、六類違規維持全 0、
+`export-anchor-gaps` 各站 0 頁、全星系 checkup 回到 blocker/warn/nit 全 0。
+
+**本輪最重要的一件事：11 筆裡有 5 筆的原訂題目與既有頁撞題，按單上的紀律換了題。**
+開單時看的是「這本書被幾頁引用」，而**被引用 ≠ 那頁在講這本書的哪一塊**——撞題全發生在
+「書已有 1 頁、但那頁正好就是選題想切的角度」：
+
+| 原訂 | 撞到誰 | 換成 |
+| --- | --- | --- |
+| gardner：五歲直覺心智的頑固 | `teaching-for-understanding`（標題就是「馴服五歲的直覺心智」，三種學習者／直覺理論復辟全寫透了） | **學徒制與學校**（同一本書的機構分析半部：學徒制情境化 vs 學校去脈絡化、現代學校三任務、測驗＝去脈絡量度） |
+| fengtang：本事（有本事） | `real-capability`（同書 ch01＋ch09，財務自由＋請客測試） | **好習慣勝過智商與情商**（同書 ch02 五個好習慣＋ch22 三條人生原則） |
+| fengtang：勢（能人謀勢） | `zizhi-tongjian-lessons`（已合引兩本通鑑書，蓋讀法＋徙木立信＋用人金標準） | **不折騰的領導**（漢初守成／接班／現金流三課，落 management 分類——全站最薄） |
+| fengtang：讀經典的方法（了不起） | `reading-classics`（「讀書為己」「三省吾身」「四種修煉方式」都在） | **曾國藩日記裡的修身條目**（改挖零引用的《成事》，補上該書第一頁承載） |
+| cloud：信任修復（原訂只掛 ch04） | — | 擴成六步驟全景＋十一項真改變指標＋信任肌肉（ch03） |
+
+**方法論收穫（值得寫進開單流程）**：開單前的「引用頁數」統計要再加一欄——**那頁的
+`furtherReading` 掛的是這本書的哪幾章**。章級重疊才是真重疊；書級重疊常是假警報
+（《有本事》44 章、被引 1 頁，實際只用掉 2 章）。這比「先讀既有頁 core 全文」更省，
+可以先用 anchor 清單篩，再讀懷疑撞題的那一兩頁。
+
+**指揮單的規格錯接住 1 筆**：gardner 八項判準原指 `docs/02-the-theory/`，實際在
+`docs/01-background/04-what-is-an-intelligence/`（02 是各智能分論，07-critique 才有運算核心
+的補充）——照書本位紀律改掛，並補進 `intelligence-reframed` ch04 讓判準有「實戰示範」
+（博物智能通過、存在智能停在八又二分之一）。
+
+**順手還的三筆舊債**：cloud 站 7 條、fengtang 站 2 條**跨分類相對連結少一層**
+（`../<cat>/` 寫成同層，實際頁面深度是 `/concepts/<cat>/<slug>/`，要 `../../<cat>/`）——
+build 後逐頁掃 dist 的 href 才抓得到，三個既有頁（boundaries-in-marriage、
+integrity-meets-reality、five-essentials-of-trust、nine-word-motto）連同新頁一起修掉。
+**這一類 galaxy-checkup 看不到**（它驗 seeAlso 與 related，不驗內文相對連結），
+建議下一輪把「dist href 逐條驗」固化進工具。
+
+四站現在具備導覽的深度門檻（人物站 ≥15 頁：cloud 15、gardner 13、fengtang 12；主題站
+pastoral 8 頁仍薄，但 5 本 owned 全數有承載頁、頁/spine 1.6）——**交回 Fable 接導覽輪**。
 
 ## Opus 產出抽查輪（2026-08-27 Fable）——**四輪 21 筆樣本全過，補掛 1 筆殘欠**
 
