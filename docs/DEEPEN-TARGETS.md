@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-27T22:59:59+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-08-28T00:02:20+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **123** |
+| **候選（大部頭 × ≤1 頁）** | **121** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -43,16 +43,16 @@
 | 18 | 61 | 1 | `stott-note` | 當代講道藝術 |
 | 19 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
 | 20 | 60 | 1 | `science-note` | 高手相對論 |
-| 21 | 59 | 1 | `fengtang-note` | 能人謀勢 |
-| 22 | 59 | 1 | `design-note` | Refactoring UI |
-| 23 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 24 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
-| 25 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 26 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 27 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 28 | 53 | 1 | `startup-note` | Anything You Want |
-| 29 | 52 | 1 | `wujun-note` | 見識 |
-| 30 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 21 | 59 | 1 | `design-note` | Refactoring UI |
+| 22 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 23 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 24 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 25 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 26 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 27 | 53 | 1 | `startup-note` | Anything You Want |
+| 28 | 52 | 1 | `wujun-note` | 見識 |
+| 29 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 30 | 52 | 1 | `habits-note` | 18 Minutes |
 
 ## 二、依站分組
 
@@ -119,13 +119,6 @@
 - **Tools of Titans 巨人的工具** — 36 章 / 1 頁（`tools-of-titans`）
 - **HBR Guide to Managing Stress** — 34 章 / 1 頁（`hbr-guide-to-managing-stress`）
 - **How Not to Die 食療聖經** — 33 章 / 1 頁（`how-not-to-die`）
-
-### `fengtang-note`（4 本）
-
-- **穩贏** — 69 章 / 1 頁（`fengtang-stable-win`）
-- **能人謀勢** — 59 章 / 1 頁（`fengtang-capable-strategy`）
-- **勝者心法：資治通鑑成事之道** — 52 章 / 1 頁（`fengtang-winner-method`）
-- **有本事** — 50 章 / 1 頁（`fengtang-have-capability`）
 
 ### `habits-note`（4 本）
 
@@ -206,6 +199,11 @@
 
 - **The Rules of Management** — 109 章 / 1 頁（`rules-of-management`）
 - **The Rules of People** — 104 章 / 1 頁（`rules-of-people`）
+
+### `fengtang-note`（2 本）
+
+- **穩贏** — 69 章 / 1 頁（`fengtang-stable-win`）
+- **勝者心法：資治通鑑成事之道** — 52 章 / 1 頁（`fengtang-winner-method`）
 
 ### `tools-note`（2 本）
 
