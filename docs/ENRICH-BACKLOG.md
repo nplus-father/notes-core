@@ -19,6 +19,32 @@
 
 （無）
 
+## 內文死鏈輪（2026-08-28 Opus）——**第八類債：101 條靜默 404，一輪清零**
+
+深化輪順手修 cloud／fengtang 的相對連結時起疑：**內文連結從來沒有任何工具在驗**。
+既有檢查只看兩個 frontmatter 欄位（`seeAlso` 的 path、`related` 的 slug），
+正文裡的 `](../x/y/)` 寫錯就是靜默 404，讀者點了才知道。掃完全星系：
+**101 條死鏈散在 23 站**（最大戶 relationships 12、management 8、career／theology 各 7）。
+
+**錯法只有一種，而且是同一個 off-by-one**：概念頁 `concepts/<cat>/<slug>.md` 的 URL 是
+`/concepts/<cat>/<slug>/`——**頁面自己就是一層目錄**，所以同站跨分類要寫
+`../../<cat>/<slug>/`。寫成 `../<cat>/<slug>/` 會解析到 `/concepts/<cat>/<cat>/<slug>`，
+寫成 `../<slug>/` 會解析到同分類下不存在的頁。101 條全是這兩型（外加 1 條 `./<slug>/`）。
+
+**做法**：目標 slug 在站內唯一 → 自動改寫成 `../../<cat>/<slug>/`（guide 是單頁，
+寫 `../concepts/<cat>/<slug>/`），101 條全部有唯一解、0 條需要人工判斷。
+23 站逐站 build ＋ **dist 的 href 逐條回驗**（地面真相），全數 0 死鏈。
+
+**固化**：檢查已進 `galaxy-checkup.py`（新 code `dead-inline-link`，warn 級）。
+寫的時候踩了兩次 off-by-one，所以解析規則與**校準方法**都寫進工具註解：
+拿剛 build 過、dist 驗過的站當對照組，掃描結果必須是 0——2026-08-28 用
+cloud／gardner／fengtang／pastoral 四站校準。順帶記兩個容易誤判的點：
+`guide/NN-*.md` 全部渲染進單頁 `/guide/`（各章 URL 都是 `/guide`）；
+`/concepts/`、`/problems/`、`/check/`、`/library/` 是 core 產生的區段路由，
+不對應 content 檔，要當合法目標白名單（沒放白名單時多報 11 筆假陽性）。
+
+收工：`galaxy-checkup` 全星系 75 站 blocker 0／warn 0／nit 0。
+
 ## 末四站深化輪（2026-08-27 Opus）——**11 筆開單、11 頁交付，其中 5 筆按實況換題**
 
 Fable 開的末四站選題單全部結案。四站 44 本藏書、頁數 12→15（cloud）、11→13（gardner）、
