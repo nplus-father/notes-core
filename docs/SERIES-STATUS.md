@@ -165,7 +165,7 @@ frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/au
 `contemplative-pastor`、`reformed-dogmatics`（theology）與 `automatic-millionaire`
 （personal-finance）四本的深度概覽**全數 `audit-overview.py` PASS**、葉章 0 空。
 **personal-finance-note 因此完全解鎖**——它是 B 組裡唯一曾被書端擋住的站。
-`further-along-the-road-less-traveled`（peck）仍躺在 `archive/`、books-done 查無，除役或補寫待裁決。
+`further-along-the-road-less-traveled`（peck）2026-08-28 **裁決除役**：remote 與本機都已刪，全歷史 bundle 留底於 `books-management/archive/_deleted/`；peck-note 的條目保留標 `skipped`（人物站的全集盤點不因書站消失而漏記），導覽第三、五章同步改寫。
 
 ## 必改帳（2026-08-20 清帳輪結果）
 
@@ -247,7 +247,7 @@ learning 6 個、各站 related 單向數十筆⋯⋯）已在 08-26 體檢輪�
   wellness、cloud、gardner）補進對應批次表。
 - portal `health.json`（08-18）過期：21 本剛填完的書仍標 thin/near-empty，書站部署後重跑 fetch-health。
   （本檔的書端數字一律本機實測，不吃 health.json——這條只影響 portal 顯示。）
-- `archive/further-along-the-road-less-traveled`：躺在 archive/ 但 GitHub repo 未 archive、topics 照舊——除役還是補寫，待裁決。
+- ~~`archive/further-along-the-road-less-traveled` 除役或補寫待裁決~~：2026-08-28 與 `martin-luthers-catechisms-forming-the-faith` **一併除役**（Andrew 裁決）。兩本都留了全歷史 bundle。`archive/` 目錄現在只剩 `_deleted/`。
 - ~~`dictionary-of-paul-and-his-letters` 是否 waive 待裁決~~：2026-08-28 Andrew 裁決**不 waive、親自重寫中**
   （448 條目空 231）。這筆從 08-20 就掛在待裁決欄整整八天沒被端上檯面——**待裁決欄會沉底**，
   每輪收工時該主動把它念出來，不要只留在文件裡等人翻。
