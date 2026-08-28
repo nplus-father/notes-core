@@ -146,13 +146,30 @@ frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/au
 
 | 書 | 葉章 | 真欠債 | 卡哪一站 | 現況 |
 | --- | ---: | ---: | --- | --- |
-| `cost-of-discipleship` | 34 | 10 | theology、spiritual-formation | 9 章全空＋附錄佔位；兩站導覽皆已完工 |
-| `new-market-wizards` | 29 | 7 | schwager | 7 篇訪談章全空；導覽已完工 |
-| `microservices-patterns` | 29 | 7 | design-patterns、system-design | 兩站導覽皆已完工 |
-| `weight-of-glory` | 14 | 3 | lewis、spiritual-formation | 兩站導覽皆已完工 |
-| `building-microservices` | 17 | 2 | system-design | 原判 3，其一為「原書定稿無附錄」不算債 |
-| `message-of-hosea` | 19 | 2 | biblical-studies | **2026-08-28 全庫掃描才發現**——舊掃描漏了 |
-| `world-waiting-to-be-born` | 23 | 2 | peck | 導覽已完工 |
+| `new-market-wizards` | 29 | 7 | schwager | **本機無原文**（PDF／OCR 皆無）——不能寫，待補來源或比照 on-top-of-tides 記缺席 |
+| `message-of-hosea` | 19 | 2 | biblical-studies | **本機無原文**——同上 |
+
+**2026-08-28 書端補洞輪（Opus）：24 章處理完畢，全庫真欠債 56 → 32。** 五本重新體檢的結果
+只有一本是真的內容債：
+
+- `cost-of-discipleship` **10 章全部補寫**（20,825 字，逐章定位到原文行段），真欠債歸零。
+  附錄照實記「原書是兩份頁碼索引，本站不轉錄」——英文版確實有索引，但頁碼對不上本站結構。
+- `microservices-patterns` 補 1 章（第 9 章，10,504 字）；**其餘 5 章＋附錄無來源**——repo 的章節
+  結構沿用**第一版目錄**，手上 PDF 是**第二版 MEAP v4，只出到第 8 章**。已標 source-absent 保留目錄，
+  等更完整的 MEAP 到手可填（這是 on-top-of-tides 型的缺席，不是幽靈章）。
+- `building-microservices`、`world-waiting-to-be-born`、`weight-of-glory` **一章都不必寫**——
+  那些「空葉章」是**建結構時照猜測目錄開的幽靈章節**，原書根本沒有。已刪 7 個目錄（見下）。
+
+**幽靈章節：這一輪最大的發現。** 空葉章的成因不只「還沒寫」，更常見的是**目錄開錯**：
+- `weight-of-glory` 的第 10–12 篇（宗教與火箭學／宗教的衰落／宗教：實在還是替代品）**不屬於這本書**
+  ——掃描目錄逐頁確認，鄧軍海譯本只收九篇。其中〈宗教的衰落〉**早已完整寫在 `god-in-the-dock`**
+  （4,620 字），留著等於製造重複入口。
+- `building-microservices` 的 04／05 是舊版目錄殘留——原書 16 章沒有「Growing Pains」也沒有獨立
+  資料庫章，而**站方自己的部簡介早就寫著「資料庫與規模成長的議題已分散到本章與後續部章節」**。
+- `world-waiting-to-be-born` 的 preface／introduction 原書都沒有，目錄從第一部第 1 章直接開始。
+
+**刪除前必查**：這 7 個目錄有沒有被任何 note 站的 anchor 指到（實測 0 處）。有 anchor 就不能刪，
+要先改那一頁。
 
 **孤兒書那側另有 3 本帶欠債，但不卡任何站**（沒有站認領，見 [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)）：
 `trend-following-masters-volume-2`（空 2）、`what-life-should-mean-to-you`（空 2）、
