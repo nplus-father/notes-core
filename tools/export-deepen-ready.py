@@ -14,12 +14,12 @@
 
 **判準**（三分類，看的是「現在的瓶頸是什麼」）：
 
-  可深化   待收 ≤ 2 且 頁/書 < 1.5 —— 書在架上、還沒挖。這批是 /note-check --enrich 的目標。
-  已深化   頁/書 ≥ 1.5 —— 相對於手上的書已經挖得夠深，缺的多半是廣度（收書）或
+  可深化   待收 ≤ 2 且 頁/待深挖 < 1.5 —— 書在架上、還沒挖。這批是 /note-check --enrich 的目標。
+  已深化   頁/待深挖 ≥ 1.5 —— 相對於手上的書已經挖得夠深，缺的多半是廣度（收書）或
            使用者困惑驅動的補強（/note-master），不是再叫 enrich 產頁。
   先收書   待收 > 2 —— 瓶頸在採購不在寫作，先走 /note-wanted。
 
-  「頁/書」是粗指標（ENRICH-BACKLOG 原本就這樣註明），精確落差要進站跑 /note-check。
+  「頁/待深挖」是粗指標（分母＝owned 扣掉 tool 層），精確落差要進站跑 /note-check。
   它只回答「該不該進場」，不回答「該寫哪幾頁」。
 
 **溯源債獨立列**：沒有任何 `anchor` 的頁 = 主張沒被原文驗證過。這欄不參與三分類，
@@ -39,7 +39,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = Path(os.environ.get("NOTES_ROOT", HERE.parent.parent))
 OUT = HERE.parent / "docs" / "DEEPEN-READY.md"
 
-MINED = 1.5  # 頁/書 ≥ 此值視為「已深化」
+MINED = 1.5  # 頁/待深挖 ≥ 此值視為「已深化」
 NEAR = 2  # 待收 ≤ 此值視為「書單實質收齊」
 
 
@@ -86,6 +86,11 @@ def status_of(entry: str) -> str:
     return m.group(1) if m else "?"
 
 
+def tier_of(entry: str) -> str:
+    m = re.search(r'\btier\s*:\s*"([^"]*)"', entry)
+    return m.group(1) if m else "?"
+
+
 def scan(station_dir: Path) -> dict | None:
     bib = station_dir / "src" / "data" / "bibliography.ts"
     if not bib.exists():
@@ -93,6 +98,12 @@ def scan(station_dir: Path) -> dict | None:
     es = entries_of(bib.read_text(encoding="utf-8"))
     owned = sum(1 for e in es if status_of(e) == "owned")
     wanted = sum(1 for e in es if status_of(e) == "wanted")
+    # 「頁/書」的分母要排除 tool 層：那一層的承諾就是「列進盤點表即可」，本來就不打算開頁，
+    # 把它算進分母等於用「沒答應要做的事」去指控一個站沒做完。
+    # 2026-08-28 認領 326 本孤兒書（全判 tool）之後這個偏差變得很明顯：investing 的真實
+    # 比值是 0.76，含 tool 卻算成 0.43，直接排到「最沒挖」的前段——而本檔的用法正是
+    # 「由上而下就是開工順序」。當時 53 個有 tool 書的站裡有 4 站連判定都被翻掉。
+    deepenable = sum(1 for e in es if status_of(e) == "owned" and tier_of(e) != "tool")
 
     pages, no_anchor, cats, cats_with_mastery = [], 0, 0, 0
     for coll in ("concepts", "problems"):
@@ -114,9 +125,10 @@ def scan(station_dir: Path) -> dict | None:
     return {
         "station": station_dir.name,
         "owned": owned,
+        "deepenable": deepenable,
         "wanted": wanted,
         "pages": n,
-        "ratio": n / owned if owned else 0.0,
+        "ratio": n / deepenable if deepenable else 0.0,
         "no_anchor": no_anchor,
         "sourced_pct": (n - no_anchor) / n * 100 if n else 0.0,
         "cats": cats,
@@ -153,9 +165,9 @@ def main() -> None:
     )
     w(
         f"**判準**：`待收 > {NEAR}` → 瓶頸在採購（先走 `/note-wanted`）｜"
-        f"`頁/書 ≥ {MINED}` → 相對手上的書已挖得夠深（要的是廣度或 `/note-master`）｜"
+        f"`頁/待深挖 ≥ {MINED}` → 相對手上的書已挖得夠深（要的是廣度或 `/note-master`）｜"
         "其餘 → **可深化**，書在架上還沒挖。\n\n"
-        "「頁/書」是粗指標，只回答「該不該進場」，不回答「該寫哪幾頁」——"
+        "「頁/待深挖」是粗指標（分母＝owned 扣掉 tool 層，tool 本來就不打算開頁），只回答「該不該進場」，不回答「該寫哪幾頁」——"
         "精確落差進站跑 `/note-check`（它會先給五個指標再給 backlog）。\n\n"
     )
     w(f"共 {len(rows)} 站：**可深化 {len(ready)}**、已深化 {len(mined)}、先收書 {len(blocked)}。\n\n")
@@ -165,11 +177,11 @@ def main() -> None:
         if not items:
             w("（無）\n\n")
             return
-        w("| 站 | 已收 | 待收 | 頁數 | 頁/書 | 溯源 | mastery |\n")
-        w("| --- | ---: | ---: | ---: | ---: | ---: | ---: |\n")
+        w("| 站 | 已收 | 待深挖 | 待收 | 頁數 | 頁/待深挖 | 溯源 | mastery |\n")
+        w("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |\n")
         for r in items:
             w(
-                f"| `{r['station']}` | {r['owned']} | {r['wanted']} | {r['pages']} "
+                f"| `{r['station']}` | {r['owned']} | {r['deepenable']} | {r['wanted']} | {r['pages']} "
                 f"| **{r['ratio']:.1f}** | {r['sourced_pct']:.0f}% "
                 f"| {r['mastery_cats']}/{r['cats']} |\n"
             )
@@ -178,7 +190,7 @@ def main() -> None:
     table(
         "可深化",
         ready,
-        "書單實質收齊、手上的書還沒挖完。**由上而下就是建議的開工順序**（頁/書 愈低＝"
+        "書單實質收齊、手上的書還沒挖完。**由上而下就是建議的開工順序**（頁/待深挖 愈低＝"
         "架上材料愈沒被用到）。進站跑 `/note-check` 看落差，確認後 `--enrich`。",
     )
     table(
