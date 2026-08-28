@@ -6,8 +6,9 @@
 **站側數字是重算的，不是手打的**（2026-08-28 起）：`tools/galaxy-checkup.py --json` 一次掃完
 75 站（頁數／溯源／mastery／roadmap／findings），導覽日期取 `src/content/guide/*.md` 的最大
 `writtenAt`，owned 數來自各站 `bibliography.ts`。要刷新就重跑那支再更新本檔——
-08-20 那輪用的一次性 scratchpad 腳本已被它取代。**書端狀態仍要手工判讀**（空葉章數＋
-`audit-overview.py`），那半是本檔留著手動維護的理由。
+08-20 那輪用的一次性 scratchpad 腳本已被它取代。**書端也已工具化**（2026-08-28 起）：
+空葉章用 `hugo-book-manager/scripts/audit-empty-leaves.py --all`、深度概覽用同目錄的
+`audit-overview.py`；本檔留著手動維護的只剩「這筆債要不要現在還」的判斷。
 
 **與其他 docs 的分工**：[GUIDE-QUEUE.md](./GUIDE-QUEUE.md)＝`/note-guide` 佇列正本；
 [DEEPEN-READY.md](./DEEPEN-READY.md)＝每次重算的自動排序表；本檔＝**系列定義＋站側快照＋書端卡點＋進度**。
@@ -20,11 +21,13 @@
 - **收書歸零**：bibliography `wanted = 0`（`unavailable`／`skipped` 不算欠）。
 - **書端完工**：owned 全數 ① deep overview 品檢 PASS（`audit-overview.py`）② content fill 完成。
   content fill **以本機實測為準**——portal `health.json`（08-18 產）過期，21 本 08-19～20 剛填完的書被誤標 thin/near-empty。
-  空葉章節 ≥2 的書算未完；恰 1 個空葉（多為附錄）不擋站、只註記；watch 級（8–15k 字）不擋。
+  **真欠債**葉章 ≥2 的書算未完；恰 1 個（多為附錄）不擋站、只註記；watch 級（8–15k 字）不擋。
+  「真欠債」由 `audit-empty-leaves.py` 判定——交叉參照條目與原書就沒有的章不算（見書端卡點節）。
 
 **結果（2026-08-28 收官）：達標 75 站全數 `wanted = 0`、站側 findings 0，導覽 75/75 全數完工**
 ——B 組六站當日補齊（pf／lm／cloud／gardner／fengtang／pastoral），guide 產線收官。
-書端仍有 8 本帶空葉章的書（見下表），書端補洞是獨立的 Opus 線，不再擋任何站。
+書端仍有 7 本帶真空葉章的書（見下表，2026-08-28 全庫重掃後的數字），書端補洞是獨立的
+Opus 線，不再擋任何站。
 
 ## A 組——導覽已完工（69 站，2026-08-28 重算）
 
@@ -120,29 +123,43 @@
 詳帳見 ENRICH-BACKLOG「導覽補齊輪・第二十七、二十八站」與「第二十九～三十二站」兩則
 （含 fork 驗證網抓到的站內既有錯誤：gardner「25 年」、fengtang 金線用字、pastoral REACH 溯源還債）。
 
-## 書端卡點（2026-08-28 重掃空葉章）
+## 書端卡點（2026-08-28 全庫重掃，判準已修正）
 
 判準同上：空葉章 ≥2 算未完；恰 1 個空葉不擋站、只註記。空葉＝該章 `_index.md` 去掉
 frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/audit-overview.py` 驗。
 
-> **為什麼這一欄非得手工掃，portal 的 `health.json` 代替不了**：它的分級只吃兩個**聚合**
-> 數字——總字數與平均密度（`fetch-health.ts` 的 `tierOf(chars, density)`：密度低於門檻＝
-> near-empty，總字數低於門檻＝thin／watch，否則 ok）。**聚合值看不見雙峰分佈。**
-> `dictionary-of-paul` 就是活標本：448 條目裡 231 條全空，但另外 217 條夠肥，全書仍有
-> 227 萬字、平均 4803 字/頁 → portal 判它 `tier: "ok"`，全庫最健康的一群。
-> 凡是「條目型」的書（辭典、百科、訪談集、講章集）都會這樣騙過聚合指標，
-> **只有逐葉章量才抓得到**。反過來，portal 判 thin 的書則多半是真的薄，可以信。
+> **空葉不能只用字數判——2026-08-28 為此重掃過一次全庫。** 字數門檻只是「值得看一眼」
+> 的觸發器，體裁決定一章該多長。正本工具是 `hugo-book-manager/scripts/audit-empty-leaves.py`
+> （`--all` 掃全庫），它把短葉章分四類，只有前兩類算債：`placeholder`（寫著待補）、
+> `blank`（完全沒內文）算債；`xref`（辭典的「參見 X」交叉參照）、`source-absent`
+> （原書此版本就沒這章）不算債；其餘 `thin` 列出來給人判。
+> 首掃 1829 本：**真欠債 56 章，另有 237 章是被門檻撈出來、體裁本來就短的**。
+>
+> 兩個活標本說明為什麼非分類不可：`dictionary-of-paul` 的 231 條「空葉」**全部**是
+> 「阿們 → 參見 Prayer」這種交叉參照，那就是該條的完整內容，真欠債 **0**；
+> `on-top-of-tides` 的 5 章則是原書該版本只列章名、正文標「待續」，書上就沒有，補不了。
+> 兩本都已從下表移除。
+>
+> **portal 的 `health.json` 也代替不了這張表**（但原因不同）：它的分級只吃兩個**聚合**
+> 數字——總字數與平均密度（`fetch-health.ts` 的 `tierOf(chars, density)`）。聚合值看不見
+> 分佈，所以條目型的書半數條目再短也照樣判 `ok`。反過來它判 thin 的書多半真薄，可以信。
 
-| 書 | 葉章 | 空葉 | 卡哪一站 | 現況 |
+| 書 | 葉章 | 真欠債 | 卡哪一站 | 現況 |
 | --- | ---: | ---: | --- | --- |
-| `dictionary-of-paul-and-his-letters` | 448 | 231 | biblical-studies | **Andrew 重寫中（2026-08-28 起）**——不 waive；導覽已完工 |
-| `cost-of-discipleship` | 34 | 10 | theology、spiritual-formation | 兩站導覽皆已完工，只欠書端補洞 |
+| `cost-of-discipleship` | 34 | 10 | theology、spiritual-formation | 9 章全空＋附錄佔位；兩站導覽皆已完工 |
 | `new-market-wizards` | 29 | 7 | schwager | 7 篇訪談章全空；導覽已完工 |
 | `microservices-patterns` | 29 | 7 | design-patterns、system-design | 兩站導覽皆已完工 |
-| `on-top-of-tides` | 24 | 5 | wujun | 導覽已完工 |
 | `weight-of-glory` | 14 | 3 | lewis、spiritual-formation | 兩站導覽皆已完工 |
-| `building-microservices` | 17 | 3 | system-design | 導覽已完工 |
+| `building-microservices` | 17 | 2 | system-design | 原判 3，其一為「原書定稿無附錄」不算債 |
+| `message-of-hosea` | 19 | 2 | biblical-studies | **2026-08-28 全庫掃描才發現**——舊掃描漏了 |
 | `world-waiting-to-be-born` | 23 | 2 | peck | 導覽已完工 |
+
+**孤兒書那側另有 3 本帶欠債，但不卡任何站**（沒有站認領，見 [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)）：
+`trend-following-masters-volume-2`（空 2）、`what-life-should-mean-to-you`（空 2）、
+`flying-together-a-christian-marriage-guide`（佔位 1＋待判 2）。**認領它們之前不必補**。
+
+> **舊掃描為什麼會漏**：它是從「站的 owned 書」出發的，孤兒書天生不在掃描範圍內。
+> `--all` 從書庫那側掃才看得見——與 ORPHAN-BOOKS 是同一種反向視角。
 
 **這一輪清掉的卡點（08-20 還掛著、現已通過）**：`christian-theology-introduction`、
 `contemplative-pastor`、`reformed-dogmatics`（theology）與 `automatic-millionaire`
