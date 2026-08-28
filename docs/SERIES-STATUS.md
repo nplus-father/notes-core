@@ -149,7 +149,20 @@ frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/au
 > 一條路，那是整套流水線的紅線。`audit-empty-leaves.py` 已加 `no-source` 分類承接這條規則；
 > 日後把原始檔放進 repo 目錄，換掉說明重跑即可。
 
-**書端卡點：0**——2026-08-28 起，所有仍掛帳的空葉章都有原始檔可依據，沒有任何一本擋著站。
+**書端真欠債：0**——2026-08-28 三輪清畢（56 → 32 → 23 → 0）。第一輪修判準（幽靈章／
+交叉參照不算債）、第二輪定通則（repo 無原始檔＝no-source 不算債）、第三輪把剩餘 21 本
+23 章逐本結清：**能寫的寫**（surprised-by-joy 6,055 字、trend-following 兩章 7.2k 字）、
+**原書沒有的寫查證說明**（7 章——含 what-life 的「PREFACE」其實是出版社叢書序非阿德勒）、
+**沒原始檔的記 no-source**（14 章）。全庫剩 25 本 thin 待判（工具不猜、逐本人看，多為單章）。
+
+三筆補洞輪的額外發現，記檔備查：
+- `flying-together` 的 PDF **不是原書**——是 Bookey 第三方摘要（jsPDF 產生）；該 repo 的
+  「原始檔」其實是衍生品，日後補真原著才能擴寫。
+- `resident-aliens` 第二部譯自 1996 年續作 *Where Resident Aliens Live*，repo 只有 1989 原著
+  PDF——那一部 5 章偏薄的原因；補 1996 原檔可一次補平。
+- `pdftotext -layout` 對 Adobe-Identity-H 字型會整檔萃不出來，**去掉 `-layout` 重跑**即可。
+- `central-bank-privilege` 的附錄連「原書有沒有」都無法確認（無原始檔、站內零引用），
+  頁面明寫兩條收尾路徑，**待 Andrew 拿到原書後定奪**。
 
 **2026-08-28 書端補洞輪（Opus）：24 章處理完畢，全庫真欠債 56 → 32。** 五本重新體檢的結果
 只有一本是真的內容債：
