@@ -19,6 +19,50 @@
 
 （無）
 
+## 孤兒書認領輪（2026-08-28 Fable）——**329 → 1，全星系書庫幾乎全部有站在管**
+
+Andrew 裁決「全都值得留、自動分類到各站」。328 本分 8 批派 fork 判站台，
+**326 本套用成功**（39 站），另 3 本各有處置。統一契約：`tier` 一律 `tool`
+——判 spine 會製造真欠債、判 support 會製造空頭支票，兩者都會打破六類全 0；
+`tool` 的承諾正是「列進盤點表即可」，零寫作義務。
+
+**流程**：`export-orphan-books.py` 抽 329 本 → 書 repo `site/content/_index.md`
+frontmatter 補 metadata（327/329 有 blurb＋published）→ 8 個 fork 判站／組／note
+→ **決策只交 JSON，TS 由 `tools/apply-claims.py` 產生**（沿用判層輪的紀律：
+讓模型逐筆改 TS 必壞語法）→ 39 站 prettier 語法閘 → tier-audit → build 抽驗。
+
+**分組安全的關鍵發現**：`Bibliography.astro` 依 `group` **欄位值**分組（首次出現決定
+組序）、組內依 `year` 排序，**實體順序不影響呈現**——所以新條目一律附加在陣列末尾即可，
+不必在檔案中間插入。這條讓大批量寫入的風險趨近於零。
+
+**預檢抓到的四種「其實站上已經有」**（首輪只比對 title 逐字，漏掉前三種）：
+1. **中譯名對英文原名**：`god-in-the-dock` 在 lewis-note 早有條目（「上帝在受審」、
+   `unavailable`、無 slug）。**改成就地更新既有條目**（補 slug／翻 owned），不是新增。
+2. **線索寫在 note 欄**：`servant-leadership`（Boone）——leadership-note 的 Greenleaf
+   條目 note 明寫「portal 的 servant-leadership 即該書」。站上早知道，只是沒填 slug。
+3. **系列彙總只掛首冊 slug**：Goldingay 舊約神學三卷、胡爾摩斯三冊、岡薩雷斯通史兩卷
+   ——其餘卷因此都是孤兒。已逐冊立條目，彙總條目改名並註記；biblical-studies 的檔頭
+   「系列合併成一筆」慣例同步修正（合併會製造孤兒）。
+4. **同名不同書**：`change-your-thinking-change-your-life`（Murphy）vs tracy-note 收的
+   Tracy 同名書——fork 已在 note 寫明區辨，不是重複。
+
+**工具 bug（本輪順手修）**：`tier-audit.py` 的 `name_candidates` 對書名副標前綴只設
+4 字元下限，讓 `Money: Know More…` 產生候選詞 `Money`，撞上導覽談 Morgan Housel
+《The Psychology of Money》的句子，報假的「文資不符」。改成**中文 4、ASCII 8**
+（先試 10，`Smartcuts`／`Make Time` 當場誤判成空頭支票，用實例校準回 8）。
+當時全星系有 26 個同型英文短前綴（Scrum、Range、Kafka…）是未爆彈。
+
+**三本沒進書單**：`mental-fitness`（與 `learned-excellence` 重複建站，08-26 已裁決，
+補進 EXCLUDED-BOOKS）、`martin-luthers-catechisms-forming-the-faith`（躺 archive/，
+與 `further-along-the-road-less-traveled` 同為除役候選，**待 Andrew 裁決**）、
+`bible-atlas`（本機未 clone，已認領但 metadata 待補）。
+
+**副作用照實記**：全星系藏書 1923 → 2249，豁免率 34% → **44%**。這是誠實的
+——這批書就是「上架但還沒engage」。但要記住紀律：**豁免錯了不會有人再發現**。
+`tool` 層的書不會被任何現有工具推上檯面（DEEPEN-TARGETS 只看 spine，既成事實衝突
+要 ≥3 頁引用而 tool 書沒有頁會引它），所以這 326 本會靜靜躺著直到有人主動回頭看。
+8 個 fork 各自交了「建議升層」清單（約 30 本），那是下一輪的現成材料。
+
 ## 導覽補齊輪・第二十九～三十二站（2026-08-28 Fable）——**cloud＋gardner＋fengtang＋pastoral 四站完工，導覽收官 75/75**
 
 末四站一口氣收完，**收書歸零的站導覽全數到位**（唯 leetcode-note 不在流水線內）。5-fork 產線照舊；

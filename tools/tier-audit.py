@@ -30,6 +30,9 @@ ROOT = os.environ.get("NOTES_ROOT") or os.path.abspath(os.path.join(os.path.dirn
 CORE = os.path.join(ROOT, "notes-core", "src", "lib", "sites.ts")
 TIERS = ("spine", "support", "tool", "delegated")
 
+# 書名片段是中文還是英文，決定它的長度下限（見 name_candidates 的說明）。
+CJK = re.compile(r"[一-鿿]")
+
 
 def stations():
     return sorted(d for d in os.listdir(ROOT) if d.endswith("-note") and os.path.isdir(os.path.join(ROOT, d)))
@@ -151,6 +154,18 @@ def name_candidates(entry):
     導覽行文卻只用其中一半——拿整串去比對會漏掉，把談了整段的書誤判成空頭支票。
     所以要把雙語名拆成可獨立辨識的片段。長度下限是防誤命中：太短的片段
     （「重構」「高手」「Design」）會在散文裡到處撞到，反而把真的空頭支票蓋掉。
+
+    **中文與英文的下限不能一樣**（2026-08-28 修）：四個漢字已經夠獨特，四個英文
+    字母卻可能是 Money／Grit／Flow／Range 這種到處都是的常用字。原本「去副標」
+    那條規則讓 `Money: Know More, Make More, Give More` 產生候選詞 `Money`，
+    結果撞上導覽裡談 Morgan Housel《The Psychology of Money》的句子，報出一筆
+    假的「文資不符」。當時全星系有 26 個同型的英文短前綴（Scrum、Range、Kafka…）
+    都是未爆彈。
+
+    ASCII 下限取 **8**，是拿實例校準出來的，不是拍腦袋：先試 10，`Smartcuts`（9）
+    與 `Make Time`（9）當場被誤判成空頭支票——那兩本導覽明明寫了。8 剛好擋掉
+    Money／Range／Scrum／Kafka／slide 這些常用字，又保住造詞型書名。捨掉的短前綴
+    不影響偵測，因為完整書名與長 ASCII 片段都還在候選裡。
     """
     out = set()
     for key in ("title", "original"):
@@ -161,7 +176,7 @@ def name_candidates(entry):
         out.add(re.split(r"[:：（(]", t)[0].strip())  # 去副標
         out.update(r.strip(" ,.:-—") for r in re.findall(r"[A-Za-z][A-Za-z0-9 '’&.,:!?\-]{9,}", t))
         out.update(re.findall(r"[一-鿿]{4,}", t))
-    return {c for c in out if len(c) >= 4}
+    return {c for c in out if len(c) >= (4 if CJK.search(c) else 8)}
 
 
 # 導覽第三章寫判層的句式很固定：「**書名（作者，年）**判**工具書層，不排隊**」，
