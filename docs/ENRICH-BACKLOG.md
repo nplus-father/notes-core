@@ -17,7 +17,33 @@
 
 ## 進行中
 
-### 升層選題輪・第一批（2026-08-28 Fable 開單，起草歸 Opus）
+### 升層選題輪・第一批——**10 頁全數交付（2026-08-28 Opus 起草，當日結案）**
+
+10 頁全開、2 筆補 anchor 完成、10 本 tool→spine 升層完畢。六類違規全 0、checkup 75 站全 0、
+**全星系溯源債歸零**（design-patterns 那筆有書名沒章節的 furtherReading 一併補掛）。
+豁免率 44% → 43%（2250 本、976 豁免）。commits：investing `2e8aca2`、communication `6179d40`、
+theology `d959fd2`＋`a2cf5e2`、thinking `cfc26b7`、spiritual-formation `3a6f919`、
+philosophy `89a0174`、growth `f175b3d`、design-patterns `126b349`。
+
+**開單四處被起草層擋下——都是指揮層的錯，記檔避免重犯**：
+1. **書不在我指定的站**（兩次）。`walden` 在 philosophy-note、`secular-age` 也在 philosophy-note，
+   我卻分別派給 life-meaning 與 theology。梭羅那位代理自己查了 bibliography 才發現：
+   **照單寫下去，頁會引用一本該站不擁有的書——稽核算不到引用，後續 tool→spine 也無處可升**。
+   它改寫在 philosophy-note。Taylor 那位沒察覺，由主會話收尾時發現並改成**跨站收錄**：
+   theology 新增 owned+spine（頁在那裡），philosophy 那筆改判 `delegated → theology`。
+   **教訓：開單前必須 grep 確認那本書在哪一站的 bibliography，不能憑主題推測。**
+2. **切角早被別頁佔用**。開單給 Hauerwas 的「教會就是社會倫理」，`apologetics/public-faith.md`
+   已完整寫過；代理改切「敘事與品格的方法論」（論證層，全站空白）。
+3. **把批評者的話當成書中事實**。開單寫梭羅「一年只需工作六週」，實際上那句只出現在
+   厄普代克導論、且是**用來批評梭羅**的；代理拒絕寫進 core，改放保留意見節。
+4. **書源自身不一致要挑邊並說明**：小屋總成本〈經濟篇〉記 28.12½、導論記 28.11½，
+   採正文章節值。另修兩處名詞：「橘汁測試」→書源「柳橙汁測驗」、「靈性超新星」→「屬靈超新星」。
+
+**撞題檢查的實際戰果**（每頁動筆前都讀了疑似撞題頁的 core 全文）：thinking 那頁發現
+過度擬合已被 Silver 寫完，主幹改為最佳停止＋探索利用，過擬合改寫成「決策版」與統計建模版分工；
+其餘各頁確認不撞並互加 related 與分工句。
+
+### 原始開單（2026-08-28 Fable，保留供對照）
 
 昨日認領的 326 本 tool 書中，8 個分派 fork 共交 33 本「建議升層」。Fable 逐本裁決
 （章節目錄全查、撞題疑慮的既有頁 core 抽讀過：世俗時代頁是 Keller 書源、值得想要頁
