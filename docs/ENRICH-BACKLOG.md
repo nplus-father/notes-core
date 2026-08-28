@@ -19,6 +19,34 @@
 
 （無）
 
+## 導覽補齊輪・第二十九～三十二站（2026-08-28 Fable）——**cloud＋gardner＋fengtang＋pastoral 四站完工，導覽收官 75/75**
+
+末四站一口氣收完，**收書歸零的站導覽全數到位**（唯 leetcode-note 不在流水線內）。5-fork 產線照舊；
+三個人物站用 who-is／threads／canon-tour／critiques／how-to-read 骨架（範本 peck），
+pastoral 用主題站骨架（範本 life-meaning）。四站各五章＋overview 接線＋build 綠＋dist 死鏈 0＋稽核六欄 0。
+Commits：cloud `b170186`、gardner `b0c7e79`、fengtang `b6f4cef`、pastoral `5de1092`，全在本地未 push。
+
+**驗證網戰果（fork 回源抓到的站內既有錯誤，全數同步修正）**：
+
+- gardner：站內四處寫《智力的重構》是「25 年後的自我修訂」——1983→1999 實為十六年，書源亦無此說
+  （25 年是《新視野》的自述）。bibliography note／profile readingPath／分類 intro／概念頁四處同修。
+- fengtang：金線定義站內三處寫「以事實為依據」，書源逐字是「以事實為**基礎**」——概念頁＋profile 同修。
+  另一筆存疑未動：《了不起》自序把三部曲記為 2018／2021／2022，與 bibliography 的 2019／2020／2020
+  不合（疑版次差異），四個 fork 章內一律迴避該組年份，帳留給 Andrew 裁決。
+- pastoral：forgiveness-two-kinds 頁註「REACH 五步無法溯源」已過期——McMinn 第 7 章有 R/E/A/C/H
+  逐字轉述，anchor 已補、註記改為「原書進架前以轉述為準」，第三章導讀同步改寫。
+- cloud：ch3 標籤誤植「園主」（正確章名「園丁大師」）；《成長神學》案例人名照書源「露絲（Ruth）與乘（Sam）」
+  ——「乘」是書自己的譯名，兩章對齊。
+
+**策展判讀（各站一句）**：cloud 判「切割文化引用他的詞彙、違反他的文法」；gardner 判
+「傷理論最深的是教室裡的盟友」＋三場智能審查證明判準不是橡皮圖章；fengtang 判「文學是
+成事學的防腐劑」＋成功學指控「界線可檢驗、但證據結構是倖存者自述」；pastoral 判「兩端
+同開一張藥方」＋封閉書單 5/10 誠實入章——下一步在收書端。
+
+**接縫教訓（沿用並驗證）**：招牌場景最多兩講（希爾頓／吉兒電話簿／潘霍華句各壓掉第三講）；
+台詞式引句一家一句（穩贏宣言、饒恕拆三件事都收回單一章）；勝者／能人兩書共用同題序言
+不是標籤錯（查過書源才知道——別看到同名就改）。
+
 ## 導覽補齊輪・第二十七、二十八站（2026-08-28 Fable）——**personal-finance＋life-meaning 雙站完工，71/75**
 
 導覽輪漏接的兩站補齊。5-fork 產線照舊（落盤保險、帳單制 support、labels 照 bibliography 原樣），
