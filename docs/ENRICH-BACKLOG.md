@@ -17,6 +17,53 @@
 
 ## 進行中
 
+### 升層選題輪・第二批（2026-08-28 Fable 開單，起草走 Opus 代理）——9 頁
+
+第一批的教訓全數照做：**每本先 grep 確認在哪一站**（果然又抓到一筆——franklin 在
+history-note 不在 habits）、撞題疑慮頁的 core 全數抽讀過。裁決：9 開、1 不開、1 跨站。
+
+**開頁 9 筆**：
+1. **clean-code**／`mythical-man-month`——「概念完整性：一個心智的設計」。全站 grep Brooks 零命中。
+   切：概念完整性（ch4 貴族制與民主制）、第二系統效應（ch5）、Brooks 定律與人月神話（ch2）、沒有銀彈（ch16）。
+   anchor：`docs/04-aristocracy-democracy-system-design/`、`docs/05-second-system-effect/`、`docs/02-mythical-man-month/`、`docs/16-no-silver-bullet/`。
+2. **communication**／`getting-to-yes-with-yourself`——「先跟自己談判：內在 BATNA」。
+   避撞：BATNA 頁是外部後路（core 讀過），本頁是 Ury 晚期補的內在半場；互連。
+   anchor：`docs/01-put-yourself-in-your-shoes/`、`docs/02-develop-your-inner-batna/`、`docs/03-reframe-your-picture/`。
+3. **system-design**／`software-architect-elevator`——「架構師電梯：在機房與董事會之間上下」。
+   fundamentals 六頁全技術面，組織面全空。anchor：`docs/01-architects/`、`docs/03-communication/`、`docs/04-organizations/`。
+4. **growth**／`long-win`＋`winning-grover` **成對一頁**——「贏的兩種定義」。Bishop 的長勝
+   （清晰／持續學習／連結）對 Grover 的不擇手段（贏帶你下地獄也值得）。與 bright-sided
+   不同軸（那頁是樂觀意識形態，本頁是競爭文化）。
+   anchor：long-win `docs/01-what-does-winning-mean/`、`docs/03-new-approach-to-winning/`；
+   grover `docs/01-winning-makes-you-different/`、`docs/13-winning-has-a-steep-price/`。
+5. **relationships**／`sociopath-next-door`——「無良心的 4%：辨識與自保」。
+   避撞：necessary-endings 頁是修剪（core 讀過），本頁是辨識沒有良心的人；boundaries 組缺的一角。
+   anchor：`docs/01-the-seventh-sense/`、`docs/06-recognize-the-remorseless/`、`docs/08-sociopath-next-door/`。
+6. **habits**／`autobiography-of-benjamin-franklin`——「十三美德追蹤表：習慣追蹤的 1730 年代原型」。
+   **跨站**：書在 history-note，已照 secular-age 前例在 habits-note 掛帳（tool）；頁成後 habits 升
+   spine、history 改 delegated(habits)。anchor：`docs/04-pursuit-of-moral-perfection/` 為主。
+7. **leadership**／`power-of-servant-leadership`——「僕人領導：先服事，才領導」。Greenleaf 遺稿集，
+   bibliography 明示 1977 原典無貨、這本是最接近源頭的替代。避撞：circle-of-safety 頁是 Sinek
+   的安全圈（core 讀過），本頁是 Greenleaf 一脈的源頭；分工句寫明。
+   anchor：`docs/01-servant-retrospect-and-prospect/`、`docs/03-the-leadership-crisis/`、`docs/08-old-age-the-ultimate-test-of-spirit/`。
+8. **life-meaning**／`illness-narratives`——「病痛的意義：疾病之外的第二層敘事」。Kleinman 的
+   病痛（illness）／疾病（disease）之分、解釋模型、污名。避撞：being-mortal 兩頁是臨終對話
+   （core 讀過），本頁是慢性病的意義世界。
+   anchor：`docs/01-meaning-of-symptoms-and-disorders/`、`docs/07-conflicting-explanatory-models/`、`docs/10-stigma-and-shame/`。
+9. **wellness**／`running-on-empty`＋`reinventing-your-life` **合開一頁**——「看不見的童年傷：
+   情感忽視與基模」。避撞：trauma-and-the-body 頁是創傷的身體記憶（core 讀過），本頁是
+   「沒發生的事」造成的傷與其修復。
+   anchor：running `docs/01-how-emotional-neglect-happens/`、`docs/03-how-to-heal/`；
+   reinventing `docs/03-why-we-repeat/`、`docs/04-path-out-of-traps/`。
+
+**裁決不開 1 筆**：`power-law`（Mallaby）——**startup 的 raise-or-bootstrap 頁 core 已完整承載
+冪律邏輯**（基金回報靠 1–3 家明星、上下檔不對稱、VC 篩選動機），Mallaby 的增量是創投產業史，
+站定位是創業者實作。維持 tool；起草代理若查證 raise-or-bootstrap 的基金數學主張與 Mallaby
+內容相符，可補 anchor（頁在、原典沒被引型態）。
+
+**起草契約**（Opus 代理，自足式 brief）：沿 note-check §6 書本位紀律；頁成後 tier 由主會話升，
+代理不動 bibliography。
+
 ### 升層選題輪・第一批——**10 頁全數交付（2026-08-28 Opus 起草，當日結案）**
 
 10 頁全開、2 筆補 anchor 完成、10 本 tool→spine 升層完畢。六類違規全 0、checkup 75 站全 0、
