@@ -125,9 +125,17 @@
 判準同上：空葉章 ≥2 算未完；恰 1 個空葉不擋站、只註記。空葉＝該章 `_index.md` 去掉
 frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/audit-overview.py` 驗。
 
+> **為什麼這一欄非得手工掃，portal 的 `health.json` 代替不了**：它的分級只吃兩個**聚合**
+> 數字——總字數與平均密度（`fetch-health.ts` 的 `tierOf(chars, density)`：密度低於門檻＝
+> near-empty，總字數低於門檻＝thin／watch，否則 ok）。**聚合值看不見雙峰分佈。**
+> `dictionary-of-paul` 就是活標本：448 條目裡 231 條全空，但另外 217 條夠肥，全書仍有
+> 227 萬字、平均 4803 字/頁 → portal 判它 `tier: "ok"`，全庫最健康的一群。
+> 凡是「條目型」的書（辭典、百科、訪談集、講章集）都會這樣騙過聚合指標，
+> **只有逐葉章量才抓得到**。反過來，portal 判 thin 的書則多半是真的薄，可以信。
+
 | 書 | 葉章 | 空葉 | 卡哪一站 | 現況 |
 | --- | ---: | ---: | --- | --- |
-| `dictionary-of-paul-and-his-letters` | 448 | 231 | biblical-studies | 辭典型參考書，**是否 waive 待 Andrew 裁決**（導覽已完工） |
+| `dictionary-of-paul-and-his-letters` | 448 | 231 | biblical-studies | **Andrew 重寫中（2026-08-28 起）**——不 waive；導覽已完工 |
 | `cost-of-discipleship` | 34 | 10 | theology、spiritual-formation | 兩站導覽皆已完工，只欠書端補洞 |
 | `new-market-wizards` | 29 | 7 | schwager | 7 篇訪談章全空；導覽已完工 |
 | `microservices-patterns` | 29 | 7 | design-patterns、system-design | 兩站導覽皆已完工 |
@@ -223,7 +231,9 @@ learning 6 個、各站 related 單向數十筆⋯⋯）已在 08-26 體檢輪�
 - portal `health.json`（08-18）過期：21 本剛填完的書仍標 thin/near-empty，書站部署後重跑 fetch-health。
   （本檔的書端數字一律本機實測，不吃 health.json——這條只影響 portal 顯示。）
 - `archive/further-along-the-road-less-traveled`：躺在 archive/ 但 GitHub repo 未 archive、topics 照舊——除役還是補寫，待裁決。
-- `dictionary-of-paul-and-his-letters`：448 條目空 **231**（2026-08-28 重掃；辭典型參考書）——是否 waive 待裁決。
+- ~~`dictionary-of-paul-and-his-letters` 是否 waive 待裁決~~：2026-08-28 Andrew 裁決**不 waive、親自重寫中**
+  （448 條目空 231）。這筆從 08-20 就掛在待裁決欄整整八天沒被端上檯面——**待裁決欄會沉底**，
+  每輪收工時該主動把它念出來，不要只留在文件裡等人翻。
 - 恰 1 空葉的書（不擋站、記帳）：four-loves（附錄）、lessons-of-history（ch3）、time-management、hearing-god、
   boundaries-in-dating、encounters-with-jesus 等 20 本，多為附錄或單章，逐站進場時順手判定補或放。
 
