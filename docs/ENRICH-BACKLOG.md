@@ -17,7 +17,24 @@
 
 ## 進行中
 
-### 升層選題輪・第二批（2026-08-28 Fable 開單，起草走 Opus 代理）——9 頁
+### 升層選題輪・第二批——**9 頁全數交付（2026-08-28 當日結案；起草走 Opus general-purpose 代理）**
+
+9 頁全開、11 本 tool→spine、franklin 跨站（habits 收 spine、history 改 delegated）。
+六類違規全 0、checkup 75 站全 0、豁免率 43%（2251 本、966 豁免）。
+commits：clean-code `95eabb8`、communication `ab040a9`、system-design `5834b10`、growth `3457a25`、
+relationships `2711952`、habits `74695b3`＋`51ad8ea`、leadership `dc22d71`、life-meaning `55eda24`、
+wellness `4a702df`、history `933dc6b`。
+
+**與第一批的差異——起草改走 general-purpose＋model:opus**（自足式 brief，不繼承脈絡）：
+Fable 只做裁決與開單，量全部落在 Opus，額度分流照 MODEL-ROUTING。實測品質不輸 fork
+繼承式（9 頁 46 anchor 全實存、具名事實回源全中、分工句雙向寫定），條件是 brief 要把
+站台規範完整寫進去（frontmatter 契約、區塊結構、related 雙向、連結深度、收尾檢查）。
+
+**本批亮點**：growth 的兩造頁把對立收成一句——同一張帳單，Grover 說去付它、Bishop 說
+問題在帳單本身；relationships 的 Stout 頁把防呆三條放在任何辨識法則之前；
+life-meaning 的 Kleinman 頁分類論證（慢性病＝身體的有限性 → aging-finitude）成立。
+
+### 原第二批開單（保留供對照）——9 頁
 
 第一批的教訓全數照做：**每本先 grep 確認在哪一站**（果然又抓到一筆——franklin 在
 history-note 不在 habits）、撞題疑慮頁的 core 全數抽讀過。裁決：9 開、1 不開、1 跨站。
