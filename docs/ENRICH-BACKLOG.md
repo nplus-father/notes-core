@@ -79,7 +79,15 @@ what-life-should-mean-to-you（repo 僅 1 章）、biggest-bluff（Annie Duke �
 承載「用下注思考」）、code-of-trust（與既有信任頁同向非對立）、
 competitive-advantage-of-nations（國家層分析，站定位是企業策略——不對稱是誠實的）、
 intuition-pumps（thinking 已近深化）、positive-discipline（parenting 已 6 頁）、
-how-finance-works（緩）。**Andrew 級**：杜斯妥也夫斯基兩本要不要在 writing 開文學閱讀線。
+how-finance-works（緩）。**Andrew 已裁決（2026-08-28，記檔免重審）**：
+- **writing 站只收技法書**——杜斯妥也夫斯基《卡拉馬助夫兄弟們》《罪與罰》維持 `tool`，
+  **不開文學閱讀線**。兩本留在「閱讀即輸入」組當架上參考，本站不會為它們開頁。
+  下輪若有 fork 再提名「文學承重級」，直接引這條駁回。
+- **不開 Goldingay／Ortberg 作者站**。Goldingay 四本裡三本是同一套書的分卷（思想弧線只有一條），
+  biblical-studies 承載得住；Ortberg 四本散在三站，主題站也接得住。認領完成後
+  「同一作者 ≥3 本無人認領」這個開站訊號本來就會自動消失。
+- **兩本 archive 書一併除役**（martin-luthers-catechisms、further-along-the-road-less-traveled）
+  ——已執行，詳見下方除役紀錄。
 
 **起草契約**（Opus，沿 note-check §6 書本位紀律）：每頁一代理直接寫檔＋回 5 行驗收摘要；
 主張掛得住 anchor 才寫；頁成後把該書 tier 從 tool 改 spine（此時有引用，不是欠債）；
