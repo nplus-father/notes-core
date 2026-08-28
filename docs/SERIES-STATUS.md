@@ -161,8 +161,7 @@ frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/au
 - `resident-aliens` 第二部譯自 1996 年續作 *Where Resident Aliens Live*，repo 只有 1989 原著
   PDF——那一部 5 章偏薄的原因；補 1996 原檔可一次補平。
 - `pdftotext -layout` 對 Adobe-Identity-H 字型會整檔萃不出來，**去掉 `-layout` 重跑**即可。
-- `central-bank-privilege` 的附錄連「原書有沒有」都無法確認（無原始檔、站內零引用），
-  頁面明寫兩條收尾路徑，**待 Andrew 拿到原書後定奪**。
+- ~~`central-bank-privilege` 的附錄待定奪~~：2026-08-28 Andrew 確認**原書無附錄**，目錄已刪（`9811d76`）；`message-of-hosea` 的〈致讀者〉同輪確認原書沒有，目錄已刪（`4bcae7e`）。
 
 **2026-08-28 書端補洞輪（Opus）：24 章處理完畢，全庫真欠債 56 → 32。** 五本重新體檢的結果
 只有一本是真的內容債：
