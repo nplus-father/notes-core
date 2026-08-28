@@ -17,7 +17,74 @@
 
 ## 進行中
 
-（無）
+### 升層選題輪・第一批（2026-08-28 Fable 開單，起草歸 Opus）
+
+昨日認領的 326 本 tool 書中，8 個分派 fork 共交 33 本「建議升層」。Fable 逐本裁決
+（章節目錄全查、撞題疑慮的既有頁 core 抽讀過：世俗時代頁是 Keller 書源、值得想要頁
+是提問框架、護城河頁是巴菲特書源——三處都不撞）。**流程沿既成事實原則：先開頁、
+頁掛 anchor 之後才把 tier 從 tool 升 spine**——先升層會立刻製造真欠債。
+
+**第一批開頁 10 筆**（每筆：站／書／頁題／切什麼／避開什麼／anchor 落點）：
+
+1. **investing**／`battle-for-investment-survival`（Loeb 1935）——「集中與流動：被動時代的反方原典」。
+   切：集中持股、全神貫注、流動性優先——與 Bogle 主軸正面對立的 1935 年宣言；爭點兩造到齊。
+   避開：index-passive 八頁全是正方，本頁就是要當反方，別寫成又一頁被動論。
+   anchor：`docs/02-speculative-attitude-essential/`、`docs/11-diversification-of-investments/`（他反分散）、`docs/12-when-to-sell/`。
+2. **communication**／`secrets-of-consulting`（Weinberg）——「顧問的悖論：他們付錢請你改變，卻抗拒改變」。
+   切：橘汁測試、影響力悖論、抗拒是訊息。避開：persuasion 六頁是說服開關，本頁是顧問處境。
+   anchor：`docs/ch01-why-consulting-is-hard/`、`docs/ch02-cultivating-paradoxical-mind/`、`docs/ch10-dealing-with-resistance/`。
+3. **theology**／`exclusion-and-embrace`（Volf）——「擁抱的意志：先於真相判定的和解神學」。
+   切：排斥的解剖、擁抱四步、記憶的救贖。避開：public-faith 頁是公共見證，本頁是和解機制。
+   anchor：`docs/01-the-cross-the-self-and-the-other/`、`docs/02-identity-and-difference/`、`docs/03-justice-truth-and-peace/`。
+4. **theology**／`peaceable-kingdom`（Hauerwas）——「教會就是社會倫理：敘事與品格的倫理學」。
+   切：品格先於決策、教會作為僕人群體。避開：doctrine 的幸福論頁是阿奎那骨架，本頁是二十世紀敘事倫理一極。
+   anchor：`docs/01-christian-ethics-in-broken-world/`、`docs/05-jesus-presence-of-peaceable-kingdom/`、`docs/06-servant-community/`。
+5. **theology**／`secular-age`（Taylor）——「世俗的三副面孔：從不可能不信到選項之一」。
+   切：secular 1/2/3、緩衝自我、新星效應、減法敘事的批判。避開：faith-in-a-secular-age 頁是 Keller 的護教應用
+   （只轉述過「減法敘事」一句），本頁是 Taylor 框架本身；寫完互連。
+   anchor：`docs/01-work-of-reform/`、`docs/03-nova-effect/`、`docs/05-conditions-of-belief/`。
+6. **spiritual-formation**／`you-are-what-you-love`（Smith）——「愛先於思：禮拜如何塑造渴慕」。
+   切：人是敬拜的動物、習慣的禮拜觀、世俗禮拜（商場）的反塑造。避開：discipleship 八頁是操練清單，本頁是機制。
+   anchor：`docs/01-you-are-what-you-love/`、`docs/02-you-might-not-love-what-you-think/`、`docs/04-narrative-arc-of-formative-worship/`。
+7. **thinking**／`algorithms-to-live-by`——「演算法即生活：最佳停止、探索與利用」。
+   切：37% 法則、explore/exploit、過擬合與鬆弛。避開：mental-models 七頁無演算法視角；別寫成排序教學。
+   anchor：`docs/02-optimal-stopping/`、`docs/03-explore-exploit/`、`docs/08-overfitting/`。
+8. **growth**／`bright-sided`（Ehrenreich）——「正向思考的代價：一部意識形態批判史」。
+   切：smile or die、正向神學與金融泡沫的共犯結構。避開：fake-growth-mindset 頁是 Dweck 體系內修正，
+   本頁是體系外批判——成功學傳統那 8 本 tool 書終於有了反方。
+   anchor：`docs/02-smile-or-die/`、`docs/04-the-dark-roots-of-american-optimism/`、`docs/08-how-positive-thinking-destroyed-the-economy/`。
+9. **life-meaning**／`walden`（梭羅）——「刻意的生活：把日子削到只剩本質的實驗」。
+   切：經濟篇的成本核算、「我到林中去」、獨處作為能力。避開：whats-worth-wanting 頁是提問框架，
+   本頁是實驗記錄；leisure 頁談閒暇，梭羅談的是簡化。
+   anchor：`docs/01-economy/`、`docs/02-where-i-lived-and-what-i-lived-for/`、`docs/05-solitude/`。
+10. **design-patterns**／`timeless-way-of-building`（Alexander）——「模式語言的源頭：無名特質與活的結構」。
+    切：QWAN、模式從哪來、GoF 借走了形式丟掉了什麼。避開：principles 十一頁是原則條目，本頁是正典源流。
+    anchor：`docs/01-the-timeless-way/`、`docs/02-the-quality/`、`docs/05-the-kernel-of-the-way/`。
+
+**補 anchor 2 筆（頁在、原典沒被引——不開新頁）**：
+- `little-book-that-builds-wealth`（Dorsey）→ investing `value-investing/intrinsic-value-and-moat.md`：
+  該頁 core 是巴菲特經濟商譽，Dorsey 四來源（無形資產／轉換成本／網絡效應／成本優勢）缺席——補 anchor，
+  起草代理視篇幅決定是否擴一節。
+- `specification-by-example` → agile `user-stories/`驗收測試頁＋`xp-practices/`驗收測試頁：兩頁已涵蓋
+  實例化需求，補掛原典 anchor 即可。
+
+**第二批候選（本輪不開，記檔待下輪）**：mythical-man-month（clean-code，概念完整性）、
+money-game、power-law、getting-to-yes-with-yourself、software-architect-elevator、
+long-win＋winning-grover（成對）、running-on-empty＋reinventing-your-life（合開）、
+sociopath-next-door、autobiography-of-benjamin-franklin、power-of-servant-leadership、
+illness-narratives。
+
+**裁決不開（維持 tool，理由記檔免重審）**：programming-pearls（repo 僅 3 章）、
+what-life-should-mean-to-you（repo 僅 1 章）、biggest-bluff（Annie Duke 已在 leadership
+承載「用下注思考」）、code-of-trust（與既有信任頁同向非對立）、
+competitive-advantage-of-nations（國家層分析，站定位是企業策略——不對稱是誠實的）、
+intuition-pumps（thinking 已近深化）、positive-discipline（parenting 已 6 頁）、
+how-finance-works（緩）。**Andrew 級**：杜斯妥也夫斯基兩本要不要在 writing 開文學閱讀線。
+
+**起草契約**（Opus，沿 note-check §6 書本位紀律）：每頁一代理直接寫檔＋回 5 行驗收摘要；
+主張掛得住 anchor 才寫；頁成後把該書 tier 從 tool 改 spine（此時有引用，不是欠債）；
+roadmap＋related 補雙向；收尾 tier-audit 歸零、build 綠、單行英文 commit、不 push。
+
 
 ## 孤兒書認領輪（2026-08-28 Fable）——**329 → 1，全星系書庫幾乎全部有站在管**
 
