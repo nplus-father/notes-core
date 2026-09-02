@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-08-28T01:16:04+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-02T23:21:52+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **121** |
+| **候選（大部頭 × ≤1 頁）** | **123** |
 | 涉及的站 | 44 |
 | 依體裁排除 | 4 |
 
@@ -64,7 +64,7 @@
 - **系統神學（章力生等華人卷）** — 56 章 / 1 頁（`systematic-theology`）
 - **神學的故事** — 50 章 / 1 頁（`story-of-christian-theology`）
 - **活的教會** — 46 章 / 1 頁（`living-church`）
-- **The Story of Christianity（兩卷）** — 45 章 / 1 頁（`story-of-christianity-vol-1`）
+- **The Story of Christianity, Vol. 1** — 45 章 / 1 頁（`story-of-christianity-vol-1`）
 - **追隨基督（做門徒的代價）** — 38 章 / 1 頁（`cost-of-discipleship`）
 - **返璞歸真：純粹的基督教** — 38 章 / 1 頁（`mere-christianity`）
 - **改革宗教理學** — 33 章 / 1 頁（`reformed-dogmatics`）
@@ -130,7 +130,7 @@
 ### `economics-note`（4 本）
 
 - **Misbehaving 不當行為** — 47 章 / 1 頁（`misbehaving`）
-- **Central Bank Privilege** — 40 章 / 1 頁（`central-bank-privilege`）
+- **Central Bank Privilege** — 39 章 / 1 頁（`central-bank-privilege`）
 - **The General Theory of Employment, Interest and Money 就業、利息與貨幣的一般理論** — 31 章 / 1 頁（`general-theory-of-employment-interest-and-money`）
 - **Lords of Finance** — 30 章 / 1 頁（`lords-of-finance`）
 
@@ -189,6 +189,18 @@
 - **領導力的 5 個層次** — 42 章 / 1 頁（`5-levels-of-leadership`）
 - **與人同贏** — 32 章 / 1 頁（`winning-with-people`）
 
+### `system-design-note`（3 本）
+
+- **The Software Architect Elevator** — 47 章 / 1 頁（`software-architect-elevator`）
+- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
+- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
+
+### `design-patterns-note`（3 本）
+
+- **Refactoring to Patterns** — 41 章 / 1 頁（`refactoring-to-patterns`）
+- **Refactoring for Software Design Smells** — 38 章 / 0 頁（`refactoring-for-software-design-smells`）
+- **The Timeless Way of Building** — 31 章 / 1 頁（`timeless-way-of-building`）
+
 ### `business-strategy-note`（3 本）
 
 - **The Practice of Management 彼得‧杜拉克的管理聖經** — 37 章 / 1 頁（`practice-of-management`）
@@ -215,20 +227,10 @@
 - **Versioning in an Event Sourced System** — 56 章 / 1 頁（`versioning-in-an-event-sourced-system`）
 - **SQL Performance Explained** — 42 章 / 1 頁（`sql-performance-explained`）
 
-### `design-patterns-note`（2 本）
-
-- **Refactoring to Patterns** — 41 章 / 1 頁（`refactoring-to-patterns`）
-- **Refactoring for Software Design Smells** — 38 章 / 0 頁（`refactoring-for-software-design-smells`）
-
 ### `history-note`（2 本）
 
 - **文學的40堂公開課** — 40 章 / 1 頁（`little-history-of-literature`）
 - **餐桌儀式** — 34 章 / 1 頁（`rituals-of-dinner`）
-
-### `system-design-note`（2 本）
-
-- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
-- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
 
 ### `spiritual-formation-note`（2 本）
 

@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-08-28T14:01:43+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-02T23:21:49+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1904 個 repo），其中 `nplus-kind-book` 的書 repo 1773 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1906 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -47,7 +47,7 @@
 
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
-| `systematic` | theology | 1/43 | 2% | theology(30)、biblical-studies(8)、spiritual-formation(4) |
+| `cognitive` | science | 1/46 | 2% | thinking(28)、science(13)、gardner(8) |
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
@@ -57,11 +57,11 @@
 
 ### 1e. 全部 1 本（依 leaf 分組）
 
-#### `systematic` — 1/43 沒人認領（目前：theology(30)、biblical-studies(8)、spiritual-formation(4)）
+#### `cognitive` — 1/46 沒人認領（目前：thinking(28)、science(13)、gardner(8)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
-| `martin-luthers-catechisms-forming-the-faith` | 馬丁路德的門徒培育班 | Timothy J. Wengert |
+| `what-do-you-say-after-you-say-hello` | What Do You Say After You Say Hello?: The Psychology of Human Destiny | Eric Berne |
 
 ## 二、死鏈 slug：0 個
 
