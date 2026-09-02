@@ -177,6 +177,10 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | 已深化站要廣度 | `/note-wanted` | Opus，盤點性質 |
 | ~~挑下一本該挖的書~~ **紅利已盡（2026-08-27，六輪收官）** | `DEEPEN-TARGETS.md` 轉為新書進站的增量監測 | 判準是面向覆蓋非頁厚，不可自動化 |
 | ~~anchor 覆蓋不足 73 頁~~ **首輪結案（2026-08-27 歸零）** | `ANCHOR-GAPS.md`「證據充分」那節，逐頁對書核完再改 `furtherReading` | Opus——工具指得出來，但建議章會撞號，要人工看一眼那章在講什麼 |
+| ~~認領輪後 21 本新脊梁沒織進導覽~~ **織入輪結案（2026-09-02，15 站）** | 導覽 03 書架帳＋04 爭議補段、新增「架上參考」節、數字對帳、蓋 enrichedAt | **Fable**——策展寫作；教訓：起草代理不動 bibliography 時，主會話收尾必蓋 enrichedAt，否則 guide-stale 全瞎 |
+| 認領輪後的導覽數字對帳（剩 14 站 14 筆＋schwager） | `GUIDE-DRIFT.md` 強訊號逐筆改；「收完 N 本」改現數並括號註明認領上架的 M 本；03 標題本數與分層帳工具不抓，手查 | Opus |
+| 缺初版年 65 筆（58 筆 tool 書的 repo 有 `published`） | `MISSING-YEARS.md`，照 Andrew 豁免當線索填；順手讓 `export-missing-years.py` 讀 `published` | Opus |
+| 新書進站：Berne《人生腳本》 | `apply-claims.py`；裁決已下（relationships「溝通與衝突」、tool、初版 1972） | Opus 套用 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——
 **判層裁決**（主題歸屬）、**開單**（每頁的邊界、避開哪些既有頁、anchor 落哪幾章）、
@@ -214,5 +218,5 @@ memory 的 `fable-session-entrypoint` 與 ENRICH-BACKLOG 各輪紀錄）。
 | `tools/tier-audit.py` | 套用後的違約檢查（**每次套用必跑**） |
 | `tools/tier-audit.py --verify` | 對帳 python 與站台兩份稽核實作 |
 | `tools/export-anchor-gaps.py [站]` | 頁面的數字有沒有掛到含它的章（新頁寫完值得單站跑一次） |
-| `tools/refresh-galaxy-docs.sh` | 重算 DEEPEN-READY 等七份報表 |
+| `tools/refresh-galaxy-docs.sh` | 重算 DEEPEN-READY 等八份報表 |
 | `tools/bump-notes-core.sh <old> <new>` | 全隊升版（改了 notes-core 才需要） |

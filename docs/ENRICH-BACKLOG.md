@@ -17,6 +17,20 @@
 
 ## 進行中
 
+### 認領輪後的導覽數字對帳——**剩 14 站 14 筆＋schwager 1 筆（待 Opus）**
+
+2026-09-02 盤點抓到：08-28 認領輪（326 本 tool 上架）與兩批升層之後沒人回頭看導覽，
+`GUIDE-DRIFT.md` 強訊號 48 筆。Fable 同日織入輪清掉 15 站（見下一節），**剩 14 站各 1 筆**，
+全是「收完這 N 本」被認領輪灌大：agile、behaviour-interview、business-strategy、career、
+cloud-infra、history、learning、management、marketing、personal-finance、problem-solving、
+security、tools、writing；另加弱訊號裡的整站宣稱 schwager「站上十三頁」（實際 12）。
+**改法已定**：保語氣只改數字；「收完 N 本」改現數並括號註明「其中 M 本是認領上架的參考書，
+尚未開頁」（M＝該站 `chore: claim orphan` commit 加進來、現仍 tool 的本數）；03 書架帳的
+標題本數、分層帳 tier 數、overview 的帳也一併對（工具不抓這些，要手查）；改完推 writtenAt。
+順手兩件：缺初版年 65 筆（58 筆是認領的 tool 書、書 repo `published` 都有，照豁免當線索填，
+並讓 `export-missing-years.py` 讀 `published`）；Berne《人生腳本》認領套用（relationships
+「溝通與衝突」、tool、1972，走 `apply-claims.py`）。
+
 ### 升層選題輪・第二批——**9 頁全數交付（2026-08-28 當日結案；起草走 Opus general-purpose 代理）**
 
 9 頁全開、11 本 tool→spine、franklin 跨站（habits 收 spine、history 改 delegated）。
@@ -183,6 +197,34 @@ how-finance-works（緩）。**Andrew 已裁決（2026-08-28，記檔免重審�
 主張掛得住 anchor 才寫；頁成後把該書 tier 從 tool 改 spine（此時有引用，不是欠債）；
 roadmap＋related 補雙向；收尾 tier-audit 歸零、build 綠、單行英文 commit、不 push。
 
+
+## 導覽織入輪（2026-09-02 Fable）——**21 本新脊梁織進 15 站導覽，數字對帳 34 筆，enrichedAt 補蓋**
+
+**起因**：08-28 兩批升層開了 19 頁、升了 21 本 tool→spine，導覽完全不知道它們存在——12 站連作者名
+都沒出現。工具抓不到：tier-audit 只要求 support 書被導覽帶到（脊梁的債用概念頁還）；guide-stale
+也沒亮，因為**兩批升層都沒蓋 `curation.enrichedAt`**（起草代理照契約不動 bibliography，主會話
+收尾升了 tier 卻漏了流水線第 5 步）。是 `export-guide-drift.py` 靠數字撞出來的。
+
+**做法（15 站，每站同一套）**：03 書架帳該組加一段（材料就是新頁的引言與 core，先有頁再升層的
+規矩寫進去）；04 爭議在對的官司補一段（bright-sided 進成功學官司並新開「贏到的是什麼」、Loeb 進
+集中 vs 分散、Volf／Hauerwas 進教會與世界、Taylor 進護教頭心之爭、Alexander 進語彙 vs 補丁、
+Brooks 進小函式 vs 深模組、Ury 進談判內戰、Weinberg 進說服 vs 操縱、Stout 進界線 vs 無條件的愛、
+Franklin 進意志力官司、Smith 進律法主義官司、Kleinman 進口音）；新增「架上參考」一節把認領輪
+上架、仍是 tool 的書逐本列出（communication 35、investing 42 最長），並寫明「上面各組本數不含」；
+01／02／05／overview 的規模數字全對現況；writtenAt 推到當天、enrichedAt 蓋 2026-08-28（頁進站日）。
+站：growth（3 本）、wellness（2）、communication（2）、theology（3）、relationships、habits、
+life-meaning、spiritual-formation、thinking、philosophy、design-patterns、clean-code、system-design、
+investing、leadership。收工：15 站 build 綠、tier-audit 六類 0、checkup 75 站 0、導覽新增連結
+腳本驗證全實存、GUIDE-DRIFT 強訊號 48→14。
+
+**教訓三條**：①「收完這 N 本」不能只把數字換大——認領的書是上架未讀，句子要說明白，定成
+「N 本（其中 M 本是認領上架的參考書，尚未開頁）」；②drift 工具只看「收完／寫完／互相連結」
+那幾句，**03 的標題本數、分層帳 tier 數、02 的「整組唯一的 spine」這種句子都不抓**，要手查——
+growth 的 02 就有一句「Halvorson 是整組唯一的 spine」被三本新脊梁打臉；③批次輪的收尾清單要加
+一行「蓋 enrichedAt」。另記一筆帳目不符：第一批記「Dorsey《The Little Book That Builds Wealth》
+補 anchor 完成」，實查 investing 沒有任何頁引它、tier 仍 tool——導覽照實寫成架上參考，補 anchor
+那筆算未做。工具面：philosophy 的 `A Secular Age` 認領後改 delegated→theology，導覽兩邊都記了。
+Opus 剩的 14 站數字對帳見「進行中」。
 
 ## 孤兒書認領輪（2026-08-28 Fable）——**329 → 1，全星系書庫幾乎全部有站在管**
 
