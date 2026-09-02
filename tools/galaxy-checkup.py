@@ -330,6 +330,29 @@ def check(st):
         if wr and en and wr[-1] < en.group(1):
             add("warn", "guide-stale", f"導覽最新 {wr[-1]} < enrichedAt {en.group(1)}")
 
+    # ---- 2.1 首頁總覽（DESIGN §4.2：每一站都要有，主題站與人物站共同的第一區）----
+    # 2026-09-03 加：theology／biblical-studies／startup 三站是 08-27 導覽輪的前三站，
+    # 總覽那一步輪到第四站才接上，之後沒人發現——因為這裡從來沒查過 overview 存不存在。
+    ov_p = src / "data" / "overview.ts"
+    astro_p = st / "astro.config.mjs"
+    astro = astro_p.read_text(encoding="utf8") if astro_p.exists() else ""
+    if not ov_p.exists():
+        add("warn", "no-overview", "缺 src/data/overview.ts（首頁 Overview 區）")
+    else:
+        if "overview" not in astro:
+            add("warn", "overview-unwired", "overview.ts 在，但 astro.config.mjs 沒 import／傳入 overview")
+        ov = ov_p.read_text(encoding="utf8")
+        allowed = {"Landscape", "Threads", "Verdict", "Background", "Contributions", "Claims"}
+        for h in re.findall(r'heading:\s*"([^"]+)"', ov):
+            if h not in allowed:
+                add("nit", "overview-heading", f'overview heading "{h}" 不在標準英文詞彙裡（chrome 一律簡短英文，v0.34.0）')
+        if "（待寫）" in ov:
+            add("nit", "overview-placeholder", "overview.ts 還是 template 的佔位稿（含「（待寫）」）")
+        wm = re.search(r'writtenAt:\s*"([^"]+)"', ov)
+        en2 = re.search(r'enrichedAt:\s*"([^"]+)"', cfg)
+        if wm and en2 and wm.group(1) < en2.group(1):
+            add("warn", "overview-stale", f"overview writtenAt {wm.group(1)} < enrichedAt {en2.group(1)}")
+
     # ---- §1 指標 ----
     bib = (src / "data" / "bibliography.ts").read_text(encoding="utf8")
     spine = len(re.findall(r'tier:\s*"spine"', bib))
