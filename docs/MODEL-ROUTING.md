@@ -181,6 +181,8 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | ~~認領輪後的導覽數字對帳~~ **結案（2026-09-03，15 站，強訊號歸零）** | `GUIDE-DRIFT.md` 強訊號逐筆改＋每站補「架上參考」節 | Opus——三筆真話靠手查才抓到（security 的「全部已挖」變假、personal-finance 兩種豁免混算、history 的 delegated 異動） |
 | ~~缺初版年 65 筆~~ **結案（2026-09-03，65→7）** | 先修工具盲區（`date="…"` 現行 repo 一本都沒有，改讀 frontmatter `published`，線索 0→59），再逐本填 | Opus——能確認初版年的 13 筆覆蓋線索；剩 7 筆全是已裁決留白 |
 | ~~新書進站：Berne《人生腳本》~~ **結案（2026-09-03）** | `apply-claims.py` → relationships「溝通與衝突」、tool、1972 | **孤兒書 1→0**：書庫 1772 本第一次全部有站在管 |
+| ~~首頁 Overview 契約補齊~~ **結案（2026-09-03）** | 三站補 `overview.ts`（以五章導覽為底濃縮）、四站刷新、`galaxy-checkup` 新增 overview 五條檢查、template 加佔位稿 | Opus——導覽已是現行的，濃縮不是新寫；規則入 checkup 後不會再靜靜漏兩個月 |
+| ~~Deploy 紅燈 21 站~~ **結案（2026-09-03）** | `gh run list` 掃全星系 → Format check 是唯一失敗步驟 → 逐站 `npm run format` commit push | Opus——機械修復；教訓：`pull --rebase` 之後要再跑 `format:check` 才 push，否則上游未格式化的 commit 會讓自己的 push 也紅 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——
 **判層裁決**（主題歸屬）、**開單**（每頁的邊界、避開哪些既有頁、anchor 落哪幾章）、
