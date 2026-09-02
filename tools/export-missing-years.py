@@ -101,8 +101,29 @@ def cover_dates() -> dict[str, str]:
     return out
 
 
+def published_dates() -> dict[str, str]:
+    """slug → 書 repo `site/content/_index.md` frontmatter 的 `book.published`。
+
+    **與 `cover_dates()` 同性質——是「做摘要時手上那一版」的出版日，不是初版年**，只能當線索。
+    之所以要單獨讀它：2026-09-03 對帳時發現 `cover_dates()` 找的 `date="…"`（book-cover
+    shortcode 的參數）在現行 1781 本書 repo 裡**一本都沒有**，而 `published:` 有 1779 本。
+    工具因此長期報「0 筆有線索」——那是**工具的盲區，不是事實**。填年份的人看到 0 就不會去查，
+    於是缺 year 的條目一直補不動。教訓：**線索來源要跟著資料格式一起改**，格式換了而抓法沒換，
+    工具會很安靜地一直回答「沒有」。
+    """
+    out: dict[str, str] = {}
+    if not BOOKS.is_dir():
+        return out
+    for idx in BOOKS.glob("*/*/*/*/site/content/_index.md"):
+        m = re.search(r'^\s*published:\s*"?([^"\n]+?)"?\s*$', idx.read_text(encoding="utf-8"), re.M)
+        if m:
+            out[idx.parts[-4]] = m.group(1)
+    return out
+
+
 def main() -> None:
-    dates = cover_dates()
+    # published 優先：cover_dates 是舊格式的殘餘，現行書 repo 幾乎都用 frontmatter。
+    dates = {**cover_dates(), **published_dates()}
     rows, totals = [], []
     for f in sorted(ROOT.glob("*/src/data/bibliography.ts")):
         station = f.parts[-4]
@@ -137,11 +158,12 @@ def main() -> None:
         "**為什麼要補**：notes-core v0.20.0 起 `year` 是盤點表的**排序鍵**與首頁**年代分佈圖的軸**。\n"
         "缺 year 的條目會沉到該分組最底、也不進圖表——書還在表上，只是從時間軸上消失了。\n\n"
         "**填哪一個年份**：schema 要的是**初版年**（原文首次出版），不是手上這一版、更不是中譯版。\n"
-        "下面的 📕 是該書 repo `book-cover` 記的版次日，只能當**線索**——照抄會把時間軸整條往後推。\n\n"
+        "下面的 📕 是該書 repo 記的出版日（frontmatter 的 `book.published`，或舊格式 book-cover 的\n"
+        "版次日），只能當**線索**——那是做摘要時手上那一版，照抄會把時間軸整條往後推。\n\n"
     )
     o.write(
         f"目前：{len(totals)} 站 / {grand} 筆，缺 year **{gap} 筆**（{gap / grand * 100:.1f}%），"
-        f"分佈在 {stations} 站；其中 {hinted} 筆查得到版次日線索。\n\n"
+        f"分佈在 {stations} 站；其中 {hinted} 筆查得到出版日線索。\n\n"
     )
     if thin:
         o.write(
@@ -160,7 +182,7 @@ def main() -> None:
             o.write(f"| {st} | {tot} | {wy} | {ms} |\n")
 
     o.write("\n## 逐筆清單\n\n")
-    o.write("格式：`[status]` 書名 / 原文 · 分組 — 📕 書 repo 記的版次日（若有）\n")
+    o.write("格式：`[status]` 書名 / 原文 · 分組 — 📕 書 repo 記的出版日（若有；是手上那一版，不是初版）\n")
     cur = None
     for r in rows:
         if r["station"] != cur:
@@ -179,7 +201,11 @@ def main() -> None:
         "  真要上時間軸就填約略的負數年（`year: -500`），圖表標籤會顯示成 `500 BC`。\n"
         "- **`skipped` 的彙總列**（「勵志小品群 / Kiss That Frog! / Crunch Point …」）：\n"
         "  一列代表一整批書，沒有單一出版年。留白即可。\n"
-        "- **系列代表卷**（NICNT／NICOT 系列）：指的是一套書而非一本。\n\n"
+        "- **系列代表卷**（NICNT／NICOT 系列）：指的是一套書而非一本。\n"
+        "- **公版作家的後人彙編**（《Beautiful Thoughts from Ralph Waldo Emerson》）：彙編年份放上\n"
+        "  時間軸會把十九世紀的作者標到二十一世紀，比留白更誤導；愛默生的原作年也不是這本的年份。\n"
+        "  2026-09-03 裁決留白。\n"
+        "- **本機沒有 repo 的書**（`bible-atlas`）：沒有 frontmatter 可讀，metadata 待補。\n\n"
         "## 重跑\n\n"
         "```bash\nnotes-core/tools/export-missing-years.py\n```\n\n"
         "補完某站的 `year` 之後重跑，該站就會從這裡消失。\n"
@@ -191,7 +217,7 @@ def main() -> None:
         sys.stdout.write(text)
     else:
         OUT.write_text(text, encoding="utf-8")
-        print(f"{OUT}: 缺 year {gap} 筆 / {grand} 筆，分佈在 {stations} 站，{hinted} 筆有版次日線索")
+        print(f"{OUT}: 缺 year {gap} 筆 / {grand} 筆，分佈在 {stations} 站，{hinted} 筆有出版日線索")
 
 
 if __name__ == "__main__":

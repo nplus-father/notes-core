@@ -17,186 +17,47 @@
 
 ## 進行中
 
-### 認領輪後的導覽數字對帳——**剩 14 站 14 筆＋schwager 1 筆（待 Opus）**
+（無）
 
-2026-09-02 盤點抓到：08-28 認領輪（326 本 tool 上架）與兩批升層之後沒人回頭看導覽，
-`GUIDE-DRIFT.md` 強訊號 48 筆。Fable 同日織入輪清掉 15 站（見下一節），**剩 14 站各 1 筆**，
-全是「收完這 N 本」被認領輪灌大：agile、behaviour-interview、business-strategy、career、
-cloud-infra、history、learning、management、marketing、personal-finance、problem-solving、
-security、tools、writing；另加弱訊號裡的整站宣稱 schwager「站上十三頁」（實際 12）。
-**改法已定**：保語氣只改數字；「收完 N 本」改現數並括號註明「其中 M 本是認領上架的參考書，
-尚未開頁」（M＝該站 `chore: claim orphan` commit 加進來、現仍 tool 的本數）；03 書架帳的
-標題本數、分層帳 tier 數、overview 的帳也一併對（工具不抓這些，要手查）；改完推 writtenAt。
-順手兩件：缺初版年 65 筆（58 筆是認領的 tool 書、書 repo `published` 都有，照豁免當線索填，
-並讓 `export-missing-years.py` 讀 `published`）；Berne《人生腳本》認領套用（relationships
-「溝通與衝突」、tool、1972，走 `apply-claims.py`）。
+## 認領後對帳輪（2026-09-03 Opus）——**導覽數字 15 站歸零、年份 65→7、孤兒書 0、工具盲區一支**
 
-### 升層選題輪・第二批——**9 頁全數交付（2026-08-28 當日結案；起草走 Opus general-purpose 代理）**
+織入輪之後剩的三件全部結案，加上一支工具修正。
 
-9 頁全開、11 本 tool→spine、franklin 跨站（habits 收 spine、history 改 delegated）。
-六類違規全 0、checkup 75 站全 0、豁免率 43%（2251 本、966 豁免）。
-commits：clean-code `95eabb8`、communication `ab040a9`、system-design `5834b10`、growth `3457a25`、
-relationships `2711952`、habits `74695b3`＋`51ad8ea`、leadership `dc22d71`、life-meaning `55eda24`、
-wellness `4a702df`、history `933dc6b`。
+**① 導覽數字對帳（15 站）**：GUIDE-DRIFT 強訊號 14→**0**（另補弱訊號裡的整站宣稱 schwager
+「站上十三頁」→十二，實查 12 頁、無刪頁紀錄，是寫導覽時就數錯）。改法照上一輪定的規矩：
+「收完 N 本」改現數並括號註明「其中 M 本是認領上架的參考書，尚未開頁」；每站在 03 補一節
+**架上參考**逐本列出認領書（最長 personal-finance 19 本、career 9 本、learning 8 本），
+並寫明「上面各組的本數不含這些」；03 標題本數、分層帳 tier 數、01/02/04/05/overview 的
+規模數字全對現況；writtenAt 推 2026-09-03。
 
-**與第一批的差異——起草改走 general-purpose＋model:opus**（自足式 brief，不繼承脈絡）：
-Fable 只做裁決與開單，量全部落在 Opus，額度分流照 MODEL-ROUTING。實測品質不輸 fork
-繼承式（9 頁 46 anchor 全實存、具名事實回源全中、分工句雙向寫定），條件是 brief 要把
-站台規範完整寫進去（frontmatter 契約、區塊結構、related 雙向、連結深度、收尾檢查）。
+**工具抓不到、靠手查抓出來的三筆**（比數字本身值錢）：
+1. **security 的「十四本全部已挖、零引用歸零」變成假的**——認領輪上架的 Rootkits 沒有頁引它，
+   原句在 03 與 overview 各一處，都改成「十五本裡十四本已挖，未挖的那本是認領新上架的」。
+2. **personal-finance 的豁免率 48%** 若把認領的 19 本算進去會跳到 64%，但那是「上架還沒讀」
+   不是「判過、決定不挖」——**兩種豁免不該混算**，導覽改成分開陳述。
+3. **history 的 delegated 3→4** 是富蘭克林自傳改判給 habits 的結果（頁開在那裡），
+   在 03 補記這筆跨站異動。
 
-**本批亮點**：growth 的兩造頁把對立收成一句——同一張帳單，Grover 說去付它、Bishop 說
-問題在帳單本身；relationships 的 Stout 頁把防呆三條放在任何辨識法則之前；
-life-meaning 的 Kleinman 頁分類論證（慢性病＝身體的有限性 → aging-finitude）成立。
+**② 缺 year 65→7**，而且先修了工具的盲區：`export-missing-years.py` 找的線索是
+`book-cover` shortcode 的 `date="…"`，**現行 1781 本書 repo 一本都沒有**，而 frontmatter 的
+`published:` 有 1779 本——工具因此長期回報「0 筆有線索」，填年份的人看到 0 就不會去查。
+補上 `published_dates()` 後線索從 0 筆變 **59 筆**。58 筆已填（腳本插在 `slug:` 之前，
+沿 apply-claims 的欄位順序），照 Andrew 的豁免用線索年，但**能確認初版年的用初版年**——
+覆蓋線索的 13 筆：Ryken《Written in Stone》2003（線索 2010 是重印）、Bishop《The Long Win》2020
+（線索 2024 是二版，而且它是 spine）、Halvorson 2015、Corey《Theory and Practice》1977（線索 2012 是第九版）、
+McCormack 1987、Schäfer 1998、Buscaglia 1982、Adams 2004、QBQ 2001、李起周《말의 품격》2017、
+齋藤孝 2019、Silén 2022、McKay《Self-Esteem》1987、Maggio《How to Say It》1990。
+**剩 7 筆全是已裁決的留白**：NICNT 系列列、tracy 兩筆彙總列、greene 彙總列、learning 的
+unavailable、`bible-atlas`（本機無 repo）、以及新裁決的一筆——愛默生《Beautiful Thoughts》
+是**公版作家的後人彙編**，彙編年放上時間軸會把十九世紀作者標到二十一世紀，比留白更誤導。
+後兩類已寫進工具的「補不上來」清單。
 
-### 原第二批開單（保留供對照）——9 頁
+**③ Berne《人生腳本》認領**：走 `apply-claims.py` 進 relationships「溝通與衝突」組、tool、
+初版 1972（repo `published` 2018 是再版）——**孤兒書 1→0，書庫第一次全部有站在管**。
+導覽的本數與分層帳同步改（57→58、tool 10→11），架上參考那節補一段講它與《人間遊戲》的分工。
 
-第一批的教訓全數照做：**每本先 grep 確認在哪一站**（果然又抓到一筆——franklin 在
-history-note 不在 habits）、撞題疑慮頁的 core 全數抽讀過。裁決：9 開、1 不開、1 跨站。
-
-**開頁 9 筆**：
-1. **clean-code**／`mythical-man-month`——「概念完整性：一個心智的設計」。全站 grep Brooks 零命中。
-   切：概念完整性（ch4 貴族制與民主制）、第二系統效應（ch5）、Brooks 定律與人月神話（ch2）、沒有銀彈（ch16）。
-   anchor：`docs/04-aristocracy-democracy-system-design/`、`docs/05-second-system-effect/`、`docs/02-mythical-man-month/`、`docs/16-no-silver-bullet/`。
-2. **communication**／`getting-to-yes-with-yourself`——「先跟自己談判：內在 BATNA」。
-   避撞：BATNA 頁是外部後路（core 讀過），本頁是 Ury 晚期補的內在半場；互連。
-   anchor：`docs/01-put-yourself-in-your-shoes/`、`docs/02-develop-your-inner-batna/`、`docs/03-reframe-your-picture/`。
-3. **system-design**／`software-architect-elevator`——「架構師電梯：在機房與董事會之間上下」。
-   fundamentals 六頁全技術面，組織面全空。anchor：`docs/01-architects/`、`docs/03-communication/`、`docs/04-organizations/`。
-4. **growth**／`long-win`＋`winning-grover` **成對一頁**——「贏的兩種定義」。Bishop 的長勝
-   （清晰／持續學習／連結）對 Grover 的不擇手段（贏帶你下地獄也值得）。與 bright-sided
-   不同軸（那頁是樂觀意識形態，本頁是競爭文化）。
-   anchor：long-win `docs/01-what-does-winning-mean/`、`docs/03-new-approach-to-winning/`；
-   grover `docs/01-winning-makes-you-different/`、`docs/13-winning-has-a-steep-price/`。
-5. **relationships**／`sociopath-next-door`——「無良心的 4%：辨識與自保」。
-   避撞：necessary-endings 頁是修剪（core 讀過），本頁是辨識沒有良心的人；boundaries 組缺的一角。
-   anchor：`docs/01-the-seventh-sense/`、`docs/06-recognize-the-remorseless/`、`docs/08-sociopath-next-door/`。
-6. **habits**／`autobiography-of-benjamin-franklin`——「十三美德追蹤表：習慣追蹤的 1730 年代原型」。
-   **跨站**：書在 history-note，已照 secular-age 前例在 habits-note 掛帳（tool）；頁成後 habits 升
-   spine、history 改 delegated(habits)。anchor：`docs/04-pursuit-of-moral-perfection/` 為主。
-7. **leadership**／`power-of-servant-leadership`——「僕人領導：先服事，才領導」。Greenleaf 遺稿集，
-   bibliography 明示 1977 原典無貨、這本是最接近源頭的替代。避撞：circle-of-safety 頁是 Sinek
-   的安全圈（core 讀過），本頁是 Greenleaf 一脈的源頭；分工句寫明。
-   anchor：`docs/01-servant-retrospect-and-prospect/`、`docs/03-the-leadership-crisis/`、`docs/08-old-age-the-ultimate-test-of-spirit/`。
-8. **life-meaning**／`illness-narratives`——「病痛的意義：疾病之外的第二層敘事」。Kleinman 的
-   病痛（illness）／疾病（disease）之分、解釋模型、污名。避撞：being-mortal 兩頁是臨終對話
-   （core 讀過），本頁是慢性病的意義世界。
-   anchor：`docs/01-meaning-of-symptoms-and-disorders/`、`docs/07-conflicting-explanatory-models/`、`docs/10-stigma-and-shame/`。
-9. **wellness**／`running-on-empty`＋`reinventing-your-life` **合開一頁**——「看不見的童年傷：
-   情感忽視與基模」。避撞：trauma-and-the-body 頁是創傷的身體記憶（core 讀過），本頁是
-   「沒發生的事」造成的傷與其修復。
-   anchor：running `docs/01-how-emotional-neglect-happens/`、`docs/03-how-to-heal/`；
-   reinventing `docs/03-why-we-repeat/`、`docs/04-path-out-of-traps/`。
-
-**裁決不開 1 筆**：`power-law`（Mallaby）——**startup 的 raise-or-bootstrap 頁 core 已完整承載
-冪律邏輯**（基金回報靠 1–3 家明星、上下檔不對稱、VC 篩選動機），Mallaby 的增量是創投產業史，
-站定位是創業者實作。維持 tool；起草代理若查證 raise-or-bootstrap 的基金數學主張與 Mallaby
-內容相符，可補 anchor（頁在、原典沒被引型態）。
-
-**起草契約**（Opus 代理，自足式 brief）：沿 note-check §6 書本位紀律；頁成後 tier 由主會話升，
-代理不動 bibliography。
-
-### 升層選題輪・第一批——**10 頁全數交付（2026-08-28 Opus 起草，當日結案）**
-
-10 頁全開、2 筆補 anchor 完成、10 本 tool→spine 升層完畢。六類違規全 0、checkup 75 站全 0、
-**全星系溯源債歸零**（design-patterns 那筆有書名沒章節的 furtherReading 一併補掛）。
-豁免率 44% → 43%（2250 本、976 豁免）。commits：investing `2e8aca2`、communication `6179d40`、
-theology `d959fd2`＋`a2cf5e2`、thinking `cfc26b7`、spiritual-formation `3a6f919`、
-philosophy `89a0174`、growth `f175b3d`、design-patterns `126b349`。
-
-**開單四處被起草層擋下——都是指揮層的錯，記檔避免重犯**：
-1. **書不在我指定的站**（兩次）。`walden` 在 philosophy-note、`secular-age` 也在 philosophy-note，
-   我卻分別派給 life-meaning 與 theology。梭羅那位代理自己查了 bibliography 才發現：
-   **照單寫下去，頁會引用一本該站不擁有的書——稽核算不到引用，後續 tool→spine 也無處可升**。
-   它改寫在 philosophy-note。Taylor 那位沒察覺，由主會話收尾時發現並改成**跨站收錄**：
-   theology 新增 owned+spine（頁在那裡），philosophy 那筆改判 `delegated → theology`。
-   **教訓：開單前必須 grep 確認那本書在哪一站的 bibliography，不能憑主題推測。**
-2. **切角早被別頁佔用**。開單給 Hauerwas 的「教會就是社會倫理」，`apologetics/public-faith.md`
-   已完整寫過；代理改切「敘事與品格的方法論」（論證層，全站空白）。
-3. **把批評者的話當成書中事實**。開單寫梭羅「一年只需工作六週」，實際上那句只出現在
-   厄普代克導論、且是**用來批評梭羅**的；代理拒絕寫進 core，改放保留意見節。
-4. **書源自身不一致要挑邊並說明**：小屋總成本〈經濟篇〉記 28.12½、導論記 28.11½，
-   採正文章節值。另修兩處名詞：「橘汁測試」→書源「柳橙汁測驗」、「靈性超新星」→「屬靈超新星」。
-
-**撞題檢查的實際戰果**（每頁動筆前都讀了疑似撞題頁的 core 全文）：thinking 那頁發現
-過度擬合已被 Silver 寫完，主幹改為最佳停止＋探索利用，過擬合改寫成「決策版」與統計建模版分工；
-其餘各頁確認不撞並互加 related 與分工句。
-
-### 原始開單（2026-08-28 Fable，保留供對照）
-
-昨日認領的 326 本 tool 書中，8 個分派 fork 共交 33 本「建議升層」。Fable 逐本裁決
-（章節目錄全查、撞題疑慮的既有頁 core 抽讀過：世俗時代頁是 Keller 書源、值得想要頁
-是提問框架、護城河頁是巴菲特書源——三處都不撞）。**流程沿既成事實原則：先開頁、
-頁掛 anchor 之後才把 tier 從 tool 升 spine**——先升層會立刻製造真欠債。
-
-**第一批開頁 10 筆**（每筆：站／書／頁題／切什麼／避開什麼／anchor 落點）：
-
-1. **investing**／`battle-for-investment-survival`（Loeb 1935）——「集中與流動：被動時代的反方原典」。
-   切：集中持股、全神貫注、流動性優先——與 Bogle 主軸正面對立的 1935 年宣言；爭點兩造到齊。
-   避開：index-passive 八頁全是正方，本頁就是要當反方，別寫成又一頁被動論。
-   anchor：`docs/02-speculative-attitude-essential/`、`docs/11-diversification-of-investments/`（他反分散）、`docs/12-when-to-sell/`。
-2. **communication**／`secrets-of-consulting`（Weinberg）——「顧問的悖論：他們付錢請你改變，卻抗拒改變」。
-   切：橘汁測試、影響力悖論、抗拒是訊息。避開：persuasion 六頁是說服開關，本頁是顧問處境。
-   anchor：`docs/ch01-why-consulting-is-hard/`、`docs/ch02-cultivating-paradoxical-mind/`、`docs/ch10-dealing-with-resistance/`。
-3. **theology**／`exclusion-and-embrace`（Volf）——「擁抱的意志：先於真相判定的和解神學」。
-   切：排斥的解剖、擁抱四步、記憶的救贖。避開：public-faith 頁是公共見證，本頁是和解機制。
-   anchor：`docs/01-the-cross-the-self-and-the-other/`、`docs/02-identity-and-difference/`、`docs/03-justice-truth-and-peace/`。
-4. **theology**／`peaceable-kingdom`（Hauerwas）——「教會就是社會倫理：敘事與品格的倫理學」。
-   切：品格先於決策、教會作為僕人群體。避開：doctrine 的幸福論頁是阿奎那骨架，本頁是二十世紀敘事倫理一極。
-   anchor：`docs/01-christian-ethics-in-broken-world/`、`docs/05-jesus-presence-of-peaceable-kingdom/`、`docs/06-servant-community/`。
-5. **theology**／`secular-age`（Taylor）——「世俗的三副面孔：從不可能不信到選項之一」。
-   切：secular 1/2/3、緩衝自我、新星效應、減法敘事的批判。避開：faith-in-a-secular-age 頁是 Keller 的護教應用
-   （只轉述過「減法敘事」一句），本頁是 Taylor 框架本身；寫完互連。
-   anchor：`docs/01-work-of-reform/`、`docs/03-nova-effect/`、`docs/05-conditions-of-belief/`。
-6. **spiritual-formation**／`you-are-what-you-love`（Smith）——「愛先於思：禮拜如何塑造渴慕」。
-   切：人是敬拜的動物、習慣的禮拜觀、世俗禮拜（商場）的反塑造。避開：discipleship 八頁是操練清單，本頁是機制。
-   anchor：`docs/01-you-are-what-you-love/`、`docs/02-you-might-not-love-what-you-think/`、`docs/04-narrative-arc-of-formative-worship/`。
-7. **thinking**／`algorithms-to-live-by`——「演算法即生活：最佳停止、探索與利用」。
-   切：37% 法則、explore/exploit、過擬合與鬆弛。避開：mental-models 七頁無演算法視角；別寫成排序教學。
-   anchor：`docs/02-optimal-stopping/`、`docs/03-explore-exploit/`、`docs/08-overfitting/`。
-8. **growth**／`bright-sided`（Ehrenreich）——「正向思考的代價：一部意識形態批判史」。
-   切：smile or die、正向神學與金融泡沫的共犯結構。避開：fake-growth-mindset 頁是 Dweck 體系內修正，
-   本頁是體系外批判——成功學傳統那 8 本 tool 書終於有了反方。
-   anchor：`docs/02-smile-or-die/`、`docs/04-the-dark-roots-of-american-optimism/`、`docs/08-how-positive-thinking-destroyed-the-economy/`。
-9. **life-meaning**／`walden`（梭羅）——「刻意的生活：把日子削到只剩本質的實驗」。
-   切：經濟篇的成本核算、「我到林中去」、獨處作為能力。避開：whats-worth-wanting 頁是提問框架，
-   本頁是實驗記錄；leisure 頁談閒暇，梭羅談的是簡化。
-   anchor：`docs/01-economy/`、`docs/02-where-i-lived-and-what-i-lived-for/`、`docs/05-solitude/`。
-10. **design-patterns**／`timeless-way-of-building`（Alexander）——「模式語言的源頭：無名特質與活的結構」。
-    切：QWAN、模式從哪來、GoF 借走了形式丟掉了什麼。避開：principles 十一頁是原則條目，本頁是正典源流。
-    anchor：`docs/01-the-timeless-way/`、`docs/02-the-quality/`、`docs/05-the-kernel-of-the-way/`。
-
-**補 anchor 2 筆（頁在、原典沒被引——不開新頁）**：
-- `little-book-that-builds-wealth`（Dorsey）→ investing `value-investing/intrinsic-value-and-moat.md`：
-  該頁 core 是巴菲特經濟商譽，Dorsey 四來源（無形資產／轉換成本／網絡效應／成本優勢）缺席——補 anchor，
-  起草代理視篇幅決定是否擴一節。
-- `specification-by-example` → agile `user-stories/`驗收測試頁＋`xp-practices/`驗收測試頁：兩頁已涵蓋
-  實例化需求，補掛原典 anchor 即可。
-
-**第二批候選（本輪不開，記檔待下輪）**：mythical-man-month（clean-code，概念完整性）、
-money-game、power-law、getting-to-yes-with-yourself、software-architect-elevator、
-long-win＋winning-grover（成對）、running-on-empty＋reinventing-your-life（合開）、
-sociopath-next-door、autobiography-of-benjamin-franklin、power-of-servant-leadership、
-illness-narratives。
-
-**裁決不開（維持 tool，理由記檔免重審）**：programming-pearls（repo 僅 3 章）、
-what-life-should-mean-to-you（repo 僅 1 章）、biggest-bluff（Annie Duke 已在 leadership
-承載「用下注思考」）、code-of-trust（與既有信任頁同向非對立）、
-competitive-advantage-of-nations（國家層分析，站定位是企業策略——不對稱是誠實的）、
-intuition-pumps（thinking 已近深化）、positive-discipline（parenting 已 6 頁）、
-how-finance-works（緩）。**Andrew 已裁決（2026-08-28，記檔免重審）**：
-- **writing 站只收技法書**——杜斯妥也夫斯基《卡拉馬助夫兄弟們》《罪與罰》維持 `tool`，
-  **不開文學閱讀線**。兩本留在「閱讀即輸入」組當架上參考，本站不會為它們開頁。
-  下輪若有 fork 再提名「文學承重級」，直接引這條駁回。
-- **不開 Goldingay／Ortberg 作者站**。Goldingay 四本裡三本是同一套書的分卷（思想弧線只有一條），
-  biblical-studies 承載得住；Ortberg 四本散在三站，主題站也接得住。認領完成後
-  「同一作者 ≥3 本無人認領」這個開站訊號本來就會自動消失。
-- **兩本 archive 書一併除役**（martin-luthers-catechisms、further-along-the-road-less-traveled）
-  ——已執行，詳見下方除役紀錄。
-
-**起草契約**（Opus，沿 note-check §6 書本位紀律）：每頁一代理直接寫檔＋回 5 行驗收摘要；
-主張掛得住 anchor 才寫；頁成後把該書 tier 從 tool 改 spine（此時有引用，不是欠債）；
-roadmap＋related 補雙向；收尾 tier-audit 歸零、build 綠、單行英文 commit、不 push。
-
+收工：checkup 75 站 0／0／0、tier-audit 六類 0（2252 本）、GUIDE-DRIFT 強訊號 0、孤兒 0、
+死鏈 slug/anchor 0、全部 commit＋push、無髒 repo。
 
 ## 導覽織入輪（2026-09-02 Fable）——**21 本新脊梁織進 15 站導覽，數字對帳 34 筆，enrichedAt 補蓋**
 

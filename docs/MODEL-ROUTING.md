@@ -178,9 +178,9 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | ~~挑下一本該挖的書~~ **紅利已盡（2026-08-27，六輪收官）** | `DEEPEN-TARGETS.md` 轉為新書進站的增量監測 | 判準是面向覆蓋非頁厚，不可自動化 |
 | ~~anchor 覆蓋不足 73 頁~~ **首輪結案（2026-08-27 歸零）** | `ANCHOR-GAPS.md`「證據充分」那節，逐頁對書核完再改 `furtherReading` | Opus——工具指得出來，但建議章會撞號，要人工看一眼那章在講什麼 |
 | ~~認領輪後 21 本新脊梁沒織進導覽~~ **織入輪結案（2026-09-02，15 站）** | 導覽 03 書架帳＋04 爭議補段、新增「架上參考」節、數字對帳、蓋 enrichedAt | **Fable**——策展寫作；教訓：起草代理不動 bibliography 時，主會話收尾必蓋 enrichedAt，否則 guide-stale 全瞎 |
-| 認領輪後的導覽數字對帳（剩 14 站 14 筆＋schwager） | `GUIDE-DRIFT.md` 強訊號逐筆改；「收完 N 本」改現數並括號註明認領上架的 M 本；03 標題本數與分層帳工具不抓，手查 | Opus |
-| 缺初版年 65 筆（58 筆 tool 書的 repo 有 `published`） | `MISSING-YEARS.md`，照 Andrew 豁免當線索填；順手讓 `export-missing-years.py` 讀 `published` | Opus |
-| 新書進站：Berne《人生腳本》 | `apply-claims.py`；裁決已下（relationships「溝通與衝突」、tool、初版 1972） | Opus 套用 |
+| ~~認領輪後的導覽數字對帳~~ **結案（2026-09-03，15 站，強訊號歸零）** | `GUIDE-DRIFT.md` 強訊號逐筆改＋每站補「架上參考」節 | Opus——三筆真話靠手查才抓到（security 的「全部已挖」變假、personal-finance 兩種豁免混算、history 的 delegated 異動） |
+| ~~缺初版年 65 筆~~ **結案（2026-09-03，65→7）** | 先修工具盲區（`date="…"` 現行 repo 一本都沒有，改讀 frontmatter `published`，線索 0→59），再逐本填 | Opus——能確認初版年的 13 筆覆蓋線索；剩 7 筆全是已裁決留白 |
+| ~~新書進站：Berne《人生腳本》~~ **結案（2026-09-03）** | `apply-claims.py` → relationships「溝通與衝突」、tool、1972 | **孤兒書 1→0**：書庫 1772 本第一次全部有站在管 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——
 **判層裁決**（主題歸屬）、**開單**（每頁的邊界、避開哪些既有頁、anchor 落哪幾章）、
