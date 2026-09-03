@@ -17,6 +17,52 @@
 
 ## 進行中
 
+### 深度與連結度地板：Opus 那三批已交付，**剩 56 筆留 Fable**（2026-09-03）
+
+**Opus 交付**（14 個代理、34 站、43 個 commit，全部已 push）：`related-thin` 77→**0**、`body-thin` 45→**0**、
+`guide-unlinked` 191→**56**。全星系 blocker 0／warn 0／nit 56。
+
+`body-thin` 那 45 頁全部加深到 1400–3800 字，材料一律取自該頁**已掛的 anchor**（不夠用的補同書別章），
+具名事實逐筆回源 grep。`related-thin` 那 77 頁全部補到 2–5 條且雙向。
+
+**順帶清掉、不在原單上的**（都是代理回報、主會話逐筆重驗後才改）：
+- **導覽數字錯 9 筆**：system-design（concepts 四十七→五十、六十七頁→七十頁）、clean-code（testing 七→八頁、
+  註解編排四→五頁）、leadership（九十九→一百本、帶人與團隊二十六→二十七本、未引用二十七→三十一本）、
+  data-systems（01 章十九本／五十三頁→二十一本／五十五頁）、liurun（13→14 頁）、
+  biblical-studies（BST 六十一頁→四十五頁）、thinking（語言與知覺六→七頁、Haidt「三頁由它撐起」改成
+  「三頁講它的主張，其中兩頁直接溯源」）。
+  **教訓：代理報回來的數字也要自己重數**——leadership 那筆代理說 103 本，實際 100（它數的是 `status:` 行數）。
+- **一句查無出處的引言**：image-style `gentleman-presence` 把「風格是人格的可見呈現」掛給 Flusser，
+  實際出自 O'Brien《How to Be a Man》，Flusser 那句「品味的外顯」全書庫 grep 不到。已改歸屬。
+- **三處 anchor 掛錯章**：business-strategy 飛輪頁沒掛《從 A 到 A+》第 8 章（飛輪原典章）、
+  cloud-infra `load-balancing` 的 label 寫「Frontend / Datacenter」但只掛 Frontend、
+  writing `pay-attention` 掛的兩章其實是 `daily-practice` 的材料（頁上的 Yad Vashem、雪松木湯匙出自 15/16/28 章）。
+  **這三筆都是 `export-anchor-gaps.py` 的漏網**——它查「數字在不在掛出去的章底下」，查不到「掛的章對不對」。
+
+#### 留給 Fable 的 56 筆（兩堆，性質不同）
+
+**堆一：covey 導覽重寫（37 筆，整站）。** 41 頁只連到 4 頁，五章合計 8 個連結，全星系最少。
+分類是 legacy 15、trust-and-execution 8、personal-victory 6、public-victory 5、principles 4、family 3。
+這不是補連結——導覽根本沒把頁當材料寫，要重新決定哪一章帶哪幾頁。
+
+**堆二：書單與導覽脫節（19 筆，8 站）。** 每一筆都 grep 驗證過導覽零命中，硬織就要新增段落（規格禁止）。
+要決定的是「導覽該不該講這本書／這個主題」，不是連結問題：
+
+| 站 | 頁 | 導覽那邊的狀況 |
+| --- | --- | --- |
+| leadership | `team/boundaries-for-leaders` | 該書判 **spine**、歸「帶人與團隊」組，但五章導覽 `Henry`／`Cloud`／`Boundaries`／`界線` **全部零命中** |
+| startup | `opportunity/pitching` | 03 書單章**根本沒有《The Art of the Start》的條目**；五條主線也沒有「對外溝通／pitch」這條 |
+| data-systems | `partitioning/rebalancing`、`request-routing` | 02 章「五派疆域」地圖列 11 個分類，**漏掉的正好是 encoding 與 partitioning**——這兩個分類在導覽層本來就是孤兒 |
+| system-design | `communication/data-encoding`、`storage-abstractions/object-storage` | 03 章明寫 DDIA「統治複製、分片、一致性、串流四個分類」，編碼不在這個定位裡；物件儲存／S3 導覽零命中 |
+| clean-code | `naming/avoid-encodings`、`parts-of-speech-and-context`、`complexity/design-it-twice`、`different-layer-different-abstraction`、`testing/clean-tests-first-and-aaa` | 前四筆的導覽句**自承是取樣**（「命名八頁的骨架（三項）」「從 A、B、C 一路到 D、E」）；第五筆要改寫「站的前三個分類」那個作用域宣稱 |
+| biblical-studies | `biblical-theology/diagonalization`、`hermeneutics/handling-hard-sayings`、`new-testament/nt-ethics-three-focal-images` | 三本書在五章導覽一個字都沒出現；織進去分別要開第六條主線／改「三本入門一本防守」那句／多開一個 bucket |
+| agile | `adoption/leading-self-organizing-teams`、`measuring-the-transition`、`xp-practices/team-practices-around-the-code` | 前兩筆「自組織」「敏捷度」零命中；第三筆是 XP 的 Circle of Life 中環，**而 02 章的「中環」是站上自己的重新分層（Scrum／看板／回顧），名字撞上但不同義，不能借用** |
+| design | `design-thinking/design-thinking-practices`、`simplicity/time-feels-like-simplicity` | 前者是 Change by Design 最後一章，03 章列了該書十一頁主題**剛好只漏這一項**；後者是 Maeda Law 3，導覽提了 Law 1/5/6/7/9/10 就是沒有 3 |
+
+**判準建議**：這 19 筆分兩種——「導覽的清單漏了一筆」（design 那兩筆、clean-code 的取樣句）補回去即可；
+「書在架上但導覽沒有它的位置」（leadership、startup、data-systems、system-design、biblical-studies）
+要先決定分層敘事要不要收它，再決定寫不寫。
+
 ### 深度與連結度地板（2026-09-03 開單）——**313 筆 nit、三種，模型分兩堆**
 
 **起因**：Andrew 問「各站的深度和連結度都夠了嗎」。契約層（脊梁有頁、anchor 實存、related 雙向、
