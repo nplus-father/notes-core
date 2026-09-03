@@ -1,6 +1,6 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
-> **生成於 2026-09-03T19:41:22+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T21:30:19+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。

@@ -17,6 +17,29 @@
 
 ## 進行中
 
+### 深度與連結度地板：Fable 收尾，**56→0，三條地板全星系歸零**（2026-09-03 深夜）
+
+**covey 37 筆**：讀完五章才發現問題比數字小——導覽本來就逐頁點名了全部 41 頁，只是用「」寫標題、沒掛連結。
+所以做的是把 64 處引號標題換成連結（04 章只換兩處，「雙贏」「第二象限」在那章是口號用法，不連），外加一句過期敘述
+（05 章說家庭使命宣言還沒寫，今天 A 類輪已開頁）。**教訓：`guide-unlinked` 抓的是「沒連結」，不等於「沒講到」**——
+先看導覽是不是用引號在點名，那種站一個腳本就收完。
+
+**19 筆／8 站**：全部織進去了，沒有一筆是硬塞。分兩種：
+- **清單漏一筆（9 筆）**——design 的 Change by Design 十一頁清單補上最後一章、Maeda 判準句補 Law 3；clean-code 的
+  命名骨架補兩頁、APoSD「從…一路到」補兩頁、Clean Code 那句補 testing 一頁；agile 的 Succeeding with Agile
+  組織面百科補兩頁。這些句子本來就在列該書的頁，補的是完整度。
+- **書在架上但導覽沒位置（10 筆）**——每筆都給一個真句子，不是連結：leadership 的 Cloud《Boundaries for Leaders》
+  接在 Extreme Ownership 後面（「當責不只是失敗算誰的，還包括你默許了什麼」）；startup 的 Kawasaki 進「矽谷敘事」組，
+  兩頁分工（Make Meaning 給起點、Pitch 給第一個動作）；data-systems 的 partitioning 進 NoSQL 造反段（規模靠切開來扛，
+  再平衡與請求路由是切開後永遠跟著的兩件事），**「五派疆域」地圖從 11 個分類補成 13 個**（partitioning 歸 NoSQL 殖民地，
+  encoding 歸物理定律那排）；system-design 的 DDIA 段補「編碼只落一頁，因為主場在 data-systems」、SDI 段補
+  storage-abstractions 的兩個原型；biblical-studies 三本各給位置——Hard Sayings 進方法論（小節改名「三本入門、一本防守、
+  一本查閱」）、Hays《Moral Vision》進大部頭（四座→五座）、Watkin 接在主線二尾巴當**反向箭頭**（主線二把聖經放回處境，
+  他用聖經讀我們的處境）；agile 的 Clean Agile 段補中環那頁，並明講「這是 Bob 的圈，不是第二章八張卡那個圈」。
+
+**結果**：`galaxy-checkup` 75 站 blocker 0／warn 0／nit 0——含新加的 `guide-unlinked`／`related-thin`／`body-thin`
+三條。這輪起「每一頁都從導覽走得到、每一頁至少兩條 related、沒有一頁正文不到一千字」是有工具背書的事實。
+
 ### 深度與連結度地板：Opus 那三批已交付，**剩 56 筆留 Fable**（2026-09-03）
 
 **Opus 交付**（14 個代理、34 站、43 個 commit，全部已 push）：`related-thin` 77→**0**、`body-thin` 45→**0**、

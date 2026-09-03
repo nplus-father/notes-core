@@ -1,6 +1,6 @@
 # 導覽數字與現況不符
 
-> **生成於 2026-09-03T19:41:46+08:00**｜由 `tools/export-guide-drift.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T21:30:45+08:00**｜由 `tools/export-guide-drift.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-guide-drift.py` 產生。判準：導覽（`guide/*.md`）與首頁總覽（`overview.ts`）裡**指向站台自身規模的數字**——總頁數、某分類幾頁、收了幾本——回去數實際檔案對不對得上。
 
@@ -10,7 +10,7 @@
 
 - **要改：3 筆**——沒有任何讀法能解釋這個數字。
 - 低信心通過：0 筆——只靠「等於某本未點名的書的被引頁數」放行，抽查用。
-- 通過：154 筆——具體讀法成立，理由列在表裡。
+- 通過：153 筆——具體讀法成立，理由列在表裡。
 
 計數口徑同時接受「只算概念頁」與「概念頁＋題型頁」兩種。
 
@@ -26,7 +26,7 @@
 
 無。
 
-## 通過：154 筆
+## 通過：153 筆
 
 <details><summary>展開</summary>
 
@@ -35,7 +35,7 @@
 | `agile-note` | 02-threads-and-methods.md | 站台總頁 | **67** | 67 | 整站總數 | …下游、哪張是另一張的組織放大版。這一章把八張卡連成四組對話。這個分組不在任何一本書裡，是站上六十七頁互相連結之後浮出來的結構。  ## 第一組對話：敏捷宣言 ✕… |
 | `agile-note` | 03-canon-guide.md | scrum 分類 | **12** | 12 | 分類頁數 | …rum（Kenneth S. Rubin，2012）。**十八處引用，全站被引最多的書：scrum 分類十二頁裡十頁的骨架、product 分類八頁裡五頁的主要來… |
 | `agile-note` | 03-canon-guide.md | product 分類 | **8** | 8 | 分類頁數 | …in，2012）。**十八處引用，全站被引最多的書：scrum 分類十二頁裡十頁的骨架、product 分類八頁裡五頁的主要來源，連 retrospectives… |
-| `agile-note` | 03-canon-guide.md | flow 分類 | **11** | 11 | 分類頁數 | …Hammarberg & Joakim Sundén，2014）。**十處引用，撐起 flow 分類十一頁裡的九頁。它值得這個集中度：從便利貼的撕法、蛋糕限制… |
+| `agile-note` | 03-canon-guide.md | flow 分類 | **11** | 11 | 分類頁數 | …Hammarberg & Joakim Sundén，2014）。**十處引用，撐起 flow 分類十一頁裡的九頁。它值得這個集中度：從[便利貼的撕法](..… |
 | `agile-note` | 03-canon-guide.md | user-stories 分類 | **8** | 8 | 分類頁數 | …ser Stories Applied（Mike Cohn，2004）。**十三處引用，user-stories 分類八頁全部由它撐起，外加 scrum 的量測速度頁。這是定… |
 | `agile-note` | 03-canon-guide.md | adoption 分類 | **10** | 10 | 分類頁數 | …cceeding with Agile（Mike Cohn，2009）。**十六處引用，adoption 分類十頁裡八頁由它撐起，另支援 scrum 與 xp-pra… |
 | `agile-note` | overview.ts | 站台總頁 | **67** | 67 | 整站總數 | …elton 與 Pais 的 Team Topologies 再把問題推到組織形狀本身。站上六十七頁概念頁，全部從這批書逐章溯源。",     },… |
@@ -166,7 +166,6 @@
 | `templar-note` | 02-threads.md | 站台總頁 | **14** | 14 | 整站總數 | …— 導論"     anchor: "docs/introduction/" ---  站上十四頁概念頁分在五個分類裡——守則、工作、人際、家庭、自我。分類… |
 | `templar-note` | overview.ts | 站台總頁 | **14** | 14 | 整站總數 | …{       heading: "Claims",       body: "站上十四頁其實在講五件事：規則體而非理論體（方法）；不必宣揚（… |
 | `thinking-note` | 02-threads-and-schools.md | 站台總頁 | **69** | 69 | 整站總數 | …三組對話：判斷層的兩張處方、機制層的翻案同盟、向內層的接力。這個分組不在任何一本書裡，是站上六十九頁互相連結之後浮出來的結構。  ## 第一組對話：判斷與偏誤… |
-| `thinking-note` | 03-canon-guide.md | 站台總頁 | **6** | 69 | 段內 1 個分類的頁數和 = 6 | …梁：The Righteous Mind（Jonathan Haidt，2012）。**站上六頁的三頁由它撐起：直覺先行的社會直覺模型、六個道德基礎… |
 | `thinking-note` | 03-canon-guide.md | 站台總頁 | **3** | 69 | 子集後綴／歷史敘述 | …uroscience（Jaak Panksepp，1998）。**七大情緒系統的教科書，站上三頁的來源，也是書單上技術密度最高的一本——SEEKIN… |
 | `thinking-note` | 05-reading-path.md | 站台總頁 | **3** | 69 | 句內列舉 3 頁 | …要往腦的深處走，接《Affective Neuroscience》——它是教科書，硬，但站上三頁（[原始情緒系統](../concepts/affect/primal-emotion-systems/)、[社交情緒](../concepts/affect/social-emotions/)、[研究立場](../concepts/affect/studying-emotion/)）可當先導地圖。  **語言入口**：《換了語言，就換… |
 | `tools-note` | 02-threads-and-schools.md | 站台總頁 | **31** | 31 | 整站總數 | …於「什麼讓習慣黏住」的三方混戰。這一章把四張卡拆開再連起來。這個結構不在任何一本書裡，是站上三十一頁互相連結之後浮出來的。  ## 時間管理卡之內：一張桌上的三… |
