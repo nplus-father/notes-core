@@ -1,6 +1,6 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-03T18:49:44+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T19:27:45+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
@@ -17,7 +17,7 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/08-priorities/`「優先順序」（1 個數字）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）
+- 建議 anchor：`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md

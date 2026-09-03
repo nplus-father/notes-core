@@ -14,13 +14,14 @@ collins-note 的導覽寫著「書單列為 wanted，未收」「站上十二頁
   2. 分類頁數      「scrum 分類十二頁」「randomness 分類四頁」
   3. owned 本數    「收完這二十本」「六本 owned」
 
-**兩級證據，跟 export-anchor-gaps.py 同一套規矩**：
+**三級證據**（2026-09-03 由兩級改成三級，原因見坑 5）：
 
 - **強訊號**＝數字後面接得住「總數」語境（`概念頁`／`分N區`／`分在`／`互相連結`／
   前面是`寫完`、`讀完`、`收完`）。這種句子在講整站規模，數字錯就是錯。
-- **弱訊號**＝光禿禿的「站上N頁」。多數其實是**子集**宣稱——「站上三頁以它為主引」
-  「站上四頁都掛它」講的是「有幾頁引用這本書」，不是站台總頁數，不能拿總數去對。
-  這一節只列出來供人看一眼，**不是判決**。
+- **待判**＝句型看不出是不是總數，而且這個數字**對不上該站任何一本書的被引頁數**。
+  子集宣稱（「站上三頁以它為主引」）的數字必然等於某本書的被引頁數；對不上就代表
+  它在講別的東西，而「別的東西」多半就是整站規模。**這一節要人逐筆看**。
+- **弱訊號**＝數字剛好等於某本書的被引頁數，幾乎確定是子集宣稱，寫的是對的。供抽查。
 
 計數口徑同時接受兩種，只有兩個都對不上才報：
   - 只算 `concepts/`（多數站）
@@ -36,11 +37,17 @@ collins-note 的導覽寫著「書單列為 wanted，未收」「站上十二頁
   4. **已知盲區**：同一個數字在同段落無前綴地再出現（「把十四頁一口氣讀完」「讀這十四頁」）
      抓不到——放寬前綴會把所有「N 頁」都炸成假陽性。所以修強訊號時要把那一段整段讀完，
      別只改工具指到的那一行（2026-08-27 collins 02-threads 就漏了兩處，隔輪人工撞到）。
+  5. **句型分級會漏真債**（2026-09-03 B 類輪實證）：「站上十五頁一口氣讀完」「站上三十頁裡」
+     「站上二十五頁裡」都是整站宣稱，但句型不符強訊號的白名單，全被丟進弱訊號那堆 47 筆裡，
+     等於「工具說沒事」。那一輪人工從弱訊號撈出 22 筆真債（18 站）。
+     **修法不是繼續加句型**——自然語言分不完；改成「兩種讀法都驗」：子集宣稱的數字一定等於
+     某本書的被引頁數，兩種讀法都對不上的就進待判。這條把 47 筆縮到十幾筆要人看的。
 
 用法：
     python3 tools/export-guide-drift.py            # 全星系，寫 docs/GUIDE-DRIFT.md
     python3 tools/export-guide-drift.py <station>  # 只看一站，印到畫面
 """
+import collections
 import datetime as _dt
 import io
 import re
@@ -140,13 +147,38 @@ def station_facts(st):
                 problems += flat
     bib = NOTES / st / "src" / "data" / "bibliography.ts"
     owned = len(re.findall(r'status:\s*"owned"', bib.read_text(encoding="utf-8"))) if bib.exists() else 0
-    return {"concepts": concepts, "problems": problems, "cats": cats, "owned": owned}
+    return {
+        "concepts": concepts,
+        "problems": problems,
+        "cats": cats,
+        "owned": owned,
+        "citing": citing_counts(st),
+    }
+
+
+def citing_counts(st):
+    """該站每一本書「被幾頁引用」的所有值。
+
+    子集宣稱（「站上三頁以它為主引」「站上四頁都掛它」）的那個數字，必然是某本書的
+    被引頁數。所以這個集合就是「數字的第二種合法讀法」——用它把待判與弱訊號分開。
+    """
+    per_book = collections.Counter()
+    for kind in ("concepts", "problems"):
+        root = NOTES / st / "src" / "content" / kind
+        if not root.is_dir():
+            continue
+        for f in root.rglob("*.md"):
+            if f.name == "_index.md":
+                continue
+            for b in set(re.findall(r"^\s*- book:\s*(\S+)", f.read_text(encoding="utf-8"), re.M)):
+                per_book[b.strip("\"'")] += 1
+    return set(per_book.values())
 
 
 def scan(st):
     f = station_facts(st)
     accepted_totals = {f["concepts"], f["concepts"] + f["problems"]}
-    strong, weak = [], []
+    strong, unsure, weak = [], [], []
     files = sorted((NOTES / st / "src" / "content" / "guide").glob("*.md"))
     ov = NOTES / st / "src" / "data" / "overview.ts"
     if ov.exists():
@@ -158,7 +190,14 @@ def scan(st):
             if n is None or n in accepted_totals:
                 continue
             row = (p.name, "站台總頁", n, f"{f['concepts']}（＋題型 {f['problems']}）" if f["problems"] else str(f["concepts"]), ctx(text, m))
-            (strong if is_strong(text, m) else weak).append(row)
+            if is_strong(text, m):
+                strong.append(row)
+            elif n in f["citing"]:
+                # 對得上某本書的被引頁數 → 幾乎確定是子集宣稱，寫的是對的
+                weak.append(row)
+            else:
+                # 兩種讀法都對不上 → 這個數字在講別的東西，要人看
+                unsure.append(row)
         for m in CAT_CLAIM.finditer(text):
             cat, n = m.group(1), cn2int(m.group(2))
             if cat in f["cats"] and n is not None and n != f["cats"][cat]:
@@ -170,7 +209,7 @@ def scan(st):
             if n is not None and n != f["owned"]:
                 row = (p.name, "owned 本數", n, str(f["owned"]), ctx(text, m))
                 (weak if demoted(text, m) else strong).append(row)
-    return strong, weak
+    return strong, unsure, weak
 
 
 def table(o, rows):
@@ -183,10 +222,11 @@ def table(o, rows):
 def main():
     only = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else None
     stations = [only] if only else sorted(p.parts[len(NOTES.parts)] for p in NOTES.glob("*-note/src/data/bibliography.ts"))
-    strong, weak = [], []
+    strong, unsure, weak = [], [], []
     for st in stations:
-        s, w = scan(st)
+        s, u, w = scan(st)
         strong += [(st, r) for r in s]
+        unsure += [(st, r) for r in u]
         weak += [(st, r) for r in w]
 
     o = io.StringIO()
@@ -200,8 +240,11 @@ def main():
         "不動而內容照樣說謊**。2026-08-27 收《飛輪效應》那輪就是這樣被手動抓到的。\n\n"
         f"- **強訊號（數字在講整站規模）：{len(strong)} 筆**——句子接得住「概念頁」「分 N 區」"
         "「互相連結」，或前面是「寫完／讀完／收完」。這種數字錯就是錯，逐筆對現況改。\n"
-        f"- 弱訊號：{len(weak)} 筆——光禿禿的「站上 N 頁」，**多數其實是子集宣稱**"
-        "（「站上三頁以它為主引」＝有三頁引用這本書，不是站台總共三頁），列出來供抽查，不是判決。\n\n"
+        f"- **待判：{len(unsure)} 筆**——句型看不出是不是總數，而且這個數字**對不上該站任何一本書的"
+        "被引頁數**。子集宣稱的數字必然等於某本書的被引頁數；對不上就代表它在講別的東西，"
+        "而那多半就是整站規模。**這一節要逐筆看**，2026-09-03 那輪從這裡撈出 22 筆真債。\n"
+        f"- 弱訊號：{len(weak)} 筆——數字剛好等於某本書的被引頁數（「站上三頁以它為主引」＝有三頁"
+        "引用這本書），幾乎確定是子集宣稱，寫的是對的。供抽查，不是判決。\n\n"
         "計數口徑同時接受「只算概念頁」與「概念頁＋題型頁」兩種，兩個都對不上才報。\n\n"
     )
     o.write(f"## 強訊號：{len(strong)} 筆\n\n")
@@ -209,7 +252,12 @@ def main():
         table(o, strong)
     else:
         o.write("無——導覽的規模數字都對得上現況。\n")
-    o.write(f"\n## 弱訊號（多半是子集宣稱，不是債）：{len(weak)} 筆\n\n")
+    o.write(f"\n## 待判（兩種讀法都對不上，要人看）：{len(unsure)} 筆\n\n")
+    if unsure:
+        table(o, unsure)
+    else:
+        o.write("無。\n")
+    o.write(f"\n## 弱訊號（數字等於某本書的被引頁數，是子集宣稱）：{len(weak)} 筆\n\n")
     if weak:
         table(o, weak)
     else:
@@ -227,7 +275,10 @@ def main():
         sys.stdout.write(text)
     else:
         OUT.write_text(text, encoding="utf-8")
-        print(f"{OUT}: 強訊號 {len(strong)} 筆、弱訊號 {len(weak)} 筆，涉及 {len({s for s, _ in strong})} 站")
+        print(
+            f"{OUT}: 強訊號 {len(strong)} 筆、待判 {len(unsure)} 筆、弱訊號 {len(weak)} 筆，"
+            f"要動的涉及 {len({s for s, _ in strong + unsure})} 站"
+        )
 
 
 if __name__ == "__main__":
