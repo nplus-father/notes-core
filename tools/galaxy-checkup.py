@@ -20,6 +20,11 @@ warn 61（全數當場修掉）、nit 332。
   2.5 書本位（每頁 ≥1 book、slug 對得到書庫、anchor 實存、label 分隔號）
   2.6 :::response 存在（只適用 concepts／problems，guide 不需要）、跳脫實體殘留
   2.7 related 雙向與死指、seeAlso 合法、**內文相對連結指得到頁**（見下）
+  2.8 深度與連結度的地板（2026-09-03 加，三條都是 nit）：
+      guide-unlinked  頁沒被任何導覽章連到——導覽是讀者入口，走不到的頁等於不存在
+      related-thin    related 少於 2 條——checkup 原本只查死指與單向，`related: []` 一路綠燈
+      body-thin       正文（去空白）不到 1000 字——技術站體裁短，但 1000 以下連 intuition 都撐不起
+      這三條是「夠不夠」的定義，契約層（2.1–2.7）全綠時它們才有意義；門檻寫死在 THIN_* 常數
 """
 import json
 import re
@@ -32,6 +37,26 @@ BOOKS = Path("/home/andrew/workspace/andrew/books-management/books-done")
 CORE = NOTES / "notes-core"
 
 STATUS_OK = {"draft", "studied", "reviewed"}
+THIN_RELATED = 2      # related 少於這個數就報
+THIN_BODY = 1000      # 正文去空白字元數少於這個數就報
+
+
+def guide_linked_pages(st):
+    """導覽五章連到的 cat/slug 集合。兩種寫法都認：../concepts/… 與 /<站>/concepts/…。"""
+    out = set()
+    guide = st / "src" / "content" / "guide"
+    if not guide.exists():
+        return out
+    pat = re.compile(rf"\]\((?:\.\./|/{re.escape(st.name)}/)concepts/([a-z0-9-]+)/([a-z0-9-]+)/?[#)]")
+    for g in guide.glob("*.md"):
+        out |= {f"{c}/{sl}" for c, sl in pat.findall(g.read_text(encoding="utf8"))}
+    return out
+
+
+def body_len(raw):
+    """去掉 frontmatter 與所有空白後的字元數。"""
+    body = raw.split("---", 2)[2] if raw.startswith("---") else raw
+    return len(re.sub(r"\s", "", body))
 SEP = re.compile(r"[—–]|\s-\s")
 
 
@@ -243,6 +268,7 @@ def check(st):
         pages[p.stem] = p
 
     all_slugs = set(pages)
+    guide_linked = guide_linked_pages(st)
     sourced = 0
     for slug, p in sorted(pages.items()):
         raw = p.read_text(encoding="utf8")
@@ -291,6 +317,16 @@ def check(st):
                 add("warn", "dead-related", f"{rel}: related → {t} 不存在")
             elif slug not in related_of(fm_of(pages[t].read_text(encoding="utf8"))):
                 add("nit", "oneway-related", f"{rel} → {t}（未指回）")
+
+        # 2.8 地板：related 條數、正文長度、導覽有沒有連到
+        n_rel = len(related_of(fm))
+        if n_rel < THIN_RELATED:
+            add("nit", "related-thin", f"{rel}: related 只有 {n_rel} 條")
+        bl = body_len(raw)
+        if bl < THIN_BODY:
+            add("nit", "body-thin", f"{rel}: 正文 {bl} 字")
+        if guide_linked and f"{p.parent.name}/{slug}" not in guide_linked:
+            add("nit", "guide-unlinked", f"{rel}: 沒被任何導覽章連到")
 
         # 2.7 seeAlso：site 走 registry、path 要指得到真的頁（寫錯是靜默 404）
         for site, path in see_also_of(fm):

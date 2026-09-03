@@ -169,6 +169,7 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | 舊導覽過期的事實對帳 | 導覽對帳（保語氣、只改數字） | Opus |
 | `:::response` 層 | `/note-master` | 非批次——由 Andrew 實際使用驅動 |
 | 已深化站要廣度 | `/note-wanted` | Opus，盤點性質 |
+| 深度與連結度地板（`galaxy-checkup` §2.8 三條 nit：guide-unlinked／related-thin／body-thin，2026-09-03 加） | 逐頁清單 `galaxy-checkup.py --json`；單在 ENRICH-BACKLOG「深度與連結度地板」 | **related 補鏈、正文加深、織入既有段落交 Opus；covey 導覽重寫與「導覽沒講到的頁」留 Fable** |
 | ~~2026-08-26～09-03 結案的十六項~~（第二／三輪深化、導覽補齊 75/75、全站體檢、判層收官、BST 系列債、深挖紅利已盡、anchor 覆蓋、織入輪、導覽對帳、初版年、Berne 進站、Overview 契約、Deploy 紅燈） | 各輪用的工具都已固化：`galaxy-checkup.py`、`tier-audit.py`、八份 `export-*.py`、`apply-claims.py` | 教訓收在 §四與 memory `fable-session-entrypoint`；詳帳看 ENRICH-BACKLOG 近三輪與 git 歷史 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——

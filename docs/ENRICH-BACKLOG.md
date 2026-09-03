@@ -17,6 +17,36 @@
 
 ## 進行中
 
+### 深度與連結度地板（2026-09-03 開單）——**313 筆 nit、三種，模型分兩堆**
+
+**起因**：Andrew 問「各站的深度和連結度都夠了嗎」。契約層（脊梁有頁、anchor 實存、related 雙向、
+roadmap／mastery 100%、導覽數字對得上）全綠，但「夠」在三個維度從來沒定義過。量出來不均，
+於是把三條地板寫進 `galaxy-checkup.py` §2.8（都是 nit）：`guide-unlinked`／`related-thin`／`body-thin`。
+逐頁清單不抄在這裡——`galaxy-checkup.py --json` 隨時重算。
+
+| 規則 | 筆數 | 站 | 集中在哪 |
+| --- | ---: | ---: | --- |
+| `guide-unlinked` 頁沒被任何導覽章連到 | 191 | 19 | covey 37/41、biblical-studies 37（舊約 23、新約 12）、clean-code 34（refactoring-moves 10、code-smells 6）、agile 20、design-patterns 10、thinking 9、system-design 9、economics 8、design 8，其餘 10 站 ≤4 |
+| `related-thin` related < 2 條 | 77 | 21 | growth 33（六個分類平均分布、20 頁是空的）、leadership 10，其餘 ≤4 |
+| `body-thin` 正文去空白 < 1000 字 | 45 | 9 | system-design 15、writing 11、clean-code 6、leadership 4、image-style 3、cloud-infra 3；**45 頁全部都有 anchor**，材料在書裡 |
+
+**模型分流**：
+
+- **Opus（三批，可平行）**
+  1. `related-thin` 77 頁：讀該頁引言＋同分類姊妹頁，補到 2–4 條並雙向指回；growth 33 頁一站一次做完。機械活，checkup 驗雙向。
+  2. `body-thin` 45 頁：**加深不重寫**——保留既有區塊，讀 anchor 指到的章把具名事實補進去，目標 ≥1500 字；
+     技術站照該站 directive 族（intuition／tradeoffs、whentouse／structure／antipatterns）。每個具名事實回源 grep。
+  3. `guide-unlinked` 的**織入既有段落**那一半（18 站、154 頁，covey 除外）：規則是「導覽 03／05 已在講這本書或這個主題的那一段，把頁面連結補進既有句子」——
+     biblical-studies 逐卷頁對 03 章逐卷段落是 1:1；clean-code 的 refactoring-moves／code-smells 是型錄頁，在 Fowler《重構》那段列一句型錄清單即可。
+     **導覽完全沒講到的頁不要硬塞**，留單給 Fable。改到的章推 `writtenAt`。
+- **Fable（兩件）**
+  1. **covey 導覽重寫連結層**：五章合計只有 8 個連結、41 頁連到 4 頁，全星系最少——這不是補連結，是導覽沒把頁當材料寫。要重寫哪一章帶哪幾頁（legacy 15 頁尤其）。
+  2. Opus 織入輪留下的殘單：導覽沒講到的頁，決定是織進去還是導覽本來就不該講它。
+
+**不做的**：正文零內鏈（約三分之一的頁）不立規則——related 與 takeaways 延伸行已在承擔，體裁差異大；
+頁／脊梁 < 1 的四站（management 0.75、theology 0.79、problem-solving 0.83、wellness 0.84）是寬而淺，
+但每本脊梁都有頁，屬 C 類厚書第二頁的範圍，維持第六輪「紅利已盡」的判定。
+
 ### B 類開單（2026-09-03，Fable）——**193 本零引用 support 逐本裁決：開 20 頁、補 16 條 anchor、其餘 157 本維持 support**（**單已全部執行完畢，見下一節**）
 
 **判準**（沿 MODEL-ROUTING：面向覆蓋非頁厚）：導覽第三章對每本 support 都已寫了理由（一句帶到／主張已含於某頁／退居譜系／人證／查閱型／續作／年度更新／合著對談／入門改寫／導讀非原典）。
