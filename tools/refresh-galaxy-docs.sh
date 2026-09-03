@@ -78,8 +78,8 @@ cat <<'EOF'
   DEEPEN-TARGETS 「依站分組」挑一站 → 進 `/note-check --enrich` 開單（開單本身留 Fable）
   ANCHOR-GAPS   「證據充分」那節逐頁修 furtherReading：建議章是母章就擴大，否則另加一條
                 （建議只是提示，掛上去前要確認那一章真的在講頁面說的事）
-  GUIDE-DRIFT   「強訊號」那節逐筆對現況改導覽數字（保語氣、只改數字），改完推 writtenAt；
-                弱訊號多半是「有幾頁引用這本書」的子集宣稱，不是債
+  GUIDE-DRIFT   「要改」那節逐筆對現況改導覽數字（保語氣、只改數字），改完推 writtenAt；
+                每筆都附放行／報錯的讀法；改了讀法要跑 --validate 四個基準，漏報必須維持 0
 EOF
 
 [[ $CHECK -eq 1 ]] && exit 1
