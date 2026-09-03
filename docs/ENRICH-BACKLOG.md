@@ -17,13 +17,15 @@
 
 ## 進行中
 
-### 文案精簡輪（2026-09-03，Andrew 指示）——**Opus 已套用 73 站／275 檔，未 commit；Fable 隊列在下面**
+（無）
+
+## 文案精簡輪（2026-09-03，Andrew 指示）——**Opus＋Fable 兩半做完，75 站全數 commit＋push**
 
 **原則**（Andrew 給的，以 learning-note 為樣本）：首頁簡述與五章導覽都要精簡，把**內部記帳語彙**
 從讀者看得到的地方拿掉——「認領上架」「尚未開頁」「零寫作義務」「帳在文末」「tool 層」這類詞是
 產線的話，不是讀者的話。
 
-**Opus 這輪已套用（工作區未提交，`git diff` 可看）**：
+**Opus 那半（已提交）**：
 - 首頁 `heroLede`：刪與 tagline 重複的開頭（13 站）、刪「每頁含「討論區」與「總整理」。」（48 站）。
 - 導覽 01：刪「收完這 N 本（…）、寫完站上 N 頁之後，我們的判讀是：」整句（17 站）；句中型只刪時間句、
   保留判讀語（31 站）；刪「（其中 N 本是認領上架的參考書，尚未開頁）」括號（18 站）。
@@ -37,7 +39,7 @@
 - `overview.ts`：刪「（N 本是認領上架的參考書）」括號（19 站）、learning 的「三聲道…是缺口」段、
   biblical-studies／career／relationships 的「書架的口音誠實標明…」句、security 與 philosophy 的認領句。
 
-**Fable 那半也做完了（2026-09-03 晚，同樣未 commit，73 站工作區）**，三條原則，Andrew 可推翻：
+**Fable 那半（已提交）**，三條原則：
 1. **分層帳留、換讀者語言**：書架頁本來就把 tier 秀給讀者（`TIER_META`：脊梁／支架／工具書／姊妹站），所以
    總覽 Verdict 與 03 的分層帳不是刪，是把 `owned／spine／support／tool／delegated／skipped／unavailable` 全換成
    中文標籤，「帳攤開：N 本 owned 判下來…」改成「N 本書分層：…」，百分比改成「近四成／三分之一」這種話。
@@ -58,7 +60,11 @@ personal-finance「兩派其實在處理同一個敵人的兩端」）。已從 
 
 **驗證**：prettier 全綠；learning／theology／career／biblical-studies／system-design／uncle-bob／data-systems／
 personal-finance／fowler／wujun／bogle／lewis／pastoral／damodaran／wan-weigang 十五站 build 綠。
-**尚未決定**：`searchLede` 的「（描述、核心觀念、討論區、總整理）」；03 章的「這一輪／上一輪／火力序」敘事詞是否也要去。
+**收尾（Andrew 裁決「都做」）**：`searchLede` 的「（描述、核心觀念、討論區、總整理）」括號刪掉（56 站）；
+「本輪／這一輪／上一輪／下一輪／那一輪」改成「這次／先前／接下來／後來」，「深化輪」→「之後深挖」、「enrich」→「深挖」、
+「火力序」→「優先序」、「火力分配」→「分層表」、「盤點表」→「書單」、「批次一到七」→「逐卷」（約 300 處）；
+「一輪／兩輪育兒／第二輪讀物」這種內容用法保留。全部 lint＋build 綠後逐站 commit → `pull --rebase` → `format:check` → push，
+**75 站全數推上**（commit 訊息 `docs: trim the ledger and process wording from the homepage and guides`）。
 
 ~~**留給 Fable 的（帳與判斷黏在同一句，刪數字就要重寫）**~~（已做完，原清單留作對照）：
 1. **overview 的 Verdict 帳句**（34 站）：都以「帳攤開：N 本 owned 判下來 a spine、b support…」開頭，
