@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-09-03T11:20:37+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T18:46:08+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,8 +15,8 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 75 |
-| **候選（大部頭 × ≤1 頁）** | **123** |
-| 涉及的站 | 44 |
+| **候選（大部頭 × ≤1 頁）** | **126** |
+| 涉及的站 | 45 |
 | 依體裁排除 | 4 |
 
 ## 一、前 30 名（跨站總排序）
@@ -24,35 +24,35 @@
 | # | 章節 | 頁 | 站 | 書 |
 | ---: | ---: | ---: | --- | --- |
 | 1 | 109 | 1 | `templar-note` | The Rules of Management |
-| 2 | 104 | 1 | `templar-note` | The Rules of People |
-| 3 | 101 | 1 | `thinking-note` | The Art of Thinking Clearly 思考的藝術 |
-| 4 | 101 | 1 | `startup-note` | Rework 工作大解放 |
-| 5 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
-| 6 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
-| 7 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
-| 8 | 76 | 1 | `newport-note` | How to Win at College |
-| 9 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
-| 10 | 69 | 1 | `fengtang-note` | 穩贏 |
-| 11 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 12 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
-| 13 | 64 | 1 | `tools-note` | Flow 心流 |
-| 14 | 63 | 1 | `wujun-note` | 大學之路 |
-| 15 | 63 | 1 | `investing-note` | Security Analysis |
-| 16 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 2 | 101 | 1 | `thinking-note` | The Art of Thinking Clearly 思考的藝術 |
+| 3 | 101 | 1 | `startup-note` | Rework 工作大解放 |
+| 4 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
+| 5 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
+| 6 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
+| 7 | 76 | 1 | `newport-note` | How to Win at College |
+| 8 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
+| 9 | 69 | 1 | `fengtang-note` | 穩贏 |
+| 10 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
+| 11 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
+| 12 | 64 | 1 | `tools-note` | Flow 心流 |
+| 13 | 63 | 1 | `wujun-note` | 大學之路 |
+| 14 | 63 | 1 | `investing-note` | Security Analysis |
+| 15 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 16 | 62 | 1 | `writing-note` | Writing Tools |
 | 17 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
 | 18 | 61 | 1 | `stott-note` | 當代講道藝術 |
 | 19 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
 | 20 | 60 | 1 | `science-note` | 高手相對論 |
-| 21 | 59 | 1 | `design-note` | Refactoring UI |
-| 22 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 23 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
-| 24 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 25 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 26 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 27 | 53 | 1 | `startup-note` | Anything You Want |
-| 28 | 52 | 1 | `wujun-note` | 見識 |
-| 29 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
-| 30 | 52 | 1 | `habits-note` | 18 Minutes |
+| 21 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 22 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 23 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 24 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 25 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 26 | 53 | 1 | `startup-note` | Anything You Want |
+| 27 | 52 | 1 | `wujun-note` | 見識 |
+| 28 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 29 | 52 | 1 | `habits-note` | 18 Minutes |
+| 30 | 52 | 1 | `growth-note` | Mastery |
 
 ## 二、依站分組
 
@@ -127,6 +127,13 @@
 - **The War of Art** — 32 章 / 1 頁（`war-of-art`）
 - **How to Have a Good Day** — 30 章 / 1 頁（`how-to-have-a-good-day`）
 
+### `system-design-note`（4 本）
+
+- **The Software Architect Elevator** — 47 章 / 1 頁（`software-architect-elevator`）
+- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
+- **API Design Patterns** — 37 章 / 1 頁（`api-design-patterns`）
+- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
+
 ### `economics-note`（4 本）
 
 - **Misbehaving 不當行為** — 47 章 / 1 頁（`misbehaving`）
@@ -165,17 +172,17 @@
 - **Winning with People** — 32 章 / 1 頁（`winning-with-people`）
 - **Bowling Alone** — 30 章 / 1 頁（`bowling-alone`）
 
-### `wan-weigang-note`（3 本）
-
-- **你有你的計劃，世界另有計劃** — 65 章 / 1 頁（`wan-weigang-world-has-another-plan`）
-- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
-- **萬萬沒想到** — 46 章 / 1 頁（`wan-weigang-wanwan-meixiangdao`）
-
 ### `investing-note`（3 本）
 
 - **Security Analysis** — 63 章 / 1 頁（`security-analysis`）
 - **Winning the Loser's Game** — 36 章 / 1 頁（`winning-the-losers-game-ellis`）
 - **Investment Valuation** — 35 章 / 1 頁（`investment-valuation`）
+
+### `writing-note`（3 本）
+
+- **Writing Tools** — 62 章 / 1 頁（`writing-tools`）
+- **The War of Art** — 32 章 / 1 頁（`war-of-art`）
+- **Into the Woods** — 30 章 / 1 頁（`into-the-woods`）
 
 ### `clean-code-note`（3 本）
 
@@ -189,12 +196,6 @@
 - **領導力的 5 個層次** — 42 章 / 1 頁（`5-levels-of-leadership`）
 - **與人同贏** — 32 章 / 1 頁（`winning-with-people`）
 
-### `system-design-note`（3 本）
-
-- **The Software Architect Elevator** — 47 章 / 1 頁（`software-architect-elevator`）
-- **The Art of Scalability** — 39 章 / 1 頁（`art-of-scalability`）
-- **軟體架構實踐** — 32 章 / 1 頁（`software-architecture-in-practice`）
-
 ### `design-patterns-note`（3 本）
 
 - **Refactoring to Patterns** — 41 章 / 1 頁（`refactoring-to-patterns`）
@@ -207,15 +208,15 @@
 - **Managing in a Time of Great Change 巨變時代的管理** — 32 章 / 1 頁（`managing-in-a-time-of-great-change`）
 - **The Essential Drucker 杜拉克精選** — 31 章 / 1 頁（`essential-drucker`）
 
-### `templar-note`（2 本）
-
-- **The Rules of Management** — 109 章 / 1 頁（`rules-of-management`）
-- **The Rules of People** — 104 章 / 1 頁（`rules-of-people`）
-
 ### `fengtang-note`（2 本）
 
 - **穩贏** — 69 章 / 1 頁（`fengtang-stable-win`）
 - **勝者心法：資治通鑑成事之道** — 52 章 / 1 頁（`fengtang-winner-method`）
+
+### `wan-weigang-note`（2 本）
+
+- **你有你的計劃，世界另有計劃** — 65 章 / 1 頁（`wan-weigang-world-has-another-plan`）
+- **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
 
 ### `tools-note`（2 本）
 
@@ -257,6 +258,15 @@
 - **Thank You for Arguing 說理** — 35 章 / 1 頁（`thank-you-for-arguing`）
 - **The Speed of Trust 高效信任力** — 30 章 / 1 頁（`speed-of-trust`）
 
+### `agile-note`（2 本）
+
+- **Impact Mapping** — 35 章 / 1 頁（`impact-mapping`）
+- **Extreme Programming Explained** — 33 章 / 1 頁（`extreme-programming-explained`）
+
+### `templar-note`（1 本）
+
+- **The Rules of Management** — 109 章 / 1 頁（`rules-of-management`）
+
 ### `keller-note`（1 本）
 
 - **恐懼時代的盼望** — 91 章 / 1 頁（`hope-in-times-of-fear`）
@@ -272,10 +282,6 @@
 ### `science-note`（1 本）
 
 - **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
-
-### `design-note`（1 本）
-
-- **Refactoring UI** — 59 章 / 1 頁（`refactoring-ui`）
 
 ### `growth-note`（1 本）
 
@@ -293,6 +299,10 @@
 
 - **紅書** — 40 章 / 1 頁（`jung-red-book-readers-edition`）
 
+### `cloud-infra-note`（1 本）
+
+- **Seeking SRE** — 38 章 / 1 頁（`seeking-sre`）
+
 ### `covey-note`（1 本）
 
 - **Principle-Centered Leadership** — 35 章 / 1 頁（`principle-centered-leadership`）
@@ -300,10 +310,6 @@
 ### `behaviour-interview-note`（1 本）
 
 - **軟技能：soft skills，讓你不過時、不貶值、不消失** — 35 章 / 1 頁（`soft-skills-thirty-letters`）
-
-### `agile-note`（1 本）
-
-- **Extreme Programming Explained** — 33 章 / 1 頁（`extreme-programming-explained`）
 
 ### `philosophy-note`（1 本）
 

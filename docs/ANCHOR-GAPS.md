@@ -1,12 +1,12 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-03T11:20:55+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T18:46:28+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**0** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：134 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 155 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據單薄（只有一個數字，或全靠裸年份）：136 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 166 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
 
@@ -17,7 +17,7 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/08-priorities/`「優先順序」（1 個數字）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）
+- 建議 anchor：`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md
@@ -118,11 +118,6 @@
 - 現掛：`timeless-way-of-building` → `docs/01-the-timeless-way/`、`timeless-way-of-building` → `docs/02-the-quality/01-the-quality-without-a-name/`、`timeless-way-of-building` → `docs/02-the-quality/05-patterns-which-are-alive/`、`timeless-way-of-building` → `docs/03-the-gate/02-our-pattern-languages/`、`timeless-way-of-building` → `docs/03-the-gate/05-the-breakdown-of-language/`、`timeless-way-of-building` → `docs/03-the-gate/07-the-reality-of-patterns/`、`timeless-way-of-building` → `docs/05-the-kernel-of-the-way/`
 - 建議 anchor：`timeless-way-of-building` → `docs/03-the-gate/`「大門」（1 個數字、擴大）
 - 落空數字：253個
-
-## drucker-note / executive/managing-oneself.md
-
-- 現掛：`managing-oneself` → `docs/01-what-are-my-strengths/`、`managing-oneself` → `docs/07-second-half-of-your-life/`
-- 落空數字：1930年
 
 ## drucker-note / innovation/entrepreneurial-management.md
 
@@ -312,6 +307,12 @@
 - 現掛：`little-book-of-common-sense-investing` → `docs/01-the-parable-of-the-gotrocks-family/`、`little-book-of-common-sense-investing` → `docs/02-rational-exuberance/`
 - 建議 anchor：`little-book-of-common-sense-investing` → `docs/18-asset-allocation-principles-and-strategies/`「資產配置一：原則與策略」（1 個數字）
 - 落空數字：0.05%
+
+## investing-note / index-passive/efficient-market-and-random-walk.md
+
+- 現掛：`a-random-walk-down-wall-street` → `docs/1-stocks-and-their-value/`、`a-random-walk-down-wall-street` → `docs/2-how-the-pros-play-the-biggest-game-in-town/`、`man-who-solved-the-market` → `docs/10-this-isnt-science-its-gambling/`
+- 建議 anchor：`man-who-solved-the-market` → `docs/11-im-doing-things-i-dont-need-to-do/`「我在做我不需要做的事」（1 個數字）
+- 落空數字：11美元
 
 ## investing-note / index-passive/equities-for-the-long-run.md
 
@@ -539,6 +540,11 @@
 - 現掛：`this-is-marketing` → `docs/04-smallest-viable-market/`
 - 建議 anchor：`this-is-marketing` → `docs/08-more-of-the-who/`「更多的「誰」」（1 個數字）
 - 落空數字：1000個
+
+## marketing-note / positioning/ten-step-positioning.md
+
+- 現掛：`obviously-awesome` → `docs/01-what-is-positioning/`、`obviously-awesome` → `docs/02-the-10-step-positioning-process/`
+- 落空數字：1981年
 
 ## maxwell-note / growth/difference-maker.md
 
@@ -776,6 +782,12 @@
 
 - 現掛：`writing-down-the-bones` → `docs/01-beginners-mind-pen-paper/`、`writing-down-the-bones` → `docs/02-first-thoughts/`
 - 落空數字：1983年
+
+## writing-note / style-clarity/nuts-and-bolts.md
+
+- 現掛：`writing-tools` → `docs/01-nuts-and-bolts/01-begin-sentences-with-subjects-and-verbs/`、`writing-tools` → `docs/01-nuts-and-bolts/05-watch-those-adverbs/`、`writing-tools` → `docs/01-nuts-and-bolts/09-let-punctuation-control-pace-and-space/`、`writing-tools` → `docs/01-nuts-and-bolts/10-cut-big-then-small/`
+- 建議 anchor：`writing-tools` → `docs/01-nuts-and-bolts/`「基本要點」（1 個數字、擴大）
+- 落空數字：128個
 
 ## wujun-note / tech-civilization/wujun-information.md
 
