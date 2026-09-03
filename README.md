@@ -91,7 +91,6 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 
 | 文件                                | 用途                                                                |
 | ----------------------------------- | ------------------------------------------------------------------- |
-| `docs/COVERAGE-GAPS.md`             | **還沒有站**的人物／主題（缺口靠開新站補）；2026-08-10 起是決策紀錄，現況看 ORPHAN-BOOKS |
 | `docs/ENRICH-BACKLOG.md`            | **站已存在但還沒寫完**（缺口靠 `note-check --enrich` 補）；跨站排序          |
 | `docs/SOURCING-DEBT.md`             | **內容寫了但查不到出處**（缺口靠掛 `anchor` 補）；2026-08-05 已清空  |
 | `docs/WANTED-BOOKS.md`              | **書還沒收**（缺口靠去收書補）；由 `tools/export-wanted.py` 生成     |
@@ -104,16 +103,10 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/GUIDE-DRIFT.md`               | **導覽的數字跟不上現況**（站上幾頁、某分類幾頁、收了幾本）；由 `tools/export-guide-drift.py` 生成 |
 | `docs/MODEL-ROUTING.md`             | **哪些工作值得花高階模型額度**（分工原則與各輪判準，手維護）        |
 | `docs/SERIES-STATUS.md`             | **系列產線帳本**（各波導覽與 enrich 的進度，手維護）                |
-| `docs/GUIDE-QUEUE.md`               | **導覽佇列**（哪些站的導覽該寫、順序為何，手維護）                  |
 | `docs/EXCLUDED-BOOKS.md`            | **裁定不進任何站**的書（品質把關的裁決紀錄，手維護）；orphan 掃描讀它，命中者不列孤兒不再提醒 |
-| `docs/humanities-books-by-domain.md` | 2026-07 人文星系建站期的領域規劃（歷史紀錄）                        |
-| `docs/humanities-note-scope-draft.md` | 同上，站別「納入 repo」的範圍界定草稿（歷史紀錄）                 |
-| `docs/books-by-domain.md`           | 2026-07 技術六站的參考書來源盤點（歷史紀錄）                        |
-| `docs/books-index.md`               | 早期書架照片辨識清單（歷史紀錄）                                    |
-| `docs/RUNBOOK-phase-c.md`           | 共用核心上線的 runbook（已完成，歷史紀錄）                          |
 
 **前十一份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 各自是不同的軸，別混用——
-「沒有站」進 COVERAGE-GAPS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
+「書有了沒站在管」進 ORPHAN-BOOKS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
 「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS，
 「哪些站現在可以進場深化」看 DEEPEN-READY，「書有了卻沒有站在管」看 ORPHAN-BOOKS，
 「同一本書各站年份打架」看 YEAR-CONFLICTS，「大部頭只挖了一鏟」看 DEEPEN-TARGETS，

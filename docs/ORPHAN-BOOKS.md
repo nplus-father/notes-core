@@ -1,16 +1,15 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-09-03T00:41:35+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T11:20:34+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1906 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1907 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
-| [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
 | [WANTED-BOOKS.md](./WANTED-BOOKS.md) | **書本身**還沒有 | 去收書 |
@@ -37,7 +36,7 @@
 
 ### 1b. 開新站候選：0 個 leaf
 
-判準沿用 COVERAGE-GAPS 那輪：**藏書 ≥8 本且未覆蓋 ≥60%**。低於這個比例的 leaf 表示已經有站在管、只是還沒寫完——那是 [ENRICH-BACKLOG](./ENRICH-BACKLOG.md) 的事，不是這裡的。
+判準沿用 2026-08-03 首輪盤點：**藏書 ≥8 本且未覆蓋 ≥60%**。低於這個比例的 leaf 表示已經有站在管、只是還沒寫完——那是 [ENRICH-BACKLOG](./ENRICH-BACKLOG.md) 的事，不是這裡的。
 
 無——沒有任何 leaf 同時滿足「書夠多」與「大多沒人碰」。
 
@@ -50,7 +49,7 @@
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
-作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），沒有站才是開站候選——COVERAGE-GAPS 的人物缺口就是這樣抓出 covey／templar／navarro 三站的。
+作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），沒有站才是開站候選——2026-08-03 首輪盤點的人物缺口就是這樣抓出 covey／templar／navarro 三站的（人裁過不開的那批記在 EXCLUDED-BOOKS.md）。
 
 無。
 

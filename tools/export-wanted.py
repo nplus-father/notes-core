@@ -821,8 +821,8 @@ def main():
             "清空時沒有東西可排；等新站開起來、或既有站再登記新的 wanted，它才會長回來。\n\n"
             "> 採購缺口歸零 **不等於**內容沒有缺口——書有了而內容沒寫完看 "
             "[ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)，寫了而查不到出處看 "
-            "[SOURCING-DEBT.md](./SOURCING-DEBT.md)，連站都還沒有看 "
-            "[COVERAGE-GAPS.md](./COVERAGE-GAPS.md)。\n\n"
+            "[SOURCING-DEBT.md](./SOURCING-DEBT.md)，書有了沒站在管（含開新站候選）看 "
+            "[ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)。\n\n"
         )
     else:
         w(f"## 先收這 {len(TOP20)} 本\n\n")
@@ -882,7 +882,6 @@ def main():
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
-| [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
 | [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md) | **書有了、沒有站在管** | 認領／開站 |

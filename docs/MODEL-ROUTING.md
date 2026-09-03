@@ -166,23 +166,10 @@ thinking 的導覽就是這樣——保留原有語氣與論證，只改被現�
 | 成熟缺口 | 用什麼 skill | 模型 |
 | --- | --- | --- |
 | 大部頭書第二輪深挖（多頁） | `/note-check --enrich`（同流水線） | **選題與開單留 Fable，起草交 Opus** |
-| ~~第二輪清單 35 筆~~ **已結案（2026-08-26，11 站全部 push）** | 同上流水線 | Opus——收工時全星系六類違規歸零 |
-| ~~第三輪清單 8 筆~~ **已結案（2026-08-26，theology＋management）** | 同上流水線 | Opus——訊號改用「大部頭 vs 頁數」 |
-| ~~導覽（策展層，站不再長時）~~ **補齊輪收官（2026-08-27，69/75 站）** | `/note-guide` | **Fable**——一天 26 站；剩四站 enrich-first 開單在 ENRICH-BACKLOG，Opus 起草後回導覽輪 |
 | 舊導覽過期的事實對帳 | 導覽對帳（保語氣、只改數字） | Opus |
-| BST 38 卷系列債（biblical-studies） | `/note-check --enrich`（照批次 1 卷冊框架） | Opus——框架已定，照模子逐批寫 |
-| ~~全站體檢、蓋 `checkedAt`~~ **首輪完成（2026-08-26，75 站全面歸位）** | `galaxy-checkup.py` 掃機檢項；判斷項（§2.5 抽驗）仍隨 enrich 做 | Opus |
-| ~~判層殘餘 81 本~~ **已收官（2026-08-26 歸零）** | `tier-evidence.py` → 裁決 JSON | **Fable**——日後新書進站的零星未判層比照辦理 |
 | `:::response` 層 | `/note-master` | 非批次——由 Andrew 實際使用驅動 |
 | 已深化站要廣度 | `/note-wanted` | Opus，盤點性質 |
-| ~~挑下一本該挖的書~~ **紅利已盡（2026-08-27，六輪收官）** | `DEEPEN-TARGETS.md` 轉為新書進站的增量監測 | 判準是面向覆蓋非頁厚，不可自動化 |
-| ~~anchor 覆蓋不足 73 頁~~ **首輪結案（2026-08-27 歸零）** | `ANCHOR-GAPS.md`「證據充分」那節，逐頁對書核完再改 `furtherReading` | Opus——工具指得出來，但建議章會撞號，要人工看一眼那章在講什麼 |
-| ~~認領輪後 21 本新脊梁沒織進導覽~~ **織入輪結案（2026-09-02，15 站）** | 導覽 03 書架帳＋04 爭議補段、新增「架上參考」節、數字對帳、蓋 enrichedAt | **Fable**——策展寫作；教訓：起草代理不動 bibliography 時，主會話收尾必蓋 enrichedAt，否則 guide-stale 全瞎 |
-| ~~認領輪後的導覽數字對帳~~ **結案（2026-09-03，15 站，強訊號歸零）** | `GUIDE-DRIFT.md` 強訊號逐筆改＋每站補「架上參考」節 | Opus——三筆真話靠手查才抓到（security 的「全部已挖」變假、personal-finance 兩種豁免混算、history 的 delegated 異動） |
-| ~~缺初版年 65 筆~~ **結案（2026-09-03，65→7）** | 先修工具盲區（`date="…"` 現行 repo 一本都沒有，改讀 frontmatter `published`，線索 0→59），再逐本填 | Opus——能確認初版年的 13 筆覆蓋線索；剩 7 筆全是已裁決留白 |
-| ~~新書進站：Berne《人生腳本》~~ **結案（2026-09-03）** | `apply-claims.py` → relationships「溝通與衝突」、tool、1972 | **孤兒書 1→0**：書庫 1772 本第一次全部有站在管 |
-| ~~首頁 Overview 契約補齊~~ **結案（2026-09-03）** | 三站補 `overview.ts`（以五章導覽為底濃縮）、四站刷新、`galaxy-checkup` 新增 overview 五條檢查、template 加佔位稿 | Opus——導覽已是現行的，濃縮不是新寫；規則入 checkup 後不會再靜靜漏兩個月 |
-| ~~Deploy 紅燈 21 站~~ **結案（2026-09-03）** | `gh run list` 掃全星系 → Format check 是唯一失敗步驟 → 逐站 `npm run format` commit push | Opus——機械修復；教訓：`pull --rebase` 之後要再跑 `format:check` 才 push，否則上游未格式化的 commit 會讓自己的 push 也紅 |
+| ~~2026-08-26～09-03 結案的十六項~~（第二／三輪深化、導覽補齊 75/75、全站體檢、判層收官、BST 系列債、深挖紅利已盡、anchor 覆蓋、織入輪、導覽對帳、初版年、Berne 進站、Overview 契約、Deploy 紅燈） | 各輪用的工具都已固化：`galaxy-checkup.py`、`tier-audit.py`、八份 `export-*.py`、`apply-claims.py` | 教訓收在 §四與 memory `fable-session-entrypoint`；詳帳看 ENRICH-BACKLOG 近三輪與 git 歷史 |
 
 **為什麼敢把量交給 Opus**：十六站流水線實測下來，真正吃判斷力的只有三段——
 **判層裁決**（主題歸屬）、**開單**（每頁的邊界、避開哪些既有頁、anchor 落哪幾章）、

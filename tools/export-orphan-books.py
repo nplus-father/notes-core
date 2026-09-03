@@ -10,7 +10,7 @@ NOTES_ROOT= 覆寫，與 new-note.sh / bump-notes-core.sh / export-wanted.py 同
 
 **為什麼要有這一支**：既有的四個軸全是「**站**說它缺什麼」的正向視角——WANTED-BOOKS
 問「標 wanted 的書是不是其實已經建好站了」，DEEPEN-READY 問「這站的書單收齊沒」。
-反過來的問題「**書庫裡這本書，有沒有任何站在管**」在此之前只存在於 COVERAGE-GAPS.md
+反過來的問題「**書庫裡這本書，有沒有任何站在管**」在此之前只存在於（已退役的）COVERAGE-GAPS.md
 的一段 heredoc 裡：沒有腳本、要人手貼、而且吃站台 `repos.json` 快照。掃描日停在
 2026-08-03（當時 1391 本、413 本沒站碰），之後書庫又長了兩百多個 repo，而**新建的書站
 沒有任何機制會提醒「這本沒人認領」**——正向的工具永遠看不到它，因為沒有站提過它。
@@ -293,7 +293,6 @@ def main():
         w(f"> {age_note}\n\n")
 
     w("| 文件 | 缺口是什麼 | 靠什麼補 |\n| --- | --- | --- |\n")
-    w("| [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |\n")
     w("| [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |\n")
     w("| [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |\n")
     w("| [WANTED-BOOKS.md](./WANTED-BOOKS.md) | **書本身**還沒有 | 去收書 |\n")
@@ -347,7 +346,7 @@ def main():
     ]
     w(f"### 1b. 開新站候選：{len(flagged)} 個 leaf\n\n")
     w(
-        f"判準沿用 COVERAGE-GAPS 那輪：**藏書 ≥{NEW_STATION_MIN_BOOKS} 本且未覆蓋 "
+        f"判準沿用 2026-08-03 首輪盤點：**藏書 ≥{NEW_STATION_MIN_BOOKS} 本且未覆蓋 "
         f"≥{NEW_STATION_MIN_UNCOVERED_PCT}%**。低於這個比例的 leaf 表示已經有站在管、"
         "只是還沒寫完——那是 [ENRICH-BACKLOG](./ENRICH-BACKLOG.md) 的事，不是這裡的。\n\n"
     )
@@ -387,7 +386,7 @@ def main():
     w(f"### 1d. 同一作者 ≥{AUTHOR_MIN_ORPHANS} 本沒人認領：{len(hot_authors)} 位\n\n")
     w(
         "作者站的線索。**有同名站就是該站漏收**（回去補 bibliography），"
-        "沒有站才是開站候選——COVERAGE-GAPS 的人物缺口就是這樣抓出 covey／templar／navarro 三站的。\n\n"
+        "沒有站才是開站候選——2026-08-03 首輪盤點的人物缺口就是這樣抓出 covey／templar／navarro 三站的（人裁過不開的那批記在 EXCLUDED-BOOKS.md）。\n\n"
     )
     if hot_authors:
         w("| 作者 | 孤兒本數 | 已有作者站？ | 書 |\n| --- | ---: | --- | --- |\n")

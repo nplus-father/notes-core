@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-09-03T00:40:54+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-03T11:20:02+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -8,7 +8,7 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1906 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1907 個 repo）。
 
 ## 先收這 0 本——採購清單清空了
 
@@ -16,14 +16,13 @@
 
 **這節平常是全檔唯一的人工區塊**（`export-wanted.py` 的 `TOP20`），清空時沒有東西可排；等新站開起來、或既有站再登記新的 wanted，它才會長回來。
 
-> 採購缺口歸零 **不等於**內容沒有缺口——書有了而內容沒寫完看 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)，寫了而查不到出處看 [SOURCING-DEBT.md](./SOURCING-DEBT.md)，連站都還沒有看 [COVERAGE-GAPS.md](./COVERAGE-GAPS.md)。
+> 採購缺口歸零 **不等於**內容沒有缺口——書有了而內容沒寫完看 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)，寫了而查不到出處看 [SOURCING-DEBT.md](./SOURCING-DEBT.md)，書有了沒站在管（含開新站候選）看 [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)。
 
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
-| [COVERAGE-GAPS.md](./COVERAGE-GAPS.md) | 還沒有**站** | 開新站 |
 | [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md) | 站在、**內容**沒寫完 | `note-check --enrich` |
 | [SOURCING-DEBT.md](./SOURCING-DEBT.md) | 內容寫了、查不到**出處** | 掛 anchor |
 | [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md) | **書有了、沒有站在管** | 認領／開站 |
