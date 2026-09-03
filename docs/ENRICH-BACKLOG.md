@@ -17,7 +17,46 @@
 
 ## 進行中
 
-（無）
+### A 類排程執行輪（2026-09-03 起，Opus）——**22 筆已交付並 push，全星系 checkup 維持 0／0／0**
+
+**起因**：Andrew 問「導覽裡寫的排程做完了嗎」。盤點後的關鍵事實：**契約上沒有欠債**——tier-audit 真欠債 0、空頭支票 0；
+資料算出的 198 本「未挖」**全部是 support 層**，而 support 的定義就是「導覽一句帶到即可，不欠概念頁」。
+所以排程不是欠債是機會，依「選題已由導覽做完」的程度分三類：**A（書與章節都點名，約 25 筆）／B（書點名、章節要選，約 60）／C（厚書第二頁，約 110）**。
+Andrew 裁決先做 A，B 與 C 要一次開單（開單留 Fable，起草給 Opus）。
+
+**已交付（每筆都逐章讀原書、避開既有頁角度、掛 anchor、雙向 related、更新導覽與 overview、蓋 enrichedAt 與 writtenAt、build＋checkup 後才 push）**：
+
+| 站 | 產出 |
+| --- | --- |
+| lewis | 裸顏：佔有如何冒充愛（並升 spine） |
+| kent-beck | xUnit 自舉；狀態與集合 |
+| covey | 家庭使命宣言 |
+| grant | 把異見寫進制度 |
+| fromm | 釋夢的藝術：白馬上的拿破崙 |
+| fowler | 整合應用：一張決策順序表；數量與觀測 |
+| navarro | 頭部細部 |
+| schwager | 機械系統 |
+| templar | 難搞的人 |
+| uncle-bob | 設計模式不是 OO 的補丁 |
+| damodaran | 為什麼有三種取徑 |
+| de-botton | 愛作為服務 |
+| drucker | **不是新頁**：補《談自我管理》第 2–4 章 anchor |
+| wan-weigang | 成功學的解藥 |
+| liurun | 思考的底層邏輯 |
+| wellness | 發展性創傷 |
+| security | 把威脅建模帶進組織；人因與儀式 |
+| hbr | 藍海策略（學派卡的 Kim 終於有頁） |
+| design | 文字、影像與收尾 |
+
+**三個把單縮小而非照做的判斷**（都改寫進導覽）：
+1. **drucker 那筆是溯源債不是內容債**——導覽說第 2–4 章沒開，打開既有頁卻發現艾森豪、鏡子測試都寫在裡面，只是沒掛 anchor。多寫一頁只會製造重複。
+2. **fromm 的希特勒個案挖不了**——《人類破壞性的剖析》repo 只有三章加跋，沒有那一章。書端缺料，導覽已改成只留成立的兩筆。
+3. **navarro 的髖臀章、schwager 的基本面章刻意不開**——前者書裡自己標低頻，後者早被既有頁掛過 anchor，真正沒動的是交易系統那一部。
+
+**A 類剩下的**：philosophy 的《哲學的 40 堂公開課》（一章一頁不可行，要重新開單）、writing 三本借聲未掛錨（anchor 級）、
+clean-code 的設計與演化四本、theology 的十八本架上參考、system-design 的 Understanding Distributed Systems——**這幾筆的性質其實已落到 B 類**，
+需要開單才動。
+
 
 ## 文案精簡輪（2026-09-03，Andrew 指示）——**三批做完，75 站全數 commit＋push**
 
