@@ -155,6 +155,15 @@ frontmatter 後不足 200 字元。深度概覽用 `hugo-book-manager/scripts/au
 **原書沒有的寫查證說明**（7 章——含 what-life 的「PREFACE」其實是出版社叢書序非阿德勒）、
 **沒原始檔的記 no-source**（14 章）。全庫剩 25 本 thin 待判（工具不猜、逐本人看，多為單章）。
 
+**thin 待判已於 2026-09-03 收工（Andrew 裁決）**：08-30 那筆 strip 註解的 commit 把 `audit-empty-leaves.py`
+讀 docstring 的那一行弄壞（跑就 crash），修好後重掃 25 本 54 章。真正像「沒寫」的只有
+`witness-to-jesus-as-christ` 五章（只有標題；repo 沒有 PDF／EPUB，git 歷史也從未有過），依 08-28 通則
+逐章寫入 no-source 說明。另外 10 章是序、跋、書名頁、索引、讀者須知、有聲書 embed 這類**結構頁**，
+工具新增 `structural` 分類（目錄名或 `<embed>` 判定，不計債也不列 thin），同時把「原版 PDF 未包含」
+加進 source-absent 的線索。重掃後 thin 剩 **15 本 39 章**，全是體裁本來就短的章（make-time 單招、
+dignity-of-speaking 單節、daily-rituals 人物條目之類）與 5 本正文單節，**裁定不再追蹤**；
+書端帳到此只剩「新原始檔進 repo 時重跑」一件事。
+
 三筆補洞輪的額外發現，記檔備查：
 - `flying-together` 的 PDF **不是原書**——是 Bookey 第三方摘要（jsPDF 產生）；該 repo 的
   「原始檔」其實是衍生品，日後補真原著才能擴寫。
