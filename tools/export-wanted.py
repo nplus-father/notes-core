@@ -348,8 +348,26 @@ from pathlib import Path
 #      的分支：原路徑會印「先收這 0 本」＋空表頭，讀起來像產生器壞了，而不是「收齊了」。
 #   c. 清空是「wanted 歸零」，不是「書都收齊了」——88 筆 unavailable、86 筆 skipped 仍在，
 #      只是照 2026-08-10 的決議不撈出來複查。下一筆 wanted 會從新開的站長回來。
+# 2026-09-14（data-science-note 開站）：wanted 0 → 39，全部來自這一個新站。書庫本來沒有
+#   資料科學 leaf，站是從 critical-thinking／decision-making／storytelling／ai-ml／statistics
+#   借了 26 本 owned 當底座開起來的，所以這 39 本才是它真正的主幹。先排 14 本：每個分類
+#   至少一本正典，六本線上免費（Blitzstein、ISLP、McKinney、Wilke、Mixtape、ESL）可以先做
+#   站不用等書。key ＝英文主標的 slug（冒號前）。
 TOP20 = [
-    # 目前是空的——全星系沒有 wanted。新增時照 (key, 為何排這裡)，key ＝英文主標的 slug。
+    ("the-art-of-statistics", "統計思維分類的正典入門；整個站的第一本"),
+    ("the-data-detective", "看數字的十條規則；薄、起手容易"),
+    ("introduction-to-probability", "機率基礎的教科書，線上免費，可先做站"),
+    ("the-book-of-why", "因果分類的脊梁：因果階梯與反事實"),
+    ("trustworthy-online-controlled-experiments", "A/B 測試正典；工程師做實驗的第一本"),
+    ("an-introduction-to-statistical-learning-with-applications-in-python", "ML 基礎的正典入門（ISLP），線上免費"),
+    ("hands-on-machine-learning-with-scikit-learn-keras-tensorflow", "動手做的 ML 主幹；收第三版"),
+    ("designing-machine-learning-systems", "把已收的兩本 ML system design interview 接成正典"),
+    ("python-for-data-analysis", "pandas 作者親寫，線上免費；實作分類的第一本"),
+    ("practical-statistics-for-data-scientists", "資料科學家該懂的五十個統計概念"),
+    ("fundamentals-of-data-visualization", "視覺化的系統課，線上免費"),
+    ("data-science-for-business", "把商業問題翻成資料問題的框架；分析與決策分類的脊梁"),
+    ("how-to-measure-anything", "校準估計與資訊價值；「無形資產」也能量"),
+    ("weapons-of-math-destruction", "演算法與社會分類的入門；有中譯"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
