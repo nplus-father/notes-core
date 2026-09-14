@@ -14,7 +14,8 @@
 # 做的事：
 #   1. 從 GitHub template repo `nplus-father/note-template` 建新 repo 並 clone 到 notes/ 下
 #   2. 跑 init.sh 套用 __SLUG__/__BRAND__/__TAGLINE__/__NS__ 佔位符（含站縮圖 cover.svg、footer）
-#   3. 打上星系 topic `nplus-note`（→ 之後 `gh repo list nplus-father --topic nplus-note` 一次撈到）
+#   3. 打上 portal 需要的 topic（nplus-kind-notes／nplus-portal）與星系 topic `nplus-note`
+#      （→ 之後 `gh repo list nplus-father --topic nplus-note` 一次撈到）；top-*/sub-*/leaf-* 留給人補
 #   4. 自動把新站 append 進 notes-core/src/lib/sites.ts（跨站連結與知識軸的 SSOT）
 set -euo pipefail
 
@@ -57,9 +58,11 @@ gh repo edit "$OWNER/$SLUG" \
   --homepage "https://nplus.wiki/$SLUG/" \
   --description "${TAGLINE:-$BRAND}" \
   --add-topic nplus-kind-notes \
-  --add-topic nplus-portal
-echo "⚠ 記得補 top-*/sub-* topic，否則 portal 會把本站歸到「未分類」："
-echo "    gh repo edit $OWNER/$SLUG --add-topic top-<領域> --add-topic sub-<主題>"
+  --add-topic nplus-portal \
+  --add-topic nplus-note
+# 2026-09-14 之前這裡漏了 nplus-note——檔頭說會打、程式沒打，data-science-note 開站時才發現。
+echo "⚠ 記得補 top-*/sub-*/leaf-* topic（照本站主力書的書 repo 抄），否則 portal 會把本站歸到「未分類」："
+echo "    gh repo edit $OWNER/$SLUG --add-topic top-<領域> --add-topic sub-<主題> --add-topic leaf-<leaf>"
 
 # 4) 入列 notes-core sites.ts（若本地有 clone）
 # 新站一律 seeAlsoMode "open"；要收進嚴格 enum（技術站群）請手動搬到 __NEW_SITE__ 那一區。
