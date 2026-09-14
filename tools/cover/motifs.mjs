@@ -126,6 +126,14 @@ export const MOTIFS = {
       <polyline points="262,116 312,116 312,166"/></g>
     <g fill="${c}"><circle cx="88" cy="286" r="13"/><circle cx="164" cy="214" r="13"/><circle cx="224" cy="252" r="13"/></g></svg>`,
 
+  // scatter plot with a fitted line — data-science
+  scatter: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="${c}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="84,84 84,316 316,316"/>
+      <line x1="104" y1="270" x2="300" y2="122" stroke-width="9"/></g>
+    <g fill="${c}"><circle cx="120" cy="248" r="11"/><circle cx="150" cy="272" r="11"/><circle cx="176" cy="214" r="11"/>
+      <circle cx="208" cy="228" r="11"/><circle cx="232" cy="170" r="11"/><circle cx="262" cy="188" r="11"/><circle cx="286" cy="128" r="11"/></g></svg>`,
+
   // banknote — personal-finance
   bill: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <rect x="76" y="128" width="248" height="144" rx="16" fill="none" stroke="${c}" stroke-width="7"/>
