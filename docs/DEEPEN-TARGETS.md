@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-09-14T11:54:05+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-24T02:22:48+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -14,9 +14,9 @@
 
 | 項目 | 數 |
 | --- | ---: |
-| 掃過的站 | 76 |
-| **候選（大部頭 × ≤1 頁）** | **128** |
-| 涉及的站 | 46 |
+| 掃過的站 | 77 |
+| **候選（大部頭 × ≤1 頁）** | **129** |
+| 涉及的站 | 47 |
 | 依體裁排除 | 4 |
 
 ## 一、前 30 名（跨站總排序）
@@ -46,13 +46,13 @@
 | 21 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
 | 22 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
 | 23 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 24 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 25 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 26 | 53 | 1 | `startup-note` | Anything You Want |
-| 27 | 52 | 1 | `wujun-note` | 見識 |
-| 28 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
-| 29 | 52 | 1 | `habits-note` | 18 Minutes |
-| 30 | 52 | 1 | `growth-note` | Mastery |
+| 24 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
+| 25 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 26 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 27 | 53 | 1 | `startup-note` | Anything You Want |
+| 28 | 52 | 1 | `wujun-note` | 見識 |
+| 29 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 30 | 52 | 1 | `habits-note` | 18 Minutes |
 
 ## 二、依站分組
 
@@ -287,6 +287,10 @@
 ### `science-note`（1 本）
 
 - **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
+
+### `travel-note`（1 本）
+
+- **破億下載 Podcast 製作人的經營指南** — 55 章 / 1 頁（`podcast-producer-guide`）
 
 ### `growth-note`（1 本）
 

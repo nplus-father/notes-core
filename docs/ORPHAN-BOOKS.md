@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-09-14T11:54:02+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-24T02:22:46+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1909 個 repo），其中 `nplus-kind-book` 的書 repo 1772 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1914 個 repo），其中 `nplus-kind-book` 的書 repo 1776 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -19,14 +19,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **0** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **4** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **9** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：0 本沒有任何站認領
+## 一、孤兒書：4 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -46,6 +46,9 @@
 
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
+| `culture` | leadership | 2/16 | 12% | leadership(12)、startup(2)、tracy(1) |
+| `team-building` | leadership | 1/22 | 5% | leadership(16)、management(4)、hbr(3) |
+| `screenwriting` | writing | 1/5 | 20% | writing(4)、communication(1)、travel(1) |
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
@@ -53,7 +56,26 @@
 
 無。
 
-### 1e. 全部 0 本（依 leaf 分組）
+### 1e. 全部 4 本（依 leaf 分組）
+
+#### `culture` — 2/16 沒人認領（目前：leadership(12)、startup(2)、tracy(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `powerful-mccord` | Powerful: Building a Culture of Freedom and Responsibility | Patty McCord |
+| `work-rules` | Work Rules!: Insights from Inside Google That Will Transform How You Live and Lead | Laszlo Bock |
+
+#### `team-building` — 1/22 沒人認領（目前：leadership(16)、management(4)、hbr(3)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `who-a-method-for-hiring` | Who: The A Method for Hiring | Geoff Smart & Randy Street |
+
+#### `screenwriting` — 1/5 沒人認領（目前：writing(4)、communication(1)、travel(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `character-mckee` | Character: The Art of Role and Cast Design for Page, Stage, and Screen | Robert McKee |
 
 ## 二、死鏈 slug：0 個
 
