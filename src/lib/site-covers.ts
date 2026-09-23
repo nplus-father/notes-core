@@ -30,6 +30,7 @@ export const siteCovers: Record<string, SiteCover> = {
   },
   "data-systems-note": { accent: "#2fbf9e", accent2: "#1c8a72", motif: "db" },
   "data-science-note": { accent: "#b9d43c", accent2: "#7f9a1f", motif: "scatter" },
+  "travel-note": { accent: "#f0a04b", accent2: "#b8701f", motif: "route" },
   "cloud-infra-note": { accent: "#35c6d6", accent2: "#1f8fa0", motif: "cloud" },
   "clean-code-note": { accent: "#a678ff", accent2: "#6f47c9", motif: "code" },
   "design-patterns-note": {

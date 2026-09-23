@@ -134,6 +134,13 @@ export const MOTIFS = {
     <g fill="${c}"><circle cx="120" cy="248" r="11"/><circle cx="150" cy="272" r="11"/><circle cx="176" cy="214" r="11"/>
       <circle cx="208" cy="228" r="11"/><circle cx="232" cy="170" r="11"/><circle cx="262" cy="188" r="11"/><circle cx="286" cy="128" r="11"/></g></svg>`,
 
+  // two map pins joined by a dashed flight path — travel
+  route: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <path d="M112,270 C140,120 262,96 290,168" fill="none" stroke="${c}" stroke-width="7" stroke-linecap="round" stroke-dasharray="4 18"/>
+    <g fill="${c}"><path d="M112,318 C92,290 76,270 76,248 a36,36 0 0 1 72,0 C148,270 132,290 112,318 Z"/>
+      <path d="M290,216 C270,188 254,168 254,146 a36,36 0 0 1 72,0 C326,168 310,188 290,216 Z"/></g>
+    <g fill="#fff"><circle cx="112" cy="248" r="13"/><circle cx="290" cy="146" r="13"/></g></svg>`,
+
   // banknote — personal-finance
   bill: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <rect x="76" y="128" width="248" height="144" rx="16" fill="none" stroke="${c}" stroke-width="7"/>
