@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-09-26T00:40:08+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T00:59:18+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -48,7 +48,7 @@
 | --- | --- | ---: | ---: | --- |
 | `culture` | leadership | 2/16 | 12% | leadership(12)、startup(2)、tracy(1) |
 | `team-building` | leadership | 1/22 | 5% | leadership(16)、management(4)、hbr(3) |
-| `screenwriting` | writing | 1/5 | 20% | writing(4)、communication(1)、travel(1) |
+| `screenwriting` | writing | 1/5 | 20% | writing(4)、travel(3)、communication(1) |
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
@@ -71,7 +71,7 @@
 | --- | --- | --- |
 | `who-a-method-for-hiring` | Who: The A Method for Hiring | Geoff Smart & Randy Street |
 
-#### `screenwriting` — 1/5 沒人認領（目前：writing(4)、communication(1)、travel(1)）
+#### `screenwriting` — 1/5 沒人認領（目前：writing(4)、travel(3)、communication(1)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
