@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-09-26T00:34:31+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T00:39:28+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -8,11 +8,11 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1954 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1955 個 repo）。
 
 ## 先收這 14 本
 
-整份 41 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 39 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -53,23 +53,21 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2326 筆（去重 1806 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **41 筆（去重 41 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2329 筆（去重 1809 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **39 筆（去重 39 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 87 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 87 筆 |
 
-> `owned` 去重後的 1806 是**已建成書站的書**（2326 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1809 是**已建成書站的書**（2329 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：2 本其實已經有書站了
+## 先扣掉：0 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
-| `istanbul` | Istanbul: Memories and the City | travel-note | Istanbul: Memories and the City \| Orhan Pamuk \| A memoir of  |
-| `so-you-want-to-start-a-podcast` | So You Want to Start a Podcast | travel-note | So You Want to Start a Podcast \| Kristen Meinzer \| A step-by |
 
 ## 作者這一關擋下的：0 筆同名不同書
 
@@ -87,13 +85,11 @@
 
 無——沒有書名相近卻沒對上的。
 
-## 快歸零的站：1 站只差 1–2 本
+## 快歸零的站：0 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
-| 站 | 已收 | 還差 | 差哪幾本 |
-| --- | ---: | ---: | --- |
-| `travel-note` | 48 | **2** | Istanbul: Memories and the City（Orhan Pamuk）、So You Want to Start a Podcast（Kristen Meinzer） |
+（目前沒有只差 1–2 本的站。）
 
 ## 優先收：0 本有兩個以上的站在等
 
@@ -102,7 +98,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 41 筆）
+## 完整清單（依站，共 39 筆）
 
 ### data-science-note — 39 本
 
@@ -147,13 +143,6 @@
 | Everybody Lies | Seth Stephens-Davidowitz | 數據、謊言與真相 | 2017 | Google 搜尋資料揭露人們不會對問卷說的事；大數據的四種力量與極限 |
 | Invisible Women | Caroline Criado Perez | 被隱形的女性 | 2019 | 資料缺口本身就是偏見：從撞擊測試假人到藥物劑量 |
 | The Alignment Problem | Brian Christian |  | 2020 | ML 系統怎麼學到我們沒打算教的東西；與 Algorithms to Live By 同作者 |
-
-### travel-note — 2 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| So You Want to Start a Podcast ⟵ 已有書站 `so-you-want-to-start-a-podcast` | Kristen Meinzer |  | 2019 | 節目企劃到單集製作的實務手冊（原列 Kern 的 Sound Reporting 找不到檔，改收這本；PDF 已下載，待建站） |
-| Istanbul: Memories and the City ⟵ 已有書站 `istanbul` | Orhan Pamuk |  | 2003 | 中東與埃及：中譯《伊斯坦堡：一座城市的記憶》，土耳其團進出的那座城（原列 Goodwin 的鄂圖曼史找不到檔，改收這本；PDF 已下載，待建站。杜拜多半只是中轉點，不另收書） |
 
 ## 沒有英文書名的 1 本（華文／日文原著）
 
