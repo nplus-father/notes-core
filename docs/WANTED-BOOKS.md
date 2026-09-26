@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-09-26T10:27:26+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T12:07:48+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -8,11 +8,11 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1958 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1961 個 repo）。
 
 ## 先收這 14 本
 
-整份 42 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 50 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -53,21 +53,23 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2339 筆（去重 1812 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **42 筆（去重 42 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2351 筆（去重 1816 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **50 筆（去重 50 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 87 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 87 筆 |
 
-> `owned` 去重後的 1812 是**已建成書站的書**（2339 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1816 是**已建成書站的書**（2351 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
-## 先扣掉：0 本其實已經有書站了
+## 先扣掉：2 本其實已經有書站了
 
 這些 `wanted` 的書名對得上**已存在的書 repo**——不必再收，是各站 bibliography 的 status 沒跟上。**買書前先扣掉這批**，並把該筆改成 `status: "owned"` ＋ 補上 `slug`（＝下表的 repo slug）再重跑；`/note-wanted` 會代勞。
 
 | 書 repo slug | 書名 | 登記在 | portal 上的描述（核對用） |
 | --- | --- | --- | --- |
+| `alliance` | The Alliance | hr-note | The Alliance \| Reid Hoffman, Ben Casnocha & Chris Yeh \| Repl |
+| `directing-documentary` | Directing the Documentary | travel-note | Directing the Documentary \| Michael Rabiger \| A project-base |
 
 ## 作者這一關擋下的：0 筆同名不同書
 
@@ -98,7 +100,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 42 筆）
+## 完整清單（依站，共 50 筆）
 
 ### data-science-note — 39 本
 
@@ -144,11 +146,24 @@
 | Invisible Women | Caroline Criado Perez | 被隱形的女性 | 2019 | 資料缺口本身就是偏見：從撞擊測試假人到藥物劑量 |
 | The Alignment Problem | Brian Christian |  | 2020 | ML 系統怎麼學到我們沒打算教的東西；與 Algorithms to Live By 同作者 |
 
+### hr-note — 8 本
+
+| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
+| --- | --- | --- | --- | --- |
+| The Alliance ⟵ 已有書站 `alliance` | Reid Hoffman, Ben Casnocha & Chris Yeh |  | 2014 | 中譯《聯盟世代》；終身雇用不可能之後，雇主與員工怎麼用「任期」互相承諾 |
+| Nine Lies About Work | Marcus Buckingham & Ashley Goodall |  | 2019 | 績效評等、回饋、目標串接——九個人資慣例為什麼站不住；First, Break All the Rules 二十年後的續篇 |
+| Thanks for the Feedback | Douglas Stone & Sheila Heen |  | 2014 | 回饋的另一半：接收方怎麼聽；三種回饋、三種觸發 |
+| The Fearless Organization | Amy C. Edmondson |  | 2018 | 中譯《心理安全感的力量》；人敢不敢說話決定團隊學不學得到東西 |
+| Compensation | George T. Milkovich, Jerry M. Newman & Barry Gerhart |  | 1984 | 薪酬設計的標準教科書：職等、市場定位、績效連動；收最新版 |
+| HR from the Outside In | Dave Ulrich, Jon Younger, Wayne Brockbank & Mike Ulrich |  | 2012 | 人資的六種能力：從業務與顧客往回看 HR 該做什麼 |
+| Victory Through Organization | Dave Ulrich, David Kryscynski, Mike Ulrich & Wayne Brockbank |  | 2017 | 組織能力比個別人才更能解釋績效——HR 該經營的是組織，不只是人 |
+| Human Resource Management | Gary Dessler |  | 1976 | 人資管理的通用教科書：招募、訓練、績效、薪酬、勞資關係全覽；收最新版 |
+
 ### travel-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Directing the Documentary | Michael Rabiger |  | 1987 | 電視長片：從企劃、拍攝到剪輯的紀錄片教科書；收最新版 |
+| Directing the Documentary ⟵ 已有書站 `directing-documentary` | Michael Rabiger |  | 1987 | 電視長片：從企劃、拍攝到剪輯的紀錄片教科書；收最新版 |
 | Producing for TV and New Media | Cathrine Kellison |  | 2005 | 電視製作流程、排期、交片給電視台——對應每週的節目排播與送帶 |
 | Lonely Planet's Guide to Travel Writing | Don George |  | 2005 | 旅遊敘事的文字工藝：旁白與 Podcast 腳本的底 |
 

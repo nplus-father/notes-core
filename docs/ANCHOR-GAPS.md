@@ -1,6 +1,6 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-26T10:28:22+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T12:09:35+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
@@ -520,13 +520,13 @@
 ## marketing-note / growth-launch/marketing-as-warfare.md
 
 - 現掛：`marketing-tracy` → `docs/11-four-principles-of-strategy/`、`marketing-tracy` → `docs/15-the-frontal-assault/`、`marketing-tracy` → `docs/16-hit-em-where-they-aint/`、`marketing-tracy` → `docs/17-dominate-a-niche/`
-- 建議 anchor：`marketing-tracy` → `docs/12-choosing-the-battlefield/`「Choosing The Battlefield」（1 個數字）
+- 建議 anchor：`marketing-tracy` → `docs/12-choosing-the-battlefield/`「選擇戰場」（1 個數字）
 - 落空數字：50%
 
 ## marketing-note / growth-launch/marketing-mix-4p.md
 
 - 現掛：`marketing-tracy` → `docs/05-the-marketing-mix-product/`、`marketing-tracy` → `docs/06-the-marketing-mix-price/`、`marketing-tracy` → `docs/07-the-marketing-mix-place/`
-- 建議 anchor：`marketing-tracy` → `docs/18-creative-growth-strategies/`「Creative Growth Strategies」（1 個數字）、`marketing-tracy` → `docs/08-the-marketing-mix-promotion/`「The Marketing Mix Promotion」（1 個數字）
+- 建議 anchor：`marketing-tracy` → `docs/18-creative-growth-strategies/`「創意成長策略」（1 個數字）、`marketing-tracy` → `docs/08-the-marketing-mix-promotion/`「行銷組合：推廣」（1 個數字）
 - 落空數字：2007年、80%
 
 ## marketing-note / positioning/power-of-the-name.md
@@ -722,7 +722,7 @@
 ## tracy-note / business/negotiation-basics.md
 
 - 現掛：`negotiation` → `docs/01-everything-is-negotiable/`、`negotiation` → `docs/02-overcome-your-fears/`
-- 建議 anchor：`negotiation` → `docs/21-the-successful-negotiator/`「The Successful Negotiator」（1 個數字）
+- 建議 anchor：`negotiation` → `docs/21-the-successful-negotiator/`「成功的談判者」（1 個數字）
 - 落空數字：20%
 
 ## tracy-note / business/winning-edge.md

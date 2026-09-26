@@ -1,6 +1,6 @@
 # 缺出版年清單（bibliography `year` 全星系匯出）
 
-> **生成於 2026-09-26T10:28:00+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T12:08:24+08:00**｜由 `tools/export-missing-years.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡**沒填 `year`** 的條目。由
 `notes-core/tools/export-missing-years.py` 生成，**不要手改**——補各站的 bibliography 再重跑。
@@ -12,7 +12,7 @@
 下面的 📕 是該書 repo 記的出版日（frontmatter 的 `book.published`，或舊格式 book-cover 的
 版次日），只能當**線索**——那是做摘要時手上那一版，照抄會把時間軸整條往後推。
 
-目前：77 站 / 2555 筆，缺 year **7 筆**（0.3%），分佈在 5 站；其中 1 筆查得到出版日線索。
+目前：78 站 / 2575 筆，缺 year **7 筆**（0.3%），分佈在 5 站；其中 1 筆查得到出版日線索。
 
 每一站「有 year」的條目都 ≥ 4 筆，所以年代分佈圖全都畫得出來，只是少了這些點。
 

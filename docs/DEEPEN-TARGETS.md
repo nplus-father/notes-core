@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-09-26T10:28:01+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T12:08:26+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -14,9 +14,9 @@
 
 | 項目 | 數 |
 | --- | ---: |
-| 掃過的站 | 77 |
-| **候選（大部頭 × ≤1 頁）** | **129** |
-| 涉及的站 | 47 |
+| 掃過的站 | 78 |
+| **候選（大部頭 × ≤1 頁）** | **131** |
+| 涉及的站 | 48 |
 | 依體裁排除 | 4 |
 
 ## 一、前 30 名（跨站總排序）
@@ -227,6 +227,11 @@
 
 - **Versioning in an Event Sourced System** — 56 章 / 1 頁（`versioning-in-an-event-sourced-system`）
 - **SQL Performance Explained** — 42 章 / 1 頁（`sql-performance-explained`）
+
+### `hr-note`（2 本）
+
+- **First, Break All the Rules 首先，打破成規** — 50 章 / 1 頁（`first-break-all-the-rules`）
+- **HBR Guide to Retaining Your Best People** — 34 章 / 1 頁（`hbr-guide-to-retaining-your-best-people`）
 
 ### `history-note`（2 本）
 
