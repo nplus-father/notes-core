@@ -79,6 +79,7 @@ export const sites: Site[] = [
   { key: "security", slug: "security-note", brand: "Security Notes", label: "資安", axis: "topic", seeAlsoMode: "open" },
   { key: "data-science", slug: "data-science-note", brand: "Data Science Notes", label: "資料科學", axis: "topic", seeAlsoMode: "open" },
   { key: "travel", slug: "travel-note", brand: "Travel Notes", label: "旅遊業", axis: "topic", seeAlsoMode: "open" },
+  { key: "hr", slug: "hr-note", brand: "HR Notes", label: "人力資源", axis: "topic", seeAlsoMode: "open" },
   // __NEW_TOPIC_SITE__ (new-note.sh 會在此行前插入新主題站)
 
   // ══ 人物站群（首頁走 profile 思想側寫）════════════════════════════════
