@@ -356,6 +356,8 @@ from pathlib import Path
 TOP20 = [
     ("the-art-of-statistics", "統計思維分類的正典入門；整個站的第一本"),
     ("the-data-detective", "看數字的十條規則；薄、起手容易"),
+    ("the-fearless-organization", "心理安全感的原典：全星系 7 站 18 頁在談心理安全，架上只有 Edmondson 的 Right Kind of Wrong；hr 站留才分類的 psychological-safety 節點在等它"),
+    ("nine-lies-about-work", "hr 脊梁 First, Break All the Rules（hr 已 2 頁）二十年後的續篇；績效分類的 nine-lies-about-ratings 節點在等它"),
     ("introduction-to-probability", "機率基礎的教科書，線上免費，可先做站"),
     ("the-book-of-why", "因果分類的脊梁：因果階梯與反事實"),
     ("trustworthy-online-controlled-experiments", "A/B 測試正典；工程師做實驗的第一本"),
@@ -365,9 +367,11 @@ TOP20 = [
     ("python-for-data-analysis", "pandas 作者親寫，線上免費；實作分類的第一本"),
     ("practical-statistics-for-data-scientists", "資料科學家該懂的五十個統計概念"),
     ("fundamentals-of-data-visualization", "視覺化的系統課，線上免費"),
+    ("thanks-for-the-feedback", "同作者群的 Difficult Conversations 已有書站、被 4 頁引用；這本補回饋的接收方，hr 績效分類只有給回饋的一半"),
     ("data-science-for-business", "把商業問題翻成資料問題的框架；分析與決策分類的脊梁"),
     ("how-to-measure-anything", "校準估計與資訊價值；「無形資產」也能量"),
     ("weapons-of-math-destruction", "演算法與社會分類的入門；有中譯"),
+    ("compensation", "薪酬結構教科書；hr 薪酬分類只有 Work Rules! 一本，pay-structure-basics 節點在等它"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])

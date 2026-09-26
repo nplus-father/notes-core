@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-09-26T12:24:14+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T14:08:05+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -10,7 +10,7 @@
 
 **已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1962 個 repo）。
 
-## 先收這 14 本
+## 先收這 18 本
 
 整份 46 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
@@ -22,18 +22,22 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | **The Art of Statistics** | David Spiegelhalter | 統計的藝術 | 2019 | data-science(38) | 統計思維分類的正典入門；整個站的第一本 |
 | 2 | **The Data Detective** | Tim Harford |  | 2020 | data-science(38) | 看數字的十條規則；薄、起手容易 |
-| 3 | **Introduction to Probability** | Joseph K. Blitzstein & Jessica Hwang |  | 2019 | data-science(38) | 機率基礎的教科書，線上免費，可先做站 |
-| 4 | **The Book of Why** | Judea Pearl & Dana Mackenzie | 因果革命 | 2018 | data-science(38) | 因果分類的脊梁：因果階梯與反事實 |
-| 5 | **Trustworthy Online Controlled Experiments** | Ron Kohavi, Diane Tang & Ya Xu |  | 2020 | data-science(38) | A/B 測試正典；工程師做實驗的第一本 |
-| 6 | **An Introduction to Statistical Learning with Applications in Python** | Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani & Jonathan Taylor |  | 2023 | data-science(38) | ML 基礎的正典入門（ISLP），線上免費 |
-| 7 | **Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow** | Aurélien Géron | 精通機器學習 | 2017 | data-science(38) | 動手做的 ML 主幹；收第三版 |
-| 8 | **Designing Machine Learning Systems** | Chip Huyen |  | 2022 | data-science(38) | 把已收的兩本 ML system design interview 接成正典 |
-| 9 | **Python for Data Analysis** | Wes McKinney |  | 2012 | data-science(38) | pandas 作者親寫，線上免費；實作分類的第一本 |
-| 10 | **Practical Statistics for Data Scientists** | Peter Bruce, Andrew Bruce & Peter Gedeck |  | 2017 | data-science(38) | 資料科學家該懂的五十個統計概念 |
-| 11 | **Fundamentals of Data Visualization** | Claus O. Wilke |  | 2019 | data-science(38) | 視覺化的系統課，線上免費 |
-| 12 | **Data Science for Business** | Foster Provost & Tom Fawcett |  | 2013 | data-science(38) | 把商業問題翻成資料問題的框架；分析與決策分類的脊梁 |
-| 13 | **How to Measure Anything** | Douglas W. Hubbard | 如何衡量萬事萬物 | 2007 | data-science(38) | 校準估計與資訊價值；「無形資產」也能量 |
-| 14 | **Weapons of Math Destruction** | Cathy O'Neil | 大數據的傲慢與偏見 | 2016 | data-science(38) | 演算法與社會分類的入門；有中譯 |
+| 3 | **The Fearless Organization** | Amy C. Edmondson |  | 2018 | hr(6) | 心理安全感的原典：全星系 7 站 18 頁在談心理安全，架上只有 Edmondson 的 Right Kind of Wrong；hr 站留才分類的 psychological-safety 節點在等它 |
+| 4 | **Nine Lies About Work** | Marcus Buckingham & Ashley Goodall |  | 2019 | hr(6) | hr 脊梁 First, Break All the Rules（hr 已 2 頁）二十年後的續篇；績效分類的 nine-lies-about-ratings 節點在等它 |
+| 5 | **Introduction to Probability** | Joseph K. Blitzstein & Jessica Hwang |  | 2019 | data-science(38) | 機率基礎的教科書，線上免費，可先做站 |
+| 6 | **The Book of Why** | Judea Pearl & Dana Mackenzie | 因果革命 | 2018 | data-science(38) | 因果分類的脊梁：因果階梯與反事實 |
+| 7 | **Trustworthy Online Controlled Experiments** | Ron Kohavi, Diane Tang & Ya Xu |  | 2020 | data-science(38) | A/B 測試正典；工程師做實驗的第一本 |
+| 8 | **An Introduction to Statistical Learning with Applications in Python** | Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani & Jonathan Taylor |  | 2023 | data-science(38) | ML 基礎的正典入門（ISLP），線上免費 |
+| 9 | **Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow** | Aurélien Géron | 精通機器學習 | 2017 | data-science(38) | 動手做的 ML 主幹；收第三版 |
+| 10 | **Designing Machine Learning Systems** | Chip Huyen |  | 2022 | data-science(38) | 把已收的兩本 ML system design interview 接成正典 |
+| 11 | **Python for Data Analysis** | Wes McKinney |  | 2012 | data-science(38) | pandas 作者親寫，線上免費；實作分類的第一本 |
+| 12 | **Practical Statistics for Data Scientists** | Peter Bruce, Andrew Bruce & Peter Gedeck |  | 2017 | data-science(38) | 資料科學家該懂的五十個統計概念 |
+| 13 | **Fundamentals of Data Visualization** | Claus O. Wilke |  | 2019 | data-science(38) | 視覺化的系統課，線上免費 |
+| 14 | **Thanks for the Feedback** | Douglas Stone & Sheila Heen |  | 2014 | hr(6) | 同作者群的 Difficult Conversations 已有書站、被 4 頁引用；這本補回饋的接收方，hr 績效分類只有給回饋的一半 |
+| 15 | **Data Science for Business** | Foster Provost & Tom Fawcett |  | 2013 | data-science(38) | 把商業問題翻成資料問題的框架；分析與決策分類的脊梁 |
+| 16 | **How to Measure Anything** | Douglas W. Hubbard | 如何衡量萬事萬物 | 2007 | data-science(38) | 校準估計與資訊價值；「無形資產」也能量 |
+| 17 | **Weapons of Math Destruction** | Cathy O'Neil | 大數據的傲慢與偏見 | 2016 | data-science(38) | 演算法與社會分類的入門；有中譯 |
+| 18 | **Compensation** | George T. Milkovich, Jerry M. Newman & Barry Gerhart |  | 1984 | hr(6) | 薪酬結構教科書；hr 薪酬分類只有 Work Rules! 一本，pay-structure-basics 節點在等它 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
