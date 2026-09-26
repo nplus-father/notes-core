@@ -141,6 +141,12 @@ export const MOTIFS = {
       <path d="M290,216 C270,188 254,168 254,146 a36,36 0 0 1 72,0 C326,168 310,188 290,216 Z"/></g>
     <g fill="#fff"><circle cx="112" cy="248" r="13"/><circle cx="290" cy="146" r="13"/></g></svg>`,
 
+  // ID badge on a clip — hr
+  badge: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <rect x="96" y="92" width="208" height="228" rx="20" fill="none" stroke="${c}" stroke-width="7"/>
+    <rect x="160" y="78" width="80" height="24" rx="12" fill="${c}"/>
+    <g fill="${c}"><circle cx="200" cy="180" r="34"/><path d="M134,276 a66,46 0 0 1 132,0 Z"/></g></svg>`,
+
   // banknote — personal-finance
   bill: (c) => `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
     <rect x="76" y="128" width="248" height="144" rx="16" fill="none" stroke="${c}" stroke-width="7"/>
