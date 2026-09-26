@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-09-26T12:25:01+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T14:37:19+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,7 +15,7 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **131** |
+| **候選（大部頭 × ≤1 頁）** | **143** |
 | 涉及的站 | 48 |
 | 依體裁排除 | 4 |
 
@@ -57,6 +57,23 @@
 ## 二、依站分組
 
 開單時整站一起看比較省力——同一站的候選常常共享脈絡。
+
+### `travel-note`（14 本）
+
+- **破億下載 Podcast 製作人的經營指南** — 55 章 / 1 頁（`podcast-producer-guide`）
+- **The Almost Nearly Perfect People** — 51 章 / 1 頁（`almost-nearly-perfect-people`）
+- **How to Be a Travel Writer** — 47 章 / 0 頁（`how-to-be-travel-writer`）
+- **So You Want to Start a Podcast** — 46 章 / 1 頁（`so-you-want-to-start-a-podcast`）
+- **Grammar of the Shot** — 46 章 / 1 頁（`grammar-of-the-shot`）
+- **Europe Through the Back Door** — 42 章 / 1 頁（`europe-through-the-back-door`）
+- **文化苦旅** — 39 章 / 1 頁（`bittersweet-journey-through-culture`）
+- **Istanbul: Memories and the City** — 38 章 / 1 頁（`istanbul`）
+- **Germany: Memories of a Nation** — 38 章 / 1 頁（`germany-memories-of-a-nation`）
+- **The Penguin History of New Zealand** — 36 章 / 1 頁（`penguin-history-of-new-zealand`）
+- **The Business of Tourism** — 33 章 / 1 頁（`business-of-tourism`）
+- **The Rise and Fall of Ancient Egypt** — 31 章 / 1 頁（`rise-and-fall-of-ancient-egypt`）
+- **The Story of Art** — 30 章 / 1 頁（`story-of-art`）
+- **In the Blink of an Eye** — 30 章 / 1 頁（`in-the-blink-of-an-eye`）
 
 ### `theology-note`（9 本）
 
@@ -228,11 +245,6 @@
 - **Versioning in an Event Sourced System** — 56 章 / 1 頁（`versioning-in-an-event-sourced-system`）
 - **SQL Performance Explained** — 42 章 / 1 頁（`sql-performance-explained`）
 
-### `hr-note`（2 本）
-
-- **First, Break All the Rules 首先，打破成規** — 50 章 / 1 頁（`first-break-all-the-rules`）
-- **HBR Guide to Retaining Your Best People** — 34 章 / 1 頁（`hbr-guide-to-retaining-your-best-people`）
-
 ### `history-note`（2 本）
 
 - **文學的40堂公開課** — 40 章 / 1 頁（`little-history-of-literature`）
@@ -293,10 +305,6 @@
 
 - **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
 
-### `travel-note`（1 本）
-
-- **破億下載 Podcast 製作人的經營指南** — 55 章 / 1 頁（`podcast-producer-guide`）
-
 ### `growth-note`（1 本）
 
 - **Mastery** — 52 章 / 1 頁（`mastery`）
@@ -324,6 +332,10 @@
 ### `behaviour-interview-note`（1 本）
 
 - **軟技能：soft skills，讓你不過時、不貶值、不消失** — 35 章 / 1 頁（`soft-skills-thirty-letters`）
+
+### `hr-note`（1 本）
+
+- **HBR Guide to Retaining Your Best People** — 34 章 / 1 頁（`hbr-guide-to-retaining-your-best-people`）
 
 ### `philosophy-note`（1 本）
 

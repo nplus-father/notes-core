@@ -76,8 +76,14 @@ hr-note（3 頁）
 
 不開：hook-point、grammar-of-the-edit、be-our-guest、balkans、vietnam、beyond-sky、notes-from-small-island、coming-into-country（3 章）、tv-studio／directing-documentary（判 support，導覽帶到即可）；china-history 判 tool。
 
+**Batch 3 執行（Opus 2026-09-26）**：27 張單交付 25 頁——travel 22 頁（39 頁／39 本被引）、hr 3 頁（15 頁）。
+- **沒寫 2 張**：#6 `travel-narrative-craft`——how-to-be-travel-writer 書站只有章節骨架（每章 _index.md 只有 frontmatter，PDF 在 books-management/new-books/how-to-be-travel-writer/），等書寫完再起草；#24 供應商地圖——站上規範要求每頁掛書的 anchor，純資料頁會被判 unsourced，要先定「資料頁」規範再開（Andrew 授權「照建議做」，建議＝這輪不開）。
+- **照書改的**：#4 slug 改 `youtube-algorithm-and-retention`（全書沒提 Shorts，書單 note 同步修正）；#15 標題改「羅馬以外的羅馬」（書沒寫達爾馬提亞／斯普利特）；#16 改「三教共處的西班牙」（摩洛哥只是背景）；#2 標題「織夢」改書的「築夢」。
+- **驗證**：兩站 entity／anchor／死鏈／區塊閉合 0，回向邊補 89 條；抽 10 頁 30 個具名詞全部在原書；俄羅斯頁起稿者未重讀的兩句（紅色錫鈴、舍伍德的博物館）已逐句回源。checkup 全星系 blocker 0／warn 0。
+- 下一步：兩站 `/note-guide`（Fable；現在夠厚了）。
+
 **Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。（Batch 3 起草順序：#1–#6 工作線 → #7–#17 第一級區域 → #25–#27 hr → #18–#23 第二級；#24 等裁決）
-**Batch 4 — Fable**：兩站 `/note-guide`（站挖完才寫；現在 5 頁不寫）；data-science 等書進站再判。
+**Batch 4 — Fable**：兩站 `/note-guide`（travel 39 頁、hr 15 頁，可以寫了）；data-science 等書進站再判。
 **Andrew**：hr 7 本待收（Nine Lies、Thanks for the Feedback、Fearless Organization、Compensation、Ulrich ×2、Dessler）＋挑一本台灣勞基法；data-science 39 本。
 
 

@@ -1,12 +1,12 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-26T12:26:21+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T14:37:42+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**0** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：136 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 167 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據單薄（只有一個數字，或全靠裸年份）：137 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 172 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
 
@@ -17,7 +17,7 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/08-priorities/`「優先順序」（1 個數字）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）
+- 建議 anchor：`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md
@@ -748,6 +748,12 @@
 - 現掛：`power-of-charm` → `docs/01-the-quality-of-charm/`、`power-of-charm` → `docs/02-developing-the-charm-personality/`
 - 建議 anchor：`power-of-charm` → `docs/introduction/`「前言」（1 個數字）
 - 落空數字：85%
+
+## travel-note / tour-leading/recovering-from-mistakes.md
+
+- 現掛：`setting-the-table` → `docs/10-success-paved-with-mistakes-well-handled/`
+- 建議 anchor：`setting-the-table` → `docs/01-the-first-course/`「第一道菜」（1 個數字）、`setting-the-table` → `docs/08-broadcasting-message-tuning-feedback/`「傳遞訊息，接收回饋」（1 個數字）、`setting-the-table` → `docs/02-in-business/`「投身事業」（1 個數字）
+- 落空數字：50美元
 
 ## uncle-bob-note / clean-code/functional-design.md
 
