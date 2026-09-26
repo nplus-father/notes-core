@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-09-26T00:58:37+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T10:27:26+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -8,11 +8,11 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1955 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1958 個 repo）。
 
 ## 先收這 14 本
 
-整份 45 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 42 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -53,12 +53,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2336 筆（去重 1809 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **45 筆（去重 45 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2339 筆（去重 1812 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **42 筆（去重 42 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 87 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 87 筆 |
 
-> `owned` 去重後的 1809 是**已建成書站的書**（2336 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1812 是**已建成書站的書**（2339 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -98,7 +98,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 45 筆）
+## 完整清單（依站，共 42 筆）
 
 ### data-science-note — 39 本
 
@@ -144,15 +144,12 @@
 | Invisible Women | Caroline Criado Perez | 被隱形的女性 | 2019 | 資料缺口本身就是偏見：從撞擊測試假人到藥物劑量 |
 | The Alignment Problem | Brian Christian |  | 2020 | ML 系統怎麼學到我們沒打算教的東西；與 Algorithms to Live By 同作者 |
 
-### travel-note — 6 本
+### travel-note — 3 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| The YouTube Formula | Derral Eves |  | 2021 | 演算法、Shorts、縮圖、留存——比 YouTube Secrets 新且深；短影音線的主幹 |
-| Hook Point | Brendan Kane |  | 2020 | 短影音前 3 秒怎麼勾住人；與已收的 One Million Followers 同作者 |
 | Directing the Documentary | Michael Rabiger |  | 1987 | 電視長片：從企劃、拍攝到剪輯的紀錄片教科書；收最新版 |
 | Producing for TV and New Media | Cathrine Kellison |  | 2005 | 電視製作流程、排期、交片給電視台——對應每週的節目排播與送帶 |
-| Writing for Visual Media | Anthony Friedmann |  | 2001 | 影片、電視、紀錄片的腳本寫法；旁白稿的格式與節奏 |
 | Lonely Planet's Guide to Travel Writing | Don George |  | 2005 | 旅遊敘事的文字工藝：旁白與 Podcast 腳本的底 |
 
 ## 沒有英文書名的 1 本（華文／日文原著）

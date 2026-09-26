@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-09-26T00:59:18+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T10:27:59+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1955 個 repo），其中 `nplus-kind-book` 的書 repo 1817 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1958 個 repo），其中 `nplus-kind-book` 的書 repo 1820 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -47,8 +47,8 @@
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
 | `culture` | leadership | 2/16 | 12% | leadership(12)、startup(2)、tracy(1) |
+| `screenwriting` | writing | 1/6 | 17% | travel(4)、writing(4)、communication(1) |
 | `team-building` | leadership | 1/22 | 5% | leadership(16)、management(4)、hbr(3) |
-| `screenwriting` | writing | 1/5 | 20% | writing(4)、travel(3)、communication(1) |
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
@@ -65,17 +65,17 @@
 | `powerful-mccord` | Powerful: Building a Culture of Freedom and Responsibility | Patty McCord |
 | `work-rules` | Work Rules!: Insights from Inside Google That Will Transform How You Live and Lead | Laszlo Bock |
 
+#### `screenwriting` — 1/6 沒人認領（目前：travel(4)、writing(4)、communication(1)）
+
+| 書 repo | 書名 | 作者 |
+| --- | --- | --- |
+| `character-mckee` | Character: The Art of Role and Cast Design for Page, Stage, and Screen | Robert McKee |
+
 #### `team-building` — 1/22 沒人認領（目前：leadership(16)、management(4)、hbr(3)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
 | `who-a-method-for-hiring` | Who: The A Method for Hiring | Geoff Smart & Randy Street |
-
-#### `screenwriting` — 1/5 沒人認領（目前：writing(4)、travel(3)、communication(1)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `character-mckee` | Character: The Art of Role and Cast Design for Page, Stage, and Screen | Robert McKee |
 
 ## 二、死鏈 slug：0 個
 
