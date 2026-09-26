@@ -17,6 +17,35 @@
 
 ## 進行中
 
+### 兩新站（travel／hr）開站後的分批隊列（2026-09-26 開單，Andrew 要求依模型分批）
+
+**現況**：travel-note 64 本／5 頁（頁/待深挖 0.1，全星系最低）、hr-note 12 本／5 頁（待收 7）；tier-audit 未判層 47（travel 46＋hr 1）、
+空頭支票 travel 1（George 的觀光行銷教科書判 support 但沒導覽）、漏接 hr 2（Great People Decisions 兩站皆 support；Radical Candor 溝通站 delegated 零引用）；
+galaxy-checkup 77 站 core-version（釘 v0.43.2／v0.43.3，最新 v0.43.4）、guide-unlinked 2（cloud-infra circuit-breaker、security human-factors）、
+roadmap-planned 40（travel 12、hr 11、data-science 17）。data-science 的 7 筆空頭支票＋1 漏接自 09-14 開站就在，該站待收 39 本，導覽時機未到。
+
+**Batch 1 — Opus（機械與照單起草，可立刻開）**
+- [ ] 全星系 bump 到 v0.43.4：`tools/bump-notes-core.sh v0.43.2 v0.43.4 --push`（travel 是 v0.43.3 另跑一次）；撞 rejected 照 memory：rebase → format:check → push。清 77 筆 warn。
+- [ ] `/note-wanted` 重挑「先收這 20 本」（hr 7＋data-science 39）。
+- [ ] hr-note `alliance` 未判層 1 本（tier-evidence 判可自動）：`apply-tiers.py` 套用。
+- [ ] guide-unlinked ×2：把 cloud-infra `reliability-patterns/circuit-breaker` 與 security `security-engineering/human-factors` 織進既有導覽段落（保語氣、一句真話），改完蓋導覽 writtenAt。
+- [ ] **roadmap-planned 起草 19 頁**（選題已定、標題已定，照 `_index.md` 的 roadmap 直接寫，走路徑 A、每頁子代理、逐頁抽驗 anchor）：
+  - travel 12：peak-end-itinerary（Power of Moments）、pacing-a-group-day（Steves）、tour-supply-chain（Business of Tourism）、recovering-from-mistakes（Setting the Table 第 10 章）、working-with-local-partners（Culture Map）、shooting-for-the-edit（Grammar of the Shot）、cutting-for-emotion（Murch）、writing-for-the-ear（Meinzer／Abel）、show-positioning（Make Noise）、europe-in-three-strands（Hirst）、reading-a-cathedral（Taylor）、chasing-the-aurora（Arctic Dreams）。
+  - hr 7：four-keys-of-great-managers（First Break）、radical-candor-quadrants、what-to-look-for（Great People Decisions）、interview-questions-that-work（HBR 招募）、talent-density-and-candor（No Rules Rules）、tours-of-duty（Alliance）、autonomy-mastery-purpose（Drive）。
+  - 不開（書還沒收）：hr nine-lies-about-ratings、psychological-safety、pay-structure-basics、taiwan-labor-standards；data-science 17 筆等 39 本 wanted。
+  - 起草前先 `ls` 落分類既有頁、確認書在本機 books-done；書不在本機就跳過留單。每頁交回後 grep entity、驗 anchor、related 雙向、重數導覽／overview 的頁數。
+
+**Batch 2 — Fable（判斷型，與 Batch 1 可並行）**
+- [ ] travel-note 判層 46 本：`tools/tier-evidence.py travel-note --detail` → 只輸出 JSON 決策 → 套用走 `apply-tiers.py` → `tier-audit.py` 必跑。目的地 30 本多半 support／tool（講解底氣，不一定開頁），影音與行程設計的主幹判 spine。順手裁 George 那本空頭支票（改 tool 或等導覽帶到）。
+- [ ] hr-note 漏接 2 筆裁決：Great People Decisions（兩站皆 support → 本站改 support 或升 spine）、Radical Candor（溝通站 delegated 零引用 → 誰接？領導力站有 15 頁教練與回饋，改 delegatedTo leadership 或本站自挖）。
+- [ ] 抽查 Batch 1 的 19 頁：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
+- [ ] **第二輪選題開單**（Batch 1 收工後）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 flock 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
+
+**Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。
+**Batch 4 — Fable**：兩站 `/note-guide`（站挖完才寫；現在 5 頁不寫）；data-science 等書進站再判。
+**Andrew**：hr 7 本待收（Nine Lies、Thanks for the Feedback、Fearless Organization、Compensation、Ulrich ×2、Dessler）＋挑一本台灣勞基法；data-science 39 本。
+
+
 ### 深度與連結度地板：Fable 收尾，**56→0，三條地板全星系歸零**（2026-09-03 深夜）
 
 **covey 37 筆**：讀完五章才發現問題比數字小——導覽本來就逐頁點名了全部 41 頁，只是用「」寫標題、沒掛連結。
