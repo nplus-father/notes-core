@@ -36,12 +36,47 @@ roadmap-planned 40（travel 12、hr 11、data-science 17）。data-science 的 7
   - 起草前先 `ls` 落分類既有頁、確認書在本機 books-done；書不在本機就跳過留單。每頁交回後 grep entity、驗 anchor、related 雙向、重數導覽／overview 的頁數。
 
 **Batch 2 — Fable（判斷型，與 Batch 1 可並行）**
-- [ ] travel-note 判層 46 本：`tools/tier-evidence.py travel-note --detail` → 只輸出 JSON 決策 → 套用走 `apply-tiers.py` → `tier-audit.py` 必跑。目的地 30 本多半 support／tool（講解底氣，不一定開頁），影音與行程設計的主幹判 spine。順手裁 George 那本空頭支票（改 tool 或等導覽帶到）。
-- [ ] hr-note 漏接 2 筆裁決：Great People Decisions（兩站皆 support → 本站改 support 或升 spine）、Radical Candor（溝通站 delegated 零引用 → 誰接？領導力站有 15 頁教練與回饋，改 delegatedTo leadership 或本站自挖）。
-- [ ] 抽查 Batch 1 的 19 頁（Opus 已抽 9 筆全中；hr 兩筆漏接現在兩本在 hr 都有頁：Great People Decisions → what-to-look-for、Radical Candor → radical-candor-quadrants）：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
-- [ ] **第二輪選題開單**（Batch 1 收工後）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 flock 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
+- [x] travel-note 判層 46 本（2026-09-26 Fable 裁決，apply-tiers 套用：spine 34（11 本已被頁引用＋23 本各承諾一頁）、support 11、tool 1（Keay 的中國通史當查閱）。真欠債 23＝下面的開單；空頭支票 11 等導覽帶到）：`tools/tier-evidence.py travel-note --detail` → 只輸出 JSON 決策 → 套用走 `apply-tiers.py` → `tier-audit.py` 必跑。目的地 30 本多半 support／tool（講解底氣，不一定開頁），影音與行程設計的主幹判 spine。順手裁 George 那本空頭支票（改 tool 或等導覽帶到）。
+- [x] hr-note 漏接 2 筆裁決（兩本在 hr 都已有頁，改判 spine 自挖；漏接歸零）：Great People Decisions（兩站皆 support → 本站改 support 或升 spine）、Radical Candor（溝通站 delegated 零引用 → 誰接？領導力站有 15 頁教練與回饋，改 delegatedTo leadership 或本站自挖）。
+- [x] 抽查 Batch 1 的 19 頁（Fable 再抽 8 筆：12%、十種偏誤、寬帶薪酬、留任測試、GIT、朝東敬拜、索耶效應、兩到四年——7 中 1 錯：tours-of-duty 把轉變型任期寫成「二到五年」，書是「兩到四年」，已改）（Opus 已抽 9 筆全中；hr 兩筆漏接現在兩本在 hr 都有頁：Great People Decisions → what-to-look-for、Radical Candor → radical-candor-quadrants）：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
+- [x] **第二輪選題開單**（2026-09-26，單在下方「Batch 3 開單」；等 Andrew 過目）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 flock 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
 
-**Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。
+**Batch 3 開單（Fable 2026-09-26；27 頁，每頁一個子代理、路徑 A；起草前照例 `ls` 落分類既有頁、先讀既有頁 core、anchor 逐一 `[ -d ]`；每頁寫完補進 `_index.md` roadmap）**
+
+travel-note（24 頁；先做第一級區域與四條工作線，第二級區域殿後）
+1. tour-design `staging-an-experience`「行程是一場被設計的體驗：體驗經濟的四個領域」— experience-economy（01-preview、02-intermission）。避開 peak-end-itinerary 的峰終／轉折，只寫 4E 領域、主題化、紀念物、把服務「演」出來。
+2. tour-leading `unreasonable-hospitality-playbook`「超乎常理的款待：意圖、儀式與『織夢』怎麼設計」— unreasonable-hospitality（02 making-magic、03 power-of-intention、07 setting-expectations、13 leveraging-affirmation）。避開 enlightened-hospitality 的定義與五個 A，只寫 Guidara 的做法。
+3. travel-video `documentary-story-design`「一趟團剪成一集節目：紀錄片的故事設計與 treatment」— documentary-storytelling（01-story-design、02-ideas-to-treatments）。避開 shooting／cutting 兩頁的技術層。
+4. travel-video `youtube-algorithm-and-shorts`「演算法看什麼：點閱率、觀看時長與 Shorts」— youtube-formula（01-the-platform、03-the-youtube-formula）。避開 seven-cs 的策略層，只寫機制。
+5. travel-video `scripting-for-the-screen`「影像腳本怎麼寫：從溝通問題到分鏡稿」— writing-for-visual-media（01、02，03 視需要）。避開 writing-for-the-ear（聲音）。
+6. podcast `travel-narrative-craft`「旅遊敘事的工藝：從行程筆記到能讀出聲的故事」— how-to-be-travel-writer（**repo 不在本機，起草前先 clone 進 books-done/personal/lifestyle/travel/**）。
+7. destinations `story-of-art-for-tour-leaders`「藝術的故事：走進歐洲教堂與美術館前的幾個轉折」— story-of-art，挑 09 church-militant、10 church-triumphant、12 conquest-of-reality、15 harmony-attained、16 light-and-colour 等 6–8 章（哥德、文藝復興、巴洛克、印象派——對準團會進的館）。避開 reading-a-cathedral 的建築讀法。
+8. destinations `japan-through-its-culture`「日本文化史的幾個轉折：寺社、庭園、茶道從哪來」— japanese-culture（02 buddhism、03 court、05 medieval-taste、07 bourgeois-culture）。
+9. destinations `walking-japan-north-to-south`「從宗谷岬走到佐多岬：Booth 眼中的日本鄉間」— roads-to-sata（01–04 北海道／東北、09 九州）。旁白語氣的範本，不重講文化史。
+10. destinations `alps-passes-and-peaks`「阿爾卑斯：從日內瓦湖到聖哥達、從海蒂之鄉到格林德瓦」— alps-human-history（01、02；03 只在講到因斯布魯克時用）。
+11. destinations `why-switzerland-works`「瑞士為什麼是瑞士：四種語言、州與直接民主」— why-switzerland（01、03 politics、04 language、06 religion；02 history 視需要）。與 #10 分工：#10 是山，#11 是國。
+12. destinations `germany-in-objects`「用物件講德國：MacGregor 的記憶之國」— germany-memories-of-a-nation（01 where-is-germany、02 imagining、04 made-in-germany、06 living-with-history）。
+13. destinations `discovering-france-beyond-paris`「巴黎之外的法國：Robb 的鄉間地理」— discovery-of-france（結構是 01-part-one／02-part-two，起草者先讀目錄自己切；itinerary 那節可用）。
+14. destinations `cultural-journey-sites`「文化苦旅的路線：敦煌、都江堰、江南小鎮」— bittersweet-journey-through-culture（02 mogao、03 yangguan、04 crescent-spring、07 dujiangyan、08 three-gorges、14 jiangnan、17 west-lake）。對準中國線實際會去的點。
+15. destinations `rome-in-the-ruins`「從羅馬到達爾馬提亞：SPQR 的帝國怎麼走到你腳下的遺跡」— spqr（07 from-empire-to-emperors、09 augustus、10 fourteen-emperors、12 rome-outside-rome）。義大利、克羅埃西亞、西班牙三線共用。
+16. destinations `al-andalus-three-faiths`「安達魯斯：三教共處的西班牙與摩洛哥」— ornament-of-world（01、02、03）。西葡摩線。
+17. destinations `desert-solitaire-and-industrial-tourism`「拱門與『工業化觀光』：Abbey 對國家公園的兩種看法」— desert-solitaire（01、05 industrial-tourism、06 rocks、12 down-the-river）。美西線。
+18. destinations `southeast-asia-in-one-map`「東南亞是什麼：宮廷、農民與殖民的三層」— southeast-asia-introductory-history（01、03、05）。
+19. destinations `istanbul-huzun`「呼愁：Pamuk 的伊斯坦堡怎麼看博斯普魯斯」— istanbul（05 black-and-white、06 bosphorus、10 huzun）。土耳其線。
+20. destinations `three-thousand-years-on-the-nile`「尼羅河上的三千年：神權、榮光與衰落」— rise-and-fall-of-ancient-egypt（01、03、05）。
+21. destinations `almost-nearly-perfect-five`「北歐五國各自的『不完美』」— almost-nearly-perfect-people（挑 01 丹麥、03 挪威、05 瑞典，冰島 02 一段）。峽灣／極光線。
+22. destinations `natashas-dance-two-russias`「兩個俄羅斯：聖彼得堡的歐洲與莫斯科的土地」— natashas-dance（01、03、05）。
+23. destinations `aotearoa-two-settlements`「兩次移民的紐西蘭：毛利與英國」— penguin-history-of-new-zealand（01、02、03）。
+24. 行程規劃作業層（**不是書，要 Andrew 點頭**）：`supplier-memory-from-leader-reports`「供應商地圖：領隊返國報告怎麼變成下一團的選擇」— 資料源 flock ADR-0015／0021／0033 與 dataset.json 的 suppliers／atlas；涉及內部供應商評分，站在密碼閘門後但仍要 Andrew 決定可不可以寫、寫到什麼粒度。
+
+hr-note（3 頁）
+25. culture-people-ops `radical-honesty-and-good-goodbyes`「徹底誠實與好聚好散：McCord 的 Netflix 人資」— powerful-mccord（03 humans-hate-being-lied-to、04 debate-vigorously、06 someone-really-smart、08 good-goodbyes）。避開 07 pay（已用）與 talent-density 頁的 Hastings 版。
+26. recruiting `dont-trust-your-gut`「別相信直覺：Google 怎麼把面試變成結構化評分」— work-rules（03 lake-wobegon、04 searching、05 dont-trust-your-gut）。與 the-a-method、interview-questions 分工：這頁是 Google 的資料與制度（面試上限、委員會、結構化評分），不重講 Who 的四道面試。
+27. performance-feedback `two-tails`「兩端：績效管理為什麼人人討厭，最好與最差的人為什麼要分開看」— work-rules（07、08 two-tails、09 learning-institution）。
+
+不開：hook-point、grammar-of-the-edit、be-our-guest、balkans、vietnam、beyond-sky、notes-from-small-island、coming-into-country（3 章）、tv-studio／directing-documentary（判 support，導覽帶到即可）；china-history 判 tool。
+
+**Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。（Batch 3 起草順序：#1–#6 工作線 → #7–#17 第一級區域 → #25–#27 hr → #18–#23 第二級；#24 等裁決）
 **Batch 4 — Fable**：兩站 `/note-guide`（站挖完才寫；現在 5 頁不寫）；data-science 等書進站再判。
 **Andrew**：hr 7 本待收（Nine Lies、Thanks for the Feedback、Fearless Organization、Compensation、Ulrich ×2、Dessler）＋挑一本台灣勞基法；data-science 39 本。
 
