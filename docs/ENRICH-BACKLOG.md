@@ -25,11 +25,11 @@ galaxy-checkup 77 站 core-version（釘 v0.43.2／v0.43.3，最新 v0.43.4）�
 roadmap-planned 40（travel 12、hr 11、data-science 17）。data-science 的 7 筆空頭支票＋1 漏接自 09-14 開站就在，該站待收 39 本，導覽時機未到。
 
 **Batch 1 — Opus（機械與照單起草，可立刻開）**
-- [ ] 全星系 bump 到 v0.43.4：`tools/bump-notes-core.sh v0.43.2 v0.43.4 --push`（travel 是 v0.43.3 另跑一次）；撞 rejected 照 memory：rebase → format:check → push。清 77 筆 warn。
-- [ ] `/note-wanted` 重挑「先收這 20 本」（hr 7＋data-science 39）。
-- [ ] hr-note `alliance` 未判層 1 本（tier-evidence 判可自動）：`apply-tiers.py` 套用。
-- [ ] guide-unlinked ×2：把 cloud-infra `reliability-patterns/circuit-breaker` 與 security `security-engineering/human-factors` 織進既有導覽段落（保語氣、一句真話），改完蓋導覽 writtenAt。
-- [ ] **roadmap-planned 起草 19 頁**（選題已定、標題已定，照 `_index.md` 的 roadmap 直接寫，走路徑 A、每頁子代理、逐頁抽驗 anchor）：
+- [x] 全星系 bump 到 v0.43.4（2026-09-26 完成：78 站成功 0 失敗，travel 手動補；79 站全在 v0.43.4）：`tools/bump-notes-core.sh v0.43.2 v0.43.4 --push`（travel 是 v0.43.3 另跑一次）；撞 rejected 照 memory：rebase → format:check → push。清 77 筆 warn。
+- [x] `/note-wanted` 重挑（2026-09-26：0 本待回填；TOP20 改為 18 本＝data-science 14＋hr 4；Ulrich 兩本與 Dessler 暫不排，hr 沒有 HR 角色分類）「先收這 20 本」（hr 7＋data-science 39）。
+- [x] hr-note `alliance`：沒照自動建議判 delegated:career——本輪 hr 已用它寫 tours-of-duty，判 spine。
+- [x] guide-unlinked ×2（兩站導覽各織一句，writtenAt 蓋 2026-09-26）：把 cloud-infra `reliability-patterns/circuit-breaker` 與 security `security-engineering/human-factors` 織進既有導覽段落（保語氣、一句真話），改完蓋導覽 writtenAt。
+- [x] **roadmap-planned 起草 19 頁**（2026-09-26 全數交付：travel 12＋hr 7；9 筆具名事實抽驗全中、anchor／死鏈／雙向 0；travel 17 頁、hr 12 頁；checkup 全星系 warn 0）（選題已定、標題已定，照 `_index.md` 的 roadmap 直接寫，走路徑 A、每頁子代理、逐頁抽驗 anchor）：
   - travel 12：peak-end-itinerary（Power of Moments）、pacing-a-group-day（Steves）、tour-supply-chain（Business of Tourism）、recovering-from-mistakes（Setting the Table 第 10 章）、working-with-local-partners（Culture Map）、shooting-for-the-edit（Grammar of the Shot）、cutting-for-emotion（Murch）、writing-for-the-ear（Meinzer／Abel）、show-positioning（Make Noise）、europe-in-three-strands（Hirst）、reading-a-cathedral（Taylor）、chasing-the-aurora（Arctic Dreams）。
   - hr 7：four-keys-of-great-managers（First Break）、radical-candor-quadrants、what-to-look-for（Great People Decisions）、interview-questions-that-work（HBR 招募）、talent-density-and-candor（No Rules Rules）、tours-of-duty（Alliance）、autonomy-mastery-purpose（Drive）。
   - 不開（書還沒收）：hr nine-lies-about-ratings、psychological-safety、pay-structure-basics、taiwan-labor-standards；data-science 17 筆等 39 本 wanted。
@@ -38,7 +38,7 @@ roadmap-planned 40（travel 12、hr 11、data-science 17）。data-science 的 7
 **Batch 2 — Fable（判斷型，與 Batch 1 可並行）**
 - [ ] travel-note 判層 46 本：`tools/tier-evidence.py travel-note --detail` → 只輸出 JSON 決策 → 套用走 `apply-tiers.py` → `tier-audit.py` 必跑。目的地 30 本多半 support／tool（講解底氣，不一定開頁），影音與行程設計的主幹判 spine。順手裁 George 那本空頭支票（改 tool 或等導覽帶到）。
 - [ ] hr-note 漏接 2 筆裁決：Great People Decisions（兩站皆 support → 本站改 support 或升 spine）、Radical Candor（溝通站 delegated 零引用 → 誰接？領導力站有 15 頁教練與回饋，改 delegatedTo leadership 或本站自挖）。
-- [ ] 抽查 Batch 1 的 19 頁：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
+- [ ] 抽查 Batch 1 的 19 頁（Opus 已抽 9 筆全中；hr 兩筆漏接現在兩本在 hr 都有頁：Great People Decisions → what-to-look-for、Radical Candor → radical-candor-quadrants）：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
 - [ ] **第二輪選題開單**（Batch 1 收工後）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 flock 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
 
 **Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。
