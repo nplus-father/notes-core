@@ -83,6 +83,9 @@ hr-note（3 頁）
 - 下一步：兩站 `/note-guide`（Fable；現在夠厚了）。
 
 **Batch 3 — Opus**：照 Batch 2 的單起草；兩站導覽對帳前置（重算頁數本數）。（Batch 3 起草順序：#1–#6 工作線 → #7–#17 第一級區域 → #25–#27 hr → #18–#23 第二級；#24 等裁決）
+**收書輪（2026-09-26 傍晚，Fable 主會話＋Opus 起草）**：Andrew 一口氣建了 8 個書站（hr 7 本全到——Compensation 收的是 Yap 等人的加拿大第六版；加勞動部的勞基法與工作規則手冊，判脊梁），How to Be a Travel Writer 也有內文了。做掉：hr 書單 20 本全收；新開第六分類「HR 的角色與策略」＋主題卡；7 頁起草（hr 6：評分者效應、回饋怎麼收、心理安全感、薪酬結構、勞基法底線、從外而內的人資；travel 1：旅遊敘事的工藝）；兩站導覽增量改寫（未收／骨架句子全清）、overview 同步；travel 40 頁、hr 21 頁；tier-audit 兩站全 0（travel 真欠債歸零）；checkup 全星系 warn 0。剩：hr 的 organization-over-individual 節點等 Victory 開第二頁（support，不急）。
+**模型分工的交接說明**：例行輪（建好書→回填→起草→上線）預設 Opus；只有判層、選題開單、寫或改導覽才切 Fable。
+
 **Batch 4 — Fable（2026-09-26 收工）**：兩站導覽各五章（The Field／Themes／Books／Debates／Reading）落盤上線——travel 約 9,900 字、hr 約 8,600 字；每章 anchor 逐一驗過、概念頁連結全通（39＋15 頁每頁都被導覽連到）、章際錨點通；tier-audit 兩站空頭支票 0／漏接 0／未判層 0（travel 真欠債 1＝Don George 那本書站還是骨架）；checkup 全星系 blocker 0／warn 0。順手修：hr 的 HBR 招募指南 delegatedTo 從 leadership（那站判 tool）改 hbr（那站判 spine）。導覽裡的判讀只採站上已表態的頁；沒表態的爭點（Meyer 慷慨 vs Guidara 95/5、Murch 拍剪分離 vs Bowen 為剪而拍、Abbey vs 遊覽車團、Google 委員會 vs Netflix 留任測試誰對）標「還開著」。；data-science 等書進站再判。
 **Andrew**：hr 7 本待收（Nine Lies、Thanks for the Feedback、Fearless Organization、Compensation、Ulrich ×2、Dessler）＋挑一本台灣勞基法；data-science 39 本。
 

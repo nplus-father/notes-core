@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-09-26T14:53:05+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T23:22:32+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -62,7 +62,7 @@
 
 - **破億下載 Podcast 製作人的經營指南** — 55 章 / 1 頁（`podcast-producer-guide`）
 - **The Almost Nearly Perfect People** — 51 章 / 1 頁（`almost-nearly-perfect-people`）
-- **How to Be a Travel Writer** — 47 章 / 0 頁（`how-to-be-travel-writer`）
+- **How to Be a Travel Writer** — 47 章 / 1 頁（`how-to-be-travel-writer`）
 - **So You Want to Start a Podcast** — 46 章 / 1 頁（`so-you-want-to-start-a-podcast`）
 - **Grammar of the Shot** — 46 章 / 1 頁（`grammar-of-the-shot`）
 - **Europe Through the Back Door** — 42 章 / 1 頁（`europe-through-the-back-door`）

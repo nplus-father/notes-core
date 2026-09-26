@@ -1,11 +1,11 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-26T14:53:30+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T23:22:55+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**0** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：137 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 證據單薄（只有一個數字，或全靠裸年份）：138 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
 - 另有 172 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
@@ -301,6 +301,12 @@
 
 - 現掛：`how-to-fight-a-war` → `docs/01-strategy-and-intelligence/`、`how-to-fight-a-war` → `docs/02-logistics/`
 - 落空數字：1945年
+
+## hr-note / pay-and-rules/taiwan-labor-standards.md
+
+- 現掛：`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/02-labor-contracts/`、`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/03-wages/`、`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/04-working-hours-rest-leave/`、`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/07-occupational-accident-compensation/`、`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/09-work-rules/`、`taiwan-labor-standards-and-work-rules` → `docs/02-work-rules-handbook/01-template-usage-guide/`、`taiwan-labor-standards-and-work-rules` → `docs/02-work-rules-handbook/03-review-guidelines/`、`taiwan-labor-standards-and-work-rules` → `docs/02-work-rules-handbook/04-faq/`
+- 建議 anchor：`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/`「勞動基準法」（1 個數字、擴大）
+- 落空數字：86條
 
 ## investing-note / index-passive/cost-matters-and-the-index.md
 

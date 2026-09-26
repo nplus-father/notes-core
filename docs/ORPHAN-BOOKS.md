@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-09-26T14:53:02+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-09-26T23:22:29+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1961 個 repo），其中 `nplus-kind-book` 的書 repo 1822 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1970 個 repo），其中 `nplus-kind-book` 的書 repo 1831 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -22,7 +22,7 @@
 | 孤兒書（沒有任何站的 bibliography 指到） | **0** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **9** | 不列孤兒、不再提醒 |
-| 死鏈 slug（bibliography 指到不存在的 repo） | **1** | 首頁書架封面 404 |
+| 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
@@ -55,13 +55,11 @@
 
 ### 1e. 全部 0 本（依 leaf 分組）
 
-## 二、死鏈 slug：1 個
+## 二、死鏈 slug：0 個
 
 bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的封面會 404**。兩種收法（2026-08-04 那批 8 個就是這樣分的）：書其實該有就**補建書 repo**，書根本不存在就**撤掉這筆 `slug`**，不要掛死鏈。
 
-| slug | 登記在 |
-| --- | --- |
-| `world-atlas-of-coffee` | history-note |
+無——所有 `slug` 都指得到真的 repo。
 
 ## 三、`owned` 沒有 slug：0 筆
 
