@@ -39,7 +39,7 @@ roadmap-planned 40（travel 12、hr 11、data-science 17）。data-science 的 7
 - [x] travel-note 判層 46 本（2026-09-26 Fable 裁決，apply-tiers 套用：spine 34（11 本已被頁引用＋23 本各承諾一頁）、support 11、tool 1（Keay 的中國通史當查閱）。真欠債 23＝下面的開單；空頭支票 11 等導覽帶到）：`tools/tier-evidence.py travel-note --detail` → 只輸出 JSON 決策 → 套用走 `apply-tiers.py` → `tier-audit.py` 必跑。目的地 30 本多半 support／tool（講解底氣，不一定開頁），影音與行程設計的主幹判 spine。順手裁 George 那本空頭支票（改 tool 或等導覽帶到）。
 - [x] hr-note 漏接 2 筆裁決（兩本在 hr 都已有頁，改判 spine 自挖；漏接歸零）：Great People Decisions（兩站皆 support → 本站改 support 或升 spine）、Radical Candor（溝通站 delegated 零引用 → 誰接？領導力站有 15 頁教練與回饋，改 delegatedTo leadership 或本站自挖）。
 - [x] 抽查 Batch 1 的 19 頁（Fable 再抽 8 筆：12%、十種偏誤、寬帶薪酬、留任測試、GIT、朝東敬拜、索耶效應、兩到四年——8 筆全中；tours-of-duty 的「二到五年」我一度誤判為錯，回查第 2 章「首段轉變型任期通常持續兩到五年」是對的——教訓：回源 grep 的窗口別用同一行前 50 字，短句會漏）（Opus 已抽 9 筆全中；hr 兩筆漏接現在兩本在 hr 都有頁：Great People Decisions → what-to-look-for、Radical Candor → radical-candor-quadrants）：逐頁具名事實回源 grep＋entity／anchor／雙向掃描（協議在 MODEL-ROUTING §四）。
-- [x] **第二輪選題開單**（2026-09-26，單在下方「Batch 3 開單」；等 Andrew 過目）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 flock 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
+- [x] **第二輪選題開單**（2026-09-26，單在下方「Batch 3 開單」；等 Andrew 過目）：travel 還有約 35 本零引用（目的地區域書為主）、hr 借來的 8 本——每頁的邊界、避開哪些既有頁、anchor 落哪幾章；**選題清單先交 Andrew 過目再動筆**。travel 的行程規劃／領隊兩塊不收書、要從 lotto 供應商地圖與領隊返國報告寫頁，這種頁的選題也在這一步。
 
 **Batch 3 開單（Fable 2026-09-26；27 頁，每頁一個子代理、路徑 A；起草前照例 `ls` 落分類既有頁、先讀既有頁 core、anchor 逐一 `[ -d ]`；每頁寫完補進 `_index.md` roadmap）**
 
@@ -67,7 +67,7 @@ travel-note（24 頁；先做第一級區域與四條工作線，第二級區域
 21. destinations `almost-nearly-perfect-five`「北歐五國各自的『不完美』」— almost-nearly-perfect-people（挑 01 丹麥、03 挪威、05 瑞典，冰島 02 一段）。峽灣／極光線。
 22. destinations `natashas-dance-two-russias`「兩個俄羅斯：聖彼得堡的歐洲與莫斯科的土地」— natashas-dance（01、03、05）。
 23. destinations `aotearoa-two-settlements`「兩次移民的紐西蘭：毛利與英國」— penguin-history-of-new-zealand（01、02、03）。
-24. 行程規劃作業層（**不是書，要 Andrew 點頭**）：`supplier-memory-from-leader-reports`「供應商地圖：領隊返國報告怎麼變成下一團的選擇」— 資料源 flock ADR-0015／0021／0033 與 dataset.json 的 suppliers／atlas；涉及內部供應商評分，站在密碼閘門後但仍要 Andrew 決定可不可以寫、寫到什麼粒度。
+24. 行程規劃作業層（**不是書，要 Andrew 點頭**）：`supplier-memory-from-leader-reports`「供應商地圖：領隊返國報告怎麼變成下一團的選擇」— 資料源 lotto ADR-0015／0021／0033 與 dataset.json 的 suppliers／atlas；涉及內部供應商評分，站在密碼閘門後但仍要 Andrew 決定可不可以寫、寫到什麼粒度。
 
 hr-note（3 頁）
 25. culture-people-ops `radical-honesty-and-good-goodbyes`「徹底誠實與好聚好散：McCord 的 Netflix 人資」— powerful-mccord（03 humans-hate-being-lied-to、04 debate-vigorously、06 someone-really-smart、08 good-goodbyes）。避開 07 pay（已用）與 talent-density 頁的 Hastings 版。
