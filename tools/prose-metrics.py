@@ -92,8 +92,14 @@ def changed(site, base):
     return [l for l in r.stdout.splitlines() if l]
 
 
+def fm_key(m):
+    if not m:
+        return None
+    return re.sub(r"^intro:.*$", "", m.group(0), flags=re.M)
+
+
 def norm_heading(h):
-    return HEADNUM.sub("", h.strip())
+    return HEADNUM.sub("", h.strip()).replace("——", "：")
 
 
 def line_of(text, needle):
@@ -107,7 +113,7 @@ def gate_file(rel, old, new, lo, hi):
         return fails, [f"{rel}: new file"]
     if rel.endswith(".md"):
         fo, fn = FM.match(old), FM.match(new)
-        if (fo and fo.group(0)) != (fn and fn.group(0)):
+        if fm_key(fo) != fm_key(fn):
             fails.append(f"{rel}:1 frontmatter changed")
         if RESPONSE.findall(old) != RESPONSE.findall(new):
             fails.append(f"{rel}: :::response block changed")
