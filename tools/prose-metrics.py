@@ -95,7 +95,7 @@ def changed(site, base):
 def fm_key(m):
     if not m:
         return None
-    return re.sub(r"^intro:.*$", "", m.group(0), flags=re.M)
+    return re.sub(r"^(intro|writtenAt):.*$", "", m.group(0), flags=re.M)
 
 
 def norm_heading(h):
