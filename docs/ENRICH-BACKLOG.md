@@ -17,7 +17,7 @@
 
 ## 進行中
 
-### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行並 commit（未 push）、B 組已開單、C 組等 Andrew 裁決**
+### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行、C 組已在 notes-core 0.44.0 落地（都只有本機 commit，未 push）、B 組已開單等 Opus 起草**
 
 **先拉再盤**：開工時 80 個 repo 全部落後 origin 1–5 個 commit（都乾淨、都沒 ahead）。沒拉之前算出的四筆 GUIDE-DRIFT「要改」其實上游 10-27 已修；本機 notes-core 也沒有 `prose-metrics.py`／`prose-finalize.sh`。**任何全星系盤點前先 `git pull --ff-only` 全部 repo**（memory 已記）。
 
@@ -39,7 +39,16 @@
 - [x] 單向 related 10 筆補雙向：marketing 3（brand-archetypes 的三個目標頁沒指回）、writing 7（character-archetypes／character-dimensions 的目標頁沒指回）。checkup oneway-related 歸零。
 - [x] image-style-note 13 頁最後的舊骨架（`## 🧠 核心概念`／`## 🔑 總整理`）→ `::core`／`::takeaways`；build 綠、dist 渲染 Core Ideas／Takeaways。全星系舊骨架歸零。
 - [x] notes-core 文件過期：DESIGN.md §5.2 從 v0.5.0 前的 h2 骨架改成 directive 骨架＋分站族詞彙表＋`kind` 頁型；README 開頭與「內容（v0.1.0）」節改成 v0.43 現況（exports 表）、tools／docs 表補第九份。
-- [x] `refresh-galaxy-docs.sh` 重算：ORPHAN-BOOKS 冒出 **2 本孤兒書**（`tao-of-travel` Theroux、`cooks-tour` Bourdain，10-27 之後建的書站沒人認領——travel-note 該收前者，後者 travel 或 history 擇一）；owned 去重 1827→1830；travel 64→67 本、marketing 33→34、writing 38→40（10-27 收書輪的結果，DEEPEN-READY 已更新）。
+- [x] `refresh-galaxy-docs.sh` 重算：ORPHAN-BOOKS 冒出 **2 本孤兒書**（`tao-of-travel` Theroux、`cooks-tour` Bourdain，10-27 之後建的書站沒人認領）→ **已認領進 travel-note**：Theroux 判 `tool`（引文選集，查閱）、Bourdain 判 `support` 並在導覽第三章跨區段補一句；tier-audit travel 0／0／0，孤兒歸零。owned 去重 1827→1832。
+- [x] theology bibliography 的 `systematic-theology` 書目歸屬錯：書 repo 是林鴻信 2017（圖賓根、莫特曼門下），盤點表寫「章力生等華人卷 1990」。title／year／note 已改，導覽第三章那句同步；B 組第 2 張單據此起草。
+- [x] `export-deepen-targets.py` 體裁排除加書信體（`screwtape-letters`，31 封短信章節數高但全書薄）：候選 143→141。
+
+**Opus 開工指令（Andrew 切模型後，照這段做；Fable 2026-11-06 交接）**
+0. 前置：`for d in ~/workspace/andrew/notes/*/; do git -C $d pull -q --ff-only; done`；讀 `docs/MODEL-ROUTING.md` §四（驗證網）、`/note-check` §6（書本位紀律、`:::response` 留空、內文不夾行內引用、不自撰）、本節下面兩張單。
+1. **investing-note 六頁 `kind: debate`**：每頁一個子代理、路徑 A，prompt 含 note-check §6.3 的六項；骨架照 `clean-code-note/src/content/concepts/comments-formatting/to-comment-or-not.md`；anchor 只從兩造既有頁的 `furtherReading` 取並逐一 `[ -d books-done/**/<book>/site/content/<anchor> ]`；不下裁決（裁決在導覽第四章）。每頁交回：grep `&gt;|&lt;|&amp;`、anchor 實存、`related` 雙向、**具名事實回源 grep ≥3 筆**；補進分類 `_index.md` roadmap；導覽第四章對應那節末尾加一行連到新頁（保語氣）。全部完成後 `npm run build`、`npm run format`、`format:check`，蓋 `curation.enrichedAt`，`tier-audit.py investing-note` 與 `galaxy-checkup.py --station investing-note` 必 0 warn。
+2. **theology-note 八頁 claim**：起草順序 2、7、1 → 3、4 → 5、6 → 8（第 2 張先核對書目已改成林鴻信）。流程同上；每頁補 roadmap，該分類 mastery 若句子能從新頁收斂就補一條（可溯源才補）；導覽第三章講那本書的段落補一句連到新頁；蓋 `enrichedAt`；`tier-audit.py theology-note` 必 0。
+3. **C3 收尾（只在全星系已 bump 到 ≥ v0.44.0 時做）**：`notes-core/tools/export-seealso-gaps.py --json --allow-strict > /tmp/sa.json && tools/apply-seealso.py /tmp/sa.json --apply`，三站 format、clean-code `npm run build` 綠，commit。
+4. 收尾：`notes-core/tools/refresh-galaxy-docs.sh`，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張單照書改了標題）。單行英文 commit，逐檔 add；**不 push**，Andrew 自己推。
 
 **B 組（已開單，等 Andrew 過目再動筆；起草交 Opus）**
 
@@ -125,11 +134,12 @@
 - DEEPEN-TARGETS 用章節數排序，把三十一封短信的《地獄來鴻》排進大部頭，是體裁誤判；第 8 張照單寫，但建議把書信體加進該工具的「依體裁排除」判準。
 - 起草順序建議：2、7、1（教義空洞）→ 3、4（歷史軸）→ 5、6 → 8。
 
-**C 組（設計決策，等 Andrew；不裁決就不動）**
-- [ ] **C1 prose-trim 與 body-thin 地板打架**：10-26／27 的文案精簡輪把 43 頁縮到 893–998 字，剛好掉到 `galaxy-checkup.py` `THIN_BODY=1000` 以下（九月那輪才把 body-thin 清到 0，當時是把頁加深到 1400–3800 字）。兩條規則一條要縮、一條要撐。建議**改地板不改頁**：門檻降到 800，或改量「去 markup 的 CJK 字數」；回頭再把 43 頁灌回去違反精簡輪的目的。要 Andrew 定。
-- [ ] **C2 空 `:::response` 佔位**：2197/2233 頁渲染「✍️ My Notes／No notes yet」空框。DESIGN §5.3 明寫「沒有就留空（低調 placeholder）」，所以不擅改；但 ✅ Check 與 📖 Guide 的 tab 都是「有資料才出現」，心得層比照辦理（空塊不渲染）比較一致。改 `remark-response.mjs` 一處＋bump 79 站。
-- [ ] **C3 strict 站的 seeAlso enum**：`content.ts` 的 `siteKeys` 只含 7 個技術站 key。建議 enum 改成 registry 全部 79 個 key（仍是封閉集合，拼錯照抓），升版後重跑 `export-seealso-gaps.py` 那 19 筆就會進決策。
-- [ ] **C4 `status` 徽章**：95% 是 draft。建議 ConceptCard 的點只畫 studied／reviewed，draft 不畫；資料不動（它記的是 Andrew 自己讀過沒，誠實）。
+**C 組（Andrew 2026-11-06「幫我作到」→ 已在 notes-core 0.44.0 落地；本機 commit，待 tag＋push＋bump）**
+- [x] **C1 prose-trim 與 body-thin 地板打架**：43 頁被精簡輪縮到 893–998 字、落到 `THIN_BODY=1000` 以下。**改地板不改頁**：`galaxy-checkup.py` 門檻降到 800（docstring 記了理由）。checkup nit 68→18（剩 data-science 17＋hr 1 的 roadmap-planned）。
+- [x] **C2 空 `:::response` 不渲染**：`remark-response.mjs` 空塊直接從樹上移除、`two-block.scss` 刪 `.response-empty`；DESIGN §5.3 同步（來源檔仍保留空區塊當標記）。keller 本機 build 驗過：空塊 0 個框、填了內容的照常出「✍️ My Notes」。
+- [x] **C3 seeAlso enum 開放**：`sites.ts` 的 `siteKeys` 改成 registry 全部 79 個 key（仍是封閉集合）。clean-code 掛 uncle-bob 的 seeAlso 本機 build 綠。**bump 到 0.44.0 之後**跑 `export-seealso-gaps.py --json --allow-strict` → `apply-seealso.py --apply`，那 19 筆才能真的寫進去（現在寫會讓 CI 紅）。
+- [x] **C4 draft 不畫點**：ConceptCard／ProblemCard 只在 `status !== "draft"` 時畫點；DESIGN §6 補一條。keller 本機 build：draft 0 點、studied 1 點。
+- **部署（Andrew 自己推）**：① 先推 65 站的本機 commit（`for d in ~/workspace/andrew/notes/*-note; do git -C $d push -q; done`）；② `cd notes-core && git push && git tag v0.44.0 && git push origin v0.44.0`；③ `tools/bump-notes-core.sh v0.43.4 v0.44.0 --push`；④ 再做上面 C3 的 `--allow-strict` 那步（Opus 可做）。
 - [ ] **C5 data-science-note**：唯一「先收書」的站（26 本／7 頁／39 本 wanted／無導覽／17 roadmap-planned）。瓶頸在收書，不在寫。
 - [ ] 旁註：leetcode-note 自維護前端（39 個本地 .astro／.ts），`galaxy-checkup` 不掃，它自己的 TODO 說 407 題還沒人背書；portal repo（`sites/`）不在本機，portal 層本輪沒體檢；fork 回報 `systematic-theology` 書 repo 內容讀起來是林鴻信而 bibliography title 寫「章力生等華人卷」，起草第 2 張前請核對；DEEPEN-TARGETS 用章節數排序把 31 封短信的《地獄來鴻》當大部頭，建議「依體裁排除」加書信體。
 

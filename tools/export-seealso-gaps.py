@@ -6,6 +6,7 @@
     notes-core/tools/export-seealso-gaps.py -          # markdown 印到 stdout
     notes-core/tools/export-seealso-gaps.py --json     # 給 apply-seealso.py 吃的決策 JSON（stdout）
     notes-core/tools/export-seealso-gaps.py --station <name>   # 只看一站（當來源）
+    notes-core/tools/export-seealso-gaps.py --json --allow-strict   # 全星系已 ≥ v0.44.0 時，連 strict 站的缺口也開單
 
 星系根目錄預設推導成 tools/../..；佈局不同時用 NOTES_ROOT= 覆寫，與其他 export-*.py 同慣例。
 
@@ -25,9 +26,10 @@ label 不另寫文案——那是頁面自己的標題，不會過期成第二�
 
 **不自動雙向**：A→B 與 B→A 各自獨立判斷（B 可能早就連到 A 的站），兩邊都缺就兩邊都列。
 
-**strict 站的 enum**：技術站群（sites.ts `seeAlsoMode: "strict"`）的 `seeAlso.site` 走 `siteKeys` enum，而那個
-enum 只含技術站自己的 key——clean-code 連不到 uncle-bob、kent-beck、fowler 這些作者站，build 會直接紅
-（2026-11-06 首跑踩到）。這類缺口**另列「被 schema 擋住」**，不進決策 JSON；要放行得改 notes-core 的 enum。
+**strict 站的 enum**：技術站群（sites.ts `seeAlsoMode: "strict"`）的 `seeAlso.site` 走 `siteKeys` enum，而
+v0.43 的 enum 只含技術站自己的 key——clean-code 連不到 uncle-bob、kent-beck、fowler 這些作者站，build 會直接紅
+（2026-11-06 首跑踩到）。這類缺口預設**另列「被 schema 擋住」**，不進決策 JSON。notes-core v0.44.0 起 enum
+涵蓋全部 registry key；**全星系 bump 到 ≥ v0.44.0 之後加 `--allow-strict`**，它們就進決策。
 
 套用走 `tools/apply-seealso.py`，不要讓模型逐頁改 frontmatter。
 """
@@ -82,7 +84,7 @@ def title_of(fm: str, fallback: str) -> str:
     return t.replace('\\"', '"')
 
 
-def scan():
+def scan(allow_strict: bool = False):
     keys = site_keys()
     pages = {}  # (station, cat/slug) → {"title", "anchors": set[(book, anchor)], "seealso_sites": set}
     cat_names = {}  # (station, cat) → name
@@ -152,7 +154,7 @@ def scan():
     rows = []  # (src station, src page, src title, dst station, [(path,label,shared)])
     blocked = []  # strict 站指向非技術站：schema 不收，只列不開單
     for (pa, sy), counter in sorted(strong.items()):
-        if pa[0] in strict and sy not in strict:
+        if not allow_strict and pa[0] in strict and sy not in strict:
             blocked.append((pa[0], pa[1], pages[pa]["title"], sy, len(counter)))
             continue
         by_cat = defaultdict(list)
@@ -180,7 +182,7 @@ def main() -> None:
     only = args[args.index("--station") + 1] if "--station" in args else None
     if only and only.endswith("-note"):
         only = only[: -len("-note")]
-    keys, pages, rows, decisions, weak_pairs, blocked = scan()
+    keys, pages, rows, decisions, weak_pairs, blocked = scan(allow_strict="--allow-strict" in args)
     if only:
         rows = [r for r in rows if r[0] == only]
         blocked = [b for b in blocked if b[0] == only]

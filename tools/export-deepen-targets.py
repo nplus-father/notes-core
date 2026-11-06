@@ -73,6 +73,8 @@ EXCLUDED_KINDS = {
     # 文學作品：本站收的是它的思想，不做文本細讀
     "chronicles-of-narnia": "小說七部曲",
     "gulag-archipelago": "文學性紀實巨著",
+    # 書信體：一封一章、每封千餘字，章節數高但全書薄，不是大部頭
+    "screwtape-letters": "書信體，31 封短信各千餘字",
 }
 
 

@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-06T09:44:30+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T10:01:44+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,9 +15,9 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **143** |
+| **候選（大部頭 × ≤1 頁）** | **141** |
 | 涉及的站 | 48 |
-| 依體裁排除 | 4 |
+| 依體裁排除 | 6 |
 
 ## 一、前 30 名（跨站總排序）
 
@@ -44,7 +44,7 @@
 | 19 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
 | 20 | 60 | 1 | `science-note` | 高手相對論 |
 | 21 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 22 | 56 | 1 | `theology-note` | 系統神學（章力生等華人卷） |
+| 22 | 56 | 1 | `theology-note` | 系統神學（林鴻信） |
 | 23 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
 | 24 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
 | 25 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
@@ -75,18 +75,6 @@
 - **The Story of Art** — 30 章 / 1 頁（`story-of-art`）
 - **In the Blink of an Eye** — 30 章 / 1 頁（`in-the-blink-of-an-eye`）
 
-### `theology-note`（9 本）
-
-- **基督教神學（艾利克森）** — 75 章 / 1 頁（`erickson-christian-theology`）
-- **系統神學（章力生等華人卷）** — 56 章 / 1 頁（`systematic-theology`）
-- **神學的故事** — 50 章 / 1 頁（`story-of-christian-theology`）
-- **活的教會** — 46 章 / 1 頁（`living-church`）
-- **The Story of Christianity, Vol. 1** — 45 章 / 1 頁（`story-of-christianity-vol-1`）
-- **追隨基督（做門徒的代價）** — 38 章 / 1 頁（`cost-of-discipleship`）
-- **返璞歸真：純粹的基督教** — 38 章 / 1 頁（`mere-christianity`）
-- **改革宗教理學** — 33 章 / 1 頁（`reformed-dogmatics`）
-- **地獄來鴻** — 31 章 / 1 頁（`screwtape-letters`）
-
 ### `wujun-note`（9 本）
 
 - **大學之路** — 63 章 / 1 頁（`wujun-road-to-university`）
@@ -110,6 +98,17 @@
 - **按照計畫** — 35 章 / 1 頁（`according-to-plan`）
 - **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
 - **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
+
+### `theology-note`（8 本）
+
+- **基督教神學（艾利克森）** — 75 章 / 1 頁（`erickson-christian-theology`）
+- **系統神學（林鴻信）** — 56 章 / 1 頁（`systematic-theology`）
+- **神學的故事** — 50 章 / 1 頁（`story-of-christian-theology`）
+- **活的教會** — 46 章 / 1 頁（`living-church`）
+- **The Story of Christianity, Vol. 1** — 45 章 / 1 頁（`story-of-christianity-vol-1`）
+- **追隨基督（做門徒的代價）** — 38 章 / 1 頁（`cost-of-discipleship`）
+- **返璞歸真：純粹的基督教** — 38 章 / 1 頁（`mere-christianity`）
+- **改革宗教理學** — 33 章 / 1 頁（`reformed-dogmatics`）
 
 ### `hbr-note`（6 本）
 
@@ -260,11 +259,6 @@
 - **The Cost of Discipleship 追隨基督** — 38 章 / 1 頁（`cost-of-discipleship`）
 - **With Christ in the School of Prayer 基督的禱告學校** — 32 章 / 1 頁（`with-christ-in-the-school-of-prayer`）
 
-### `lewis-note`（2 本）
-
-- **返璞歸真** — 38 章 / 1 頁（`mere-christianity`）
-- **The Screwtape Letters** — 31 章 / 1 頁（`screwtape-letters`）
-
 ### `liurun-note`（2 本）
 
 - **關鍵躍升：新任管理者的底層邏輯** — 36 章 / 1 頁（`liurun-key-leap`）
@@ -321,6 +315,10 @@
 
 - **紅書** — 40 章 / 1 頁（`jung-red-book-readers-edition`）
 
+### `lewis-note`（1 本）
+
+- **返璞歸真** — 38 章 / 1 頁（`mere-christianity`）
+
 ### `cloud-infra-note`（1 本）
 
 - **Seeking SRE** — 38 章 / 1 頁（`seeking-sre`）
@@ -345,13 +343,15 @@
 
 - **Practical Malware Analysis** — 30 章 / 1 頁（`practical-malware-analysis`）
 
-## 三、依體裁排除：4 本
+## 三、依體裁排除：6 本
 
 這些書章節數必然很高，但體裁上就不該挖成多頁——不排除會永遠霸佔排行前段。清單在 `export-deepen-targets.py` 的 `EXCLUDED_KINDS`；加新的要寫**體裁**理由，「暫時不想挖」屬於選題，不該寫進工具。
 
 - `history-note` — 古拉格群島：文學性紀實巨著
+- `lewis-note` — The Screwtape Letters：書信體，31 封短信各千餘字
 - `lewis-note` — 納尼亞傳奇（七部曲）：小說七部曲
 - `liurun-note` — 5分鐘商學院 工具篇：工具條目合輯，每條各自獨立
+- `theology-note` — 地獄來鴻：書信體，31 封短信各千餘字
 - `theology-note` — 當代神學辭典：神學辭典，按條目查閱
 
 ## 重跑

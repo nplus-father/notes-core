@@ -1,6 +1,6 @@
 # 跨站連結缺口（同書同章、卻沒有互相 seeAlso）
 
-> **生成於 2026-11-06T09:44:56+08:00**｜由 `tools/export-seealso-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T10:02:36+08:00**｜由 `tools/export-seealso-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：兩個站的概念頁掛了**同一本書的同一章**，來源頁卻沒有任何 `seeAlso` 指到對方那一站。
 由 `notes-core/tools/export-seealso-gaps.py` 生成，**不要手改**——補各站的 seeAlso 再重跑。

@@ -23,7 +23,9 @@ warn 61（全數當場修掉）、nit 332。
   2.8 深度與連結度的地板（2026-09-03 加，三條都是 nit）：
       guide-unlinked  頁沒被任何導覽章連到——導覽是讀者入口，走不到的頁等於不存在
       related-thin    related 少於 2 條——checkup 原本只查死指與單向，`related: []` 一路綠燈
-      body-thin       正文（去空白）不到 1000 字——技術站體裁短，但 1000 以下連 intuition 都撐不起
+      body-thin       正文（去空白）不到 800 字——技術站體裁短，但 800 以下連 intuition 都撐不起
+                      （2026-11-06 自 1000 下修：10 月的文案精簡輪把頁縮 15–30%，原地板是縮前定的，
+                      43 頁落在 893–998 字被誤報；兩條規則打架時改地板，不把精簡掉的字灌回去）
       這三條是「夠不夠」的定義，契約層（2.1–2.7）全綠時它們才有意義；門檻寫死在 THIN_* 常數
 """
 import json
@@ -38,7 +40,7 @@ CORE = NOTES / "notes-core"
 
 STATUS_OK = {"draft", "studied", "reviewed"}
 THIN_RELATED = 2      # related 少於這個數就報
-THIN_BODY = 1000      # 正文去空白字元數少於這個數就報
+THIN_BODY = 800       # 正文去空白字元數少於這個數就報（2026-11-06 自 1000 下修，見 docstring）
 
 
 def guide_linked_pages(st):
