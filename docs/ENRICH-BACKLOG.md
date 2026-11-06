@@ -17,7 +17,7 @@
 
 ## 進行中
 
-### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行、C 組已在 notes-core 0.44.0 落地（都只有本機 commit，未 push）、B 組已開單等 Opus 起草**
+### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行、C 組 0.44.0 已 tag 正在 bump、B 組 14 頁 Opus 已交付**
 
 **先拉再盤**：開工時 80 個 repo 全部落後 origin 1–5 個 commit（都乾淨、都沒 ahead）。沒拉之前算出的四筆 GUIDE-DRIFT「要改」其實上游 10-27 已修；本機 notes-core 也沒有 `prose-metrics.py`／`prose-finalize.sh`。**任何全星系盤點前先 `git pull --ff-only` 全部 repo**（memory 已記）。
 
@@ -49,6 +49,21 @@
 2. **theology-note 八頁 claim**：起草順序 2、7、1 → 3、4 → 5、6 → 8（第 2 張先核對書目已改成林鴻信）。流程同上；每頁補 roadmap，該分類 mastery 若句子能從新頁收斂就補一條（可溯源才補）；導覽第三章講那本書的段落補一句連到新頁；蓋 `enrichedAt`；`tier-audit.py theology-note` 必 0。
 3. **C3 收尾（只在全星系已 bump 到 ≥ v0.44.0 時做）**：`notes-core/tools/export-seealso-gaps.py --json --allow-strict > /tmp/sa.json && tools/apply-seealso.py /tmp/sa.json --apply`，三站 format、clean-code `npm run build` 綠，commit。
 4. 收尾：`notes-core/tools/refresh-galaxy-docs.sh`，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張單照書改了標題）。單行英文 commit，逐檔 add；**不 push**，Andrew 自己推。
+
+**Opus 執行（2026-11-06 上午，Andrew「with Opus, go」）— B 組 14 頁全數交付＋C3 收尾，本機 commit**
+- **investing-note 6 頁 `kind: debate`**：can-the-market-be-beaten、cut-losses-or-average-down、concentrate-or-diversify、does-market-timing-work、does-price-rewrite-fundamentals、rules-or-beliefs。標題四張照單改成中立問句（單上「由可驗證的優勢決定」「各自成立於自己的紀律框架」本身就是裁決）；骨架標題「共識區與真正的爭點」改「共識區與爭點」（AI 腔禁詞）。導覽第四章六節各補一行連到對照頁。全站 47→53 頁。
+- **theology-note 8 頁 claim**：atonement-theories-map、person-and-relation、after-the-reformation、persecution-and-the-early-church、visible-yet-hidden、beyond-personality、order-of-salvation、historical-point-of-view。導覽第三章各書段落補連結；全站 41→49 頁。
+- **抽驗**：每頁代理交 5 筆具名事實（含逐字原文），主會話回源 grep 抽 **40 筆，全中**。機檢 14 頁 entity／「——」／anchor 實存／related 雙向／`:::response` 空塊全過。
+- **起草代理抓到的既有頁錯誤（校正表）**：
+  - `mr-market-and-margin-of-safety` 掛的是《智慧型股票投資人》第 2 章（通膨），市場先生在第 8 章、安全邊際在第 20 章：換掛 08＋20。
+  - `position-sizing-and-ruin` 寫海龜單位制，掛的 03／04 章都沒有「單位」：補掛第 10 章〈風險與資金管理〉。
+  - `overconfidence-and-hindsight` 引「74% 經理人自認高於平均」，出處第 3 章沒掛：補上。
+  - `efficient-market-and-random-walk` 的 CAUTION 框「巴菲特與林區像連丟十次正面、事前無法分辨技巧與運氣」**在《漫步華爾街》書 repo 全書找不到**（B 型債：憑印象寫的），導覽爭點一同句：兩處都刪。
+  - 林鴻信原書 18 章把拉乖娜誤植為「拉納」一處、奧爾森原書三處可疑（柯恩赫特「年輕神學家」、查爾斯·衛斯理作〈萬古磐石〉、愛德華茲任「普林斯頓神學院」院長）：頁上照上下文歸屬或不寫，書 repo 未動。
+- **判層**：新對照頁讓 Dhandho、Education of a Value Investor（各 3 頁）、Laws of Wealth（4 頁）成為既成事實衝突 → 升 spine，導覽第三章「支架」說法同步；tier-audit 兩站六類 0。overview 兩站重數（investing 脊梁 29→32、theology 41→49 頁）、`writtenAt`／`enrichedAt` 蓋 2026-11-06；GUIDE-DRIFT 要改 0。
+- **踩到**：補反向 related 時，多行陣列帶尾逗號的格式被插成 `,,`，investing build 紅（concentrate-dont-diversify）。已修，全星系掃過 0 筆。日後插入 related 要先把陣列正規化成單行再插。
+- **C3 收尾**：bump 跑過的三個技術站（clean-code 23、design-patterns 1、behaviour-interview 3）用 `--allow-strict` 補 27 筆 seeAlso，三站 build 綠。**還欠**：investing 新頁帶出的 5 筆 strong 缺口，等 bump 跑過 investing 再 apply（避免和 bump 的 commit 搶工作樹）。
+- **build／format／lint**：兩站全綠（66／60 頁）；checkup 只剩 core-version warn，bump 完自然消失。
 
 **B 組（已開單，等 Andrew 過目再動筆；起草交 Opus）**
 
