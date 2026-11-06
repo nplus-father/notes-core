@@ -1,32 +1,14 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-11-06T10:02:35+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T10:36:39+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
-- 證據充分（同一章被 ≥2 個非年份數字命中）：**4** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：131 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 證據充分（同一章被 ≥2 個非年份數字命中）：**1** 頁
+- 證據單薄（只有一個數字，或全靠裸年份）：132 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
 - 另有 175 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
-
-## tracy-note / goals/21-success-secrets.md
-
-- 現掛：`21-success-secrets-of-self-made` → `docs/01-dream-big-dreams/`、`21-success-secrets-of-self-made` → `docs/02-develop-clear-direction/`
-- 建議 anchor：`21-success-secrets-of-self-made` → `docs/07-dedicate-to-lifelong-learning/`「投入終身學習」（3 個數字）、`21-success-secrets-of-self-made` → `docs/06-work-longer-harder/`「工作得更久更努力」（1 個數字）、`21-success-secrets-of-self-made` → `docs/18-take-care-of-physical-health/`「好好照顧身體健康」（1 個數字）
-- 落空數字：21個、21條、59小時、60分鐘
-
-## greene-note / power/daily-practice.md
-
-- 現掛：`daily-laws` → `docs/00-preface/`
-- 建議 anchor：`daily-laws` → `docs/04-april-the-perfect-courtier/`「四月：完美的朝臣」（2 個數字）、`daily-laws` → `docs/12-december-the-cosmic-sublime/`「十二月：宇宙的崇高」（1 個數字）、`daily-laws` → `docs/06-june-the-divine-craft/`「六月：神聖的技藝」（1 個數字）
-- 落空數字：33條、48條
-
-## tracy-note / productivity/time-management-basics.md
-
-- 現掛：`time-management` → `docs/01-the-psychology-of-time-management/`、`time-management` → `docs/02-determine-your-values/`
-- 建議 anchor：`time-management` → `docs/21-create-the-time-you-need/`「創造你需要的時間」（2 個數字）、`time-management` → `docs/09-delegate-to-others/`「授權給他人」（1 個數字）
-- 落空數字：21條、70%
 
 ## travel-note / tour-leading/recovering-from-mistakes.md
 
@@ -41,7 +23,7 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/03-teams/`「團隊，小而美」（1 個數字）、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/08-priorities/`「優先順序」（1 個數字）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
+- 建議 anchor：`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md
@@ -315,6 +297,12 @@
 - 建議 anchor：`taiwan-labor-standards-and-work-rules` → `docs/01-labor-standards-act/`「勞動基準法」（1 個數字、擴大）
 - 落空數字：86條
 
+## investing-note / index-passive/can-the-market-be-beaten.md
+
+- 現掛：`a-random-walk-down-wall-street` → `docs/1-stocks-and-their-value/`、`a-random-walk-down-wall-street` → `docs/2-how-the-pros-play-the-biggest-game-in-town/`、`winning-the-losers-game-ellis` → `docs/01-foundations/01-losers-game/`、`winning-the-losers-game-ellis` → `docs/01-foundations/02-winners-game/`、`little-book-of-common-sense-investing` → `docs/01-the-parable-of-the-gotrocks-family/`、`most-important-thing` → `docs/01-second-level-thinking/`、`most-important-thing` → `docs/02-understanding-market-efficiency/`、`investment-valuation` → `docs/01-introduction-to-valuation/`、`dhandho-investor` → `docs/13-low-risk-high-uncertainty/`、`education-of-a-value-investor` → `docs/08-the-buffett-lunch/`、`man-who-solved-the-market` → `docs/10-this-isnt-science-its-gambling/`
+- 建議 anchor：`investment-valuation` → `docs/27-valuing-other-assets/`「其他資產的評價」（1 個數字）、`investment-valuation` → `docs/15-firm-valuation-cost-of-capital-and-apv/`「公司評價：資本成本法與 APV 法」（1 個數字）
+- 落空數字：237美元
+
 ## investing-note / index-passive/cost-matters-and-the-index.md
 
 - 現掛：`little-book-of-common-sense-investing` → `docs/01-the-parable-of-the-gotrocks-family/`、`little-book-of-common-sense-investing` → `docs/02-rational-exuberance/`
@@ -335,20 +323,19 @@
 
 ## investing-note / investor-psychology/overconfidence-and-hindsight.md
 
-- 現掛：`little-book-of-behavioral-investing` → `docs/01-in-the-heat-of-the-moment/`、`little-book-of-behavioral-investing` → `docs/02-afraid-of-big-bad-market/`、`little-book-of-behavioral-investing` → `docs/05-folly-of-forecasting/`
+- 現掛：`little-book-of-behavioral-investing` → `docs/01-in-the-heat-of-the-moment/`、`little-book-of-behavioral-investing` → `docs/02-afraid-of-big-bad-market/`、`little-book-of-behavioral-investing` → `docs/05-folly-of-forecasting/`、`little-book-of-behavioral-investing` → `docs/03-look-on-the-bright-side/`
 - 落空數字：1814年
+
+## investing-note / market-history/does-price-rewrite-fundamentals.md
+
+- 現掛：`intelligent-investor` → `docs/01-investment-vs-speculation/`、`a-random-walk-down-wall-street` → `docs/1-stocks-and-their-value/`、`a-random-walk-down-wall-street` → `docs/2-how-the-pros-play-the-biggest-game-in-town/`、`alchemy-of-finance` → `docs/01-theory/01-the-theory-of-reflexivity/`、`alchemy-of-finance` → `docs/01-theory/02-reflexivity-in-the-stock-market/`、`irrational-exuberance` → `docs/01-stock-market-in-perspective/`、`irrational-exuberance` → `docs/01-structural-factors/`、`most-important-thing` → `docs/02-understanding-market-efficiency/`、`intelligent-investor` → `docs/08-investor-and-market-fluctuations/`
+- 落空數字：2001年
 
 ## investing-note / stock-picking/canslim-and-momentum.md
 
 - 現掛：`how-to-make-money-in-stocks` → `docs/01-a-winning-system/`、`how-to-make-money-in-stocks` → `docs/02-can-slim-method/`
 - 建議 anchor：`how-to-make-money-in-stocks` → `docs/03-buying-and-selling/`「一開始就要精明：買進賣出與資金管理」（1 個數字）
 - 落空數字：200000美元
-
-## investing-note / trading-speculation/position-sizing-and-ruin.md
-
-- 現掛：`way-of-the-turtle` → `docs/03-risk-junkies/`、`way-of-the-turtle` → `docs/04-taming-the-turtle-mind/`
-- 建議 anchor：`way-of-the-turtle` → `docs/10-risk-and-money-management/`「風險與資金管理」（1 個數字）、`way-of-the-turtle` → `docs/18-appendix-original-turtle-rules/`「附錄：原版海龜交易規則」（1 個數字）
-- 落空數字：1.5%
 
 ## investing-note / value-investing/low-risk-high-uncertainty.md
 

@@ -80,6 +80,7 @@ SETTLED_AGAINST_PUBLISHED = {
     "hbr-guide-to-beating-burnout",         # HBR 出版 2021（版權頁 2020）
     "j-i-packer-his-life-and-thought",      # McGrath，IVP 2020-11
     "journey-of-modern-theology",           # Olson，IVP Academic 2013（1992 那本是前身《20 世紀神學評論》）
+    "seriously-good-software",              # Manning 2020-03（O'Reilly／Pearson 均記 2020）；repo 的 2019-12 是預售日
 }
 
 

@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-06T10:01:44+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T10:37:15+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,9 +15,9 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **141** |
+| **候選（大部頭 × ≤1 頁）** | **132** |
 | 涉及的站 | 48 |
-| 依體裁排除 | 6 |
+| 依體裁排除 | 5 |
 
 ## 一、前 30 名（跨站總排序）
 
@@ -30,29 +30,29 @@
 | 5 | 78 | 1 | `personal-finance-note` | Early Retirement Extreme |
 | 6 | 76 | 1 | `relationships-note` | The Book You Wish Your Parents Had Read |
 | 7 | 76 | 1 | `newport-note` | How to Win at College |
-| 8 | 75 | 1 | `theology-note` | 基督教神學（艾利克森） |
-| 9 | 69 | 1 | `fengtang-note` | 穩贏 |
-| 10 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 11 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
-| 12 | 64 | 1 | `tools-note` | Flow 心流 |
-| 13 | 63 | 1 | `wujun-note` | 大學之路 |
-| 14 | 63 | 1 | `investing-note` | Security Analysis |
-| 15 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
-| 16 | 62 | 1 | `writing-note` | Writing Tools |
-| 17 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
-| 18 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 19 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
-| 20 | 60 | 1 | `science-note` | 高手相對論 |
-| 21 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 22 | 56 | 1 | `theology-note` | 系統神學（林鴻信） |
-| 23 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 24 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
-| 25 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 26 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 27 | 53 | 1 | `startup-note` | Anything You Want |
-| 28 | 52 | 1 | `wujun-note` | 見識 |
-| 29 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
-| 30 | 52 | 1 | `habits-note` | 18 Minutes |
+| 8 | 69 | 1 | `fengtang-note` | 穩贏 |
+| 9 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
+| 10 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
+| 11 | 64 | 1 | `tools-note` | Flow 心流 |
+| 12 | 63 | 1 | `wujun-note` | 大學之路 |
+| 13 | 63 | 1 | `investing-note` | Security Analysis |
+| 14 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
+| 15 | 62 | 1 | `writing-note` | Writing Tools |
+| 16 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
+| 17 | 61 | 1 | `stott-note` | 當代講道藝術 |
+| 18 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 19 | 60 | 1 | `science-note` | 高手相對論 |
+| 20 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
+| 21 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 22 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
+| 23 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 24 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 25 | 53 | 1 | `startup-note` | Anything You Want |
+| 26 | 52 | 1 | `wujun-note` | 見識 |
+| 27 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 28 | 52 | 1 | `habits-note` | 18 Minutes |
+| 29 | 52 | 1 | `growth-note` | Mastery |
+| 30 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
 
 ## 二、依站分組
 
@@ -98,17 +98,6 @@
 - **按照計畫** — 35 章 / 1 頁（`according-to-plan`）
 - **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
 - **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
-
-### `theology-note`（8 本）
-
-- **基督教神學（艾利克森）** — 75 章 / 1 頁（`erickson-christian-theology`）
-- **系統神學（林鴻信）** — 56 章 / 1 頁（`systematic-theology`）
-- **神學的故事** — 50 章 / 1 頁（`story-of-christian-theology`）
-- **活的教會** — 46 章 / 1 頁（`living-church`）
-- **The Story of Christianity, Vol. 1** — 45 章 / 1 頁（`story-of-christianity-vol-1`）
-- **追隨基督（做門徒的代價）** — 38 章 / 1 頁（`cost-of-discipleship`）
-- **返璞歸真：純粹的基督教** — 38 章 / 1 頁（`mere-christianity`）
-- **改革宗教理學** — 33 章 / 1 頁（`reformed-dogmatics`）
 
 ### `hbr-note`（6 本）
 
@@ -187,12 +176,6 @@
 - **The Book You Wish Your Parents Had Read** — 76 章 / 1 頁（`book-you-wish-your-parents-had-read`）
 - **Winning with People** — 32 章 / 1 頁（`winning-with-people`）
 - **Bowling Alone** — 30 章 / 1 頁（`bowling-alone`）
-
-### `investing-note`（3 本）
-
-- **Security Analysis** — 63 章 / 1 頁（`security-analysis`）
-- **Winning the Loser's Game** — 36 章 / 1 頁（`winning-the-losers-game-ellis`）
-- **Investment Valuation** — 35 章 / 1 頁（`investment-valuation`）
 
 ### `writing-note`（3 本）
 
@@ -291,6 +274,10 @@
 
 - **How to Win at College** — 76 章 / 1 頁（`how-to-win-at-college`）
 
+### `investing-note`（1 本）
+
+- **Security Analysis** — 63 章 / 1 頁（`security-analysis`）
+
 ### `stott-note`（1 本）
 
 - **當代講道藝術** — 61 章 / 1 頁（`i-believe-in-preaching`）
@@ -306,6 +293,10 @@
 ### `kiyosaki-note`（1 本）
 
 - **富爸爸投資指南** — 49 章 / 1 頁（`rich-dads-guide-to-investing`）
+
+### `theology-note`（1 本）
+
+- **活的教會** — 46 章 / 1 頁（`living-church`）
 
 ### `life-meaning-note`（1 本）
 
@@ -343,7 +334,7 @@
 
 - **Practical Malware Analysis** — 30 章 / 1 頁（`practical-malware-analysis`）
 
-## 三、依體裁排除：6 本
+## 三、依體裁排除：5 本
 
 這些書章節數必然很高，但體裁上就不該挖成多頁——不排除會永遠霸佔排行前段。清單在 `export-deepen-targets.py` 的 `EXCLUDED_KINDS`；加新的要寫**體裁**理由，「暫時不想挖」屬於選題，不該寫進工具。
 
@@ -351,7 +342,6 @@
 - `lewis-note` — The Screwtape Letters：書信體，31 封短信各千餘字
 - `lewis-note` — 納尼亞傳奇（七部曲）：小說七部曲
 - `liurun-note` — 5分鐘商學院 工具篇：工具條目合輯，每條各自獨立
-- `theology-note` — 地獄來鴻：書信體，31 封短信各千餘字
 - `theology-note` — 當代神學辭典：神學辭典，按條目查閱
 
 ## 重跑
