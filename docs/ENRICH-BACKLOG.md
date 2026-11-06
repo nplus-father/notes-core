@@ -17,6 +17,123 @@
 
 ## 進行中
 
+### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行並 commit（未 push）、B 組已開單、C 組等 Andrew 裁決**
+
+**先拉再盤**：開工時 80 個 repo 全部落後 origin 1–5 個 commit（都乾淨、都沒 ahead）。沒拉之前算出的四筆 GUIDE-DRIFT「要改」其實上游 10-27 已修；本機 notes-core 也沒有 `prose-metrics.py`／`prose-finalize.sh`。**任何全星系盤點前先 `git pull --ff-only` 全部 repo**（memory 已記）。
+
+**現況（拉完重算）**：79 站＋core 全在 v0.43.4；galaxy-checkup 78 站 blocker 0／warn 0／nit 68；tier-audit 六類違規 0（writing 2 筆空頭支票本輪清掉）；溯源 100%；導覽 78/79（data-science 無）、overview 79/79、roadmap／mastery 100%；2233 概念頁＋474 題型頁；owned 2369、wanted 39（全在 data-science）。**工具量得到的都綻了**，剩下的在三個工具不量的維度：
+
+| 維度 | 數字 | 判讀 |
+| --- | ---: | --- |
+| 頁級跨站連結（`seeAlso`） | 225/2233 頁（10%），41 站零跨站連結 | 79 站各自封閉，首頁 schools 卡是唯一通道；同一章同時撐著主題站與人物站各一頁的有 473 筆 |
+| 對照型頁 `kind: debate` | 2/2233 | v0.38.0 的頁型幾乎沒用；導覽第四章卻已寫了 63 節具名爭點（兩造頁都在站上） |
+| 大部頭第二鏟 | 143 本 spine 章節 ≥30 卻只被 1 頁引用（DEEPEN-TARGETS） | 47 站「可深化」；選題是 Fable 的活，起草交 Opus |
+| `:::response` 使用者層 | 36/2233 頁有內容（31 在 data-systems） | 設計上只收真實 Q&A，不能批次填；但空佔位渲染在 2197 頁上（C2） |
+| `status` | draft 2134／studied 48／reviewed 51 | 95% 一個值，徽章變噪音（C4） |
+| `importance` | 4＝1249、5＝683、3＝300、2＝1 | 星等灌水，先記著不動 |
+
+**A 組（已執行，63 站各一 commit、notes-core 一 commit；全部未 push）**
+- [x] **跨站連結工具化＋補鏈**：新工具 `tools/export-seealso-gaps.py`（第九份生成文件 `docs/SEEALSO-GAPS.md`，已進 `refresh-galaxy-docs.sh`）＋ `tools/apply-seealso.py`。判準只收 **strong＝同書同章**（weak 同書不同章 421 筆只列數字）；目標頁同分類 ≥3 頁就連分類頁，否則依共用章節數最多連 2 頁，label 一律用目標頁 title。寫入 **529 筆、454 個檔、62 站**；有 seeAlso 的頁 **225 → 595（27%）**。驗證：md 全數 prettier 過（5 站全 config `format:check` 過）、leadership／image-style／writing `astro build` 綠、galaxy-checkup dead-seealso 0。
+  **踩到**：strict 站（7 個技術站）的 `seeAlso.site` enum **只含那 7 個 key**，clean-code → uncle-bob 寫進去 build 直接紅（InvalidContentEntryDataError）。已回退 27 筆（19 檔），工具改成把這類列成「被 schema 擋住」（19 筆：clean-code→uncle-bob 14、→kent-beck 1、design-patterns→uncle-bob 1、behaviour-interview→management／communication／career 各 1）。放行要改 core 的 enum（C3）。
+- [x] writing-note 2 筆空頭支票（Vogler《作家之路》、Egri《The Art of Creative Writing》，9977575 判 support 卻沒進導覽）：導覽第三章各織一句定位（Vogler＝坎伯的片廠譯本、八種原型是面具；Egri＝McKee 與 Truby 的上游、只借「角色的矛盾」一章），順帶把 McKee《人物的解剖》的查閱層位置寫進去；三個 anchor 進章 frontmatter、`writtenAt` 蓋 2026-11-06。tier-audit writing 0／0／0。
+- [x] 單向 related 10 筆補雙向：marketing 3（brand-archetypes 的三個目標頁沒指回）、writing 7（character-archetypes／character-dimensions 的目標頁沒指回）。checkup oneway-related 歸零。
+- [x] image-style-note 13 頁最後的舊骨架（`## 🧠 核心概念`／`## 🔑 總整理`）→ `::core`／`::takeaways`；build 綠、dist 渲染 Core Ideas／Takeaways。全星系舊骨架歸零。
+- [x] notes-core 文件過期：DESIGN.md §5.2 從 v0.5.0 前的 h2 骨架改成 directive 骨架＋分站族詞彙表＋`kind` 頁型；README 開頭與「內容（v0.1.0）」節改成 v0.43 現況（exports 表）、tools／docs 表補第九份。
+- [x] `refresh-galaxy-docs.sh` 重算：ORPHAN-BOOKS 冒出 **2 本孤兒書**（`tao-of-travel` Theroux、`cooks-tour` Bourdain，10-27 之後建的書站沒人認領——travel-note 該收前者，後者 travel 或 history 擇一）；owned 去重 1827→1830；travel 64→67 本、marketing 33→34、writing 38→40（10-27 收書輪的結果，DEEPEN-READY 已更新）。
+
+**B 組（已開單，等 Andrew 過目再動筆；起草交 Opus）**
+
+### investing-note：六場爭點 → 六頁 `kind: debate`（Fable 2026-11-06 開單；起草交 Opus，每頁一個子代理、路徑 A）
+
+判準（note-check §1.4 形狀測試）：一個問題、多本書吵、各方都已有溯源頁 → 對照型 concept。導覽第四章已把六場爭點各寫成一節並下了裁決；debate 頁是它的**查閱單位版本**：各造主張並排、各自掛 anchor、不下裁決（裁決留在導覽 Verdict），只寫得出處的「判別變數」（例如索羅斯自己畫的界線、Loeb 自己說的前提）。
+每頁的 anchor **一律從兩造既有概念頁的 `furtherReading` 取**（都驗過），不另找章；起草前先讀兩造的頁與導覽第四章該節，避免重講。寫完補進該分類 `_index.md` 的 roadmap，`related` 雙向連到兩造的頁；`seeAlso` 依 SEEALSO-GAPS 重跑結果補。骨架照 clean-code `comments-formatting/to-comment-or-not.md`（`> 點題` → `::core` 列各造一句 → `## 各造立場` → `## ⚖️ 共識區與真正的爭點` → `::takeaways` → `:::response`）。
+
+1. index-passive `can-the-market-be-beaten`「市場打不打得敗：證據線、實踐線與量化例外」— 證據線：a-random-walk-down-wall-street、winning-the-losers-game-ellis（取 efficient-market-and-random-walk、the-losers-game 的 anchor）；實踐線：most-important-thing 第 2 章（second-level-thinking）、investment-valuation（valuation-approaches-and-bias）、dhandho-investor／education-of-a-value-investor（low-risk-high-uncertainty）；量化例外：man-who-solved-the-market（efficient-market 頁已掛）。避開各頁對自己主張的完整論證，只並排「效率＝快不是對」「優勢昂貵稀有事前難辨」「大獎章紀錄」三件事；指數派的實務理由不依賴 EMH 這一點照書寫（柏格、艾利斯都說的是成本與分散）。
+2. trading-speculation `cut-losses-or-average-down`「跌了該停損還是加碼：兩套規則來自兩個遊戲」— 停損派：market-wizards（risk-first-cut-your-losses）、reminiscences-of-a-stock-operator 第 8 章時機（timing-and-the-big-picture）；加碼派：intelligent-investor 市場先生章（mr-market-and-margin-of-safety）、dhandho-investor Stewart Enterprises 案例（low-risk-high-uncertainty）。判別變數只寫書裡有的：估值錨、保證金與每日結算（利弗摩 1906）、Guerin 案例（psychology-of-money，luck-risk-and-survival 頁已掛）。
+3. value-investing `concentrate-or-diversify`「集中還是分散：由可驗證的優勢決定」— 集中：common-stocks-and-uncommon-profits（scuttlebutt-and-quality-growth）、essays-of-warren-buffett 凱因斯 1934 信（circle-of-competence）、battle-for-investment-survival（concentrate-dont-diversify）；分散：bogleheads-guide-to-investing Bernstein 15-stock myth（three-fund-portfolio）；裁決性證據：little-book-of-behavioral-investing 74% 自評高於平均（overconfidence-and-hindsight）、laws-of-wealth 25–30 檔「集中分散」（rules-over-discretion 頁已掛）。
+4. index-passive `does-market-timing-work`「擇時與動能有沒有用：各自成立於自己的紀律框架」— 有用：how-to-make-money-in-stocks M 字訣與 95% 飆股（canslim-and-momentum）、reminiscences 時機課（timing-and-the-big-picture）；沒用：little-book-of-common-sense-investing（stay-the-course）、a-random-walk-down-wall-street 圖形分析章（efficient-market-and-random-walk）、laws-of-wealth 200 份電子報與 90 天統計（rules-over-discretion）。避開 behavior-gap 頁的 Dalbar 數字（那是共識二，不是這場爭點）。
+5. market-history `does-price-rewrite-fundamentals`「價格是反映還是改寫基本面：反身性對上市場先生」— 單向論：intelligent-investor（mr-market-and-margin-of-safety）、a-random-walk-down-wall-street（efficient-market-and-random-walk）；反身性：alchemy-of-finance 第一部反身性章（narrative-and-feedback-loops）、irrational-exuberance 結構因素（anatomy-of-a-bubble）。索羅斯自己畫的界線（反身性補基本面不取代、日常事件只有參與函數）照書寫；馬克斯雅虎兩個價格的例子從 second-level-thinking 頁取 anchor。
+6. trading-speculation `rules-or-beliefs`「寫下規則就夠了嗎：結構派對上信念派」— 結構派：laws-of-wealth RBI 四 C 與 84.1%／59.4% 實驗（rules-over-discretion）、way-of-the-turtle 單位制（position-sizing-and-ruin、edge-and-consistency）、little-book-of-common-sense-investing 待著別動（stay-the-course）；信念派：trading-in-the-zone 第 4、7 章（thinking-in-probabilities、mental-analysis）。避開 process-over-outcome 頁的決策矩陣（那是共識四前半）。
+
+不開：共識一到五不開 debate 頁（沒有對造；它們已是各 claim 頁與導覽第四章的材料）。
+
+### theology-note：九本大部頭的第二鏟（Fable 2026-11-06 開單，fork 讀目錄＋既有頁；起草交 Opus，每頁一個子代理、路徑 A；34 個章節目錄全部 `[ -d ]` 驗過）
+
+判準：只為脊梁書開頁、主張標得到章節 anchor、與既有 41 頁重疊低於一半；體裁查閱型或第一鏟已涵蓋全書就不開。
+
+#### 開單（8 張）
+
+1. doctrine `atonement-theories-map`「贖罪的五種理論與一個核心：艾利克森的救贖論地圖」— erickson-christian-theology（08-work-of-christ/02-theories-of-the-atonement、08-work-of-christ/03-central-theme-of-the-atonement、08-work-of-christ/04-extent-of-the-atonement）。
+   第一鏟（what-is-systematic-theology）只拿他當方法論對照，沒掛 anchor，這頁是本書第一個真正的章節頁。
+   只寫五種救贖理論（蘇西努斯榜樣說、道德影響說、治理說、贖價說、滿足說）的主張與問題、五個前置教義因素、刑罰替代論的五項異議與回應、救贖範圍的兩個問題（為誰而死、為何而死）。
+   避開 cross-of-christ 的斯托得四步代贖論證（赦免成難題、必須有滿足、被滿足的是神的本性、神的自我替代），這頁是理論地圖，不重講「神為何非死不可」；避開 incarnation 的亞他那修兩難。
+   claim 頁；related 連 cross-of-christ、incarnation、costly-grace、resurrection-and-new-creation。
+
+2. doctrine `person-and-relation`「點與線：三一神學的關係思維」— systematic-theology（03-knowing-god/16-trinity、03-knowing-god/17-modern-trinitarian-theology、03-knowing-god/18-relational-thinking、02-knowing-humanity/09-lines-and-dots）。
+   第一鏟只掛 01-introduction 當入門定位；導覽第三章明說「華人視角還要再挖」。站上 41 頁沒有一頁講三一論，這是教義區最大的空洞。
+   只寫位格概念史（波伊丟斯「位格是什麼」對聖威克多的理查德「位格是誰」，西方重獨特性、東方重關係性）、點與線的比喻、笛卡兒式神學對非笛卡兒式神學（邱立基）、赫舍爾「人是誰」、麥慕列與列維納斯的相互主體性、現代三一神學為何重拾關係思維。
+   避開 incarnation（亞他那修）、calvin-double-knowledge（加爾文雙重知識）；與第 7 張分工：這頭講位格概念與關係存有論，路易斯的三一類比歸第 7 張。
+   claim 頁；related 連 incarnation、calvin-double-knowledge、knowing-god。
+   順帶一筆：這本書的章節內容（齊克果、赫舍爾、邱立基、田立克講章）讀起來是林鴻信《系統神學》，bibliography 的 title 卻寫「章力生等華人卷」，起草前請 Andrew 核對書目歸屬。
+
+3. historical `after-the-reformation`「改革之後：亞米念、敬虔派、清教徒與循道派、自然神論怎麼分出今天的新教」— story-of-christian-theology（08-post-reformation/01-arminius、08-post-reformation/02-pietism、08-post-reformation/03-puritans-methodism、08-post-reformation/04-deism-enlightenment）。
+   第一鏟（story-of-theology）掛的是序幕、君士坦丁、基督論之爭、宗教改革四段，停在十六世紀；twentieth-century-theology-map 從巴特起跳。中間兩百年沒有頁。
+   只寫亞米念為何自認是改革宗內部的改革者而非敵人、敬虔主義「不是新神學而是新方向」、清教徒與循道派一改革宗一亞米念卻共同塑造福音派、自然神論與啟蒙運動對三十年戰爭宗派廝殺的反向回應（培根、笛卡兒、牛頓三位奠基者）。
+   避開 story-of-theology 已寫的尼西亞到改革四段、避開 owen-on-mortification 的治死罪實踐、避開 three-faces-of-secular 的泰勒世俗化論（這頭只寫奧爾森的敘事，不做社會理論）。
+   claim 頁；related 連 story-of-theology、twentieth-century-theology-map、owen-on-mortification、why-read-church-history。
+
+4. historical `persecution-and-the-early-church`「從尼祿到戴克里先：迫害怎麼塑造初代教會」— story-of-christianity-vol-1（01-early-church/04-first-conflicts-with-state、01-early-church/05-persecution-second-century、01-early-church/09-persecution-third-century、01-early-church/11-great-persecution-and-final-victory、01-early-church/10-christian-life）。
+   第一鏟（why-read-church-history）是方法論頁，anchor 掛了 01 與 02 兩卷卻幾乎沒用到書的內容；這頁是岡薩雷斯第一個真正的敘事頁。
+   只寫迫害政策的四個轉折（尼祿嫁禍、圖拉真「不搜捕但被告發須表態」、塞維魯斯禁改宗與德修的祭祀證書「製造背教者而非殉道者」、戴克里先 303 年敕令與四帝共治）、殉道行傳（伊格那丟、珀佩圖亞與菲利西塔絲）、草根信徒的敬拜與社會出身（塞爾蘇斯的「廚房、店鋪、製革坊」）。
+   避開 story-of-theology 的異端與信經（教義軸）、避開 two-cities（奧古斯丁）、避開 why-read-church-history 的方法論；多納徒派與背教者爭議在 02-imperial-church/04，留給第三鏟，這頁只點到「背教者問題由此埋下」一句。
+   claim 頁；related 連 why-read-church-history、story-of-theology、two-cities、victory-of-reason。
+
+5. doctrine `visible-yet-hidden`「超凡與隱藏：潘霍華讀登山寶訓的可見與不可見」— cost-of-discipleship（02-the-sermon-on-the-mount/02-the-visible-community、02-the-sermon-on-the-mount/07-revenge、02-the-sermon-on-the-mount/08-the-enemy-the-extraordinary、02-the-sermon-on-the-mount/09-the-hidden-righteousness、02-the-sermon-on-the-mount/10-the-hiddenness-of-prayer）。
+   第一鏟（costly-grace）掛了第一部五章與登山寶訓結語，登山寶訓本體十四章只用了結語一章。
+   只寫鹽與光是「你們是」不是「你們要成為」、不抵抗根植於十字架而非政治理想（舊以色列以力對力、教會放棄政治身分）、愛仇敵是「超凡」的最具體形式、第五章可見性與第六章隱藏性的悖論（狂熱式誤讀與批評者反應）、禱告透過中保而非直通父。
+   避開 costly-grace 的廉價恩典對重價恩典、單純順服、捨己與個體、「聽道唯一的方式是去行」；避開 kingdom-of-god-here-and-now（魏樂德「神的國已經來到」）；willard-note 的登山寶訓頁是「天國課程表」角度，這頭只取潘霍華的可見與隱藏張力，seeAlso 連過去即可。
+   claim 頁；related 連 costly-grace、kingdom-of-god-here-and-now、will-to-embrace、narrative-ethics。
+
+6. doctrine `beyond-personality`「超越位格：路易斯的三一類比與新造的人」— mere-christianity（04-beyond-personality/01-making-and-begetting、04-beyond-personality/02-the-three-personal-god、04-beyond-personality/04-good-infection、04-beyond-personality/05-the-obstinate-toy-soldiers、04-beyond-personality/11-the-new-men）。
+   第一鏟（argument-from-desire）掛第一卷道德律與第二卷基督信念；第三卷倫理、第四卷三一都沒頁。第四卷是路易斯自己標的「走向三位一體教義的第一步」，與站的教義區對口。
+   只寫生與造的分別（Bios 與 Zoe）、「超位格」為何只有基督教給了實際內容（維度類比，「被吸收進神」其實是比位格更少）、兩本書疊放的「結果不必在原因之後」、良性感染、頑固的錫兵（兩種生命如今對立）、新人是轉化而非改善。
+   避開 argument-from-desire 的道德律與渴望論證、避開 incarnation 的亞他那修兩難（錫兵章那句「神的兒子成為人，是要使人能成為神的兒子」只引一次、標明路易斯轉述）；第三卷倫理（驕傲、寬恕、性道德）屬 spiritual-formation 題域，不開。與第 2 張分工見上。
+   claim 頁；related 連 argument-from-desire、incarnation、person-and-relation（第 2 張）；seeAlso 連 lewis 站的返璞歸真頁。
+
+7. doctrine `order-of-salvation`「救恩的次序：巴文克論稱義、成聖與堅忍」— reformed-dogmatics（05-the-holy-spirit-and-salvation/01-the-order-of-salvation、05-the-holy-spirit-and-salvation/02-calling-and-regeneration、05-the-holy-spirit-and-salvation/03-faith-and-conversion、05-the-holy-spirit-and-salvation/04-justification-sanctification-and-perseverance）。
+   第一鏟（grace-restores-nature）掛緒論、三一與創造、聖靈更新萬有，取的是全書主軸；救恩論整卷未挖，而站上沒有一頁講稱義與成聖的關係。
+   只寫「所有宗教都在找得救之路，只有一條是被賜下的」（佛陀、伊斯蘭、繆勒四十年梵文研究的對照）、救恩次序是聖靈施行基督工作的有機次序而非時間表、赦罪為何不容易（公義與愛在十架綑在一起；因果報應不懂赦免）、稱義與成聖的分際、堅忍。
+   避開 grace-restores-nature 的恩典對自然、兩條戰線、新天新地；避開 owen-on-mortification 的治死罪操練（成聖的實踐面歸那頁，這頭只寫教義結構）；避開 costly-grace。
+   claim 頁；related 連 grace-restores-nature、owen-on-mortification、costly-grace、christian-hedonism。第三鏟候選：03-humanity-and-sin/01-the-image-of-god（站上也沒有上帝形像頁）。
+
+8. apologetics `historical-point-of-view`「歷史觀點與對老套的恐懼：魔鬼怎麼對付讀書人」— screwtape-letters（23-letter-23、25-letter-25、27-letter-27、30-letter-30）。
+   第一鏟（imaginative-apologetics）取了第一、八、十二封信（攪糊、波動律、平緩下坡），都是對平信徒的誘惑；後半部寫給知識人的那幾封沒用到。
+   只寫「歷史的耶穌」每二十年換一版且把敬拜對象降格為大師、「相信它不是因為真而是因為有用」、對老套的厭惡被升格為哲學（用「合不合潮流」取代「合不合公義」）、「歷史觀點」讀古書只問誰影響了作者而不問是否為真、「真實」一詞被壟斷給醜陋的物質事實。
+   避開 imaginative-apologetics 已寫的三封信與切斯特頓、人之廢；lewis-note 的地獄來鴻頁是全書角度，這頭只取知識人這條線，seeAlso 連過去。
+   claim 頁；related 連 imaginative-apologetics、faith-in-a-secular-age、science-and-faith。
+   這是九張裡最薄的一張：書 repo 每封信只有一千多字的摘要，四封合計約兩千五百字，寫得出一頁、寫不出第二頁；排最後。
+
+## 不開（1 本）
+
+- living-church《活的教會》（The Living Church）：不開。第一鏟 what-makes-a-living-church 已把八章用了七章（本質四記號、敬拜、佈道四條件、事奉、團契三層、奉獻十原則、鹽與光，外加後現代一章），剩下的講道章（五組對偶）落在 stott-note《當代講道藝術》頁與本站 preaching-to-a-skeptical-age 的題域。tier 維持 spine，承諾已由既有頁兌現，不必改判。
+
+## 小結
+
+- 開 8 張，全部 claim 頁，沒有 debate：九本都是單一作者的體系書，沒有「一個問題多本書吵」的形狀。
+- 不開 1 本（living-church），tier 不動。
+- 兩個教義區的結構空洞順便補上：三一論（第 2、6 張）與救恩次序（第 7 張）。
+- DEEPEN-TARGETS 用章節數排序，把三十一封短信的《地獄來鴻》排進大部頭，是體裁誤判；第 8 張照單寫，但建議把書信體加進該工具的「依體裁排除」判準。
+- 起草順序建議：2、7、1（教義空洞）→ 3、4（歷史軸）→ 5、6 → 8。
+
+**C 組（設計決策，等 Andrew；不裁決就不動）**
+- [ ] **C1 prose-trim 與 body-thin 地板打架**：10-26／27 的文案精簡輪把 43 頁縮到 893–998 字，剛好掉到 `galaxy-checkup.py` `THIN_BODY=1000` 以下（九月那輪才把 body-thin 清到 0，當時是把頁加深到 1400–3800 字）。兩條規則一條要縮、一條要撐。建議**改地板不改頁**：門檻降到 800，或改量「去 markup 的 CJK 字數」；回頭再把 43 頁灌回去違反精簡輪的目的。要 Andrew 定。
+- [ ] **C2 空 `:::response` 佔位**：2197/2233 頁渲染「✍️ My Notes／No notes yet」空框。DESIGN §5.3 明寫「沒有就留空（低調 placeholder）」，所以不擅改；但 ✅ Check 與 📖 Guide 的 tab 都是「有資料才出現」，心得層比照辦理（空塊不渲染）比較一致。改 `remark-response.mjs` 一處＋bump 79 站。
+- [ ] **C3 strict 站的 seeAlso enum**：`content.ts` 的 `siteKeys` 只含 7 個技術站 key。建議 enum 改成 registry 全部 79 個 key（仍是封閉集合，拼錯照抓），升版後重跑 `export-seealso-gaps.py` 那 19 筆就會進決策。
+- [ ] **C4 `status` 徽章**：95% 是 draft。建議 ConceptCard 的點只畫 studied／reviewed，draft 不畫；資料不動（它記的是 Andrew 自己讀過沒，誠實）。
+- [ ] **C5 data-science-note**：唯一「先收書」的站（26 本／7 頁／39 本 wanted／無導覽／17 roadmap-planned）。瓶頸在收書，不在寫。
+- [ ] 旁註：leetcode-note 自維護前端（39 個本地 .astro／.ts），`galaxy-checkup` 不掃，它自己的 TODO 說 407 題還沒人背書；portal repo（`sites/`）不在本機，portal 層本輪沒體檢；fork 回報 `systematic-theology` 書 repo 內容讀起來是林鴻信而 bibliography title 寫「章力生等華人卷」，起草第 2 張前請核對；DEEPEN-TARGETS 用章節數排序把 31 封短信的《地獄來鴻》當大部頭，建議「依體裁排除」加書信體。
+
+
 ### 兩新站（travel／hr）開站後的分批隊列（2026-09-26 開單，Andrew 要求依模型分批）
 
 **現況**：travel-note 64 本／5 頁（頁/待深挖 0.1，全星系最低）、hr-note 12 本／5 頁（待收 7）；tier-audit 未判層 47（travel 46＋hr 1）、

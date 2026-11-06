@@ -86,26 +86,27 @@ export const overview = defineOverview({
 
 > **分隔號寫全形破折號 `—`**（或 en dash `–`，或**前後有空白**的 ` - `）。拆法（`splitBookLabel`）刻意不認貼著字的 ASCII 連字號——書名常含連字號（The Non-Designer's…／High-Performance…／Test-Driven…），無條件拆會把書名攔腰斬成「The Non」，而錯的那半正好是卡片最大的字。
 
-### 5.2 正文標題慣例（固定順序）
+### 5.2 正文骨架（固定順序）
 
 ```markdown
 > 一句話點題（blockquote）
 
-## 🧠 核心概念
+::core
 
 > [!TIP]
 > 直覺／心智模型（一句話抓住本質）
 
 - 要點…
 
-## ⚖️ 關鍵權衡 (Tradeoffs)
+## ⚖️ 關鍵權衡
 
 :::details{title="…"}
 
 - 取捨…
-  :::
 
-## 🔑 總整理 (Takeaways)
+:::
+
+::takeaways
 
 - 收斂重點…
 
@@ -113,9 +114,12 @@ export const overview = defineOverview({
 :::
 ```
 
-- 第一個 h2 一律 **`## 🧠 核心概念`**。
-- 摺疊用 `:::details{title="…"}`（notes-core `remark-details`）。
+- 區塊標題由 **`::<name>` leaf directive** 產生（notes-core `remark-sections`，v0.5.0 起）：站上寫 `::core`，渲染成「🧠 Core Ideas」的 h2。英文標籤與 emoji 的詞彙表在 `src/plugins/remark-sections.mjs`，改字一處生效。手寫 `## 🧠 核心概念`／`## 🔑 總整理` 是 v0.5.0 前的舊骨架（`note-check` §2.6 列 nit；2026-11-06 最後 13 頁清完，全星系歸零）。
+- 第一個區塊一律 `::core`（技術站族可用 `::intuition`），收尾一律 `::takeaways` → `:::response`。
+- **分站族詞彙**（同一份外掛，各族挑自己的）：通用 `core`／`case`／`takeaways`；技術站 `intuition`／`tradeoffs`／`whentouse`／`structure`／`antipatterns`；clean-code `whyproblem`／`whymatters`／`refactor`；behaviour-interview `discussion`／`signals`／`pitfalls`／`questions`／`star`／`scenario`；system-design `requirements`／`reference`；leetcode `approaches`。
+- 中段的 `## ⚖️ …` 仍是手寫 h2（標題是內容，各頁不同），摺疊用 `:::details{title="…"}`（notes-core `remark-details`）。
 - Alert 用 `> [!TIP] / [!NOTE] / [!WARNING]`。
+- **頁型 `kind`（v0.38.0）**：`claim`（預設，一頁一主張）｜`debate`（一個問題、多本書吵——各方主張並排、各自溯源，不下裁決；裁決與閱讀順序歸 guide 的 Verdict）。選型的決策樹在 `note-check` §1.4。
 
 ### 5.3 兩層模型（**書本位** vs **心得層**）
 
