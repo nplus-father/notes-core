@@ -48,7 +48,18 @@ done | sort -rn
 > 2026-08-04 的實測：`templar-note`／`navarro-note`（開站種子概念）與 `agile`／`covey`／`design` 的開站種子屬於 **B**，13+13 頁改寫後共抓到 8 處實質錯誤；六個作者站（nt-wright/fromm/lewis/schwager/stott/maxwell）屬於 **A**，58 頁抽驗後直接掛 anchor。
 
 
-## 待清：無
+## 待清：2 頁（2026-11-06 第二批起草時，起草代理回源抓到）
+
+這兩頁都有 anchor，所以 §1.2 的掃描抓不到；是 debate 頁的起草代理整章 grep 原文時發現「頁上的核心主張在掛的書裡找不到」。屬 **B 型**（憑既有理解寫的），要回原文逐段核對後改寫，不是補 anchor。
+
+| 站 | 頁 | 書裡找不到的主張 | 已做的 | 還欠 |
+| --- | --- | --- | --- | --- |
+| hbr-note | `leadership-teams/coaching-and-feedback` | 整頁以 **SBI（情境—行為—影響）** 為骨架，另有「行為發生 48 小時內」的即時回饋節奏 | 無 | 兩本指南（coaching-employees、delivering-effective-feedback）全書 grep 不到 SBI 與 48 小時；radical-candor 書站也沒有。要照兩本指南實際的寫法（Batista 的威脅反應、Gottman 5:1、Bradford 的球網、Dowling 的直接）改寫核心段 |
+| design-patterns-note | `paradigms/oop-vs-functional` | 「很多 GoF 模式在補 OO 缺一級函數的洞」；同頁另有多處「一級函數讓模式縮成一行」 | 點題句改成書裡的原話（觀察者模式是事件驅動思想的簡化實現），takeaways 那條刪掉 | 頁上只掛鄭暉一本，該書沒有談 GoF 與一級函數；其餘幾句要嘛改掛 Bob 的 functional-design 第 5 章（他的說法是「部分對、整體不正確」，方向與頁上相反），要嘛刪 |
+
+同一輪順手修掉的（不留債）：philosophy `premeditatio-malorum` 刪掉頁面自加的「那不是預想，是焦慮」；以及八頁「內容用了某章、anchor 沒掛那章」的補掛（philosophy `way-of-water`、`no-self-and-emptiness`，hbr `hiring-for-fit`、`better-decisions`，writing `composting`，investing 上午三頁）。
+
+## 上一輪：無
 
 2026-08-04 一輪清償（1350 頁、457 頁未溯源 → 0），2026-08-05 重驗 1441 頁全部有 anchor。
 之後各輪 enrich 抓到的 **B 型債校正表**（08-06 第 3 波、08-09 taleb、08-20 investing／data-systems、

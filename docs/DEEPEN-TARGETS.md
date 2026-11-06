@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-06T12:34:21+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T13:16:11+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,8 +15,8 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **130** |
-| 涉及的站 | 48 |
+| **候選（大部頭 × ≤1 頁）** | **102** |
+| 涉及的站 | 45 |
 | 依體裁排除 | 7 |
 
 ## 一、前 30 名（跨站總排序）
@@ -34,25 +34,25 @@
 | 9 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
 | 10 | 65 | 1 | `hbr-note` | HBR Guide to Persuasive Presentations |
 | 11 | 64 | 1 | `tools-note` | Flow 心流 |
-| 12 | 63 | 1 | `wujun-note` | 大學之路 |
-| 13 | 63 | 1 | `investing-note` | Security Analysis |
-| 14 | 63 | 1 | `biblical-studies-note` | Exegetical Fallacies |
-| 15 | 62 | 1 | `writing-note` | Writing Tools |
-| 16 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
-| 17 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 18 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
-| 19 | 60 | 1 | `science-note` | 高手相對論 |
-| 20 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 21 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
-| 22 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 23 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 24 | 53 | 1 | `startup-note` | Anything You Want |
-| 25 | 52 | 1 | `wujun-note` | 見識 |
-| 26 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
-| 27 | 52 | 1 | `habits-note` | 18 Minutes |
-| 28 | 52 | 1 | `growth-note` | Mastery |
-| 29 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
-| 30 | 51 | 1 | `wellness-note` | The 4-Hour Body 身體調校聖經 |
+| 12 | 63 | 1 | `investing-note` | Security Analysis |
+| 13 | 62 | 1 | `writing-note` | Writing Tools |
+| 14 | 62 | 1 | `clean-code-note` | The Pragmatic Programmer |
+| 15 | 61 | 1 | `stott-note` | 當代講道藝術 |
+| 16 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
+| 17 | 60 | 1 | `science-note` | 高手相對論 |
+| 18 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
+| 19 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 20 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 21 | 53 | 1 | `startup-note` | Anything You Want |
+| 22 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 23 | 52 | 1 | `habits-note` | 18 Minutes |
+| 24 | 52 | 1 | `growth-note` | Mastery |
+| 25 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
+| 26 | 51 | 1 | `wellness-note` | The 4-Hour Body 身體調校聖經 |
+| 27 | 51 | 1 | `travel-note` | The Almost Nearly Perfect People |
+| 28 | 50 | 1 | `maxwell-note` | 360 度全方位領導 |
+| 29 | 49 | 1 | `kiyosaki-note` | 富爸爸投資指南 |
+| 30 | 47 | 1 | `travel-note` | How to Be a Travel Writer |
 
 ## 二、依站分組
 
@@ -75,46 +75,6 @@
 - **The Story of Art** — 30 章 / 1 頁（`story-of-art`）
 - **In the Blink of an Eye** — 30 章 / 1 頁（`in-the-blink-of-an-eye`）
 
-### `wujun-note`（9 本）
-
-- **大學之路** — 63 章 / 1 頁（`wujun-road-to-university`）
-- **見識** — 52 章 / 1 頁（`wujun-insight`）
-- **富足** — 48 章 / 1 頁（`wujun-abundance`）
-- **態度** — 46 章 / 1 頁（`wujun-attitude`）
-- **信息傳** — 45 章 / 1 頁（`wujun-information-theory-40`）
-- **數學之美** — 40 章 / 1 頁（`wujun-beauty-of-math`）
-- **脈絡** — 38 章 / 1 頁（`wujun-context`）
-- **境界** — 36 章 / 1 頁（`wujun-realm`）
-- **卓越** — 36 章 / 1 頁（`wujun-excellence`）
-
-### `biblical-studies-note`（7 本）
-
-- **Exegetical Fallacies** — 63 章 / 1 頁（`exegetical-fallacies`）
-- **上帝子民的新約導論** — 46 章 / 1 頁（`new-testament-in-its-world`）
-- **走入中東看耶穌** — 39 章 / 1 頁（`jesus-through-middle-eastern-eyes`）
-- **新約的聖經神學** — 38 章 / 1 頁（`a-new-testament-biblical-theology`）
-- **按照計畫** — 35 章 / 1 頁（`according-to-plan`）
-- **Theology of the Old Testament** — 35 章 / 1 頁（`theology-of-the-old-testament`）
-- **先知神學** — 32 章 / 1 頁（`prophets-heschel`）
-
-### `hbr-note`（6 本）
-
-- **HBR Guide to Persuasive Presentations** — 65 章 / 1 頁（`hbr-guide-to-persuasive-presentations`）
-- **HBR Guide to Thinking Strategically** — 39 章 / 1 頁（`hbr-guide-to-thinking-strategically`）
-- **HBR Guide to Making Every Meeting Matter** — 37 章 / 1 頁（`hbr-guide-to-making-every-meeting-matter`）
-- **HBR Guide to Better Recruiting and Hiring** — 35 章 / 1 頁（`hbr-guide-to-better-recruiting-and-hiring`）
-- **HBR Guide to Navigating the Toxic Workplace** — 33 章 / 1 頁（`hbr-guide-to-navigating-the-toxic-workplace`）
-- **HBR Guide to Making Better Decisions** — 31 章 / 1 頁（`hbr-guide-to-making-better-decisions`）
-
-### `management-note`（6 本）
-
-- **The Five Dysfunctions of a Team 團隊領導的五大障礙** — 52 章 / 1 頁（`five-dysfunctions-of-a-team`）
-- **程天縱《專業力》** — 47 章 / 1 頁（`terry-cheng-professional-power`）
-- **Peopleware 腦力密集產業的人才管理之道** — 46 章 / 1 頁（`peopleware`）
-- **The Goal 目標** — 43 章 / 1 頁（`goal-ongoing-improvement`）
-- **程天縱《經營學》** — 35 章 / 1 頁（`terry-cheng-business-management`）
-- **Turn the Ship Around! 當責領導** — 35 章 / 1 頁（`turn-the-ship-around`）
-
 ### `wellness-note`（5 本）
 
 - **The 4-Hour Body 身體調校聖經** — 51 章 / 1 頁（`4-hour-body`）
@@ -122,6 +82,13 @@
 - **Tools of Titans 巨人的工具** — 36 章 / 1 頁（`tools-of-titans`）
 - **HBR Guide to Managing Stress** — 34 章 / 1 頁（`hbr-guide-to-managing-stress`）
 - **How Not to Die 食療聖經** — 33 章 / 1 頁（`how-not-to-die`）
+
+### `hbr-note`（4 本）
+
+- **HBR Guide to Persuasive Presentations** — 65 章 / 1 頁（`hbr-guide-to-persuasive-presentations`）
+- **HBR Guide to Thinking Strategically** — 39 章 / 1 頁（`hbr-guide-to-thinking-strategically`）
+- **HBR Guide to Making Every Meeting Matter** — 37 章 / 1 頁（`hbr-guide-to-making-every-meeting-matter`）
+- **HBR Guide to Navigating the Toxic Workplace** — 33 章 / 1 頁（`hbr-guide-to-navigating-the-toxic-workplace`）
 
 ### `habits-note`（4 本）
 
@@ -181,23 +148,11 @@
 - **The War of Art** — 32 章 / 1 頁（`war-of-art`）
 - **Into the Woods** — 30 章 / 1 頁（`into-the-woods`）
 
-### `clean-code-note`（3 本）
-
-- **The Pragmatic Programmer** — 62 章 / 1 頁（`pragmatic-programmer`）
-- **Test-Driven Development** — 35 章 / 1 頁（`test-driven-development`）
-- **Growing Object-Oriented Software, Guided by Tests** — 34 章 / 1 頁（`growing-object-oriented-software`）
-
 ### `maxwell-note`（3 本）
 
 - **360 度全方位領導** — 50 章 / 1 頁（`360-degree-leader`）
 - **領導力的 5 個層次** — 42 章 / 1 頁（`5-levels-of-leadership`）
 - **與人同贏** — 32 章 / 1 頁（`winning-with-people`）
-
-### `design-patterns-note`（3 本）
-
-- **Refactoring to Patterns** — 41 章 / 1 頁（`refactoring-to-patterns`）
-- **Refactoring for Software Design Smells** — 38 章 / 0 頁（`refactoring-for-software-design-smells`）
-- **The Timeless Way of Building** — 31 章 / 1 頁（`timeless-way-of-building`）
 
 ### `business-strategy-note`（3 本）
 
@@ -215,15 +170,15 @@
 - **你有你的計劃，世界另有計劃** — 65 章 / 1 頁（`wan-weigang-world-has-another-plan`）
 - **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
 
-### `tools-note`（2 本）
+### `clean-code-note`（2 本）
 
-- **Flow 心流** — 64 章 / 1 頁（`flow-psychology-of-happiness`）
-- **Indistractable 專注力協定** — 44 章 / 1 頁（`indistractable`）
+- **The Pragmatic Programmer** — 62 章 / 1 頁（`pragmatic-programmer`）
+- **Test-Driven Development** — 35 章 / 1 頁（`test-driven-development`）
 
-### `data-systems-note`（2 本）
+### `design-patterns-note`（2 本）
 
-- **Versioning in an Event Sourced System** — 56 章 / 1 頁（`versioning-in-an-event-sourced-system`）
-- **SQL Performance Explained** — 42 章 / 1 頁（`sql-performance-explained`）
+- **Refactoring to Patterns** — 41 章 / 1 頁（`refactoring-to-patterns`）
+- **Refactoring for Software Design Smells** — 38 章 / 0 頁（`refactoring-for-software-design-smells`）
 
 ### `history-note`（2 本）
 
@@ -272,6 +227,10 @@
 
 - **How to Win at College** — 76 章 / 1 頁（`how-to-win-at-college`）
 
+### `tools-note`（1 本）
+
+- **Flow 心流** — 64 章 / 1 頁（`flow-psychology-of-happiness`）
+
 ### `investing-note`（1 本）
 
 - **Security Analysis** — 63 章 / 1 頁（`security-analysis`）
@@ -283,6 +242,10 @@
 ### `science-note`（1 本）
 
 - **高手相對論** — 60 章 / 1 頁（`wan-weigang-what-is-relativity`）
+
+### `management-note`（1 本）
+
+- **The Five Dysfunctions of a Team 團隊領導的五大障礙** — 52 章 / 1 頁（`five-dysfunctions-of-a-team`）
 
 ### `growth-note`（1 本）
 
@@ -300,6 +263,10 @@
 
 - **Bigger Leaner Stronger** — 44 章 / 1 頁（`bigger-leaner-stronger`）
 
+### `data-systems-note`（1 本）
+
+- **SQL Performance Explained** — 42 章 / 1 頁（`sql-performance-explained`）
+
 ### `jung-note`（1 本）
 
 - **紅書** — 40 章 / 1 頁（`jung-red-book-readers-edition`）
@@ -307,10 +274,6 @@
 ### `lewis-note`（1 本）
 
 - **返璞歸真** — 38 章 / 1 頁（`mere-christianity`）
-
-### `cloud-infra-note`（1 本）
-
-- **Seeking SRE** — 38 章 / 1 頁（`seeking-sre`）
 
 ### `covey-note`（1 本）
 

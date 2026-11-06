@@ -165,6 +165,19 @@
 **順手修掉的既有頁漏掛 anchor（已 commit）**：management `jelled-teams` 補 Peopleware 三章（西班牙理論、Coding War Games、E-Factor）；philosophy `philosophy-as-consolation` 補《哲學的慰藉》第 6 章（尼采）。`export-deepen-targets.py` 體裁排除再加逐卷導覽與逐條釋疑兩本（候選 132→130）。
 **Opus 開工指令**：沿用上面那段（前置拉 repo、§6 紀律、每頁一個子代理、anchor 從單上取並 `[ -d ]`、交回五筆具名事實逐字原文、主會話回源 grep、補 roadmap／related 雙向／導覽連結、蓋 `enrichedAt`、tier-audit 與 checkup 0、單行英文 commit 不 push）。起草順序：先 debate 的 cloud-infra 7、8 與 clean-code 2、1（兩造最乾淨），再 theology 1、2 與 philosophy 2、3，再第二鏟 management 1、3、biblical-studies 2、6、7、wujun 7、2、4，其餘照各單的建議順序。theology debate 第 3 張與 philosophy debate 第 1 張各有附帶條件（重疊過半改補強；先補 anchor 再寫，anchor 已補）。**補 related 用解析後重寫單行，不要 regex 插尾**（上午踩過 `,,`）。
 
+**Opus 執行（2026-11-06 下午）— B 組第二批 44 頁全數交付，本機 commit（未 push）**
+- **第二鏟 21 頁**：management 5、wujun 9、biblical-studies 7；導覽第三章在第一鏟那行之後各補一句連到新頁。
+- **對照頁 23 頁 `kind: debate`**：clean-code 2、agile 2、data-systems 1、design-patterns 1、cloud-infra 2、theology 3、philosophy 4、tools 2、writing 1、thinking 1、hbr 2、behaviour-interview 1、design 1；導覽第四章對應那節末尾各補一行。theology 第 3 張的退路沒觸發（起草代理判重疊未過半，整頁交付）。
+- **驗收**：44 頁機檢全過（entity、「——」、AI 腔、anchor 實存、related 存在、`:::response` 空塊）；每頁至少一筆具名事實回源 grep，**約 60 筆全中**。15 站 format／build 綠，checkup 0 blocker／0 warn／0 nit，tier-audit 六類違規 0；GUIDE-DRIFT 17 筆頁數過期已逐筆改成現況，重算後 0。
+- **出處規則的修正（重要）**：單上「anchor 只從既有頁取」在第二批撞牆 12 次：頁上用到的事實其實在某一章，但既有頁從沒掛那章。處理改成「**事實在哪章就掛哪章**」（`[ -d ]` 驗過、label 用書站章題），不再為了守規則而刪內容或留無出處的句子。出處不是書的正文（書站首頁概述）的句子一律刪。
+- **起草代理抓到的既有頁錯誤**：
+  - 補掛 anchor（內容用了、章沒掛）：philosophy `way-of-water`（老子章）、`no-self-and-emptiness`（無我章），hbr `hiring-for-fit`、`better-decisions`，writing `composting`。
+  - 改內容：philosophy `premeditatio-malorum` 刪掉頁面自加的「那不是預想，是焦慮」；design-patterns `oop-vs-functional` 點題句改成書的原話。
+  - **兩筆 B 型債記進 SOURCING-DEBT**：hbr `coaching-and-feedback` 整頁的 SBI 書裡沒有；`oop-vs-functional` 其餘「一級函數」幾句也沒有出處。要回原文改寫，留給下一輪。
+  - 單上幾句「作者自己說的判別變數」其實是導覽或既有頁的轉述（Bob 的「先分意圖與腳手架」、亞歷山大的「語彙可以永恆」、侯世達的「沒有小人卻有自我」、Stopford 的「坡道」、賴特的「世界被修復」等），起草代理一律改用原文。**教訓：Fable 開單時引的「原話」也要回源，單本身會帶進轉述。**
+- **判層**：philosophy 的 Great Thinkers、Daily Stoic 因新頁各散到三頁；兩本都是查閱體裁（資源庫、366 則日課），照規則保留 tool 並在 note 寫明理由。
+- **工具教訓**：補反向 related 時遇到三種寫法（單行陣列、prettier 多行陣列、YAML 條列），落盤腳本改成先解析再寫回單行；全星系 `,,` 掃描 0。
+
 #### management-note 第二鏟選題單（DEEPEN-TARGETS 六本大部頭，Fable 開單 2026-11-06）
 
 判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有 30 頁重疊低於一半，能被單獨引用。

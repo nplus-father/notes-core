@@ -1,6 +1,6 @@
 # 導覽數字與現況不符
 
-> **生成於 2026-11-06T10:23:51+08:00**｜由 `tools/export-guide-drift.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T13:16:24+08:00**｜由 `tools/export-guide-drift.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-guide-drift.py` 產生。判準：導覽（`guide/*.md`）與首頁總覽（`overview.ts`）裡**指向站台自身規模的數字**——總頁數、某分類幾頁、收了幾本——回去數實際檔案對不對得上。
 
@@ -28,20 +28,20 @@
 
 | 站 | 檔 | 宣稱的是 | 導覽說 | 實際 | 判定理由 | 上下文 |
 | --- | --- | --- | ---: | ---: | --- | --- |
-| `agile-note` | 02-threads-and-methods.md | 站台總頁 | **67** | 67 | 整站總數 | …是另一張的組織放大版。 > 以下把八張卡連成四組對話。 > 這個分組不在任何一本書裡，是全站六十七頁互相連結之後浮出來的結構。  ## 第一組對話：敏捷宣言 ✕… |
+| `agile-note` | 02-threads-and-methods.md | 站台總頁 | **69** | 69 | 整站總數 | …是另一張的組織放大版。 > 以下把八張卡連成四組對話。 > 這個分組不在任何一本書裡，是全站六十九頁互相連結之後浮出來的結構。  ## 第一組對話：敏捷宣言 ✕… |
 | `agile-note` | 03-canon-guide.md | scrum 分類 | **12** | 12 | 分類頁數 | …Scrum（Kenneth S. Rubin，2012）**。十八處引用，被引最多的書：scrum 分類十二頁裡十頁的骨架、product 分類八頁裡五頁的主要來… |
 | `agile-note` | 03-canon-guide.md | product 分類 | **8** | 8 | 分類頁數 | …ubin，2012）**。十八處引用，被引最多的書：scrum 分類十二頁裡十頁的骨架、product 分類八頁裡五頁的主要來源，retrospectives 也有… |
-| `agile-note` | 03-canon-guide.md | flow 分類 | **11** | 11 | 分類頁數 | …Hammarberg & Joakim Sundén，2014）**。十處引用，撐起 flow 分類十一頁裡的九頁。 從[便利貼的撕法](../concept… |
+| `agile-note` | 03-canon-guide.md | flow 分類 | **12** | 12 | 分類頁數 | …Hammarberg & Joakim Sundén，2014）**。十處引用，撐起 flow 分類十二頁裡的九頁。 從[便利貼的撕法](../concept… |
 | `agile-note` | 03-canon-guide.md | user-stories 分類 | **8** | 8 | 分類頁數 | …ser Stories Applied（Mike Cohn，2004）**。十三處引用，user-stories 分類八頁全部由它撐起，外加 scrum 的量測速度頁。 這是… |
-| `agile-note` | 03-canon-guide.md | adoption 分類 | **10** | 10 | 分類頁數 | …cceeding with Agile（Mike Cohn，2009）**。十六處引用，adoption 分類十頁裡八頁由它撐起，另支援 scrum 與 xp-pra… |
-| `agile-note` | overview.ts | 站台總頁 | **67** | 67 | 整站總數 | …的 Team Topologies 再把問題推到組織形狀本身。" +         "全站六十七頁概念頁全部從這批書逐章溯源。",     },     {… |
-| `behaviour-interview-note` | 02-threads-and-schools.md | 站台總頁 | **50** | 36（＋題型 14） | 整站總數 | …），後兩條在房間**外**（職涯經營、自我盤點）。 > 這個接力順序不在任何一本書裡，是全站五十頁互相連結之後浮出來的結構。  ## 房間裡的四條線：一條生產… |
+| `agile-note` | 03-canon-guide.md | adoption 分類 | **11** | 11 | 分類頁數 | …cceeding with Agile（Mike Cohn，2009）**。十六處引用，adoption 分類十一頁裡八頁由它撐起，另支援 scrum 與 xp-pra… |
+| `agile-note` | overview.ts | 站台總頁 | **69** | 69 | 整站總數 | …的 Team Topologies 再把問題推到組織形狀本身。" +         "全站六十九頁概念頁全部從這批書逐章溯源。",     },     {… |
+| `behaviour-interview-note` | 02-threads-and-schools.md | 站台總頁 | **51** | 37（＋題型 14） | 整站總數 | …），後兩條在房間**外**（職涯經營、自我盤點）。 > 這個接力順序不在任何一本書裡，是全站五十一頁互相連結之後浮出來的結構。  ## 房間裡的四條線：一條生產… |
 | `behaviour-interview-note` | 03-canon-guide.md | frameworks 分類 | **7** | 7 | 分類頁數 | …二根脊梁：The STAR Interview（Misha Yurchenko）。** frameworks 分類七頁有六頁由它撐起：[腦力傾倒](../concepts… |
-| `behaviour-interview-note` | overview.ts | 站台總頁 | **36** | 36（＋題型 14） | 整站總數 | …am Geek》給協作用詞，《軟技能》給矽谷之外的第二套座標。" +         "全站三十六頁概念是<strong>方法語彙</strong>，十… |
+| `behaviour-interview-note` | overview.ts | 站台總頁 | **36** | 37（＋題型 14） | 段內點名的書被引 36 頁 | …am Geek》給協作用詞，《軟技能》給矽谷之外的第二套座標。" +         "全站三十六頁概念是<strong>方法語彙</strong>，十… |
 | `bogle-note` | 02-threads.md | 站台總頁 | **14** | 14 | 整站總數 | …夠"     anchor: "docs/04-whats-enough/" ---  全站十四頁分在三個分類：指數投資七頁、投資哲學與德性四頁、Vang… |
 | `bogle-note` | overview.ts | 站台總頁 | **14** | 14 | 整站總數 | …heading: "Claims",       body:         "全站十四頁可以疊成四條線。" +         "<stro… |
 | `business-strategy-note` | 02-schools-in-dialogue.md | 站台總頁 | **38** | 38 | 整站總數 | …進那個產業」，破壞理論的忠告是「別追那群最好的顧客」。 這個交會點不在任何一本書裡，是 全站38 頁互相連結之後浮出來的。… |
-| `clean-code-note` | 02-five-schools-in-dialogue.md | 站台總頁 | **77** | 77 | 整站總數 | …係：一場判準之爭、一個安全網同盟、一層無所不在的底色。 > 這個分組不在任何一本書裡，是全站七十七頁互相連結之後浮出來的結構。  ## 第一組 Clean 學派… |
+| `clean-code-note` | 02-five-schools-in-dialogue.md | 站台總頁 | **79** | 79 | 整站總數 | …係：一場判準之爭、一個安全網同盟、一層無所不在的底色。 > 這個分組不在任何一本書裡，是全站七十九頁互相連結之後浮出來的結構。  ## 第一組 Clean 學派… |
 | `cloud-infra-note` | 03-canon-guide.md | infrastructure 分類 | **4** | 6 | 歷史敘述 | …四本）：四本全數開口，借來的支架換成了自己的柱子  這一群翻得最徹底：四本原本都零引用，infrastructure 分類四頁全靠 Continuous Delivery、Wor… |
 | `collins-note` | 02-threads.md | 站台總頁 | **15** | 15 | 整站總數 | …el/02-durability-of-a-great-flywheel/" ---  全站十五頁概念頁分在四個分類裡：卓越、長青、紀律、衰敗，分類的邊界幾… |
 | `collins-note` | overview.ts | 站台總頁 | **15** | 15 | 整站總數 | …下》的衰敗五階段：傲慢、過度伸展、否認風險、病急亂投醫、投降。" +         "全站十五頁概念頁把這條鏈逐環攤開，每一環都溯源到七本書的章節。",… |
@@ -67,9 +67,9 @@
 | `grove-note` | overview.ts | 站台總頁 | **12** | 12 | 整站總數 | …heading: "Claims",       body:         "全站十二頁可以疊成一條線。" +         "先是量測（… |
 | `growth-note` | 02-schools-in-dialogue.md | 站台總頁 | **37** | 37 | 整站總數 | …是動作的累積：名詞會被證明或證偽，動詞只會繼續或停止。 這個交會點不在任何一本書裡，是 全站37 頁概念頁互相連結後浮出來的。… |
 | `habits-note` | 02-schools-in-dialogue.md | 站台總頁 | **34** | 34 | 整站總數 | …是**省著用**：預先決策、養成習慣，都為了少動用它。 這個交會點不在任何一本書裡，是 全站34 頁互連後浮出的結構：意志力是公認的稀缺資源，六個學派是… |
-| `hbr-note` | 01-what-this-field-asks.md | 站台總頁 | **31** | 31 | 整站總數 | …Emotional Intelligence》）。 正典就是那些會被一再重印的東西。  全站三十一頁裡，掛到 Must Reads 原文的有十一頁。 [… |
-| `hbr-note` | 02-threads.md | 站台總頁 | **31** | 31 | 整站總數 | …ensen、Kim、Ury、Amy Gallo、Maxwell）是按「架上有誰」畫的，與全站三十一頁實際挖出來的名字已經大部分重疊。 Porter（[什… |
-| `hbr-note` | 03-canon-guide.md | 站台總頁 | **31** | 31 | 整站總數 | …立一條**合集專用的分層規則**，再照四個書群逐群攤帳。 > 四十六本裡有四十三本被挖進全站三十一頁，只剩三本沒被任何一頁引用：《Managing St… |
+| `hbr-note` | 01-what-this-field-asks.md | 站台總頁 | **33** | 33 | 整站總數 | …Emotional Intelligence》）。 正典就是那些會被一再重印的東西。  全站三十三頁裡，掛到 Must Reads 原文的有十一頁。 [… |
+| `hbr-note` | 02-threads.md | 站台總頁 | **33** | 33 | 整站總數 | …ensen、Kim、Ury、Amy Gallo、Maxwell）是按「架上有誰」畫的，與全站三十三頁實際挖出來的名字已經大部分重疊。 Porter（[什… |
+| `hbr-note` | 03-canon-guide.md | 站台總頁 | **33** | 33 | 整站總數 | …立一條**合集專用的分層規則**，再照四個書群逐群攤帳。 > 四十六本裡有四十三本被挖進全站三十三頁，只剩三本沒被任何一頁引用：《Managing St… |
 | `history-note` | 02-schools-in-dialogue.md | 站台總頁 | **32** | 32 | 整站總數 | …歷史、文明興衰、文化與社會史、戰爭與軍事、近現代與極權、歷史思維，與六個分類一一對應。 全站32 頁讀完，浮出來的是**三場對話**：歷史是被推著走的還… |
 | `image-style-note` | 03-canon-guide.md | 站台總頁 | **13** | 13 | 整站總數 | …人打的**。 《Dressing the Man》（2002）是比例與合身的百科級正典，全站十三頁概念頁有九頁掛著它。 [比例與合身](../concept… |
 | `investing-note` | 05-reading-path.md | 站台總頁 | **53** | 53 | 整站總數 | …細節在姊妹站 damodaran-note。  ## 站內動線：書讀到哪，頁就跟到哪  全站五十三頁概念是全程索引：六個分類各有 roadmap，從 b… |
@@ -78,7 +78,7 @@
 | `kiyosaki-note` | 02-threads.md | 站台總頁 | **14** | 14 | 整站總數 | …the-five-financial-iqs/" ---  首頁側寫列了清崎的六項貢獻，全站十四頁讀完，浮出來的是**同一個動作做了六次：先換定義，再… |
 | `kiyosaki-note` | 03-canon-tour.md | 站台總頁 | **14** | 14 | 整站總數 | …trepreneur-investor/work-to-learn/)都在這裡首次出現，全站14 頁概念頁有 4 頁直接引它。 **富爸爸，有錢有理：神奇的現… |
 | `lewis-note` | overview.ts | 站台總頁 | **13** | 13 | 整站總數 | …給分析版，《裸顏》給敘事版，讓佔有在一位敘事者身上現形五十年。" +         "全站十三頁分四區，對應這幾條線。",     },     {… |
-| `management-note` | 03-canon-guide.md | 站台總頁 | **30** | 30 | 整站總數 | …書的地位**：誰承重、誰補一句、誰歸姊妹站。 48 本裡 **40 本是脊梁**，目前 全站30 頁，多數脊梁只挖了一鏟，所以這也是一張標出哪裡還沒挖的… |
+| `management-note` | 03-canon-guide.md | 站台總頁 | **35** | 35 | 整站總數 | …本書的地位**：誰承重、誰補一句、誰歸姊妹站。 48 本裡 **40 本是脊梁**，目前全站 35 頁，多數脊梁只挖了一鏟，所以這也是一張標出哪裡還沒挖的… |
 | `marketing-note` | 02-schools-in-dialogue.md | 站台總頁 | **34** | 34 | 整站總數 | …明的文案讓人記住文案，清晰的文案讓人記住你要他做的事。 這個交會點不在任何一本書裡，是 全站34 頁互相連結之後浮出來的結構。… |
 | `navarro-note` | 04-critiques-and-limits.md | 站台總頁 | **27** | 27 | 整站總數 | …判斷」成立，前三路的觀察紀律都有一個沒寫進去的前提：**觀察者當下的狀態必須夠格**。 全站二十七頁裡只有這一頁談到這件事，而它排在最後一區。 這是策展… |
 | `navarro-note` | overview.ts | 站台總頁 | **27** | 27 | 整站總數 | …，<strong>誰提供心理舒適，誰就贏了</strong>。" +         "全站二十七頁分六區：四層各對應一區，另加一份《Three Minute… |
@@ -90,7 +90,7 @@
 | `peck-note` | 05-how-to-read.md | community 分類 | **5** | 5 | 分類頁數 | …*從組織與社群工作進來的讀者**：《不同的鼓聲》→《等待重生的世界》連讀是成立的短路徑，community 分類五頁全程隨行。 欠下的《心靈地圖》語彙（放棄、小小的死亡… |
 | `peck-note` | overview.ts | 站台總頁 | **17** | 17 | 整站總數 | …群、混亂、空、社群四階段，一路下沉到婚姻與職場的「文明有禮」。" +         "全站十七頁分三區，對應這三層。",     },     {… |
 | `peterson-note` | 03-canon-tour.md | meaning 分類 | **6** | 6 | 分類頁數 | …義是「對手」原型放大到國家尺度（終章〈The Hostile Brothers〉）。  meaning 分類六頁都出自此書：[意義的地圖：神話如何組織經驗](../… |
-| `philosophy-note` | 02-schools-in-dialogue.md | 站台總頁 | **35** | 35 | 整站總數 | …> 以下把七張卡連成三組對話，再記一筆卡片本身的結構問題。 > 分組不在任何一本書裡，是全站三十五頁互相連結之後浮出來的。  ## 斯多噶 ✕ 應用哲學 ✕ 東… |
+| `philosophy-note` | 02-schools-in-dialogue.md | 站台總頁 | **39** | 39 | 整站總數 | …> 以下把七張卡連成三組對話，再記一筆卡片本身的結構問題。 > 分組不在任何一本書裡，是全站三十九頁互相連結之後浮出來的。  ## 斯多噶 ✕ 應用哲學 ✕ 東… |
 | `relationships-note` | 02-schools-in-dialogue.md | 站台總頁 | **42** | 42 | 整站總數 | …/)：兩個不完美的人相處，困難是必然，也是成長的邀請。  這個共識不在任何一本書裡，是 全站42 頁互相連結之後浮出來的。 科學派給修復工具，靈性派給修復理由，… |
 | `science-note` | 02-schools-in-dialogue.md | 站台總頁 | **29** | 29 | 整站總數 | …語彙，同一個結構：先讓錯誤浮出水面，再讓它死在你之前。 這個交會點不在任何一本書裡，是 全站29 頁互相連結後浮出的結構，也是這裡叫科學**思維**而不是科學知… |
 | `security-note` | 05-reading-path.md | 站台總頁 | **16** | 16 | 整站總數 | …nalysis/03-basic-dynamic-analysis/" ---  > 這全站十六頁沒有唯一正確的讀序：四個切面同心，從任何一面切進去，… |
@@ -107,18 +107,18 @@
 | `taleb-note` | overview.ts | 站台總頁 | **15** | 15 | 整站總數 | …之痛說風險必須回到決策者身上，凸性不能靠把凹性丟給別人來達成。" +         "全站十五頁分四區，對應騙局、診斷、處方、倫理四層。",     },… |
 | `templar-note` | 02-threads.md | 站台總頁 | **14** | 14 | 整站總數 | …— 導論"     anchor: "docs/introduction/" ---  全站十四頁概念頁分在五個分類：守則、工作、人際、家庭、自我。 九本書… |
 | `templar-note` | overview.ts | 站台總頁 | **14** | 14 | 整站總數 | …heading: "Claims",       body:         "全站十四頁在講五件事：規則體而非理論體（方法）；不必宣揚（姿態… |
-| `thinking-note` | 02-threads-and-schools.md | 站台總頁 | **69** | 69 | 整站總數 | …話：判斷層的兩張處方、機制層的翻案同盟、向內層的接力。 > 這個分組不在任何一本書裡，是全站六十九頁互相連結之後浮出來的結構。  ## 第一組對話：判斷與偏誤… |
-| `tools-note` | 02-threads-and-schools.md | 站台總頁 | **31** | 31 | 整站總數 | …種，習慣卡底下有一場關於「什麼讓習慣黏住」的三方混戰。 > 這個結構不在任何一本書裡，是全站三十一頁互相連結之後浮出來的。  ## 時間管理卡之內：一張桌上的三… |
+| `thinking-note` | 02-threads-and-schools.md | 站台總頁 | **70** | 70 | 整站總數 | …話：判斷層的兩張處方、機制層的翻案同盟、向內層的接力。 > 這個分組不在任何一本書裡，是全站七十頁互相連結之後浮出來的結構。  ## 第一組對話：判斷與偏誤… |
+| `tools-note` | 02-threads-and-schools.md | 站台總頁 | **33** | 33 | 整站總數 | …種，習慣卡底下有一場關於「什麼讓習慣黏住」的三方混戰。 > 這個結構不在任何一本書裡，是全站三十三頁互相連結之後浮出來的。  ## 時間管理卡之內：一張桌上的三… |
 | `tracy-note` | 02-threads.md | 站台總頁 | **27** | 27 | 整站總數 | …anchor: "docs/01-the-laws-of-life/" ---  全站二十七頁概念頁分在四個分類裡：目標與成就、時間與執行、銷售與影響力… |
 | `uncle-bob-note` | overview.ts | 站台總頁 | **17** | 17 | 整站總數 | …smanship》熔成以 TDD 為基石的五大紀律與職業倫理。" +         "全站十七頁概念頁分三區，對應整潔程式碼、軟體架構、專業素養三個尺度。… |
 | `willard-note` | 02-threads.md | 站台總頁 | **12** | 12 | 整站總數 | …w-testament-charter-on-apologetics/" ---  > 全站十二頁概念讀完，最先沉澱下來的往往是幾句一再回來的口訣：「… |
 | `willard-note` | 04-critiques-and-limits.md | 站台總頁 | **12** | 12 | 整站總數 | …開場白。 這條他正面處理過，處理在體系的每個關節上。 「恩典不反對努力，反對的是賺取」在全站十二頁裡反覆出現（見[第二章](#02-threads)）… |
-| `writing-note` | 02-schools-in-conversation.md | 站台總頁 | **46** | 46 | 整站總數 | …哪張是其餘四張的供水系統。 > 這一章把五張卡連成四組對話；這個結構不在任何一本書裡，是全站四十六頁互相連結之後浮出來的。  ## 對話一：風格與清晰 ✕ 非虛… |
-| `wujun-note` | 02-threads.md | 站台總頁 | **17** | 17 | 整站總數 | …"docs/04-systematic-self-improvement/" ---  全站十七頁讀完，浮出來的是**一個命題與五種實現它的方式**。… |
-| `wujun-note` | 02-threads.md | tech-civilization 分類 | **5** | 5 | 分類頁數 | …長鏡頭，大勢不是玄學，是有定律的  要看清位置與方向，得先看見大勢。 第一支透鏡是歷史，tech-civilization 分類五頁。 [浪潮之巔](../concepts/tech-… |
-| `wujun-note` | 02-threads.md | science 分類 | **3** | 3 | 分類頁數 | …的人談格局，只能靠運氣站位。  ## 透鏡二：數學的顯微鏡，工程師給見識裝的另一隻眼  science 分類三頁是吳軍的本行。 [數學之美](../concepts… |
-| `wujun-note` | 02-threads.md | wisdom 分類 | **3** | 3 | 分類頁數 | …嗅出來的。  ## 方法論：元智慧，可遷移的那一層  具體領域的知識會過期，什麼不會？ wisdom 分類三頁的答案是「智慧的智慧」。 [元智慧](../conc… |
-| `wujun-note` | 02-threads.md | learning 分類 | **3** | 3 | 分類頁數 | …看的能力，元智慧把看到的東西變成可遷移的判斷力。  ## 養成：卓越是複利，不是事件  learning 分類三頁管時間。 [卓越](../concepts/lear… |
+| `writing-note` | 02-schools-in-conversation.md | 站台總頁 | **47** | 47 | 整站總數 | …哪張是其餘四張的供水系統。 > 這一章把五張卡連成四組對話；這個結構不在任何一本書裡，是全站四十七頁互相連結之後浮出來的。  ## 對話一：風格與清晰 ✕ 非虛… |
+| `wujun-note` | 02-threads.md | 站台總頁 | **26** | 26 | 整站總數 | …"docs/04-systematic-self-improvement/" ---  全站二十六頁讀完，浮出來的是**一個命題與五種實現它的方式**。… |
+| `wujun-note` | 02-threads.md | tech-civilization 分類 | **6** | 6 | 分類頁數 | …長鏡頭，大勢不是玄學，是有定律的  要看清位置與方向，得先看見大勢。 第一支透鏡是歷史，tech-civilization 分類六頁。 [浪潮之巔](../concepts/tech-… |
+| `wujun-note` | 02-threads.md | science 分類 | **4** | 4 | 分類頁數 | …的人談格局，只能靠運氣站位。  ## 透鏡二：數學的顯微鏡，工程師給見識裝的另一隻眼  science 分類四頁是吳軍的本行。 [數學之美](../concepts… |
+| `wujun-note` | 02-threads.md | wisdom 分類 | **5** | 5 | 分類頁數 | …嗅出來的。  ## 方法論：元智慧，可遷移的那一層  具體領域的知識會過期，什麼不會？ wisdom 分類五頁的答案是「智慧的智慧」。 [元智慧](../conc… |
+| `wujun-note` | 02-threads.md | learning 分類 | **6** | 6 | 分類頁數 | …看的能力，元智慧把看到的東西變成可遷移的判斷力。  ## 養成：卓越是複利，不是事件  learning 分類六頁管時間。 [卓越](../concepts/lear… |
 
 </details>
 
