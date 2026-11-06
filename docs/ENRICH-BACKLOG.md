@@ -173,7 +173,7 @@
 - **起草代理抓到的既有頁錯誤**：
   - 補掛 anchor（內容用了、章沒掛）：philosophy `way-of-water`（老子章）、`no-self-and-emptiness`（無我章），hbr `hiring-for-fit`、`better-decisions`，writing `composting`。
   - 改內容：philosophy `premeditatio-malorum` 刪掉頁面自加的「那不是預想，是焦慮」；design-patterns `oop-vs-functional` 點題句改成書的原話。
-  - **兩筆 B 型債記進 SOURCING-DEBT**：hbr `coaching-and-feedback` 整頁的 SBI 書裡沒有；`oop-vs-functional` 其餘「一級函數」幾句也沒有出處。要回原文改寫，留給下一輪。
+  - **兩筆 B 型債**：hbr `coaching-and-feedback` 的 SBI、design-patterns `oop-vs-functional` 的一級函數論，同日回原文改寫清償，校正表在 SOURCING-DEBT。
   - 單上幾句「作者自己說的判別變數」其實是導覽或既有頁的轉述（Bob 的「先分意圖與腳手架」、亞歷山大的「語彙可以永恆」、侯世達的「沒有小人卻有自我」、Stopford 的「坡道」、賴特的「世界被修復」等），起草代理一律改用原文。**教訓：Fable 開單時引的「原話」也要回源，單本身會帶進轉述。**
 - **判層**：philosophy 的 Great Thinkers、Daily Stoic 因新頁各散到三頁；兩本都是查閱體裁（資源庫、366 則日課），照規則保留 tool 並在 note 寫明理由。
 - **工具教訓**：補反向 related 時遇到三種寫法（單行陣列、prettier 多行陣列、YAML 條列），落盤腳本改成先解析再寫回單行；全星系 `,,` 掃描 0。

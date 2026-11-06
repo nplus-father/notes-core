@@ -48,18 +48,35 @@ done | sort -rn
 > 2026-08-04 的實測：`templar-note`／`navarro-note`（開站種子概念）與 `agile`／`covey`／`design` 的開站種子屬於 **B**，13+13 頁改寫後共抓到 8 處實質錯誤；六個作者站（nt-wright/fromm/lewis/schwager/stott/maxwell）屬於 **A**，58 頁抽驗後直接掛 anchor。
 
 
-## 待清：2 頁（2026-11-06 第二批起草時，起草代理回源抓到）
+## 待清：無
 
-這兩頁都有 anchor，所以 §1.2 的掃描抓不到；是 debate 頁的起草代理整章 grep 原文時發現「頁上的核心主張在掛的書裡找不到」。屬 **B 型**（憑既有理解寫的），要回原文逐段核對後改寫，不是補 anchor。
+2026-11-06 第二批起草時，起草代理回源抓到兩頁有 anchor、核心主張卻不在掛的書裡（§1.2 掃不到這一類），同日回原文改寫清償。都是 **B 型**。
 
-| 站 | 頁 | 書裡找不到的主張 | 已做的 | 還欠 |
-| --- | --- | --- | --- | --- |
-| hbr-note | `leadership-teams/coaching-and-feedback` | 整頁以 **SBI（情境—行為—影響）** 為骨架，另有「行為發生 48 小時內」的即時回饋節奏 | 無 | 兩本指南（coaching-employees、delivering-effective-feedback）全書 grep 不到 SBI 與 48 小時；radical-candor 書站也沒有。要照兩本指南實際的寫法（Batista 的威脅反應、Gottman 5:1、Bradford 的球網、Dowling 的直接）改寫核心段 |
-| design-patterns-note | `paradigms/oop-vs-functional` | 「很多 GoF 模式在補 OO 缺一級函數的洞」；同頁另有多處「一級函數讓模式縮成一行」 | 點題句改成書裡的原話（觀察者模式是事件驅動思想的簡化實現），takeaways 那條刪掉 | 頁上只掛鄭暉一本，該書沒有談 GoF 與一級函數；其餘幾句要嘛改掛 Bob 的 functional-design 第 5 章（他的說法是「部分對、整體不正確」，方向與頁上相反），要嘛刪 |
+**hbr `leadership-teams/coaching-and-feedback`（校正表）**
 
-同一輪順手修掉的（不留債）：philosophy `premeditatio-malorum` 刪掉頁面自加的「那不是預想，是焦慮」；以及八頁「內容用了某章、anchor 沒掛那章」的補掛（philosophy `way-of-water`、`no-self-and-emptiness`，hbr `hiring-for-fit`、`better-decisions`，writing `composting`，investing 上午三頁）。
+| 原本寫的 | 原文實際說的 |
+| --- | --- |
+| SBI（情境—行為—影響）是標準結構 | 兩本指南全書沒有；換成 Bradford「待在球網的自己這一邊」，只講行為與自身感受 |
+| 行為發生 48 小時內給回饋 | 書裡沒有時限；Dowling 說開完會走回辦公室的兩分鐘最好 |
+| 每週／每季／即時三層迴圈 | 書裡沒有；實際是持續性回饋加年度或半年度正式回饋 |
+| 教練時刻與指令時刻 | 書裡的判準是部屬經驗不足、需要立即改善時偏向教學 |
+| 信任三支柱、回饋是禮物或攻擊 | 掛的兩本沒有；換成 Dougherty 與 Manzoni 的接受條件 |
+| 三明治法的細節、HBR 調查、OKR 的 CFR | 書裡沒有；Valcour 與 Knight 的說法保留，其餘刪 |
 
-## 上一輪：無
+SBI 同時滲進導覽五章、mastery、overview 與 feedback-fallacy 頁，導覽爭點一改以球網原則立論。**一個沒出處的框架進了概念頁，就會被導覽放大成整場爭點**，這正是 note-guide 擋薄站的理由。
+
+**design-patterns `paradigms/oop-vs-functional`（校正表）**
+
+| 原本寫的 | 原文實際說的 |
+| --- | --- |
+| 多數 GoF 模式在補 OO 缺一級函數的洞 | Bob：部分正確，整體不正確；模式通用，形式可能受語言限制 |
+| Strategy＝傳函數、Decorator＝`g(f)`、Factory＝thunk、Observer＝stream | 書裡沒有這組對應；Bob 用 `defmulti` 與 `journaled-shape` |
+| 有狀態偏 OOP、型別開放偏介面 | 書裡沒有，且 Bob 反對：沒有任何複雜度高到必須放棄不可變性 |
+| 混用要劃清範式邊界 | 書裡沒有；Bob 主張兩者完全相容 |
+
+標題改為「OOP vs FP：兩種範式的對照」，導覽三句、mastery 一條、gof-in-functional 兩句同步。
+
+**這類債的抓法**：grep 掃不到，只有起草鄰頁時整章回源才會撞見。對照頁的起草代理是這輪最有效的稽核員。
 
 2026-08-04 一輪清償（1350 頁、457 頁未溯源 → 0），2026-08-05 重驗 1441 頁全部有 anchor。
 之後各輪 enrich 抓到的 **B 型債校正表**（08-06 第 3 波、08-09 taleb、08-20 investing／data-systems、
