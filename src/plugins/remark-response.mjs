@@ -6,35 +6,28 @@ import { visit } from "unist-util-visit";
  * 「✍️ 我的回應」標頭。內部 Markdown 照常被 remark 解析。
  *
  * 用途：每個主題頁的「兩區塊」中，屬於「我的回應／心得／Q&A」的那一塊。
- * 與書本位正文分開呈現。空內容時顯示低調 placeholder。
+ * 與書本位正文分開呈現。
+ *
+ * 空內容**不渲染**（v0.44.0）：來源檔仍保留 `:::response` 空區塊當兩層模型的標記，但頁面上
+ * 不出現任何東西。與 ✅ Check、📖 Guide 的 tab 同一原則：有資料才出現。v0.43 以前這裡會畫一個
+ * 「No notes yet」的空框，2026-11-06 盤點時 2233 個概念頁有 2197 頁都是那個空框。
  */
 export default function remarkResponse() {
   return (tree) => {
-    visit(tree, (node) => {
+    visit(tree, (node, index, parent) => {
       if (node.type !== "containerDirective" || node.name !== "response") return;
 
-      const data = node.data || (node.data = {});
-      data.hName = "section";
-      data.hProperties = { className: ["my-response"] };
-
-      // 空內容 → 低調 placeholder
       const hasContent = (node.children || []).some(
         (c) => !(c.type === "paragraph" && (!c.children || c.children.length === 0))
       );
       if (!hasContent) {
-        node.children = [
-          {
-            type: "paragraph",
-            data: { hProperties: { className: ["response-empty"] } },
-            children: [
-              {
-                type: "text",
-                value: "No notes yet — jot your takeaways or Q&A here.",
-              },
-            ],
-          },
-        ];
+        parent.children.splice(index, 1);
+        return index;
       }
+
+      const data = node.data || (node.data = {});
+      data.hName = "section";
+      data.hProperties = { className: ["my-response"] };
 
       // 標頭
       node.children.unshift({

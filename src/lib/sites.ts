@@ -123,11 +123,12 @@ export const sites: Site[] = [
   // __NEW_PERSON_SITE__ (new-note.sh 會在此行前插入新人物站)
 ];
 
-// 跨站連結（seeAlso）合法的 site key 清單——只約束 seeAlsoMode "strict" 的站；
-// 那些站的 content.config.ts 用它建 z.enum。"open" 的站用開放 string，不在此列。
-export const siteKeys = sites
-  .filter((s) => s.seeAlsoMode === "strict")
-  .map((s) => s.key) as [string, ...string[]];
+// 跨站連結（seeAlso）合法的 site key 清單＝registry 全部成員。seeAlsoMode "strict" 的站用它建
+// z.enum（拼錯 key 直接 build 紅）；"open" 的站用開放 string。
+// v0.44.0 前這張表只含 strict 站自己的 key，等於禁止技術站連任何作者站（clean-code 連不到
+// uncle-bob、kent-beck、fowler）；2026-11-06 補跨站連結時撞到才改。封閉集合的目的是抓拼字錯，
+// 不是限制去向。
+export const siteKeys = sites.map((s) => s.key) as [string, ...string[]];
 
 /** 知識軸分群——portal 分區與 core 首頁（schools／profile）都依這個軸。 */
 export const topicSites = sites.filter((s) => s.axis === "topic");

@@ -64,11 +64,6 @@
     color: var(--accent);
     margin: 0 0 0.2rem;
   }
-  .response-empty {
-    font-style: italic;
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
 }
 
 /* 首頁參考書架的樣式**不在這裡**（v0.29.2 移走）。原本這裡有一份 `.bookshelf` 的

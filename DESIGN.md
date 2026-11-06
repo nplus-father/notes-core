@@ -124,7 +124,7 @@ export const overview = defineOverview({
 ### 5.3 兩層模型（**書本位** vs **心得層**）
 
 - **正文層 = 書本位**：內容精確由 owned books 組成、可溯源；引不到書的主張不寫進正文。譯者角色限縮在繁中轉譯、結構、串接、illustrative 程式碼。
-- **心得 / Q&A 層 = `:::response`**：與正文**分開、明標**（notes-core `remark-response` 渲染成「✍️ 我的回應」）。**只收**真實 Q&A 或使用者心得；沒有就留空（低調 placeholder）。**不自行杜撰這層。**
+- **心得 / Q&A 層 = `:::response`**：與正文**分開、明標**（notes-core `remark-response` 渲染成「✍️ 我的回應」）。**只收**真實 Q&A 或使用者心得；沒有就留空。**不自行杜撰這層。** **v0.44.0 起空塊不渲染**：來源檔仍保留 `:::response` 空區塊當兩層模型的標記，頁面上什麼都不出現——與 ✅ Check／📖 Guide「有資料才出現」同一原則。v0.43 以前畫一個「No notes yet」空框，2026-11-06 盤點時 2233 頁有 2197 頁是那個空框，佔位變成了噪音。
 
 ## 6. 概念總覽 = 分層學習路徑
 
@@ -132,6 +132,7 @@ export const overview = defineOverview({
 
 - 資料源＝各分類 `src/content/concepts/<cat>/_index.md` 的 **`roadmap`** 欄位：`[{slug, title, tier:'basic'|'advanced'}]`。
 - 已寫 vs 待寫由實際 `.md` 檔決定（SSOT）；`roadmap` 的 planned 節點＝**書已涵蓋、頁未寫**的 backlog，每個都應可溯源到某本 owned book 的章節。
+- **概念卡／題目卡的狀態點（v0.44.0）**：只有 `studied`／`reviewed` 畫點，`draft` 不畫。`draft` 是 schema 預設值，記的是 Andrew 自己讀過沒；2026-11-06 時 2233 頁有 2134 頁是它，每張卡都一顆灰點等於沒有資訊。資料欄位不變，只是預設狀態不佔視覺。
 
 ## 6.1 檢核頁 `/check/`（v0.19.0）
 
@@ -164,7 +165,7 @@ export const overview = defineOverview({
 
 - **分類 = 資料夾 + `_index.md`**：`src/content/concepts/<cat>/_index.md` frontmatter 當 config（`name/icon/order/intro/roadmap/mastery`）。題庫站同理 `src/content/problems/<domain>/_index.md`（`site.config` 設 `hasProblems: true`）。
 - **站內連結**由 notes-core `withBase()` 處理（base = `/<slug>`）；各站不寫 shim。
-- **跨站連結**用 frontmatter `seeAlso`（`site` + `path` + `label`）；schema factory `openSeeAlso: true` 時不寫死 enum。
+- **跨站連結**用 frontmatter `seeAlso`（`site` + `path` + `label`）；schema factory `openSeeAlso: true` 時不寫死 enum。strict 站（技術站群）的 enum＝`sites.ts` 的 `siteKeys`，**v0.44.0 起涵蓋 registry 全部 79 個 key**（v0.43 以前只含技術站自己，技術站因此連不到 uncle-bob／kent-beck／fowler 等作者站——封閉集合是為了抓拼字錯，不是限制去向）。頁級缺口由 `tools/export-seealso-gaps.py` 盤點（判準＝同書同章）。
 - **Node** ≥ 20（Astro 需求；`.nvmrc` 釘 22）。若曾在 Node 18 裝過依賴、build 報缺 `@rolldown/binding-linux-x64-gnu`，`rm -rf node_modules package-lock.json` 後在 Node ≥ 20 重裝。
 - **站台資料在 dev 會熱更新（v0.37.0）**：`src/site.config.ts` 與 `src/data/*.ts` 只被 `astro.config.mjs` import，不在 Vite 的 module graph 裡，改了不會有任何反應——v0.36.0 以前必須重跑 `npm run dev` 才看得到。現在整合器在 dev 時把 `virtual:notes-core/site` 從「啟動時的 JSON 快照」換成**轉發到真檔案**（`import { overview } from "/src/data/overview.ts"`），Vite 因此會監看它們，存檔約 1 秒生效。前提是站台 config 原封不動轉交同名 export（68 站現行寫法）；名稱對不上就自動退回快照，維持舊行為。**build 路徑不變**（仍是快照，產出經位元比對相同）。
   - 別改用 `addWatchFile` 讓 dev server 重啟解這題：實測 Astro 7.0.7 在 config restart 之後，content layer 的檔案監看不會重新掛上，markdown 從此靜悄悄不再熱更新，直到完整重跑 `npm run dev`。同理，`touch astro.config.mjs` 這個手動招式也有這個副作用。
