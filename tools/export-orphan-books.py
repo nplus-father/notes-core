@@ -155,7 +155,7 @@ def load_portal():
     for owner in PORTAL_OWNERS:
         try:
             out = subprocess.run(
-                ["gh", "repo", "list", owner, "--limit", "2000", "--json", "name,description,repositoryTopics"],
+                ["gh", "repo", "list", owner, "--limit", "5000", "--json", "name,description,repositoryTopics"],
                 capture_output=True, text=True, timeout=120, check=True,
             ).stdout
         except (OSError, subprocess.SubprocessError):

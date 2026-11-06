@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-11-06T13:16:10+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T13:17:32+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1974 個 repo），其中 `nplus-kind-book` 的書 repo 1829 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，1981 個 repo），其中 `nplus-kind-book` 的書 repo 1836 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -22,9 +22,9 @@
 | 孤兒書（沒有任何站的 bibliography 指到） | **0** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **9** | 不列孤兒、不再提醒 |
-| 死鏈 slug（bibliography 指到不存在的 repo） | **7** | 首頁書架封面 404 |
+| 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
-| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **6** | 延伸閱讀連結 404 |
+| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
 ## 一、孤兒書：0 本沒有任何站認領
 
@@ -55,19 +55,11 @@
 
 ### 1e. 全部 0 本（依 leaf 分組）
 
-## 二、死鏈 slug：7 個
+## 二、死鏈 slug：0 個
 
 bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的封面會 404**。兩種收法（2026-08-04 那批 8 個就是這樣分的）：書其實該有就**補建書 repo**，書根本不存在就**撤掉這筆 `slug`**，不要掛死鏈。
 
-| slug | 登記在 |
-| --- | --- |
-| `how-i-invest-my-money` | personal-finance-note |
-| `how-i-learned-to-understand-the-world` | history-note |
-| `how-leaders-learn` | leadership-note |
-| `how-linux-works` | cloud-infra-note |
-| `how-not-to-die` | wellness-note |
-| `how-people-grow` | cloud-note |
-| `how-successful-people-think` | growth-note、maxwell-note |
+無——所有 `slug` 都指得到真的 repo。
 
 ## 三、`owned` 沒有 slug：0 筆
 
@@ -75,18 +67,11 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 
 無——每一筆 `owned` 都有 slug。
 
-## 四、死鏈 anchor：6 個 slug
+## 四、死鏈 anchor：0 個 slug
 
 內容頁 `furtherReading` 的 `book:` 指到不存在的書 repo——延伸閱讀連結 404。[SOURCING-DEBT](./SOURCING-DEBT.md) 只驗過「頁有沒有 anchor」，沒驗過「anchor 到的書在不在」。
 
-| book slug | 出現在哪些頁 |
-| --- | --- |
-| `how-i-learned-to-understand-the-world` | `history-note/concepts/historical-thinking/factful-worldview.md` |
-| `how-leaders-learn` | `leadership-note/concepts/mindset/five-levels-of-leadership.md`、`leadership-note/concepts/mindset/learn-how-to-learn.md`、`leadership-note/concepts/vision/confront-brutal-facts.md` |
-| `how-linux-works` | `cloud-infra-note/concepts/infrastructure/virtualization-and-containers.md`、`cloud-infra-note/concepts/linux-networking/dns-and-network-services.md`、`cloud-infra-note/concepts/linux-networking/linux-processes-and-resources.md`、`cloud-infra-note/concepts/linux-networking/load-balancing.md`、`cloud-infra-note/concepts/linux-networking/tcp-ip-networking.md` 等 8 處 |
-| `how-not-to-die` | `wellness-note/concepts/nutrition-sleep/daily-dozen.md` |
-| `how-people-grow` | `cloud-note/concepts/growth/grace-truth-time.md`、`cloud-note/guide/01-who-is-cloud.md`、`cloud-note/guide/02-threads.md`、`cloud-note/guide/03-canon-tour.md` |
-| `how-successful-people-think` | `maxwell-note/concepts/growth/how-successful-people-think.md`、`maxwell-note/guide/05-how-to-read.md` |
+無——所有 anchor 都指得到真的 repo。
 
 ## 重跑
 
