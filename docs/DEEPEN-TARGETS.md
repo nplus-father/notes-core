@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-06T10:37:15+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T12:34:21+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,9 +15,9 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **132** |
+| **候選（大部頭 × ≤1 頁）** | **130** |
 | 涉及的站 | 48 |
-| 依體裁排除 | 5 |
+| 依體裁排除 | 7 |
 
 ## 一、前 30 名（跨站總排序）
 
@@ -42,17 +42,17 @@
 | 17 | 61 | 1 | `stott-note` | 當代講道藝術 |
 | 18 | 60 | 1 | `wan-weigang-note` | 高手相對論 |
 | 19 | 60 | 1 | `science-note` | 高手相對論 |
-| 20 | 58 | 1 | `biblical-studies-note` | 聖經導覽手冊：逐卷讀經的藝術 |
-| 21 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
-| 22 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
-| 23 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
-| 24 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
-| 25 | 53 | 1 | `startup-note` | Anything You Want |
-| 26 | 52 | 1 | `wujun-note` | 見識 |
-| 27 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
-| 28 | 52 | 1 | `habits-note` | 18 Minutes |
-| 29 | 52 | 1 | `growth-note` | Mastery |
-| 30 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
+| 20 | 56 | 1 | `data-systems-note` | Versioning in an Event Sourced System |
+| 21 | 55 | 1 | `travel-note` | 破億下載 Podcast 製作人的經營指南 |
+| 22 | 55 | 1 | `personal-finance-note` | The Millionaire Fastlane 快速致富 |
+| 23 | 55 | 1 | `habits-note` | 365 Days With Self-Discipline |
+| 24 | 53 | 1 | `startup-note` | Anything You Want |
+| 25 | 52 | 1 | `wujun-note` | 見識 |
+| 26 | 52 | 1 | `management-note` | The Five Dysfunctions of a Team 團隊領導的五大障礙 |
+| 27 | 52 | 1 | `habits-note` | 18 Minutes |
+| 28 | 52 | 1 | `growth-note` | Mastery |
+| 29 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
+| 30 | 51 | 1 | `wellness-note` | The 4-Hour Body 身體調校聖經 |
 
 ## 二、依站分組
 
@@ -87,11 +87,9 @@
 - **境界** — 36 章 / 1 頁（`wujun-realm`）
 - **卓越** — 36 章 / 1 頁（`wujun-excellence`）
 
-### `biblical-studies-note`（9 本）
+### `biblical-studies-note`（7 本）
 
 - **Exegetical Fallacies** — 63 章 / 1 頁（`exegetical-fallacies`）
-- **聖經導覽手冊：逐卷讀經的藝術** — 58 章 / 1 頁（`how-to-read-the-bible-book-by-book`）
-- **聖經經典500問** — 51 章 / 1 頁（`hard-sayings-of-the-bible`）
 - **上帝子民的新約導論** — 46 章 / 1 頁（`new-testament-in-its-world`）
 - **走入中東看耶穌** — 39 章 / 1 頁（`jesus-through-middle-eastern-eyes`）
 - **新約的聖經神學** — 38 章 / 1 頁（`a-new-testament-biblical-theology`）
@@ -334,10 +332,12 @@
 
 - **Practical Malware Analysis** — 30 章 / 1 頁（`practical-malware-analysis`）
 
-## 三、依體裁排除：5 本
+## 三、依體裁排除：7 本
 
 這些書章節數必然很高，但體裁上就不該挖成多頁——不排除會永遠霸佔排行前段。清單在 `export-deepen-targets.py` 的 `EXCLUDED_KINDS`；加新的要寫**體裁**理由，「暫時不想挖」屬於選題，不該寫進工具。
 
+- `biblical-studies-note` — 聖經導覽手冊：逐卷讀經的藝術：逐卷導覽，按卷查閱
+- `biblical-studies-note` — 聖經經典500問：逐條釋疑合輯，按經文查閱
 - `history-note` — 古拉格群島：文學性紀實巨著
 - `lewis-note` — The Screwtape Letters：書信體，31 封短信各千餘字
 - `lewis-note` — 納尼亞傳奇（七部曲）：小說七部曲

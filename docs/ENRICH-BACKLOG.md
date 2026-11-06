@@ -159,6 +159,390 @@
 - [ ] 旁註：leetcode-note 自維護前端（39 個本地 .astro／.ts），`galaxy-checkup` 不掃，它自己的 TODO 說 407 題還沒人背書；portal repo（`sites/`）不在本機，portal 層本輪沒體檢；fork 回報 `systematic-theology` 書 repo 內容讀起來是林鴻信而 bibliography title 寫「章力生等華人卷」，起草第 2 張前請核對；DEEPEN-TARGETS 用章節數排序把 31 封短信的《地獄來鴻》當大部頭，建議「依體裁排除」加書信體。
 
 
+### B 組第二批（Fable 2026-11-06 中午開單；起草交 Opus）— 第二鏟 21 頁 claim ＋ 對照頁 23 頁 debate，共 44 頁
+
+**開單方式**：六個 Fable fork 平行讀原文（書 repo 目錄＋章首、兩造既有頁整頁、導覽第三／四章該段），每張單寫明落點分類、slug、中立標題、骨幹書與章節目錄（全部 `[ -d ]` 驗過）、避開哪些既有頁的什麼、判別變數只寫作者自己說的。主會話逐張審過：形狀不過（導覽自己判互補／接力、只有一造有頁、兩造出自同一本書同一頁）的一律不開，理由留在單上。
+**順手修掉的既有頁漏掛 anchor（已 commit）**：management `jelled-teams` 補 Peopleware 三章（西班牙理論、Coding War Games、E-Factor）；philosophy `philosophy-as-consolation` 補《哲學的慰藉》第 6 章（尼采）。`export-deepen-targets.py` 體裁排除再加逐卷導覽與逐條釋疑兩本（候選 132→130）。
+**Opus 開工指令**：沿用上面那段（前置拉 repo、§6 紀律、每頁一個子代理、anchor 從單上取並 `[ -d ]`、交回五筆具名事實逐字原文、主會話回源 grep、補 roadmap／related 雙向／導覽連結、蓋 `enrichedAt`、tier-audit 與 checkup 0、單行英文 commit 不 push）。起草順序：先 debate 的 cloud-infra 7、8 與 clean-code 2、1（兩造最乾淨），再 theology 1、2 與 philosophy 2、3，再第二鏟 management 1、3、biblical-studies 2、6、7、wujun 7、2、4，其餘照各單的建議順序。theology debate 第 3 張與 philosophy debate 第 1 張各有附帶條件（重疊過半改補強；先補 anchor 再寫，anchor 已補）。**補 related 用解析後重寫單行，不要 regex 插尾**（上午踩過 `,,`）。
+
+#### management-note 第二鏟選題單（DEEPEN-TARGETS 六本大部頭，Fable 開單 2026-11-06）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有 30 頁重疊低於一半，能被單獨引用。
+這站 42 本 spine 有 37 本只一頁、頁/spine 0.75，第二鏟價值高；但 leadership-note 是姊妹站，已在那邊挖過的章不重挖，分工寫明。
+每張單寫明第一鏟掛了什麼、第二鏟只寫什麼、避開哪幾頁；章節目錄名全部 `[ -d ]` 驗過。
+
+##### 開單（5 張）
+
+1. principles `drum-buffer-rope`「鼓、緩衝、繩：讓非瓶頸遷就瓶頸的排程」— goal-ongoing-improvement（21-chapter-21、25-chapter-25、26-chapter-26、28-chapter-28、39-chapter-39）。
+   第一鏟（theory-of-constraints）掛 05、08、13、19、36 五章，寫的是目標、三指標、相依事件與波動、瓶頸小時成本、五步驟與慣性；鼓與繩只在 core 一條裡帶過一句。
+   只寫排程機制：紅綠標籤讓全廠知道什麼重要（21）、啟動資源不等於利用資源與銑床區的「假瓶頸」（25）、健行隊伍第二版與由瓶頸決定投料的鼓與繩（26）、批量減半、非瓶頸省下的一小時是海市蜃樓（28）、畢區放棄成本指標後緩衝與閒置產能的取捨（39）。
+   避開 theory-of-constraints 的目標與三指標、五步驟、檢查假設；避開 managerial-leverage 的個人層槓桿。
+   claim 頁；related 連 theory-of-constraints、deming-fourteen-points、managerial-leverage、execution。
+   第三鏟候選留著：34-chapter-34、35-chapter-35、40-chapter-40 的管理思考法（蒐集事實走不通、門得列夫的內在秩序、改變什麼／改成什麼／如何造成改變），與既有頁「檢查假設」一節有部分重疊，排在這張之後。
+
+2. org-people `hiring-and-turnover`「找對的人與留住人：面試看作品、流動率的帳、人力資本是投資」— peopleware（03-the-right-people/01-the-hornblower-factor、03-the-right-people/03-hiring-a-juggler、03-the-right-people/05-childhoods-end、03-the-right-people/06-happy-to-be-here、03-the-right-people/07-human-capital）。
+   第一鏟（jelled-teams）只掛 04-growing-productive-teams，寫的是心流、加班、凝結團隊與 teamicide。
+   只寫第三部：管理者改變不了人所以要找對人（Hornblower）、面試要看作品集與試演（雜耍演員）、世代差異是科技對環境（童年末日）、流動率的顯性成本與隱性成本、人力投資在損益表上被記成費用（人力資本）。
+   避開 jelled-teams 的心流與 teamicide，避開 first-who-then-what 的柯林斯「先找人再找事」與 staff-on-strengths 的杜拉克用人之長，兩頁只在 related 連過去。
+   claim 頁；related 連 jelled-teams、first-who-then-what、staff-on-strengths、performance-review。
+   順帶一筆要修既有頁：jelled-teams 正文用了西班牙理論（01-managing-the-human-resource/03-vienna-waits-for-you）、E-Factor 與腦力時間（02-the-office-environment/05-brain-time-vs-body-time）、Coding War Games（02-the-office-environment/02-you-never-get-anything-done），anchor 卻只掛第四部，起草時一併補這三章進 jelled-teams 的 furtherReading。
+   第三鏟候選：05-fertile-soil（自癒系統、會議與獨白、浪費人時間是管理終極罪、讓改變成為可能、組織學習）。
+
+3. org-people `competence-and-clarity`「能力與清晰：下放控制的兩根支柱怎麼蓋」— turn-the-ship-around（03-competence/01-mistakes-just-happen、03-competence/02-we-learn、04-clarity/03-leadership-at-every-level、04-clarity/08-a-new-method-of-resupplying、04-clarity/09-ripples）。
+   第一鏟（intent-based-leadership）掛 02-control，寫的是「我打算」、改基因碼、拆監控、兩支柱只在一個 details 裡各一句。leadership-note 的 coaching/leader-leader 掛 01、02 兩部，第三、四部兩站都沒挖。
+   只寫第三、四部：紅牌事件的八小時檢討怎麼推出慎重行動（03/01）、魚雷室事故與「沒有能力的控制就是混亂」（03/02）、指導原則怎麼真的拿來做決策而不是掛牆上（04/03）、荷莫茲海峽那次「賦權還不夠」（04/08）、交出指揮權十二年後的漣漪（04/09）。
+   避開 intent-based-leadership 的「我打算」語言、基因碼、拆監控，避開 shared-consciousness 的 McChrystal；seeAlso 連 leadership 站的 coaching/leader-leader（已存在）。
+   claim 頁；related 連 intent-based-leadership、shared-consciousness、drive、one-on-one。
+
+4. principles `strategy-planning-five-steps`「策略規劃：市場區隔、核心競爭力與制訂優勢策略的五大步驟」— terry-cheng-professional-power（03-strategic-planning/19-define-market-segments、03-strategic-planning/22-core-competence-of-startup-teams、03-strategic-planning/23-capability-and-monetization、03-strategic-planning/24-strategy-vs-execution、03-strategic-planning/25-five-steps-of-competitive-strategy、03-strategic-planning/31-nokia-rise-and-fall）。
+   第一鏟（terry-cheng-rethinking）只掛 04-corporate-mission/36 德州儀器變革一章；第三部策略規劃十三章一字未用。
+   只寫程天縱自己的框架：市場區隔是第一步、核心能力與核心競爭力之辨、能力與變現、策略與執行孰重、五大步驟、Nokia 戰勝對手卻輸給時代。
+   避開 terry-cheng-rethinking 的大歷史觀與管理理論更替、terry-cheng-on-culture 的洋蔥圈；business-strategy-note 已有 porter-five-forces 與 value-proposition-fit，波特與價值主張不在這頁重講，seeAlso 連過去（起草前 `ls ../business-strategy-note/src/content/concepts/*/` 確認 path）。
+   claim 頁，importance 3；related 連 terry-cheng-rethinking、purpose-of-business、marketing-and-innovation、disruptive-innovation。
+
+5. managers-work `truth-lies-and-right-wrong`「說真話，但要能聽懂三種假話：真假、是非與權力的灰色空間」— terry-cheng-business-management（02-rethinking-leadership/16-changing-hearts-highest-leadership、02-rethinking-leadership/17-telling-truth-hearing-three-lies、02-rethinking-leadership/18-right-wrong-beyond-true-false、02-rethinking-leadership/19-the-gray-space-of-power、02-rethinking-leadership/20-three-small-management-stories）。
+   第一鏟（terry-cheng-rethinking）掛 01/01 以人為本，正文用了 13 管理與領導時機、15 改革專業關懷、12 透明溝通、中國惠普六年；第二部 16 到 20 沒用。
+   只寫：當上主管後假話變多、三種假話的分級（17）、真假基於事實而是非基於利他（18）、權力空間裡的灰色地帶與判斷力（19）、改變人心是領導的最高境界（16）、三個四兩撥千斤的小故事裡惠利特答離職率那一則（20）。
+   避開 terry-cheng-rethinking 的管理對領導、以人為本、成本鴉片、中國惠普改革；避開 idea-meritocracy 的達利歐極度透明制度（那是系統設計，這頁是主管的聽力）。
+   claim 頁，importance 3；related 連 terry-cheng-rethinking、idea-meritocracy、one-on-one、performance-review。
+
+##### 不開（1 本）
+
+- five-dysfunctions-of-a-team《團隊領導的五大障礙》：不開。本站 trust-and-team-dysfunctions 已用 06-the-model 寫完模型與逐層工具；leadership-note 另有三頁（team/five-dysfunctions 掛 01-the-fable、02-under-achievement、06-the-model，team/vulnerability-based-trust、team/healthy-conflict 掛 06 與 03/17），寓言章歸那邊。剩下 03-lighting-the-fire、04-heavy-lifting、05-traction 是寓言敘事，再開只會是故事重述。tier 維持 spine，承諾已由既有頁兌現。
+
+##### 小結
+
+- 開 5 張，全部 claim 頁；這站的大部頭都是單一作者體系書，沒有「一個問題多本書吵」的形狀。
+- 不開 1 本，tier 不動。
+- 兩本程天縱各開一張，分別落 principles 與 managers-work，和既有的 rethinking、on-culture 兩頁合成四頁，實務派在原理層與主管層都有聲音。
+- 姊妹站分工：五大障礙的寓言歸 leadership；Turn the Ship Around 的第一、二部歸 leadership 的 leader-leader，第三、四部這站挖；波特與價值主張歸 business-strategy。
+- 起草順序建議：1、3（最厚的材料）→ 2（含修既有頁 anchor）→ 5、4。
+- 旁註：jelled-teams 既有頁有三章 anchor 缺口（見第 2 張），不必等第二鏟也可以先補。
+
+#### wujun-note 第二鏟選題單（DEEPEN-TARGETS 九本，Fable 開單 2026-11-06）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，頁要能單獨被引用、主張要標得到章節 anchor、與既有 17 頁重疊低於一半。
+這站是人物站、一書一頁，第一鏟全是「整本書的導覽頁」，每本書的各章在既有頁上多半只有一句。
+所以第二鏟一律選「一章或一組相鄰章撐得起的單一主張」，不再寫整本書；吳軍的成長系列互相重講，選題前逐一比對過別本書撐的頁。
+書 repo 是摘要，章節短；材料不到一萬字的章不單獨開頁，合併相鄰章或不開。
+
+##### 開單（9 張）
+
+1. learning `elite-admissions-unfair-by-design`「名校錄取為什麼不透明：一場不公平競爭的解剖」— wujun-road-to-university（06-applying-to-and-being-admitted-by-elite-private-universities/01-anatomy-of-an-unfair-competition、06-.../02-how-the-unfairness-arose、06-.../03-basic-admission-requirements、06-.../05-what-asian-students-and-parents-can-do）。
+   第一鏟（wujun-university）掛的是第 1、2、13 章：大學的理念、紐曼對洪堡、文理學院。第 6 章八萬字沒碰。
+   只寫錄取競爭為什麼不公平、不透明為何是刻意設計、基本要求是哪幾項、亞裔學生與家長能做什麼。
+   避開 wujun-university 的大學理念與通才專才；避開 wujun-math-course 那句哈佛提前申請 13.4% 的機率算術。
+   claim 頁；related 連 wujun-university、wujun-excellence、wujun-insight。
+
+2. insight `business-means-spending-more`「商業的本質是讓人多花錢，不是幫人省錢」— wujun-insight（7-essence-of-business/1-business-is-spend-more、7-essence-of-business/2-management-secret-no-choice、7-essence-of-business/3-third-eye-beauty-product-stages）。
+   第一鏟（wujun-insight）掛第 1、2 章，商業那章只在收尾段落留了一句蔦屋書店。
+   只寫省下來的錢與時間最終去了哪裡、兩個相反的趨勢、蔦屋的生活平台、「不給選擇」的經營祕訣（蘋果三星華為砍產品線、對內管理同理）、第三眼美女與產品階段。
+   避開 wujun-insight 的幸福與成功、減法、偽工作者；避開 wujun-tides 的產業興衰定律。
+   claim 頁；related 連 wujun-insight、wujun-tides、wujun-pattern。
+
+3. learning `hand-before-mind`「先動手還是先動腦：行動是答案」— wujun-abundance（ch04-methods-of-action/01-hand-before-mind、ch04-methods-of-action/02-mind-before-hand、ch04-methods-of-action/03-action-is-the-answer、ch04-methods-of-action/04-beyond-just-brain、ch04-methods-of-action/05-step-back-to-see-problem）。
+   第一鏟（wujun-abundance）掛第 1 章，正文寫到第 1 到 3 章與「從術到道」；第 4 章做事方法在既有頁只是四種能力清單裡的四個字。
+   只寫先動手與先動腦各適用什麼情境、為什麼行動本身是答案、不只用腦還用什麼、退一步看問題。
+   避開 wujun-abundance 的量級思維、機會成本、經歷與經驗之分；避開 wujun-pattern 的可疊加式進步。
+   claim 頁；related 連 wujun-abundance、wujun-pattern、wujun-meta-wisdom。
+
+4. insight `professional-vs-amateur`「專業與業餘的差別：細節、情緒與四大原則」— wujun-attitude（6-conduct-and-work/36-difference-professional-amateur、6-conduct-and-work/37-always-seek-better-way、6-conduct-and-work/38-obedience-is-first-step-to-lead、6-conduct-and-work/39-do-most-important-things-first）。
+   第一鏟（wujun-attitude）掛第 1 部，六大主題各一句，第 6 部「做人做事」只在收尾段落列了四個標題。
+   只寫一流人的細節、專業的情緒控制、實踐專業精神的四大原則、內田光子的例子、永遠找更好的方法、服從是學會領導的第一步（西點軍校）、先做最重要的事。
+   避開 wujun-insight 的偽工作者與職業盲點；避開 wujun-soul-of-computing 的五級工程師標尺。
+   claim 頁；related 連 wujun-attitude、wujun-insight、wujun-soul-of-computing。
+
+5. tech-civilization `cybernetics-and-systems-theory`「控制論與系統論：資訊論旁邊的兩把工具」— wujun-information-theory-40（04-extensions/01-cybernetics、04-extensions/02-systems-theory）。
+   第一鏟（wujun-information）掛前三個模組，資訊論本體已寫滿；第四模組「延伸」一字未提，站上只有 wujun-tech-history 一句「機械論讓位給系統論、控制論與資訊論」。
+   只寫維納控制論的三個要點（突破絕對時間觀、輸出反過來影響系統、用回饋自我調節）、阿波羅登月的兩種方法論對比、「輕預測重反應」；系統論的三個基本觀點與三個體會（整體大於部分之和、關上一扇門打開一扇窗、用系統論改進做事方法）。
+   避開 wujun-information 的熵、第二定律、信噪比、交叉驗證與最大熵原理；避開 wujun-intelligence 的機械思維對大數據思維。
+   claim 頁；related 連 wujun-information、wujun-tech-history、wujun-intelligence。
+
+6. science `learning-models-from-data`「數據怎麼變成模型：最大熵、貝氏網路與 EM 演算法」— wujun-beauty-of-math（ch20-maximum-entropy-model、ch24-bayesian-network、ch25-conditional-random-field、ch27-expectation-maximization）。
+   第一鏟（wujun-beauty-of-math）掛序與第 1 章，正文寫統計語言模型、HMM、搜尋四件套、PageRank、計算邊界；機器學習模型那組章節沒碰。
+   只寫最大熵模型的原理與訓練、貝氏網路與心血管疾病例子、詞分類的應用、條件隨機場、EM 演算法的期望與最大化兩步。
+   避開 wujun-beauty-of-math 的 HMM 與搜尋；避開 wujun-information 把最大熵當判斷原則的那條（雞蛋與籃子）；避開 wujun-intelligence 的托勒密與開普勒。
+   claim 頁；related 連 wujun-beauty-of-math、wujun-soul-of-computing、wujun-information。
+   這是九張裡材料最薄的一張：四章各兩千到四千字，合計約一萬二，正文目標 1400 到 1800 字，寫不滿就不要撐。
+   不選第 13、19 章（辛格的簡單哲學、數學模型的重要性）：兩章合計不到五千字，而且托勒密到開普勒那段 wujun-intelligence 已經講過。
+
+7. wisdom `civilization-is-thirty-meters`「文明只有三十米：貪婪、虛偽與好心辦壞事」— wujun-context（part-3-society/ch20-human-greed、part-3-society/ch21-is-hypocrisy-from-survival、part-3-society/ch23-civilization-is-only-30-meters、part-3-society/ch24-humans-are-not-gods）。
+   第一鏟（wujun-context）掛第一部歷史，社會那部在既有頁只有一條要點，貪婪、虛偽、偽雙贏、好心辦壞事各佔兩個字。
+   只寫高爾夫球場的觀察與「文明的範圍只有三十米」、擴大自我邊界為什麼是提升文明的關鍵、開市客塑膠袋與登機口輪椅的貪婪、貪婪的結果是損失、虛偽是不是生存所需、通向天堂的路也可能通向地獄（法國大革命、阿根廷）、好心辦壞事。
+   避開 wujun-context 的農業與工業兩次革命、財富三要素定義、漸進改良對推倒重來（阿克頓、托克維爾、柯立芝）；避開 wujun-realm 的尼采。
+   claim 頁；related 連 wujun-context、wujun-realm、wujun-attitude。
+   第 16 章「思想並不總是進步的」（兩個啟蒙運動、伯克）不選：它與既有頁的漸進改良要點同一條線，留第三鏟。
+
+8. wisdom `rationalism-as-a-tool`「理性主義的工具箱：從笛卡兒的方法到充足理由律」— wujun-realm（ch02-gaining-knowledge-through-rational-thinking/sec-2-what-is-rationalist-thinking、ch02-.../sec-3-what-is-logical-predictability、ch02-.../sec-4-is-there-a-systematic-way-to-find-truth、ch02-.../sec-5-sufficient-reasoning-every-effect-has-a-cause、ch02-.../sec-8-why-rationalism-is-not-omnipotent）。
+   第一鏟（wujun-realm）掛第 1 章，第 2 章在既有頁只有一句「理性主義與科學黃金時代的因果」。
+   只寫什麼是理性主義思考、邏輯可預測性、有沒有系統地找到真理的方法、充足理由律（凡事皆有因）、理性主義為什麼不萬能。
+   避開 wujun-realm 的境界公式與注意力、第 3 章經驗主義、第 4 章尼采；避開 wujun-math-course 的數學思維與笛卡兒；避開 wujun-meta-wisdom 的主人道德。第 6 節理性主義者能不能信上帝、第 7 節牛頓怎麼打開現代西方社會，只在段落裡一句帶到。
+   claim 頁；related 連 wujun-realm、wujun-math-course、wujun-meta-wisdom。
+
+9. learning `choosing-a-path`「選什麼路：職業教育、文科與理工科的取捨」— wujun-excellence（ch05-path-of-education/sec-2-trends-vocational-vs-higher-education、ch05-path-of-education/sec-3-future-humanities-vs-stem-majors、ch05-path-of-education/sec-5-environment-unrecognized-talent）。
+   第一鏟（wujun-excellence）掛後記與第 1 章，六章各一句；第 5 章「道路」在既有頁只有分類名。
+   只寫職業教育對高等教育的趨勢、文科理工怎麼選（中等收入陷阱與文科生數量無關、工業革命的真相、各國文理比例、蘇聯的教訓）、環境與未被看見的才能。
+   避開 wujun-excellence 的教育目的、廣度先於深度、節奏；避開 wujun-university 的通才專才（第 5 章第 4 節不選）；第 1 節教育資源不平等不寫，wujun-context 的當下部有同題材料，留給那邊。
+   claim 頁；related 連 wujun-excellence、wujun-university、wujun-insight。
+   材料約一萬三千字，正文目標 1400 到 2000 字。
+
+##### 不開（0 本）
+
+九本都是脊梁、每本都有一章以上沒被第一鏟碰到的材料，全部開單。
+
+##### 小結
+
+- 開 9 張，全部 claim 頁；人物站單一作者，沒有「一個問題多本書吵」的形狀。
+- 第一鏟是整本書導覽，所以第二鏟的紀律是「一章撐一頁」，起草時不要回頭重講全書。
+- 最薄的兩張是第 6（數學之美）與第 9（卓越），正文目標下修，寫不滿就停。
+- 起草順序建議：7、2、4（人生線，材料最厚）→ 1、3、9（教育與做事）→ 5、8（方法論）→ 6。
+- 每頁寫完補進該分類 `_index.md` 的 roadmap（tier: advanced），related 雙向；導覽第三章講那本書的那行補一句連到新頁。
+
+#### biblical-studies-note 第二鏟選題單（DEEPEN-TARGETS 九本大部頭，Fable 開單 2026-11-06）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，頁要能單獨被引用、主張要標得到具體章節 anchor、與既有 83 頁重疊低於一半。
+每張單寫明第一鏟掛了什麼、第二鏟只寫什麼、避開哪幾頁；章節目錄名全部是書 repo 裡實際存在的目錄。
+逐卷、逐條查閱體裁的書不開第二頁，改列進 `export-deepen-targets.py` 的體裁排除。
+
+##### 開單（7 張）
+
+1. hermeneutics `grammatical-fallacies`「文法謬誤：不定過去式、關身語態與冠詞規則」— exegetical-fallacies（02-grammatical-fallacies/01-the-flexibility-of-new-testament-greek、02-grammatical-fallacies/02-the-aorist-tense、02-grammatical-fallacies/04-the-middle-voice、02-grammatical-fallacies/06-conditionals、02-grammatical-fallacies/08-the-article-the-granville-sharp-rule、02-grammatical-fallacies/09-the-article-the-colwell-rule）。
+   第一鏟（exegetical-fallacies）掛了 01、03、04 三部，只寫字義、邏輯、預設三類謬誤，第 2 部一字未提。
+   只寫卡森為何文法例子反而少、新約希臘文的彈性、不定過去式不表「一次完成」、關身語態不等於反身、條件句的真值、Granville Sharp 與 Colwell 兩條冠詞規則各能證明什麼與不能證明什麼。
+   避開 exegetical-fallacies 的字根謬誤、語意時代錯置、錯誤二分；避開 nt-textual-criticism 的抄本異文。
+   claim 頁；related 連 exegetical-fallacies、hermeneutical-spiral、nt-textual-criticism、nt-use-of-ot。
+
+2. new-testament `canon-formation`「二十七卷怎麼成為新約：正典化的歷程與判準」— new-testament-in-its-world（08-textual-criticism-and-canon/02-canonization；08-textual-criticism-and-canon/01-textual-criticism 只在對照 Ehrman 時用一段）。
+   第一鏟（gospels-in-cultural-context）掛的是 01 方法論與 02 第一世紀世界；站上 83 頁沒有一頁講正典成形。
+   只寫正典化的歷程、各卷被認可的時間與判準、哪些書在邊緣、Wright 與 Bird 怎麼回答「誰決定的」。
+   避開 nt-textual-criticism 的抄本與異文論證（那頁以 Ehrman 為骨幹；Wright 的文本鑑別立場最多列 alternative 一段）、避開 gospels-in-cultural-context 的對觀問題與作者考證。
+   與 nt-wright-note 分工：那站的 new-testament-in-its-world 頁寫全書三軸與教學法（tier tool），這裡只取正典這一章；Paul 的部分（05-paul/02-primer）不開，nt-wright-note 已有 paul-and-the-faithfulness-of-god 頁。
+   claim 頁；related 連 nt-textual-criticism、gospels-in-cultural-context、reading-nt-as-history、hebrews-son-and-better-covenant。
+
+3. new-testament `jesus-and-women-middle-eastern-eyes`「耶穌與婦女：中東之眼下的幾次相遇」— jesus-through-middle-eastern-eyes（05-jesus-and-women/01-jesus-and-women-introduction、05-jesus-and-women/02-the-woman-at-the-well、05-jesus-and-women/03-the-syro-phoenician-woman、05-jesus-and-women/04-the-lady-is-not-for-stoning、05-jesus-and-women/06-the-widow-and-the-judge）。
+   第一鏟（birth-through-middle-eastern-eyes）只用了導論與降生一章；Bailey 的六大主題群裡婦女這一群完整未挖。
+   只寫舊約高峰與兩約之間的墜落、婦女門徒的證據、井旁婦人的白天與黑夜編排、敘利亞腓尼基婦人、行淫婦人、寡婦與法官；每個相遇只取 Bailey 的文化讀法。
+   避開 birth 頁的平行體工具箱與默示觀、避開 prodigal 頁的比喻方法論（比喻那一群留第三鏟）。
+   claim 頁；related 連 birth-through-middle-eastern-eyes、prodigal-through-middle-eastern-eyes、john-the-crucified-king、luke-written-for-certainty。
+
+4. biblical-theology `idolatry-and-image-restoration`「拜什麼就像什麼：偶像崇拜與神的形像的恢復」— a-new-testament-biblical-theology（05-part-4/01-idolatry-and-image、05-part-4/02-image-restoration-ot-synoptic、05-part-4/03-image-restoration-paul-hebrews-revelation）。
+   第一鏟（new-creation-storyline）掛導論、舊約主線、已然未然，取的是全書框架；第 4 部整部未挖。
+   只寫 Beale 的核心命題：罪的根源是拜偶像、人變得像所崇拜的、耶穌作為末世亞當在對觀福音書恢復形像、保羅與希伯來書與啟示錄的形像恢復。
+   避開 new-creation-storyline 的五步循環與末世透鏡；避開 adam-and-eve-archetypes 的 Walton 原型讀法（只在 related 連過去，不重講）。
+   claim 頁；related 連 new-creation-storyline、adam-and-eve-archetypes、genesis-one-functional-creation、eden-to-new-jerusalem。
+
+5. hermeneutics `knowing-god-through-his-word`「我們怎麼能知道：三種認識論立場與神人之言」— according-to-plan（02-biblical-theology-how/01-god-makes-himself-known、02-biblical-theology-how/02-but-how-can-we-know、02-biblical-theology-how/05-bible-is-divine-human-word）。
+   第一鏟（kingdom-according-to-plan）掛 01、02、03 三部整部，但方法那條只寫了「從基督開始也以基督為終」，認識論三立場與神人之言兩章沒有進頁。
+   只寫完全獨立於神、部分獨立於神、完全依賴啟示三種立場及其後果、神藉既神聖又人性的話說話、不能貶低一邊來尊崇另一邊。
+   避開 kingdom-according-to-plan 的國度框架與各站圖示、避開 02-biblical-theology-how/06（從基督開始，第一鏟已寫）、避開 authorial-intent-and-meaning 的 Vanhoozer 詮釋學論證。
+   claim 頁；related 連 kingdom-according-to-plan、authorial-intent-and-meaning、hermeneutical-spiral、vos-biblical-theology。
+
+6. old-testament `yahwehs-four-partners`「雅威的四個夥伴：以色列、人、列國、受造界」— theology-of-the-old-testament（05-israels-unsolicited-testimony/01-israels-unsolicited-testimony、05-israels-unsolicited-testimony/02-israel-as-yahwehs-partner、05-israels-unsolicited-testimony/03-the-human-person-as-yahwehs-partner、05-israels-unsolicited-testimony/04-the-nations-as-yahwehs-partner、05-israels-unsolicited-testimony/05-creation-as-yahwehs-partner）。
+   第一鏟（testimony-and-countertestimony）掛 03、04、06 三部，寫法庭隱喻、核心見證與反見證、中介；第 5 部「未被要求的見證」整部未挖，而它是全書最厚的一部。
+   只寫證人為何說出未被要求的話、以色列作為神學現象的古怪、舊約對自主普世人性觀念毫無興趣的人觀、列國在雅威面前的位置、受造界作為夥伴。每個夥伴取 Brueggemann 自己的「關係中的雅威」這條線。
+   避開 testimony-and-countertestimony 的證詞文法與哀求詩篇、避開 ethics-for-gods-people 的 Wright 舊約倫理框架。
+   claim 頁；related 連 testimony-and-countertestimony、ethics-for-gods-people、genesis-one-functional-creation、ane-comparative-reading。
+
+7. old-testament `prophets-are-not-ecstatics`「先知不是狂喜者：赫舍爾對狂喜論、詩人論與病理論的反駁」— prophets-heschel（02-prophetic-consciousness/08-prophecy-and-ecstasy、02-prophetic-consciousness/10-examination-of-ecstasy-theory、02-prophetic-consciousness/11-prophecy-and-poetic-inspiration、02-prophetic-consciousness/12-prophecy-and-psychosis、02-prophetic-consciousness/14-event-and-experience）。
+   第一鏟（prophetic-pathos）用整部當 anchor，寫的是悲愴、同感、忿怒與四位先知的音色；第二部後半那一整段對學界化約論的反駁未進頁。
+   只寫狂喜概念的源流、「先知即狂喜者」從斐羅到現代學術怎麼嫁接進來、Heschel 逐項拆解的理由、先知靈感與詩人靈感是主體對主體與客體對客體之別、病理化指控的拆解、靈感是神轉向人的事件而經驗只是回響。
+   避開 prophetic-pathos 的悲愴與忿怒論、避開 ethics-for-gods-people（公義那章 01-the-prophets/11 留第三鏟）。
+   claim 頁；related 連 prophetic-pathos、jeremiah-against-wind-and-tide、isaiah-vision-and-trust、amos-lion-and-plumb-line。
+
+##### 不開（2 本）
+
+- how-to-read-the-bible-book-by-book《聖經導覽手冊：逐卷讀經的藝術》（Fee & Stuart）：不開。逐卷導覽體裁，每章是一卷書的定位卡；站上 61 個逐卷頁已各自承重，再開只會是第二份目錄。第一鏟 book-by-book-reading 已把全書的方法（大故事四段、兩個隨身問題）寫完。tier 維持 spine（承諾已由既有頁兌現），建議加進 `export-deepen-targets.py` 的 EXCLUDED_KINDS，理由「逐卷導覽，按卷查閱」。可做的是補 anchor：既有逐卷頁若缺第二來源，掛它對應卷的目錄。
+- hard-sayings-of-the-bible《聖經經典500問》（Kaiser、Davids、Bruce、Brauch）：不開。逐條釋疑合輯，章節數是書卷數不是論證數；第一鏟 handling-hard-sayings 已寫兩類難、五個來源、十二篇導論文章與創世記示範。tier 維持 spine，同樣建議加進 EXCLUDED_KINDS，理由「逐條釋疑，按經文查閱」。第三鏟若要開，唯一的候選是 02-historical-books/01-joshua 的聖戰與滅絕令，但要先確認與 joshua-whose-land-whose-israel 的重疊。
+
+##### 小結
+
+- 開 7 張，全部 claim 頁；九本都是單一體系書或單一作者，沒有「一個問題多本書吵」的形狀。
+- 不開 2 本，都是查閱體裁，tier 不動，建議進體裁排除名單。
+- 補上的結構空洞：新約正典成形（第 2 張，站上零頁）、舊約人觀與夥伴論（第 6 張）、先知意識的學術論戰（第 7 張）。
+- 第三鏟候選順手記下：Bailey 的比喻群（06-the-parables-of-jesus，好撒馬利亞人、葡萄園主）、Heschel 的歷史與公義（01-the-prophets/09、11）、Beale 的教會即以色列與土地應許（08-part-7）、Brueggemann 的詮釋前景（07）。
+- 起草順序建議：2、6、7（結構空洞）→ 4、5 → 1、3。
+
+#### 技術站六站：導覽第四章具名爭點 → `kind: debate` 對照頁（Fable 2026-11-06 開單；起草交 Opus，每頁一個子代理、路徑 A）
+
+判準同 investing 那批（note-check §1.4 形狀測試）：一個問題、多本書吵、各造都已有溯源頁 → 對照型 concept；導覽第四章已下的裁決留在導覽，debate 頁只並排各造主張、各自掛 anchor，判別變數只寫書裡作者自己說的。
+anchor 一律從兩造既有概念頁的 `furtherReading` 取，不另找章；起草前先讀兩造的頁與導覽該節，避開各頁已講完的論證。
+這六站都是 strict 站，`seeAlso.site` 只能填技術站 key；寫完補進該分類 `_index.md` roadmap，`related` 雙向連到兩造的頁。骨架照 clean-code `comments-formatting/to-comment-or-not.md`，標題用中立問句，「共識區與爭點」那節不寫「真正的」。
+形狀不過的四題（導覽自己判為互補、接力，或只有一造在說話）不開，理由列在最後。
+
+#### clean-code-note（2 張）
+
+1. complexity `small-functions-or-deep-modules`「小函式還是深模組：拆分讓讀者腦中要裝的東西變少，還是只是搬了家？」— Clean 學派：refactoring 第 6 章 Extract Function、clean-code 第 3 章（extract-function；long-function 頁另掛 refactoring 第 3 章與 code-complete 第 7 章）；深模組派：philosophy-of-software-design 第 9 章（better-together-or-better-apart）；量尺：code-that-fits-in-your-head 的 03-complexity 與 02-sustainability/03-decomposition（code-that-fits-in-your-head 頁）；上游：mythical-man-month 第 4 章貴族制與民主制（conceptual-integrity 頁，只取功能／複雜度比率那一章）。避開 extract-function 頁的抽取判準與步驟、better-together 頁的四項拆分成本清單、code-that-fits 頁的分形架構與檢查表全貌、conceptual-integrity 頁的第二系統效應；只並排三件事：拆的判準（Fowler「一行也值得抽」對 Ousterhout「介面本身就是負荷」）、兩造都接受的紅旗（連體方法、抽出後要在父子函式間來回翻）、Seemann 的七格預算與他自己劃的界線「指標只說該分解了，不說分解什麼」。Brooks 的「設計由誰做主」只當上游一句，不展開。
+2. testing `mocks-or-state`「mock 驗互動還是驗狀態：領域模型住在物件的狀態裡，還是住在物件之間的溝通裡？」— 古典派：art-of-unit-testing 第 2 部 03、04（test-doubles-stubs-vs-mocks）與第 3 部 08 三支柱（pillars-of-good-unit-tests）；倫敦學派：growing-object-oriented-software 的 01/02、02/01、02/04、04/01 四章（london-school-outside-in-tdd）。避開 test-doubles 頁的 stub／mock 定義教學、pillars 頁的可信賴與可維護全套手段、london-school 頁的行走骨架與由外而內流程；只並排「互動測試是最後手段、一測一 mock」對「mock 同儕不 mock 內部、期望即契約」、Osherove 的三種結果分類對 GOOS 的「行為是組合的湧現性質」。判別變數只寫書裡的：兩造各自寫下的過度指定紅線（Osherove 一測一 mock；GOOS 期望要少、不 mock 值、不 mock 具體類別）。不判誰對，兩頁互列 related。
+
+#### agile-note（2 張；爭點二與三合併成一張）
+
+3. flow `timebox-or-flow`「時間盒還是流動：節奏該由迭代邊界規定，還是由交易成本議定？」— 時間盒派：essential-scrum 第 1 部 04 Sprints 與 scrum-the-art-of-doing-twice 的「掌握時間的節奏」（timebox-is-the-constraint）；流動派：kanban 的 01/01、01/02、03/03 建立交付節奏、03/10（kanban-method-evolutionary-change）、kanban-in-action 第 12 章陷阱（kanban-pitfalls，Schwaber 的死亡行軍批評與回應都在這章）與第 9 章規劃與估算（kanban-planning-and-estimating）；地基：principles-of-product-development-flow 的 03 佇列與 05 批量（cost-of-delay-and-queues，只取「兩邊都在壓批量與佇列」這一點）。避開 timebox 頁的六個好處清單與變更／釐清之分、kanban-method 頁的五核心屬性與無權者變革策略、planning 頁的訂購點機制；只並排 Schwaber 的指控、Anderson 正面拒絕時間箱並解耦三種節奏與「故事跨三迭代」的失能證據、Rubin 的「延長 Sprint 是症狀不是理由」、Hammarberg 的「時間盒要主動放回去」。判別變數只寫書裡的：Anderson 自己說的「頻率由交易成本與協調成本議定」、kanban-in-action 的「工作來源只有一個 Backlog 還是隨時冒出」。
+4. adoption `can-agile-scale`「敏捷放大之後，跨團隊依賴怎麼辦：不存在、把依賴管起來，還是把依賴設計掉？」— 不存在派：clean-agile 第 6 章（becoming-agile；同章 Damon Poole 的就地反對也在，照書寫成第四個聲音）；管理派：succeeding-with-agile 第 17 章規模化與第 18 章分散團隊（scaling-and-distributed-teams）、essential-scrum 第 11、12 章 Release Train 與組件團隊乘法（development-team）；設計派：team-topologies 的 01/02 康威定律、01/03 團隊優先、02/02 四種拓撲、03/01 互動模式（conways-law-and-cognitive-load、four-team-types-and-interaction-modes）。合併理由：爭點二與三共用 scaling 頁與 development-team 頁，分開寫會各寫一半，且三造回答的是同一個問題「規模化之後依賴怎麼辦」。避開 becoming-agile 頁的四個價值觀與教練批評、scaling 頁的分散團隊六條凝聚力工法、conways 頁的認知負荷上限論證、four-team-types 的四拓撲三模式全表與 6:1 比例；只並排三造處方與各自承認的前提：Bob 自承沒研究 SAFe／LeSS、Cohn 的「可以擴展但需要相當程度的額外開銷」、Skelton 與 Pais 承認既有架構會反推新團隊結構而需要過渡模式。判別變數只寫書裡的：Cohn 提出、Team Topologies 沿用的兩個溝通路徑問題（最小化路徑數、是否鼓勵本不該溝通的團隊溝通）；「並非所有溝通都是好的」是 Team Topologies 原話。SAFe 與 LeSS 原生書未收，不能寫成一造，core 只能點名缺席。
+
+#### data-systems-note（1 張）
+
+5. cqrs-eventsourcing `where-does-truth-live`「真相住在哪：資料庫是事實、log 是副產物，還是 log 是事實、狀態只是快取？」— 資料庫在前：designing-data-intensive-applications 第 12 章串流處理（change-data-capture）、designing-event-driven-systems 第 3 部 02 事件流作為共享事實來源（cdc 頁）；log 在前：cqrs-command-query-responsibility-segregation 的 01 概覽與 03 範例專案（event-sourcing）、versioning-in-an-event-sourced-system 第 2 章「為什麼不能更新事件」與第 8 章 copy-and-replace（event-versioning）；兩邊都站的證人：designing-event-driven-systems 第 2 部 03（cdc 與 event-sourcing 兩頁都掛）。避開 cdc 頁的雙寫問題與 binlog 機制、event-sourcing 頁的 replay／snapshot／讀模型機制、event-versioning 頁的 upcast 與 weak schema 全套；只並排「唯一 source of truth 在資料庫，log 是本來就有的副產物」對「事件是事實、狀態是 cache」，以及 Stopford 自己說的「資料庫是一道連貫的接縫、CDC 是坡道」「資料庫在前保住讀你所寫」與 Young 的「不可變沒有中間地帶」及其三個失效（快取、稽核、WORM）。判別變數只寫兩位作者原話：改造成本、事後改不掉只能補償。導覽的「按改造成本選方向」是裁決，不進頁。
+
+#### design-patterns-note（1 張）
+
+6. paradigms `patterns-vocabulary-or-patch`「模式是永恆語彙，還是語言缺陷的補丁？」— 語彙派：timeless-way-of-building 的 01 永恆之道、03-the-gate/02 我們的模式語言、03-the-gate/07 模式的真實性（timeless-way-and-pattern-language）；補丁派（作者自己說「部分對」）：functional-design-principles-patterns-practices 第 5 章 Design Patterns Review（gof-in-functional）；對照：thinking-in-programming-paradigms-and-oop 的 2、3 章（oop-vs-functional）。GoF 本書沒有任何頁掛 `docs/01-introduction/`，照「anchor 只從既有頁取」的規則不掛 GoF；語彙派的原典用亞歷山大，GoF 只能在內文點名。避開 timeless-way 頁的無名品質七個詞與語言崩解史、gof-in-functional 頁逐一模式的三種函式形式、oop-vs-functional 的整張對照表；只並排「模式是從活的結構裡辨認出來的、判準是衝突的力能否自行化解」對「Visitor 的雙重分派與 Abstract Factory 的每產品一方法是 closed class 的腳手架、在有一級函數的語言裡蒸發」與「意圖層的模式換範式照收」。判別變數只寫作者自己的：Bob 的「先分意圖與腳手架、再問語言內建了哪部分」、亞歷山大的「語彙可以永恆，用法不一定」（解除專業壟斷卻成了另一種壟斷）。
+
+#### cloud-infra-note（2 張）
+
+7. observability `observability-or-monitoring`「可觀測性對上監控：指標是類別錯誤，還是監控失敗從頭到尾是實踐問題？」— 結構派：observability-engineering 第 1 章、第 2 章除錯實踐差異、第 9 章兩者如何並存（observability-vs-monitoring；three-pillars 頁另掛第 1 章）；實踐派：practical-monitoring 第 1 部 01 反模式、02 設計模式（monitoring-antipatterns）；中間聲音：observability-beginners-guide 的 01 概覽（three-pillars、observability-vs-monitoring 兩頁）、site-reliability-engineering 第 2 部 04 監控分散式系統（兩頁都掛）。避開 obs-vs-mon 頁的控制理論溯源與「不部署新程式碼」檢驗標準、antipatterns 頁五反模式四設計模式的全表、three-pillars 頁三種資料型別的教學；只並排 Majors 的「指標這種資料型別是類別錯誤、三支柱是廠商產品線的投影、指標能承載的複雜度有上界」、Julian 的「監控專案失敗頭號原因是工具偏執、問題在實踐不在工具」與他對分散式追蹤的判斷、Majors 第 9 章的和解條款「監控管系統層、可觀測性管應用層」。判別變數只寫書裡的：Majors 第 9 章的配比「由維運責任決定」。導覽提的兩位作者利益位置與 OpenTelemetry 打臉是站外判讀，不進頁。seeAlso 可連 system-design 的 observability 分類（golden-signals、slo-sli-sla），起草時 `ls` 驗過路徑才掛。
+8. slos-error-budgets `control-or-context`「控制還是脈絡：未達可用性目標該凍結部署，還是把差距交給團隊自己改？」— 控制派：site-reliability-engineering 第 2 部 02 SLO 與 site-reliability-workbook 的 02 implementing-slos（error-budget）、site-reliability-engineering 第 3 部 02 on-call 與 workbook 08（on-call，只取「把 pager 還給開發團隊」這道平衡閥）；脈絡派：seeking-sre 第 1 部 SRE implementation 與第 4 部 human side（sre-beyond-google：Netflix 計分卡、Spotify Ops-in-Squads、Facebook「你寫的就是你的」、SoundCloud 八人算術）。避開 error-budget 頁的 SLI／SLO 定義教學與 KPI 章、on-call 頁的 50%／25% 約束推導、sre-beyond-google 頁逐家公司的細節（每家只取一句）；只並排「燒光就凍結」對「沒達標是資訊不是懲罰、先問這個人有沒有足夠脈絡」，以及兩造各自承認的邊界：Seeking SRE 自己標出組織極大與人命關天時倒向控制、SRE book 的 pager 回流是控制路線內建的平衡閥。判別變數只寫書裡的：Blank-Edelman 自承「沒有給判準說明什麼組織適合哪一條」、SoundCloud 的「撐得起一輪值班的團隊最小八人」。編輯刻意不仲裁照書寫，不替他裁。
+
+#### 不開（4 題）
+
+- clean-code 爭點三「錯誤該處理得漂亮還是定義到不存在」：導覽判為分層互補而非對立，兩頁互相引用；Clean Code 治表達、Ousterhout 治源頭，是兩個問題不是一題兩答，形狀測試不過。
+- data-systems 爭點一「悲觀還是樂觀」：既有頁 `transactions/optimistic-vs-pessimistic-locking` 本身就是對照頁，重疊超過一半；而且兩造不是不同的書在吵，DDIA 一本提供兩側、「高競爭下 2PL 更穩」那句出自討論區的使用者層，Red Book 的結論是條件論、沒有對造。
+- design-patterns 爭點四「尺度上移之後 GoF 的名字還算數嗎」：只有 PoEAA 一造在說話，「名字會失效」是導覽設的預期不是哪本書的主張；重疊 base-patterns 與 web-presentation-patterns 兩頁。
+- system-design 爭點四「-ility 怎麼變成可驗收的」：導覽自己判為接力不是替代品，唯一對立「分類值不值得花力氣」撐不起一頁；重疊 architecture-characteristics 與 quality-attribute-scenarios 兩頁超過一半。
+
+（clean-code 爭點二已有 debate 頁、design-patterns 爭點二站已選邊，依指示不列。）
+
+#### 小結
+
+- 13 個候選：開 8 張（覆蓋 9 個候選，agile 爭點二與三合併），不開 4 題。
+- 8 張單的兩造頁與 anchor 都已存在，起草不必另找章；唯一的例外是 design-patterns 第 6 張，GoF 本書沒有 intro 頁可掛，語彙派改用亞歷山大當原典。
+- 建議起草順序：7、8（cloud-infra 兩造最乾淨）→ 2、1（clean-code）→ 5 → 3、4 → 6。
+
+#### theology-note／philosophy-note：導覽第四章的具名爭點 → `kind: debate` 對照頁（Fable 2026-11-06 開單；起草交 Opus，每頁一個子代理、路徑 A）
+
+判準同 investing 那批（note-check §1.4 形狀測試）：一個問題、多本書吵、兩造各自已有溯源頁，才開對照頁。
+debate 頁是導覽第四章那一節的查閱單位版本：各造主張並排、各自掛 anchor、不下裁決；導覽裡「判讀：」「這裡不裁決」之後的話一句都不進頁面，連「不是二選一」這種軟裁決也不寫。
+只寫得出處的判別變數，而且要是作者自己說的（阿奎那自己畫的自然理性邊界、巴斯卡自己排的說服次序、索羅斯式的「作者自己畫的界線」）。
+anchor 一律從兩造既有頁的 `furtherReading` 取，每條 `[ -d ]`；唯一例外標在單上（philosophy 第 1 張要先補掛一章）。
+骨架照 investing 那批（`> 點題` → `::core` 各造一句 → `## 各造立場` → `## ⚖️ 共識區與爭點` → `::takeaways` → `:::response` 空塊）；標題用中立問句。
+寫完補分類 `_index.md` roadmap、`related` 雙向、導覽第四章該節末尾加一行連到新頁、重跑 `export-seealso-gaps.py`。
+
+#### theology-note（3 張）
+
+1. apologetics `head-or-heart-apologetics`「護教該從論證還是從心出發？阿奎那、普蘭丁格對巴斯卡、路易斯、卻斯特頓」— 論證造：summa-theologica 第一部（five-ways）、where-the-conflict-really-lies 的 EAAN 與方法論自然主義章（science-and-faith）；心與想像造：pensees 的「論信的途徑」「論打賭的必要」（pensees）、mere-christianity 第 1、2 卷（argument-from-desire）、orthodoxy 第 8 章悖論（imaginative-apologetics）；第三個聲音是條件結構：secular-age 內在框架章（three-faces-of-secular），只寫泰勒「信與不信都涉及超越可用理由的跳躍」這一條，不寫成裁決。
+   避開 argument-from-desire 頁已有的「⚖️ 理性派與想像派」三條分工原則（那是路易斯視角的小結，不重講）、避開 faith-in-a-secular-age 頁的五個地基體檢與凱勒「合流手冊」的定位（導覽的判讀）、避開 three-faces-of-secular 的三道堡壘史。
+   判別變數只寫書裡有的：阿奎那「神存在對神自明、對我們不自明，只能從結果後驗證明」與「拿不具說服力的理由證明信德之事會損害信德」；巴斯卡「先顯示宗教不違反理性、再使它可愛、最後才證明它是真的」與「不是藉增加證明而是削減激情」；普蘭丁格「表面衝突不構成反證者」；卻斯特頓「與瘋子辯論你多半會輸，要給他空氣不是論證」。
+   related：five-ways、science-and-faith、pensees、argument-from-desire、imaginative-apologetics、faith-in-a-secular-age。
+
+2. doctrine `atonement-legal-or-participatory`「十架救贖的重音該落在法理、參與，還是神的受苦？斯托得、賴特、莫特曼」— 法理造：cross-of-christ 第 2 章「全書核心」（cross-of-christ）；參與造：surprised-by-hope 的「重新思考救恩」「整個世界在等什麼」（resurrection-and-new-creation）；第三聲音：theology-of-jurgen-moltmann 第 6 章十字架神學（moltmann-hope-and-cross）；地圖層：erickson-christian-theology 第 8 部 02、03 章（atonement-theories-map），只借艾利克森「每種理論抓住一個元素、沒有一種單獨涵蓋全貌」與「贖罪論取決於前置教義」兩句當框架，不重列五種理論。
+   避開 cross-of-christ 頁的四步代贖論證全文（赦免成難題→必須有滿足→被滿足的是神的本性→自我替代，只取「神的自我替代」一句當法理造的立場）、避開 resurrection 頁的「上天堂」誤解史與復活身體論、避開 atonement-theories-map 的五理論逐一評點、避開 order-of-salvation。
+   判別變數只寫書裡有的：斯托得「一切不足夠的贖罪論，都源自不足夠的神論與人論」；賴特「救恩不是離開世界而是世界被修復」與「盼望使現在的工作有永恆重量」；莫特曼「兩根柱子不可分離，只有盼望沒有十字架就變成樂觀的社會計畫」與「稱義的原則不是相似性而是對異他性的稱義」。導覽那句「只有法理福音縮成個人脫罪、只有參與十架淡成象徵」是站主判讀，不寫。
+   related：cross-of-christ、resurrection-and-new-creation、moltmann-hope-and-cross、atonement-theories-map、incarnation。
+
+3. doctrine `church-engage-or-contrast`「教會對世界的貢獻是進去發言，還是做教會？沃弗、侯活士、潘霍華」— 參與造：a-public-faith 第 3 章失能（public-faith）、exclusion-and-embrace 的「擁抱」與「排斥」章（will-to-embrace）、generous-justice 第 5 章（justice-and-generosity）；對比造：resident-aliens-life-in-the-christian-colony 第 1 部 02 基督徒的政治（已掛在 public-faith 頁）、peaceable-kingdom 第 6 章僕人社群（narrative-ethics）；第三聲音：cost-of-discipleship 登山寶訓「可見的社群」「報復」「隱藏的義」（visible-yet-hidden），只取「鹽與光是你們是不是你們要成為」「舊以色列以力對力、教會放棄政治身分」「逃進不可見就是否認呼召」三條。
+   **重疊風險最高的一張**：public-faith 頁已經並排沃弗與侯活士（僑居地、兩人互引）。起草前先整頁讀 public-faith；這頁只寫「公共貢獻的形式」這一個問題，不重講失能框架（怠惰／強制）、不重講僑居地比喻、不重講四幕擁抱。並排之後若與 public-faith 重疊仍超過一半，就改成在 public-faith 補一段潘霍華、不開新頁，並回報。
+   判別變數只寫書裡有的：侯活士「教會不是有一套社會倫理，教會本身就是一套社會倫理」；沃弗「邊界本身不是排斥，排斥是阻止與他者創造性相遇的屏障」「暴力是擁抱的反面」；潘霍華「可見的，必須同時被隱藏」。導覽把畢德生歸到侯活士那一側是氣質判讀，不寫；「兩人在最底層反而接近」也不寫成結論，兩造的暴力論各自列在共識區即可。
+   related：public-faith、will-to-embrace、narrative-ethics、visible-yet-hidden、justice-and-generosity。
+
+不開（theology）：
+- 爭議四 屬靈爭戰紀實的認識論地位：只有一造有頁（spiritual-warfare-realities），批評方沒有書在架上。
+- 公分母與「這個書架缺了誰」：沒有對造，是導覽的材料。
+
+#### philosophy-note（4 張）
+
+1. applied `should-we-want-consolation`「痛苦該被減輕，還是該被保留？de Botton 的藥櫃對尼采與卡繆」— 慰藉造：consolations-of-philosophy 第 1、2 章（philosophy-as-consolation）、status-anxiety 第 2 部解方（status-anxiety）；反慰藉造：consolations-of-philosophy 第 6 章「困難的慰藉」（尼采）、myth-of-sisyphus 的「荒謬的推理」「荒謬的人」（absurd-and-philosophical-suicide、revolt-freedom-passion）；旁證：daily-stoic 的 amor fati（premeditatio-malorum）、ego-is-the-enemy 的止痛膏句（ego-as-obstacle）。
+   **anchor 例外**：尼采那一章 `docs/06-consolation-for-difficulties/` 目錄存在，但 philosophy-as-consolation 頁沒掛，而該頁正文已在講尼采的反對票。起草前先把這一章補進 philosophy-as-consolation 的 furtherReading（label「哲學的慰藉 — Consolation for Difficulties」），再供本頁取用；這是補既有頁的漏掛，不是另找章。
+   避開 absurd 頁的四種荒謬面貌與自殺問題本身、避開 revolt 頁的三個結果全文，只取卡繆「迴避的典型形式就是希望」「荒謬只有在不被同意的限度內才有意義」；避開 philosophy-as-consolation 的六格藥櫃逐一介紹。
+   判別變數只寫書裡有的：de Botton「慰藉不是騙自己沒事，而是校正你對事情的預期與詮釋」與「把矛盾留在書裡不縫合」；尼采「痛苦是偉大的必要成本」；卡繆對帕斯卡「消遣」的那句比較（既少一些又多一些）。導覽「衝突點在手段是不是夾帶承諾」「力量對比反過來了」是站主判讀，不寫。
+   related：philosophy-as-consolation、status-anxiety、absurd-and-philosophical-suicide、revolt-freedom-passion、premeditatio-malorum。
+
+2. eastern `who-is-doing-the-letting-go`「收心的時候，有沒有一個做判斷的我？斯多噶、Fromm 對佛教、道家、Wright」— 有我造：epictetus-discourses-fragments-handbook 的手冊與第 1 卷（dichotomy-of-control、what-is-up-to-us）、to-have-or-to-be 第 1、2 章（having-vs-being）；無我造：how-the-world-thinks 的「世界如何認知」「世界是什麼樣」（no-self-and-emptiness）、why-buddhism-is-true 第 5、6、7 章（no-ceo-modular-mind）與第 1、3 章（feelings-as-illusions）；回歸真我造：great-thinkers 哲學章老子（way-of-water）。
+   避開 dichotomy 頁的可控／不可控清單與面試例子、避開 no-ceo 頁的裂腦實驗全文（只取「意識心至多是眾議院議長」與「判準只有控制與恆常兩條」）、避開 feelings 頁的多巴胺與路怒例子（只取「天擇設計大腦的初衷不是讓我們看清世界」）、避開 way-of-water 的治理論與水的比喻全文（只取「讓被 ego 遮住的真我浮現」與頁上 NOTE 區分道家與佛教的空）。
+   判別變數只寫書裡有的：愛比克泰德「眾神只把正確運用印象的能力放進我們手裡」；佛陀「色身若是我，不會讓它自己有不適」（資格論證）；Wright「接納製造距離」；老子「當我放下我所是，我就成為我所能是」；Baggini「明白沒有永恆不變的自我核心，照常生活並沒有什麼不對」。導覽那段「若態度可以是系統的重新配置就未必互斥」的和解假設，連「假設」兩字都不帶進頁面。
+   related：dichotomy-of-control、what-is-up-to-us、having-vs-being、no-self-and-emptiness、no-ceo-modular-mind、feelings-as-illusions、way-of-water。
+
+3. political `desert-entitlement-or-worth`「分配該按應得、按資格，還是按價值？羅爾斯、亞里斯多德、桑德爾，與柏拉圖更早的問題」— 資格造：theory-of-justice 第 1 部三章（justice-as-fairness）；價值造：nicomachean-ethics 第 5 卷正義（eudaimonia-and-the-mean）；共善造：tyranny-of-merit 的「贏家與輸家」、public-philosophy 的「道德與政治論證」（tyranny-of-merit、common-good-politics）；前置問題：republic 卷二格勞孔、卷四、卷九（justice-and-the-soul）。效益造只用 justice-whats-the-right-thing-to-do 第 2 章一條「邊沁拒絕自然權利」當對照，不展開。
+   避開 three-paths-of-justice 頁的三把尺總覽（那是桑德爾單書的框架頁，本頁不重講「三條路徑」）、避開 utility-and-its-limits 的救生艇與彌爾、避開 justice-as-fairness 頁的無知之幕細節（只取「沒有人應得自己更大的自然能力」與「資格預設合作方案已存在」兩條）、避開 eudaimonia 頁的中庸與習慣論（只取第 5 卷「分配正義是按價值的幾何比例、什麼算價值各家不同」）、避開 justice-and-the-soul 的定義階梯與色拉敘馬霍斯（只取格勞孔三類善與「單獨出現在靈魂裡時還剩什麼」）。
+   判別變數只寫書裡有的：羅爾斯「視自己為平等的人不會同意僅為他人更大利益總和接受較差前景」；亞里斯多德「民主派、寡頭派、貴族派對什麼算價值給不同答案」；桑德爾「成功全憑本事的信念腐蝕對彼此的虧欠感」；《理想國》導論「與其說是政治著作不如說是反政治的」照頁上已有的引用寫明是導論的判斷。導覽「同一個困難的兩種閃避法」「柏拉圖沒有回答格勞孔」是站主判讀，不寫。
+   related：justice-as-fairness、eudaimonia-and-the-mean、tyranny-of-merit、common-good-politics、justice-and-the-soul、three-paths-of-justice。
+
+4. stoicism `rehearse-death-or-forget-it`「死亡該天天預演，還是別去想？斯多噶對蒙田」— 預演造：daily-stoic 的「知覺的紀律」「行動的紀律」、letters-from-a-stoic 書簡 26（premeditatio-malorum）、epictetus-discourses-fragments-handbook 手冊「日復一日把死亡擺在眼前」（what-is-up-to-us）；別想造：how-to-live 的「別擔心死亡」（montaigne-how-to-live）。
+   這是四張裡材料最薄的一張，正文 1200–1800 字即可，不灌水。避開 premeditatio 頁的逆境條款操練與 TIP、避開 montaigne 頁其他十九個答案。只並排「每天演一遍」與「越演越不平靜、墜馬後學到死亡到之前你已先離場、農民不去想反而死得從容」。
+   判別變數只寫書裡有的：奧理略「不要把心填滿所有可能還會發生的壞事，那不是預想是焦慮」（斯多噶自己對預演的邊界）；Bakewell 轉述蒙田「照斯多噶處方做結果剛好相反」。導覽「路徑相反、終點重合」「同一個目的地有人得繞路」是站主判讀，不寫；amor fati 兩頁都有，可以各自列在共識區，不說「重合」。
+   related：premeditatio-malorum、what-is-up-to-us、montaigne-how-to-live、philosophy-as-consolation。
+
+不開（philosophy）：
+- 爭點五 和諧靠德行還是靠制度：儒家與法家兩造都出自同一本書（Baggini）同一頁（harmony-over-truth），跟桑德爾的對照是導覽自己說的「筆記的觀察，不是任何一本書的主張」。過不了出處測試與形狀測試，留在導覽。
+- 懸置 收心術與第三面權力：Lukes 沒有針對斯多噶發言，「同一個姿態」是策展層的並置；沒有一本書在吵這一題，過不了出處測試。要處理只能在導覽，或等收到一本把兩者對質的書。
+- 共識一到三：沒有對造。
+
+#### 小結
+- 開 7 張：theology 3、philosophy 4。全部兩造都有既有溯源頁，anchor 可從既有頁取；唯一例外是 philosophy 第 1 張要先替 philosophy-as-consolation 補掛《哲學的慰藉》第 6 章（目錄已確認存在）。
+- 重疊風險：theology 第 3 張（public-faith 已並排沃弗與侯活士）附了「重疊過半就改補強、不開頁」的退路；philosophy 第 3 張與 three-paths-of-justice 的重疊靠「只寫應得／資格／價值一題、不重講三把尺」控制。
+- 不開 5 筆：theology 爭議四；philosophy 爭點五、懸置、共識。
+- 起草順序建議：theology 1、2 → philosophy 2、3 → philosophy 1、4 → theology 3（最後做，因為它可能收成補強）。
+- 既有頁順手要修的：philosophy-as-consolation 補第 6 章 anchor（上面已列）。
+
+#### 六站導覽第四章的具名爭點 → 八頁 `kind: debate`（Fable fork 2026-11-06 開單；起草交 Opus，每頁一個子代理、路徑 A）
+
+判準同 investing 那批：一個問題、多本書吵、各造都已有溯源頁，才開對照型 concept。
+導覽第四章已各寫一節並多半下了裁決；debate 頁是它的查閱單位版本：各造並排、各自掛 anchor、不下裁決，判別變數只寫書裡作者自己說的。
+anchor 一律從兩造既有頁的 `furtherReading` 取（八張單點名的每一頁都驗過有 anchor），不另找章。
+寫完補進該分類 `_index.md` 的 roadmap，`related` 雙向連到各造頁，導覽第四章該節末尾補一行連到新頁；骨架照 clean-code `comments-formatting/to-comment-or-not.md`，小節標題用「共識區與爭點」（不含「真正的」）。
+六站目前都沒有 `kind: debate` 頁，只有 behaviour-interview 有一頁 `big-tech/cultural-boundary`（文化座標，與本批第 7 張不重疊）。
+
+#### tools-note（2 頁）
+
+1. time-management `what-is-efficiency-for`「效率省下的時間該換什麼：外包、慢下來，還是接受做不完？」— 變現派：life-leverage IGV 與外包瑣事（life-leverage-outsource）；慢速派：slow-productivity 做更少、自然節奏、品質執念（slow-productivity）；拒絕前提派：four-thousand-weeks 效率陷阱、電子郵件輸入端無限、洗衣機與乾淨標準同步上漲（finitude-four-thousand-weeks）。
+   第四造是被 Burkeman 點名的排序法：first-things-first 大石頭寓言（clock-and-compass-quadrant-two）、essentialism／one-thing 關鍵少數（essential-few-over-trivial-many），只並排「寓言說了什麼」與「Burkeman 說老師作弊了」兩句，不替排序法辯護。
+   避開導覽的「Burkeman 勝在唯一不預設終點」與「被降級的是終極目標不是工具」兩句裁決；避開 four-thousand-weeks 頁對有限性的完整論證。
+   判別變數只寫書裡有的：Burkeman 自己說的「任何技巧的衡量標準是它能否幫你忽略對的東西」、Moore 的 IGV 門檻、Newport 的三原則。
+
+2. habits `what-makes-a-habit-stick`「什麼讓一個習慣黏住：渴求、重複，還是情緒？」— 渴求派：power-of-habit 渴求與黃金法則、習慣不會被刪除只會被壓到背景（habit-loop-and-golden-rule）；重複與身分派：atomic-habits 每一次行動都是為身分投票、每天 1%（systems-over-goals-atomic-habits）；情緒派：tiny-habits 情緒創造習慣、21 天與 66 天都不準確、有時做一次就形成（tiny-habits-behavior-design）。
+   共識區可收「身分」這條會師，三本書都在站上：atomic-habits 的身分層、indistractable 的身分協議與「我不」對「我不能」兩倍實驗（internal-triggers-indistractable）、7-habits 的品格倫理對個性倫理（seven-habits-effectiveness）。
+   避開導覽的「三本疊起來是一條完整路徑」與「Fogg 的說法比較具體」兩句裁決；避開各頁對自家四步驟或 B=MAP 的完整講解。
+   判別變數只寫書裡有的：Fogg 自己對通用天數公式的否定、Duhigg 自己說的「保留提示與獎酬、只置換慣性行為」、Clear 的 identity 字源。
+
+#### writing-note（1 頁）
+
+3. story-structure `design-first-or-discover-by-writing`「結構先設計，還是邊寫邊發現：五本書的三種答案」— 設計派：anatomy-of-story 先從自我揭露的終點寫起再回推（character-arc）、story-mckee 握有高潮之後反向重寫（story-shape）；發現派：bird-by-bird 的 Doctorow 車燈比喻（bird-by-bird）、writing-down-the-bones 堆肥、你不掌控寫作（composting）；第三造：draft-no-4 結構從素材內部長出來、但動筆前必須先蓋藍圖、三十六張卡片與夾板（nonfiction-structure）。
+   避開導覽共識一的「初稿用車燈、重寫用反向設計」和解（那是導覽的判讀）；避開各頁對 Truby 七步驟、McKee 五部分的完整講解。
+   判別變數只寫書裡有的：麥克菲自己說的高中老師麥基的規矩與「設計的依據從素材來」、Lamott 轉述的車燈距離、Truby 的操作順序。
+
+#### thinking-note（1 頁）
+
+4. consciousness `where-is-the-self`「自我在哪裡：沒有劇場、湧現的迴圈、腦幹的 SELF，還是自性？」— 拆掉派：consciousness-explained 多重草稿、沒有匯聚點、任何意識時刻都是武斷劃線（no-cartesian-theater）；湧現派：godel-escher-bach 自我符號參與決策、怪圈（strange-loops-and-self）；腦幹派：affective-neuroscience 的 SELF 原始神經表徵（social-emotions，該頁只有一段講 SELF，起草者要讀 docs/03-social-emotions/ 原文把它寫夠）；統整派：jungs-map-of-the-soul 自我只是意識的中心、自性更廣（individuation-and-the-self）。
+   第五個聲音已在站上可選用：being-you 自我本身也是一種知覺、一束被編織的最佳猜測（controlled-hallucination）。
+   避開導覽的「Jung 是類別錯誤」裁決：Jung 回答的是哪個問題，用 Stein 導讀自己的話寫，不寫「混讀是錯的」；避開各頁對多重草稿模型、哥德爾不完備的完整講解。
+   判別變數只寫書裡有的：丹尼特的「沒有人在看」、侯世達的「沒有小人卻有自我」、潘克塞普把 SELF 放在腦幹的理由。
+
+#### hbr-note（2 頁）
+
+5. leadership-teams `is-feedback-a-fallacy`「回饋能不能拆成技術：SBI 對上回饋的謬誤」— 技術派：hbr-guide-to-coaching-employees SBI、對事不對人、正面回饋是主食（coaching-and-feedback）；謬誤派：hbr-10-must-reads-on-managing-people 特異評分者效應、學習在最強處發生、卓越不是失敗的反面、教學有用但回饋是另一回事（feedback-fallacy）；各給一半的第三來源：hbr-guide-to-delivering-effective-feedback 主管的意見不等於事實、不要叫它回饋（set-up-to-fail，另有 coaching 頁掛的 03-feedback-that-sticks）。
+   避開導覽的「兩造對糾錯場合與成長場合的邊界畫在不同地方」那段判讀，但可以並排兩造各自怎麼畫邊界（Buckingham 自己讓步的教學場合、SBI 的「影響」要寫成觀察）；避開 set-up-to-fail 頁對症候群本身的講解。
+   判別變數只寫書裡有的：Buckingham 與 Goodall 自己的教學例外、Manzoni 與 Barsoux 的「不要叫它回饋」、SBI 的三段定義。
+
+6. strategy-innovation `assigned-or-genuine-dissent`「異議要指派還是去找真的：魔鬼代言人的兩種用法」— 指派派：hbr-guide-to-making-better-decisions 資產管理公司專設一人（better-decisions）、hbr-guide-to-better-recruiting-and-hiring 至少授權一人質疑、大組設兩位（hiring-for-fit）；找真的派：hbr-guide-to-unlocking-creativity 引 Grant 與 Nemeth，指派的代言人克服不了確認偏誤（unlocking-creativity）。
+   三頁各只有一段講這題，起草者要讀三章原文（01-hidden-traps、03-effective-interviews、04-make-org-creative/03-culture-of-originality）把兩造寫夠；材料仍薄，正文目標 1200–1800 字，不灌水。
+   避開導覽的「指派是下限、找真的是上限」讀法；避開三頁各自主題（決策偏誤、選才、創造力）的其餘內容。
+   判別變數只寫書裡有的：Nemeth 研究的結論、兩位以免孤立的理由。
+
+#### behaviour-interview-note（1 頁；strict 站，seeAlso 只能連技術站，沒有合適目標就留空）
+
+7. pitfalls `reframing-or-padding`「改寫到哪裡算灌水：同一句「主管指派我」的三種溫度」— 最寬：mastering-behavioral-interviews 把被指派重寫成主動當責的 Builder 語言（big-tech-behaviorals）；最嚴：star-interview 代名詞紀律、我做了 X 等於獨力完成、馬斯克式追問（star-action）；居中：mastering-behavioral-interviews 不說謊但側步繞過、從 sprint 帶著任務出來（sensitive-situations）。
+   三頁各一，分類落點取 pitfalls，因為這題問的是「哪裡越界」。
+   避開導覽的「改寫只許動詮釋層不許動事實層」與「底線取 frameworks 嚴格版」兩句裁決；避開 cultural-boundary 頁的文化座標題；`problems` 欄留空。
+   判別變數只寫書裡有的：Yurchenko 自己的代名詞規則與追問機制、Mastering 一書自己寫的「不說謊」限定。
+
+#### design-note（1 頁）
+
+8. design-thinking `who-decides-what-is-good`「好由誰說了算：顧客、處境，還是被塑造的品味？」— 顧客派：simplicity-cycle 專業意見都重要但顧客有最終決定權（why-complexity-seduces）；處境派：change-by-design 直接問只會得到更快的馬、人極善於適應不便（insight-observation-empathy）；塑造派：architecture-of-happiness 品味不是天生落定、需要外部引導才知道該注意什麼、日本美感的反例（promise-of-a-field）。
+   導覽說三造「尚未對質」，這頁就是對質的場所；三頁各一，落點取 design-thinking，因為 Brown 與 de Botton 同側且題目是需求從哪來。
+   避開導覽的「Ward 只是共識三的反面教材」；避開三頁各自主題（複雜度週期、同理心方法、醜建築）的其餘內容。
+   判別變數只寫書裡有的：Ward 自己的「專業意見都重要」前提、Brown 的適應論、de Botton 的 Keene 反例。
+
+#### 不開
+
+無。八個候選兩造（或三造）都各有既有頁且頁上有 anchor，形狀都是一個問題多本書吵。
+
+#### 小結
+
+- 開 8 張：tools 2、writing 1、thinking 1、hbr 2、behaviour-interview 1、design 1；全部 `kind: debate`。
+- 最厚的是 1、3、4（各造都有整頁可取材），最薄的是 6（三頁各一段，要回原章）。
+- 第 4 張多了一個站上已有的第五聲音（Seth），寫不寫由起草者看篇幅決定。
+- 起草順序建議：3、1、5 → 4、8 → 2、7 → 6。
+
+**抽查 Opus 上午產出（Fable）**：整頁讀 investing `rules-or-beliefs`（debate）與 theology `person-and-relation`（claim）。對照頁沒有偷渡裁決，「分歧落在哪裡」三條都是書裡的判別變數；claim 頁具名、有出處、TIP 與 IMPORTANT 都是作者主張。通過，不改。另：hr-note 與 travel-note 從開站起一直缺 `checkedAt`，兩站 checkup 0 blocker／0 warn、bump build 綠，蓋 2026-11-06。
+
 ### 兩新站（travel／hr）開站後的分批隊列（2026-09-26 開單，Andrew 要求依模型分批）
 
 **現況**：travel-note 64 本／5 頁（頁/待深挖 0.1，全星系最低）、hr-note 12 本／5 頁（待收 7）；tier-audit 未判層 47（travel 46＋hr 1）、

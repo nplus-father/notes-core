@@ -75,6 +75,9 @@ EXCLUDED_KINDS = {
     "gulag-archipelago": "文學性紀實巨著",
     # 書信體：一封一章、每封千餘字，章節數高但全書薄，不是大部頭
     "screwtape-letters": "書信體，31 封短信各千餘字",
+    # 逐卷／逐條查閱：章節數是卷數或條目數，不是論證數；站上逐卷頁各自承重
+    "how-to-read-the-bible-book-by-book": "逐卷導覽，按卷查閱",
+    "hard-sayings-of-the-bible": "逐條釋疑合輯，按經文查閱",
 }
 
 
