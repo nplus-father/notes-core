@@ -1,21 +1,25 @@
 # @nplus-father/notes-core
 
-技術筆記星系（`nplus.wiki`）Astro 筆記站的**共用核心套件**，是 books 端 `nplus-book-core` 的 Astro 對應物。抽出六個 note 站真正不變的核心，各站當 dependency 安裝，Renovate 升版。
+筆記星系（`nplus.wiki/<slug>/`，79 站）Astro 筆記站的**共用核心套件**，是 books 端 `nplus-book-core` 的 Astro 對應物。版面、路由、內容 schema、首頁四契約（bibliography／schools／profile／overview）的型別、remark 外掛、設計 token 全在這裡；各站是「`astro.config.mjs` 一句 ＋ `site.config.ts` ＋ `src/data/*.ts` ＋ `src/content/**`」的薄殼，升版即全站同步（`tools/bump-notes-core.sh`）。
 
 以原始碼形式發布（`.ts` / `.astro` / `.scss`）——由各消費站台的 Astro/Vite 建置時編譯，套件本身無 build step。
 
-## 內容（v0.1.0）
+## 內容
 
-| export                                        | 用途                                                                                                                          |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `withBase(path)`                              | 站內路徑接 base 前綴（`import.meta.env.BASE_URL` 以消費端 base 代換）                                                         |
-| `createReviews(namespace)`                    | localStorage 複習紀錄 factory。**六站共用 nplus.wiki 網域故共用 localStorage，namespace 必須各站唯一**（`lk` / `cc` / `dp`…） |
-| `todayStr()`                                  | 本地時區 `YYYY-MM-DD`                                                                                                         |
-| `@nplus-father/notes-core/remark-details`     | `:::` 摺疊區塊 remark 外掛                                                                                                    |
-| `@nplus-father/notes-core/styles/tokens.scss` | 設計 token（`@use` 進各站 global.scss）                                                                                       |
-| `@nplus-father/notes-core/Stars.astro`        | ★ 重要性星等元件                                                                                                              |
+呈現規範的正本是 [DESIGN.md](./DESIGN.md)；`package.json` 的 `exports` 是 API 清單。幾個主要入口：
 
-**不收（各站差異為刻意）**：BaseLayout、global.scss 領域段落、content schema、分類資料、StatusBadge（狀態詞彙各站不同）、ConceptCard/題目卡等領域元件。
+| export                                              | 用途                                                                                             |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `./astro-config`                                    | `defineNotesAstroConfig({ base, site, bibliography, profile?\|schools?, overview? })`——各站 astro.config 唯一要寫的一句 |
+| `./site`                                            | `defineSite()`：brand／titleBase／hasProblems／curation 等站台設定                                 |
+| `./content`                                         | `defineNoteCollections()`：concepts／categories／guide（＋problems／domains）的 schema factory     |
+| `./library`                                         | 首頁四契約：`defineBibliography`／`defineSchools`／`defineProfile`／`defineOverview`               |
+| `./sites`                                           | 星系成員 registry（key／slug／brand／label／axis）——跨站連結、portal、`seeAlso` 白名單的 SSOT       |
+| `./routes/*`                                        | 首頁、concepts、problems、guide、check、library、search、index.json                                |
+| `./remark-sections` `./remark-details` `./remark-response` | `::core` 等區塊標題、`:::details` 摺疊、`:::response` 心得層                              |
+| `./styles/tokens.scss` `./styles/global.scss`       | 設計 token 與全站樣式                                                                             |
+
+> v0.1.0 時只收 `withBase`、`createReviews`、`remark-details`、tokens 與 `Stars`，版面與 schema 刻意留在各站；v0.4.0 起反過來全部收進 core，各站不再寫 `.astro` 外殼（理由與演進見 DESIGN.md）。
 
 ## 消費端用法
 
@@ -71,7 +75,8 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `tools/export-deepen-targets.py` | 大部頭卻只被挖一鏟的書 `docs/DEEPEN-TARGETS.md`（只排序，開單留 Fable）  |
 | `tools/export-anchor-gaps.py`   | 頁面用了書裡的事實、卻掛到不含它的章 `docs/ANCHOR-GAPS.md`                |
 | `tools/export-guide-drift.py`   | 導覽的數字宣稱跟不上站台現況 `docs/GUIDE-DRIFT.md`                        |
-| `tools/refresh-galaxy-docs.sh`  | **一次重算上面八份生成文件**並印落差；`--check` 有落差就 exit 1          |
+| `tools/export-seealso-gaps.py`  | 同書同章卻沒有互相 `seeAlso` 的跨站連結缺口 `docs/SEEALSO-GAPS.md`；套用走 `tools/apply-seealso.py` |
+| `tools/refresh-galaxy-docs.sh`  | **一次重算上面九份生成文件**並印落差；`--check` 有落差就 exit 1          |
 
 星系根目錄（放所有 `-note` 站的容器目錄）預設由腳本自己推導成 `notes-core/../..`；佈局不同時用
 `NOTES_ROOT=` 覆寫。
@@ -101,19 +106,20 @@ const reviews = createReviews("lk"); // → localStorage key "lk-reviews"
 | `docs/DEEPEN-TARGETS.md`            | **大部頭卻只被挖一鏟**的書（排序表，開單仍留 Fable）；由 `tools/export-deepen-targets.py` 生成 |
 | `docs/ANCHOR-GAPS.md`               | **頁面掛的章不含它引用的事實**（缺口靠改 `furtherReading` 補）；由 `tools/export-anchor-gaps.py` 生成 |
 | `docs/GUIDE-DRIFT.md`               | **導覽的數字跟不上現況**（站上幾頁、某分類幾頁、收了幾本）；由 `tools/export-guide-drift.py` 生成 |
+| `docs/SEEALSO-GAPS.md`              | **同書同章卻沒有互相 seeAlso**（站與站之間的連結缺口，缺口靠補 `seeAlso` 補）；由 `tools/export-seealso-gaps.py` 生成 |
 | `docs/MODEL-ROUTING.md`             | **哪些工作值得花高階模型額度**（分工原則與各輪判準，手維護）        |
 | `docs/SERIES-STATUS.md`             | **系列產線帳本**（各波導覽與 enrich 的進度，手維護）                |
 | `docs/EXCLUDED-BOOKS.md`            | **裁定不進任何站**的書（品質把關的裁決紀錄，手維護）；orphan 掃描讀它，命中者不列孤兒不再提醒 |
 
-**前十一份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 各自是不同的軸，別混用——
+**前十二份是活的、要持續更新；其餘是歷史紀錄，不再維護。** 各自是不同的軸，別混用——
 「書有了沒站在管」進 ORPHAN-BOOKS，「有站沒寫完」進 ENRICH-BACKLOG，「查不到出處」進 SOURCING-DEBT，
 「書還沒收」進 WANTED-BOOKS，「書收了但沒填出版年」進 MISSING-YEARS，
 「哪些站現在可以進場深化」看 DEEPEN-READY，「書有了卻沒有站在管」看 ORPHAN-BOOKS，
 「同一本書各站年份打架」看 YEAR-CONFLICTS，「大部頭只挖了一鏟」看 DEEPEN-TARGETS，
-「延伸閱讀掛錯章」看 ANCHOR-GAPS，「導覽數字過期」看 GUIDE-DRIFT
-（後八份是生成物，改各站 bibliography／內容再重跑，不要手改）。
+「延伸閱讀掛錯章」看 ANCHOR-GAPS，「導覽數字過期」看 GUIDE-DRIFT，「同一章兩站各寫一頁卻互不相連」看 SEEALSO-GAPS
+（後九份是生成物，改各站 bibliography／內容再重跑，不要手改）。
 
-> **八份生成物用 `tools/refresh-galaxy-docs.sh` 一次重算，不要單獨跑其中一支。**
+> **九份生成物用 `tools/refresh-galaxy-docs.sh` 一次重算，不要單獨跑其中一支。**
 > 生成物停更會開始騙人，而它看起來跟剛跑完一模一樣——2026-08-10 實測，committed 的
 > WANTED-BOOKS 說「先扣掉 0 本」，當場重跑是 23 本，採購前 20 名裡 2 本早就建好書站了。
 

@@ -1,14 +1,38 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-09-26T23:22:55+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-06T09:44:55+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
-- 證據充分（同一章被 ≥2 個非年份數字命中）：**0** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：138 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 172 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據充分（同一章被 ≥2 個非年份數字命中）：**4** 頁
+- 證據單薄（只有一個數字，或全靠裸年份）：131 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 175 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
+
+## tracy-note / goals/21-success-secrets.md
+
+- 現掛：`21-success-secrets-of-self-made` → `docs/01-dream-big-dreams/`、`21-success-secrets-of-self-made` → `docs/02-develop-clear-direction/`
+- 建議 anchor：`21-success-secrets-of-self-made` → `docs/07-dedicate-to-lifelong-learning/`「投入終身學習」（3 個數字）、`21-success-secrets-of-self-made` → `docs/06-work-longer-harder/`「工作得更久更努力」（1 個數字）、`21-success-secrets-of-self-made` → `docs/18-take-care-of-physical-health/`「好好照顧身體健康」（1 個數字）
+- 落空數字：21個、21條、59小時、60分鐘
+
+## greene-note / power/daily-practice.md
+
+- 現掛：`daily-laws` → `docs/00-preface/`
+- 建議 anchor：`daily-laws` → `docs/04-april-the-perfect-courtier/`「四月：完美的朝臣」（2 個數字）、`daily-laws` → `docs/12-december-the-cosmic-sublime/`「十二月：宇宙的崇高」（1 個數字）、`daily-laws` → `docs/06-june-the-divine-craft/`「六月：神聖的技藝」（1 個數字）
+- 落空數字：33條、48條
+
+## tracy-note / productivity/time-management-basics.md
+
+- 現掛：`time-management` → `docs/01-the-psychology-of-time-management/`、`time-management` → `docs/02-determine-your-values/`
+- 建議 anchor：`time-management` → `docs/21-create-the-time-you-need/`「創造你需要的時間」（2 個數字）、`time-management` → `docs/09-delegate-to-others/`「授權給他人」（1 個數字）
+- 落空數字：21條、70%
+
+## travel-note / tour-leading/recovering-from-mistakes.md
+
+- 現掛：`setting-the-table` → `docs/10-success-paved-with-mistakes-well-handled/`
+- 建議 anchor：`setting-the-table` → `docs/02-in-business/`「投身事業」（2 個數字）、`setting-the-table` → `docs/05-who-ever-wrote-the-rule/`「誰寫了這條規則？」（1 個數字）、`setting-the-table` → `docs/01-the-first-course/`「第一道菜」（1 個數字）
+- 落空數字：250英里、50美元
 
 ---
 
@@ -17,13 +41,13 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
+- 建議 anchor：`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md
 
 - 現掛：`mastering-behavioral-interviews` → `docs/00-introduction/06-common-pitfalls/`
-- 建議 anchor：`mastering-behavioral-interviews` → `docs/03-refining-responses/`「精修回應」（1 個數字）、`mastering-behavioral-interviews` → `docs/05-appendix/`「附錄」（1 個數字）、`mastering-behavioral-interviews` → `docs/02-preparation-roadmap/`「準備藍圖」（1 個數字）
+- 建議 anchor：`mastering-behavioral-interviews` → `docs/02-preparation-roadmap/`「準備藍圖」（1 個數字）、`mastering-behavioral-interviews` → `docs/03-refining-responses/`「精修回應」（1 個數字）、`mastering-behavioral-interviews` → `docs/05-appendix/`「附錄」（1 個數字）
 - 落空數字：60分鐘
 
 ## biblical-studies-note / new-testament/gospels-in-cultural-context.md
@@ -78,15 +102,10 @@
 - 建議 anchor：`forget-a-mentor-find-a-sponsor` → `docs/07-distinguish-yourself/`「讓自己脫穎而出」（1 個數字）
 - 落空數字：32%
 
-## career-note / range-exploration/sampling-period.md
-
-- 現掛：`range-why-generalists-triumph` → `docs/ch03-music-prodigies/`、`range-why-generalists-triumph` → `docs/ch04-slow-learning-wins/`
-- 落空數字：2014年
-
 ## cloud-note / boundaries/boundaries-for-leaders.md
 
 - 現掛：`boundaries-for-leaders` → `docs/01-people-are-the-plan/`、`boundaries-for-leaders` → `docs/02-ridiculously-in-charge/`
-- 建議 anchor：`boundaries-for-leaders` → `docs/03-leading-so-brains-can-work/`「領導，讓大腦能工作」（1 個數字）、`boundaries-for-leaders` → `docs/05-power-through-connection/`「透過連結展現力量」（1 個數字）
+- 建議 anchor：`boundaries-for-leaders` → `docs/03-leading-so-brains-can-work/`「領導，讓大腦能工作」（1 個數字）
 - 落空數字：20分鐘
 
 ## communication-note / persuasion/pre-suasion-framing.md
@@ -134,6 +153,12 @@
 - 現掛：`five-most-important-questions` → `docs/01-what-is-our-mission/`
 - 落空數字：1912年
 
+## economics-note / behavioral-narrative/investor-brain-fear-greed.md
+
+- 現掛：`your-money-and-your-brain` → `docs/01-neuroeconomics/`、`your-money-and-your-brain` → `docs/02-thinking-and-feeling/`、`your-money-and-your-brain` → `docs/03-greed/`
+- 建議 anchor：`your-money-and-your-brain` → `docs/07-fear/`「恐懼：恐慌如何在最糟時刻接管決策」（1 個數字）
+- 落空數字：13%
+
 ## economics-note / econ-foundations/schools-of-economic-thought.md
 
 - 現掛：`50-economics-ideas` → `docs/09-keynesianism/`、`50-economics-ideas` → `docs/10-monetarism/`、`50-economics-ideas` → `docs/13-supply-side-economics/`、`little-history-of-economics` → `docs/16-man-with-a-plan/`、`general-theory-of-employment-interest-and-money` → `docs/01-introduction/03-the-principle-of-effective-demand/`、`general-theory-of-employment-interest-and-money` → `docs/03-the-propensity-to-consume/03-the-marginal-propensity-to-consume-and-the-multiplier/`、`general-theory-of-employment-interest-and-money` → `docs/04-the-inducement-to-invest/02-the-state-of-long-term-expectation/`、`general-theory-of-employment-interest-and-money` → `docs/06-short-notes-suggested-by-the-general-theory/03-concluding-notes-on-social-philosophy/`、`animal-spirits` → `docs/introduction/`、`animal-spirits` → `docs/01-animal-spirits/01-confidence-and-its-multipliers/`
@@ -163,17 +188,16 @@
 - 建議 anchor：`central-bank-privilege` → `docs/preface/`「前言」（1 個數字）
 - 落空數字：38.3%
 
+## economics-note / money-central-banks/gold-as-money.md
+
+- 現掛：`power-of-gold` → `docs/00-prologue/`、`power-of-gold` → `docs/01-get-gold-at-all-hazards/`
+- 落空數字：1930年
+
 ## economics-note / money-central-banks/gold-standard-and-fetters.md
 
 - 現掛：`lords-of-finance` → `docs/01-unexpected-storm/`、`lords-of-finance` → `docs/02-after-the-deluge/`
 - 建議 anchor：`lords-of-finance` → `docs/03-sowing-a-new-wind/`「播下新風」（1 個數字）
 - 落空數字：3.5%
-
-## greene-note / power/daily-practice.md
-
-- 現掛：`daily-laws` → `docs/00-preface/`
-- 建議 anchor：`daily-laws` → `docs/09-september-the-grand-strategist/`「九月：偉大的戰略家」（1 個數字）、`daily-laws` → `docs/04-april-the-perfect-courtier/`「四月：完美的朝臣」（1 個數字）、`daily-laws` → `docs/12-december-the-cosmic-sublime/`「十二月：宇宙的崇高」（1 個數字）
-- 落空數字：33條
 
 ## growth-note / deliberate-practice/role-of-the-teacher.md
 
@@ -202,12 +226,6 @@
 - 現掛：`formula` → `docs/01-performance-drives-success/`、`formula` → `docs/02-when-performance-cant-be-measured-networks-determine-success/`、`formula` → `docs/03-past-success-x-fitness-equals-future-success/`、`formula` → `docs/05-with-persistence-success-can-come-at-any-time/`
 - 建議 anchor：`formula` → `docs/04-team-success-needs-balance-and-diversity/`「團隊的成功需要平衡與多元」（1 個數字）
 - 落空數字：23%
-
-## habits-note / habit-loop/break-bad-habits.md
-
-- 現掛：`atomic-habits` → `docs/the-2nd-law-make-it-attractive/10-how-to-find-and-fix-bad-habits/`、`atomic-habits` → `docs/the-1st-law-make-it-obvious/07-the-secret-to-self-control/`
-- 建議 anchor：`atomic-habits` → `docs/advanced-tactics/`「如何從還不錯進化到真正卓越」（1 個數字）
-- 落空數字：15%
 
 ## habits-note / habit-loop/change-by-obstacle.md
 
@@ -280,12 +298,6 @@
 - 現掛：`rituals-of-dinner` → `docs/01-behaving/`、`rituals-of-dinner` → `docs/02-learning-to-behave/`
 - 落空數字：1931年
 
-## history-note / historical-thinking/factful-worldview.md
-
-- 現掛：`how-i-learned-to-understand-the-world` → `docs/01-from-illiteracy-to-academic-excellence/`、`how-i-learned-to-understand-the-world` → `docs/02-discovering-the-world/`
-- 建議 anchor：`how-i-learned-to-understand-the-world` → `docs/05-from-research-to-teaching/`「從研究到教學」（1 個數字）
-- 落空數字：50%
-
 ## history-note / historical-thinking/history-of-risk.md
 
 - 現掛：`against-the-gods` → `docs/01-beginnings/`、`against-the-gods` → `docs/02-thousand-outstanding-facts/`
@@ -296,11 +308,6 @@
 
 - 現掛：`innovators` → `docs/01-ada-lovelace/`、`innovators` → `docs/02-the-computer/`
 - 落空數字：1959年
-
-## history-note / war-military/why-wars-are-won.md
-
-- 現掛：`how-to-fight-a-war` → `docs/01-strategy-and-intelligence/`、`how-to-fight-a-war` → `docs/02-logistics/`
-- 落空數字：1945年
 
 ## hr-note / pay-and-rules/taiwan-labor-standards.md
 
@@ -340,7 +347,7 @@
 ## investing-note / trading-speculation/position-sizing-and-ruin.md
 
 - 現掛：`way-of-the-turtle` → `docs/03-risk-junkies/`、`way-of-the-turtle` → `docs/04-taming-the-turtle-mind/`
-- 建議 anchor：`way-of-the-turtle` → `docs/18-appendix-original-turtle-rules/`「附錄：原版海龜交易規則」（1 個數字）、`way-of-the-turtle` → `docs/10-risk-and-money-management/`「風險與資金管理」（1 個數字）
+- 建議 anchor：`way-of-the-turtle` → `docs/10-risk-and-money-management/`「風險與資金管理」（1 個數字）、`way-of-the-turtle` → `docs/18-appendix-original-turtle-rules/`「附錄：原版海龜交易規則」（1 個數字）
 - 落空數字：1.5%
 
 ## investing-note / value-investing/low-risk-high-uncertainty.md
@@ -352,7 +359,7 @@
 ## kent-beck-note / smalltalk/why-patterns-work.md
 
 - 現掛：`smalltalk-best-practice-patterns` → `docs/02-patterns/01-why-patterns-work/`
-- 建議 anchor：`smalltalk-best-practice-patterns` → `docs/preface/`「前言」（1 個數字）、`smalltalk-best-practice-patterns` → `docs/01-introduction/`「導論」（1 個數字）
+- 建議 anchor：`smalltalk-best-practice-patterns` → `docs/01-introduction/`「導論」（1 個數字）
 - 落空數字：92個
 
 ## kent-beck-note / tidy/first-after-later-never.md
@@ -397,8 +404,8 @@
 ## leadership-note / mindset/adversity-quotient.md
 
 - 現掛：`adversity-quotient` → `docs/02-ascend-mt-success/`、`adversity-quotient` → `docs/04-aq-and-learned-helplessness/`、`adversity-quotient` → `docs/07-the-aq-continuum/`、`adversity-quotient` → `docs/10-twelve-ways-to-nurture-aq/`
-- 建議 anchor：`adversity-quotient` → `docs/03-aqs-scientific-building-blocks/`「AQ的科學基石」（1 個數字）
-- 落空數字：25歲
+- 建議 anchor：`adversity-quotient` → `docs/03-aqs-scientific-building-blocks/`「AQ的科學基石」（1 個數字）、`adversity-quotient` → `docs/09-five-warning-signals/`「五個警訊」（1 個數字）
+- 落空數字：22種、25歲
 
 ## leadership-note / mindset/five-practices.md
 
@@ -411,6 +418,11 @@
 - 現掛：`ten-commandments-for-business-failure` → `docs/02-quit-taking-risks/`、`ten-commandments-for-business-failure` → `docs/04-isolate-yourself/`、`ten-commandments-for-business-failure` → `docs/05-never-admit-mistakes/`、`ten-commandments-for-business-failure` → `docs/07-dont-think/`、`ten-commandments-for-business-failure` → `docs/09-love-bureaucracy/`、`ten-commandments-for-business-failure` → `docs/03-be-inflexible/`
 - 建議 anchor：`ten-commandments-for-business-failure` → `docs/08-trust-experts-blindly/`「第七誡：若要失敗，就盡信專家與外部顧問」（1 個數字）
 - 落空數字：45%
+
+## leadership-note / team/extreme-ownership.md
+
+- 現掛：`extreme-ownership` → `docs/01-winning-the-war-within/01-extreme-ownership/`、`extreme-ownership` → `docs/01-winning-the-war-within/02-no-bad-teams-only-bad-leaders/`、`extreme-ownership` → `docs/02-laws-of-combat/`
+- 落空數字：2006年
 
 ## leadership-note / team/find-leverage-points.md
 
@@ -434,7 +446,7 @@
 
 - 現掛：`start-with-why` → `docs/02-an-alternative-perspective/03-the-golden-circle/`、`start-with-why` → `docs/02-an-alternative-perspective/04-this-is-not-opinion-this-is-biology/`、`start-with-why` → `docs/03-leaders-need-a-following/06-the-emergence-of-trust/`
 - 建議 anchor：`start-with-why` → `docs/03-leaders-need-a-following/`「領導者需要追隨者」（1 個數字、擴大）
-- 落空數字：1903年、25萬
+- 落空數字：25萬
 
 ## leadership-note / vision/okr.md
 
@@ -451,7 +463,7 @@
 ## learning-note / practice/deliberate-practice-basics.md
 
 - 現掛：`peak-secrets-from-the-new-science-of-expertise` → `docs/03-purposeful-practice/`、`peak-secrets-from-the-new-science-of-expertise` → `docs/04-harnessing-adaptability/`
-- 建議 anchor：`peak-secrets-from-the-new-science-of-expertise` → `docs/01-forewords/`「推薦序」（1 個數字）、`peak-secrets-from-the-new-science-of-expertise` → `docs/06-gold-standard/`「第 4 章：刻意練習的黃金法則」（1 個數字）
+- 建議 anchor：`peak-secrets-from-the-new-science-of-expertise` → `docs/06-gold-standard/`「第 4 章：刻意練習的黃金法則」（1 個數字）、`peak-secrets-from-the-new-science-of-expertise` → `docs/01-forewords/`「推薦序」（1 個數字）
 - 落空數字：7401小時
 
 ## learning-note / practice/feedback-loop-practice.md
@@ -474,8 +486,8 @@
 ## life-meaning-note / body-wellness/sleep-pressure-and-rhythm.md
 
 - 現掛：`why-we-sleep` → `docs/01-this-thing-called-sleep/03-defining-and-generating-sleep/`、`why-we-sleep` → `docs/01-this-thing-called-sleep/02-caffeine-jet-lag-and-melatonin/`
-- 建議 anchor：`why-we-sleep` → `docs/02-why-should-you-sleep/`「你為什麼該睡覺？」（1 個數字）
-- 落空數字：24小時
+- 建議 anchor：`why-we-sleep` → `docs/02-why-should-you-sleep/`「你為什麼該睡覺？」（1 個數字）、`why-we-sleep` → `docs/03-how-and-why-we-dream/`「我們如何做夢、為何做夢」（1 個數字）
+- 落空數字：16小時、24小時
 
 ## life-meaning-note / emotion/let-them.md
 
@@ -486,7 +498,7 @@
 ## life-meaning-note / emotion/paradox-of-choice.md
 
 - 現掛：`paradox-of-choice` → `docs/03-why-we-suffer/`
-- 建議 anchor：`paradox-of-choice` → `docs/02-how-we-choose/`「我們如何選擇」（1 個數字）、`paradox-of-choice` → `docs/01-when-we-choose/`「我們什麼時候選擇」（1 個數字）
+- 建議 anchor：`paradox-of-choice` → `docs/01-when-we-choose/`「我們什麼時候選擇」（1 個數字）、`paradox-of-choice` → `docs/02-how-we-choose/`「我們如何選擇」（1 個數字）
 - 落空數字：89美元
 
 ## life-meaning-note / meaning/attitude-is-a-choice.md
@@ -508,7 +520,7 @@
 ## management-note / org-people/first-who-then-what.md
 
 - 現掛：`good-to-great` → `docs/03-first-who-then-what/`、`built-to-last` → `docs/02-clock-building-not-time-telling/`、`no-rules-rules` → `docs/section-3-techniques-to-reinforce/07-the-keeper-test/`
-- 建議 anchor：`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）
+- 建議 anchor：`built-to-last` → `docs/epilogue/`「結語」（1 個數字）、`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）
 - 落空數字：2001年、21年
 
 ## management-note / org-people/trust-and-team-dysfunctions.md
@@ -570,12 +582,6 @@
 - 建議 anchor：`a-world-without-email` → `docs/03-principles-for-a-world-without-email/`「打造一個沒有 Email 的世界的原則」（1 個數字、擴大）
 - 落空數字：1500年
 
-## nt-wright-note / theology/simply-jesus.md
-
-- 現掛：`simply-jesus` → `docs/03-the-perfect-storm/`、`simply-jesus` → `docs/11-space-time-and-matter/`、`simply-jesus` → `docs/15-jesus-the-ruler-of-the-world/`
-- 建議 anchor：`simply-jesus` → `docs/09-the-kingdom-present-and-future/`「國度的現在與未來」（1 個數字）
-- 落空數字：160年
-
 ## peck-note / community/different-drum.md
 
 - 現掛：`different-drum` → `docs/01-foundation/`、`different-drum` → `docs/02-bridge/`
@@ -636,7 +642,7 @@
 ## system-design-note / fundamentals/system-design-interview-framework.md
 
 - 現掛：`system-design-interview` → `docs/04-a-framework-for-system-design-interviews/`
-- 建議 anchor：`system-design-interview` → `docs/22-ad-click-event-aggregation/`「廣告點擊事件彙整」（1 個數字）、`system-design-interview` → `docs/28-digital-wallet/`「數位錢包」（1 個數字）、`system-design-interview` → `docs/02-scale-from-zero-to-millions-of-users/`「從零擴展到數百萬使用者」（1 個數字）
+- 建議 anchor：`system-design-interview` → `docs/28-digital-wallet/`「數位錢包」（1 個數字）、`system-design-interview` → `docs/02-scale-from-zero-to-millions-of-users/`「從零擴展到數百萬使用者」（1 個數字）、`system-design-interview` → `docs/22-ad-click-event-aggregation/`「廣告點擊事件彙整」（1 個數字）
 - 落空數字：12個
 
 ## system-design-note / reliability/stability-antipatterns.md
@@ -660,7 +666,7 @@
 
 - 現掛：`theology-of-jurgen-moltmann` → `docs/05-hope-theology/`
 - 建議 anchor：`theology-of-jurgen-moltmann` → `docs/06-theology-of-the-cross/`「十字架神學」（1 個數字）
-- 落空數字：1518年
+- 落空數字：1518年、1926年
 
 ## thinking-note / judgment-bias/puzzle-vs-mystery.md
 
@@ -677,7 +683,7 @@
 ## tools-note / focus-attention/brain-golden-time.md
 
 - 現掛：`why-elites-are-time-masters` → `docs/ch02-utilize-morning/sec-1-golden-morning-time`、`peak-performance` → `docs/02-building-foundation-skills/04-manage-your-time`、`why-elites-are-time-masters` → `docs/ch03-utilize-daytime/`、`why-elites-are-time-masters` → `docs/ch01-maximize-brain-function/`
-- 建議 anchor：`why-elites-are-time-masters` → `docs/ch04-exercise-sleep-reboot-evening/`「把夜晚時間利用到極致的運動與睡眠重啟術」（1 個數字）
+- 建議 anchor：`why-elites-are-time-masters` → `docs/ch04-exercise-sleep-reboot-evening/`「把夜晚時間利用到極致的運動與睡眠重啟術」（1 個數字）、`why-elites-are-time-masters` → `docs/ch06-self-investment-renewal/`「把自由時間利用到極致的自我投資與自我更新術」（1 個數字）、`why-elites-are-time-masters` → `docs/prologue/`「獲得最佳人生的四大原則」（1 個數字）
 - 落空數字：100%
 
 ## tools-note / focus-attention/internal-triggers-indistractable.md
@@ -728,7 +734,7 @@
 ## tracy-note / business/negotiation-basics.md
 
 - 現掛：`negotiation` → `docs/01-everything-is-negotiable/`、`negotiation` → `docs/02-overcome-your-fears/`
-- 建議 anchor：`negotiation` → `docs/21-the-successful-negotiator/`「成功的談判者」（1 個數字）
+- 建議 anchor：`negotiation` → `docs/07-power-and-perception/`「權力與認知」（1 個數字）、`negotiation` → `docs/21-the-successful-negotiator/`「成功的談判者」（1 個數字）
 - 落空數字：20%
 
 ## tracy-note / business/winning-edge.md
@@ -737,40 +743,16 @@
 - 建議 anchor：`100-absolutely-unbreakable-laws-of-business` → `docs/introduction/`「前言：成功是可預測的」（1 個數字）
 - 落空數字：90%
 
-## tracy-note / goals/21-success-secrets.md
+## tracy-note / productivity/million-dollar-habits.md
 
-- 現掛：`21-success-secrets-of-self-made` → `docs/01-dream-big-dreams/`、`21-success-secrets-of-self-made` → `docs/02-develop-clear-direction/`
-- 建議 anchor：`21-success-secrets-of-self-made` → `docs/06-work-longer-harder/`「工作得更久更努力」（1 個數字）、`21-success-secrets-of-self-made` → `docs/07-dedicate-to-lifelong-learning/`「投入終身學習」（1 個數字）、`21-success-secrets-of-self-made` → `docs/18-take-care-of-physical-health/`「好好照顧身體健康」（1 個數字）
-- 落空數字：59小時、60分鐘
-
-## tracy-note / productivity/time-management-basics.md
-
-- 現掛：`time-management` → `docs/01-the-psychology-of-time-management/`、`time-management` → `docs/02-determine-your-values/`
-- 建議 anchor：`time-management` → `docs/21-create-the-time-you-need/`「創造你需要的時間」（1 個數字）、`time-management` → `docs/09-delegate-to-others/`「授權給他人」（1 個數字）、`time-management` → `docs/introduction/`「前言」（1 個數字）
-- 落空數字：21條、70%
+- 現掛：`million-dollar-habits` → `docs/introduction/`、`million-dollar-habits` → `docs/03-becoming-a-person-of-value/`、`million-dollar-habits` → `docs/04-the-habits-you-need-to-succeed/`、`million-dollar-habits` → `docs/09-the-habits-of-personal-effectiveness/`
+- 落空數字：2000年
 
 ## tracy-note / sales/power-of-charm.md
 
 - 現掛：`power-of-charm` → `docs/01-the-quality-of-charm/`、`power-of-charm` → `docs/02-developing-the-charm-personality/`
 - 建議 anchor：`power-of-charm` → `docs/introduction/`「前言」（1 個數字）
 - 落空數字：85%
-
-## travel-note / tour-leading/recovering-from-mistakes.md
-
-- 現掛：`setting-the-table` → `docs/10-success-paved-with-mistakes-well-handled/`
-- 建議 anchor：`setting-the-table` → `docs/01-the-first-course/`「第一道菜」（1 個數字）、`setting-the-table` → `docs/08-broadcasting-message-tuning-feedback/`「傳遞訊息，接收回饋」（1 個數字）、`setting-the-table` → `docs/02-in-business/`「投身事業」（1 個數字）
-- 落空數字：50美元
-
-## uncle-bob-note / clean-code/functional-design.md
-
-- 現掛：`functional-design-principles-patterns-practices` → `docs/01-functional-basics/`
-- 建議 anchor：`functional-design-principles-patterns-practices` → `docs/06-case-study/`「案例研究」（1 個數字）
-- 落空數字：5000萬
-
-## uncle-bob-note / professionalism/agile-values.md
-
-- 現掛：`clean-agile` → `docs/02-the-reasons-for-agile/`
-- 落空數字：2001年
 
 ## uncle-bob-note / professionalism/craftsmanship.md
 
@@ -787,7 +769,7 @@
 ## writing-note / craft-mindset/revision.md
 
 - 現掛：`on-writing` → `docs/04-cv/`、`on-writing` → `docs/05-what-writing-is/`
-- 建議 anchor：`on-writing` → `docs/07-on-writing/`「論寫作」（1 個數字）、`on-writing` → `docs/09-and-furthermore-part-i-door-shut-door-open/`「此外，第一部分：關上門，打開門」（1 個數字）
+- 建議 anchor：`on-writing` → `docs/09-and-furthermore-part-i-door-shut-door-open/`「此外，第一部分：關上門，打開門」（1 個數字）、`on-writing` → `docs/07-on-writing/`「論寫作」（1 個數字）
 - 落空數字：10%
 
 ## writing-note / reading-input/composting.md
