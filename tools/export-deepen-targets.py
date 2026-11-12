@@ -118,6 +118,7 @@ SETTLED_BOOKS = {
     ("travel-note", "how-to-be-travel-writer"): ("2026-11-12", "速成課已用，其餘是投稿、SEO、謀生與資源清單"),
     ("wan-weigang-note", "wan-weigang-what-is-relativity"): ("2026-11-12", "14 章 56 小節各數百字，章節數是小節撐高的；兩站兩頁已覆蓋物理骨幹與不變量世界觀"),
     ("science-note", "wan-weigang-what-is-relativity"): ("2026-11-12", "同上，與 wan-weigang-note 共用一次裁定"),
+    ("life-meaning-note", "flow-psychology-of-happiness"): ("2026-11-12", "本站只取第十章意義的鍛造一頁，心流技術面的其餘各章在 tools-note 三頁"),
     ("travel-note", "istanbul"): ("2026-11-12", "呼愁骨幹已用，其餘三十章是家族回憶與畫家專欄"),
 }
 

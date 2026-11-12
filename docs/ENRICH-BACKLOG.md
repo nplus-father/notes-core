@@ -54,7 +54,7 @@
   - life-meaning `the-making-of-meaning` 落地，Flow 改 spine；tools 站少一筆 delegated，tier-audit 仍 0。
   - 照原文改的：fengtang 第 3 張只寫 ch35、36，標題改「伴君如伴虎：樂毅的四個關鍵與田單的攬功」；劉潤護城河照原文是「四類八條」（許可、品牌；規模、管理；用戶、生態；習慣、資產）；network-density 不寫「與網絡效應的差別」（書裡沒做這個區分）；澳洲頁補掛 03/06 鯊魚灣章（點題那句總結句出自那章）。
   - 收尾我補的事實對帳：wellness 導覽「Why We Sleep 是唯一的雙頁書」→ 七本多頁書照實列；liurun 導覽「幾乎一本一頁」補兩本體系書各三、四頁；fengtang `no-fire-on-arrival` 三條英文 label 改中文章題。
-- **收尾**：seeAlso 補 2 筆（science、wan-weigang）；`refresh-galaxy-docs.sh` 後：checkup blocker 0／warn 0／nit 18（等書）、tier-audit 只剩 philosophy 2 筆已知衝突、GUIDE-DRIFT 要改 0、strong seeAlso 缺口 0、**ORPHAN-BOOKS 0**、DEEPEN-TARGETS **4**（data-science 2 等書、security 1 待 Andrew、見文件）。
+- **收尾**：seeAlso 補 2 筆（science、wan-weigang）；`refresh-galaxy-docs.sh` 後：checkup blocker 0／warn 0／nit 18（等書）、tier-audit 只剩 philosophy 2 筆已知衝突、GUIDE-DRIFT 要改 0、strong seeAlso 缺口 0、**ORPHAN-BOOKS 0**、DEEPEN-TARGETS **3**（data-science 2 等書、security 1 待 Andrew；life-meaning 的 Flow 記入 SETTLED_BOOKS）。
 - **代理報的、主會話判誤報**：travel `visitor-management` 的杜布羅夫尼克 12,000 人，代理說查無出處；數字在 01/07 環境衝擊章，那頁本來就掛了，不動。
 - **留給 Fable**：philosophy overview「四十二頁裡有二十六本書撐著」——概念頁實際引用 28 本，「撐著」可能另有算法，判讀句不由 Opus 改；philosophy 兩筆既成事實衝突（Great Thinkers、Daily Stoic 仍判 tool）若要重判；旅遊目的地第三鏟候選與兩個成團再升格的條件（Sri Lanka、Siberia）。
 

@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-12T17:23:20+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T17:24:42+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,19 +15,18 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **4** |
-| 涉及的站 | 3 |
+| **候選（大部頭 × ≤1 頁）** | **3** |
+| 涉及的站 | 2 |
 | 依體裁排除 | 14 |
-| 已裁定不開 | 17 |
+| 已裁定不開 | 18 |
 
 ## 一、前 30 名（跨站總排序）
 
 | # | 章節 | 頁 | 站 | 書 |
 | ---: | ---: | ---: | --- | --- |
-| 1 | 64 | 1 | `life-meaning-note` | Flow 心流 |
-| 2 | 40 | 1 | `data-science-note` | 數學之美 |
-| 3 | 37 | 1 | `data-science-note` | Noise 雜訊 |
-| 4 | 30 | 1 | `security-note` | Practical Malware Analysis |
+| 1 | 40 | 1 | `data-science-note` | 數學之美 |
+| 2 | 37 | 1 | `data-science-note` | Noise 雜訊 |
+| 3 | 30 | 1 | `security-note` | Practical Malware Analysis |
 
 ## 二、依站分組
 
@@ -37,10 +36,6 @@
 
 - **數學之美** — 40 章 / 1 頁（`wujun-beauty-of-math`）
 - **Noise 雜訊** — 37 章 / 1 頁（`noise`）
-
-### `life-meaning-note`（1 本）
-
-- **Flow 心流** — 64 章 / 1 頁（`flow-psychology-of-happiness`）
 
 ### `security-note`（1 本）
 
@@ -65,7 +60,7 @@
 - `thinking-note` — The Art of Thinking Clearly 思考的藝術：轉譯型偏誤短文合輯，近百則互不相承
 - `wellness-note` — Tools of Titans 巨人的工具：訪談語錄合輯，一人一條目，按人物查閱
 
-## 四、已裁定不開：17 本
+## 四、已裁定不開：18 本
 
 開單時逐本看過、判第一鏟已兌現、歸姊妹站或材料太薄的書。這是選題判斷，不是體裁；清單在 `export-deepen-targets.py` 的 `SETTLED_BOOKS`，理由失效就從表上刪掉。
 
@@ -77,6 +72,7 @@
 - `hbr-note` — HBR Guide to Navigating the Toxic Workplace（2026-11-12）：三十三章已用約二十章，其餘各一千字湊不成主張
 - `leadership-note` — Turn the Ship Around!（2026-11-12）：四部都有頁：本站 leader-leader 掛一二部、management-note 掛三四部
 - `life-meaning-note` — Bigger Leaner Stronger（2026-11-12）：飲食端第二鏟歸 wellness，本站不收飲食頁
+- `life-meaning-note` — Flow 心流（2026-11-12）：本站只取第十章意義的鍛造一頁，心流技術面的其餘各章在 tools-note 三頁
 - `management-note` — The Five Dysfunctions of a Team 團隊領導的五大障礙（2026-11-06）：模型與工具已在本站一頁、寓言歸 leadership 三頁，剩下是故事重述
 - `newport-note` — How to Win at College（2026-11-12）：兩條原則已在 pseudo-work 與 career-capital-over-passion 的成熟版
 - `personal-finance-note` — The Millionaire Fastlane 快速致富（2026-11-12）：第一鏟四部用盡，剩自我管理與創業執行不屬理財站
