@@ -95,6 +95,9 @@ EXCLUDED_KINDS = {
     "tools-of-titans": "訪談語錄合輯，一人一條目，按人物查閱",
     "365-days-with-self-discipline": "日課型，365 則每日短文按週合輯",
     "soft-skills-thirty-letters": "多作者書信合輯，三十封各自獨立",
+    "fengtang-stable-win": "中年隨筆結集，六十九篇各自獨立",
+    "jung-red-book-readers-edition": "幻象記錄，章節是幻象序列與評註，概念已由導論抽出",
+    "philosophy-the-classics": "逐本導讀，三十二章各講一部原典，按書查閱；排除是排榜，不禁止從它選題",
 }
 
 # 開單時逐本看過、裁定不開的書（見 docstring）。(站, slug) → (裁定日, 理由)。
@@ -113,6 +116,8 @@ SETTLED_BOOKS = {
     ("hbr-note", "hbr-guide-to-navigating-the-toxic-workplace"): ("2026-11-12", "三十三章已用約二十章，其餘各一千字湊不成主張"),
     ("career-note", "mastering-behavioral-interviews"): ("2026-11-12", "behaviour-interview-note 四十一頁是體系深挖，本站是總覽頁"),
     ("travel-note", "how-to-be-travel-writer"): ("2026-11-12", "速成課已用，其餘是投稿、SEO、謀生與資源清單"),
+    ("wan-weigang-note", "wan-weigang-what-is-relativity"): ("2026-11-12", "14 章 56 小節各數百字，章節數是小節撐高的；兩站兩頁已覆蓋物理骨幹與不變量世界觀"),
+    ("science-note", "wan-weigang-what-is-relativity"): ("2026-11-12", "同上，與 wan-weigang-note 共用一次裁定"),
     ("travel-note", "istanbul"): ("2026-11-12", "呼愁骨幹已用，其餘三十章是家族回憶與畫家專欄"),
 }
 
