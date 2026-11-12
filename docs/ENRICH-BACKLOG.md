@@ -17,6 +17,748 @@
 
 ## 進行中
 
+### 2026-11-12 下午 Fable 輪：三場對照頁裁決、Flow 第十章歸屬、26 本孤兒認領、信仰線與華文線選題 — **開 36 頁給 Opus**
+
+**起點**：第三批 79／80 頁已 push；checkup blocker 0／warn 0／nit 18；ORPHAN-BOOKS 冒出 26 本（全是 11-06 之後新建的目的地書）；DEEPEN-TARGETS 剩 19 本。
+
+**本輪做了四件事**
+1. **三場「兩造都有頁」的官司**（下面「三個對照頁候選的裁決」）：clean-code 不開（導覽判互補，Thomas 與 Hunt 織進爭點三當第三層，clean-code `f918e54`）；wellness「看熱量還是看醣」開；travel「遊覽車該不該進公園」開，導覽「還開著的帳」第四條先改成三造並列（travel `a0b181a`）。
+2. **Flow 第十章**：life-meaning 自挖一頁，落地後 tier 由 delegated:tools 改 spine。
+3. **26 本孤兒認領進 travel-note**：兩個 fork 逐本讀書 repo 概述與章節、對照導覽第三章區域與既有頁，判 **spine 10／support 14／tool 2**，每本附 bibliography 條目、導覽句（spine 進區域小節、support 進支架清單、tool 進工具書）、spine 的頁工單。主會話抽 grep 三句導覽引文（史坦利的問候、Runte 的無用之地、杜拜三原則）全中。套用（bibliography 26 筆＋導覽第三章重算：脊梁 21→31、支架 12→26）交機械代理，travel-note 兩個 commit；tier-audit 在頁落地前會報 10 筆真欠債，是預期的。判層上留了三個條件：elephant-complex、travels-in-siberia 線成團再升 spine；last-spike、into-africa、city-of-gold 書站還是骨架，等書寫完再看；lost-heart-of-asia 判 spine 是依 Silk Roads 那筆 note「中亞是線」，若 lotto 不走烏茲別克就降 support。
+4. **下一批選題**：信仰線 7 本開 12 收 **11**（keller 第 3 張與第一鏟同書同主題，改成 details）；華文線與 history 9 筆開 15 收 **12**（劉潤溝通、協作兩張與萬維鋼信息論人生觀留第三鏟）。體裁排除再加三本：《穩贏》（中年隨筆結集，六十九篇各自獨立）、《紅書》（幻象記錄，概念已由導論抽出）、《哲學經典的 32 堂公開課》（逐本導讀，按書查閱；**排除是排榜，不是禁止從它選題**，這輪就從它開了三頁）；已裁定再加《高手相對論》兩站（14 章 56 小節各數百字，章節數是小節撐高的，兩站兩頁已覆蓋）。
+
+**本輪開給 Opus 的 36 頁**
+
+| 來源 | 站 | 頁 |
+| --- | --- | ---: |
+| 孤兒認領 spine | travel-note | 10 |
+| 對照頁 | wellness 1、travel 1 | 2 |
+| Flow 第十章 | life-meaning | 1 |
+| 信仰線 | keller 2、stott 2、spiritual-formation 2、lewis 2、philosophy 3 | 11 |
+| 華文線與 history | fengtang 3、wan-weigang 2、liurun 5、history 2 | 12 |
+
+**Opus 開工指令（Andrew 切模型後照這段做；Fable 2026-11-12 下午交接）**
+0. 前置照上一輪（拉 repo、讀 MODEL-ROUTING §四、note-check §6、本節下面的單）。起草紀律照上一輪「Opus 開工指令」第 2、3 條：每頁一個子代理或一組一個代理自己寫、書本位、anchor 逐一 `[ -d ]`、**事實在哪章就掛哪章**、related 解析後重寫單行、`:::response` 留空、每頁交 3 筆具名事實附來源檔、主會話回源 grep、補 roadmap 與導覽第三章一句、蓋 enrichedAt、每站 build／format:check／tier-audit／checkup 全綠、單行英文 commit 不 push。**每個代理用自己的 scratchpad 子目錄**；`export-guide-drift.py` 不讀參數，別用 `--help` 試它。
+1. **第一波（工具與既有頁）**：
+   - `export-deepen-targets.py`：EXCLUDED_KINDS 加三本（理由見上）、SETTLED_BOOKS 加 `("wan-weigang-note","wan-weigang-what-is-relativity")` 與 `("science-note","wan-weigang-what-is-relativity")`；重跑。
+   - `export-guide-drift.py` 句型放寬：overview.ts 與導覽 01／02 章裡「N 頁沿…」「N 頁」這類沒有「全站」前綴的頁數句，上一輪有約十處過期沒被抓到（hbr「三十一頁」、clean-code「七十七頁」、writing「四十六頁」、thinking「六十九頁」、travel「四十頁」、career「51 頁」、hr「二十一頁」）。把「overview 的 lede／導覽 01、02 章裡的 N 頁」也當整站宣稱試讀；仍沿用「所有合法讀法都不成立才報」。改完重跑，要改應為 0。
+   - 既有頁補 anchor：science `relativity-of-simultaneity`（04、06、08、09、11/02）、history `table-manners-as-order`（04/06、03/05、05/02）、stott `between-two-worlds`（08/04）、fengtang `zizhi-tongjian-lessons` 的 label 改中文章題。
+   - 既有頁加 details：travel `walking-japan-north-to-south` 加櫻前線一條掛 hokkaido-highway-blues 01 章（asia 單 hokkaido 那節）；keller 第一鏟頁加「復活的相遇」details 掛 06／07 那幾章（faith 單 keller 第 3 張的裁決）。
+2. **第二波（36 頁）**，站的順序：travel 10（先 asia 單的紫禁城、澳洲、中亞、越南、芭蕉，再 west 單的荷蘭、義大利、西班牙、Runte、Nile；每頁落地時把該書的 tier 留 spine，tier-audit 真欠債隨頁數歸零）→ travel 對照頁 `the-coach-question`（Runte 頁先落地，依單上條件決定三造或四造）→ wellness `calories-or-carbs` → life-meaning `the-making-of-meaning`（落地後改 bibliography tier 與導覽第三章 28、33 行）→ 信仰線 11（philosophy 三張用 Warburton 當骨幹，alternative 照單）→ 華文線 12（liurun 先 8、7 再 12、13、11；fengtang 第 3 張若散就只寫 35、36）。
+3. 收尾照上一輪第 4 條：`refresh-galaxy-docs.sh`、`export-seealso-gaps.py --allow-strict` → `apply-seealso.py`、在本節補「Opus 執行」戰報（頁數、抽驗筆數、照書改的標題、既有頁校正表、沒寫的張）。
+
+**留給 Andrew 的三個問題**：security-note 那張（Practical Malware Analysis 第五部）要不要寫、誰寫；lotto 走不走烏茲別克（決定 lost-heart-of-asia 的層）與西西里（若走，sicily 升 spine，west 單有工單草稿的章節：04-normans、05、06）。
+
+#### 三個對照頁候選的裁決與 Flow 第十章（Fable 2026-11-12 下午）
+
+上一批交付後，三場「兩造都有頁」的官司可以開 `kind: debate`，逐一過形狀測試：
+
+- **clean-code「盡早崩潰 vs 把錯誤定義掉」：不開**。導覽第四章爭點三本來就判「分層互補」（先問 Ousterhout 的問題，消不掉再用 Clean Code 寫乾淨）；Thomas 與 Hunt 的 Tip 38 只是第三層（消不掉、寫乾淨之後仍違約就崩潰），沒有哪一造反對另外兩層。已把這一層織進爭點三（clean-code `04-consensus-and-disputes.md`），不另開頁。
+- **wellness「減脂看熱量還是看醣」：開**（下面第 1 張）。三造各有頁、各說各的機制，導覽官司一已分層裁決。
+- **travel「遊覽車進公園」：開**（第 2 張）。Abbey 要擋車、Holloway 要管車、Steves 要換旅館與景點的選法，三頁都在；導覽「還開著的帳」第四條已改寫成三造並列（travel `04-consensus-and-disputes.md`），帳仍掛著，對照頁是它的查閱單位版本。
+- **Flow 第十章「意義的鍛造」：life-meaning 自挖**（第 3 張）。五站把這本書 delegated 給 tools，但 tools 的分類只有專注、習慣、筆記、時間，第十章沒有分類承接；life-meaning 導覽說「不深挖是因為別站已挖成多頁」，第十章沒有任何站挖過，理由不適用。頁落地後該站 bibliography 的 flow 由 `delegated:tools` 改 `spine`，導覽第三章 33 行那句改成「技術面在 tools 站，第十章意義的鍛造本站自挖」並連新頁。
+
+骨架照既有 debate 頁（wellness 沒有 debate 頁，照 clean-code `comments-formatting/to-comment-or-not.md`）：`> 點題` → `::core` 列各造一句 → `## 各造立場` → `## ⚖️ 共識區與爭點` → `::takeaways` → `:::response`。不下裁決（裁決在導覽），判別變數只寫作者自己說的。anchor 從各造既有頁取並逐一 `[ -d ]`；事實在哪章就掛哪章。
+
+1. wellness-note nutrition-sleep `calories-or-carbs`「減脂看熱量還是看醣：Matthews、江部與 Ferriss」— 熱量造：bigger-leaner-stronger（04-nutrition-advice/01-flexible-dieting、04-nutrition-advice/02-counting-calories-macros；取 flexible-dieting 頁的 anchor）；醣造：intermittent-fasting-low-carb-guide（02-no-weight-training-just-low-carb、03-two-meals-a-day；取 nutrition-foundations 頁的 anchor）；第三造 Ferriss：4-hour-body（01-principles/02-rules-that-change-rules 的「為什麼『卡路里進、卡路里出』說不通」一節與規則 1，03-fat-loss/01-slow-carb-diet-i 的「卡路里陷阱」）。
+   各造只並排三件事：Matthews 說能量平衡是機制、沒有飲食法繞得過，控制卡路里排四步驟第一；江部說重點不是熱量而是有沒有醣，引 NEJM 與 JAMA 的比較研究，賣點是不必算卡路里；Ferriss 說消化不等於燃燒（Atwater 的卡路里是燒出來的）、研究者執著熱量是「停車場科學」（好測量好發表），他改走熱與荷爾蒙。判別變數只寫書裡有的：Matthews 的三套數字（赤字 20–25%、盈餘約 10%）、江部的飯後 2 小時血糖 160 mg/dl、Ferriss 的作弊日維持代謝。
+   避開 daily-dozen（Greger 是「吃什麼」的軸，不是熱量對醣，只在點題句一句帶到）、nutritionism（Pollan 的意識形態批評歸導覽）、flexible-dieting／nutrition-foundations／slow-carb-diet 三頁各自的操作細節（三套數字的算法、三級減醣、五條規則不重講）；不寫「誰對」，導覽官司一已分三層裁。
+   debate 頁；related 連 flexible-dieting、nutrition-foundations、slow-carb-diet、rules-that-change-the-rules、daily-dozen；導覽官司一第三層末尾加一行連到這頁。
+
+2. travel-note tour-design `the-coach-question`「遊覽車該不該進公園：擋車、管車還是換選法」— 擋車：desert-solitaire（05-industrial-tourism-and-national-parks；取 desert-solitaire-and-industrial-tourism 頁的 anchor）；管車：business-of-tourism（03-intermediaries-in-tourism-services/01-management-of-visitors、01-defining-and-analysing-tourism/06-socio-cultural-impacts、01-defining-and-analysing-tourism/07-environmental-impacts；取 visitor-management 頁的 anchor）；換選法：europe-through-the-back-door（01-travel-skills/19-bus-tours-and-cruises；取 pacing-a-group-day 頁的 anchor）。
+   各造只並排：Abbey 的提案（禁車、不修路、輪椅探險家既是消費者也是原料）、Holloway 的工具表（承載量與可接受改變限度、硬性與軟性、三個領域、導遊是遊客管理的一環）、Steves 的立場（辦團四十多年不反對團體旅遊，批評的是旅館蓋在城郊與景點因停車入選、50 人座與小巴之間選小巴）。判別變數只寫作者自己說的：Abbey 的湖泊比喻（距離與空間是速度與時間的函數）、Holloway 的「主要景點需求缺乏價格彈性，漲價未必減客」、Steves 的團體大小。
+   避開 desert-solitaire 頁已寫的拱門成因與就地欣賞、visitor-management 頁的導遊四角色細節與杜布羅夫尼克數字（點題可引一次）、pacing-a-group-day 的節奏設計；不寫「我們就是那台車」的自省（那是導覽的判讀）。
+   第四造（條件式）：Runte《National Parks: The American Experience》的頁 `worthless-lands-and-national-parks` 若先落地、且書裡確有「公園為觀光者而設」這條線，加為第四造並取那頁的 anchor；沒有就三造。
+   debate 頁；related 連 desert-solitaire-and-industrial-tourism、visitor-management、pacing-a-group-day、staging-an-experience；導覽第四章「還開著的帳」第四條末尾加一行連到這頁。
+
+3. life-meaning-note meaning `the-making-of-meaning`「意義的鍛造：目的、決心與和諧怎麼把人生連成一場心流」— flow-psychology-of-happiness（10-the-making-of-meaning、10-the-making-of-meaning/01-what-meaning-means、10-the-making-of-meaning/02-cultivating-purpose、10-the-making-of-meaning/03-forging-resolve、10-the-making-of-meaning/04-recovering-harmony、10-the-making-of-meaning/05-unification-of-meaning-in-life-themes；六個目錄 `[ -d ]` 驗過，合計約七萬字）。
+   這本書在 life-meaning 判 `delegated:tools`，tools 站三頁掛第 2、3、4、7、8、9 章，第十章沒有任何站挖過。
+   只寫 Csikszentmihalyi 的論證：在一項活動裡達成心流不保證其餘人生（畢卡索、費雪）、零散的享受仍受混沌擺布、掌控意識的最後一步是把全部人生變成統一的心流經驗；意義的三種用法（達成目的、追求目標的決心、重獲和諧）與三者合一；像磁場的目標、索羅金的三種文化（感官型、觀念型、理想型）；目的不讓生活變輕鬆（清教徒移民）、選擇太多決心變難（自由的悖論）；意識是雙面刃與人類特有的精神熵；人生主題的兩類（被接受的：艾希曼；被發現的）與鍛造被發現主題的三步（詮釋比創傷重要、把苦難詮釋為挑戰、把挑戰一般化到他人）。「認清生命本身是無意義的是一回事，認命接受是另一回事」照書引一次。
+   避開 tools 站 flow-challenge-skill-balance 的八個成分與黃金比例、autotelic-self 的四條規則與耗散結構（第十章提到「自成目的的自我」時只接一句）、taming-solitude；避開本站 whats-worth-wanting 的四個水層與食譜測試、measure-your-life 的資源分配、redefine-retirement 的結構／目的／社群（related 連過去，不對照）；尼采「神已死」那段只寫 Csikszentmihalyi 怎麼回應，不做哲學史。
+   claim 頁；related 連 whats-worth-wanting、measure-your-life、redefine-retirement、learn-to-die-learn-to-live；seeAlso 連 tools 站 focus-attention/flow-challenge-skill-balance 與 focus-attention/autotelic-self（路徑實存）。落地後：bibliography 的 flow 改 `tier: "spine"`、刪 delegatedTo、note 改「第十章意義的鍛造本站自挖，心流技術面在 tools」；導覽第三章 28 行「卻一本都不深挖」那句補一個例外、33 行改寫並連新頁；tier-audit 必 0。
+
+#### travel-note 孤兒認領（亞洲／大洋洲／俄羅斯 14 本，Fable 2026-11-12）
+
+判準照 2026-09-26 travel 判層的先例：目的地書多半 support／tool，只有團真的會走、而且書裡有一條領隊能在現場用的主張線才判 spine 開頁。這批 14 本都是 11-06 之後新建、沒有任何站認領的目的地書；lotto 走的線以導覽第三章的區域為準（日本、中國、東南亞、北歐俄羅斯紐澳，中亞依 Silk Roads 的 note 也算一條線），印度、斯里蘭卡不是線，先 support 等成團。year 填初版年（Penguin 的芭蕉英譯 1966、Ferguson 1998、Baker 的泰國史 2005、Evans 2002、Hayton 2010、Baker 的馬新史 1999、Pisani 2014、Gimlette 2015、Dalrymple 1993、Bryson 2000、Frazier 2010、Ziegler 2015、Thubron 1994、Barmé 2008），都早於或等於書 repo 的 published。spine 工單的章節目錄全部 `[ -d ]` 驗過（見檔尾驗證清單）。
+
+**結果**：spine 5（芭蕉、紫禁城、Hayton 的越南、Bryson 的澳洲、Thubron 的中亞）、support 8、tool 1；開 5 頁，全部落 `destinations`。
+
+##### narrow-road-to-deep-north（The Narrow Road to the Deep North and Other Travel Sketches）
+
+**判層：spine**。spine。日本是第一名的線，東北團走的松島、平泉、山寺、象潟全在〈奧之細道〉一章裡（35KB），Booth 那頁只給東北一句開場；芭蕉的句子是領隊在現場能直接用的素材。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「### 日本」那段，接在「……是關西寺社與庭園的講解底。」之後）：
+
+> **The Narrow Road to the Deep North**（Matsuo Basho，Nobuyuki Yuasa 英譯，1966）是東北線的第三本：[奧之細道的幾站](../concepts/destinations/oku-no-hosomichi-stops/)取〈奧之細道〉從日光到象潟那幾站，領隊在松島與平泉開口時有芭蕉的句子可用。
+
+頁工單：
+
+1. destinations `oku-no-hosomichi-stops`「奧之細道的幾站：日光、松島、平泉、立石寺與象潟」— narrow-road-to-deep-north（docs/05-narrow-road-to-deep-north/、docs/00-preface/）。
+   第一鏟：無（本輪認領）。東北線在站上只有 Booth 的〈北方之死〉一句開場（walking-japan-north-to-south）。
+   只寫〈奧之細道〉裡團會站上的那幾站：序章「日月是百代的過客」與千住的離別、日光山、白河關與須賀川的第一首詩、仙台與壺碑、松島「日本最美之地」、平泉的夏草、立石寺的蟬聲、五月雨的最上川、羽黑山月山湯殿山、象潟「哀愁的美人」；每站只取芭蕉當場寫的句子與他記下的事，導論只借「不易」與「流行」兩個詞說明他為什麼邊走邊寫，一句帶過。
+   避開 walking-japan-north-to-south 的 Booth 東北段（死亡與北方的語氣歸那頁）、japan-through-its-culture 的 Varley 文化史；湯淺導論裡的和歌到俳句的族譜、四行英譯的翻譯策略、五篇紀行的進步線都不寫（那是譯者的立場，不是現場）；前四篇紀行（野曝、鹿島、笈之小文、更科）不掛。學者指出芭蕉改動順序、虛構事件這一點照導論引一次，標明出處。
+   claim 頁；related 連 walking-japan-north-to-south、japan-through-its-culture、learning-to-see-a-place、cultural-journey-sites（同為旁白語氣的範本）。
+
+##### hokkaido-highway-blues（Hokkaido Highway Blues 北海道公路藍調）
+
+**判層：support**。support。櫻前線與「外人さん」是好素材，但南北縱走的框架已由 Booth 的頁撐著，再開一頁地理重疊過半；它的位置是櫻花團的季節旁白。若要用，走「補進既有頁」：在 walking-japan-north-to-south 加一條櫻前線 details 並掛 docs/01-devils-washboard-kyushu/。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Hokkaido Highway Blues 北海道公路藍調**（Will Ferguson）：日本的第三本，追著櫻前線從佐多岬搭便車到宗谷岬；Booth 走路、Ferguson 搭便車，南北縱走那頁已由 Booth 撐著，它留給櫻花團當季節的旁白。
+
+##### forbidden-city（The Forbidden City）
+
+**判層：spine**。spine。片庫最多的中國線目前只有文化苦旅一本開頁、北京沒有書；Barmé 的〈階序的建築〉是進宮講解的底，〈三百年之後〉讓領隊能把 1949 之後的命運講進去。章節都二萬字以上。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「### 中國」那段，接在「華東線的蘇州、上海與五城記另成……」之後；並把「片庫最多的中國線，目前只有這一本被挖成頁。」改成「片庫最多的中國線，到這裡才有兩本被挖成頁。」）：
+
+> **The Forbidden City**（Geremie R. Barmé，2008）補上北京：[為展示而生的城](../concepts/destinations/forbidden-city-built-for-display/)取它的〈階序的建築〉與〈三百年之後〉，午門、三大殿的宇宙秩序，以及 1949 年之後這座城怎麼被拆、被改名、被毛澤東拒絕入住。
+
+頁工單：
+
+2. destinations `forbidden-city-built-for-display`「為展示而生的城：紫禁城的軸線、三大殿與它的二十世紀」— forbidden-city（docs/introduction/、docs/02-architecture-of-hierarchy/、docs/01-palace-of-blood-and-tears/、docs/07-three-hundred-years-on/）。
+   第一鏟：無（本輪認領）。中國線只有文化苦旅一本開頁，北京沒有書。
+   只寫：導論的「為展示而生的城」（逾 72 公頃、九百多個房間，層層城門的動線要讓天上宮廷投影到人間）；〈階序的建築〉的午門與乾隆凱旋、三大殿與宇宙秩序（金水河與景山、五行色彩數字、丹陛石）、外朝與內廷之間的三路格局；〈血淚宮〉的 1949 年後命運（四九方案、主席辦公樓的構想、工人說它「又空又醜」、大躍進與文革兩場浩劫反而救了它、單士元被掛牌示眾、周恩來下令重開）；〈三百年之後〉的李自成教訓、毛澤東拒入紫禁城而選中南海、「新的大內」。
+   避開 cultural-journey-sites 與 suzhou-shanghai-five-cities（余秋雨的題）；慈禧（05）、帝王的一天（04）、宮牆內外（06）留第二鏟候選；作者在「帝制語彙只是被借用、還是在形塑權力」之間沒有選邊，頁上也不替他選；導論對西方「大內」想像的拆解只引一次。
+   claim 頁；related 連 cultural-journey-sites、suzhou-shanghai-five-cities、reading-a-cathedral（同是用軸線與階序讀一座建築）、learning-to-see-a-place。
+
+##### history-of-thailand（A History of Thailand）
+
+**判層：support**。support。泰國團數多但取消率高，區域已降第二級；書是政治經濟取向的通史，領隊用它對年代，不是在車上講它。note 標「通史，講解底氣」。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **A History of Thailand**（Chris Baker & Pasuk Phongpaichit）：東南亞的第三本，Osborne 給區域、Goscha 給越南，它給泰國；通史的用法是講解底氣，阿瑜陀耶與曼谷王朝的年代對它查。
+
+##### short-history-of-laos（A Short History of Laos）
+
+**判層：tool**。tool。六章簡史，寮國線沒有列在導覽區域裡；用法與 Keay 的中國通史相同，對年代與政權更替時查。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 工具書」清單，接在 Keay 之後）：
+
+> **A Short History of Laos**（Grant Evans，2002）：寮國簡史，六章；永珍、龍坡邦講解要對年代與政權更替時查它，和 Keay 的中國通史一樣不做成頁。
+
+##### vietnam-rising-dragon（Vietnam: Rising Dragon）
+
+**判層：spine**。spine。越南是東南亞區的主力，Goscha 已 support 給歷史，Hayton 給的是團員眼前的越南：街頭小吃的來歷、文明生活運動清街、下龍灣的門面與污染、特產餐廳的野生動物。〈趁它消失前去看〉直接就是觀光那一章。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「### 東南亞」那段，接在 Osborne 那句之後）：
+
+> 越南另有 **Vietnam: Rising Dragon**（Bill Hayton，2010）：Goscha 給近代史，它給團員眼前的越南。[斗笠之外的越南](../concepts/destinations/vietnam-beyond-the-conical-hat/)取〈街頭謀生〉與〈趁它消失前去看〉：街頭小吃怎麼來的、下龍灣的門面底下是什麼。
+
+頁工單：
+
+3. destinations `vietnam-beyond-the-conical-hat`「斗笠之外的越南：街頭、下龍灣與觀光客看不到的帳」— vietnam-rising-dragon（docs/introduction/、docs/03-living-on-the-streets/、docs/08-see-it-before-its-gone/）。
+   第一鏟：無（本輪認領）。越南在站上只有 Osborne 的區域通史一頁與 Goscha 的一句支架。
+   只寫：導論裡觀光客的「細節美學」（斗笠、稻田、水牛）正是越南人自己想拋在身後的國家、「只是在描述水面的漣漪」；〈街頭謀生〉的一條街在 24 小時內消失、被切割的房子、1989 年的街頭小吃革命、「文明生活」運動的清街與青蛙市場、臨街面從最低價變成最值錢、南北之別、機車上的青春；〈趁它消失前去看〉的下龍灣（觀光的門面、污染從四面八方湧入、管不動的管理機關）、吉婆島的「特產」餐廳與野生動物交易、熊膽禁令抓得到小農抓不到大戶、啤酒大亨的老虎、戰後砍掉的森林不比戰爭少。
+   避開 southeast-asia-in-one-map 的 Osborne 三層（宮廷、農民、殖民）；政治章（04、05、06、07、09、10、11）與土地章（02）不掛，黨國體制只在點題句提一次；作者的處方（解開言論自由）是他的判斷，頁上不寫；數字密，起草代理每個數字回源。
+   claim 頁；related 連 southeast-asia-in-one-map、visitor-management（下龍灣是遊客管理的實例）、working-with-local-partners、learning-to-see-a-place。
+
+##### crossroads-malaysia-singapore（Crossroads: A Popular History of Malaysia and Singapore）
+
+**判層：support**。support。新馬線沒有別的書，十九章通俗史；馬六甲、檳城、新加坡建國的講解底氣，但沒有一條領隊會在車上講的主張線。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Crossroads: A Popular History of Malaysia and Singapore**（Jim Baker）：新馬線唯一一本，馬六甲、檳城、萊佛士與新加坡建國的講解底氣；通史，查閱為主。
+
+##### indonesia-etc（Indonesia, Etc. 印尼 Etc.）
+
+**判層：support**。support。峇里島線用得到的只有開場那組數字，書的重心刻意放在爪哇與峇里之外；主張（恩庇是統一的代價）是政治判斷，不是講解。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Indonesia, Etc. 印尼 Etc.**（Elizabeth Pisani）：印尼唯一一本，寫的是爪哇與峇里之外的群島，峇里島線只借它第一章那組數字（13,466 座島、719 種語言）開場。
+
+##### elephant-complex（Elephant Complex: Travels in Sri Lanka）
+
+**判層：support**。support。斯里蘭卡不在導覽區域裡；書的章節正好是環島行程的站（可倫坡、獅子岩、康提、茶鄉、亭可馬里），線成團時可升 spine 開一頁。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Elephant Complex: Travels in Sri Lanka**（John Gimlette）：南亞的第二本，與 Zeppa 各守一國；環島一圈，可倫坡、獅子岩、康提、茶鄉各一章，斯里蘭卡線成團再升格。
+
+##### city-of-djinns（City of Djinns）
+
+**判層：support**。support。印度不在導覽區域裡；書是德里一城的七層史，語氣是旁白範本，線成團再升格。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **City of Djinns**（William Dalrymple）：印度唯一一本，在德里住一年、一層一層往下挖的城市書；印度線成團前，它是德里講解的語氣範本。
+
+##### in-a-sunburned-country（In a Sunburned Country）
+
+**判層：spine**。spine。紐澳線只有 King 的紐西蘭，澳洲沒有書；Bryson 的第二、三部正好是雪梨、藍山、墨爾本、黃金海岸、大堡礁、烏魯魯，每章約二萬字，團天天站在這些點上。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「### 北歐、俄羅斯、紐澳」那段，接在「Booth 的芬蘭篇另成……」那句之後，並把段尾「三個區域各一本，各自單兵。」改成「三個區域裡，紐澳現在兩本。」）：
+
+> 澳洲原本沒有書，**In a Sunburned Country**（Bill Bryson，2000）補上：[空曠裡塞滿東西](../concepts/destinations/sunburned-country-east-coast/)取他的雪梨、藍山、墨爾本、黃金海岸、大堡礁與烏魯魯，King 管紐西蘭、Bryson 管澳洲。
+
+頁工單：
+
+4. destinations `sunburned-country-east-coast`「空曠裡塞滿東西：布萊森的雪梨、墨爾本、大堡礁與烏魯魯」— in-a-sunburned-country（docs/01-across-the-continent/01-forgotten-continent/、docs/02-the-civilized-south/01-sydney-and-first-fleet/、docs/02-the-civilized-south/02-blue-mountains/、docs/02-the-civilized-south/07-melbourne/、docs/02-the-civilized-south/10-aborigines-and-gold-coast/、docs/03-north-centre-and-west/01-cairns-and-great-barrier-reef/、docs/03-north-centre-and-west/03-alice-springs-and-uluru/、docs/03-north-centre-and-west/04-aboriginal-australia/）。
+   第一鏟：無（本輪認領）。紐澳線只有 King 的紐西蘭，澳洲沒有頁。
+   只寫團會站上的點：〈被遺忘的大陸〉的那組數字（1997 年《紐約時報》關於澳洲的文章 20 篇，祕魯 120、以色列 500 多）與「有那麼多東西可找，卻也有那麼大的地方要找」、1967 年弄丟總理；雪梨與第一艦隊（庫克把雨季誤認成旱季）；藍山；墨爾本；黃金海岸與原住民那章；凱恩斯與大堡礁的致命生物；愛麗絲泉與烏魯魯；原住民的澳洲那章只照書寫他記下的事與他自己承認的困境，不加評語。
+   避開 aotearoa-two-settlements 與 treaty-comes-alive（紐西蘭）；內陸火車（01/02、01/03）、坎培拉、阿得雷德、達爾文、伯斯、鯊魚灣（團不走）不掛；布雷尼與克拉克的史學之爭只在點題句一句；幽默段落照書引，不自己加笑話。
+   claim 頁；related 連 aotearoa-two-settlements、treaty-comes-alive、learning-to-see-a-place、pacing-a-group-day。
+
+##### travels-in-siberia（Travels in Siberia）
+
+**判層：support**。support。俄羅斯線是聖彼得堡與莫斯科，西伯利亞不是線；Figes 管歐俄，它管烏拉山以東，貝加爾湖線成團再升格。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Travels in Siberia**（Ian Frazier）：俄羅斯的第二本，Figes 管聖彼得堡與莫斯科，它管烏拉山以東；貝加爾湖與西伯利亞鐵路線成團再升格。
+
+##### black-dragon-river（Black Dragon River 黑龍江）
+
+**判層：support**。support。中俄邊界的河，主體在俄國一岸；哈爾濱、東北線只借它講邊界來歷，不夠撐一頁。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「## 支架：一句話就位」的清單，依區域順序插在對應位置（日本的放最前面、東南亞的接在 Goscha 之後、南亞的接在 Zeppa 之後、俄羅斯的放 Coming into the Country 之後）；清單開頭「這十二本留在架上」的數字要跟著改）：
+
+> **Black Dragon River 黑龍江**（Dominic Ziegler）：中俄邊界那條河，從蒙古源頭走到出海口；哈爾濱與東北線借它講邊界的來歷，主體在俄國那一岸。
+
+##### lost-heart-of-asia（The Lost Heart of Asia）
+
+**判層：spine**。spine。Silk Roads 的 note 明寫中亞是一條線（借歷史站當底），但本站沒有任何中亞現場的書；Thubron 的布哈拉、希瓦、撒馬爾罕三章就是烏茲別克團的三個站，各二萬五千字以上。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽句（「### 中東與埃及」那段末尾，接在「兩本各管一國，不互相補。」之後（中亞沒有自己的小節，暫放這裡））：
+
+> 中亞線的書也放在這裡：**The Lost Heart of Asia**（Colin Thubron，1994）撐起[撒馬爾罕、布哈拉、希瓦](../concepts/destinations/samarkand-bukhara-khiva/)，蘇聯剛退場那一年的三座古城；絲路的歷史底借歷史站的 Frankopan，現場的樣子靠它。
+
+頁工單：
+
+5. destinations `samarkand-bukhara-khiva`「撒馬爾罕、布哈拉、希瓦：帝國剛退場的中亞」— lost-heart-of-asia（docs/03-bukhara/、docs/05-khorezmian-solitude/、docs/06-samarkand/、docs/08-tashkent/、docs/preface/）。
+   第一鏟：無（本輪認領）。站上沒有中亞的頁，Silk Roads 判 delegated 給歷史站。
+   只寫烏茲別克團的三個站加首都：布哈拉的卡蘭宣禮塔與修復中的聖城、兀魯伯經學院的守門人、異端的暗流（火與水）、消失的市集與飛走的鸛鳥；希瓦「被凍結的城市」與博物館化的古城、遲來的復興與稀薄的伊斯蘭、古烏爾根奇與瀕死的阿姆河；撒馬爾罕的雷吉斯坦「帝國的舞台布景」與走進後台、比比哈努姆清真寺的廢墟、帖木兒「最後的世界掠食者」與帖木兒之墓的看守人、「帖木兒讓我們成為一個國家」；塔什干一片空白的標語看板。序言只借「獨立後的第一個春天與夏天」定時間點，與「書中數位人物的身分已改寫隱匿」一句。
+   避開歷史站的 Silk Roads（絲路通史歸那邊，seeAlso 不必，history 站沒有對口頁）；土庫曼（01、02）、費爾干納與帕米爾（09、10）、哈薩克與吉爾吉斯（11、12）不掛（團不走）；作者的四股力量框架（伊斯蘭、莫斯科、土耳其、西方）是他的分析，頁上不替五國下判。
+   claim 頁；related 連 istanbul-huzun（同是伊斯蘭世界的城市書）、natashas-dance-two-russias（俄國留下的那一層）、learning-to-see-a-place。
+
+##### 小結
+
+- spine 5／support 8／tool 1；開 5 頁，全部 `destinations`，全部 claim。
+- 支架清單從十二本變二十本，導覽那句「這十二本留在架上」要改數字；導覽第三章開頭「二十一本脊梁」變二十六本，也要改。
+- 兩本判 support 但有升格條件：elephant-complex（斯里蘭卡線成團）、travels-in-siberia（貝加爾湖線成團）；hokkaido-highway-blues 的櫻前線可走「補進既有頁」，在 walking-japan-north-to-south 加一條 details 掛 docs/01-devils-washboard-kyushu/。
+- 三本 note 標「通史，講解底氣」：history-of-thailand、crossroads-malaysia-singapore（support）、short-history-of-laos（tool）。
+- 起草順序建議：2（紫禁城，章節最厚、邊界最乾淨）→ 4（澳洲，團點最多）→ 5（中亞）→ 3（越南，數字多要逐筆回源）→ 1（芭蕉，詩句要照書 repo 的譯文）。
+- 旁註：in-a-sunburned-country 的書 repo 是兩層目錄（三部各有子章），anchor 要掛到子章；narrow-road-to-deep-north 的〈奧之細道〉是單一 35KB 章，anchor 掛章層即可。
+
+#### travel-note 孤兒認領（歐洲／美洲／非洲／中東 12 本，Fable 2026-11-12）
+
+判準：2026-09-26 的先例（目的地書多半 support／tool，只有團真的會走、書裡有一條領隊講解用得上的主張線才 spine 開頁）加三條本輪的補充：**書站只有骨架的不開頁**（last-spike 每章不到 2.5 KB、into-africa 與 city-of-gold 各章 1–2 KB，只有序與尾聲有內文）；**導覽沒列的線**（中歐、中南美、非洲、杜拜）一律 support 進支架，成團再升；**指南書判 tool**。
+年份填初版年（書站 `published` 多半是美版或平裝版）。12 本都只有 travel-note 收；history-note 沒認領任何一本，通史類在 note 裡標「通史，講解底氣」。
+spine 5 張的章節目錄全部 `[ -d ]` 驗過，related 的 slug 全部在 `concepts/destinations/` 與 `tour-design/` 實存。
+
+##### 一、spine（5 本，開 5 頁）
+
+**1. why-the-dutch-are-different（Ben Coates，2015）— spine，西歐**
+判層理由：荷比線是第一級西歐線（書目 note 明列「德、法、瑞、荷、比」），架上原本沒有荷蘭的書；第一章「到處都是水」是風車、堤防、三角洲工程的講解底，每章四萬字，材料厚。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 西歐」段：開頭「四本脊梁，一國一本（瑞士兩本）」改成「五本脊梁，一國一本（瑞士兩本）」；在 Robb 那句之後加：
+> **Why the Dutch Are Different**（Ben Coates，2015）撐起[從水裡造出來的國家](../concepts/destinations/dutch-water-and-polder-model/)：風車、圩田、1953 年的洪水與三角洲工程，荷比線從風車村到台夫特一路用得到。
+
+頁工單：
+1. destinations `dutch-water-and-polder-model`「從水裡造出來的國家：風車、圩田與 1953 年之後的荷蘭」— why-the-dutch-are-different（docs/introduction/、docs/01-water-water-everywhere/）。
+   第一鏟：無，這是本書第一頁。
+   只寫第一章與導論：面積只有蘇格蘭一半的國家為什麼是「隱形的超級強權」（導論）；風車一層一層把水抽上去造出低於海平面的圩田、「填海之國」、多德雷赫特與馬斯河上的曼哈頓（鹿特丹）；1953 年 1 月 31 日夜裡的洪水（近兩千人溺斃、七萬人離家、約二十萬公頃被淹）與之後三十年的三角洲工程、海岸線縮短近一半；maakbaarheid（可塑性）這個對自然的態度，以及它的另一面：荷蘭人均碳排幾乎是法國兩倍、「其實一點都不綠」；氣候變遷對一個低於海平面的國家意味什麼。數字逐字照書。
+   避開 03-golden-age（VOC、鬱金香、林布蘭，留第二鏟給國家博物館那一天）、02 的柱化與 06 的移民爭論（那是政治題，導覽只帶一句）；avoid europe-in-three-strands 的三股力量、reading-a-cathedral 的教堂讀法。
+   claim 頁；related 連 europe-in-three-strands、learning-to-see-a-place、pacing-a-group-day、germany-in-objects。
+   第二鏟候選：03-golden-age（博物館之夜、香料、帝國的陰暗面、林布蘭）合國家博物館與林布蘭之家的講解；02-religious-divide 的柱化留給導覽。
+
+**2. italians（John Hooper，2015）— spine，南歐**
+判層理由：義大利線是第一級南歐線，架上只有 SPQR 管古代；Hooper 從地理與一千五百年外族統治解釋今天的義大利人，是領隊在車上回答「為什麼義大利這樣」的那本。每章兩萬字。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 南歐」段：在 Menocal 那句之後加：
+> **The Italians**（John Hooper，2015）撐起[迴響與餘波](../concepts/destinations/italians-echoes-of-foreign-rule/)：SPQR 講羅馬人，它講今天的義大利人，南北、精明者與傻瓜、好面子都從一千五百年的外族統治講起。
+
+頁工單：
+2. destinations `italians-echoes-of-foreign-rule`「迴響與餘波：義大利人的習性從一千五百年的外族統治來」— italians（docs/01-beautiful-country/、docs/02-violent-past/、docs/03-echoes-and-reverberations/、docs/06-face-values/）。
+   第一鏟：無，這是本書第一頁。
+   只寫 Hooper 的主論證：每十個義大利人就有一個住在島上、本土被阿爾卑斯與亞平寧切碎，但真正的分界是南北不是東西（01）；良三世、倫巴底人、自治城邦、諾曼與西班牙統治、1527 年羅馬之劫，「在外國枷鎖之下」（02）；兩個義大利還是三個、帕特南把各區施政連到中世紀自治傳統、「精明者與傻瓜」（普雷佐里尼：傻瓜有原則，精明者只有目的）、脆弱的忠誠與兩次大戰換邊、轉型主義（03）；好面子與丟面子、用視覺說話、影像政治（06）。
+   避開 rome-in-the-ruins 的羅馬遺跡與 SPQR 的帝國軸；避開 04 的法律迷宮、16–18 的黑手黨與回扣（留第二鏟或不開，領隊在車上不講黑手黨 GDP 比例）；飲食章（08）只在應用段一句。
+   claim 頁；related 連 rome-in-the-ruins、europe-in-three-strands、seventeenth-century-painters、learning-to-see-a-place。
+   第二鏟候選：08-gnocchi-on-thursdays（飲食與工作）、09-holy-orders（天主教與拉特朗條約，梵蒂岡那一天）、19-questions-of-identity（方言與地方主義）。
+
+**3. ghosts-of-spain（Giles Tremlett，2006）— spine，南歐**
+判層理由：西葡線是第一級南歐線，架上只有 Menocal 管中世紀安達魯斯；Tremlett 管二十世紀：烈士谷、內戰萬人塚、遺忘協定、巴斯克與加泰隆尼亞，領隊在馬德里與巴塞隆納被問到的全在這本。各章四到六萬字。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 南歐」段：接在 The Italians 那句之後：
+> **Ghosts of Spain**（Giles Tremlett，2006）撐起[噪音底下的沉默](../concepts/destinations/spain-pact-of-forgetting/)：Menocal 的西班牙停在 1492 年，它從 1936 年接手，烈士谷、萬人塚與遺忘協定是馬德里那兩天會被問到的事。
+
+頁工單：
+3. destinations `spain-pact-of-forgetting`「噪音底下的沉默：內戰、佛朗哥與遺忘協定」— ghosts-of-spain（docs/introduction/、docs/01-secretos-a-voces/、docs/02-looking-for-the-generalisimo/、docs/03-pact-of-forgetting/、docs/14-fiesta-is-over/）。
+   第一鏟：無，這是本書第一頁。
+   只寫前三章與第十四章這條線：噪音之國對沉默（導論）；波亞萊斯德爾奧約 1936 年 12 月 29 日的三名女人與 2002 年諸聖節挖開的墳、戰爭的規模（約五十萬人死亡、雙方處決約二十萬人）與兩種殺戮的差別、佛朗哥一方的受害者留在路溝與井裡（01）；烈士谷、每年十一月的懷舊彌撒、被收進倉庫的佛朗哥、馬基游擊隊、恐懼留在血液裡（02）；1977 年大赦法第二條、「大赦就是一種遺忘」、沒有審判沒有真相委員會、23-F、遺忘的代價（03）；2007 年歷史記憶法、加爾松被停職、「兩個西班牙是否回來了」（14）。數字逐字照書。
+   避開 al-andalus-three-faiths 的三教共處（時代不同，不接）；避開 04 觀光與貝尼多姆（那是 tour-design 的題，留第二鏟或補進 visitor-management）、09 三一一爆炸案、10–12 巴斯克、加泰隆尼亞、加利西亞（第二鏟候選：「三個不想當西班牙的地方」）。
+   claim 頁；related 連 al-andalus-three-faiths、europe-in-three-strands、germany-divided-and-rebuilt、learning-to-see-a-place。
+   第二鏟候選：10-serpent-and-axe、11-madness-of-verdaguer、12-coffins-celts-clothes 合成一頁（巴塞隆納與聖雅各之路都在裡面）；04-how-the-bikini-saved-spain 是觀光史，與 visitor-management 分工。
+
+**4. national-parks-the-american-experience（Alfred Runte，1979）— spine，北美**
+判層理由：導覽「未收與換書」自己寫了「國家公園線靠的是一本論戰散文而不是制度史」，這本就是那本制度史；Abbey 講看法，Runte 講公園為什麼存在，Holloway 的 visitor-management 講怎麼管，三頁正好三面。每章兩到三萬字。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 北美」段：在 Abbey 那句之後加：
+> **National Parks: The American Experience**（Alfred Runte，1979）補上年表那一面，撐起[無用之地](../concepts/destinations/worthless-lands-and-national-parks/)：美國拿不出古堡與教堂，只能拿風景當民族自豪，而國會負擔得起公園，是因為那些地方本來就沒有別的經濟價值。
+
+導覽「## 未收與換書」段末句「國家公園線靠的是一本論戰散文而不是制度史」已不成立，建議改成「國家公園線的制度史後來由 Runte 補上」（留 Fable 決定措辭）。
+
+頁工單：
+4. destinations `worthless-lands-and-national-parks`「無用之地：美國為什麼發明國家公園」— national-parks-the-american-experience（docs/prologue/、docs/01-american-west/、docs/02-yellowstone/、docs/03-worthless-lands/、docs/04-march-of-monumentalism/、docs/05-see-america-first/）。
+   第一鏟：無，這是本書第一頁。
+   只寫 Runte 的兩層論證：風景民族主義（傑佛遜的難題、新世界太新的文化自卑、卡特林的「國家的公園」、1864 年優勝美地公園法只保護 56 平方英里、尼加拉瀑布那個無可辯駁的損失）；無用之地（康尼斯在參議院保證優勝美地毫無價值、海登保證黃石每個月都有霜、道斯說若日後有用法案可廢、「無私很少能撐過限定條件」）；黃石營火邊的誕生神話是 1905 年修訂的日記、廣大邊界多半是偶然（02）；紀念碑主義：雷尼爾山法案由鐵路公司寫成、1905 年優勝美地被刪去三分之一、古物法、赫奇赫奇之戰（04）；「先看美國」與鐵路結盟、1916 年管理局法（05）只寫到法案成立，「啟發心靈永遠不足以成為擁有公園的理由」那一句收尾。
+   避開 desert-solitaire-and-industrial-tourism 已寫的 1916 年授權兩派讀法與艾比的三項提案（這頁只交代法案怎麼來的，兩派之爭連過去）；避開 visitor-management 的承載量與遊客管理；06–13 的生態與擴張留第二鏟（紅杉國家公園那段與美西線關係最近）。
+   claim 頁；related 連 desert-solitaire-and-industrial-tourism、visitor-management、chasing-the-aurora、learning-to-see-a-place。
+   旁註：這頁落地後，導覽第四章爭點四（我們就是 Abbey 罵的那台車）有了第三個聲音（Runte：公園一開始就是給遊客看風景的，不是荒野保護），爭點四若要改寫一併看（Fable）。
+
+**5. nile（Toby Wilkinson，2014）— spine，中東與埃及**
+判層理由：埃及線的行程就是這本書的目錄，亞斯文、康翁波、艾德夫、路克索、西底比斯順流而下；同作者的通史已有兩頁管法老三千年，這本管河、水壩、採石場、泥磚村與今天的埃及人，三頁不重疊。每章三到五萬字。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 中東與埃及」段：原句「兩本各管一國，不互相補」改成「三本：Pamuk 管土耳其，Wilkinson 兩本管埃及」，並在 Wilkinson 那句之後加：
+> 同一位作者的 **The Nile**（Toby Wilkinson，2014）沿河順流而下，撐起[順流而下的埃及](../concepts/destinations/nile-stone-and-mud/)：通史管法老，這本管亞斯文的水壩、採石場與泥磚村，遊輪每天停的那幾站。
+
+頁工單：
+5. destinations `nile-stone-and-mud`「順流而下的埃及：水壩、採石場與泥磚」— nile（docs/01-egypts-eternal-river/、docs/02-aswan/、docs/03-deep-south/、docs/05-western-thebes/）。
+   第一鏟：無，這是本書第一頁；同作者的 rise-and-fall-of-ancient-egypt 已有 three-thousand-years-on-the-nile 與 ramesses-and-the-cost-of-empire 兩頁。
+   只寫河這條線：沒有尼羅河就沒有埃及、95% 是沙漠、氾濫與王室編年史、船的家族、西方人眼中的尼羅河（庫克把達哈比亞行程壓成三週汽船、整趟 44 英鎊，愛德華茲與塞斯那批達哈比亞派）（01）；亞斯文是水的源頭也是控制水的地方：象島的水位計、1902 年舊壩讓棉產四倍、淹掉菲萊、1971 年高壩「把一年一度的氾濫送進了歷史」與代價（淤泥、鹽化、血吸蟲）（02）；石頭屬於國家、泥土屬於人民：傑貝爾西爾西拉的採石場、艾爾卡布的泥磚、艾德夫與伊斯納是外族統治下為安撫而蓋的晚期神廟（03）；西底比斯：底比斯是地方家族趁國家崩潰奪權的結果、戴爾麥地那的罷工與「先否認後冷漠、有限讓步配合安全鎮壓」、古爾納的盜墓者村莊被拆（05）。數字逐字照書。
+   避開 three-thousand-years-on-the-nile 的王朝軸與路克索神廟＝王室之卡（04 不掛）、ramesses-and-the-cost-of-empire 的阿布辛貝與卡疊石；避開 07–10（阿拜多斯、中埃及、法尤姆、開羅）留第二鏟；2011 年與穆爾西只在作者立場一句帶過，不做時事。
+   claim 頁；related 連 three-thousand-years-on-the-nile、ramesses-and-the-cost-of-empire、visitor-management、learning-to-see-a-place。
+   第二鏟候選：10-cairo（開羅那一天）；06-qift-and-qena 的中央與地方張力（垃圾收集寓言、免稅令）是書的主旋律，若要開第二頁從這裡切。
+
+##### 二、support（6 本，導覽各一句、不開頁）
+
+**6. sicily（John Julius Norwich，2015）— support，南歐**
+理由：西西里線（巴勒莫、蒙雷阿萊、切法盧、敘拉古）是義大利線的分支，導覽沒單獨列；書厚（每章二到四萬字）、諾曼那三章正是講解底，但照 Balkans 的先例「成團後再升格」。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽「## 支架：一句話就位」清單，接在 Glenny 那條之後：
+> - **Sicily: An Island at the Crossroads of History**（John Julius Norwich）：南歐的第四本，SPQR 管羅馬、它管西西里這座每個強權都要佔的島；諾曼王國那幾章是巴勒莫與切法盧的講解底，西西里線成團再升格。
+
+**7. habsburgs（Martyn Rady，2020）— support，中歐（第二級）**
+理由：維也納、布拉格、布達佩斯那條線導覽沒列；三十一章的王朝通史，領隊要的是美泉宮、霍夫堡、皇家圖書館那幾段，查閱多於講述。通史，講解底氣。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽支架清單，接在 Sicily 之後：
+> - **The Habsburgs: To Rule the World**（Martyn Rady）：維也納、布拉格、布達佩斯那條線的共同底，導覽沒有中歐這一節，先讓它在架上守著；美泉宮與霍夫堡要講瑪麗亞・特蕾莎或西西，翻它。
+
+**8. last-spike（Pierre Berton，1971）— support，北美**
+理由：加拿大洛磯線（班夫、露易絲湖、羅傑斯山口、螺旋隧道）全在這本書的路線上，本該 spine；但書站只有骨架（每章 1.7–2.5 KB，只有序與尾聲有內文），開不了頁。內文補上再升。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽支架清單，接在 McPhee 那條之後：
+> - **The Last Spike**（Pierre Berton）：北美的第三本，專管加拿大洛磯線，羅傑斯山口、踢馬河的大坡與露易絲湖怎麼被找到都在裡面；書站還是骨架，先當支架。
+
+**9. last-days-of-the-incas（Kim MacQuarrie，2007）— support，中南美（第二級）**
+理由：祕魯線導覽沒列；書厚、敘事強（卡哈馬卡、馬丘比丘與比爾卡班巴之爭是馬丘比丘那一天的講解底），照 Zeppa「南亞唯一一本」的先例進支架，成團再升。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽支架清單，接在 Zeppa 那條之後：
+> - **The Last Days of the Incas**（Kim MacQuarrie）：中南美唯一一本，卡哈馬卡的埋伏與「馬丘比丘是不是比爾卡班巴」是馬丘比丘那一天要講的；祕魯線成團再升格。
+
+**10. into-africa（Martin Dugard，2003）— support，非洲（第二級）**
+理由：東非線導覽沒列；書站只有序與尾聲有內文（各章 1–2 KB），開不了頁；坦干依喀湖、尚吉巴、「李文斯頓博士，我想？」是東非線的旁白素材。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽支架清單，接在 Incas 之後：
+> - **Into Africa**（Martin Dugard）：非洲唯一一本，尚吉巴與坦干依喀湖的旁白素材，史坦利那句「李文斯頓博士，我想？」就是從這裡講起；書站還是骨架。
+
+**11. city-of-gold（Jim Krane，2009）— support，中東與埃及（第二級）**
+理由：杜拜是中轉點（Istanbul 那條書目 note 寫「杜拜多半只是中轉點，不另收書」，這本書進站後那句要改）；轉機停留一兩天的講解底：珍珠村落怎麼變黃金之城。書站只有序與尾聲有內文，不開頁。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽第三章「### 中東與埃及」段末加一句（不是支架清單，因為它接在既有區域段裡最順）：
+> 杜拜本來只當中轉點，**City of Gold**（Jim Krane，2009）進站後，轉機停留那一兩天也有底：馬克圖姆家族的三條原則、拉希德在需求出現之前先蓋，以及勞工營那一章的代價。
+
+另：bibliography 裡 `istanbul` 那條 note 的「杜拜多半只是中轉點，不另收書」改成「杜拜另收 Krane 的 City of Gold」。
+
+##### 三、tool（1 本）
+
+**12. national-parks-of-the-american-west（Don Laine & Barbara Laine，2012 版）— tool，北美**
+理由：Frommer's 逐園指南（三十五園同一副骨架：避開人潮、只有一天怎麼玩、開車遊覽、露營住宿），排美西國家公園行程時查它，不講。年份填這一版的 2012（指南書的初版年沒有意義，每版重寫）。
+
+（bibliography 條目已套用，見 travel-note `d7312de`）
+
+導覽「## 工具書」清單，接在 Keay 之後：
+> - **Frommer's National Parks of the American West**（Don Laine & Barbara Laine，2012）：三十五座西部國家公園逐園一章，避人潮的時段、只有一天怎麼玩、兩條招牌環線；排美西行程時查它，講解看 Abbey 與 Runte。
+
+##### 小結
+
+- spine 5（dutch、italians、ghosts-of-spain、runte、nile）開 5 頁；support 6（sicily、habsburgs、last-spike、incas、into-africa、city-of-gold）；tool 1（Frommer's）。
+- 三本本該更高卻被書站材料擋下：last-spike（加拿大洛磯線的正典，骨架）、into-africa、city-of-gold；內文補上再回頭判。
+- 導覽要動的地方：西歐段「四本脊梁」改五本並加 Coates；南歐段加 Hooper、Tremlett 兩句；北美段加 Runte；中東與埃及段改「兩本各管一國」並加 Wilkinson 第二本與 Krane；支架清單加 5 條（「這十二本留在架上」的數字要改十七本）；工具書加 Frommer's；「未收與換書」末句的「不是制度史」要改。導覽第三章開頭「目的地知識：二十一本脊梁」的數字加 5。
+- 起草順序建議：4（Runte，補導覽自己承認的洞）→ 5（Nile，行程對口最直接）→ 3、2（西葡與義大利，第一級線）→ 1（荷蘭）。
+- 旁註：Runte 落地後爭點四多了一造，導覽第四章改寫時一併看；Tremlett 第 4 章的貝尼多姆觀光史與 visitor-management 同題，第二鏟時分工。
+
+#### 信仰線第二鏟選題單（keller／stott／spiritual-formation／lewis／jung／philosophy，DEEPEN-TARGETS 7 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用；先判體裁。七本裡兩本先過體裁關：《紅書》是幻象記錄、《哲學經典的 32 堂公開課》是逐本導讀，都不該用「大部頭只一鏟」的尺量，處置寫在不開那節。
+姊妹站分工：theology-note 11-06 已從《追隨基督》取登山寶訓第二部（visible-yet-hidden、church-engage-or-contrast）、從《返璞歸真》取第四卷（beyond-personality）與前兩卷（argument-from-desire、head-or-heart-apologetics），本輪的單全部避開那些章；《當代講道藝術》biblical-studies 判 delegated 給 stott，沒有分工問題。
+章節目錄名全部 `[ -d ]` 驗過（70 個）；單上引號裡的字句都 grep 過書 repo，查不到的改寫成「書裡講到」。
+
+#### keller-note 第二鏟選題單（1 本，開 3 張）
+
+《恐懼時代的盼望》91 章，第一鏟（jesus/hope-in-times-of-fear）掛 01-certain-hope 與 05-the-great-reversal 兩部，寫的是歷史性信仰、復活的證據、大逆轉與交換位置；第 2、3、4、6 到 12 部一字未用，書單 note 自己寫「大缺口」。站上五個分類裡 life 沒有一頁講成聖、apologetics 沒有一頁講盼望，這兩個洞正好是這本書第 8 與第 12 部。
+
+1. life `resurrection-and-change`「復活與改變：脫去與穿上的兩個衝程」— hope-in-times-of-fear（docs/08-hope-for-you/01-risen-with-christ、docs/08-hope-for-you/02-resurrection-and-experience、docs/08-hope-for-you/03-resurrection-and-change、docs/08-hope-for-you/04-mistakes-about-growth-and-change）。
+   第一鏟寫復活的證據與大逆轉的邏輯，停在「要被大逆轉拯救，就必須經過自己的逆轉」這一句；怎麼逆轉、改變的機制是什麼，書的第 8 部才講，站上 24 頁沒有一頁講成聖。
+   只寫：成為基督徒「從一個領域被挪進另一個領域」而不是翻開新的一頁更努力（08/01，死的麥克風比喻）；教義純正必要卻不足夠，愛德華茲的印章與蠟印、保羅為「已經知道的事」禱告（08/02）；以弗所書與歌羅西書的兩個「衝程」，脫去與穿上、治死與求上面的事，書用二衝程引擎作比喻（08/03）；關於成長的誤解：向下衝程針對的不只是行為而是傾向犯罪的心的習慣，「把心安置」不等於努力好好過活（08/04）。
+   避開 gospel 分類 counterfeit-gods 與 religion-vs-gospel 的偶像診斷（08/04 講到「只要得到這個」那段只引一句、related 連過去）、self-forgetfulness 的福音式謙卑；08/05 復活與實踐（海斯的兩條守則）與 08/06 大逆轉的倫理（艾略特「我們死，是為了活」）是倫理應用，不進這頁，留第三鏟。
+   claim 頁；related 連 hope-in-times-of-fear、religion-vs-gospel、counterfeit-gods、self-forgetfulness。
+
+2. apologetics `critique-of-secular-hope`「線性進步是誰的發明：世俗盼望的兩個設計缺陷」— hope-in-times-of-fear（docs/12-hope-for-the-future/01-the-rise-of-cultural-hope、docs/12-hope-for-the-future/02-the-loss-of-cultural-hope、docs/12-hope-for-the-future/03-a-revival-of-hope、docs/12-hope-for-the-future/04-the-critique-of-secular-hope、docs/12-hope-for-the-future/05-christian-resources-for-cultural-hope）。
+   第一鏟沒碰第 12 部；making-sense-of-god 把盼望列為世俗主義與基督教並排的六項需要之一，只有一行。第 12 部五章四萬字是凱勒對文化盼望的完整論證。
+   只寫：古代文化沒有「進步」的概念，循環或衰落，線性歷史觀是基督信仰帶來的（12/01）；1900 到 1950 年理性與科學沒能阻止的事，威爾斯從 1922 年《世界史綱》到二戰的信心崩解（12/02）；「歷史正確的一邊」怎麼在政治語言裡復興一種沒有神的進步信念（12/03，書引《大西洋》雜誌的統計）；世俗盼望的「兩個設計缺陷」，人性的問題與終極虛無的問題，用奧許維茲檢驗（12/04）；基督徒的盼望「合理的、豐滿的、實在的、有效的」四項（12/05，賴特的「更換典範」）。
+   避開 making-sense-of-god 的六項並排與「世俗選項也需要信心」的總論證（這頁只做盼望一項，開頭一句接過去）、reason-for-god 與 doubt-your-doubts 的懷疑論證、第一鏟已寫的復活證據（12/05 第一項引用第 1 部時只說「見第一鏟」不重講）。
+   claim 頁；related 連 making-sense-of-god、reason-for-god、doubt-your-doubts、hope-in-times-of-fear。
+
+3. jesus `meeting-the-risen-jesus`「復活的相遇：馬利亞、多馬與彼得各自被拆掉的是什麼」— hope-in-times-of-fear（docs/06-personal-hope-1/01-mary-meets-jesus、docs/06-personal-hope-1/03-thomas-meets-jesus、docs/06-personal-hope-1/04-did-thomas-get-special-treatment、docs/07-personal-hope-2/02-jesus-confronts-peter、docs/07-personal-hope-2/03-jesus-restores-peter）。
+   第一鏟只在 TIP 裡用了「目擊者起初認不出耶穌」一句；encounters-with-jesus 寫的是另一本書的約翰福音相遇（尼哥底母、拿但業等），多馬與彼得只各在一句裡帶過，抹大拉的馬利亞沒有。第 6、7 部十二章是復活後的相遇，兩站都沒挖。
+   只寫：馬利亞認不出耶穌的更深原因，她心中的敘事「像濾網或屏幕一樣運作」，「她明明正看著他，卻看不見他」，耶穌先叫她的名字（06/01）；多馬「開出條件」，耶穌給他證據卻說沒有看見就信的有福了，多馬有沒有被特別對待（06/03、06/04）；彼得失敗的規模與三次否認，耶穌三問「你愛我嗎」對應三次否認，彼得沒有做的三件事與「沒有藉口。我知道我失敗了」（07/02、07/03）。
+   避開第一鏟的復活證據（空墳墓、女性見證人、猶太世界觀），這頁不論證復活發生過，只寫相遇怎麼改變人；避開 forgive 的饒恕技術（彼得那段是復原不是饒恕論）；07/01 彼得遇見耶穌（加利利海邊，2.9K）與 07/04 保羅（4K）材料薄，只各一句；07/05 到 07/08 是護教收束，歸第一鏟題域不寫。
+   claim 頁；related 連 hope-in-times-of-fear、encounters-with-jesus、jesus-the-king、forgive。
+   **裁決（主會話）**：不開。與第一鏟同書同主題，三段相遇敘事重述的風險過半；改成第一鏟那頁加一條 details（馬利亞、多馬、彼得各一句，掛 06／07 那幾章），不另開頁。
+
+##### 不開（留第三鏟）
+
+- 11-hope-in-the-face-of-suffering/02-god-meant-it-for-good（約瑟，22K）：材料厚，但 forgive 頁已用《饒恕》的約瑟，suffering 頁已用《走過苦難》的六種姿態，第三本書的約瑟再開會是第三個版本的同一段敘事；留第三鏟，或在 suffering 頁加一條 details 掛這章（「藉著被勝過而得勝」書裡逐字有）。
+- 10-hope-for-justice 整部與 life/generous-justice 題域重疊；09-hope-for-relationships 是種族、階級、性的應用章；02-future-hope 的已然未然國度（02/02）站上沒頁，但 6K 材料薄，等 jesus-the-king 第二鏟時一起看。
+
+##### 小結
+
+- 開 3 張，全部 claim 頁；起草順序 2（最獨立）→ 1 → 3。
+- 旁註：第一鏟 TIP 引了波金霍恩「超物質的身體」那段，出處是 01/05-the-gospels-evidence-for-the-resurrection，現掛的 01 卷層涵蓋，不必動。
+
+#### stott-note 第二鏟選題單（1 本，開 2 張）
+
+《當代講道藝術》61 章，第一鏟（discipleship/between-two-worlds）掛 03、04、05、07 四部卷層，寫神學基礎五項信念、築橋、研究、真摯與熱誠；第 1 部歷史素描、第 2 部當代的反對、第 6 部預備講章、第 8 部勇氣與謙卑沒掛。第 6 部七萬八千字是全書最厚的一部，第一鏟只用一條子彈點列六個階段。
+
+1. discipleship `preparing-a-sermon`「預備講章的六個階段：一篇講章只傳一個主要思想」— i-believe-in-preaching（docs/06-preparing-sermons/01-choose-your-text、docs/06-preparing-sermons/02-meditate-on-it、docs/06-preparing-sermons/03-isolate-the-dominant-thought、docs/06-preparing-sermons/04-arrange-your-material、docs/06-preparing-sermons/05-add-introduction-and-conclusion、docs/06-preparing-sermons/06-write-down-and-pray-over-it）。
+   第一鏟在「築橋要求研究」那條底下列了六個階段的名稱，沒有展開任何一個。
+   只寫：選經文的四項因素與「不是因為經文太少，而是因為經文太多」（06/01）；默想要像蜜蜂探花、最遲前一個星期一選好（06/02）；「每一段經文都有一個最重要的思想」，好撒瑪利亞人與羅馬書五章 8 節兩個例子，講道與講課的分別在只傳一個信息（06/03）；安排資料的消極面是無情捨棄、積極面靠結構、措辭與例證，書引「優美的講章是撒但最危險的陷阱之一」（06/04）；引言的兩個目的與結論，先寫本文再加頭添尾（06/05）；寫下講稿並為它禱告，沈美恩勸學生三百至四百篇講稿之前不要即席講道（06/06）。
+   避開第一鏟的五項神學信念、築橋與化身、研究的呼召（05 部不掛）、真摯與熱誠；避開 living-church 與 understanding-the-bible 的解經三原則（「解釋的相反是強解」已在第一鏟，這頁不重講）。
+   claim 頁；related 連 between-two-worlds、understanding-the-bible、living-church、radical-disciple。
+
+2. discipleship `objections-to-preaching`「今天為什麼還要講道：反權威、電視與教會失去信心」— i-believe-in-preaching（docs/02-contemporary-objections-to-preaching/01-anti-authority-mood、docs/02-contemporary-objections-to-preaching/02-christian-response、docs/02-contemporary-objections-to-preaching/03-dialogical-preaching、docs/02-contemporary-objections-to-preaching/04-cybernetics-revolution、docs/02-contemporary-objections-to-preaching/05-influence-of-television、docs/02-contemporary-objections-to-preaching/06-the-learning-process、docs/02-contemporary-objections-to-preaching/07-church-loss-of-confidence-in-gospel、docs/02-contemporary-objections-to-preaching/08-recovery-of-christian-morale）。
+   第一鏟只在點題句說「現代的情勢使它更困難，卻沒有減少其必要性」，第 2 部八章七萬字就是這句話的論證。
+   只寫斯托得列的三種反對與回應：反權威的心態，有些反叛基督徒應該帶頭，兩種相反的錯誤（放棄講道、更獨斷），基督教對人性與權威的看法（02/01、02/02）；對話式講道，先澄清不是什麼，北美黑人教會的回講傳統，講道需要研究班與討論小組輔助（02/03、02/06）；神經機械學的革命與電視的五種害處，麥魯漢（02/04、02/05）；教會對福音失去信心，宣講與傳福音兩個字的前提都是「要說的話已經授與我們」，士氣的恢復要分辨確信、堅信、假定與盲信四個字（02/07、02/08）。
+   避開第一鏟的全部；避開 issues-facing-christians-today 的 C 型觀點（02/01 講到基督徒該帶頭的反叛時只引一句連過去）；01 部歷史素描不掛（見不開）。
+   claim 頁；related 連 between-two-worlds、issues-facing-christians-today、basic-christianity、preparing-a-sermon（第 1 張）。
+
+##### 既有頁漏掛 anchor
+
+- between-two-worlds 正文「勇氣的具體作法是按次序系統解經……牧會二十五年從未講過離婚」出自 08-courage-and-humility/04-value-of-systematic-exposition，anchor 只掛 03、04、05、07 四部，補掛 docs/08-courage-and-humility/04-value-of-systematic-exposition/（事實在哪章就掛哪章；目錄驗過）。
+
+##### 不開（留第三鏟）
+
+- 08-courage-and-humility/03-comfort-and-disturbance（18K，先知的兩面與假先知的虛謊安慰）與 08/08-the-power-of-the-spirit（13.7K）：材料夠一頁「講道的勇氣：安慰與使人不安」，但第一鏟已從 08 部取了系統解經與真摯熱誠的結論，排在上面兩張之後。
+- 01-glory-of-preaching-historical-sketch 五章 56K 是講道史素描，導覽第四章已用它定位鍾馬田；體裁是歷史，不開概念頁。
+
+##### 小結
+
+- 開 2 張，全部 claim 頁；起草順序 1 → 2。
+- biblical-studies 判 delegated 給 stott，兩張落地後漏接檢查仍過。
+
+#### spiritual-formation-note 第二鏟選題單（2 本，開 2 張）
+
+1. discipleship `conformed-to-christ`「聖徒與基督的形像：成聖不是效法，是被塑造」— cost-of-discipleship（docs/04-church-of-jesus-christ/05-the-saints、docs/04-church-of-jesus-christ/06-the-image-of-christ）。
+   第一鏟（costly-grace）掛 01、02 兩部卷層，寫廉價恩典、信與順服不可分、捨己；theology 的 costly-grace 掛 01/01、03、04、05 與 02/15，visible-yet-hidden 掛 02/02、07、08、09、10，church-engage-or-contrast 掛 02/02、07、09。第 3、4 部兩站都沒碰，第 4 部五萬六千字是潘霍華的教會論與成聖論。
+   只寫：「唯有神是聖潔的」，神在與罪惡世界分別中聖潔、也在罪惡世界中設立聖所中聖潔，真正的聖殿是基督的身體；中心難題是神如何由罪人造聖徒又不損祂的義，答案在十字架；稱義與成聖源頭相同、內容相同卻不相同，書裡有對照表（04/05）；人以自己的方式「如神」而失去神，神不放棄祂失喪的受造物，形變必須發生在神身上，神兒子取了奴僕的形像；「效法基督的形像」不是要追求的理想，是基督的形像要在我們裡面被塑造；道成肉身、被釘、復活三層形像；「對至小之人的攻擊，都是對基督本身的攻擊」（04/06）。
+   避開本站 costly-grace 與 theology 兩頁的重價恩典、捨己、登山寶訓；避開 imitation-of-christ 與 inward-consolation 的多馬肯比斯（這頁要寫明潘霍華的「被塑造」與「效法」的差別，related 連過去對讀）；04/02 洗禮、04/03 身體（只在聖殿那段引一句）、04/04 可見的群體是教會論，歸 theology 題域或第三鏟；03 部使者不開（見不開）。
+   claim 頁；related 連 costly-grace、imitation-of-christ、downward-way、life-together；seeAlso 連 theology 站 doctrine/costly-grace（已存在）。
+
+2. prayer-pilgrimage `christ-the-intercessor`「基督是代求者，我們是祭司：代禱的根據」— with-christ-in-the-school-of-prayer（docs/26-christ-the-intercessor、docs/27-christ-the-high-priest、docs/28-christ-the-sacrifice、docs/30-the-ministry-of-intercession）。
+   第一鏟（school-of-prayer）掛 01、05、21、24 四課，寫禱告要學、耶穌訓練代求者、應允是驗算、住在我裡面、奉我的名；它把「代求者」當成學校的終點，卻沒寫代求的根據在哪。第 26 到 30 課是全書的基督論收束，沒掛。
+   只寫：「他活著，就是要代求」，麥基洗德比亞倫更榮耀，代求是絕對必要的工作，沒有它救贖就不能持續施行；不是兩道分開的禱告之流，「他所禱告的經過我們，我們所禱告的經過他」（26）；約翰福音十七章大祭司的禱告分三部分，教導奉耶穌的名可以求什麼（27）；客西馬尼那課，兩種祈求的無限差別，「正是在那句「父啊，不要從我的意思」裡，他取得了說「父啊，我願」的能力」，客西馬尼的四重奧祕（28）；祭司的工作有向神與向人兩面，「祭司是一個不為自己而活的人」，亞倫兒子的授職與血抹耳手腳的對照，每一位信徒都有作祭司的權利（30）。
+   避開第一鏟的四課與它已寫的「訓練代求者」「國度的降臨繫於禱告」兩條（這頁從基督論補根據，不重講學校的課程表）；避開 prayer-as-conversation 的路易斯與 pursuit-of-god；31 禱告的生活（19K）是總結課，只在收尾引「整個生命完全降服於神」一句；16 恆切禱告與 29 放膽留第三鏟。
+   claim 頁；related 連 school-of-prayer、prayer-as-conversation、practicing-the-presence、pursuit-of-god。
+
+##### 不開（留第三鏟）
+
+- cost-of-discipleship 03-the-messengers（馬太福音十章六章 28K）：「他們所做的不是自己的工作，而是神的工作」撐得起一頁，但本站 discipleship 已九頁，downward-way 與 long-obedience 的題域相鄰；等第 1 張落地再量重疊。
+- with-christ-in-the-school-of-prayer 16-the-power-of-persevering-prayer（13.5K）：「為什麼神延遲應允」單課成頁，與第一鏟「拒絕也是一個回答」接得上；第三鏟候選。
+
+##### 小結
+
+- 開 2 張，全部 claim 頁；起草順序 1 → 2。
+- 姊妹站分工：潘霍華的登山寶訓與恩典論歸 theology 已開的三頁，第 4 部成聖論落本站；教會論（04/02 到 04/04）兩站都沒挖，誰開由 Fable 下輪判。
+
+#### lewis-note 第二鏟選題單（1 本，開 2 張）
+
+《返璞歸真》第一鏟（apologetics/mere-christianity）掛第一卷與第四卷卷層，正文是四卷的漏斗總覽；theology 的三頁掛第一、二卷與第四卷 01、02、04、05、11。第三卷十二章約十萬字兩站都沒碰，第四卷 07 到 10 四章四萬字也沒有。人物站一書一頁是常態，這本是全集入口、兩卷整卷空著，開兩張。
+
+1. devotional `the-great-sin`「大罪與兩種意志的動作：驕傲、饒恕與仁愛」— mere-christianity（docs/03-christian-behaviour/07-forgiveness、docs/03-christian-behaviour/08-the-great-sin、docs/03-christian-behaviour/09-charity）。
+   第一鏟用一句話帶過「把驕傲診斷為一切惡的根源，寬恕、愛仇敵被解構為意志的選擇」；screwtape-letters 頁的驕傲是另一本書的魔鬼視角。
+   只寫：「人人都說饒恕是可愛的觀念，直到自己有東西要饒恕」，愛人如己的「鄰人」包含仇敵，饒恕不是喜歡（07）；驕傲是「幾乎沒人（除了基督徒）會懷疑自己也犯了」的惡，「我們自己越多，就越在他人身上不能忍受」，書的小標「基督教道德的真正中心」，驕傲與其他罪的差別在它是競爭性的（08）；Charity 的本意是基督教意義的「愛」而不是施捨，基督教的「愛」不是感情，先做出愛的行動感情才跟上（09）。
+   避開 four-loves 的四種愛（09 講 charity 時只在 related 連過去，不比較）；避開第四卷（theology 的 beyond-personality 與本站第 2 張）；03/01 到 03/04 道德的三個部分、四樞德、社會道德、精神分析與 03/10 盼望留第三鏟，03/05、03/06 性道德與婚姻歸 love 分類第三鏟；03/11、03/12 信心的兩種意義（16K）可併進這頁的收尾一段或留第三鏟，由起草者看篇幅定。
+   claim 頁；related 連 mere-christianity、four-loves、screwtape-letters、great-divorce。
+
+2. devotional `lets-pretend`「讓我們假裝：裝扮成基督怎麼變成真的」— mere-christianity（docs/04-beyond-personality/07-lets-pretend、docs/04-beyond-personality/08-is-christianity-hard-or-easy、docs/04-beyond-personality/09-counting-the-cost）。
+   第一鏟把第四卷寫成「好的傳染」與「新人」兩句；theology 的 beyond-personality 取 01、02、04、05、11（生與造、三位格的神、良性感染、頑固的錫兵、新人）。07 到 09 兩站都沒掛，而這三章是路易斯講成聖機制的地方。
+   只寫：美女與野獸與戴久了的面具兩個故事，「裝扮」演變成了真實，主禱文的「我們的父」就是在假裝（07）；基督教是難還是易，一般人對「做好人」的理解是讓步給要求，基督徒的路是把整個自然的自我交出去，所以更難也更易（08）；「你們要完全」不是「除非你完全否則我不會幫你」，「我唯一會給的幫助，是「使你成為完全」的幫助」（09）。
+   避開 theology 那頁的五章（10-nice-people-or-new-men 緊鄰 11，只在收尾引「死本身是這療程的一部分」一句，不掛）；避開第一鏟的道德律與三選一；避開 weight-of-glory 的渴望論。
+   claim 頁；related 連 mere-christianity、weight-of-glory、great-divorce、the-great-sin（第 1 張）；seeAlso 連 theology 站 doctrine/beyond-personality（路徑已存在）。
+
+##### 小結
+
+- 開 2 張，全部 claim 頁；起草順序 2（材料最集中）→ 1。
+- 第三卷其餘九章與第四卷 03、06 兩章列第三鏟候選，不進工具。
+
+#### jung-note（1 本，不開）
+
+- jung-red-book-readers-edition《紅書》：不開。體裁是 1913 到 1930 年的幻象記錄加評註，四十章裡三十四章是 Liber Primus 與 Liber Secundus 的幻象序列（紅衣人、森林裡的城堡、隱士、地獄、三次夜、魔法師），不是論證。第一鏟（life/spirit-of-the-depths）已把能抽成概念的全部抽出：兩個精神、弄丟的靈魂、積極想像的方法與系譜、兩層結構、從《紅書》長出的理論、《省察》的去認同。剩下唯一成組的是斐勒蒙（02/19 魔法的恩賜、02/21 魔法師，合計 37K），但他教的「心靈的客觀性」已在 confrontation-with-the-unconscious 用《回憶・夢・省思》原句寫了，the-tower 也有門楣。tier 維持 spine。**建議進 EXCLUDED_KINDS**，體裁理由：「幻象記錄，章節是幻象序列與評註，概念已由導論與第一部抽出」。
+
+#### philosophy-note 第二鏟選題單（1 本，開 3 張）
+
+《哲學經典的 32 堂公開課》三十二章各講一部原典，每章六到九千字，章章獨立、全書只有編年沒有主軸，照「每則互不相承且全書無主軸」的判準該進 EXCLUDED_KINDS，體裁理由「逐本導讀，三十二章各講一部原典，按書查閱」；它不該再用「大部頭只一鏟」的尺排榜。
+但導覽第三章自己寫這組是「取了工法，還沒取內容」：第一鏟（intro-history/reading-the-classics）拿它當方法論，示範了柏拉圖、亞里斯多德、笛卡兒三章，三十二部原典裡站上有頁的只有《理想國》《尼各馬可倫理學》《正義論》（都是原書）。下面三張不是第二鏟，是選題：各補一個分類裡缺席最明顯的經典，骨幹是 Warburton 的導讀章，Sandel 的章可當第二來源。重疊都 grep 過：康德在 three-paths-of-justice 只一行、彌爾的傷害原則在 utility-and-its-limits 沒有、沙特在站上只在卡繆頁被點名。
+
+1. ethics-justice `categorical-imperative`「善意志與定言令式：康德為什麼說出於同情的善行沒有道德價值」— philosophy-the-classics（docs/15-kant-groundwork-of-the-metaphysic-of-morals）；alternative 掛 justice-whats-the-right-thing-to-do（docs/05-what-matters-is-the-motive）。
+   站上 three-paths-of-justice 的路徑二只有「康德說人是目的、不是手段」一行；utility-and-its-limits 寫效益主義時拿康德當對照也只一句。
+   只寫 Warburton 這章：唯一無條件善的是善意志，勇氣、權力、財富都要善意志保證；義務與傾向，精明商人的審慎不是道德，「僅僅出於同情傾向的行為完全沒有道德價值」與它的理由（傾向是運氣）、實踐的愛對病態的愛；準則，同樣的行為可能源自不同準則；假言令式對定言令式，普遍化公式與人是目的公式；章末 Warburton 列的批評（空洞形式、違反直覺）照書寫。Sandel 那章只取他對康德的轉述當第二來源，不寫 Sandel 自己的案例。
+   避開 three-paths-of-justice 的三路徑架構與 utility-and-its-limits 的效益論本體（開頭一句接過去）；avoid justice-as-fairness 的羅爾斯（原初狀態不是康德的，related 連）。
+   claim 頁；related 連 three-paths-of-justice、utility-and-its-limits、justice-as-fairness、eudaimonia-and-the-mean。
+
+2. political `harm-principle`「傷害原則：對他人的傷害是阻止個人行為的唯一正當理由」— philosophy-the-classics（docs/18-mill-on-liberty）。
+   political 八頁裡 Sandel 的共善、市場界線與才德佔了一半，自由主義那一造只有羅爾斯；utility-and-its-limits 寫彌爾的高低快樂，沒有《論自由》。
+   只寫：彌爾自稱「一個單一真理的哲學教科書」，傷害原則與自由原則，界線畫在哪而不是無限制自由；基礎是效益主義不是自然權利，三個理由與「生活實驗」；冒犯不等於傷害；思想與言論自由的論證（被壓制的意見可能為真、部分為真、真理不經挑戰會變成死教條）；章末 Warburton 列的批評（傷害的界定、效益主義基礎的張力）照書寫。
+   避開 utility-and-its-limits 的救生艇案與高低快樂（related 連過去）；避開 common-good-politics 與 markets-and-morals 的 Sandel 論證（這頁是對造，related 連、不下裁決）。
+   claim 頁；related 連 utility-and-its-limits、common-good-politics、markets-and-morals、justice-as-fairness。
+
+3. existential `existence-precedes-essence`「存在先於本質：沙特的自由、壞信仰與人道主義」— philosophy-the-classics（docs/27-sartre-being-and-nothingness、docs/28-sartre-existentialism-and-humanism）。
+   existential 分類兩頁都是卡繆，沙特只在 absurd-and-philosophical-suicide 被點名；分類名叫存在主義卻沒有存在主義的定義頁。
+   只寫：現象學方法，自為存在與自在存在，虛無與咖啡館裡缺席的 Pierre，自由意志與事實性，壞信仰的定義與約會中的女人、咖啡館侍者（27）；「存在先於本質」的三層意思與折疊刀的比喻，人道主義在沙特的用法，對「絕望的寂靜主義」等批評的回應（28）；兩章末 Warburton 的批評照書寫。
+   避開 absurd-and-philosophical-suicide 與 revolt-freedom-passion 的卡繆（荒謬與反抗不重講，related 連過去讓兩造並列）；避開 eastern 分類 no-ceo-modular-mind 對自我的另一套講法。
+   claim 頁；related 連 absurd-and-philosophical-suicide、revolt-freedom-passion、having-vs-being、productive-love。
+
+##### 不開（留第三鏟）
+
+- 07-hobbes、10-locke、13-rousseau 三章可合成一頁「社會契約的三個版本」（自然狀態、自然法、公意），justice-as-fairness 已把羅爾斯寫成契約論的當代版，這頁是它的上游；排在上面三張之後。
+- 11、12 休謨兩章（歸納問題、設計論證）站上沒有知識論分類承接；20 齊克果、23 尼采《道德系譜學》在 existential 與 applied 都被多頁點名但沒有自己的頁；14 康德《純粹理性批判》、30 維根斯坦、24 羅素、25 艾耶爾是知識論與語言哲學，站上沒分類。這些是選題不是體裁，不進工具。
+- 06 笛卡兒已是第一鏟的解剖示範；31 孔恩 science-note 有原書頁；05 蒙田本站有 how-to-live 頁；01、02、32 原書已挖。
+
+##### 小結
+
+- 開 3 張，全部 claim 頁；起草順序 1 → 3 → 2。
+- 建議 EXCLUDED_KINDS 收這本（理由見上），同時在 ENRICH-BACKLOG 記下：排除是排榜，不是禁止選題。
+
+#### 六站總結
+
+- 開 12 張（keller 3、stott 2、spiritual-formation 2、lewis 2、philosophy 3），全部 claim 頁，沒有 debate：七本都是單一作者的書，站上沒有「一個問題多本書吵、兩造都有頁」的形狀。
+- 不開 1 本（《紅書》）；兩本建議進 EXCLUDED_KINDS：jung-red-book-readers-edition「幻象記錄，章節是幻象序列與評註」、philosophy-the-classics「逐本導讀，三十二章各講一部原典，按書查閱」。
+- 既有頁漏掛 anchor 一筆：stott between-two-worlds 補 08/04。
+- 姊妹站分工：《追隨基督》第 4 部歸 spiritual-formation、登山寶訓歸 theology；《返璞歸真》第三卷與第四卷 07 到 09 歸 lewis、第四卷其餘歸 theology；《當代講道藝術》全歸 stott。
+- 沒把握的：philosophy 三張是從導讀書開內容頁，與站的既有做法（挖原書）不同，但導覽自己說還沒取內容；若嫌多，先砍第 2 張（彌爾）保留康德與沙特。keller 第 3 張（復活的相遇）與第一鏟同書同主題，起草者若判敘事重述過半，退成第一鏟加一條 details。
+- 起草順序建議：keller 2、stott 1、spiritual-formation 1（材料最獨立）→ lewis 2、philosophy 1 → keller 1、spiritual-formation 2、lewis 1 → stott 2、philosophy 3、2 → keller 3。
+
+#### 華文作者線與 history 第二鏟選題單（fengtang／wan-weigang／science／liurun／history，DEEPEN-TARGETS 9 筆，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用；體裁先判。三位華文作者的書多是專欄或講稿結集，每本先問「有沒有一組相鄰章撐得起單一主張」：撐得起的照 wujun-note 上一批的做法開「一組相鄰章撐一頁」，撐不起的不開；逐篇獨立、全書無論證主軸的才進體裁排除。
+章節目錄全部 `[ -d ]` 驗過；單上的原話都回書 repo grep 過，查不到的改寫成「書裡講到」。
+
+##### fengtang-note（2 本：開 3 張、不開 1 本）
+
+《勝者心法》是四十六個案例、五部各有主題的案例庫（秩序、業績至上、順勢與新事物、君臣與危機、戰略篤定與風投），第一鏟只用了序與兩章；《穩贏》是六十九篇中年隨筆，第一鏟已把三力框架與價值底盤寫完。
+
+1. success-method `order-before-strategy`「制度先於戰略：禮分名、觀人五原則與才勝於德」— fengtang-winner-method（docs/part-1-zhou-chronicle-one/ch01-three-families-divide-jin-order-matters-most、docs/part-1-zhou-chronicle-one/ch04-lord-wen-selects-minister-five-principles、docs/part-1-zhou-chronicle-one/ch02-death-of-zhi-bo-avoid-wanting-everything、docs/part-1-zhou-chronicle-one/ch06-virtue-over-terrain-conquer-human-weakness）。
+   第一鏟（zizhi-tongjian-lessons）掛序、ch14 徙木立信、ch42 紙上談兵，寫的是讀通鑑的四個理由、三步讀法、信任工程、企業文化、業績是用人金標準；第一部「秩序」十章一字未用。
+   只寫第一部：司馬光為什麼把三家分晉放開篇（「臣聞天子之職莫大於禮，禮莫大於分，分莫大於名」，馮唐譯成管理制度、匯報線、職位待遇；「初創企業 CEO 的核心一件事：建立管理制度」，大忌是因人因事破壞制度）；魏文侯選相的「決定性瞬間」與李克觀人五原則（居視其所親、富視其所與、達視其所舉、窮視其所不為、貧視其所不取）；智伯「才勝於德」與馮唐拆「仁」為讓、厚、平三字、趙簡子看無恤的跟隨能力；吳起「在德不在險」與「舟中之人皆敵國」、領導自誇時三類庸俗回答、「在關鍵點上打深一層」。
+   避開第一鏟的徙木立信、企業文化定義、業績金標準（ch08「業績至上」與第一鏟同主張，不掛）、紙上談兵；避開 chengshi-discipline 的曾國藩修煉與 no-fire-on-arrival 的漢初守成；business-strategy-note 與 leadership-note 的選人頁不對照，只在 seeAlso 連 management 站 `org-people/first-who-then-what`（起草前 `ls` 驗）。
+   claim 頁；related 連 zizhi-tongjian-lessons、chengshi-discipline、no-fire-on-arrival、good-habits。
+
+2. management `decide-without-consensus`「不與眾謀：變法、戰略與新事物為什麼不靠共識」— fengtang-winner-method（docs/part-2-zhou-chronicle-two/ch12-shang-yang-vs-ganlong-do-not-consult-crowds、docs/part-3-zhou-chronicle-three/ch27-yan-king-abdicates-only-one-final-decider、docs/part-5-zhou-chronicle-five/ch44-zishun-advises-wei-strategy-not-by-consensus、docs/part-3-zhou-chronicle-three/ch32-hufu-cavalry-responding-to-new-things）。
+   第一鏟沒碰這四章；四章分在三部，共用同一條主張，書裡 ch32 自己點明「這呼應商鞅『不與眾謀』的原則」。
+   只寫：奇才空降怎麼開局（位置不必顯赫但要重要、直接向一把手匯報、「經驗主義」是空降最大的陷阱）、重大變革前八個必須先想清楚的問題、商鞅對甘龍的辯論（ch12）；燕王噲禪讓子之為什麼變成鬧劇、子之奪權三步、「只能有一個最終決策者」（ch27）；子順諫魏的兩層無奈（「真理、正確的戰略只掌握在極少數人的手上」、弱者無戰略）與「燕雀處屋」、路徑依賴（ch44）；趙武靈王十四歲臨危受命、胡服騎射「愚者所笑，賢者察焉」、「這事我定了」、騎兵是戰爭史的一大步（ch32）。
+   避開第一鏟的徙木立信（ch14 不掛，商鞅只取 ch12 的辯論與入職）、避開第 1 張的制度與選人；golden-line-principle 是麥肯錫的結構化解題，不是這頁的決策論，只在 related 連；management-note 與 leadership-note 的決策頁不對照。
+   claim 頁；related 連 zizhi-tongjian-lessons、order-before-strategy（第 1 張）、golden-line-principle、nine-word-motto。
+   馮唐在這四章下的是「重大決策不靠民主協商」的判斷，概念頁照書寫、不替他辯護也不替他緩頰；書站概覽指出的限制（史料只往現代翻譯、不反向檢驗）留給導覽第四章。
+
+3. management `serving-the-tiger`「伴君如伴虎：樂毅的四個關鍵、田單的攬功與保持飢餓」— fengtang-winner-method（docs/part-4-zhou-chronicle-four/ch35-leyi-attacks-qi-four-keys-of-monarch-minister、docs/part-4-zhou-chronicle-four/ch36-qi-king-doubts-tiandan-interest-conflict、docs/part-4-zhou-chronicle-four/ch37-tiandan-attacks-di-stay-hungry-to-keep-achieving）。
+   第一鏟沒碰第四部；三章連講同一對君臣（燕昭王與樂毅、齊襄王與田單），主張是功成之後上下級關係怎麼維持、怎麼崩。
+   只寫：樂毅圍齊三年與讒言、燕昭王設酒會斬進讒者「由是齊人服其義，諸侯畏其信」、昭王死惠王立後反間計得逞與「人最容易聽進去他想聽進去的話」、君臣關係的四個關鍵（ch35，四字照書）；田單脫貂衣讓齊襄王起殺心、穿珠人「因以為己善」的點撥、「有時候需要推功攬過，也可以適當攬功」、九個寵臣與以退為進（ch36）；田單攻狄前魯仲連「將軍攻狄，不能下也」、拂袖而去與三月不克、「坐則織蕢，立則仗鍤」對「黃金橫帶而騁乎淄、澠之間」、位高權重時「默數十個數，多問一個問題」（ch37）。
+   避開第一鏟與第 1、2 張；避開 real-capability 的財務自由論；leadership-note 的 managing-up 類頁不對照。
+   claim 頁；related 連 zizhi-tongjian-lessons、decide-without-consensus（第 2 張）、chengshi-discipline、self-discipline-diary。
+   第三鏟候選留著：ch11、ch13、ch19（商鞅方法論與趙良的警告）、ch46 奇貨可居加 ch38、ch39（戰略篤定與以小博大；書站概覽的限制說呂不韋四要素是從極端結果回推，起草時要連他的結局一起寫）。
+
+###### 不開（1 本）
+
+- fengtang-stable-win《穩贏》：不開。六十九篇各 1.5 到 2.4 千字的中年隨筆，腦力、體力、心力三章是編次不是論證；第一鏟（stable-win）已掛序、ch01 sec-1、sec-13，寫完三力框架、德才配位三條紅線、為智慧而活、最優答案與滯留倫敦的演示，既有頁自己寫「體力線的養生細節不展開」。剩下的材料是瀕死經驗、母親的最後時光、十五分鐘生活圈、侘寂這類私人篇章，本站三個分類（literature-life、management、success-method）沒有一個承接養生或美學，引用測試過不了。tier 維持 spine。**建議進 EXCLUDED_KINDS**，體裁理由：「中年隨筆結集，六十九篇各自獨立，三力只是編次」；若主會話判「三力算主軸」，改進 SETTLED_BOOKS。
+
+###### 小結
+
+- 開 3 張，全 claim；不開 1 本。三張都出自《勝者心法》，按書的五部各取一組相鄰章，與第一鏟（序、ch14、ch42）不重疊。
+- 起草順序：1（材料最乾淨、與既有頁分工最清楚）→ 2 → 3。
+- 旁註：zizhi-tongjian-lessons 的 label 用英文章題（「Moving the Pole: Establishing Trust」），書站章題是中文，起草第 1 張時順手改成中文章題。
+
+##### wan-weigang-note（2 本：開 3 張、不開 1 本）
+
+《你有你的計劃，世界另有計劃》八部五十餘節、每節約三千字，書站概覽自判是「一組彼此獨立的工具，不是一個體系」，但各部內有成組的論證；第一鏟掛序、第二部、第四部（部層級），正文用了 02/02、02/03、04/01 到 04/03。《高手相對論》兩站各一頁已把物理骨幹與不變量世界觀寫完，見不開。
+
+4. system `expected-value-is-not-enough`「只有期望值是不夠的：標準差、對沖與遍歷性」— wan-weigang-world-has-another-plan（docs/02-necessity-within-chance/05-standard-deviation-and-life-philosophy、docs/02-necessity-within-chance/07-the-mathematics-of-hedging-risk、docs/02-necessity-within-chance/08-why-most-investors-lose-to-the-market）。
+   第一鏟掛第二部整部，正文只用 02（把一生當系統）與 03（運氣是性格）；05 到 09 的量化章一字未用，而那是書站概覽說「量化含量最高」的一組。
+   只寫：十萬元貨運到非洲的 180% 對 −100%（有很多錢就是系統，只有十萬元就輸不起）、「正態分布和標準差，是這個不確定的世界裡數學家送給世人最有用的禮物」、平均值定位置、標準差定寬度（05）；兩隻股票的故事、平均利潤不變而標準差變成 0、「投資組合的標準差，總是小於所有股票標準差的加權平均值」、胡亂分散也降風險（07）；142 萬元是市場的平均回報但不是你最可能拿到的回報、最幸運的人 1.8 的 52 次方、最不幸的人只是賠光不會出現負數、四個投資者的例子（08）。
+   避開第一鏟的「把一生當系統」「期望值為正就下注」（這頁從它接下去，只在點題句引一次）；避開 option-thinking 的下檔上檔與 probabilistic-decision 的灰度認知；taleb-note 的遍歷性是原典，這頁只寫萬維鋼的算術，seeAlso 連 taleb 站 `asymmetry-practice/ergodicity-and-ruin`（路徑實存）。06 S 曲線與 09 回歸平均不掛，見第三鏟候選。
+   claim 頁；related 連 wan-weigang-world-has-another-plan、option-thinking、probabilistic-decision、engineer-mindset。
+   第三鏟候選：02/06 複利與真實世界的成長（「世界上沒有長期的指數級增長」、S 曲線、平台期）加 02/09 回歸平均（高爾頓的身高與「相關」的起源），合計約九千字，可成一頁「沒有長期的指數成長」。
+
+5. system `inadequate-equilibria`「不充分均衡：街上為什麼撿不到百元鈔票，以及哪裡撿得到」— wan-weigang-world-has-another-plan（docs/04-systems-within-thinking/05-inadequate-equilibria）。
+   第一鏟掛第四部整部，正文用了 01 到 03（線性對系統、上中下三策、好系統三特徵）；05 是全書最長的一章（約一萬三千字），轉述尤德考斯基《不充分均衡》，第一鏟沒碰。
+   只寫：做大事是和市場較勁不是和自己較勁、安全氣囊與八歲小孩的質疑、「如果你認為你發現了一個別人沒發現的機會，你其實是在質疑市場的有效性」、經濟學家不撿街上的百元鈔票、「與其糾結於自己『有沒有資格』，不如分析這個市場的有效性」、有效市場的四個特點與股市、「你只不過是被市場選擇而已」、北京房市為什麼不是有效市場（有正確預測卻無法獲利）、低垂的果實（妻子的季節性情感障礙、六百美元一百三十個 LED）與這一章後半講的機會分布。
+   避開第一鏟的系統三特徵與三策；避開 elite-vs-common-sense 的見識論；investing-note 的效率市場頁是另一造的主場，只 seeAlso 連 investing 站 `index-passive/efficient-market-and-random-walk` 與 `index-passive/can-the-market-be-beaten`（路徑實存），不重講。
+   claim 頁；related 連 wan-weigang-world-has-another-plan、expected-value-is-not-enough（第 4 張）、option-thinking、elite-vs-common-sense。
+
+6. thinking `life-as-information`「一個基於信息論的人生觀：人生就是要活一個選擇權」— wan-weigang-world-has-another-plan（docs/01-the-mindset-of-masters/04-a-view-of-life-based-on-information-theory）。
+   第一鏟沒碰第一部；這一章六千三百字，是第一部最厚的一章，書站概覽稱它「一整節以香農的資訊論建立的人生觀」。
+   只寫：兩條消息哪條信息量大（石黑一雄那句可壓縮、亂碼不可壓縮）、「一個東西信息量的大小，取決於它克服了多少不確定性」、信息熵與字符集（中文為什麼更高效）、韋弗「最重要的不是你說了什麼，而是你能說什麼」與空話套話的 CEO、「人生就是要活一個『選擇權』」、完全按劇本執行任務貢獻了什麼信息、人生的矛盾（既要不可預測才有創造性，又要可預測才能合作）、最值得做的兩種事（出乎別人意料的事、增加自己選項的事）。
+   避開 option-thinking 的期權結構（「增加選項」在這頁是資訊論的推論，不是賠率結構，起草時寫清楚差別、related 連過去）；避開 intellectual-honesty 與 wan-weigang-scientific-thinker；science-note 若有資訊論頁再 seeAlso，起草前 `grep -rl 香農 ../science-note/src/content/concepts`。
+   claim 頁，importance 3；related 連 wan-weigang-world-has-another-plan、option-thinking、engineer-mindset、reasoning-with-world。
+   **裁決（主會話）**：不開。單章、與系統線關係最鬆，人物站一本書兩頁夠；留第三鏟候選。
+   三張裡最可砍的一張：單章撐一頁，材料夠，但它與系統線的關係最鬆。
+
+###### 不開（1 本）
+
+- wan-weigang-what-is-relativity《高手相對論》（wan-weigang-note）：不開。十四章五十六節、每節四百到一千字，全書約四萬字，DEEPEN-TARGETS 算的 60 章是小節目錄，不是大部頭；本站 relativity-for-masters 掛 13、09、10，取的是「坐標系相對、不變量絕對」的世界觀，剩下的物理骨幹歸 science-note。tier 維持 spine；進 SETTLED_BOOKS，理由「小節目錄撐高的章節數，兩站兩頁已覆蓋世界觀與物理骨幹」。
+
+###### 小結
+
+- 開 3 張，全 claim：都出自《你有你的計劃，世界另有計劃》，分落第二部量化章、第四部最長的一章、第一部最厚的一章，與第一鏟用到的 02/02、02/03、04/01 到 04/03 不重疊。
+- 起草順序：5（單章最厚、邊界最乾淨）→ 4 → 6。
+- 書的 related 寫法：既有頁 related 是單行陣列，照站上格式。
+
+##### science-note（1 本：不開，補 anchor）
+
+- wan-weigang-what-is-relativity《高手相對論》：不開。relativity-of-simultaneity 一頁已寫光速不變、同時性、時間膨脹與長度收縮、光錐、廣義相對論、GPS，物理骨幹全在；剩下的雙生子計算（05/02 加 14 附錄，約三千字）、質能等價（07）、黑洞與紅移（11）、愛因斯坦的心願與楊振寧的三個原因（12）各不足以成頁，世界觀那一面歸 wan-weigang-note。tier 維持 spine；進 SETTLED_BOOKS。
+- **既有頁漏掛 anchor（事實在哪章就掛哪章）**：relativity-of-simultaneity 只掛 01、02，正文用到 04-exciting-1905（時間膨脹）、06-now-is-an-illusion（同時性、光錐）、08-incredible-coincidence 與 09-beauty-of-large-scale（等效原理、重力是幾何）、11-poetry-on-black-hole-edge/02-gravitational-redshift（GPS 校正）。五個目錄都 `[ -d ]` 驗過，補掛章層。
+
+##### liurun-note（2 本：開 7 張）
+
+兩本都是體系書不是專欄結集：《關鍵躍升》是「心法加四種劍法角色」的乘法公式，第一鏟只開心法；《商業簡史》是用網路密度重寫商業史的單一透鏡，第一鏟只用第一部三章。導覽第三章自己寫「《商業簡史》七章只開交易成本一角，《關鍵躍升》五章只開心法，其餘還沒寫到」。
+
+7. management `four-engines-of-motivation`「鼓手：員工不能自燃，人心的四台發動機與獎賞三原則」— liurun-key-leap（docs/02-motivation、docs/02-motivation/01-people-dont-try-because-their-engine-was-never-lit、docs/02-motivation/03-reward-hang-the-carrot-on-the-result-not-on-your-hand、docs/02-motivation/05-responsibility-this-is-my-own-business）。
+   第一鏟（four-leaps-of-a-new-manager）掛導論、01 心態部、01/01 責任躍升；第二部動力六章一字未用。
+   只寫：2001 年那位年輕經理的困擾與「連續三天買冰淇淋」、「員工往往不能自燃」、威廉・詹姆斯「被激發了動力的人，可以發揮出他能力的 80%～90%」、為什麼漲工資與換人都行不通（工資買到的是時間）、四台發動機（名稱與各自的點火法照 02/01）；5000 元獎金怎麼分、「成為『明君』是妄想」、尋賞與「把權力關在籠子裡」、三個獎賞原則（按大家認可的規則而不是經理的價值觀、規則在努力開始之前就定好、獎勵個人貢獻而不是共同結果）（02/03）；「這是我自己的事」的責任發動機（02/05）。
+   避開 incentive-design 的五層需求、雙因素、期望理論、X-Y 理論（那頁是《5 分鐘商學院 管理篇》的激勵理論，這頁只寫劉潤在這本書裡自己的發動機與原則，related 連過去）；避開 results-through-others 的「激勵因素對保健因素」一條；02/02 憤怒與恐懼、02/04 跨代、02/06 意義只各一句帶到。
+   claim 頁；related 連 four-leaps-of-a-new-manager、incentive-design、results-through-others、coach-train-reassign-replace（第 8 張）。
+
+8. management `coach-train-reassign-replace`「教練：訓練、調崗與替換，用對人重於培養人」— liurun-key-leap（docs/03-capability、docs/03-capability/01-coaching-training-the-team-for-tomorrow、docs/03-capability/02-learning-by-doing-from-using-strengths-to-growing-people、docs/03-capability/05-reassignment-dont-grind-an-iron-rod-into-a-needle、docs/03-capability/06-replacement-teach-a-turkey-to-climb-or-hire-a-squirrel）。
+   第三部能力六章第一鏟沒碰。
+   只寫：教練的三件事（訓練、調崗、替換）與「今天用今天的他們，明天用明天的他們」、「辭職吧」的建議與「犯錯、解決、改進、成長」、允許犯錯是教練的修養（03/02）；「用對人重於培養人」、鐵杵不要磨成針（03/05）；「換掉他就沒人可用」的答案在問題之前、選擇權的定義、流失率的基本常識、替換是經理的「成人禮」（03/06）；03/03 教不是罵與 03/04 訓練各取一句。
+   避開第一鏟的四個躍升；避開 knowledge-to-skill（那是個人把知識煉成技能）；management-note 與 hr-note 的用人頁不對照，seeAlso 可連 management 站 `org-people/first-who-then-what`（起草前 `ls` 驗）。
+   claim 頁；related 連 four-leaps-of-a-new-manager、four-engines-of-motivation（第 7 張）、results-through-others、knowledge-to-skill。
+
+9. management `ninety-percent-communication`「政委：九成時間在溝通，想明白、說清楚、能接受」— liurun-key-leap（docs/04-communication、docs/04-communication/01-communication-exists-to-reduce-information-asymmetry、docs/04-communication/02-think-it-through-why-what-and-how、docs/04-communication/04-the-seven-weapons-of-communication、docs/04-communication/05-process-policy-and-values-communication-across-time、docs/04-communication/06-acceptance-avoiding-outward-compliance）。
+   第四部溝通六章第一鏟沒碰；第一鏟的「溝通躍升」只寫到「用別人的腦」一句。
+   只寫：「只表揚不批評」引發的勞動仲裁、從「兵頭」變成「將尾」、「職場研究如何向上溝通，管理研究如何向下溝通」、「心委屈了」（04/01）；想明白的 why、what、how（04/02）；七種武器（一對一、即時溝通的「面談＞打電話＞企業微信」排序、走動管理、例會、看板、週報等，名稱照書）（04/04）；流程、制度與價值觀是與未來的員工溝通（04/05）；能接受與避免表面服從（04/06）。
+   避開 org-tools（MECE、SWOT、SMART、OKR、PDCA 是另一套工具箱，不是溝通工具）；避開 communication-note 的溝通通論；pyramid-expression 在 fengtang 站不在本站。04/03 聽說寫畫只一句帶到。
+   claim 頁；related 連 four-leaps-of-a-new-manager、org-tools、four-engines-of-motivation（第 7 張）、closed-loops-and-delegation（第 10 張）。
+   **裁決（主會話）**：不開，留第三鏟。人物站一書多頁要省著開，《關鍵躍升》先開鼓手與教練兩張（與既有頁分工最清楚、材料最厚），溝通與協作等前兩張落地再看。
+
+10. management `closed-loops-and-delegation`「指揮：凡事有交代、改進靠循環、格局靠授權」— liurun-key-leap（docs/05-collaboration、docs/05-collaboration/01-execution-rests-on-closed-loops、docs/05-collaboration/02-improvement-rests-on-cycles、docs/05-collaboration/03-growth-rests-on-planning、docs/05-collaboration/05-scope-rests-on-delegation）。
+    第五部協作六章第一鏟沒碰。
+    只寫：「不了了之」是最危險的小事、羅振宇「凡事有交代、件件有著落、事事有回音」、「一件事有了始，就一定要有終」、閉環像 4×100 接力必須交棒（05/01）；改進靠循環（05/02）；三年規劃與一年三件事（05/03）；「你放著，我來」為什麼走不遠、「格局，就是你能管多少人、做多大事」、授權分級（級數與名稱照 05/05，書站概覽說五級）、替下面的管理者承擔責任會導致「懶政」（05/05）。
+    避開 results-through-others 的「授權要權責利對等並保留檢查點」（那是《5 分鐘商學院》的版本，這頁只寫劉潤在這本書裡的分級與格局論，related 連過去）；避開 org-tools 的 PDCA 與復盤（05/02 的循環若與 PDCA 同一套，只引一次、不重講）；05/04 文化（鼓勵白、壓縮灰、禁止黑）與 05/06 流程各一句。
+    claim 頁；related 連 four-leaps-of-a-new-manager、results-through-others、org-tools、ninety-percent-communication（第 9 張）。
+    **裁決（主會話）**：不開，留第三鏟（理由同第 9 張）。
+
+11. business-logic `connection-is-the-engine`「連接是結構改變的引擎：鐵路、公路、貨櫃與電報」— liurun-evolution-of-business（docs/02-connection-is-the-engine-of-structural-change、docs/02-connection-is-the-engine-of-structural-change/01-railways-sears-and-the-mail-order-catalog、docs/02-connection-is-the-engine-of-structural-change/02-highways-walmart-in-a-small-town、docs/02-connection-is-the-engine-of-structural-change/03-shipping-the-container-changes-the-world、docs/02-connection-is-the-engine-of-structural-change/04-telegraph-the-first-information-superhighway）。
+    第一鏟（transaction-cost）掛 01/01 到 01/03，寫交易的本質、兩個敵人、商業進化是降低交易成本；第二部「連接」六章沒碰。
+    只寫：商業進步的推動力是連接（物理連接造成空間的折疊、虛擬連接造成時間的壓縮，措辭照 02 部首）；「鐵路，就是當時的網際網路」、美國六十年年均六千多公里、1916 年 408,745 公里占世界 39%、西爾斯從鐵路工人看到郵購手冊、「你這個吸血鬼，正在摧毀實體經濟！」（02/01）；公路與小鎮的沃爾瑪（02/02）；一個卡車司機的疑問、貨櫃讓運輸成本降一個數量級（02/03）；電報是第一條信息高速公路（02/04）；02/05、02/06 網際網路與萬物互聯各一句。
+    避開第一鏟的交易成本定義與七項交易成本；避開 internet-five-laws 的五大定律（網際網路那段只接到「連接」這條線）；economics-note 的 globalization 頁若講貨櫃，seeAlso 連過去（起草前 `grep -rl 貨櫃 ../economics-note/src/content/concepts`）。
+    claim 頁；related 連 transaction-cost、network-density（第 12 張）、internet-five-laws、trend-dividend。
+
+12. business-logic `network-density`「網路密度：線段型、中心型、去中心型，商業為什麼先長出超級節點再消滅它」— liurun-evolution-of-business（docs/03-linear-commerce-the-first-evolution/01-network-density-and-business-evolution、docs/04-centralized-commerce-the-jurassic-era/01-what-is-centralized-commerce、docs/05-decentralized-commerce-what-is-long-united-must-divide/01-what-is-decentralized-commerce、docs/06-fully-connected-commerce-the-utopia/01-network-density-one-hundred-percent-transaction-cost-zero）。
+    第三到六部第一鏟沒碰；這是書的主線（書站概覽：「密度增加會帶來超級節點，而密度進一步增加會消滅超級節點」）。
+    只寫：「網路密度＝實際連接數 ÷ 可能連接數」、十七個節點最多 136 條連接、「商業原始社會：網路密度＝ 0，交易成本＝ ∞」、小農經濟 5.1%、線段型商業是商人首次出現（03/01）；從十字路口到米字路口、羅馬八萬公里道路與武漢九省通衢、超級節點的價值是交易中心不是交通樞紐、夫妻老婆店是社區級中心（04/01）；「副中心愈來愈多、超級節點愈來愈不重要的過程，就是『去中心化』」、區塊鏈的家族自述（父親去中心化、母親互聯網、三個哥哥）（05/01）；網路密度 100%、交易成本為零的理論極限（06/01）。
+    避開第一鏟與第 11 張；避開 internet-five-laws 的網絡效應（那是用戶間的價值，這頁的密度是交易節點間的連接，起草時寫清楚差別）；business-strategy-note 的 `competitive-strategy/network-effects` seeAlso 連過去（路徑實存）。03/02、03/03、04/02、04/03、05/02、05/03 講各型怎麼解資訊不對稱與信用不傳遞，留第三鏟。
+    claim 頁；related 連 transaction-cost、connection-is-the-engine（第 11 張）、internet-five-laws、bottom-logic-formula。
+
+13. business-logic `moats-keep-dividends`「護城河把紅利守成利潤：無形資產、成本優勢、網路效應、遷移成本」— liurun-evolution-of-business（docs/07-how-do-we-ride-the-trend/01-what-is-real-profit、docs/07-how-do-we-ride-the-trend/02-how-to-turn-right-and-earn-profit）。
+    第七部第一鏟沒碰；07/02 是全書第二厚的一章（約九千字）。
+    只寫：「紅利，就是短暫的供需失衡」、沙灘賣可樂的狗蛋與小虎、「你以為是在創業，其實是在為這個社會打工」、紅利、利潤、工資三者的分別（07/01）；護城河是什麼、四類各兩種（無形資產的許可與品牌、成本優勢的規模與管理、網路效應的單邊與多邊、遷移成本的習慣與資產，名稱照書）、荷蘭東印度公司的許可、品牌是「了解、信任、偏好」（07/02）。
+    避開 trend-dividend（那頁是《進化的力量》的紅利生命週期與流量三次打通，這頁只取 07/01「紅利是短暫供需失衡」一句當起點，不重講窪地、平地、高地）；避開 internet-five-laws 的網絡效應本體（這頁只寫它作為護城河的一種）；business-strategy-note 的 `competitive-strategy/seven-powers`（Helmer 七大力量）是同題的另一本書，seeAlso 連過去不並排。07/03 寫自己的商業未來史不掛。
+    claim 頁；related 連 trend-dividend、transaction-cost、internet-five-laws、embrace-uncertainty。
+
+###### 小結
+
+- 開 7 張，全 claim：《關鍵躍升》4（四種劍法角色各一頁，對應書的乘法公式四項）、《商業簡史》3（連接、網路密度、護城河）。沒有 debate：兩本都是劉潤的體系書。
+- 七張偏多；要壓量先砍第 9、10 張（溝通與協作可以等第三鏟，鼓手與教練和既有頁分工最清楚、材料最厚），再砍第 11 張（連接那部可併進第 12 張當背景）。
+- 起草順序：8、7（個體面兩章，與 incentive-design 的邊界要先讀既有頁）→ 12、13 → 11 → 9、10。
+- 既有頁分工：incentive-design、org-tools、results-through-others 三頁都出自《5 分鐘商學院》，這七張只寫《關鍵躍升》與《商業簡史》自己的說法，重疊處引一次、related 連過去。
+
+##### history-note（2 本：開 2 張）
+
+兩本都是文化史，站上各一頁。《文學的 40 堂公開課》四十堂各自獨立，但書站概覽點出它與布倫《西方正典》相反的地方：「花了同樣多的篇幅在機制上」，版權、禁書、暢銷榜與文學獎各有專章，這條機制線是第一鏟（史詩與國族）沒碰的。《餐桌儀式》第一鏟是「馴化暴力」的主張，第三部主客關係是另一條線。
+
+14. culture-society `literature-as-an-industry`「文學的生產線：版權、禁書、暢銷榜與文學獎」— little-history-of-literature（docs/11-who-owns-literature、docs/25-dangerous-books、docs/38-guilty-pleasures、docs/39-whos-best、docs/40-literature-in-your-lifetime）。
+    第一鏟（epic-and-nation）掛 03、10、26，寫史詩、國族與帝國；機制那條線一堂沒用。
+    只寫：一本書的三種擁有者（作者擁有文字、出版社擁有版本、讀者擁有副本）、從卷軸到 codex、版權怎麼出現（11）；當權者為什麼怕書、柏拉圖把詩人趕出理想國、米爾頓「殺一個好人，幾乎等於殺一本好書」、1857 年兩場審判（25）；文學是一座爬不完的山（大英圖書館近兩百萬冊對一生約六百部）、斯特金「百分之九十的東西都是垃圾」、出版商「低」養「高」、暢銷榜是引擎（38）；文學獎的時代與「聖誕派對禮物」、評判標準從不太具體、獎項興盛的四個原因（39）；印刷書五百年可能到頭、「太多」的問題與兩種讀者策略（40）。
+    避開 epic-and-nation 的全部；避開 consumption-history 的消費史本體（暢銷榜那段只在 related 連過去）；writing-note 的出版與投稿頁若有，seeAlso 連（起草前 `ls ../writing-note/src/content/concepts/`）。22 桂冠詩人、17 童書的興起各一句帶到，不掛。
+    claim 頁；related 連 epic-and-nation、consumption-history、crowd-and-power、bobos-new-elite。
+
+15. culture-society `hosts-and-guests`「主與客原是同一個字：款待的風險、回禮與門檻」— rituals-of-dinner（docs/03-pleasure-of-your-company、docs/03-pleasure-of-your-company/01-company、docs/03-pleasure-of-your-company/02-hosts-and-guests、docs/03-pleasure-of-your-company/03-invitations、docs/03-pleasure-of-your-company/04-coming-right-in）。
+    第一鏟（table-manners-as-order）掛 01、02 兩部，寫共食的規矩、刀的去武器化、為謙卑而戰、閉嘴、好客維繫社群；第三部「有您作伴」五章只用了 05 座位那一章的材料（而且沒掛，見旁註）。
+    只寫：晚宴居所有款待之首、回禮把客人變成下一個主人、pot luck 的演變、一起吃飯能化解戰鬥、共食讓人吃得更多與中華餐桌的設計（03/01）；一份高風險的款待、「主」與「客」原是同一個字、款待之律建基於兩面性「雙方都握有力量」、客人是有可能變成神的陌生人、對主人的最大罪是謀殺賓客、《奧德賽》裡阿伽門農「在餵飽我之後」被殺（03/02）；賓客名單的政治學、推掉邀請的兩難、invite 的詞源弔詭、賓客人數的迷信（03/03）；跨越門檻的儀式、去除武裝（脫鞋、卸帽、洗腳）、帶禮物可消耗不可逾矩、花的語言、客人不可坐得高於主人、為什麼要為晚宴穿衣（03/04）。
+    避開第一鏟的食人禁忌、刀、謙卑之戰、閉嘴；03/05 座位歸第一鏟（補 anchor 後），這頁不寫入座；避開 sacred-and-profane-space 的伊利亞德。
+    claim 頁；related 連 table-manners-as-order、sacred-and-profane-space、consumption-history、crowd-and-power。
+    **既有頁漏掛 anchor（事實在哪章就掛哪章）**：table-manners-as-order 正文的黎胥留磨圓刀尖出自 04-dinner-is-served/06-knives-forks-spoons、Tafaddal 與「恭敬不如從命」出自 03-pleasure-of-your-company/05-taking-our-places、波斯特 1931 年「食物入口就得吞下」出自 05-no-offence/02-rules-of-the-mouth；現掛的 01、02 兩部都不含這三處，起草第 15 張時一併補掛三章（三個目錄都 `[ -d ]` 驗過）。
+    第三鏟候選：02-learning-to-behave/02-inhibitions（維瑟對伊里亞思：「我們進步了」是一個討喜的神話、禮儀改變過但極為緩慢、伊拉斯謨是唯一的天才，約五千六百字）。站上沒有伊里亞思《文明的進程》（bibliography 只有卡內提），所以不是 debate 形狀，是維瑟單方的翻案頁；材料夠一頁，這輪先不開。
+
+###### 小結
+
+- 開 2 張，全 claim；不開 0 本，tier 不動。
+- 《文學的 40 堂公開課》不進 EXCLUDED_KINDS：四十堂各自獨立，但時序與機制兩條主軸都在，條目可成組。開完第 14 張後它被兩頁引用，自然離榜。
+- 起草順序：15 → 14。
+
+##### 五站總結
+
+- 開 15 張（fengtang 3、wan-weigang 3、liurun 7、history 2），全部 claim 頁；不開 3 筆（穩贏；高手相對論在 wan-weigang 與 science 各一筆），tier 都不動。
+- 體裁排除建議 1 本：《穩贏》（中年隨筆結集）；SETTLED_BOOKS 2 筆：《高手相對論》在兩站（小節目錄撐高的章節數）。
+- 既有頁漏掛 anchor 2 筆：science relativity-of-simultaneity 補 04、06、08、09、11/02；history table-manners-as-order 補 04/06、03/05、05/02。順手：fengtang zizhi-tongjian-lessons 的英文 label 改中文章題。
+- 沒把握的：liurun 七張的量（砍法寫在小結）；wan-weigang 第 6 張（與系統線關係最鬆，可砍）；fengtang 第 3 張把三章三個教訓收成「功成之後的上下級關係」一個主張，起草代理若覺得散，改只寫 ch35、ch36。
+- 第三鏟候選：勝者心法的商鞅方法論與呂不韋、世界另有計劃的 S 曲線與回歸平均、商業簡史各型怎麼解兩個敵人、餐桌儀式的維瑟對伊里亞思。
+
 ### 2026-11-12 第二鏟第三批（Fable 開單；起草交 Opus）— 七組 fork 讀 82 本候選 → **開 80 頁、不開 20 本、改判 2 本、B 型債 2 筆、工具三改**
 
 **起點**：80 個 repo 全同步；galaxy-checkup blocker 0／warn 0／nit 18（data-science 17＋hr 1 等書）；tier-audit 違規 0；GUIDE-DRIFT、孤兒書、強 seeAlso 缺口、SOURCING-DEBT 全 0。DEEPEN-TARGETS 102 本候選（45 站），本輪取 82 本，留 20 本給下一輪（信仰線 keller／stott／spiritual-formation／lewis／jung／philosophy 7 本、華文作者線 fengtang／wan-weigang／liurun／history 9 本、data-science 2 本等書、五大障礙與活的教會上輪已裁定）。
