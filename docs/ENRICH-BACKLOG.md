@@ -77,10 +77,10 @@
 3. 每站收尾：`npm run build`、`npm run format`、`format:check`，蓋 `curation.enrichedAt`，`tier-audit.py <站>` 與 `galaxy-checkup.py --station <站>` 必 0 warn；overview 重數頁數；單行英文 commit、逐檔 add、**不 push**。
 4. 全部完成：`refresh-galaxy-docs.sh`，`export-seealso-gaps.py --json --allow-strict` → `apply-seealso.py --apply` 補新頁帶出的 strong 缺口，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張照書改了標題、起草代理抓到的既有頁錯誤校正表、沒寫的張與原因）。
 
-**Opus 執行（2026-11-12，Andrew「with opus, go」）— 78 頁交付、1 張擋下，33 站本機 commit（未 push）**
+**Opus 執行（2026-11-12，Andrew「with opus, go」）— 79 頁交付、1 張擋下，32 站本機 commit（未 push）**
 - **第一波**：兩筆改判層（business-strategy essential-drucker → tool、communication speed-of-trust → delegated:covey）手改 bibliography（`apply-tiers.py` 只碰未判層的 entry），tier-audit 兩站 0；工具三改落在 notes-core `0eedafc`（EXCLUDED_KINDS +5、SETTLED_BOOKS 15 本、計數納入 problems）。DEEPEN-TARGETS 102 → **19** 本。兩筆 B 型債與約二十筆漏掛 anchor 隨各站起草一起做，校正表在 SOURCING-DEBT「2026-11-12 第三批」。
 - **第二波**：七個起草代理（每組一個、組內自己寫不再分派），每頁交 3 筆具名事實與來源檔；主會話回源 grep 抽 **52 筆、全中**。各站 build:nosearch、format:check、tier-audit、checkup 全綠。
-  - 技術 11（system-design 5、data-systems 2、clean-code 1、design-patterns 2、agile 2）；金錢 10；人與領導 14；職場 10；身心習慣 10；思考創業寫作 8 頁＋2 個 details（startup 授權、thinking 後記）；travel 15。
+  - 技術 12（system-design 5、data-systems 2、clean-code 1、design-patterns 2、agile 2）；金錢 10；人與領導 14；職場 10；身心習慣 10；思考創業寫作 8 頁＋2 個 details（startup 授權、thinking 後記）；travel 15。
   - **沒寫 1 張**：security-note `malware-behavior-and-covert-launching`。起草代理讀《Practical Malware Analysis》第五部時被模型安全機制中止（`[cyber]`），依規不換說法重試；留 Andrew 裁（自己寫、換模型、或判不開）。
   - **照書改標題**：maxwell「高路」→「高道」、growth「第三次轉化」→「第三次轉變」、travel「布痕瓦爾德」→「布亨瓦德」，都照書 repo 譯名；wellness nutrition-foundations 重寫後改題。
   - **單上與原文不符、照原文處理**：maxwell「八頂帽子」書裡是列了八項角色；covey 第 2 張「舊策略模型」在 02/02 不在 02/03、「七個問題對應的習慣」原文沒有；money 第 10 張「越底層越重要」原文只說使命最重要；kiyosaki `b-i-triangle` 的四面體與福特不在既有頁，不補 anchor；newport 第 66 條沒用到，不補；startup `enough-as-strategy` 沒用 Sivers，改導覽那句。
