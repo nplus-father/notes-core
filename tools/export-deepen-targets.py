@@ -38,7 +38,18 @@ management-note 42 本裡 37 本只有 1 頁——健康，但薄得看不出來
 **排除清單（EXCLUDED_KINDS）**：有些書天生就不該被挖成多頁——工具書／辭典（按條目查，
 不是按論證讀）、小說與文學（本站不是文評站）、條目式合輯。它們章節數必然很高，
 不排除的話會永遠霸佔排行前段。判準是**體裁**，不是「我暫時不想挖」；後者屬於選題，
-不該寫進工具。
+不該寫進工具。條目式合輯要進這張表，判準是**每則互不相承且全書無主軸**，不是「條目式」
+本身——《管理的法則》《How to Win at College》同是條目書，但相鄰條目能成組撐起單一主張，
+所以不排除（否則 templar-note 整站會被吃掉）。
+
+**已裁定不開（SETTLED_BOOKS）**：Fable 開單時逐本看過、判「第一鏟已兌現」「歸姊妹站」
+「材料薄」的書。這是選題判斷，不是體裁，所以不進 EXCLUDED_KINDS；但不記下來，每輪都會
+回到榜上重看一次。以 (站, slug) 為鍵（同一本書在別站可能還該挖），附裁定日與理由，
+文件第四節列出供覆核；理由失效（例如新版書加了章）就從表上刪掉。
+
+**頁數口徑**：與 `tier-audit.py` 的 `citations()` 相同，`content/concepts` 與
+`content/problems` 都算（雙集合站的題型頁也承重；只數 concepts 時，被六個題型頁掛著的
+《Refactoring for Software Design Smells》會顯示 0 頁）。
 """
 
 import os
@@ -78,6 +89,31 @@ EXCLUDED_KINDS = {
     # 逐卷／逐條查閱：章節數是卷數或條目數，不是論證數；站上逐卷頁各自承重
     "how-to-read-the-bible-book-by-book": "逐卷導覽，按卷查閱",
     "hard-sayings-of-the-bible": "逐條釋疑合輯，按經文查閱",
+    # 每則互不相承且全書無主軸的合輯（2026-11-12 第三批開單）
+    "art-of-thinking-clearly": "轉譯型偏誤短文合輯，近百則互不相承",
+    "rework": "格言體雜文集，近九十節各一兩頁、只給立場不給流程",
+    "tools-of-titans": "訪談語錄合輯，一人一條目，按人物查閱",
+    "365-days-with-self-discipline": "日課型，365 則每日短文按週合輯",
+    "soft-skills-thirty-letters": "多作者書信合輯，三十封各自獨立",
+}
+
+# 開單時逐本看過、裁定不開的書（見 docstring）。(站, slug) → (裁定日, 理由)。
+SETTLED_BOOKS = {
+    ("management-note", "five-dysfunctions-of-a-team"): ("2026-11-06", "模型與工具已在本站一頁、寓言歸 leadership 三頁，剩下是故事重述"),
+    ("theology-note", "living-church"): ("2026-11-06", "第一鏟已用八章裡的七章，講道章歸 stott-note"),
+    ("leadership-note", "turn-the-ship-around"): ("2026-11-12", "四部都有頁：本站 leader-leader 掛一二部、management-note 掛三四部"),
+    ("newport-note", "how-to-win-at-college"): ("2026-11-12", "兩條原則已在 pseudo-work 與 career-capital-over-passion 的成熟版"),
+    ("startup-note", "anything-you-want"): ("2026-11-12", "授權四章不到四千字，收進 purpose-over-money 的 details"),
+    ("personal-finance-note", "millionaire-fastlane"): ("2026-11-12", "第一鏟四部用盡，剩自我管理與創業執行不屬理財站"),
+    ("clean-code-note", "test-driven-development"): ("2026-11-12", "kent-beck-note 五頁已挖完三部"),
+    ("agile-note", "impact-mapping"): ("2026-11-12", "章多而薄，兩個實質部已用；剩下是與既有實踐的定位章"),
+    ("habits-note", "how-to-have-a-good-day"): ("2026-11-12", "生產力四章是技巧清單，兩招是 Eyal 轉述而原典頁已在"),
+    ("life-meaning-note", "bigger-leaner-stronger"): ("2026-11-12", "飲食端第二鏟歸 wellness，本站不收飲食頁"),
+    ("hbr-note", "hbr-guide-to-making-every-meeting-matter"): ("2026-11-12", "第一鏟已走完會議全生命週期，領導高峰會章收成 details"),
+    ("hbr-note", "hbr-guide-to-navigating-the-toxic-workplace"): ("2026-11-12", "三十三章已用約二十章，其餘各一千字湊不成主張"),
+    ("career-note", "mastering-behavioral-interviews"): ("2026-11-12", "behaviour-interview-note 四十一頁是體系深挖，本站是總覽頁"),
+    ("travel-note", "how-to-be-travel-writer"): ("2026-11-12", "速成課已用，其餘是投稿、SEO、謀生與資源清單"),
+    ("travel-note", "istanbul"): ("2026-11-12", "呼愁骨幹已用，其餘三十章是家族回憶與畫家專欄"),
 }
 
 
@@ -138,6 +174,7 @@ def main() -> None:
     depth = book_depth()
     rows: list[tuple[float, int, int, str, str, str]] = []
     excluded_hits: list[tuple[str, str, str]] = []
+    settled_hits: list[tuple[str, str, str, str]] = []
     stations = 0
     for f in sorted(ROOT.glob("*/src/data/bibliography.ts")):
         station = f.parts[-4]
@@ -146,11 +183,15 @@ def main() -> None:
             continue
         stations += 1
         cites: dict[str, set[str]] = {}
-        for p in cdir.rglob("*.md"):
-            if p.stem == "_index":
+        for coll in ("concepts", "problems"):
+            pdir = f.parent.parent / "content" / coll
+            if not pdir.is_dir():
                 continue
-            for b in re.findall(r"book: ([\w-]+)", p.read_text(encoding="utf-8")):
-                cites.setdefault(b, set()).add(p.stem)
+            for p in pdir.rglob("*.md"):
+                if p.stem == "_index":
+                    continue
+                for b in re.findall(r"book: ([\w-]+)", p.read_text(encoding="utf-8")):
+                    cites.setdefault(b, set()).add(f"{coll}/{p.relative_to(pdir)}")
         for e in entries_of(f.read_text(encoding="utf-8")):
             if 'tier: "spine"' not in e:
                 continue
@@ -166,6 +207,10 @@ def main() -> None:
                 continue  # 深度已裁定（見 SETTLED_DEPTH_PREFIXES），連例外節都不列
             if slug in EXCLUDED_KINDS:
                 excluded_hits.append((station, title, EXCLUDED_KINDS[slug]))
+                continue
+            if (station, slug) in SETTLED_BOOKS:
+                when, why = SETTLED_BOOKS[(station, slug)]
+                settled_hits.append((station, title, when, why))
                 continue
             rows.append((ch / max(pg, 1), ch, pg, station, title, slug))
     rows.sort(reverse=True)
@@ -205,6 +250,7 @@ def main() -> None:
     w(f"| **候選（大部頭 × ≤1 頁）** | **{len(rows)}** |")
     w(f"| 涉及的站 | {len(per_station)} |")
     w(f"| 依體裁排除 | {len(excluded_hits)} |")
+    w(f"| 已裁定不開 | {len(settled_hits)} |")
     w("")
 
     w("## 一、前 30 名（跨站總排序）\n")
@@ -234,6 +280,18 @@ def main() -> None:
         )
         for st, ti, why in sorted(excluded_hits):
             w(f"- `{st}` — {ti}：{why}")
+        w("")
+
+    w(f"## 四、已裁定不開：{len(settled_hits)} 本\n")
+    if not settled_hits:
+        w("無。\n")
+    else:
+        w(
+            "開單時逐本看過、判第一鏟已兌現、歸姊妹站或材料太薄的書。這是選題判斷，不是體裁；"
+            "清單在 `export-deepen-targets.py` 的 `SETTLED_BOOKS`，理由失效就從表上刪掉。\n"
+        )
+        for st, ti, when, why in sorted(settled_hits):
+            w(f"- `{st}` — {ti}（{when}）：{why}")
         w("")
 
     w("## 重跑\n")

@@ -1,6 +1,6 @@
 # 跨站連結缺口（同書同章、卻沒有互相 seeAlso）
 
-> **生成於 2026-11-06T13:18:44+08:00**｜由 `tools/export-seealso-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T15:37:27+08:00**｜由 `tools/export-seealso-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：兩個站的概念頁掛了**同一本書的同一章**，來源頁卻沒有任何 `seeAlso` 指到對方那一站。
 由 `notes-core/tools/export-seealso-gaps.py` 生成，**不要手改**——補各站的 seeAlso 再重跑。
@@ -12,8 +12,8 @@
 **判準只收 strong**：同書**同章**。同書不同章只列數字（weak），不開單——不同章可能講完全不同的事。
 
 目前：2291 個概念頁，有 seeAlso 的 **636 頁（28%）**；一條跨站連結都沒有的站 **7**。
-strong 缺口 **0 筆**（來源頁 0，分佈在 0 站）；全部補上後有 seeAlso 的頁變成 **636（28%）**。weak（同書不同章）另有 438 筆，只供參考。
-另有 **0 筆被 schema 擋住**（strict 站指向非技術站，見下節）。
+strong 缺口 **2 筆**（來源頁 2，分佈在 2 站）；全部補上後有 seeAlso 的頁變成 **638（28%）**。weak（同書不同章）另有 435 筆，只供參考。
+另有 **1 筆被 schema 擋住**（strict 站指向非技術站，見下節）。
 
 > [!NOTE]
 > 目前零跨站連結的站：`gardner`、`image-style`、`kiyosaki`、`pastoral-psychology`、`personal-finance`、`security`、`wujun`
@@ -24,12 +24,22 @@ strong 缺口 **0 筆**（來源頁 0，分佈在 0 站）；全部補上後有 
 
 | 站 | 軸 | 缺口 | 主要去向 |
 | --- | --- | ---: | --- |
+| `hbr` | topic | 1 | leadership 1 |
+| `leadership` | topic | 1 | hbr 1 |
 
-軸向：主題→人物 0、人物→主題 0、主題→主題 0、人物→人物 0。
+軸向：主題→人物 0、人物→主題 0、主題→主題 2、人物→人物 0。
 
 ## 逐筆清單
 
 格式：來源頁 → 目標站：要掛的 path（label）。分類頁＝該分類 ≥3 頁同時命中，連分類不連單頁。
+
+### hbr（1 筆）
+
+- `leadership-teams/coaching-and-feedback`「教練式領導與有效回饋」 → **leadership**：`concepts/coaching/coach-dont-tell/`（教練式對話：幫對方自己想清楚，而不是替他想）；`concepts/coaching/feedback-that-lands/`（有效回饋：對事不對人，即時不等年度）
+
+### leadership（1 筆）
+
+- `coaching/coach-dont-tell`「教練式對話：幫對方自己想清楚，而不是替他想」 → **hbr**：`concepts/leadership-teams/coaching-and-feedback/`（教練式領導與有效回饋）
 
 ## 被 schema 擋住的缺口（strict 站 → 非技術站）
 
@@ -37,7 +47,15 @@ strong 缺口 **0 筆**（來源頁 0，分佈在 0 站）；全部補上後有 
 （同書同章），但寫進 frontmatter build 會紅。要放行得改 notes-core：讓 enum 涵蓋全部 79 個 key
 （仍是封閉集合，拼錯照樣抓得到），升版後重跑本工具它們就會進決策 JSON。
 
-無。
+| 來源站 | 目標站 | 筆數 |
+| --- | --- | ---: |
+| `design-patterns` | `uncle-bob` | 1 |
+
+<details><summary>逐筆</summary>
+
+- `design-patterns` `paradigms/oop-vs-functional`「OOP vs FP：兩種範式的對照」 → **uncle-bob**（共用 1 章）
+
+</details>
 
 ## 套用
 
