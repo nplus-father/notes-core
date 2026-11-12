@@ -1,12 +1,12 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-11-13T01:24:48+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-13T01:58:11+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**1** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：126 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 194 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據單薄（只有一個數字，或全靠裸年份）：127 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 201 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
 
@@ -484,7 +484,7 @@
 ## management-note / org-people/first-who-then-what.md
 
 - 現掛：`good-to-great` → `docs/03-first-who-then-what/`、`built-to-last` → `docs/02-clock-building-not-time-telling/`、`no-rules-rules` → `docs/section-3-techniques-to-reinforce/07-the-keeper-test/`
-- 建議 anchor：`built-to-last` → `docs/epilogue/`「結語」（1 個數字）、`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）
+- 建議 anchor：`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）、`built-to-last` → `docs/epilogue/`「結語」（1 個數字）
 - 落空數字：2001年、21年
 
 ## management-note / org-people/trust-and-team-dysfunctions.md
@@ -597,6 +597,11 @@
 
 - 現掛：`super-founders` → `docs/03-the-company/05-market/`、`super-founders` → `docs/03-the-company/07-competition/`
 - 落空數字：1995年
+
+## stott-note / discipleship/threefold-humility.md
+
+- 現掛：`i-believe-in-preaching` → `docs/08-courage-and-humility/05-humility/`、`i-believe-in-preaching` → `docs/08-courage-and-humility/06-the-word-of-god/`、`i-believe-in-preaching` → `docs/08-courage-and-humility/07-the-glory-of-christ/`、`i-believe-in-preaching` → `docs/08-courage-and-humility/08-the-power-of-the-spirit/`
+- 落空數字：1872年
 
 ## stott-note / foundations/incomparable-christ.md
 

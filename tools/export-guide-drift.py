@@ -87,7 +87,7 @@ OWNED_CLAIM = re.compile(rf"收完\s*這?\s*{NUM}\s*本")
 # 起草代理手動抓到七處這種句子早已過期，TOTAL_STRONG 一處都沒報。
 BARE_TOTAL = re.compile(rf"(?:^|(?<=[「\"。，；\n]))\s*{NUM}\s*頁(?=\s*(?:沿|用到|分在|分成|互相|讀下來|概念頁|撐起|鋪開))", re.M)
 BARE_SCOPE = re.compile(r"^(?:overview\.ts|0[12]-.*\.md)$")
-RATIO_TOTAL = re.compile(rf"(?<![各由每])(?<!各由){NUM}\s*頁(?:概念(?!頁)|對\s*{NUM}\s*本)")
+RATIO_TOTAL = re.compile(rf"(?<![各由每這那前])(?<!各由){NUM}\s*(?:頁(?:概念頁?|對\s*{NUM}\s*本)|個概念頁)")
 
 
 def cn2int(s):
@@ -361,7 +361,7 @@ def scan_text(st, f, fname, text):
             rows.append((fname, "站台總頁", n, actual_total, verdict, reason, ctx(text, m)))
     for m in RATIO_TOTAL.finditer(text):
         n = cn2int(m.group(1))
-        if n is None or demoted(text, m):
+        if n is None or n < 2 or demoted(text, m):
             continue
         verdict, reason = resolve_total(text, m, n, f)
         if verdict != "ok":

@@ -33,6 +33,15 @@
 
 **起草紀律**照 2026-11-12 下午輪的「Opus 開工指令」第 0 條，另加一條：新頁落地後 grep 該站導覽與 overview 裡講那位作者或那個主題「零頁／只有轉述／還沒開頁／待挖」與寫死的頁數，一併照實改。
 
+**Opus 執行（2026-11-13，三個 Opus 子代理；主會話回源抽驗）**
+- **13 頁全數落地**，標題與 slug 照單：philosophy 3（`b69781c`、`7b10284`）、stott 2（`c69324f`、`167f60c`）、spiritual-formation 1（`3e99cdf`、`da71a16`）、lewis 2（`e3e132d`、`95a75b4`）、keller 1（`652924c`、`0a0a020`）、liurun 2（`cfbed6c`、`4a56daa`）、wan-weigang 1（`8e3a897`、`67ddc56`）、fengtang 1（`a5d9b07`、`d3478f8`）。每站 build、format check、tier-audit、checkup 全過。
+- **抽驗**：主會話從交回的事實裡抽 37 筆回原書 grep，全中。
+- **既有頁校正**：lewis `weight-of-glory` 的渴望引句出自《返璞歸真》03/10，補掛；lewis `mere-christianity` 補掛第二、三卷；theology `argument-from-desire` 補掛 03/10（`3be824b`）；spiritual-formation 導覽「唯一的雙頁書」與同章自相矛盾，改成「三座地標裡唯一的雙頁書」；wan-weigang 導覽「十六個概念頁、頁／書比 1.45」自 8 月過期，改 20 頁、1.82；liurun `org-tools` 一個 label 的「——」改「：」。
+- **引句處理**：書 repo 譯文帶「——」的引句，新頁拆成直述或只引不含破折號的一段；fengtang ch11 的簡體殘字句改轉述。
+- **GUIDE-DRIFT 第三次放寬**：起草代理回報工具認不出「N 個概念頁」「N 頁概念頁」。補上後再抓到 11 站 13 處：biblical-studies（83→90，兩處）、business-strategy（38→40）、clean-code（77→80）、fowler（9→11，並改每本頁數與頁書比）、fromm（15→16，「正好一本一頁」改寫）、grant（15→16，《反叛》四頁）、habits（34→36）、kent-beck（14→16，2.3→2.7）、maxwell（14→17）、wujun（17→26，「一本一頁」改成九本開到第二頁）、theology（49→52，五處）。改後要改 0。
+- **收尾**：seeAlso 同章缺口 1 筆（lewis `weight-of-glory` → theology `argument-from-desire`，`48c2784`）；全星系 checkup blocker 0／warn 0／nit 18；tier-audit 六類 0；孤兒書 0。
+- **留著的候選**：fengtang ch37 魯仲連、ch46 奇貨可居；stott 第一部講道史；慕安得烈第 29 課；cost-of-discipleship 第三部使者；mere-christianity 03/05、03/06 性道德與婚姻；philosophy 休謨設計論證（要先決定由 theology 開還是本站開新分類）、Warburton 其餘知識論與語言哲學各章。
+
 #### philosophy（3 張）
 
 ##### philosophy-note（1 本：開 3 張，休謨兩章不開）
