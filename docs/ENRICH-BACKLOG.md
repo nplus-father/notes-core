@@ -17,6 +17,904 @@
 
 ## 進行中
 
+### 2026-11-12 第二鏟第三批（Fable 開單；起草交 Opus）— 七組 fork 讀 82 本候選 → **開 80 頁、不開 20 本、改判 2 本、B 型債 2 筆、工具三改**
+
+**起點**：80 個 repo 全同步；galaxy-checkup blocker 0／warn 0／nit 18（data-science 17＋hr 1 等書）；tier-audit 違規 0；GUIDE-DRIFT、孤兒書、強 seeAlso 缺口、SOURCING-DEBT 全 0。DEEPEN-TARGETS 102 本候選（45 站），本輪取 82 本，留 20 本給下一輪（信仰線 keller／stott／spiritual-formation／lewis／jung／philosophy 7 本、華文作者線 fengtang／wan-weigang／liurun／history 9 本、data-science 2 本等書、五大障礙與活的教會上輪已裁定）。
+**順手**：hbr 導覽第四章爭點一（上輪 Opus 改寫）Fable 抽查：五句引文全部回原書 grep 到，語氣與全章一致；只有「不要叫它回饋」是帶引號的轉述，改成書的措辭「不要稱之為『回饋』」（hbr-note `c476b28`）。
+
+**開單方式**：承上一批，七個 Fable fork 平行讀原文（書 repo 目錄與章首、第一鏟頁整頁、導覽三／四／五章該段、姊妹站 bibliography 與頁），每張單寫明落點分類、slug、中立標題、骨幹書與章節目錄（全部 `[ -d ]` 驗過）、第一鏟掛了什麼、只寫什麼、避開什麼、related（`ls` 驗過）。主會話逐張審形狀（§1.4 四個測試）、重疊、材料厚度，並抽 grep 單上的原話與數字：**七組共抽 96 筆、命中 95 筆**，漏的一筆是 fork 自己數的「八頂帽子」（已在單上註明，起草時回章節數）。
+
+| 組 | 站 | 候選 | 開 | 不開 |
+| --- | --- | ---: | ---: | ---: |
+| 技術 | system-design 5、clean-code 1、design-patterns 2、agile 2、data-systems 2、security 1 | 12 | 13 | 2 |
+| 金錢 | economics 5、personal-finance 3、investing 1、kiyosaki 1 | 9 | 10 | 1 |
+| 人與領導 | relationships 4、maxwell 3、business-strategy 2、leadership 1、communication 1、covey 2、growth 1 | 15 | 14 | 3 |
+| 職場 | hbr 3、career 5、hr 2 | 10 | 10 | 4 |
+| 身心習慣 | wellness 6、habits 2、tools 2 | 11 | 10 | 4 |
+| 思考創業寫作 | writing 4、thinking 2、startup 1、templar 1 | 11 | 8 | 4 |
+| travel | podcast 3、travel-video 3、tour-leading 1、tour-design 1、destinations 7 | 14 | 15 | 2 |
+| **合計** | 33 站 | **82** | **80** | **20** |
+
+全部 `kind: claim`，沒有 debate：82 本都是單一作者的體系書、敘事史或合輯，站上沒有「一個問題多本書吵、兩造都有頁」的形狀。三個 debate 候選等兩造落地再開單：clean-code「盡早崩潰」（第 6 張）對「把錯誤定義掉」、wellness「算熱量」（第 3 張）對「算醣」（nutrition-foundations 重寫後）再加 Ferriss 第三造、travel 爭點四 Abbey 對 Holloway（第 8 張落地後導覽第四章改寫，Fable）。
+
+**主會話裁決（與 fork 原單不同處，單上都加了「裁決（主會話）」行）**
+- War of Art 第三部撞題（habits 與 writing 兩個 fork 都要）：拆成兩面——habits 拿 06–11 身分論（`discipline/territory-versus-hierarchy`），writing 改開 `craft-mindset/invoking-the-muse` 拿 01–05 工作面；writing fork 原單作廢。
+- 三張不開：startup `delegate-dont-abdicate`（四章不到四千字，改成 purpose-over-money 補一條 details 並掛那四章）、habits `procrastination-and-overload`（技巧清單體，兩招是 Eyal 轉述、原典頁已在）、travel `hotel-grading-and-group-business`（教科書章節，引用測試弱，留第三鏟）。
+- 改判層 2 本：business-strategy `essential-drucker` spine → **tool**（drucker、leadership 判 tool，management 判 support，本站導覽自己說「當總目錄讀」）；communication `speed-of-trust` spine → **delegated:covey**（covey 八頁已挖完四部）。走 `apply-tiers.py`，跑 `tier-audit.py` 兩站必 0。
+- 分類歸屬：travel `one-transcript-many-outputs` 落 podcast（書是 podcast 書、飛輪從 podcast 起）；growth `intuition-as-higher-reason` 留 growth 不改 delegated（導覽三角分工：growth 取心態與潛能）。
+- 體裁排除 5 本進 `export-deepen-targets.py` EXCLUDED_KINDS（見工具三改）；其餘不開的 15 本是選題判斷，進新的「已裁定」清單，不進體裁排除。
+
+**B 型債 2 筆（主會話回書 repo grep 確認過，起草前先清）**
+- wellness `nutrition-sleep/nutrition-foundations`：掛江部《間歇性斷食減醣全書》02、03 章，頁上核心主張「能量平衡決定體重」「斷食減醣有效是因為減少總攝取」「蛋白質最該顧好」「依從性是隱藏變數」在江部書裡 grep 不到，江部講的相反（「和卡路里苦行說再見」「重點不是熱量，而是有沒有醣」）。這些是 Matthews（Bigger Leaner Stronger）的主張掛錯書。處理：第 3 張 `flexible-dieting` 寫成 Matthews 的頁；nutrition-foundations 回江部原文重寫成減醣的理由並改標題；導覽第四章官司一那兩句改成 Matthews 的話連到新頁；校正表進 SOURCING-DEBT。
+- hbr `strategy-innovation/everyday-strategic-thinking`：core 第五點（事前驗屍、指定唱反調者、可逆／不可逆）、TIP「本週說了哪些 No」、「策略絞肉機」「兩分鐘內講清楚」、整節「四個斷點」在書 repo 全書 grep 不到。處理見第 3 張 `strategy-execution-gap` 附帶條件：四個斷點改成一行連新頁，決策那條以 04-align-decisions 三章回源改寫；校正表進 SOURCING-DEBT。
+
+**既有頁漏掛 anchor（事實在哪章就掛哪章；起草該站時一併做，不另開頁）**
+- business-strategy `create-a-customer`：主掛改 practice-of-management 01/02-what-is-a-business，副掛 essential-drucker 01/03。
+- communication `rhetoric-toolbox`：補 02/01、02/05、02/07、02/10、02/12。
+- leadership `leader-leader`：Goldsmith「別加太多價值」案例補 what-got-you-here-wont-get-you-there 的章；seeAlso 加 management `org-people/competence-and-clarity`。`circle-of-safety`：正文一半是 Horowitz 與 Netflix，補那兩本書的章（兩本在本站各有頁，related 連過去）。
+- startup `purpose-over-money`：補 01/04、05/01，再加 Sivers 授權 details 掛 04/04、05/03、05/05、05/06；導覽第三章 47 行說 Sivers「兩頁引用」但 `enough-as-strategy` 沒掛 anything-you-want，看內文決定補 anchor 或改導覽那句。
+- writing `nuts-and-bolts`：正文用到工具 2、3、4、6、7、8，補箱層 `docs/01-nuts-and-bolts/` 或那六章。newport `career-capital-over-passion`：「先變得值得認識」若用到第 66 條，補 docs/66-dont-network。
+- system-design `distributed-transactions`：補 elevator 10-coffee-shop-two-phase-commit。
+- economics `mental-accounting-endowment`：補 04/03-mugs。`gold-standard-and-fetters`：補 04/05-gold-fetters、05/01-gold-standard-on-the-booze；「符合每一條已知的規則」回源，找不到就改寫。kiyosaki `b-i-triangle`：四面體與福特若出自《投資指南》03/02，補掛。
+- wellness `exercise-as-leverage`：補 4-hour-body 01/01-minimum-effective-dose。habits `design-your-day`：補 01/01、06/01。
+- hbr `persuasive-presentations`：補 01、02、05/02、06/01、06/04，seeAlso 連 communication `presentation/slide-design-ideology`、`presentation/slides-that-resonate`；`run-meetings-that-matter`：補 02、03、04 卷層，05/08 領導高峰會以 details 收進；`toxic-workplace`：補 01、03、04、05 卷層。career `never-eat-alone`：卷層細化到 03/01、03/02。**hbr 站整站跑一次 `export-anchor-gaps.py hbr-note`**（Guide 系列第一鏟普遍一兩個卷層 anchor、正文掃全書）。
+- travel `cultural-journey-sites`：敦煌段補道士塔 details 並掛 01-taoist-pagoda；`shooting-for-the-edit` 與第 4、5 張同掛 07-working-practices，label 要分開。
+
+**工具三改（Opus，notes-core 一個 commit）**
+1. `export-deepen-targets.py` EXCLUDED_KINDS 加 5 本：`art-of-thinking-clearly`「轉譯型偏誤短文合輯，近百則互不相承」、`rework`「格言體雜文集，近九十節各一兩頁、只給立場不給流程」、`tools-of-titans`「訪談語錄合輯，一人一條目，按人物查閱」、`365-days-with-self-discipline`「日課型，365 則每日短文按週合輯」、`soft-skills-thirty-letters`「多作者書信合輯，三十封各自獨立」。docstring 把判準寫明是「**每則互不相承且全書無主軸**」，不是「條目式」本身——Rules of Management、How to Win at College 同是條目書但可成組，不排除。
+2. 新增 `SETTLED_BOOKS`（(站, slug) → 日期與理由），承 `SETTLED_DEPTH_PREFIXES` 的精神但逐本列、文件另開一節「四、已裁定不開」供覆核，並從候選數扣除：上輪 management `five-dysfunctions-of-a-team`、theology `living-church`；本輪 people 3（essential-drucker、speed-of-trust、turn-the-ship-around）、思考組 3（how-to-win-at-college、anything-you-want 另有 details、millionaire-fastlane）、技術 2（test-driven-development、impact-mapping）、身心 2（how-to-have-a-good-day、life-meaning 的 bigger-leaner-stronger）、職場 3（making-every-meeting-matter、toxic-workplace、mastering-behavioral-interviews）、travel 2（how-to-be-travel-writer、istanbul）。理由抄各單「不開」那行。
+3. 引用計數改成 concepts＋problems（與 `tier-audit.py` 的 `citations()` 同口徑）：design-patterns `refactoring-for-software-design-smells` 六個題型頁掛著卻顯示 0 頁。改完它離榜，但第 8 張仍開（骨架層缺口，理由在單上）。
+
+**留給 Fable 的判斷（本輪不動）**
+- Flow 第十章「意義的形成」：五站 delegated 給 tools，但 tools 沒有分類承接；是 life-meaning 的題。下一輪 life-meaning 開單時裁：改 support＋導覽帶一句，或自挖一頁 10-the-making-of-meaning 並改 spine。
+- 三個 debate 候選（見上）等兩造落地。
+- 下一輪選題的 20 本（見起點）。
+
+**Opus 開工指令（Andrew 切模型後照這段做；Fable 2026-11-12 交接）**
+0. 前置：`for d in ~/workspace/andrew/notes/*/; do git -C $d pull -q --ff-only; done`；讀 `docs/MODEL-ROUTING.md` §四、`/note-check` §6、本節與下面七張單。**單上的「原話」已抽驗但不是全部：起草代理每句引文仍要回章節 grep**，查不到就改寫成「書裡講到」或刪。
+1. **第一波（債與工具，先做）**：兩筆 B 型債回原文重寫＋SOURCING-DEBT 校正表；工具三改＋`refresh-galaxy-docs.sh`；兩筆改判層走 `apply-tiers.py`；「既有頁漏掛 anchor」那串按站做掉（各站一個 commit）。
+2. **第二波（起草 80 頁）**：每頁一個子代理、路徑 A，prompt 含 note-check §6.3 六項；骨架照該站既有 claim 頁；anchor 從單上取並逐一 `[ -d books-done/**/<book>/site/content/<anchor> ]`，**事實在哪章就掛哪章**（單上沒列但用到的章可以補掛，label 用書站章題）；不下裁決、不寫站務口吻、不用「——」。每頁交回：grep `&gt;|&lt;|&amp;`、anchor 實存、`related` 雙向（**解析後重寫單行，不 regex 插尾**）、`:::response` 留空、**五筆具名事實附逐字原文，主會話回源 grep ≥3 筆**；補分類 `_index.md` roadmap；導覽第三章講那本書的段落補一句連到新頁（保語氣；travel 第 8 張落地後爭點四不改，留 Fable）；seeAlso 只掛單上點名且 `ls` 驗過的路徑。站的順序：技術 13 → 金錢 10 → 人與領導 14 → 職場 10 → 身心習慣 10 → 思考創業寫作 8 → travel 15；站內順序照各單「起草順序建議」。有附帶條件的張（wellness 3、hbr 3、thinking 6、career 6、startup 的 details）照單上寫的做。
+3. 每站收尾：`npm run build`、`npm run format`、`format:check`，蓋 `curation.enrichedAt`，`tier-audit.py <站>` 與 `galaxy-checkup.py --station <站>` 必 0 warn；overview 重數頁數；單行英文 commit、逐檔 add、**不 push**。
+4. 全部完成：`refresh-galaxy-docs.sh`，`export-seealso-gaps.py --json --allow-strict` → `apply-seealso.py --apply` 補新頁帶出的 strong 缺口，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張照書改了標題、起草代理抓到的既有頁錯誤校正表、沒寫的張與原因）。
+
+#### 技術站第二鏟選題單（system-design／clean-code／design-patterns／agile／data-systems／security，DEEPEN-TARGETS 12 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用。
+技術站的書 repo 章節厚（多在 10–50KB），所以第二鏟一律選「一章或一組相鄰章撐得起的單一主張」；目錄型的書（API 模式目錄、重構目錄、壞味目錄）切「一組相鄰條目共同支撐的主張」，不整本重講。
+姊妹站分工：kent-beck-note 是人物站，TDD 與 XP 的理論層已在那邊；uncle-bob-note 沒收這批書。七個技術站的 seeAlso 自 v0.44.0 起可連全部 79 站。
+每張單的章節目錄名全部 `[ -d ]` 驗過；related 的 slug 全部 `ls` 驗過。
+
+##### system-design-note（4 本，開 5 張）
+
+1. fundamentals `diagram-driven-design`「圖驅動設計：承載架構的是線，不是方塊」— software-architect-elevator（docs/03-communication/04-emphasis-over-completeness/、docs/03-communication/05-diagram-driven-design/、docs/03-communication/06-drawing-the-line/、docs/03-communication/07-sketching-bank-robbers/）。
+   第一鏟（architect-elevator）掛第一部 01、05，第二部 02，第三部 01、02，第四部 02、05：電梯隱喻、三條腿、賣選擇權、斜坡與海盜船、控制是幻覺、組織當分散式系統。第三部八章只用了前兩章。
+   只寫第三部後半：圖是模型、五秒測試、訊噪比與「圖例是拐杖」（04）；畫圖本身是設計技術，逼你清理抽象層次、精簡到本質、表達不確定性（05）；沒有線條的圖不算架構，同一組方塊可以是分層也可以是網狀，能力圖只是把文字包進方塊（06，書的原話：「沒有線條的架構圖很可能不算架構」「把文字包在方塊裡不構成架構」）；架構素描師的兩種方法，系統隱喻與觀點，從團隊的圖看出他們的思維層次（07）。
+   避開 architect-elevator 已寫的斜坡／懸崖、海盜船、logos／ethos／pathos；避開 architecture-characteristics 的適應度函數；書第二部 10-coffee-shop-two-phase-commit 不進這頁（屬 distributed-transactions 的題域，見旁註）。
+   claim 頁；related 連 architect-elevator、architecture-characteristics、coupling-and-cohesion、integration-styles。
+
+2. reliability `fault-isolation-swim-lanes`「故障隔離泳道：不共享、不跨越、交易沿著泳道流」— art-of-scalability（docs/03-architecting-scalable-solutions/02-creating-fault-isolative-architectural-structures/）。
+   第一鏟（akf-scale-cube）掛第三部 03、04、05，寫的是立方體三軸與應用層／資料層的切法；泳道（swim lane）在既有頁沒出現。
+   只寫這一章：故障隔離架構的術語（泳道、艙壁、分片的用語差異）、五項好處（限制衝擊範圍、加快事故偵測、可擴展性、上市時間、成本）、三原則（書的原話：「故障隔離設計的第一原則是：絕對不共享任何東西」、不跨越泳道邊界、交易沿著泳道流動）、何時實作、怎麼測試泳道真的隔離。
+   避開 stability-antipatterns 的 Nygard 版艙壁與連鎖反應（那頁只在連鎖反應一條裡帶過艙壁，這頁是 AKF 自己的泳道定義與設計原則）；避開 akf-scale-cube 的 y／z 軸切法，泳道怎麼對應軸只寫書說的那一句。
+   claim 頁；related 連 stability-antipatterns、circuit-breaker、akf-scale-cube、microservices-vs-monolith。
+   第三鏟候選留著：02-building-processes-for-scale/05-determining-headroom-for-applications（六步算餘裕與理想使用率，cloud-infra 的 capacity-planning-and-forecasting 走的是 SRE 的預測，兩者分工可寫）、02-building-processes-for-scale/06-exploring-architectural-principles（AKF 十二條原則）、02-building-processes-for-scale/12-barrier-conditions-and-rollback（為回滾與可停用而設計，cloud-infra 有 deployment 分類，先查分工）。
+
+3. communication `long-running-operations`「長時間操作與可重跑作業：Operation 與 Job 兩種資源」— api-design-patterns（docs/03-fundamentals/05-long-running-operations/、docs/03-fundamentals/06-rerunnable-jobs/）。
+   第一鏟（resource-oriented-api）掛的是第三、四、五部整部，正文用了標準方法、自訂方法三道關卡、關係四型、批次／分頁／過濾；LRO 與可重跑作業兩章一字未用。
+   只寫：LRO 是回傳型別不是顯式建立的東西，與 promise 的三個差異（書有整節）；Operation 資源長什麼樣、取結果的兩條路（輪詢與等待）、錯誤碼必須給機器看、監控進度、取消、暫停與恢復、持久化；可重跑作業的三個動機（設定散落、兩種權限混為一談、排程只能靠外部）、Job 資源加自訂 run 方法加 Execution 資源。
+   避開 resource-oriented-api 的標準方法與自訂方法規矩（這頁只寫 LRO 專屬的部分）；避開 realtime-updates 的長輪詢／WebSocket／SSE 傳輸層比較；避開 sync-vs-async 的訊息佇列論證。
+   claim 頁；related 連 resource-oriented-api、sync-vs-async、realtime-updates、idempotency、message-queue。
+
+4. communication `soft-deletion-and-revisions`「軟刪除與資源修訂：刪掉的和改掉的都還在」— api-design-patterns（docs/06-safety-and-security/02-soft-deletion/、docs/06-safety-and-security/05-resource-revisions/）。
+   第一鏟沒碰第六部。
+   只寫：刪除狀態的兩種表示（布林旗標與狀態欄位）、軟刪除怎麼改 get／list／delete 的行為、還原、徹底清除、到期、參照完整性；修訂識別碼、隱含修訂與明確修訂、取得與列出特定修訂、還原先前修訂、為什麼不重載標準 delete 來刪修訂。
+   避開 api-design（Jin）的版本策略與 06/01 的三種版本化策略（版本化留在 api-design 頁，見旁註）；避開 idempotency 的去重鍵（06/03 請求去重不進這頁）；資料層的事件溯源歸 data-systems，seeAlso 連 data-systems 的 cqrs-eventsourcing/event-sourcing 即可。
+   claim 頁；related 連 resource-oriented-api、api-design、idempotency、data-encoding。
+   第三鏟候選：03-fundamentals/03-partial-updates-and-retrievals（欄位遮罩，25KB，單章可成頁）；06-safety-and-security/01-versioning-and-compatibility 若要開，先讀 api-design 頁判重疊（那頁已有累加式與 URI／Header／參數三方案）。
+
+5. fundamentals `attribute-driven-design`「屬性驅動設計：ADD 的七個步驟與架構文件的視圖」— software-architecture-in-practice（docs/04-scalable-architecture-practices/20-designing-an-architecture/、docs/04-scalable-architecture-practices/22-documenting-an-architecture/）。
+   第一鏟（quality-attribute-scenarios）掛 02/03 理解品質屬性、02/04 可用性、04/19 ASR、04/21 評估，寫的是六要素場景、tactics、問卷到 ATAM、架構債（千刀萬剮在 02/03，anchor 沒漏）。設計方法那章與文件化那章沒用。
+   只寫：ADD 七步驟（審查輸入、選驅動因子、選要精煉的元素、選設計概念、實例化並分配責任、畫視圖草圖並記決策、分析並審查迭代目標）、何時建原型、架構待辦清單與設計看板；文件的三種視圖（模組、元件與連接器、配置）加品質視圖、文件化行為的兩種表示法、設計理據怎麼記、九類利害關係人各要什麼。
+   避開 quality-attribute-scenarios 的場景格式與 ATAM；避開 architecture-characteristics（Richards 的特性識別）；第五部 24 架構師角色歸 architect-elevator 的題域，不寫。
+   claim 頁；related 連 quality-attribute-scenarios、architecture-characteristics、nonfunctional-requirements、architect-elevator。
+   第三鏟候選：02-quality-attributes/08-modifiability（提高內聚、降低耦合、延遲綁定三組 tactics；coupling-and-cohesion 掛的是 Newman 與 Ford，重疊要先量）、02-quality-attributes/09-performance（控制資源需求／管理資源兩組 tactics，站上有多頁實作但沒有這張分類樹）。
+
+##### clean-code-note（2 本，開 1 張、不開 1 本）
+
+6. functions `pragmatic-paranoia`「務實的偏執：合約、盡早崩潰、斷言與資源平衡」— pragmatic-programmer（docs/04-pragmatic-paranoia/23-design-by-contract/、docs/04-pragmatic-paranoia/24-dead-programs-tell-no-lies/、docs/04-pragmatic-paranoia/25-assertive-programming/、docs/04-pragmatic-paranoia/26-how-to-balance-resources/、docs/04-pragmatic-paranoia/27-dont-outrun-your-headlights/）。
+   第一鏟（dry-orthogonality-and-broken-windows）掛 01/03、02/09、02/10、02/12：DRY、正交、熵、曳光彈。第四部「務實的偏執」五章沒碰，站上也沒有一頁講契約式設計或斷言。
+   只寫 Tip 37 到 43：合約的三要素與「懶惰」的程式碼、Tip 38 Crash Early（書的原話：「崩潰往往是你能做的最好的事」）、斷言只防不可能的事且不關閉、Tip 40 善始善終與 Tip 41 在地行動（資源配對釋放、巢狀分配、例外下的平衡）、Tip 42 小步前進與 Tip 43 避免算命。
+   避開 error-handling-exceptions-over-codes 的 Clean Code 第 7 章（例外勝過錯誤碼、別回傳 null）；避開 define-errors-out-of-existence 的 Ousterhout 立場，這頁只寫 Thomas 與 Hunt 的主張，兩造對立留 related 連過去（見旁註）；避開 dry 頁的曳光彈。
+   claim 頁；related 連 error-handling-exceptions-over-codes、define-errors-out-of-existence、avoid-side-effects、dry-orthogonality-and-broken-windows。
+   第三鏟候選：05-bend-or-break/28-decoupling、30-transforming-programming、31-inheritance-tax（解耦、轉換式程式設計、繼承稅，合計約 15KB；three-dimensions-of-coupling 掛的是 Balancing Coupling，design-patterns 有 composition-over-inheritance，分工要寫）；07-while-you-are-coding/38-programming-by-coincidence 單章 4KB 太薄，併進上面那張或不開。
+
+- test-driven-development《Test-Driven Development》：不開。第一鏟 tdd-red-green-refactor 掛 Money 範例整部與 32 章，寫的是五步循環與步伐；kent-beck-note 已有五頁（money-example、xunit-bootstrap、tdd-patterns、fake-it-triangulate、mastering-tdd）把三部都挖了，紅綠條模式、測試模式、xUnit 模式都在那邊。clean-code 再開只會是人物站的複本；30-design-patterns 與 31-refactoring 兩章的內容分別落在 design-patterns-note 與本站 refactoring-moves（Fowler 版），不缺。tier 維持 spine，承諾已由既有頁兌現，既有 seeAlso 已連 kent-beck 的 mastering-tdd。
+
+##### design-patterns-note（2 本，開 2 張）
+
+7. principles `refactoring-conditionals-to-patterns`「條件邏輯太複雜：往 Strategy、State、Command 重構的三條路」— refactoring-to-patterns（docs/07-simplification/02-replace-conditional-logic-with-strategy/、docs/07-simplification/04-replace-state-altering-conditionals-with-state/、docs/07-simplification/06-replace-conditional-dispatcher-with-command/）。
+   第一鏟（pattern-directed-refactoring）掛 01 到 04 章，寫的是雙病、三種走法、以壞味選模式；目錄 06 到 11 的 27 條重構一條沒用。
+   只寫三條重構的動機、做法步驟與示例：為什麼不只是提煉方法、組合還是繼承、資料怎麼進 Strategy（02）；狀態改變的條件式與 UNIX 權限範例（04）；條件分派器為什麼換成 Command、優缺點（06）。三條共用的判準「條件邏輯太複雜」這個壞味從第一鏟頁的對應表接過來，不重講壞味理論。
+   避開 strategy、state、command 三頁的 GoF 結構與意圖（那三頁講模式是什麼，這頁講從條件式走到模式的步驟）；避開 pattern-directed-refactoring 的三種走法；03-move-embellishment-to-decorator 篇幅最大（22KB）但 decorator 頁已厚，留第三鏟。seeAlso 連 clean-code 的 refactoring-moves/replace-conditional-with-polymorphism 與 decompose-conditional（Fowler 的小步版本）。
+   claim 頁；related 連 pattern-directed-refactoring、strategy、state、command。
+   第三鏟候選：06-creation 六條（建構子換 Creation Method、Factory、Builder、內聯 Singleton）；08-generalization 七條（Template Method、Composite、Observer、Adapter、Interpreter）。各可成一頁，與 creational／structural 既有頁的分工同上。
+
+8. principles `design-smells-and-enabling-techniques`「設計壞味的四個家族：以壞味反推抽象、封裝、模組化、階層四原則」— refactoring-for-software-design-smells（docs/01-introduction/02-design-smells-overview/、docs/02-abstraction-smells/、docs/03-encapsulation-smells/、docs/04-modularization-smells/、docs/05-hierarchy-smells/、docs/06-wrapping-up/01-the-way-forward/）。
+   這本書在概念頁零引用，但 problems/anti-pattern 六頁（god-object、hub-like-dependency、circular-dependency、rebellious-hierarchy、deep-hierarchy、over-engineering）都掛它，導覽三章也掛了。所以不是真欠債，是 DEEPEN-TARGETS 只數 concepts（見小結）。概念層缺的是書的骨架：壞味怎麼分類、每個原則底下的「使能技巧」是什麼、壞味的名字就是漏掉哪一項技巧。
+   只寫：壞味從哪裡來（違反原則、不當套用樣式、語言限制、程序式思維、黏滯性）、四個原則各自的使能技巧（抽象五項、封裝兩項、模組化四項、階層五項）與壞味對應表、壞味不孤立出現（放大、共生、前導）、脈絡能不能讓人有意接受壞味。
+   避開六個 problems 頁各自的單一壞味細節（cyclically-dependent、hub-like、rebellious、deep hierarchy 的症狀與重構留在那邊）；避開 single-responsibility 等 SOLID 頁的原則本體；01/01 技術債一章只取「設計債如何累積」一段，不重講技術債定義。
+   claim 頁；related 連 pattern-directed-refactoring、single-responsibility、open-closed、liskov-substitution、law-of-demeter、composition-over-inheritance；problems 欄填 god-object、hub-like-dependency、circular-dependency、rebellious-hierarchy、deep-hierarchy。
+
+##### agile-note（2 本，開 2 張、不開 1 本）
+
+9. xp-practices `when-not-to-try-xp`「XP 什麼時候難、什麼時候別試：七個難處、五道障礙與合約形態」— extreme-programming-explained（docs/03-implementing-xp/06-what-makes-xp-hard/、docs/03-implementing-xp/07-when-you-shouldnt-try-xp/、docs/03-implementing-xp/08-xp-at-work/）。
+   第一鏟（xp-values-principles-practices）掛第一部 04、05、07、08 與第二部 02：四變數、變更成本、價值到原則到實踐的推導。kent-beck-note 三頁也都在第一部。第三部「實施 XP」兩站都沒挖。
+   只寫：簡單但不容易的七個難處（做簡單的事很難、承認不懂很難、協作很難、拆情緒的牆很難、聽起來違逆常識、小問題造成巨大影響、企業文化不接受掌舵）；五道障礙（企業文化含大規格書與加班文化、某些人、規模、技術含指數成本曲線與回饋週期過長、實體環境）；XP 在固定價格、委外、內包、計時計料、完工獎金、提前終止、框架開發、盒裝產品八種情境下怎麼變形。
+   避開 why-agile-adoption-fails 的 Cohn 版失敗原因（那頁是導入敏捷的通論，這頁只寫 Beck 自己對 XP 畫的邊界）；避開 can-agile-scale 的規模化論證；避開第一鏟的四變數與價值推導。
+   claim 頁；related 連 xp-values-principles-practices、why-agile-adoption-fails、starting-the-adoption、overcoming-resistance、can-agile-scale；seeAlso 連 kent-beck 的 xp/four-variables。
+
+10. xp-practices `xp-roles-and-lifecycle`「XP 的七種角色與理想專案的生命週期」— extreme-programming-explained（docs/03-implementing-xp/03-lifecycle-of-an-ideal-xp-project/、docs/03-implementing-xp/04-roles-for-people/）。
+    同上，第三部兩站都沒挖。
+    只寫：角色只是慣例不是自然律（書用球隊位置開場）、程式設計師、客戶（你必須做決定、誰適合當客戶、要學的三件事）、測試人員、追蹤者、教練（間接工作最難、不必是技術大神）、顧問、大老闆；生命週期六期（探索、規劃、邁向首發的迭代、正式化、維護、死亡）各自該做什麼、多長、好的死法與不好的死法。
+    避開 scrum 分類的 scrummaster-role、product-owner-role、development-team（Scrum 角色自成一套，這頁只寫 XP 的，related 連過去供對照）；避開 pair-programming 與 test-driven-development 兩頁的實踐本體；避開第 9 張的障礙與合約。
+    claim 頁；related 連 xp-values-principles-practices、scrummaster-role、product-owner-role、development-team、managers-in-scrum。
+    第三鏟候選：02-the-solution/06-planning-strategy（規劃遊戲三階段，與 sprint-planning、release-planning-constraints 分工先量）、02-the-solution/08-design-strategy（透過重構做設計、什麼叫最簡、圖在設計中的角色；refactoring-and-simple-design 掛的是 Clean Agile，Beck 原典版可補）。
+
+- impact-mapping《Impact Mapping》：不開。46 章是章節數的假象，多數章 2–3KB，全書約 130KB；第一鏟 impact-mapping-four-levels 已用掉第二部（四層與兩個範例）與第四部（七步驟、三類典型錯誤）這兩個實質部，連 Gilb 五點、學習預算、八種角色都寫了。剩下第三部十章是定位章（影響地圖與適應式規劃、迭代交付、使用者故事、設計思考、從成本到投資怎麼接），合起來約 23KB，主張是「影響地圖與既有實踐的關係」，出處測試過但引用測試弱（沒有人會單獨連「影響地圖與交付實踐」），形狀偏導覽判讀。tier 維持 spine，承諾已由既有頁兌現；若日後導覽第四章要講「目標導向需求工程與迭代交付各缺一半」，直接掛 03/01 三個關鍵角色那章。
+
+##### data-systems-note（1 本，開 2 張）
+
+11. query-processing `access-vs-filter-predicates`「存取述詞與篩選述詞：索引用上了為什麼還是慢」— sql-performance-explained（docs/01-anatomy-of-an-index/03-slow-indexes/、docs/02-where-clause/04-searching-for-ranges/、docs/05-clustering-data/01-index-filter-predicates/）。
+    第一鏟（pagination-and-top-n）掛 07 整部與 06/01，寫的是 Top-N、管線化 order by、偏移法與尋位法；存取述詞一詞只在 row values 那節出現一次。站上 execution-plans 與 query-optimization 掛的是 SQL Server 調校書與 Database Internals，沒有這組概念。
+    只寫 Winand 的核心區分：拖慢索引查找的兩個成分（葉節點鏈與存取資料表）與三種索引操作（UNIQUE SCAN／RANGE SCAN／FULL SCAN）；範圍條件下欄位順序決定一切、順便推翻「最具選擇性的欄位放最左邊」（書的原話：「選擇性在這裡完全幫不上忙，但其中一種欄位順序仍然明顯較好」）；存取述詞對篩選述詞的定義與在執行計畫裡怎麼認；索引篩選述詞的正解是用索引來叢集，不是把 where 的所有欄位都索引。
+    避開 covering-and-composite-indexes 的最左前綴與「等值在前、範圍在後」的經驗法則（那頁已寫，這頁只補 Winand 推翻選擇性迷思的那個例子，並在 related 指回去）；避開 pagination 頁的尋位法；LIKE 與索引合併只各寫一句。
+    claim 頁；related 連 covering-and-composite-indexes、execution-plans、query-optimization、pagination-and-top-n、b-tree-internals。
+
+12. indexing `obfuscated-conditions`「索引為什麼沒被用到：函式包欄位、日期、數值字串、組合欄位與聰明的邏輯」— sql-performance-explained（docs/02-where-clause/02-functions/、docs/02-where-clause/07-obfuscated-conditions/、docs/02-where-clause/03-parameterized-queries/）。
+    同上，第二部六章第一鏟沒碰。
+    只寫：函式索引與大小寫不敏感搜尋、使用者自訂函式與過度索引（02）；五種把條件弄混的寫法，TRUNC 陷阱、把日期當字串比較、數值字串、組合欄位用冗餘條件換回存取述詞、「聰明的邏輯」反模式與動態 SQL 正解、數學運算用移項換回索引（07）；繫結參數為什麼對最佳化工具不透明、專用計畫對通用計畫的兩難（03）。
+    避開第 11 張的述詞定義（這頁只用「這個寫法讓條件變成篩選述詞」一句帶過）；避開 query-optimization 頁的統計與基數估計本體，繫結參數只寫 Winand 那個兩難。
+    claim 頁；related 連 covering-and-composite-indexes、query-optimization、execution-plans、profiling-and-diagnosis。
+    第三鏟候選：04-join-operation（巢狀迴圈的 N+1 與掌控 ORM 的 join 行為；query-optimization 已有演算法選擇，只有 ORM 那條線是空的）；08-modifying-data（索引對 insert／delete／update 的代價，合計 7KB 偏薄）。
+
+##### security-note（1 本，開 1 張）
+
+13. offensive-mindset `malware-behavior-and-covert-launching`「惡意程式的行為目錄：後門、竊憑證、持久化、提權與行程注入」— practical-malware-analysis（docs/05-malware-functionality/01-malware-behavior/、docs/05-malware-functionality/02-covert-malware-launching/）。
+    第一鏟（malware-analysis）掛 01 入門、02/01 基礎靜態、02/03 基礎動態、06 反逆向整部、06/02 反除錯：四象限、簽章與指標、反分析軍備競賽。第五部「惡意程式功能」四章一字未用，而第一鏟說「先對它想幹嘛做出有根據的猜測」，猜的目錄就在這兩章。
+    只寫：下載器與啟動器、後門（反向 shell、RAT 與殭屍網路）、竊憑證（GINA 攔截、傾印雜湊、鍵盤側錄）、持久化三型（登錄檔、木馬化系統二進位檔、DLL 載入順序劫持；書的原話：「持久化機制若夠獨特，本身就能成為指認某份惡意程式的絕佳指紋」）、提權（SeDebugPrivilege）、使用者模式 rootkit（IAT 掛勾、行內掛勾）；隱蔽啟動的行程注入家族（DLL 注入、直接注入、行程替換、掛勾注入、Detours、APC 注入）。
+    避開 malware-analysis 的四象限與反除錯；避開 buffer-overflows 的漏洞利用本體；網路簽章（05/04）與資料編碼（05/03）不進這頁。
+    claim 頁；related 連 malware-analysis、written-not-intended、know-your-opponent、buffer-overflows。
+    第三鏟候選：06-anti-reverse-engineering/04-packers-and-unpacking（加殼器解剖、找 OEP、修匯入表，35KB，第一鏟只寫了加殼的兩個訊號）；05-malware-functionality/04-malware-focused-network-signatures（51KB，與 security-engineering 分類的偵測題域對口）。
+
+##### 小結
+
+- 開 13 張，全部 claim 頁；不開 2 本（test-driven-development、impact-mapping），tier 都維持 spine，承諾已由既有頁兌現。
+- 分布：system-design 5（elevator 1、AKF 1、Geewax 2、Bass 1）、clean-code 1、design-patterns 2、agile 2、data-systems 2、security 1。
+- `refactoring-for-software-design-smells` 顯示 0 頁的原因：`export-deepen-targets.py` 第 144 行只走 `content/concepts`，`tier-audit.py` 的 `citations()` 走 concepts＋problems。這本書被六個 problems 頁掛著，所以 tier-audit 真欠債 0、DEEPEN-TARGETS 卻報 0 頁。建議工具改成與 tier-audit 同口徑（concepts＋problems），不然雙集合站的題型頁承重永遠看不見。改了之後這本會從 0 頁變 6 頁、直接離榜；第 8 張仍值得開，理由在單上。
+- 姊妹站分工：TDD 的第二鏟歸 kent-beck-note（已五頁）；XP 第三部兩站都空，這批落 agile 的 xp-practices；AKF 的餘裕流程與 cloud-infra 的容量規劃各走各的書，開第三鏟時再寫分工。
+- 起草順序建議：2、13、7（單章材料最厚、邊界最乾淨）→ 3、4、11、12（目錄型書，每張都要先讀既有頁的 core 定邊界）→ 1、5、6 → 9、10 → 8（要同時讀六個 problems 頁，最後做）。
+- 旁註一：clean-code 第 6 張寫完後，站上就有「盡早崩潰」（Thomas 與 Hunt）與「把錯誤定義掉」（Ousterhout）兩造，形狀測試過得了 `kind: debate`；但依「只有一造有頁不開」的規矩，等第 6 張落地再開單。
+- 旁註二：elevator 第二部 10-coffee-shop-two-phase-commit（星巴克不用兩階段提交）是 distributed-transactions 頁的現成材料，那頁現在沒掛這本書；起草第 1 張時若順手，補一條 furtherReading 進 distributed-transactions，不另開頁。
+- 旁註三：api-design 頁（Jin）的版本策略與 Geewax 06/01 的三種版本化策略（永久穩定、敏捷不穩定、語意化版本）有半頁重疊，第二鏟不開；若日後要補，走「補進既有頁」而不是新頁。
+- 旁註四：elevator 第五部「轉型」八章（規模經濟到速度經濟、無痛則無變、錢買不到愛）是組織轉型題材，不屬 system-design；第一部 03 一階導數（多速架構）單章 7.7KB 偏薄，列第三鏟候選，可與 02/01 is-this-architecture 合開。
+
+#### economics／personal-finance／investing／kiyosaki 第二鏟選題單（DEEPEN-TARGETS 9 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用。九本都是單一作者的體系書或敘事史，沒有「一個問題多本書吵」的形狀，全部 claim 頁、沒有 debate。
+每張單的章節目錄全部 `[ -d ]` 驗過；單上引的原話與數字都 grep 過書 repo，起草時仍要逐筆回源。
+
+##### economics-note（4 本，開 5 張）
+
+站況：56 頁、六分類；四本候選都是 spine 各一頁。money-central-banks 這輪從 8 頁到 11 頁，`_index.md` roadmap 要補三條。
+
+1. behavioral-narrative `price-is-not-right`「價格並不正確：從輸家組合到負股價，塞勒對效率市場的四個反例」— misbehaving（06-finance-1983-2003/02-does-the-stock-market-overreact、06-finance-1983-2003/04-the-price-is-not-right、06-finance-1983-2003/05-battle-of-closed-end-funds、06-finance-1983-2003/06-fruit-flies-icebergs-and-negative-stock-prices）。
+   第一鏟（mental-accounting-endowment）掛第 1、2 部，寫 Econ 對 Human、心理帳戶、稟賦效應、沉沒成本；第 6 部「金融 1983–2003」六章一字未用。
+   只寫：德邦特的輸家組合贏過贏家組合（人會根據薄弱證據做極端預測）、席勒 1981 年的波動上限（理性預測的波動不可能比被預測之物大；1871 年起的股利現值像新加坡氣溫一樣平坦，股價像醉漢預報員）、1987 年 10 月 19 日單日跌 20% 卻沒有任何重大新聞（珍珠港隔天只跌 4.4%）、封閉式基金的四個謎題與一價法則（發行附 7% 佣金、半年內常以 10% 以上折價交易；散戶情緒同時反映在折價與小型股報酬）、Palm／3Com 的負 stub value（1.5 × 95 = 142.5 美元對 3Com 收 82 美元，等於剩餘事業每股 −61 美元、合計 −230 億）。塞勒「我們發現了一隻獨角獸，卻為了牠的毛色該怎麼形容爭吵不休」照書引一次。
+   避開：mental-accounting-endowment 的四個偏誤；market-myths-debunked（費雪的迷思手冊）；anatomy-of-bubbles（金德伯格的危機解剖）；market-cycles-psychology 那句「情緒是過度反應的引擎」只在 related 連過去。葛拉漢「為股東的惰性與愚蠢樹立的昂貴紀念碑」照書引一次。investing-note 的 efficient-market-and-random-walk 與 can-the-market-be-beaten 是另一造的主場，seeAlso 連過去，這頭不重講效率市場的正面論證。
+   claim 頁；related 連 mental-accounting-endowment、narratives-move-economies、market-cycles-psychology、anatomy-of-bubbles。
+   順手修既有頁：mental-accounting-endowment 的康乃爾馬克杯實驗（賣家中位 5.25 美元、買家 2.25 美元）出自 04-working-with-danny-1984-85/03-mugs，頁上只掛第 1、2 部，起草時補掛 04/03。
+
+2. markets-incentives `fairness-constrains-prices`「雪鏟漲價為什麼不行：公平感怎麼約束價格與工資」— misbehaving（04-working-with-danny-1984-85/01-what-seems-fair、04-working-with-danny-1984-85/02-fairness-games）。
+   第一鏟沒碰第 4 部；markets-incentives 十一頁沒有一頁講公平感對市場價格的約束，game-theory-basics 掛的是通識書的囚徒困境。
+   只寫：雪鏟 15 → 20 美元 82% 認為不公平、MBA 學生 76% 可接受（理論誘發的盲點）、框架效應（取消 200 美元折扣 58% 可接受，加價 200 美元只有 29%）、成本上升的漲價被視為公平、既有狀態成為參考點、工資為何僵固（無通膨減薪 7% 62% 不公平；12% 通膨下只加薪 5% 卻 78% 可接受）、第一芝加哥銀行 3 美元櫃員費與可口可樂動態販賣機、Uber 激增定價與州檢察長的協議、滑雪旅館與 Next 餐廳的克制定價、最後通牒賽局（不超過派的 20% 的提案通常被拒；賭注放大到三個月收入行為幾乎不變）、獨裁者賽局 74% 平分、懲罰賽局 81% 寧可少拿 1 美元、公共財賽局平均投入一半。
+   避開：mental-accounting-endowment 的稟賦效應（這頭只寫「既有狀態成為參考點」一句）；price-controls-consequences（政府的價格管制，這頭是市場自己的規範）；game-theory-basics 的囚徒困境（只在公共財賽局處一句帶到）；schools-of-economic-thought 的凱因斯工資僵固論，這頭只寫塞勒的民調證據，不寫總體理論。第 4 部 03-mugs 歸第一鏟（見第 1 張）。
+   claim 頁；related 連 incentives-and-prices、supply-demand-prices、game-theory-basics、mental-accounting-endowment。
+   Misbehaving 其餘不開：第 3 部自制力與第 8 部 Save More Tomorrow 已在 nudge-choice-architecture（SMarT 一節）；第 7 部芝加哥（美式足球選秀、益智節目）是逸事；第 5 部「與經濟學界交手」是學派鬥爭史，導覽第五章「邊講理論邊講學派鬥爭史」一句已帶到。
+
+3. money-central-banks `taiwan-foreign-reserves`「外匯存底的帳：全臺灣最大、也最不透明的一筆錢」— central-bank-privilege（05-foreign-reserves/01-wealthy-central-bank、05-foreign-reserves/02-reserve-management、05-foreign-reserves/03-mysterious-reserves、05-foreign-reserves/04-benefits-of-large-reserves、05-foreign-reserves/05-costs-of-large-reserves）。
+   第一鏟（central-bank-privilege）掛 03、04、06、08 四章，寫雙低、阻升不阻貶、盈餘繳庫與自我強化循環；外匯存底只在循環裡當一個環節，第 5 章五節沒用。
+   只寫：2020 年 12 月底 5,299 億美元（約 15.1 兆新臺幣，超過國泰金控總資產）、兩次累積期都是阻升（1980 年代 1:40 到 1:25；2000 年起「彭淮南防線」30）、謝澤 2019 年指出的隱藏外幣資產與 2020 年 3 月首度揭露的 1,400 億美元（換匯交易 991 億、存放國內銀行 328 億、拆款 61 億）、報酬率 3.9%（1999–2018）對挪威 6.09%、GIC 5.5%、香港 4.7%、央行反對主權基金的兩個理由與書的反駁（短期外債 1,747 億、民間持有 8,100 億美元外匯）、透明度（美國 Fed 每季揭露幣別與標的、延遲兩年公布交易細項；臺灣只有 2018 年楊金龍一句「美元約占八成」）與無外部會計師查核（IMF：超過一半國家的央行交外部審計）、1997 年亞洲金融風暴的護身符（新臺幣貶 23% 對印尼盾 80%；臺灣不是 IMF 會員）、成本三項（匯損、資金氾濫逼出低利率、繳庫誘因）與「約是國際建議額四倍」。
+   避開：central-bank-privilege 的雙低循環與盈餘繳庫機制（這頭只在成本三那段用一句接回去）；central-bank-mandate 的教科書職責；reserve-currency-cycle（達利歐的儲備貨幣週期，不同題）。
+   claim 頁；related 連 central-bank-privilege、central-bank-mandate、lender-of-last-resort、reserve-currency-cycle。
+
+4. money-central-banks `liquidity-preference`「利率是放棄流動性的報酬，不是儲蓄的報酬：凱因斯的利率理論」— general-theory-of-employment-interest-and-money（04-the-inducement-to-invest/03-the-general-theory-of-the-rate-of-interest、04-the-inducement-to-invest/04-the-classical-theory-of-the-rate-of-interest、04-the-inducement-to-invest/05-the-psychological-and-business-incentives-to-liquidity）。
+   第一鏟（schools-of-economic-thought）掛 01/03、03/03、04/02、06/03，寫有效需求、乘數與剎車、動物精神、社會哲學；第四篇的利率理論（第 13 到 15 章）沒用，money-central-banks 八頁也沒有一頁講利率怎麼決定。
+   只寫：時間偏好需要兩組決定（消費多少、以什麼形式持有）而古典理論只看第一組；「利率不可能是『儲蓄』或『等待』本身的報酬」（把儲蓄以現金囤起來的人一樣儲蓄卻賺不到利息）；利率是使「以現金形式持有財富的欲望」與「可得的現金數量」均衡的價格；M = L(r)；流動性偏好存在的必要條件是對未來利率的不確定；三個動機（交易、預防、投機）；古典利率理論的各家表述（馬歇爾、卡塞爾、瓦爾拉斯）與錯在哪（假定所得給定）；公開市場操作為什麼透過投機動機才起作用，消息若被所有人同樣解讀，利率會不經交易就改變；M = M1 + M2 = L1(Y) + L2(r)；貨幣數量大增、利率卻可能幾乎不動的情況。
+   避開：schools 頁的全部；what-is-money（信任的度量）；credit-and-banking；central-bank-mandate 的現代央行操作（這頭只寫凱因斯 1936 年對公開市場操作的分析）。術語照書 repo 譯法（流動性偏好、資本邊際效率、工資單位）。
+   claim 頁；related 連 schools-of-economic-thought、what-is-money、central-bank-mandate、credit-and-banking。
+   第三鏟候選：05-money-wages-and-prices/01-changes-in-money-wages（削減貨幣工資為何不增加就業、七項反響），與第 2 張的工資僵固民調接得上。
+
+5. money-central-banks `sterling-returns-to-gold-1925`「回到 4.86：1925 年英鎊重返戰前平價與 1927 年那杯威士忌」— lords-of-finance（03-sowing-a-new-wind/03-golden-chancellor、03-sowing-a-new-wind/04-la-bataille、03-sowing-a-new-wind/06-un-petit-coup-de-whisky；03-sowing-a-new-wind/05-first-squalls 講 1926–27 的 Coolidge 牛市，視需要掛）。
+   第一鏟（gold-standard-and-fetters）掛第 1、2 部整部（四位央行家登場、賠款、野蠻遺跡），寫金本位的紀律與枷鎖、1931–36 連鎖脫金；1923–28 重建期的第 3 部沒用，而那正是枷鎖怎麼被親手扣上的。
+   只寫：1924 年英國物價仍比美國高約 10%、英鎊卡在 4.35 美元、保留派對諾曼派（回到 4.86 是「對全世界托付者的道德承諾」）、「英國金融健康但經濟生病；法國經濟健康但金融生病」、邱吉爾 1924 年 11 月意外任財相與諾曼年底赴紐約徵詢斯壯、法國 1925 年「假帳」醜聞與法郎釘在 25 對 1 美元、1927 年 7 月長島密會（諾曼主張有儲備的國家放鬆信用、Rist 反駁英鎊釘太高是英國自找）、8 月降息 0.5% 到 3.5%（四家區域 Fed 拒跟、Crissinger 辭職）、斯壯對 Rist 說的「un petit coup de whisky」、道瓊年底漲 20% 破 200、經紀人貸款從 33 億到 44 億、斯壯 1928 年 2 月承認可能錯了、Miller 1931 年國會證詞「聯邦準備系統有史以來最大、最大膽的操作」。
+   避開：gold-standard-and-fetters 的規則本身與 1931 之後；1929-and-depression 的高盛信託與保證金機制（崩盤現場歸那頁）；邱吉爾「人生最大的失敗」一句已在第一鏟，不重複。判讀只寫書裡有的（「部分歷史學家認為長島會議是關鍵轉折」、斯壯自己認知低美息沒解決英國問題），不自己下「大蕭條是誰造成的」。
+   claim 頁；related 連 gold-standard-and-fetters、1929-and-depression、central-bank-mandate、gold-as-money。
+   順手修既有頁：gold-standard-and-fetters 用了 1931 年秋聯準會 1.5% 升到 3.5%（04-reaping-another-whirlwind/05-gold-fetters）與羅斯福「喝醉的金本位」（05-aftermath/01-gold-standard-on-the-booze），anchor 只掛第 1、2 部，起草時補掛這兩章；頁上「符合每一條已知的規則」這句在書 repo grep 不到逐字原文（04/05 只有「過時規則」），回源確認措辭，找不到就改寫。
+
+###### 小結
+
+- 開 5 張，全 claim：塞勒 2（金融反例、公平感）、央行特權 1、凱因斯 1、金融之王 1。
+- 不開 0 本；Misbehaving 其餘四部的理由寫在第 2 張下。
+- 既有頁補 anchor 兩處（第 1、5 張的順手修）。
+- 起草順序：4（教義最硬、全靠原文）→ 3（數字最多，逐筆回源）→ 1、5 → 2。
+
+##### personal-finance-note（3 本，開 3 張、不開 1）
+
+站況：36 頁、六分類；三本都是 spine 各一頁。Early Retirement Extreme 是站上最厚的書（78 章），第一鏟只用了四部的主軸，開兩張。
+
+6. fire `four-economic-types`「薪水人、工作人、生意人、文藝復興人：耦合與線性兩軸切出的四種經濟人」— early-retirement-extreme（03-economic-degrees-of-freedom、03-economic-degrees-of-freedom/02-the-salary-man、03-economic-degrees-of-freedom/03-the-working-man、03-economic-degrees-of-freedom/04-the-businessman、03-economic-degrees-of-freedom/05-the-renaissance-man）。
+   第一鏟（renaissance-ideal）掛 02、04、05、08 四部，寫鎖定的帳本、專業化尖峰、文藝復興理想、策略之網、r/(1-r)；核電廠／大學／工具三個類比出自第 5 部策略原則，已用。第 3 部的兩軸四型沒碰。
+   只寫：自由度被藏起來（方向盤鎖死的車、刮鬍刀的選擇被限縮在多刀片一條線上）、耦合軸（緊耦合可預測、雇主用「只提供全職職缺」與「綁上優渥福利」讓勞動供給可預測；鬆耦合有餘裕，正常時效率較低、被打斷時代價小）、線性軸（輸出被輸入清楚定義；外科手術線性、創業與美式足球教練非線性；整體不同於各部分之和）、人怎麼把非線性硬掰成線性、四型：薪水人「有選項但不創造選項」與自由的錯覺、工作人、生意人「把自己插進事業現金流裡」與 OPM、文藝復興人（在廣泛領域具備能力、相當程度獨立於市場、需要的錢更少、不需槓桿）。
+   避開：renaissance-ideal 的鎖定帳本、專業化尖峰、策略之網、三個系統類比；millionaire-fastlane 的三條路線圖（related 連過去，不比較）；kiyosaki-note 的現金流象限是另一套分類，seeAlso 連 cashflow-quadrant 即可，不對照。
+   claim 頁；related 連 renaissance-ideal、savings-rate-buys-time、millionaire-fastlane、multiple-income-streams。
+
+7. wealth-habits `renaissance-lifestyle-tactics`「花更少比賺更多容易：文藝復興式生活的物品、住、行、食」— early-retirement-extreme（06-a-renaissance-lifestyle、06-a-renaissance-lifestyle/01-things、06-a-renaissance-lifestyle/06-shelter、06-a-renaissance-lifestyle/09-eating、06-a-renaissance-lifestyle/11-transportation）。
+   第一鏟掛的四部裡沒有第 6 部；frugality-as-system 掛的是 Hallam，real-hourly-wage 是《富足人生》，站上沒有一頁寫 Fisker 的戰術層。
+   只寫：自由靠生產與消費之間的落差，兩種做法裡「花更少」在富裕社會對多數人容易得多（年收入 4,000 到 400,000 美元之間提高收入都很難；作者的支出一份兼職翻漢堡就賺得到）、駭進既有方法達不到重新設計（改良騎兵打不贏機關槍）、所有物的六個問題（花錢反而是最小的）與「工具隨時可能失去，技能卻會跟著你」、住所（房子變倉庫、郊區預設值讓人不會騎車、「愈無生產力愈是好的地位象徵」、中位房價 150,000 美元 5% 房貸一年 9,663 美元已超過整套生活方式的全年預算，再加 50%、「債務超過無生產力權益 400% 算保守」）、交通（先縮短 A 到 B 的距離、三英里走 45／跑 25／騎 15／開 10 分鐘、把車當休閒車輛）、飲食（為燃料而吃、以美味為副作用；慰藉食物與兩條成癮路徑；「需要靠廣告告訴你它對你好的產品，很可能不好」）。
+   避開：renaissance-ideal 的鎖定與策略層；frugality-as-system 的 Hallam 做法；real-hourly-wage 的時薪換算；spending-with-intention；die-with-zero。第 6 部各章是摘要，表格外的數字不自補。
+   claim 頁；related 連 renaissance-ideal、frugality-as-system、real-hourly-wage、savings-rate-buys-time。
+
+8. save-invest `magic-beans`「魔豆：選股、分批進場與股市大師，三種看起來太好的東西」— simple-path-to-wealth（03-magic-beans、03-magic-beans/02-why-i-cant-pick-winning-stocks、03-magic-beans/03-why-no-dollar-cost-averaging、03-magic-beans/04-stock-market-gurus、03-magic-beans/05-you-too-can-be-conned）。
+   第一鏟（f-you-money）掛第 1、2 部整部，寫 F-You Money、債務、市場永遠上漲、VTSAX 兩階段、1987 年；第 3 部魔豆與第 4 部提領沒用。
+   只寫：1989 年降薪進投資研究公司看到的真相（分析師拿不到比市場早的消息、企業內部預測是一層層的猜再被高層「調好看一點」）、阿里類比、「一點點謙卑能救你的屁股，也救你的現金」；定期定額：1970–2013 市場 43 年漲 33 年（77%）、五個理由（賭下跌、就是擇時、破壞配置、時間範圍兩難、結束後風險沒消失）、累積期的薪資扣款是必要的 DCA、有巨款就依目標配置一次投入；股市大師：《Wall Street Week》總有人說對、七步驟 SOP 與 15% 經紀費；騙局：反向金字塔信（1,000 封減半六次剩 15 或 16 人收到六封全中）、不被騙的五條規則（Madoff 的受害者很多是金融專業人士）。
+   避開：f-you-money 的全部；index-fund-investing（Hallam 的成本論）；just-keep-buying（Maggiulli 的神級擇時者與「紀律勝於擇時」，與柯林斯一致，只在 related 連、不並排成兩造）；investing-note 的 can-the-market-be-beaten 與 does-market-timing-work 是對照頁，seeAlso 連過去。第 4 部提領實作（04/01、04/02）不在這頁，留給 4-percent-rule 擴充或第三鏟。
+   claim 頁；related 連 f-you-money、index-fund-investing、just-keep-buying、asset-allocation-basics。
+
+###### 不開（1 本）
+
+- millionaire-fastlane《快速致富》：不開。第一鏟掛了第 3、4、5、7 四部，路線圖、三條方程式、ULL／CUL、NECST 五誡、兩座金字塔全用了；剩下第 6 部是自我管理（方向盤、擋風玻璃、機油、紅線）、第 8 部是創業執行（執行是國王、SUCS 客服、USP、專一），在理財站只能寫成創業雞湯，題域是 startup-note 的（那站沒收這本，也不該為它開）。tier 維持 spine，承諾已由既有頁兌現。
+
+###### 小結
+
+- 開 3 張，全 claim：ERE 2、Simple Path 1；不開 1。
+- 起草順序：8（材料最短、事實最密）→ 6 → 7（章節最長、數字最多）。
+
+##### investing-note（1 本，開 1 張）
+
+9. value-investing `below-liquidating-value`「賣得比清算價值還低的股票：淨流動資產買法與股東的三個錯誤假設」— security-analysis（06-balance-sheet-analysis/02-significance-of-current-asset-value、06-balance-sheet-analysis/03-liquidating-value-and-stockholder-management-relations）。
+   第一鏟（voting-machine-and-weighing-machine）只掛 01/01，寫投票機、內在價值是區間、三大障礙、Wright Aeronautical；六十三章只用了一章。
+   只寫：清算價值的計算規則（負債按面值扣、資產看可實現比例：現金約 100%、應收 75–90%、存貨 50–75%、固定與雜項 1–50%）、White Motor 1931 年底股價 8 美元對清算值約 31、1932 年 NYSE 四成以上工業股市價低於淨流動資產（「死掉比活著值錢」）與 1938 年初的 20.5%、「股票長期賣得低於清算價值，不是價格太低，就是公司應清算」的兩個推論、三條出路（盈利恢復、出售合併、清算）與案例（Pepperell、Hamilton Woolen、Standard Oil of Nebraska、Mohawk Mining、Northern Pipe Line）、便宜貨的三個條件、這類操作在中等市況表現最好；股東那一半：「典型美國股東是被囚禁動物中最溫順與最冷漠的」、Berle 與 Means 的所有權與控制權分離、三個錯誤假設、管理層與股東的五個利益衝突點、董事會不獨立（高管選董事的次數多於董事選高管）。
+   避開：voting-machine 的內在價值概念；mr-market-and-margin-of-safety（《智慧型股票投資人》第 8、20 章，安全邊際原則歸那頁，這頭只寫資產面的操作）；stock-is-a-business（巴菲特的公司治理，這頭是葛拉漢 1934 年的版本，related 連過去不對照）；special-situations-and-spinoffs（Greenblatt 的分拆，這頁只寫葛拉漢的清算與部分清算案例）；low-risk-high-uncertainty。
+   claim 頁；related 連 voting-machine-and-weighing-machine、mr-market-and-margin-of-safety、stock-is-a-business、special-situations-and-spinoffs。
+   導覽：第三章「原典的原典」那段、第五章「《證券分析》壓軸」那行各補一句連到新頁。
+   第三鏟候選：04-theory-of-common-stock-investment/01、02（戰前三要素對新時代理論：估值怎麼從股利與資產走向「潛力與預言」，與 market-history 的 does-price-rewrite-fundamentals 接得上）；05-analysis-of-income-account/03（Park and Tilford 的損益表灌水、用應計稅費核驗盈餘）。
+
+###### 小結
+
+- 開 1 張 claim；這本書六十三章幾乎每章近萬字，第三鏟還有兩個候選。
+
+##### kiyosaki-note（1 本，開 1 張）
+
+10. entrepreneur-investor `b-i-triangle-five-layers`「B-I 三角的五層內裡：現金流、溝通、系統、法務、產品」— rich-dads-guide-to-investing（03-how-to-build-a-strong-business/02-the-b-i-triangle、03-how-to-build-a-strong-business/03-cash-flow-management、03-how-to-build-a-strong-business/04-communications-management、03-how-to-build-a-strong-business/05-systems-management、03-how-to-build-a-strong-business/06-legal-management、03-how-to-build-a-strong-business/07-product-management）。
+    第一鏟（sophisticated-investor）掛第 1、4、6 部整部，寫 90/10、SEC 合格對老練、十項控制權、創造資產、支出欄；既有 b-i-triangle 頁掛的是《富爸爸資本主義宣言》與軍隊領導課，寫外框三元素（使命、團隊、領導）與四面體。第 3 部的五層內裡兩頁都沒碰；導覽第三章自己寫「投資指南只開了內行投資人一頁，這幾處還能再挖」。
+    只寫：五層由下而上的排序與「越底層越重要」（02 章只取結構表那一段）；現金流：利潤不等於現金流、實際現金流對幻影現金流、「任何採購若無法以銷售成長來正當化就不買」、各階段訣竅（延後支薪、盡快開發票、信用關係建立前先付款）；溝通：「流進你事業的現金，與流出的溝通量成正比」、六週週期、募資之前先學七項技能、「窮人是差勁的溝通者」、兩項基本功（克服銷售與公開演說的恐懼）；系統：每套系統有人負責、真正的系統不能是人（S 象限裡那個人本身就是系統）、麥當勞由青少年經營、從房地產入門練系統；法務：魔鬼氈皮夾沒花一萬美元申請專利被抄、點子曝光前先保護、歐納西斯憑一紙合約借錢買船；產品：評估企業時產品最不需要優先檢視、「我們大多數人都能煎出比麥當勞好吃的漢堡，卻鮮少有人能建立起更強的商業系統」、產品是使命的表達、「我們每個人的內在，都有一個 B-I 三角」。
+    避開：b-i-triangle 的使命／團隊／領導／四面體；sophisticated-investor 的 90/10 與十項控制權；cashflow-quadrant；work-to-learn（「去找一份能訓練你銷售的工作」在這頭只引一次）。
+    claim 頁；related 連 b-i-triangle、sophisticated-investor、cashflow-quadrant、three-leverages。
+    順手查既有頁：b-i-triangle 頁的四面體與福特「讓汽車民主化」若出自 03/02（原典就在這章），補掛 03/02 進它的 furtherReading。
+    導覽第三章第 33 行與第 81 行各補一句。
+    不開：第 2 部「該成為哪一種投資人」（合格、具資格、老練、內部、終極五類）。合格對老練已在第一鏟，名稱又與 five-levels-of-investors（《現金流象限》的五個層次）相撞，再開會讓讀者把兩套分類混在一起；02/04 具資格投資人（基本面對技術面，一萬三千字）留第三鏟候選，標題要避開「五種」字眼。
+
+###### 小結
+
+- 開 1 張 claim。
+
+##### 四站總結
+
+- 開 10 張（economics 5、personal-finance 3、investing 1、kiyosaki 1），不開 1（Fastlane）。全部 claim，沒有 debate：九本都是單一作者體系書或敘事史，沒有兩造。
+- 既有頁補 anchor 三處：mental-accounting-endowment 補 04/03-mugs；gold-standard-and-fetters 補 04/05-gold-fetters 與 05/01-gold-standard-on-the-booze，並回源「符合每一條已知的規則」；b-i-triangle 視內容補 03/02。
+- 第三鏟候選四個：凱因斯第 19 章貨幣工資、證券分析第四部與第五部第 3 章、投資指南 02/04。
+- 跨站 seeAlso：第 1、8 張連 investing-note 的 efficient-market-and-random-walk／can-the-market-be-beaten／does-market-timing-work；第 6 張連 kiyosaki-note 的 cashflow-quadrant。路徑起草前 `ls` 驗。
+- 旁註：Fastlane 判不開之後仍會留在 DEEPEN-TARGETS 的 102 本裡，工具沒有「已裁決不開」的記號；management 的五大障礙與 theology 的活的教會上一輪也是這樣。
+- 起草順序建議：4 → 3 → 9 → 10 → 8 → 1、5 → 6 → 2 → 7。
+
+#### relationships／maxwell／business-strategy／leadership／communication／covey／growth 第二鏟選題單（DEEPEN-TARGETS 15 筆，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有頁重疊低於一半，能被單獨引用；同一本書被兩站收的，分工寫明。
+15 筆裡有 4 筆是姊妹站已經挖深的書（speed-of-trust 在 covey 8 頁、mastery 在 greene 4 頁、turn-the-ship-around 第三四部在 management、essential-drucker 三站判 tool／support），這些以改判或不開收掉，不硬開第二頁。
+章節目錄全部 `[ -d <book>/site/content/<anchor> ]` 驗過（64 條）。
+
+##### relationships-note（開 4 張）
+
+1. parenting `felt-with-not-dealt-with`「感受要被一起承受，不是被處理掉」— book-you-wish-your-parents-had-read（docs/03-feelings/01-learning-to-contain-feelings、docs/03-feelings/03-danger-of-disallowing-feelings、docs/03-feelings/05-felt-with-not-dealt-with、docs/03-feelings/08-demand-to-be-happy、docs/03-feelings/09-distracting-away-from-feelings）。
+   第一鏟（rupture-and-repair）掛 01 教養傳承與 02 環境兩部，寫破裂與修復；第三部「感受」九章一字未用。
+   只寫 Perry 的論證：情緒被禁止不會消失只會躲起來、成人憂鬱常見根源是當年沒學到自己可以被安撫（01）、Lucas 十歲跳窗的「看起來還好」（03）、Dave 與 Nova 的車位之爭與「駕車打滑要順勢轉」（05）、Adam Phillips「要求一定要快樂會破壞人生」與治療師 Jerry Hyde「情緒沒有混音台只有總音量」（08）、分心是詭計與什麼時候分心可以（09）。
+   避開 talk-so-kids-will-listen 的法伯四技巧（全神貫注聽、一個字詞回應、說出感受、用幻想實現願望），這頁講「為什麼不能用哄、分心、要求快樂處理情緒」，不講怎麼聽；避開 rupture-and-repair 的破裂與修復；避開 whole-brain-parenting 的左右腦與上下層腦。
+   claim 頁；related 連 rupture-and-repair、talk-so-kids-will-listen、whole-brain-parenting、thirty-million-words。
+
+2. parenting `behaviour-is-communication`「行為是溝通：發脾氣、說謊與界線各在傳達什麼」— book-you-wish-your-parents-had-read（docs/06-behaviour-is-communication/05-what-does-behaviour-mean、docs/06-behaviour-is-communication/10-more-on-tantrums、docs/06-behaviour-is-communication/13-childrens-lies、docs/06-behaviour-is-communication/14-boundaries-define-yourself）。
+   第一鏟同上；第六部十七章是全書最厚的一部（界線一章 11.6K、青少年一章 10K），沒有任何頁用到。
+   只寫：從自己最差的時刻反推孩子失控的處境、觸發點要由父母觀察而不是問孩子（05）、沒有人享受發脾氣、三步驟（問這行為傳達什麼感受、肯認它、冷靜後給可接受的表達方式）、不留孩子一個人尖叫到完（10）、校長 Margaret Connell「你的孩子會對你撒謊」與「不要把它當天大的事」（13）、愛加界線、界線要在極限之前設下、「我不能讓你玩我的鑰匙」、奇蹟之子的父母設不下界線（14）。
+   避開第 1 張的情緒論證（這頁只在開頭一句接「行為背後是感受」）；避開 whole-brain-parenting 的腦科學解釋；避開 boundaries 分類的成人界線頁（saying-no-without-guilt、own-your-life），這頁的界線是父母對孩子的。
+   claim 頁；related 連 felt-with-not-dealt-with（第 1 張）、rupture-and-repair、whole-brain-parenting、break-toxic-patterns。
+   第三鏟候選：06/16-teenagers-and-young-adults（10K）與 05/14-sleep、05/17-play，材料夠厚，等這兩張落地再看。
+
+3. connection `confront-with-care`「在乎到願意面質：衝突要早、別為小事砸鎚子」— winning-with-people（docs/02-connection-question/06-confrontation-principle、docs/01-readiness-question/04-the-hammer-principle）。
+   第一鏟（connection/winning-with-people）掛 01 預備問題一部，寫五問總覽與四個案例；maxwell-note 同名頁掛 02、03 兩部，也是總覽。兩站都沒有把任何一條原則寫成一頁。
+   只寫：面質原則（衝突像癌症早期發現、「我是否夠在乎對方足以用對的方式面質」、接任 Skyline 教會後打給喬的那通電話）與鎚子原則（「別人會不會說我在關係中對小事過度反應」、Maxwell 1969 年婚後每次都「贏」卻在情緒上擊垮 Margaret、把「贏得爭辯」放在「贏得關係」之前）；判別變數只寫書裡有的：面質的前提是在乎、鎚子的檢查點是比例。
+   避開兩站首頁的五問架構（只在點題句提一次「這是連結問題與預備問題各一條」）；避開 boundaries/navigate-conflict 的 HBR 衝突類型學與 apology-and-repair 的 Lerner 道歉技術，這頁是 Maxwell 的兩條原則，不做衝突通論。
+   claim 頁；related 連 winning-with-people、navigate-conflict、apology-and-repair、empathy-as-skill。與 maxwell-note 第 3 張分工：這站拿衝突（02/06＋01/04），人物站拿投資問題一整部（04）。
+
+4. friendship `dark-side-of-social-capital`「社會資本的黑暗面：博愛會不會吃掉自由與平等」— bowling-alone（docs/04-so-what/07-the-dark-side-of-social-capital）。
+   第一鏟（bowling-alone-social-capital）掛導論、第二部全部、03/06 總結、第四部全部，寫社會資本的定義、兇手比重、保齡球數字；凝聚型與橋接型只有一條 core。
+   只寫這一章（25K）：巴比特與梭羅的「怪人會」成員是文學定型角色、法國三色旗的第三個字「博愛」就是社會資本、兩百年政治辯論談自由對平等卻少談博愛對兩者的取捨、Putnam 自己列的幾個爭點（社會資本與自由寬容為敵？與平等為敵？），以及他怎麼用凝聚型／橋接型回答。
+   避開第一鏟已寫的定義、四大兇手與比重、保齡球數字；避開 third-places 與 true-community。
+   claim 頁；related 連 bowling-alone-social-capital、true-community、third-places、friendship-over-time。
+   不開第五部（05/01 鍍金時代與進步時代 53K、05/02 社會資本家的議程 30K）：材料厚，但那是公民史與政策議程，離這站的人際主題遠；留作第三鏟候選或 history-note 題材。
+
+##### maxwell-note（開 3 張）
+
+1. leadership `seven-challenges-of-the-middle`「夾在中間的七個挑戰」— 360-degree-leader（docs/02-challenges-360-leaders-face/01-tension-challenge、docs/02-challenges-360-leaders-face/02-frustration-challenge、docs/02-challenges-360-leaders-face/03-multi-hat-challenge、docs/02-challenges-360-leaders-face/04-ego-challenge、docs/02-challenges-360-leaders-face/05-fulfillment-challenge、docs/02-challenges-360-leaders-face/06-vision-challenge、docs/02-challenges-360-leaders-face/07-influence-challenge）。
+   第一鏟（360-degree-leader）掛 01 迷思與 03 向上領導，七個挑戰只有一條 core 帶過（壓力大、自由有限、多頭指揮、看不見全局）。
+   只寫七個挑戰各自的「關鍵一句」與一個書裡的案例：張力挑戰的「彷彿擁有所有權力又沒有權力」（Dan Reiland）與影響張力的五個因素（01）、挫折挑戰的李將軍跟隨戴維斯（02）、多重角色挑戰的 Stan Toler 一人身兼多職（03；「八頂」是 fork 數的，不是書的原話，起草時回章節數）、自我挑戰的「你想不想做我為了能做這件事所做過的所有事」（04）、成就感挑戰的雪橇隊領頭狗（05）、願景挑戰的六種反應（06）、影響力挑戰「沒人躲得掉」（07）。
+   避開第一鏟的七個迷思與向上／橫向／向下三組原則；避開 five-levels-of-leadership。
+   claim 頁；related 連 360-degree-leader、five-levels-of-leadership、developing-leader-within-you、leadership-gold。
+
+2. leadership `people-development-level`「第四層立人：為什麼多數領導者停在第三層」— 5-levels-of-leadership（docs/04-people-development-helping-individual-leaders-grow-extends-your-influence/01-the-upside-of-people-development、docs/04-people-development-helping-individual-leaders-grow-extends-your-influence/02-the-downside-of-people-development、docs/04-people-development-helping-individual-leaders-grow-extends-your-influence/03-best-behaviors-on-level-4、docs/04-people-development-helping-individual-leaders-grow-extends-your-influence/06-guide-to-growing-through-level-4）。
+   第一鏟（five-levels-of-leadership）掛第一、二、三、五層四部，第四層是唯一沒掛的一部，正文只有一條 core 與「準備好上 Level 4 沒有」的八個問題（那是第三層末尾的信念章）。
+   只寫第四層本身：上行（讓公司成長的辦法是讓人成長、Synovus 的 Jim Blanchard）、下行（「不訓練他們然後他們留下來」更糟、自我中心與不安全感讓領導者不栽培人）、七個最佳行為（招募、定位、示範、裝備、栽培、賦能、衡量；「需要一位領導者才能認出、示範給、養成一位領導者」）。
+   避開第一鏟的五層總覽、疊加不取代、八個自檢問題；避開 developing-leader-within-you（那是領導自己）。
+   claim 頁；related 連 five-levels-of-leadership、developing-leader-within-you、21-laws-of-leadership、17-laws-of-teamwork。
+
+3. relationships `investment-question`「投資的問題：園丁、101%、耐心、慶祝與高路」— winning-with-people（docs/04-investment-question/01-gardening-principle、docs/04-investment-question/02-101-percent-principle、docs/04-investment-question/03-patience-principle、docs/04-investment-question/04-celebration-principle、docs/04-investment-question/05-high-road-principle）。
+   第一鏟（relationships/winning-with-people）掛 02 連結與 03 信任兩部，寫五問診斷架構；第四部投資問題沒掛，五條原則只在表裡各一行。
+   只寫五條原則各自的問句與案例：園丁（「我是偶爾灌溉還是持續灌溉」、Albom 與艾迪叔叔）、101%（「找到那一件事並給它 100%」、海餅乾三人組）、耐心（「即使不方便我會帶上他人同行嗎」、Larry Walters 的氦氣球椅）、慶祝（「我會為朋友的成功加油嗎」、Maxwell 早年最年輕紀錄卻最寂寞）、高路（Beecher 的墓地、卜威廉與救世軍）。
+   避開兩站首頁的五問總覽；避開 relationships-note 第 3 張的面質與鎚子；relationships-note 首頁已用 Albom／Porter 當投資與綜效的案例，這頁的 Albom 只取園丁章原文、不重講 Porter。
+   claim 頁；related 連 winning-with-people、25-ways-to-win-with-people、17-laws-of-teamwork、everyone-communicates-few-connect。
+
+##### business-strategy-note（開 2 張，改判 1 本）
+
+1. management `objectives-in-eight-key-areas`「單一目標的謬誤：事業目標的八個關鍵領域」— practice-of-management（docs/01-managing-a-business/04-objectives-of-a-business、docs/01-managing-a-business/05-todays-decisions-tomorrows-results）。
+   第一鏟（management-by-objectives）掛 02-managing-managers 整部，寫自我控制；「目標要平衡涵蓋所有關鍵領域」只有一條 core。這本書在 drucker-note（MBO、what-is-a-business）與 management-note（purpose-of-business、marketing-and-innovation）共四頁，全掛 01/02 與 02 部，01/04 這章 22K 沒有任何站用。
+   只寫 01/04：追尋單一目標為何「既不會有結果又必然有害」（只強調利潤會為今天犧牲未來）、關鍵領域的五個條件、八個領域（市場地位、創新、生產力、實體與財務資源、獲利能力、管理者績效與培養、工作者績效與態度、公共責任）、前五項無爭議後三項「無形」卻最快致死、衡量工具「比 IQ 還搖晃」只算進度報告、市場地位過高的風險、服務目標；05 只取「今天的決策、明天的成果」的時間跨度一段。
+   避開 create-a-customer 與 management-note purpose-of-business 的「創造顧客」「我們的事業是什麼」三問（01/02、01/03 不掛）；避開 management-by-objectives 的自我控制與三個石匠。management-note purpose-of-business 第 57 行用一句話列了八個領域，seeAlso 連過去即可。
+   claim 頁；related 連 management-by-objectives、create-a-customer、results-are-outside、the-effective-executive。
+
+2. management `theory-of-the-business`「事業理論：三組假設、四項規格與五大致命罪」— managing-in-a-time-of-great-change（docs/01-management/01-theory-of-the-business、docs/01-management/03-five-deadly-business-sins）。
+   第一鏟（knowledge-worker）掛 02-information-based-organization 整部，寫知識工作者；第一部「管理」六篇沒掛。drucker-note 導覽第三章說「事業理論已被 1954、1966、1985 三本覆蓋」，但全星系沒有一頁叫事業理論，grep 只命中那一句導覽。
+   只寫 01/01：多數新管理工具是「怎麼做」而困境在「做什麼」、事業理論的三組假設（環境、使命、核心能力）、三個案例（洪堡的柏林大學、西門子的德意志銀行、三菱）、IBM 與 GM 兩個失效典型、有效理論的四項規格、四個預警信號（含「意外的成功」）、兩項預防措施（系統性放棄、研究非顧客）；01/03 五大致命罪只取第一罪（崇拜高利潤率，Xerox 與 GM 小車）與「高利潤率不等於最大利潤」的公式，其餘四罪一句帶過。
+   避開 knowledge-worker 的資訊型組織；避開 strategic-inflection-point（Grove 的轉折點是同一現象的另一本書，related 連過去不重講）；drucker-note 沒有對口頁，seeAlso 連 drucker 的 management/what-is-a-business。
+   claim 頁；related 連 knowledge-worker、create-a-customer、strategic-inflection-point、strategy-kernel。
+   這本在 drucker-note 與 management-note 都在 2026-08-26 判 support（「訪談文章集體裁」）；本站開了這頁後兩頁引用，spine 站得住，不改判。
+
+##### business-strategy-note 不開（1 本，改判）
+
+- essential-drucker《杜拉克精選》：不開，**改判 tool**。drucker-note 判 tool、leadership-note 判 tool、management-note 判 support（「文選體裁切不出第二頁的論證」），本站導覽第三章自己也寫「當本組的總目錄讀」，那是查閱書的定位。順手修既有頁：create-a-customer 現掛的是 01-management 與 02-individual 兩整部，太粗；「創造顧客」原文在 practice-of-management 的 01-managing-a-business/02-what-is-a-business（grep 5 筆），精選本的對應章是 01-management/03-purpose-and-objectives-of-business（grep 3 筆）。改成主掛 practice 01/02、副掛精選 01/03。改完 practice-of-management 在本站被兩頁引用，自然從 DEEPEN-TARGETS 消失。
+
+##### leadership-note（開 1 張）
+
+1. culture `abstraction-kills`「抽象化殺人：Milgram、股東價值與鄧巴數」— leaders-eat-last（docs/05-the-abstract-challenge/13-abstraction-kills、docs/05-the-abstract-challenge/14-modern-abstraction、docs/05-the-abstract-challenge/15-managing-the-abstraction、docs/05-the-abstract-challenge/16-imbalance、docs/06-destructive-abundance/21-lead-the-people-not-the-numbers）。
+   第一鏟（circle-of-safety）掛 01、02 兩部，Sinek 的內容只有安全圈與最後吃飯兩條 core，其餘是 Horowitz 與 Netflix。第五部「抽象的挑戰」四章沒掛。
+   只寫：Milgram 1961 年實驗 65% 加到 450 伏特與距離對服從率的影響（13）、Friedman 1970 年股東至上把人變成成本項目、Apple 稅務策略（14）、管理抽象化的五條規則（保持真實聚在一起、遵守鄧巴數、認識你幫助的人、給時間不只給錢、七天七年的耐心）（15）、破壞性豐裕是多巴胺壓過催產素的失衡（16）；21 只取 Jensen 與 Meckling 1976 代理人理論與 Welch 的 rank and yank 當 14 的續集。
+   避開 circle-of-safety 的安全圈與最後吃飯；避開 culture-is-behavior、freedom-and-responsibility（Horowitz 與 Netflix 各有自己的頁）；避開 belonging-cues 的 Coyle。
+   claim 頁；related 連 circle-of-safety、culture-is-behavior、belonging-cues、intelligent-failure。
+
+##### leadership-note 不開（1 本）
+
+- turn-the-ship-around：不開，tier 維持 spine。leader-leader 掛第一、二部（請准我做改成我打算做），management-note 的 intent-based-leadership 掛第二部、competence-and-clarity 掛第三、四部（2026-11-06 第二鏟）。全書四部都有頁，leadership 這頭沒有剩下的章。順手補：leader-leader 的 core「控制要配上能力與清晰」只有一句，seeAlso 加 management 的 org-people/competence-and-clarity（路徑已存在）。
+
+##### communication-note（開 1 張，改判 1 本）
+
+1. persuasion `spot-fallacies-and-fouls`「修辭的防守：三個問題抓謬誤、一條規則判犯規」— thank-you-for-arguing（docs/03-defense/01-spot-fallacies、docs/03-defense/02-call-a-foul、docs/03-defense/03-know-whom-to-trust、docs/03-defense/04-find-the-sweet-spot）。
+   第一鏟（rhetoric-toolbox）掛 02/02 時態與 02/03 三支柱，整頁是進攻篇；第三部防守四章（29K）沒掛。
+   只寫：所有謬誤歸結為三個問題（證據站得住嗎、選擇數量對嗎、證據導向結論嗎）與邏輯謬誤在修辭裡「沒被抓到就過關、被抓到 ethos 就完了」（01）、唯一規則「永遠不要爭論無法爭論的事」、犯規的三條界線（把球帶走、踢人不踢球、拒絕碰球）、修辭允許的「好謬誤」如權力謬誤（02）、測騙器：無利害關係測試與「誰獲益最多」、媽媽買撞球桌（03）、實踐智慧的三個信號與「視情況而定」（04）。
+   避開 rhetoric-toolbox 的三支柱、時態、讓步系技法；避開 influence-six-principles（那是心理學不是修辭）。thinking-note 沒有謬誤專頁（grep「謬誤」只命中偏誤頁的旁句），不加 seeAlso。
+   claim 頁；related 連 rhetoric-toolbox、influence-six-principles、separate-story-from-facts、crucial-conversations-safety。
+   第三鏟候選：04/03 修辭格（11K）與 04/04 時宜 kairos（6K），首頁的讓步技法表已用到兩個辭格，等這張落地再判重疊。
+   順手修既有頁：rhetoric-toolbox 正文用了 02/01（西塞羅三個聽眾目標、Gottman）、02/05（ethos 三要素）、02/07（猶疑法）、02/10（共識）、02/12（省略推理），anchor 只掛 02/02 與 02/03。起草時一併補這五章進 furtherReading（事實在哪章就掛哪章，五個目錄都 `[ -d ]` 驗過）。
+
+##### communication-note 不開（1 本，改判）
+
+- speed-of-trust《高效信任力》：不開，**改判 delegated → covey**。covey-note 八頁（trust-economics、four-cores-of-credibility、thirteen-behaviors 三頁、smart-trust、restoring-trust，加 emotional-bank-account 引用）已把全書四部挖完；本站 social/speed-of-trust 是整本書的總覽頁，seeAlso 也已指向 covey 的 trust-and-execution 分類。再開第二頁只會重寫 covey 的某一頁。既有頁與導覽三處引用都不動，tier-audit 的 delegated 要姊妹站接住，covey 判 spine 八頁，接得住。
+
+##### covey-note（開 2 張）
+
+1. principles `three-kinds-of-power`「三種權力：強制、功利與原則中心」— principle-centered-leadership（docs/01-personal-and-interpersonal-effectiveness/09-principle-centered-power、docs/01-personal-and-interpersonal-effectiveness/11-thirty-methods-of-influence）。
+   第一鏟（principle-centered-four-levels）掛序言、01/08 羅盤、01 與 02 兩整部、02/05 賦權六條件、02/16 憲章，寫羅盤對地圖、農場法則、四個層次、雙贏協議、憲章；權力三型沒碰。
+   只寫 01/09：不問領導者問追隨者「為什麼追隨」、強制性權力出於恐懼（委身是表面的、威脅消失能量轉為破壞）、功利性權力出於交換（撐住多數組織卻導向個人主義、「買方自負其責」）、原則中心的權力出於信任與敬重（稀有、持續的主動影響）、「本質上的領導抉擇就是決定用哪一個權力基礎」、十項權力工具；01/11 只取影響的三個類別（以身作則讓人看見、關懷關係讓人感受、教導讓人聽見）當原則中心權力的操作面，三十種方法不逐條列。
+   避開第一鏟的四個層次與羅盤；避開 four-cores-of-credibility（信用是權力的來源，related 連過去）；legacy/four-roles-of-leadership 是《第 8 個習慣》的道德權威，不同書，seeAlso 不必。
+   claim 頁；related 連 principle-centered-four-levels、four-cores-of-credibility、emotional-bank-account、think-win-win。
+
+2. principles `seven-chronic-problems`「七個慢性問題：急性痛底下的病」— principle-centered-leadership（docs/02-managerial-and-organizational-development/02-seven-chronic-problems、docs/02-managerial-and-organizational-development/03-shifting-your-management-paradigm）。
+   第一鏟同上，02 部整部掛了但正文只用賦權與憲章兩章；02/02（19K）是本書組織診斷的核心章。
+   只寫：急性病對慢性病、速成藥只治急性症狀、「有時需要動手術」、七個慢性問題（沒有共享的願景與價值、沒有策略路徑、糟糕的校準、錯誤的風格、技能不足、低信任、沒有誠信）各自的症狀與對應的習慣、「這些問題是可治癒的」；02/03 只取舊策略模型（目的、途徑、手段）對羅盤模型那一段，那是問題二的解法。
+   避開第一鏟的四層次與農場法則（農場法則在這章也出現，只在點題句接一句）；避開 four-disciplines-of-execution；management-note 有 deming-fourteen-points，02/14 七習慣對戴明十四點不在這張，留作第三鏟候選。
+   claim 頁；related 連 principle-centered-four-levels、three-kinds-of-power（第 1 張）、four-cores-of-credibility、transformational-interdependence。
+   第三鏟候選：02/10 completed-staff-work（摩西與葉忒羅、為什麼不授權，13K）、02/14 七習慣與戴明（20K）。
+
+##### growth-note（開 1 張）
+
+1. deliberate-practice `intuition-as-higher-reason`「第三次轉化：直覺是理性的更高形式」— mastery（docs/07-fuse-intuitive-rational/01-the-third-transformation、docs/07-fuse-intuitive-rational/02-keys-to-mastery、docs/07-fuse-intuitive-rational/03-return-to-reality-and-environment、docs/07-fuse-intuitive-rational/05-fingertip-feel-and-life-force、docs/07-fuse-intuitive-rational/06-global-perspective-and-inside-out）。
+   第一鏟（path-to-mastery）掛 02 天命與 03 學徒期，和 greene-note 的 mastery 頁掛同兩部；greene 另有 apprenticeship（03）、mentor-dynamic（04）、dimensional-mind（06）。第七部「直覺與理性融合」兩站都沒掛，第一鏟只有最後一條 core 一句「兩萬多小時深度浸泡後的質變」。
+   只寫：Proust 從社交蝴蝶到軟木房的漫長潛伏（01）、直覺不是理性的對立而是更高形式（Fischer 的棋盤力場、Gould 的建築結構、Einstein 的視覺圖像）、古人叫它道、邏各斯（02）、加羅林群島導航者的多維感知（03）、Cesar Rodriguez 的技能層疊與沙漠風暴（05）、Freddie Roach 把手靶從輔助變核心、整體策略要內化（06）。
+   避開 path-to-mastery 的天命、學徒期三階段、導師；避開 greene 的 dimensional-mind（第二次轉化、創造期）；避開 mental-representations 的 Ericsson（同一現象的實驗室版，related 連過去不重講）；07/04 Einstein 與 Grandin、07/07 歌德通才不寫，前者與 02 重疊、後者是通才論。
+   claim 頁；related 連 path-to-mastery、mental-representations、inner-game-quiet-mind、purposeful-practice；seeAlso 連 greene 的 concepts/mastery/dimensional-mind。
+   分工：growth 取心態與潛能（導覽第三章的三角分工），第七部講的是練到最後心智變成什麼，歸這站；第五部社會智慧（05，21K）兩站都沒挖，歸 greene-note，本單不開。
+
+##### 小結
+
+- 開 14 張，全部 claim 頁：relationships 4、maxwell 3、business-strategy 2、leadership 1、communication 1、covey 2、growth 1。沒有 debate：15 本都是單一作者體系書，站上沒有「一個問題多本書吵」且兩造都有頁的形狀。
+- 不開 4 本：essential-drucker（改判 tool）、speed-of-trust（改判 delegated → covey）、turn-the-ship-around（四部都有頁）、bowling-alone 第五部（題材離站）。
+- 兩站同書的分工：winning-with-people 主題站拿衝突兩條、人物站拿投資一整部；mastery 第七部歸 growth、第五部歸 greene；turn-the-ship-around 第三四部歸 management。
+- 順手修既有頁（三筆 anchor 缺口，起草時一併做）：business-strategy create-a-customer 改掛 practice 01/02 主位；communication rhetoric-toolbox 補 02/01、02/05、02/07、02/10、02/12；leadership leader-leader 加 seeAlso 到 management competence-and-clarity。
+- 既有頁越界（不在本單處理，留給 Opus 判）：leadership circle-of-safety 正文一半是 Horowitz 的震撼性規則與 Netflix 的高手密度，furtherReading 只掛 Sinek，而兩本書在本站各有自己的頁（culture-is-behavior、freedom-and-responsibility）；leader-leader 的 Goldsmith「別加太多價值」案例整段沒 anchor，書在 bibliography（what-got-you-here-wont-get-you-there）但沒掛。
+- 起草順序建議：business-strategy 2（全星系沒有事業理論頁）、covey 1、leadership 1（材料最獨立）→ relationships 1、2（Perry 兩張一起讀第三、六部）→ maxwell 1、2 → relationships 3 與 maxwell 3 同一本書一起做 → business-strategy 1、communication 1、covey 2、growth 1。
+
+#### hbr／career／hr／behaviour-interview 第二鏟選題單（DEEPEN-TARGETS 10 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有頁重疊低於一半，能被單獨引用；同一本書在姊妹站已有頁的，先查分工再開。
+HBR Guide 是短文合輯，章多但每章一兩千字，第二頁要能站成一個主張，不是「再抄幾篇」；所以這批 HBR 的單一律合併相鄰章，單章撐不起的不開。
+章節目錄全部 `[ -d <book>/site/content/<anchor> ]` 驗過（10 本共 88 個目錄，0 缺）；單上引號裡的字句全部 grep 過書 repo。
+
+##### hbr-note（4 本：開 3 張、不開 2 本）
+
+1. communication-collab `delivering-the-presentation`「登台之後：語調、肢體、問答與遠距簡報」— hbr-guide-to-persuasive-presentations（docs/06-delivery/05-tone、docs/06-delivery/06-be-yourself、docs/06-delivery/07-body-language、docs/06-delivery/08-voice、docs/06-delivery/09-stories-alive、docs/06-delivery/11-q-and-a、docs/06-delivery/12-remote-trust、docs/06-delivery/13-remote-listeners、docs/06-delivery/14-remote-checklist、docs/07-impact/01-social-relationships、docs/07-impact/03-gauge-connection、docs/07-impact/04-follow-up）。
+   第一鏟（persuasive-presentations）只掛 03-story 一個卷層 anchor，正文卻寫了觀眾分析、大想法、現狀與理想、glance test、排練與怯場；第六部十四章只用了排練（01）與怯場（04），第七部一章未用。
+   只寫：開口前的四個定調細節（事前溝通、氛圍、外表「配合觀眾或打成平手」、神態）、真實不是某一種風格（Ballmer 與 Susan Cain 兩極）、肢體五技巧與「肌肉記憶」、「七種聲音語調」與揪出語助詞、用感官細節重新體驗故事、Q&A 六法（規畫時機、預期問題、聽言下之意、不知道就承認、控場、留下最終印象）、遠距三章（鏡頭與站姿、六個拉回注意力的方法、八項清單與主持人）、「後通道」雙面刃與「鋼鐵般的胃」、七種跟進。
+   避開第一鏟的觀眾功課、大想法、三段結構、glance test、排練與怯場；避開 10-interpreter（口譯合作，體裁太窄）與 07-impact/02-spread-ideas（社群散播，與站無關）；避開 communication-note 的 talk-like-ted（Gallo 的情緒、新奇、18 分鐘）與 slides-that-resonate（Resonate 的聽眾英雄與 sparkline），seeAlso 連 communication 站 presentation/talk-like-ted 即可。
+   claim 頁；related 連 persuasive-presentations、run-meetings-that-matter、managing-up、authenticity-paradox。
+   不開投影片設計頁（05-slides 十章）：那一部是 slide:ology 的濃縮版，communication-note 的 presentation/slide-design-ideology 已用原書寫完 slideument 光譜、三秒法則、圖解類型學、六件排列工具、資料五原則，再開就是跨站重覆；第一鏟補一條 seeAlso 連過去就好。
+
+2. strategy-innovation `priorities-without-ranking`「優先順序不靠排名：關鍵、重要、期望，與該砍掉的殭屍專案」— hbr-guide-to-thinking-strategically（docs/05-priorities-tradeoffs/01-set-priorities、docs/05-priorities-tradeoffs/02-hands-off-manager、docs/05-priorities-tradeoffs/03-kill-outdated、docs/05-priorities-tradeoffs/04-conflicting-goals、docs/05-priorities-tradeoffs/05-manage-tradeoffs）。
+   第一鏟（everyday-strategic-thinking）掛 01-get-started 與 02-understand-org-strategy 兩個卷層，core 寫的是取捨、向上一層、預留思考時段、問題框架；第五部五章一字未用。
+   只寫：Lidow 反對排名的三個理由與目標／資源／時間三角（「資源至高無上」）、critical／important／desirable 三類與宣告 critical 等於開「空白支票」、四步驟資源矩陣；Su 的 contribution × passion 四象限（Prioritize／Tolerate／Elevate／Delegate）；Avery 的 Box 2 與「殭屍專案」（Telex 撐到 2008）、翻轉「舉證責任」讓專案證明自己還值得做、大中小三種尺度各自的砍法；Ashkenas 與 Manville 的執行策略四問（順序、頻寬、人才、再平衡）；取捨的六個提問與「有時取捨就是明確說不」。
+   避開第一鏟的 Porter 取捨定義、向上一層、思考時段、「本週說了哪些 No」；避開 leadership-note vision/okr 的聚焦四超能力與 management-note managers-work/managerial-leverage 的槓桿率，seeAlso 連 leadership 站 vision/okr。
+   claim 頁；related 連 everyday-strategic-thinking、what-is-strategy、better-decisions、manage-your-energy。
+
+3. strategy-innovation `strategy-execution-gap`「策略到執行的斷層：Big Arrow、預算連動與 if-then 計畫」— hbr-guide-to-thinking-strategically（docs/07-execute-strategy/01-people-not-strategy、docs/07-execute-strategy/02-strategy-and-execution、docs/07-execute-strategy/03-bridge-the-gap、docs/07-execute-strategy/04-do-what-it-says）。
+   第一鏟有一節「策略構想為何死在落地：計畫與行動的斷層」寫了四個斷點，沒有 anchor，導覽第四章 124 行已點名「那一段也沒有錨」；書裡講執行的是第七部四章，第一鏟沒用。
+   只寫：Bregman 的「策略行動（strategic acting）」與 Big Arrow 六步驟（一個 pivotal strength、一個 game changer）、六問驗證；Leinwand 與 Rotering 的「只有 8%」領導者同時擅長策略與執行、Starbucks「第三個地方」綁在能力上、預算流程連回策略、用人話表達策略與三階段檢核題；Wiita 與 Leonard 的五件事（承諾認同、翻譯到日常、文化驅力、排序、塑造未來）與用會議議程自我檢核；Heidi Grant 的 If-Then 計畫（200 多項研究）、對群體迷思與沉沒成本的用法。
+   避開第一鏟的日常習慣與數據素養那節；避開 leadership-note change/why-transformations-fail（Kotter 八步）；第八部三章（策略錯了、訊息矛盾、策略不清時中層怎麼辦）留第三鏟。
+   claim 頁；related 連 everyday-strategic-thinking、leading-through-change、project-management-essentials、managing-up。
+   附帶條件：新頁交付後，第一鏟那節「四個斷點」改成一行連到新頁；它的 core 第五點（事前驗屍、指定唱反調者、可逆／不可逆）與 TIP（「本週說了哪些 No」）、「策略絞肉機」「兩分鐘內講清楚」在書 repo 全書 grep 不到，列 B 型債：唱反調只出現在 01-get-started/01-essential-skills 與 05/04，決策那條以 04-align-decisions 三章（反思三問、七步 checklist、Data DIET）回源改寫，校正表進 SOURCING-DEBT。
+
+不開（2 本）：
+- hbr-guide-to-making-every-meeting-matter：第一鏟 run-meetings-that-matter 已走完會議全生命週期（該不該開、目標議程、主持規則、與會者技術、收尾追蹤、遠距），剩下第五部是會議型態變體（跨文化、站立、走路、站會）。唯一厚的是 08-leadership-summits（5.3k 字，Frisch 與 Greene 的大會設計十三步），單章撐一頁勉強、引用測試也弱，改以 `:::details` 補進既有頁並掛 anchor。tier 維持 spine，承諾已由既有頁兌現。
+- hbr-guide-to-navigating-the-toxic-workplace：第一鏟 toxic-workplace 用了全書三十三章裡約二十章（五屬性、三種上司、走或留、復原、霸凌、男子氣概競賽、怪罪文化、毒性巨星），剩下 01/02 有毒同事、01/04 與 05/03 女性處境、04/04 打斷偏見、05/02 混合辦公、06/03 八卦、06/04 權力腐化，各一千字、湊不成一個主張。tier 維持 spine。
+
+##### career-note（4 本：開 5 張、不開 1 本）
+
+4. career-capital `operating-at-staff`「以 Staff 身分運作：做重要的事、對齊借來的權責、學會跟隨」— staff-engineer（docs/02-operating-at-staff/01-work-on-what-matters、docs/02-operating-at-staff/04-stay-aligned-with-authority、docs/02-operating-at-staff/05-to-lead-you-have-to-follow、docs/02-operating-at-staff/06-learn-to-never-be-wrong、docs/02-operating-at-staff/07-create-space-for-others、docs/02-operating-at-staff/08-build-a-network-of-peers、docs/02-operating-at-staff/09-present-to-executives）。
+   第一鏟（staff-path-beyond-senior）掛 01-overview 卷層當「另一條路徑」，寫了四種原型與升遷工具箱一段；behaviour-interview 姊妹站的 big-tech/staff-plus 掛 01/01 原型與 04/02 面試 Staff 職位，story-mining/example-library 掛 05 兩篇訪談。第二部九章兩站都沒挖。
+   只寫：三種絆腳石「吃零食」「擺姿態」「追鬼」與讓職涯步調配合人生；組織權責是「更高的組織權責借給你的」、「越過安全網」與「為總統效力」、永遠別讓主管意外；領導是看得見落差加在乎到願意行動，但「在學會跟隨之前，你無法成為長期有效的領導者」；「永遠不出錯」靠傾聽、定義目的、觀察全場，分享觀點前先問三個好問題；為他人「創造空間」（好討論是事後發現你不需要出席的討論；把它寫下來、未定案前先流傳）；同儕網絡的兩條路；向高階主管簡報為什麼難（「預處理過的現實」）與三種目的。
+   避開第一鏟的三大支柱、四種原型、五種資源、回饋循環變長與升遷資料包；避開 behaviour-interview 站的 staff-plus 與 example-library（seeAlso 連 behaviour-interview 站 big-tech/staff-plus）；避開本站 find-a-sponsor-not-mentor 的贊助者論（第七張 create-space 提到 sponsorship 時只引一句）。
+   claim 頁；related 連 staff-path-beyond-senior、career-capital-theory、find-a-sponsor-not-mentor、be-seen-smart-not-loud、impact-player-mindset。
+   第三鏟候選：02/02-writing-engineering-strategy（「寫五份設計文件，把其中的共通點抽出來」）與 02/03-managing-technical-quality（9.7k 字），題域偏工程領導，若日後有技術站收這本書歸那邊，否則留本站。
+
+5. manage-yourself `role-power-responsibility-unity`「職、權、責合一：績效考核為什麼要先看增值流程」— terry-cheng-workplace-power（docs/03-performance-review-and-management/18-kpi-or-okr、docs/03-performance-review-and-management/21-unity-of-role-power-responsibility-1、docs/03-performance-review-and-management/22-unity-of-role-power-responsibility-2、docs/03-performance-review-and-management/23-quantifying-role-power-responsibility、docs/03-performance-review-and-management/24-setting-department-performance-items）。
+   第一鏟（tech-hiring-pipeline）掛 01 求職兩章；第三部績效考核十二章一字未用。管理站剛開的兩張程天縱單用的是另兩本書（專業力的策略規劃、經營學的真話假話），不撞。
+   只寫：索尼「績效主義毀滅索尼」與他對「KPI 與 OKR 分別運用」說法的懷疑、「人的績效系統」；赫德在惠普五年的職權責合一改革；職務／權力／責任的定義、為何分離（分工太細、矩陣式管理）、「只要槍斃一個人，那個人會是誰」的當責測試、核決權限不是授權；用主要增值流程（產品產生、訂單產生、產品生產、訂單交付）量化合一程度與實線虛線；「笨蛋！問題在流程」、市場部考「抓取率」業務部考「打擊率」的拆解。
+   避開 leadership-note vision/okr（Doerr 的四超能力與 CFR）與 grove-note 的 MBO，這頁只寫程天縱怎麼看 KPI／OKR 的共同缺口；避開 management-note principles/terry-cheng-rethinking 那條「職權責分離的白色空間」（只引一次並連過去）；避開 hr-note two-tails 與 nine-lies-about-ratings 的評等爭論。
+   claim 頁，importance 3；related 連 first-year-manager、q12-and-four-keys、managing-oneself、tech-hiring-pipeline；seeAlso 連 leadership 站 vision/okr、management 站 principles/terry-cheng-rethinking。
+   第三鏟候選：03/25–29 績效管理五個誤區（年度目標數字怎麼來、短中長期平衡）。
+
+6. manage-yourself `all-round-professional-manager`「全能的專業經理人：權力缺口、成熟度與每晚一問」— terry-cheng-workplace-power（docs/02-capabilities/07-what-professional-managers-need、docs/02-capabilities/08-becoming-a-mature-professional-manager、docs/02-capabilities/09-stay-or-move-on、docs/02-capabilities/17-did-i-earn-my-salary-today）。
+   第二部「能力」十一章第一鏟沒碰；10–16 章（誰扼殺了轉型、競爭力、方向）是組織診斷，歸管理題域，本站不開。
+   只寫：NBA 三分球與灌籃大賽改變他對職業球員的定義（職業與業餘的差別在「全能」、能互相補位）、十個年輕人有九個答不出自家組織架構、組織政治就是填補「權力缺口」（需要一○○、企業只給六○）；對事的成熟度（time to maturity、依熟練度換管理模式、薪資區間）與對人的成熟度（後悔越來越少、身邊的人是老師）；離職面試只問「要去哪裡」不問「為什麼離開」、撿貝殼的職涯回顧、惠利特「即使員工離開了惠普，仍然認為惠普是最優秀的公司」；賺與賠的三個層次（交換、撿便宜、投資）與「我今天賺到我的薪水了沒」。
+   避開 professionalism-customer-first（大前研一的專業四力）、managing-oneself（杜拉克）、seven-habits-inside-out；避開本站 find-a-sponsor-not-mentor；「成功不必在我」只在開頭引一次。
+   claim 頁，importance 3；related 連 professionalism-customer-first、managing-oneself、first-year-manager、role-power-responsibility-unity（第 5 張）。
+
+7. job-search-change `conference-commando`「研討會突擊隊：把會議、超級連結者與餐桌變成主場」— never-eat-alone（docs/02-the-skill-set/08-be-a-conference-commando、docs/02-the-skill-set/09-connecting-with-connectors、docs/03-turning-connections-into-compatriots/04-find-anchor-tenants-and-feed-them、docs/03-turning-connections-into-compatriots/03-pinging-all-the-time）。
+   第一鏟（never-eat-alone）掛 01、02、03 三個卷層，寫的是慷慨、在需要之前先建好、做功課與跟進、健康財富與孩子、成為總機；第二部最厚的兩章（研討會 11.6k、閒聊 10k）與第三部的餐桌、保持聯絡都沒用。
+   只寫：「大部分的仗，在第一槍之前就打完了」、研討會的投資報酬式評估、以為研討會是取得洞見的地方是誤解、「保齡球，還是球瓶」；「超級連結者」是任何網絡的基石與 Granovetter 的 56%／17%／55%／28%；「最強的連結是在餐桌上鍛造的」與「錨定房客」怎麼把圈外的人拉進晚宴；保持聯絡八成是重複、「唯一能穿透白噪音的東西」、把網絡分成 1、2、3 級。
+   避開第一鏟全部 core；避開 hbr-note 的 smarter-networking（弱連結與三種人脈框架出自另一本書，seeAlso 連過去）；02/11 閒聊的藝術不寫，communication-note social/small-talk-to-connection 已用 Lowndes 寫過，seeAlso 連過去。
+   claim 頁；related 連 never-eat-alone、job-search-system、alliance、givers-takers-matchers。
+
+8. job-search-change `content-builds-trust`「內容建立信任：GVAC、機場問題與品牌廣播」— never-eat-alone（docs/04-connecting-in-the-digital-age/02-become-the-king-of-content、docs/04-connecting-in-the-digital-age/03-engineering-serendipity、docs/05-trading-up-and-giving-back/01-be-interesting、docs/05-trading-up-and-giving-back/02-build-your-brand、docs/05-trading-up-and-giving-back/03-broadcast-your-brand）。
+   第四部數位時代與第五部品牌，第一鏟整部沒碰；這是 2014 增訂版新加的材料，與第一鏟的 2005 核心分得開。
+   只寫：太空人 Hadfield 的推特與「信任的代數式」（慷慨＋脆弱＋當責＋坦率＝信任，GVAC）；「設計機緣」與「機運偏愛有網絡的心智」；顧問業的「機場問題」與沒有「理念平台」就會輸掉選舉；湯姆．彼得斯的「我股份有限公司」、白領革命「要嘛獨特，要嘛絕跡」；「你把工作做得多好，還不夠」與「戳破泡泡」。
+   避開本站 be-seen-smart-not-loud（Jessica Chen 的策略性能見度與 4A）、linchpin（Godin 的禮物與出貨）、career-as-product（Chad Fowler 的行銷自己）；三頁各一句 related 連過去即可，這頁只寫費拉齊的內容與品牌打法。
+   claim 頁；related 連 never-eat-alone、conference-commando（第 7 張）、be-seen-smart-not-loud、linchpin、career-as-product。
+   第三鏟候選：03/02 社交套利（第一鏟已帶一句）、05/04 接近權力、04/01 開發邊緣地帶。
+
+不開（1 本）：
+- mastering-behavioral-interviews：behaviour-interview 姊妹站是整本書的體系深挖（41 頁引到它），本站 behavioral-interview-storytelling 是三本行為面試書合撐的總覽頁，導覽第三章 94 行已寫明「體系深挖在 behaviour-interview 姊妹站」。再開第二頁必是跨站重覆。tier 維持 spine（總覽頁引用它，承諾已兌現）。
+
+##### hr-note（1 本：開 2 張）
+
+9. retention-motivation `development-is-retention`「發展就是留才：職涯對話的黃金時機、任務交換與導師制度」— hbr-guide-to-retaining-your-best-people（docs/04-development/01-professional-development、docs/04-development/02-talk-about-career-development、docs/04-development/03-task-trading、docs/04-development/05-young-remote-employees、docs/06-reinvent-retention/03-mentoring-program）。
+   第一鏟（why-people-stay）掛十一章：序言、為什麼離職、重新想像、問快不快樂、被重視、明星待遇、不升遷也能激勵、說出感謝、敬業度、留任獎金、乾升遷；第四部發展五章與第六部的導師制度沒用。
+   只寫：專業發展是員工心中改善文化的第一名（LinkedIn 2022）與「教練文化」是和留任最相關的實踐（Deloitte，支出 1.5–3 倍）；職涯對話的黃金時機是到職 12–18 個月、問對問題與設計小型實驗；「任務交換」把團隊從工具箱變成「一群瑞士刀」的四步驟與會失敗的原因；年輕遠距員工的五個挑戰與「反向指導」「跟班學習」；指導計畫普及卻失效的原因與轉成留才工具的四策略。
+   避開第一鏟的進展四型、留任對話六步、乾升遷與留任獎金；避開 04/04 生成式 AI 學習（工具條目）；避開 tours-of-duty（Hoffman 的任期制）與 four-keys-of-great-managers（蓋洛普四把鑰匙），related 連過去。
+   claim 頁；related 連 why-people-stay、tours-of-duty、four-keys-of-great-managers、autonomy-mastery-purpose。
+
+10. retention-motivation `b-players-and-high-performers`「B 級球員與高績效者：各自需要什麼才留得住」— hbr-guide-to-retaining-your-best-people（docs/03-motivate-and-engage/03-retain-b-players、docs/03-motivate-and-engage/02-high-performers-feedback、docs/05-adjust-work/01-protect-from-burnout）。
+   第一鏟用了第三部的 01 明星待遇、04 不升遷、05 感謝，跳過 02 高績效者回饋與 03 B 級球員；第五部防倦怠也沒用。
+   只寫：「只雇用 A 級」的迷思與 Google「亞里斯多德計畫」看見的 B 級價值、B 級最常停滯是不相信自己被允許挺身而出、五個策略；高績效者更在乎你說的話、主管的盲點與五個行動（不省略建設性回饋、不用「總是」「從不」、不針對個性、留意刻板印象、畫出成長路徑）；三個讓高績效者倦怠的做法（永遠分到最難的專案、補低績效者的洞、零碎小事）與三個保護策略（偶爾自選專案、「高績效者配對」、追蹤額外時間需求）。
+   避開第一鏟的明星待遇與感謝四要素；避開 two-tails（Google 兩端是評等制度，這頁是主管的留才動作）、radical-candor-quadrants（回饋象限）、psychological-safety；hbr-note self-management/beating-burnout 是個人視角，seeAlso 連過去。
+   claim 頁；related 連 why-people-stay、two-tails、radical-candor-quadrants、receiving-feedback。
+
+第三鏟候選（不開，記著）：05/02 工作再造＋05/04 工作外的熱情＋06/06 更快樂的職場（彈性與歸屬）；01/03 入職定成敗（四個 C，單章 1.9k 字太薄，可補進 recruiting 分類既有頁）；02/03 內在目的五問＋06/05 目的是磁鐵（可與 culture-people-ops/mission-transparency-voice 分工後再開）。
+
+##### behaviour-interview-note（1 本：不開，建議體裁排除）
+
+- soft-skills-thirty-letters《軟技能》：不開。這是得到三十位作者各寫一封信的合輯（羅振宇序；萬維鋼、吳軍、香帥、施展、薛兆豐、劉潤、李希貴、湯君健、熊太行、梁寧⋯⋯），每封兩到四千字、各自獨立、沒有單一論旨，與 EXCLUDED_KINDS 裡「5分鐘商學院 工具篇：工具條目合輯，每條各自獨立」同一種體裁，建議加進 `export-deepen-targets.py` 體裁排除（理由：多作者書信合輯，三十封各自獨立）。本站 big-tech/cultural-boundary 已用湯君健與熊太行兩封信寫成對照頁，導覽三章都掛了；career 與 wujun 兩站 delegated 到本站，漏接檢查過得了。tier 維持 spine。
+
+##### 順手發現的既有頁問題（交 Opus 一起修）
+
+- hbr `strategy-innovation/everyday-strategic-thinking`：core 第五點（事前驗屍、指定唱反調者、可逆／不可逆）、TIP「本週說了哪些 No」、「策略絞肉機」、「兩分鐘內講清楚」與整節「四個斷點」，在書 repo 全書 grep 不到，是 B 型債；處理法寫在第 3 張附帶條件，校正表進 SOURCING-DEBT。
+- hbr `communication-collab/persuasive-presentations`：正文用了 01-audience（七問）、02-message（大想法）、05-slides/02-three-second-test、06-delivery/01-rehearse、06-delivery/04-stage-fright，anchor 只掛 03-story；照「事實在哪章就掛哪章」補五條。並補 seeAlso 連 communication 站 presentation/slide-design-ideology 與 presentation/slides-that-resonate。
+- hbr `communication-collab/run-meetings-that-matter`：anchor 只掛 docs/01-prepare，正文寫了 02-conduct（沉默等於同意、jellyfish）、03-participate（婉拒與插話句術）、04-close-follow-up（三件事、Roses & Thorns），補三個卷層 anchor；順便把 05-specific-types/08-leadership-summits 以 details 收進來。
+- hbr `communication-collab/toxic-workplace`：anchor 四條，正文用到 01-harmful-environment（有毒或只是一份工作、找 HR）、03-quit-or-stay（過渡期、復原四步）、04-managing-toxic-team（心理安全感、招募把關）、05-culture-toxicity（霸凌、男子氣概競賽、怪罪、好好文化），補四個卷層 anchor。
+- career `job-search-change/never-eat-alone`：三個卷層 anchor 合規；但 core 第四點「忠誠孕育在健康、財富與孩子」實際在 03/01，第五點「成為總機」在 03/02，起草第 7、8 張時順手把卷層 anchor 細化到章。
+
+##### 小結
+
+- 開 10 張，全部 claim 頁：hbr 3、career 5、hr 2；沒有 debate，這批都是單一作者或單一合輯的材料，沒有「一個問題多本書吵」的形狀。
+- 不開 4 本（making-every-meeting-matter、toxic-workplace、mastering-behavioral-interviews、soft-skills-thirty-letters），tier 都不動；《軟技能》建議進體裁排除。
+- 姊妹站分工：投影片設計歸 communication 的 slide:ology 頁；Staff Engineer 的原型與面試歸 behaviour-interview，第二部運作歸 career；KPI／OKR 的 Doerr 版歸 leadership，程天縱的增值流程版歸 career；閒聊歸 communication 的 Lowndes 頁。
+- 起草順序建議：2、3（連帶清 everyday-strategic-thinking 的 B 型債）→ 4 → 9、10 → 1 → 7、8 → 5、6。
+- 沒把握的兩張：第 6 張（程天縱第二部四章各自成篇，合成一頁的黏著度要靠「專業經理人」這條線，起草代理若判材料散就只寫 07＋17 兩章）；第 10 張（三章合計 5.6k 字，是這批最薄的一張，排在第 9 張之後）。
+- 旁註：hbr 站的 Guide 系列第一鏟普遍只掛一兩個卷層 anchor、正文卻掃全書，四頁裡三頁有 anchor 缺口；這是站級型態，起草這批時順手補，之後值得對 hbr 站整站跑一次 export-anchor-gaps.py。
+
+#### wellness／habits／tools／life-meaning 第二鏟選題單（DEEPEN-TARGETS 11 筆，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有頁重疊低於一半，能被單獨引用；體裁查閱型（日課、訪談合輯）一頁夠就不開。
+四站 11 筆裡兩筆是同一本書在兩站（Bigger Leaner Stronger 在 wellness 與 life-meaning），War of Art 另在 writing 站有候選，分工都寫明。
+每張單寫明第一鏟掛了什麼、第二鏟只寫什麼、避開哪幾頁；章節目錄名全部 `[ -d ]` 驗過（46 個 anchor 全部存在）；單上引的原話逐一 grep 過書 repo。
+
+#### wellness-note 第二鏟選題單（5 本）
+
+##### 開單（6 張）
+
+1. fitness-body `rules-that-change-the-rules`「改變規則的十條法則：Ferriss 的自我實驗方法」— 4-hour-body（docs/01-principles/01-minimum-effective-dose、docs/01-principles/02-rules-that-change-rules、docs/02-ground-zero/02-elusive-body-fat）。
+   第一鏟（form-and-injury-prevention）只掛 07-fixing-injuries/03-prehabilitation，而且頁的主體是 Manocchia 的暖身與伸展，Ferriss 只佔「預防重於修復」一條；exercise-as-leverage 的 details 已寫了 MED 與 100°C 燒開水的例子，furtherReading 卻沒掛這本書（要補 anchor，見旁註）。
+   只寫：MED 的定義與身體改造的兩個關鍵 MED（Arthur Jones 的遺產）；十條法則各一句（運動消耗的熱量少得可憐、藥物就是藥物、目標設在 10 公斤改造、飲食／藥物／訓練計算尺的 60／10／30、黏貼測試「能堅持的次佳方法，勝過必須放棄的完美方法」、休閒不等於訓練、相關不等於因果的三個問題、衝浪式進食、肯亞選手的快縮肌纖維、行銷話術用「能不能測量」刪掉）；體重計會騙人、該測量什麼（02/02）。
+   避開 exercise-as-leverage 的漸進超負荷與複合動作，「最小有效劑量勝過過度訓練」那條只引不展開；避開 form-and-injury-prevention 的 prehab；Occam 協議（04-building-muscle）留第三鏟，這頁只講方法論不講課表。導覽第三章說他「不是科學家」，概念頁不下這個評語，只照書寫第七條規則。
+   claim 頁；related 連 exercise-as-leverage、form-and-injury-prevention、titans-health-toolbox、healthspan。
+
+2. nutrition-sleep `slow-carb-diet`「慢碳飲食：五條規則與每週一天的作弊日」— 4-hour-body（docs/03-fat-loss/01-slow-carb-diet-i、docs/03-fat-loss/02-slow-carb-diet-ii、docs/03-fat-loss/03-damage-control）。
+   第一鏟與第 1 張都不碰減脂部；書自己說減脂是「最容易成功、最容易看見變化」的實作章，七章裡前三章就是方法本體。
+   只寫：五條規則（避開白色碳水、反覆吃同樣的東西、不喝液體熱量、不吃水果、每週一天放假全力作弊）；卡路里陷阱（一碗飯 300 卡對一碗菠菜 15 卡，靠豆類補熱量）；FAQ 裡的判別點（牛奶的胰島素反應指數比 GI 高 3 到 6 倍、作弊日後 48 小時內的水分、量圍度不量體重、鉀鎂鈣三種電解質）；暴食損害控制那一章的作法。數字逐字照書；「上千人平均減去 9.5 公斤」這類數字要標明是作者的追蹤，不是對照試驗。
+   避開 nutrition-foundations 的能量平衡與依從性（那是第 3 張的題）、避開 daily-dozen 的植物性論證與 nutritionism；減醣那一側在同站（江部），不必 seeAlso。
+   claim 頁；related 連 nutrition-foundations、daily-dozen、nutritionism、rules-that-change-the-rules（第 1 張）。
+
+3. nutrition-sleep `flexible-dieting`「靈活飲食：熱量、蛋白質、80／20 與三套數字」— bigger-leaner-stronger（docs/04-nutrition-advice/01-flexible-dieting、docs/04-nutrition-advice/02-counting-calories-macros、docs/04-nutrition-advice/05-cheat-meals、docs/02-debunking-fitness-myths/04-fat-loss-myths）。
+   第一鏟（exercise-as-leverage）掛 01、02 兩部，寫的是訓練端；書的公式「飲食決定體脂，訓練決定肌肉」的飲食端整部沒碰。
+   只寫：四根支柱不是拼圖碎片；靈活飲食四步驟（控制熱量、足夠蛋白質、未加工食物為主、找到碳水與脂肪的平衡）；80／20；減脂／精實增肌／維持三套數字（赤字 20 到 25%、盈餘約 10%、每磅體重的大卡與蛋白質克數）；分層建構飲食計畫（先蛋白質）；減脂十大迷思表裡的三條（熱量進出不是過時理論、代謝損傷不存在、少量多餐無助減重）；作弊餐的作法。
+   **附帶條件（B 型債，起草前先處理）**：nutrition-foundations 現掛江部《快速瘦肚！間歇性斷食減醣全書》02、03 兩章，但頁上的核心主張「能量平衡決定體重的大方向」「各種斷食減醣有效，多半是因為幫人減少了總攝取，不是違反了能量守恆」「蛋白質是最該顧好的營養素」「依從性是隱藏變數」在江部那兩章裡都找不到，江部講的正好相反（「吃得多也能瘦：和卡路里苦行說再見」「重點不是熱量，而是有沒有醣」）。這些句子是 Matthews 的主張掛錯了書。處理：這張單把能量平衡那一側寫成 Matthews 的頁；nutrition-foundations 回江部原文重寫成減醣的理由（不算熱量、脂肪不是敵人、從葡萄糖體質切換為脂肪燃燒體質、血糖飆升、一日兩餐、三大減醣等級），標題改掉「基本盤」；導覽第四章官司一第三層那兩句（「長期的能量平衡與一套你能持續執行的模式勝過任何單一神奇飲食法」「各種斷食減醣有效，多半是因為幫人減少了總攝取」）改成 Matthews 的話並連到新頁。校正表進 SOURCING-DEBT。
+   避開 exercise-as-leverage 的訓練三角、避開第 2 張的慢碳規則；重寫後的 nutrition-foundations 與這頁是官司一的兩造（熱量對醣），不互相重講。
+   claim 頁；related 連 exercise-as-leverage、nutrition-foundations、slow-carb-diet（第 2 張）、daily-dozen。
+
+4. stress-mental-health `not-a-zero-sum-life`「人生不是零和：四面向的小實驗、成人的下課時間與分散自我」— hbr-guide-to-managing-stress（docs/03-richer-life/01-better-leader-richer-life、docs/03-richer-life/02-work-taking-over、docs/03-richer-life/04-grown-ups-recess、docs/03-richer-life/07-diversify-yourself）。
+   第一鏟（managing-stress-and-burnout）掛 01、02 兩部，寫的是壓力生理、耗竭三面向與「能量而非時間」；第三部「更豐富的人生」七章一字未用。
+   只寫：弗里德曼的取捨思維對整合（工作、家庭、社群、自我四面向，Reflect／Brainstorm／Choose 三步，小實驗的篩選標準，四面向滿意度提升 20% 到 39%、績效進步 9%）；科金代爾的「能者過勞」與三步（每週工時上限 50 到 55 小時、「不要做」清單、對老闆與自己說不）；成人的下課時間清單；布雷格曼的「分散自我」（法國電信 24 名員工自殺、Rosenfield 那句「只透過工作建立身份，會限縮你的自我感」、多重身份要有行動才算數）。
+   避開 managing-stress-and-burnout 的恢復節律與耗竭三面向、避開 mental-health-at-work；03/05 睡眠那章不寫（站上已有兩頁睡眠）；hbr-note 的 manage-your-energy 是這本書的第二部，seeAlso 連過去即可。
+   claim 頁；related 連 managing-stress-and-burnout、mental-health-at-work、meaning-as-medicine、what-makes-a-good-life。
+   第三鏟候選：06-rest-and-recovery 五章（週末症候群三成因、每週一天在家工作、午睡的競爭優勢、企業菜園、公司能做什麼），是公司層級的設計題，若開頁也落 stress-mental-health。
+
+5. stress-mental-health `food-and-mood`「飲食與憂鬱：花生四烯酸、MAO 與番紅花」— how-not-to-die（docs/01-preventing-and-reversing-disease/12-suicidal-depression）。
+   第一鏟（daily-dozen）的 anchor 掛在兩部的部層級，正文用的是心臟、糖尿病、高血壓三章；十五個死因章只動了三個。
+   只寫：卡內基美隆的感冒病毒實驗（負面情緒組三人中一人感冒、快樂組五人中一人）；花生四烯酸與神經發炎（身體自製、不必再從飲食攝取；阿斯匹靈與布洛芬的作用點就在這裡）；植物性飲食者的 POMS／DASS 分數；單胺理論與 MAO（阻斷 MAO 的藥有「起司效應」，蘋果、莓果、洋蔥、綠茶與丁香肉桂等香料天然抑制 MAO）；種子與血清素；番紅花對百憂解的直接比較（百憂解組約 20% 性功能障礙、番紅花組無）；杜克大學的運動對舍曲林試驗（含在家自己運動的第三組）；咖啡與阿斯巴甜；抗氧化物與葉酸；FOIA 文件揭露 FDA 知道 Paxil、Prozac 效果沒比安慰劑好多少。瑪格麗特的信可當開場，標明是讀者來信。
+   避開 daily-dozen 的紅綠燈與十二清單、避開 cognitive-distortions（認知層）與 stress-physiology；這頁是營養書落在心理區，分類放 stress-mental-health 是刻意的。
+   claim 頁；related 連 daily-dozen、cognitive-distortions、managing-stress-and-burnout、exercise-and-the-brain。
+
+6. nutrition-sleep `heart-healthy-is-brain-healthy`「對心臟好的也對大腦好：中風、阿茲海默與飲食」— how-not-to-die（docs/01-preventing-and-reversing-disease/03-brain-diseases）。
+   只寫：九成中風是缺血性、無聲中風的累積；纖維每天多 7 克中風風險降 7%、97% 的美國人纖維不足、童年就開始累積（二十四年追蹤）；鉀與柑橘類；抗氧化物排行榜；阿茲海默「無法治癒，但可以預防」、阿茲海默醫師 1901 年就記下奧古斯特的動脈硬化、血管疾病假說與六十五歲腦血流少 20%；全球十倍差距（賓州鄉間 19 對印度鄉村 3）、移民研究（日裔美國人、奈及利亞對印第安納波利斯低四倍）、日本動物性脂肪 1961 到 2008 年增近 600%、素食三十年以上失智風險低三倍；ApoE4（七分之一的人帶一份、三倍、九倍）與「奈及利亞悖論」；莓果與綠葉菜；AGEs。
+   避開 daily-dozen 已寫的心臟與糖尿病逆轉、避開 why-we-sleep 的腦部清除；數字密，起草代理每個數字回源。
+   claim 頁；related 連 daily-dozen、nutrition-foundations、healthspan、exercise-and-the-brain。
+   第三鏟候選：15-iatrogenic-disease（醫源病是第三大死因、醫師洗手遵從率不到四分之一、輻射、「阿斯匹靈：吃植物不是吃藥丸」、大腸鏡的三種篩檢）是書裡最尖銳的一章，但站上沒有分類承接「醫療本身的代價」；若要開，落 fitness-body 與 healthspan 並列。
+
+##### 不開（1 本）
+
+- tools-of-titans：不開。第一鏟 titans-health-toolbox 已把 01-healthy 十一位受訪者整部攤成選單；02-wealthy 是創業與投資題（不在本站題域），03-wise 十一位（Jocko、Naval、Sam Harris、BJ Miller、Brené Brown）再開只會是第二份選單。體裁是訪談語錄合輯、一人一條目、按人物查閱，導覽第三章已寫明「當菜單抄，不當教條讀」。tier 維持 spine。建議加進 `export-deepen-targets.py` 的 EXCLUDED_KINDS：「訪談語錄合輯，一人一條目」（同體裁的 Tribe of Mentors 章節數不到門檻，暫不列）。
+
+##### 小結
+
+- 開 6 張（4HB 2、BLS 1、HBR 壓力指南 1、How Not to Die 2），全部 claim 頁；不開 1 本，tier 不動，建議進體裁排除。
+- 第 3 張附帶一筆 B 型債：nutrition-foundations 的能量平衡論掛錯書（江部書裡講的相反），起草前回原文重寫並進 SOURCING-DEBT；重寫後與第 3 張正好是導覽官司一的兩造，日後若要開 debate 頁「減脂算熱量還是算醣」，兩造頁都在站上了（Ferriss 第 2 張是第三造：規則 1 明說「卡路里進、卡路里出說不通」）。
+- 旁註（既有頁漏掛 anchor，不必等第二鏟）：exercise-as-leverage 的 details 用了 4HB 的最小有效劑量與 100°C 燒開水，furtherReading 沒掛 4-hour-body → 補 docs/01-principles/01-minimum-effective-dose/。
+- 起草順序：3（含重寫 nutrition-foundations 與導覽第四章改句）→ 2、1 → 5、6 → 4。
+
+#### habits-note 第二鏟選題單（4 本）
+
+##### 開單（3 張）
+
+1. productivity `four-elements-of-focus`「一年該聚焦在哪：優勢、弱點、差異與熱情的交集」— 18-minutes（docs/02-what-is-this-year-about/01-when-you-dont-know-what-to-do、docs/02-what-is-this-year-about/02-reinvent-the-game、docs/02-what-is-this-year-about/03-take-the-shrimp、docs/02-what-is-this-year-about/04-heated-seats、docs/02-what-is-this-year-about/05-pilot-who-saved-155、docs/02-what-is-this-year-about/07-recipe-for-right-work、docs/02-what-is-this-year-about/08-what-matters-to-you）。
+   第一鏟（weekly-planning-18-min）掛 03/08 的 18 分鐘儀式與 02/13 的年度焦點，年度焦點只在 core 一條裡當「漏斗」帶過；第二部前十二章沒用。
+   只寫：沒有計畫時先靠四個元素出發、年度焦點落在四個元素的交集上（02/01）；發揮優勢（02/02 重新發明比賽）、擁抱弱點（02/03 我就拿蝦子）、突顯差異（02/04 加熱座椅）、熱情的四個面向（慾望 02/05 拯救 155 人的機長、自在 02/07「放棄一部分」的求職配方、意義 02/08 美國時間使用調查的 8.68／7.78／3.45 小時與臨終者最常後悔的兩件事）。
+   避開 weekly-planning-18-min 的三段儀式與好儀式四條件；避開 big-rocks-first、wildly-important-goals（別本書）；第一部 Pause 的「FIND ME 按鈕」只作一句引入。
+   claim 頁；related 連 weekly-planning-18-min、big-rocks-first、wildly-important-goals、own-your-168-hours。
+   第三鏟候選：04-what-is-this-moment-about 十八篇（精通分心、精通主動、精通界線），與 focus 區三頁的重疊要再量。
+
+2. discipline `territory-versus-hierarchy`「領地還是階序：藝術家用什麼定義自己」— war-of-art（docs/03-beyond-resistance-the-higher-realm/09-territory-versus-hierarchy、docs/03-beyond-resistance-the-higher-realm/07-the-ego-and-the-self、docs/03-beyond-resistance-the-higher-realm/10-the-supreme-virtue、docs/03-beyond-resistance-the-higher-realm/11-the-artists-life）。
+   第一鏟（resistance-and-turning-pro）掛第一、二部；writing 站同名頁掛同兩部；第三部「更高的領域」兩站都沒碰。
+   只寫：個體用兩種方式定義自己，階序為何是預設值；階序在規模上崩潰（二十人到大約八百人的部落、紐約太大）；對藝術家而言用階序定義自己是致命的，「寫手」是用階序的方式寫作（McKee 的定義）、《重返榮耀》的反例；領地的五個性質（提供養分、沒有外部輸入也維繫我們、只能獨自佔有、只能靠工作取得、精確返還你投入的東西）；自我與本我各自相信什麼（07）；至高美德是對失敗的蔑視、克里希那的「擁有勞動的權利，但不擁有勞動果實的權利」（10）；這個問題只能用行動回答（11）。
+   避開第一、二部的抗拒與職業者準則；繆思、天使、開始與持續的魔法（03/01、02、04、05）歸 writing 站（見下）；seeAlso 連 writing 的 craft-mindset/resistance-and-turning-pro。
+   claim 頁；related 連 resistance-and-turning-pro、identity-based-habits、callus-the-mind、never-finished。
+   給 writing 站的分工建議：writing 拿繆思那一面，開 `craft-mindset/invoking-the-muse`「召喚繆思：上工前的禱詞、開始的魔法與誰在替你修稿」（docs/03-beyond-resistance-the-higher-realm/01-angels-in-the-abstract、02-invoking-the-muse、04-the-magic-of-making-a-start、05-the-magic-of-keeping-going，視需要加 03-testament-of-a-visionary、06-life-and-death；四個目錄都驗過存在）。寫作實務的那一面都在那幾章：加州小屋二十六個月與「今天就開始下一本」、健行帶口袋錄音機「誰在替我們修稿」、莫瑞的「投身其中的那一刻天意也隨之移動」。領地對階序歸 habits，writing 頁用 seeAlso 連過來；related 可連 daily-practice、writers-block、perfectionism-and-fear（都在 writing 站 craft-mindset 底下）。
+
+3. productivity `procrastination-and-overload`「拖延與超載：現時偏誤的六招、來不及的七個戰術」— how-to-have-a-good-day（docs/02-productivity/04-beating-procrastination、docs/02-productivity/03-overcoming-overload）。
+   第一鏟（design-your-day）掛 introduction 與 07-energy，正文其實用到 01/01 的三個 A 與 06/01 的貼標籤、拉開距離、腹式呼吸（anchor 要補，見旁註）；第二部生產力四章沒用。
+   只寫：連諾貝爾獎得主都會拖延與現時偏誤；六招（把好處畫進腦海、規劃短期獎勵、把第一步綁在喜歡的事上、放大「不做」的代價、預先承諾、問五個為什麼）；超載的七個戰術（正念暫停、把記憶外包、問「最重要的一件事」、「最小的第一步」、比較利益、「正向地說不」的四步驟、劃出界線）。
+   避開 make-distraction-hard 的預先承諾（Eyal 版）與 hooked-model 的五個為什麼（也是 Eyal）：這兩招只在 Webb 的版本上寫一句、related 連過去；避開 02/01 單工與 02/02 刻意休息（timeboxing、deliberate-rest 已各有頁）。
+   claim 頁，importance 3；related 連 design-your-day、make-distraction-hard、make-it-tiny、willpower-science。
+   三張裡最薄的一張，技巧清單體；排最後，可砍。
+   **裁決（主會話）**：不開。技巧清單體，兩招是 Eyal 的轉述而原典頁已在；design-your-day 的 anchor 缺口照旁註補。進已裁定清單。
+
+##### 不開（1 本）
+
+- 365-days-with-self-discipline：不開。體裁是日課（52 週、每週七則、每則數百字的每日短文），第一鏟 discipline-is-freedom 掛序言與第一週，已把全書的命題（走難的路、選擇的漣漪效應、意志力肌肉、設計系統勝過仰賴自制）寫完，其餘五十一週是同一命題的每日變奏，再開只會是語錄選。tier 維持 spine。建議加進 EXCLUDED_KINDS：「日課型，365 則每日短文按週合輯」（philosophy 的 Daily Stoic 是同一體裁，那本因章節數不到門檻沒進榜）。
+
+##### 小結
+
+- 開 3 張，全部 claim 頁；不開 1 本，tier 不動，建議進體裁排除。
+- 與 writing 站分工：War of Art 第三部拆成兩面，habits 拿領地對階序，writing 拿繆思；兩頁互連。
+- 旁註（既有頁漏掛 anchor，不必等第二鏟）：design-your-day 正文的三個 A 來自 docs/01-priorities/01-choosing-your-filters/，貼標籤／拉開距離／腹式呼吸來自 docs/06-resilience/01-keeping-a-cool-head/，三件好事與峰終來自 docs/07-energy/01-topping-up-the-tank/（現掛 07-energy 部層級，祖章可接受；前兩章要補）。
+- 起草順序：2 → 1 → 3。
+
+#### tools-note 第二鏟選題單（1 本）
+
+##### 開單（2 張）
+
+1. focus-attention `autotelic-self`「自成目的的自我：把威脅轉譯成挑戰的四條規則」— flow-psychology-of-happiness（docs/09-cheating-chaos/01-tragedies-transformed、docs/09-cheating-chaos/02-coping-with-stress、docs/09-cheating-chaos/03-power-of-dissipative-structures、docs/09-cheating-chaos/04-autotelic-self-a-summary）。
+   第一鏟（flow-challenge-skill-balance）掛 02、03、04、07 四章，連第七章工作的弔詭都用了；第九章「欺騙混沌」整章沒碰。
+   只寫：「最優經驗是健康與財富之上的糖霜」的反駁；米蘭研究三群（下半身癱瘓者、視障者、街頭流浪者）；災難的兩條岔路（摧毀自我，或提供一個新的更迫切的目標）、三種抗壓資源（外部支持、心理資源、應對策略）、四十歲被解雇的 Jim；耗散結構（普里高津、火）、轉化技能在青春期晚期形成（健康的青少年平均只沮喪半小時）；自成目的的自我的四條規則（設定目標、沉浸於活動之中、留意正在發生的事、學會享受當下的經驗）與「還缺最後一步」。
+   避開既有頁的精神熵、八個成分、黃金比例、自成目的的人格（04/03 的 Hamilton 與 Rathunde 已在既有頁）；「心智統御身體」那段的整體醫學引述（卡辛斯、席格）只點名不展開。
+   claim 頁；related 連 flow-challenge-skill-balance、deep-work-value、lead-through-noise、finitude-four-thousand-weeks。
+
+2. focus-attention `taming-solitude`「獨處為什麼難：沒有外在結構時的週日早晨」— flow-psychology-of-happiness（docs/08-enjoying-solitude-and-other-people/01-conflict-between-being-alone-and-with-others、docs/08-enjoying-solitude-and-other-people/02-pain-of-loneliness、docs/08-enjoying-solitude-and-other-people/03-taming-solitude）。
+   只寫：被排除在人際之流外的恐懼（拉丁文「活著」是 inter hominem esse、放逐僅次於處死）；「他人即地獄」的矛盾怎麼解；最糟的心情發生在「獨自一人、且沒有任何事需要做」、獨居且不上教堂的人週日早晨最低落；三種逃避策略（電視、藥物、性與自我傷害）與代價；終極測試「獨處時你做什麼」、青少年時期與資訊時代；馴服獨處（Dorothy 的島、Susan Butcher、「結構時間比結構空間更重要」）。
+   避開既有頁第七章的「閒暇的 52% 落在冷漠區」（這頁從獨處切入，不重講工作對閒暇）；08/04 家庭與 08/05 朋友不寫（關係題，歸 relationships 站）；digital-minimalism、internal-triggers 的獨處論是 Newport 與 Eyal，related 連過去不重講。
+   claim 頁；related 連 flow-challenge-skill-balance、digital-minimalism、internal-triggers-indistractable、hyperfocus-and-scatterfocus。
+
+##### 小結
+
+- 開 2 張，全部 claim 頁。
+- 結構旁註：Flow 在 career、growth、learning、wellness、life-meaning 五站都判 delegated，tools 接住，但 tools 的分類只有專注、習慣、筆記、時間，第十章「意義的形成」（目的的培養、人生主題）沒有分類承接，是 life-meaning 的題卻 delegated 出去了。建議 life-meaning 把 flow 改回 support 並在導覽帶一句，或自挖一頁 10-the-making-of-meaning，否則那章永遠沒人寫。第六章「思想的心流」（閱讀、文字遊戲、業餘科學、終身學習）是 tools 的第三鏟候選。
+- 起草順序：1 → 2。
+
+#### life-meaning-note 第二鏟選題單（1 本）
+
+##### 不開（1 本）
+
+- bigger-leaner-stronger：不開。life-meaning 的 progressive-overload 掛 05-exercise-advice 整部，與 wellness 的 exercise-as-leverage 是同一命題的兩個版本；這本書的第二鏟（飲食端）歸 wellness（見 wellness 第 3 張），life-meaning 的 body-wellness 區不收飲食頁。03-fitness-mindset 五章是 McGonigal 意志力三面向與 Duhigg 習慣迴路的轉述，habits 站已有原典的頁。tier 維持 spine，承諾由既有頁兌現。DEEPEN-TARGETS 會一直列它，這是工具不記「不開」判斷的限制。
+
+#### 四站總結
+
+- 開 11 張（wellness 6、habits 3、tools 2），全部 claim 頁，沒有 debate：這批都是單一作者的方法書，「一個問題多本書吵」的形狀只在 wellness 的減脂題出現，但要等第 3 張與 nutrition-foundations 重寫完才有兩造頁。
+- 不開 3 本（Tools of Titans、365 Days、life-meaning 的 BLS），tier 都不動。
+- 建議加進 `export-deepen-targets.py` EXCLUDED_KINDS 兩本：tools-of-titans「訪談語錄合輯，一人一條目」、365-days-with-self-discipline「日課型，365 則每日短文按週合輯」。
+- 一筆 B 型債（wellness nutrition-foundations，能量平衡論掛在講相反話的江部書上）與兩筆既有頁漏掛 anchor（wellness exercise-as-leverage 補 4HB 的 MED 章；habits design-your-day 補 01/01 與 06/01）。
+- 起草順序建議：wellness 3（先清債）→ habits 2、tools 1 → wellness 2、1、5、6 → tools 2、habits 1 → wellness 4 → habits 3。
+
+#### thinking／startup／writing／templar／newport 第二鏟選題單（DEEPEN-TARGETS 11 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用；體裁先判。這批 11 本裡有四本是「一條一則」的條目合輯（思考的藝術 99 則、Rework 近 90 節、Rules of Management 107 條、How to Win at College 75 條），每本先問「有沒有一組相鄰條目撐得起單一主張」，撐不起的不開；撐得起但站上已有同一主張的也不開。章節目錄全部 `[ -d ]` 驗過；單上引的原話全部回書 repo grep 過，查不到的改寫成「書裡講到」。
+
+##### 開單（9 張）
+
+**writing-note（4 張）**
+
+1. nonfiction-copy `reports-vs-stories`「報導與故事：關鍵問題、內部懸崖與路上的金幣」— writing-tools（docs/03-blueprints/02-learn-the-difference-between-reports-and-stories、docs/03-blueprints/07-generate-suspense-use-internal-cliffhangers、docs/03-blueprints/08-build-your-work-around-a-key-question、docs/03-blueprints/09-place-gold-coins-along-the-path、docs/03-blueprints/12-report-and-write-for-scenes、docs/03-blueprints/13-mix-narrative-modes、docs/03-blueprints/16-write-toward-an-ending）。
+   第一鏟（nuts-and-bolts）只開第一箱「螺絲與螺帽」，第三箱「藍圖」十六件工具一件沒用；導覽第五章說「第一箱已開頁」。
+   只寫 Clark 給新聞寫作者的敘事工具：報導給資訊、故事給經驗（工具 02 的 IMPORTANT 框原話「一個用來呈現資訊，另一個用來呈現經驗」）、把 5W1H 解凍成故事、故事需要一具引擎（一個由行動為讀者解答的問題）、內部懸崖「要推動讀者前進，就讓他們等待」、金幣「用高潮點獎賞讀者，尤其是在中段」與記者把好料全搬到最上面的劣勢、場景是敘事文學的基本單位、「斷線」形式混合敘事模式、朝結尾寫「幫助讀者閉合意義的圓」。
+   避開 nonfiction-structure（McPhee 的「結構從素材長出來」）、story-as-persuasion 與 unexpected-and-curiosity（Heath 的好奇心缺口是同一機制的另一本書，只在 related 連）、story-shape 與 scene-turns（McKee 的判準）；工具 03「對話是行動的一種形式」與站上 dialogue-as-action（McKee）同題，不重講；工具 06 伏筆只點一句。
+   claim 頁；related 連 nuts-and-bolts、nonfiction-structure、unexpected-and-curiosity、scene-turns、story-shape。
+
+2. style-clarity `ladder-of-abstraction`「抽象之梯：何時上、何時下、狗的名字」— writing-tools（docs/02-special-effects/12-climb-up-and-down-the-ladder-of-abstraction、docs/02-special-effects/04-get-the-name-of-the-dog、docs/02-special-effects/06-seek-original-images、docs/02-special-effects/10-choose-the-number-of-elements-with-a-purpose-in-mind、docs/02-special-effects/13-tune-your-voice）。
+   第一鏟只開第一箱；第二箱「特殊效果」十三件工具一件沒用。
+   只寫梯子的三個位置與「學會何時該展示、何時該講述、以及何時兩者並用」、「去問那隻狗的名字」的重點是好奇心不是想像力與細節的說服功能、陳腔濫調是思考的替代品與「拒絕第一層創意」、元素的數量（一是力量、二切分世界、三是完整、四以上是清點）、聲音的測試是「把故事大聲讀出來」。
+   避開 concrete-over-abstract（Heath 的「具體勝於抽象」是單向的，這頁的主張是梯子兩端都要、死區在中段，起草時明寫這個差別）、sentence-rhythm 與 nuts-and-bolts 已講的句長與標點（工具 08、09 不掛）、characters-and-actions。
+   claim 頁；related 連 nuts-and-bolts、concrete-over-abstract、sentence-rhythm、exposition。
+
+3. story-structure `structure-as-perception`「結構為什麼存在：排序是一種感知行為」— into-the-woods（docs/03-the-forest/01-showing-and-telling、docs/05-home-again-changed/04-home-again、docs/05-home-again-changed/05-why）。
+   第一鏟（five-act-map）掛第一、二部，寫的是五幕、中點、改變的路線圖、碎形與 Snyder 的節拍表；導覽第三章寫了「Yorke 給的不是第三條路」的判詞，但「為什麼是這個形狀」在站上沒有頁。
+   只寫三件事：庫勒雪夫效應與「二加二的統一理論」（觀眾自己算出四，電視草創期為何背棄這種語言）、第四部「給對立面平等的權利」（主題就是那場論證、一個故事只值它的反論那麼好、主題會自己浮現）、第五章「為什麼」（七種說故事的常見解釋被「如果九成的囚犯喝茶，我們不能下結論說茶要為九成的犯罪負責」懸置；「排序是一種感知行為，而正是這個行為給了我們敘事、修辭與戲劇」；「坎伯沒有發現神話結構，他發現的是故事結構」、「單一神話的核心單位，其實不過就是一場戲」，三句都在 05-why 逐字找得到）。
+   避開 five-act-map 的五幕與中點、monomyth（坎伯自己的語法，這頁只寫 Yorke 對坎伯的翻案，related 連過去讓兩造並列）、exposition（McKee 的「讓交代隱形」只在講到展示與講述時點一句）、storytelling-brain（Storr 的預測腦是另一本書的機制論，不混）。
+   claim 頁；related 連 five-act-map、monomyth、storytelling-brain、premise-and-theme、exposition。第三鏟候選：第五部一到三章的電視結構（迷你影集一集就是一幕、影集為什麼撐不過三年），約一萬六千字，等站上有影視線再開。
+
+4. craft-mindset `invoking-the-muse`「召喚繆思：上工前的禱詞、開始的魔法與誰在替你修稿」— war-of-art（docs/03-beyond-resistance-the-higher-realm/01-angels-in-the-abstract、docs/03-beyond-resistance-the-higher-realm/02-invoking-the-muse、docs/03-beyond-resistance-the-higher-realm/03-testament-of-a-visionary、docs/03-beyond-resistance-the-higher-realm/04-the-magic-of-making-a-start、docs/03-beyond-resistance-the-higher-realm/05-the-magic-of-keeping-going；五個目錄 `[ -d ]` 驗過）。
+   第一鏟（resistance-and-turning-pro）掛第一、二部整部；habits-note 同名頁掛的也是第一、二部，兩頁已互 seeAlso。第三部「超越抗拒」兩站都沒碰，本輪拆成兩面：habits 拿 06–11 的身分論（領地對階序，見 habits 單第 2 張），writing 拿 01–05 的工作面。
+   只寫：天使與繆思是 Pressfield 自己對「靈感從哪來」的說法（抽象中的天使、每天上工前念的荷馬禱詞）、加州小屋二十六個月與寫完第一本就「今天開始下一本」、健行帶口袋錄音機與「誰在替我們修稿」、莫瑞那句投身其中的那一刻天意也隨之移動（三件在章裡都 grep 到）、開始的魔法與持續的魔法。
+   避開第一鏟的抗拒性格與職業者準則；避開 habits 第 2 張的領地對階序、自我對本我、對失敗的蔑視（06–11 不掛）；finding-your-voice（Lamott）與 daily-practice 的實務只在 related 連。
+   claim 頁；related 連 resistance-and-turning-pro、daily-practice、writers-block、perfectionism-and-fear（craft-mindset 底下實存）；seeAlso 連 habits 站 discipline/territory-versus-hierarchy（habits 第 2 張落地後再掛）。
+   **裁決（主會話）**：fork 原單開的是 `territory-versus-hierarchy`（03/06–10），與 habits fork 撞題；依「身分論歸 habits 的 discipline、工作面歸 writing 的 craft-mindset」拆分，原單作廢。
+
+**thinking-note（2 張）**
+
+5. affect `temperament-is-not-destiny`「氣質不等於命運：創傷的再學習與害羞孩子的杏仁核」— emotional-intelligence（docs/04-windows-of-opportunity/02-trauma-and-emotional-relearning、docs/04-windows-of-opportunity/03-temperament-is-not-destiny）。
+   第一鏟（emotional-hijacking）掛第一部第二章與第二部一到五章，寫的是視丘直達杏仁核的捷徑、五個領域、糖果測驗、宣洩的謬誤；第四部「機會之窗」三章一章沒用，而書站概覽指出的全書內部張力（糖果測驗被當成「可習得」的證據，第四部卻說氣質有生理基礎）正落在這兩章。
+   只寫：斯托克頓校園槍擊後孩子自發玩起的「玩普迪」與恐懼怎麼被刻進記憶、創傷後壓力症作為邊緣系統的障礙與再學習的三階段、凱根的四種氣質類型與害羞對大膽那條軸、「膽怯的孩子遺傳上具有較高濃度的正腎上腺素或其他活化杏仁核的腦內傳導物質」、湯姆與拉爾夫、八到九個月大出現陌生人恐懼、以及為什麼童年可塑所以氣質不等於命運。
+   避開 emotional-hijacking 的捷徑解剖與五領域、somatic-markers、constructed-emotion；第四部第一章「家庭的熔爐」（父母的三種情緒錯誤與情感教練）屬親職題域不掛；第三部婚姻章（高特曼四道警訊）歸 relationships-note（那站收了 Gottman 原典）。
+   claim 頁；related 連 emotional-hijacking、primal-emotion-systems、constructed-emotion、somatic-markers。life-meaning-note 已把這本 delegated 給 thinking，不必另判。
+
+6. judgment-bias `why-smart-people-do-dumb-things`「為何聰明人也會做蠢事：誤判寫在解剖與演化裡」— seeking-wisdom（docs/01-introduction、docs/02-what-influences-our-thinking/01-our-anatomy-sets-the-limits-for-our-behaviour、docs/02-what-influences-our-thinking/02-evolution-selected-the-connections-that-produce、docs/02-what-influences-our-thinking/03-adaptive-behaviour-for-survival-and-reproduction）。
+   第一鏟（numbers-and-evidence）掛第三篇物理與數學整篇；導覽第三章說「取其數學面」。第一篇「什麼影響我們的思考」是書站概覽點名的本書對 Parrish 的差異（能回答偏誤為什麼存在），站上沒有頁從演化講誤判的來源。
+   只寫 Bevelin 的因果鏈：改變解剖結構就改變行為（Gage、Whitman 的腫瘤壓迫杏仁核）、突變與天擇、痛苦與愉悅是導航系統、自利是最底層特徵而合作只在符合自利時穩定（囚犯困境）、恐懼與快速分類在狩獵採集環境是有效策略在現代才變錯誤，收在 02/03 的「為何聰明人也會做蠢事」一節。
+   避開 numbers-and-evidence 的全部、two-systems（康納曼的架構，這頁不用系統一二的詞）、primal-emotion-systems（Panksepp 的七個系統）、common-thinking-errors 的清單；第二篇二十八種傾向不掛（與 Dobelli 頁、predictable-irrationality、prospect-theory 重疊過半）；第四篇十二條指南也不開，反向思考與檢查清單已在 mental-models-toolkit（Super Thinking）。
+   claim 頁；related 連 numbers-and-evidence、common-thinking-errors、two-systems、primal-emotion-systems。
+
+**startup-note（2 張）**
+
+7. growth-scale `when-to-stop-blitzscaling`「何時開始、何時停止：閃電擴張的四個領先指標與創辦人的換檔」— blitzscaling（docs/03-strategy-innovation/01-when-should-i-start-to-blitzscale、docs/03-strategy-innovation/02-when-should-i-stop-blitzscaling、docs/03-strategy-innovation/03-can-i-choose-not-to-blitzscale、docs/03-strategy-innovation/06-how-the-role-of-the-founder-changes-in-each-stage）。
+   第一鏟（blitzscaling）掛第一、二、四、六部，寫了定義、四象限、五階段、成長因子與限制、九條規則與責任；第三部「策略創新」整部沒掛，而書站概覽說「何時該停的四個領先指標」是全書最負責任的設計。
+   只寫：開始前要丟掉哪些正常商業規則（01 的對照表）、「你在市場很大、或成長很快時閃電擴張；如果你的市場停止成長、或觸及上限，你就該停止」、四個領先指標（成長率下滑相對市場與對手、以及 02 列的其餘三項）、耗盡頂部空間的症狀是內部衝突與業務副總被拿來背鍋、Twitter 2014 年底「該鬆開油門、聚焦效率的訊號」、亞馬遜對 The French Laundry（逾 541,900 人對不到 50 人）說明可以選擇不閃電、創辦人在五個階段各做什麼（親手拉槓桿、管理拉槓桿的人、……）。
+   避開第一鏟的定義與象限、九條規則、火場分流；grow-fast-or-slow 的 Masters of Scale 逃逸速度只在 related 連；第五部「防守閃電擴張」是在位者視角，不掛，留給 business-strategy-note 或第三鏟。
+   claim 頁；related 連 blitzscaling、grow-fast-or-slow、wartime-vs-peacetime-ceo、persevere-or-pivot。
+
+8. team-culture `delegate-dont-abdicate`「授權不是退位：三百三十萬美元的教訓」— anything-you-want（docs/04-communication-and-management/04-delegate-or-die、docs/05-legacy-and-exit/03-my-mistake、docs/05-legacy-and-exit/05-trust-but-verify、docs/05-legacy-and-exit/06-delegate-dont-abdicate）。
+   第一鏟（purpose-over-money）掛 01/02 指南針，寫的是意義、烏托邦、being 不是 having；第四、五部的授權與治理這條線沒碰，而書站概覽的第一條限制正是「唯一一次系統真的壞掉，書的回應是退出而不是修正哲學」。站上沒有頁講創辦人的授權。
+   只寫：2001 年八名員工時所有事情都經過 Derek、每五分鐘一個問題的授權陷阱、不讀文件就簽名的習慣怎麼在四年後變成 CD Baby 成了別人的公司與 330 萬美元、數位發行那個「每張專輯、每家公司、每一週、無論如何都要送到」的唯一要求怎麼被簽了字的人放掉、過度授權（辦公室怎麼布置、健保方案投票決定）之後發生什麼、授權與退位的分界。
+   避開 purpose-over-money 的指南針與四條規則、enough-as-strategy 與 finish-big-patterns 的退場；05/07「我知道我做完了」與 05/08 捐給慈善不掛（那是退場題，不是授權題）。
+   claim 頁，importance 3；related 連 purpose-over-money、take-care-of-your-people、work-on-not-in-the-business、first-who-then-what。這是九張裡最薄的一張：四章合計不到四千字；起草者若寫不出八百字以上的正文，改成在 purpose-over-money 加一個 details，不勉強開頁。
+   順帶一筆要修既有頁：purpose-over-money 正文的 CD Baby 四條規則在 01/04-make-a-dream-come-true、「報名跑馬拉松不會想搭計程車到終點線」與 being 對 having 在 05/01-being-not-having，anchor 卻只掛 01/02，起草時一併補這兩章。
+   **裁決（主會話）**：不開新頁。四章不到四千字，頁會是來源的六成；改成在 purpose-over-money 加一條 details「授權不是退位」並掛上面四章 anchor，連同 01/04、05/01 一次補。
+
+**templar-note（1 張）**
+
+9. work `on-the-companys-side`「站在公司這邊：對上司、同儕與部門戰爭的不成文規矩」— rules-of-management（docs/02-managing-yourself/79-let-company-see-you-are-on-its-side、docs/02-managing-yourself/80-dont-bad-mouth-your-boss、docs/02-managing-yourself/81-dont-bad-mouth-your-team、docs/02-managing-yourself/82-accept-bosses-will-be-wrong、docs/02-managing-yourself/83-accept-bosses-are-scared-too、docs/02-managing-yourself/89-dont-back-down、docs/02-managing-yourself/90-dont-play-politics、docs/02-managing-yourself/91-dont-criticize-other-managers、docs/02-managing-yourself/93-dont-intimidate、docs/02-managing-yourself/94-be-above-interdepartmental-warfare、docs/02-managing-yourself/95-fight-to-the-death-for-your-team、docs/02-managing-yourself/96-aim-for-respect）。
+   第一鏟（manage-the-process-not-the-people）掛兩部卷層，寫的是第一部宣言，第二部只在一個 details 裡點了 80、81、90、94、95 各一句；導覽第五章明寫「《管理的法則》管自己的 70 條還沒開頁」，書單 note 說這本要補的是「教科書略過的不成文規範」，79 到 96 這一組就是。
+   只寫這十二條：讓公司看見你是自己人的具體動作（買股票、編內部通訊）、不說上司與團隊的壞話、接受上司也會錯（拒絕執行或辭職之外的選項）、「老闆也是人」會恐懼會偏執、堅定但不具攻擊性（「不需要咄咄逼人，只需要堅定」）、不玩政治、不批評其他主管、「絕不用職位來壓人」、超越部門戰爭但為團隊拼死戰鬥、追求的是尊重。
+   避開第一鏟的宣言與第一部、85「表現得像上一級的人」（與 Rules of Work 的 act-one-step-ahead 同一主張，不掛）、67 紀念牌匾（第一鏟已用）、keep-it-under-your-hat 的印象管理。
+   claim 頁；related 連 manage-the-process-not-the-people、act-one-step-ahead、difficult-people、understand-before-influence。leadership-note 已把這本 delegated 給 templar，不必另判。
+
+##### 不開（3 本）
+
+- art-of-thinking-clearly《思考的藝術》（thinking-note）：不開。99 則各自獨立的短文，每則一千餘字，是他人實驗的轉譯（泰特洛克、康納曼、Asch），而站上已有那些原典的頁（two-systems、prospect-theory、forecasting-as-skill、how-false-beliefs-form）；書自己說它拒絕組織、要的是隨手翻查。唯一不是轉譯的材料是後記（熱理論對冷理論、演化解釋、米開朗基羅的負面知識，約兩千字），重疊測試落在「補進既有頁」：建議在 common-thinking-errors 加一個 details，不開新頁。tier 維持 spine。**建議進 EXCLUDED_KINDS**，體裁理由：近百則互不相承的偏誤短文，每則是他人研究的轉譯。
+- rework《工作大解放》（startup-note）：不開。格言體雜文集，近九十節多數一兩頁（書站概覽原話），導覽第三章已判「101 章雜文集，一頁抓主軸即兌現」。逐部看過：第九部雇人（12 節，約七千字：痛了才雇、履歷是笑話、面試價值有限、試工）是唯一撐得起單一主張的一組，但站上 hire-for-attitude 與 first-who-then-what 已占這個位置；第八部行銷的「建造受眾、用教學勝出」是書站概覽指出的不可複製資產（Rails），是導覽層的判讀不是概念頁。tier 維持 spine。**建議進 EXCLUDED_KINDS**，體裁理由：格言體雜文集，近九十節各一兩頁、書自己拒絕給流程只給立場。
+- how-to-win-at-college《大學生勝出的 75 個祕訣》（newport-note）：不開。75 條各自獨立，兩條原則（睡眠是不可協商的邊界、把義務換成排定的時間區塊）在站上都已有更成熟的版本：時間分塊、五十分鐘區塊、工作進度日誌（12、22、52）在隔年《如何成為全 A 學生》重寫過一遍，pseudo-work 一頁已承接；「別經營人脈、深耕一件事、大計畫」（11、16、66）已是 career-capital-over-passion 的「學生版」一節；測驗與回想法（70）屬 learning-note 題域，那站有提取練習的頁。要做的只有一筆 anchor 補掛：career-capital-over-passion 的「先變得值得認識」若正文用到 66，補 docs/66-dont-network。tier 維持 spine。不建議進 EXCLUDED_KINDS：條目可以成組，是選題判斷不是體裁。
+
+##### 小結
+
+- 開 9 張，全部 claim 頁，沒有 debate：十一本都是單一作者的書，沒有「一個問題多本書吵」的形狀。
+- 不開 3 本，tier 都不動；兩本建議進 `export-deepen-targets.py` 的 EXCLUDED_KINDS（思考的藝術：轉譯型偏誤短文合輯；Rework：格言體雜文集），How to Win at College 與 Rules of Management 同是條目合輯但可以成組，不排除。EXCLUDED_KINDS 若收了前兩本，要在 docstring 寫清楚判準是「每則互不相承且全書無主軸」，不是「條目式」本身，否則 templar-note 整站都會被排除。
+- 起草順序建議：writing 1、2（Clark 每件工具三到四千字，材料最厚）→ writing 3（Yorke 三章三萬字）→ thinking 5（EQ 兩章兩萬五千字）→ startup 7 → thinking 6 → writing 4 → templar 9 → startup 8（最薄，有退路）。
+- 順手要修的既有頁 anchor（事實在哪章就掛哪章）：startup purpose-over-money 補 01/04 與 05/01（見第 8 張）；writing nuts-and-bolts 正文用到工具 2、3、4、6、7、8（2-3-1 強調、主動被動三條拇指法則、-ing、128 字長句、模式加轉折），anchor 只掛 01、05、09、10，補掛 `docs/01-nuts-and-bolts/` 箱層或那六章。
+- 姊妹站分工：War of Art 第三部歸 writing、第一二部兩站各留一頁不動；EQ 婚姻章歸 relationships（有 Gottman 原典）；Blitzscaling 第五部的防守視角留給 business-strategy 或第三鏟；Rules of Management 第 85 條不重講 Rules of Work 的 act-one-step-ahead。
+
+#### travel-note 第二鏟選題單（DEEPEN-TARGETS 14 本，Fable 開單 2026-11-12）
+
+判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁，主張要標得到章節 anchor，與既有 40 頁重疊低於一半，能被單獨引用。
+這站的 14 本候選全在 2026-09-26 Batch 3 各開過一頁，目的地書那一頁多半就是「領隊講解底氣」的全部；第二鏟只為兩種情況開：工藝書還有整部沒碰（podcast 兩本、Grammar of the Shot、Murch、Steves、Holloway），或目的地書裡有一條團會走到、第一鏟沒寫的主張線（芬蘭極光線、華東線、柏林、紐西蘭的今天、阿布辛貝、荷比西葡與奧塞的美術館）。
+14 本都只有 travel-note 收（podcast-producer-guide 在 marketing-note 判 tool、零頁），沒有姊妹站分工問題；seeAlso 只在下面點名的既有路徑上掛。
+章節目錄名全部 `[ -d ]` 驗過；單上沒有引任何原話，只用書 repo 的章節標題與頁上已有的事實。
+
+##### 開單（16 張）
+
+1. podcast `interview-episodes`「訪談集：北極星、訪綱與預期管理」— podcast-producer-guide（ch02-blueprint-for-building-each-episode/s26-how-to-plan-an-interview-episode、ch02-blueprint-for-building-each-episode/s27-tips-for-interview-episodes）；alternative 掛 so-you-want-to-start-a-podcast（04-cast-it/01-get-the-guests-you-want、04-cast-it/02-prepare-guests-and-yourself、04-cast-it/03-first-rate-interview）。
+   第一鏟（episode-blueprint）掛 ch02 的 s21、s23、s24、s25、s210，寫的是單集結構元素、開場白、單口的四種大綱骨架；訪談集與來賓一字未提。
+   只寫粘瀚文的訪談集流程：用北極星引導訪談方向（含《敏迪選讀》《大人的 Small Talk》兩個案例）、訪綱怎麼準備、讓來賓自己介紹自己、付費訪談要講「人」不只講品牌、訪綱裡容易忽略的小事（三個名稱、播出日期、排版）、錄前的預期管理（長度、主持人習慣、哪些錯可以犯、認識環境）、按錄音鍵前別聊太多、把來賓的稿子放到旁邊、翻譯成聽眾懂的語言、講錯怎麼接、為來賓做總結；Meinzer 的三章只當對照：來賓三類（一般人、專家、名人）與邀約信、預訪做不做、九個讓訪問更順的做法。
+   避開 episode-blueprint 的結構元素與單口骨架、show-positioning 的十字描述與聽眾化身、writing-for-the-ear 的為耳朵寫；主持人該是誰、多人節目的角色分配歸第 2 張。
+   claim 頁；related 連 episode-blueprint、show-positioning、hosting-and-co-hosting（第 2 張）、writing-for-the-ear、travel-narrative-craft。
+
+2. podcast `hosting-and-co-hosting`「主持像你自己：口音、脆弱、共同主持與角色分配」— so-you-want-to-start-a-podcast（03-host-it/02-host-like-a-pro、03-host-it/03-consider-co-host、03-host-it/04-art-of-co-hosting、03-host-it/05-co-host-conflict）；alternative 掛 podcast-producer-guide（ch02-blueprint-for-building-each-episode/s22-who-should-be-the-host、ch02-blueprint-for-building-each-episode/s28-planning-multi-host-episodes）。
+   第一鏟（writing-for-the-ear）只掛 Meinzer 的 02-write-it/04-prepare-to-script；第三部「主持」整部沒用。
+   只寫 Meinzer 的主持課：口音與氣泡音別理批評、最重要的一條是聽起來像你自己（主持人要不要中立、適度展現脆弱）、十個主持技巧、共同主持的四個好處與怎麼找人、「是的，而且」規則與五個技巧、不合從極端到隱微、盡力了還是不行就結束；粘瀚文那兩章當對照：單口的好處、多人別超過四個、個人品牌自己主持而企業品牌由主管級主持、團隊夥伴主持的優缺點、多人節目的角色分配（知識、專業、立場、個性）、節奏與內梗。
+   避開 writing-for-the-ear 的「主持人也是素材」與艾拉降音高（那是念稿，這頁是主持人格與搭檔）、避開 episode-blueprint 的「主持人喜歡最重要」一句；來賓與訪綱歸第 1 張。
+   claim 頁；related 連 interview-episodes（第 1 張）、writing-for-the-ear、episode-blueprint、show-positioning。
+   對旅行社的落點明確：企業品牌由主管主持、領隊當共同主持或來賓，書裡有依據，起草時放在「套用」段，不當主張。
+
+3. podcast `one-transcript-many-outputs`「一稿多用：從逐字稿出發的內容行銷飛輪」— podcast-producer-guide（ch06-brand-promotion-strategy/s62-build-your-content-marketing-funnel-to-attract-and-convert-audiences、ch06-brand-promotion-strategy/s63-create-your-content-marketing-flywheel-combo）。
+   第一鏟與第六章無關；行銷站判 tool 也沒開頁，全星系沒有任何頁講內容行銷漏斗或飛輪（grep 過）。
+   只寫：內容行銷漏斗是什麼、各平台特性與「自然流量／長尾流量」兩個觀察指標、以文字／影片／圖文哪種媒材為主、知識濃度越高越能收費、基本與進階漏斗兩個範例、Podcast 適合「黏著」潛在客戶；再寫飛輪：三大部分、為什麼文章與 Podcast 最適合當起點、一稿多用三步驟（逐字稿 → 各平台文案 → 各平台媒材）、組合技依喜歡／擅長／「鈔」能力選、建議的發展順序。s57 裡「Youtube 要發嗎／Podcast 搭配 Youtube」若用到，anchor 補掛 ch05-publishing-and-first-impressions/s57-choosing-publish-times-define-your-release-strategy。
+   避開 seven-cs-channel-strategy 的七 C 與「頻道是電視台」、youtube-algorithm-and-retention 的演算法機制、show-positioning 的定位；這頁只講一趟素材怎麼拆成多個平台的產出。
+   claim 頁，importance 4；related 連 episode-blueprint、seven-cs-channel-strategy、youtube-algorithm-and-retention、documentary-story-design、travel-narrative-craft。
+   旅行社正好是「一趟團 → 電視節目、YouTube、Podcast、部落格」的形狀，套用段可以直接對應，但數字與順序只用書的。
+
+4. travel-video `shot-sizes-and-framing`「景別與構圖：團員入鏡怎麼框」— grammar-of-the-shot（01-shots-what-how-and-why/03-introduction-to-shot-types、01-shots-what-how-and-why/04-extended-family-of-basic-shots、02-basics-of-composition/01-framing-human-subjects、02-basics-of-composition/02-camera-angle、02-basics-of-composition/03-two-shot、03-composition-beyond-basics/02-use-of-lines、03-composition-beyond-basics/03-depth-of-film-space）。
+   第一鏟（shooting-for-the-edit）掛 05 整部、01/05、07 整章，寫的是涵蓋鏡頭、銀幕方向、180 度與 30 度法則、對應鏡頭與視線匹配、早開機晚停機、拍攝比、連戲陷阱；第一、二、三章的景別與構圖一個字都沒用。
+   只寫：三大基本鏡頭與九種景別、同一鏡頭的資訊與主題兩層意義、頭頂空間、主觀與客觀拍攝、視線空間與質量平衡、三分法、水平角度（正面到背面五種）與垂直角度（高低中性）、雙人鏡頭四種取景（側面、正對、過肩、髒單人）與權力關係、地平線與垂直線、荷蘭角、對角線與消失點、前中後三層深度與刻意遮蔽。07 的 11（頭頂空間）、16（重要的東西放上半部）、17（干擾物）若用到，anchor 補掛 07-working-practices（兩頁同掛一章可以，事實在哪章就掛哪章）。
+   避開 shooting-for-the-edit 的 180／30 度、跨剪接點的視線匹配（這頁的「視線空間」是一個畫格之內的留白，不是兩個鏡頭之間的呼應，起草時寫清楚）、連戲與拍攝比；鏡頭焦距與運鏡歸第 5 張。
+   claim 頁；related 連 shooting-for-the-edit、lens-and-camera-movement（第 5 張）、cutting-for-emotion、learning-to-see-a-place；seeAlso 掛 design 站 visual-basics/concord-conflict-contrast（路徑實存，同是構圖的對比原則）。
+
+5. travel-video `lens-and-camera-movement`「鏡頭與運鏡：透視、對焦、搖攝與推軌」— grammar-of-the-shot（03-composition-beyond-basics/05-camera-lens、06-dynamic-shots/03-blocking-talent、06-dynamic-shots/04-camera-in-motion、06-dynamic-shots/05-equipment-to-move-camera）。
+   第一鏟沒碰第六章；07 的 22（鬆開雲台跟拍）、29–32（長鏡頭、鏡頭中變焦、推軌動機、短焦減少手持晃動）在既有頁的 anchor 裡但正文沒寫。
+   只寫：鏡頭做的三件事、定焦與變焦、廣角擴張與望遠壓縮、人眼不會變焦、對焦引導注意力與景深、走位的兩種基本方向、手持的限制與適用情境、搖攝與俯仰要有動機、起幅／運動／落幅、腳架雲台、推軌的橫移與推拉（Dolly／Track／Truck）、慢速推近、變焦與推軌的差別。
+   避開第 4 張的景別與構圖、避開 shooting-for-the-edit 的涵蓋鏡頭與軸線；器材採購清單與品牌不寫。
+   claim 頁；related 連 shot-sizes-and-framing（第 4 張）、shooting-for-the-edit、cutting-for-emotion。
+
+6. travel-video `finding-the-cut`「剪接點怎麼找：位移、決定性瞬間、拉網與試映」— in-the-blink-of-an-eye（02-why-do-cuts-work、03-cut-out-the-bad-bits、10-decisive-moment、14-dragnet、12-test-screenings）。
+   第一鏟（cutting-for-emotion）掛 05、04、01、06、07、13，寫的是六法則與權重、以最少做最多、影子剪接與《現代啟示錄》的數字、看見畫框之外，並在 ⚖️ 段用 13 講了「剪接就是一次眨眼」。
+   只寫：剪接為什麼行得通（每秒被剪二十四次、半調子的位移最難接受、不連續為王、為什麼不一鏡到底）、什麼才算爛的部分（人與黑猩猩的同一批毛片、順序決定一切、不要中途改變心意）、每個機位一張代表畫格與照片的四種用途、決定性的瞬間與「看毛片就像選角」、拉網式剪輯與剪接點像樹枝、剪接頻率應與眨眼頻率相稱、試映的兩種哲學、過幾天再問、轉移痛、「心臟還是臍帶」。
+   避開 cutting-for-emotion 的六法則、最少做最多、影子剪接；14 的「眨眼是思緒的簽名」與既有頁的 13 同一個論點，這頁只取拉網與頻率兩節，不重講眨眼；08（配對做夢）與 09（多位剪輯師）材料薄，不進。afterword 的數位剪接史不開（見不開清單）。
+   claim 頁；related 連 cutting-for-emotion、shooting-for-the-edit、documentary-story-design。
+
+7. tour-leading `theft-and-scams-briefing`「扒手與騙術：出發說明會的歐洲街頭課」— europe-through-the-back-door（01-travel-skills/15-theft-and-scams）。
+   第一鏟（pacing-a-group-day）掛 01、12、18、19，寫的是節奏與住幾晚；第 15 章的扒竊、詐騙、失竊後的補救整章沒用，tour-leading 四頁也沒有一頁講安全。
+   只寫 Steves 這一章：扒竊怎麼發生與怎麼防（腰包、租車防竊）、詐騙與坑錢的幾種形狀（好康上門、金錢往來、與「當地人」相遇、人不可貌相）、一無所有之後怎麼重新站起來（報警與關鍵資訊、補辦護照、停卡調錢、重排行程與補裝備）。
+   避開 departure-checklists 的清單方法論（那頁講清單怎麼設計，這頁是清單裡該有的內容）；錢與匯率的細節在 07-money，沒用到就不掛。
+   claim 頁；related 連 departure-checklists、recovering-from-mistakes、working-with-local-partners、pacing-a-group-day。
+   這頁寫給自助旅人，套用段要翻成「領隊在說明會與車上講什麼、團員自由活動前提醒什麼」，但招數只用書的。
+
+8. tour-design `visitor-management`「承載量、惱怒指數與遊客管理：景點怎麼應付團體」— business-of-tourism（03-intermediaries-in-tourism-services/01-management-of-visitors、01-defining-and-analysing-tourism/06-socio-cultural-impacts、01-defining-and-analysing-tourism/07-environmental-impacts）。
+   第一鏟（tour-supply-chain）掛 03/03、04/05、02/08，寫的是通路鏈、成本結構、飯店簽法、巴士的帳；衝擊與遊客管理整部沒碰。導覽第四章爭點四說「我們就是 Abbey 罵的那台車」，站上只有 Abbey 一造，這頁補上教科書怎麼量、怎麼管。
+   只寫：承載量與可接受改變限度、遊客管理的成本由誰負擔、三種操作方法（控制需求與流量、改變遊客行為、調整供給）、輔助的科技；社會文化面只取 Doxey 的惱怒指數、示範效應、舞台化的真實、拍照的爭議；環境面只取壅塞與侵蝕、旅客對人造遺址的侵蝕、觀光的正面影響。
+   避開 desert-solitaire-and-industrial-tourism 的 Abbey 論證（related 連過去，不重講）、避開 tour-supply-chain 的成本與通路、避開 staging-an-experience；永續立法與布倫特蘭報告只點一句，不展開。
+   claim 頁；related 連 desert-solitaire-and-industrial-tourism、tour-supply-chain、pacing-a-group-day、staging-an-experience。
+   不開 debate：Holloway 是教科書，不是 Abbey 的對造；兩頁並排後若導覽第四章要改寫爭點四，那是 Fable 的活。
+
+9. tour-design `hotel-grading-and-group-business`「飯店的星星：分級為什麼各國不同、團體房怎麼走」— business-of-tourism（02-travel-and-tourism-product/05-hospitality-sector）。
+   第一鏟只用了 03/03 裡飯店的三種簽法；住宿業本身（結構、分級、需求、通路）一章 85KB 沒碰。
+   只寫：住宿業的結構（連鎖、多品牌、聯盟、忠誠計畫、經濟型與特色物業）、分類／分級／評等三個常被混用的術語、英國評等制度沿革與歐洲統一評等的難題、地點與價格的取捨、高固定成本與城市旅館、多元房價、住宿的類別、通路裡的團體業務與訂房系統、旅行社角色有限、線上評論的雙面刃。
+   避開 tour-supply-chain 的三種簽法與成本占比、避開 pacing-a-group-day 的「旅館在哪」（那頁講位置對節奏的影響，這頁講位置對價格的影響，起草時分清楚）；餐飲一節只點一句。
+   claim 頁，importance 3；related 連 tour-supply-chain、pacing-a-group-day、departure-checklists。
+   **裁決（主會話）**：不開。教科書章節，「分級」與「團體房」是兩個題，引用測試弱（沒有人會單獨連「飯店的星星」）；留第三鏟候選。
+
+10. destinations `finland-four-neighbours`「芬蘭：聖誕老人、酒、瑞典、俄羅斯與學校」— almost-nearly-perfect-people（04-finland/01-santa、04-finland/03-alcohol、04-finland/04-sweden、04-finland/05-russia、04-finland/06-school、04-finland/07-wives）。
+   第一鏟（almost-nearly-perfect-five）五國各取一兩章，芬蘭只掛 02-silence，寫了沉默與高語境、「這是螺絲」與觀光局長那兩句（都在 02）。極光線在羅瓦涅米落地，芬蘭是五國裡團真正住下來的那一國，書的芬蘭篇七章只用了一章。
+   只寫：七月去見聖誕老人（羅瓦涅米與聖誕老人村在這章）、赫爾辛基像北歐又不太像、酒的名聲與數字對不上、Sisu 與男子氣概、站在文明斷層線上（瑞典統治的遺緒、今日的瑞典裔芬蘭人、羨慕與較勁）、獨立與內戰、冬季戰爭與繼續戰爭、冷戰的「芬蘭化」、受害者還是成功故事、學校看不出祕密的成功與教師「人民的蠟燭」、世界最性別平等的社會與揹老婆錦標賽、芬蘭算不算北歐。
+   避開既有頁的 02-silence 整章（沉默、高語境、螺絲、觀光局長）、避開既有頁對丹麥／冰島／挪威／瑞典的全部段落；芬蘭與瑞典的較勁只寫芬蘭這一側，瑞典篇不進。
+   claim 頁；related 連 almost-nearly-perfect-five、chasing-the-aurora、working-with-local-partners、learning-to-see-a-place。
+
+11. destinations `suzhou-shanghai-five-cities`「從蘇州到上海：余秋雨筆下的城市性格」— bittersweet-journey-through-culture（13-white-haired-suzhou、19-shanghainese、20-five-cities）。
+   第一鏟（cultural-journey-sites）掛 02、03、04、07、08、14、17，寫的是敦煌、陽關、都江堰、三峽、江南小鎮、西湖；華東線天天走的蘇州與上海沒有一句。
+   只寫：蘇州二千五百歲的生日與「文化的後院」、吳越之爭與西施（最苦的是蘇州百姓）、明代的唐伯虎與非官方文化、小巷深處的精魂；上海人為什麼最尷尬、徐光啟作為第一個上海人、租界與拆城牆的百年身世、上海文明的三種心理品性（寬容並存、精明估算、開放追求）；五城記裡開封、南京、成都、蘭州、廣州各一段（爬塔、把歷史溶解於自然、從深厚走向寬廣、濃厚與清甜、花市早茶與北伐）。
+   避開既有頁的江南小鎮（14）與西湖（17）、避開「被消費的名勝」那一段的導遊批評；五城記的重慶對照只在成都段帶一句。
+   claim 頁；related 連 cultural-journey-sites、learning-to-see-a-place、writing-for-the-ear。
+   旁註見小結：01-taoist-pagoda（道士塔）不另開頁，建議補進既有頁。
+
+12. destinations `germany-divided-and-rebuilt`「分裂與重建：圍牆、紙鈔、布痕瓦爾德與瓦礫婦女」— germany-memories-of-a-nation（01-where-is-germany/02-divided-heaven、05-descent/03-money-in-crisis、05-descent/05-at-the-buchenwald-gate、06-living-with-history/01-germans-expelled、06-living-with-history/02-beginning-again）。
+   第一鏟（germany-in-objects）掛 01/01、02/02、02/05、04/01、04/03、06/05，寫的是勃蘭登堡門、格林童話、古騰堡、麥森瓷器、香腸與啤酒、國會大廈；二十世紀只在國會大廈那條與「空白也是記憶」details 裡各一段。柏林、威瑪、德勒斯登的團天天站在這段歷史前面。
+   只寫：《分裂的天空》、共和國逃亡與圍牆、淚宮與腓特烈大街車站、史塔西與監控的記憶；Ersatz 的年代與緊急貨幣（Notgeld）、惡性通膨與地產馬克、被回收的廢鈔怎麼為納粹開門；布痕瓦爾德大門「Jedem das Seine」與包浩斯字體的密碼式抗議、解放之後同一座營的另一種囚禁、兩個德國的兩種記憶；1945 年的逃亡與驅逐、加害者也是受害者；瓦礫婦女、沉默的重建、兩種馬克與兩個國家。
+   避開既有頁的國會大廈段（塗鴉、玻璃圓頂、克拉克「罪責內化」）、避開「空白也是記憶」details 的城市宮與共和國宮、避開格林童話被納粹挪用那一句；05/04（淨化墮落藝術）與 05/02（珂勒惠支）留第三鏟。
+   claim 頁；related 連 germany-in-objects、europe-in-three-strands、reading-a-cathedral；seeAlso 掛 economics 站 econ-foundations/inflation-and-deflation（路徑實存；只掛不重講）。
+
+13. destinations `treaty-comes-alive`「條約活過來：都市化、懷唐伊法庭與雙文化」— penguin-history-of-new-zealand（04-unsettlement/04-return-of-mana-maori、04-unsettlement/05-revolution-confirmed、05-posthistory/01-configurations-old-and-new）。
+   第一鏟（aotearoa-two-settlements）掛 01/01、02/03、02/05、02/10、02/11、03/08，寫的是兩次移民、1840 年條約兩種版本、1901 年人口回升與納塔；1975 年之後條約怎麼從文件變成制度沒有寫，而旅客問的多半是「毛利人現在怎麼樣」。
+   只寫：戰前的兩套神話（農村田園、世界最佳種族關係）、第三次遷徙（都市化）與都市裡的毛利性、貧窮陷阱與語言危機、從部族到全國的 Whina Cooper、Hunn 報告與「整合」、都市抗議與毛利文藝復興、懷唐伊法庭作為革命的伏筆；1984 之後的毛利政策、懷唐伊法庭與和解、條約進入法理（MMP 與 Rogernomics 只各一句當背景）；雙文化的現實、Pakeha 是不是第二個原住民文化、「雙文化是既定事實」。
+   避開既有頁的 1840 年條約文本落差、Moriori 與 Waitaha 神話、納塔與蒂普埃亞（這頁從 1945 年後起筆）；紐西蘭戰爭（03/02）與火槍戰爭（02/09）留第三鏟。
+   claim 頁；related 連 aotearoa-two-settlements、working-with-local-partners、almost-nearly-perfect-five。
+
+14. destinations `ramesses-and-the-cost-of-empire`「拉美西斯的埃及：卡疊石、阿布辛貝與徭役」— rise-and-fall-of-ancient-egypt（04-military-might/01-martial-law、04-military-might/02-war-and-peace、04-military-might/03-triumph-and-tragedy、04-military-might/04-double-edged-sword）。
+   第一鏟（three-thousand-years-on-the-nile）掛 01、03、05 三個 Part，寫的是金字塔時代、第十八王朝、最後一千年；第四部整部跳過，而阿布辛貝、卡納克多柱廳、拉美西斯神廟、梅迪內特哈布都是這一部的建築。
+   只寫：士兵的生活與常備軍、戰車、霍朗赫布的政變與敕令；卡疊石（兩則情報、「陛下孤身一人」、把敗局變成宣傳）、「萬王之王」的名字永存、阿布辛貝作為個人崇拜的極致、拉美西斯神廟是上埃及的儲備銀行；分裂的王國與海上民族、史上最早的罷工；徭役是最沉重的稅、哈馬馬特乾谷的統計、王權的出血、拉美西斯九世時代的盜墓世紀大案與委員會的掩蓋。
+   避開既有頁的路克索神廟＝王室之卡（04/02 的路克索段只寫拉美西斯加建的塔門與方尖碑）、避開既有頁「帝王谷前講官方盜墓」那條（那是第五部前 1066 年起的國庫清空；這頁的世紀大案是拉美西斯九世的審判，時間與性質不同，起草時明說兩者分開）。
+   claim 頁；related 連 three-thousand-years-on-the-nile、rome-in-the-ruins、istanbul-huzun。
+
+15. destinations `seventeenth-century-painters`「十七世紀的畫：卡拉瓦喬、魯本斯、維拉斯奎茲、林布蘭與維梅爾」— story-of-art（19-vision-and-visions、20-mirror-of-nature；18-crisis-of-art 只為葛雷柯與老布勒哲爾各掛一段）。
+   第一鏟（story-of-art-for-tour-leaders）掛 09、10、12、15、16、21、25，從羅馬式講到印象派，十七世紀只用 21 的義大利巴洛克建築與雕刻（波洛米尼、貝尼尼、高利）；荷比線的國家美術館、西葡線的普拉多、維也納的藝術史博物館掛的畫全在 18–20 章。
+   只寫：走出矯飾主義的死胡同（卡拉契的古典之美對卡拉瓦喬的自然主義）、學院派理想（雷尼、普桑、克勞德怎麼塑造人們看風景的眼光）、魯本斯讓一切活起來與工作室的祕訣、范戴克、維拉斯奎茲；新教荷蘭的品味、哈爾斯的「快照」、為市場作畫的專門化、風景畫發現天空、林布蘭直視人心（自畫像、聖經插圖、蝕刻）、揚・斯汀、雷斯達爾、「自然的鏡子」題材不再是重點、維梅爾的「有人物的靜物」；18 章只取葛雷柯的西班牙異象與老布勒哲爾〈農村婚禮〉。
+   避開既有頁的 21 章巴洛克建築段（19 章開頭的耶穌會教堂與立面也不寫，與既有頁重疊）、避開既有頁「巴洛克教堂太像劇場」details；矯飾主義的切利尼、帕米加尼諾、丁托列多不進（留第三鏟或不開）。
+   claim 頁；related 連 story-of-art-for-tour-leaders、reading-a-cathedral、al-andalus-three-faiths、discovering-france-beyond-paris。
+   書 repo 拼法是「維拉斯奎茲」，標題與內文照它。
+
+16. destinations `after-impressionism`「印象派之後：塞尚、梵谷與高更各要解決什麼」— story-of-art（26-in-search-of-new-standards）。
+   第一鏟停在 25 章的印象派；奧塞與梵谷美術館是法國線與荷蘭線的固定點，26 章 20KB 整章沒碰。
+   只寫 26 章的繪畫部分：印象派勝利之後的空虛、「印象派其實仍是傳統的延續」、塞尚在自然中重建秩序（「依照自然畫出普桑」、四面八方的矛盾、看似笨拙的靜物）、梵谷以筆觸傳達情感（為所有人而畫、筆觸如同字跡）、高更。建築段（美術工藝運動、新藝術、萊特）只點一句或不寫。
+   避開既有頁的 25 章印象派（馬奈、莫內、退後幾步看）；27 章的實驗藝術不進。
+   claim 頁，importance 4；related 連 story-of-art-for-tour-leaders、learning-to-see-a-place、discovering-france-beyond-paris。
+   單章撐一頁，材料 20KB 夠；若起草時發現高更段太薄，標題改「塞尚與梵谷」即可，不硬湊。
+
+##### 不開（2 本）
+
+- how-to-be-travel-writer（How to Be a Travel Writer）：不開。第一鏟 travel-narrative-craft 已取走第二部速成課的核心五章（研究、形塑、活起來、風格、改寫），剩下的是投稿與出版（第三部）、部落格與 SEO（第四部）、謀生與報稅（第五部）、資源清單（第七部），屬作者職涯與工具層，不是帶團與節目的內容；第六部的攝影訣竅 11KB 是通用建議，不夠一頁。tier 維持 spine，承諾已由既有頁兌現。
+- istanbul（Istanbul: Memories and the City）：不開。第一鏟 istanbul-huzun 取了 05、06、10 的呼愁骨幹，並在 ⚖️ 段用掉 23–25 章（奈瓦爾、戈蒂耶、西方之眼）的主張；其餘三十章是家族回憶（01–04、08–09、12–17、29–37）或畫家與專欄作家（07、18、28），團不會用到。19-conquest-or-decline 是這本書裡唯一與市區導覽直接對口的章，但只有 6KB，與 20-religion、22-ships-fires 合起來也撐不出一條主張線。tier 維持 spine。
+
+##### 第三鏟候選（本輪不開，留著）
+
+- podcast-producer-guide ch05/s55 單集標題五策略、ch05/s57 發布策略、Meinzer 05-make-it/05 二十到四十分鐘甜蜜點與 06-share-it/01：合起來是一頁「標題、長度與發布節奏」，屬作業層，平台規格會過期，等前三張落地後再看要不要開。
+- grammar-of-the-shot 第四章光線：04/03 色溫與白平衡、04/06 硬光柔光與「善用太陽」、04/10 動機光源，可成一頁「外景的光」；團拍不打燈，先緩。
+- europe-through-the-back-door 09-eating（餐廳禮儀、小費、咖啡館）與 17-health-and-hygiene 的健康段（時差、急救、在歐洲就醫）：都是說明會素材，各自可成一頁，排在第 7 張之後。
+- business-of-tourism 01/04 需求（推力拉力、市場區隔、觀光地生命週期）：產品規劃層，與 staging-an-experience 不重疊，材料 68KB。
+- in-the-blink-of-an-eye afterword 十二節數位剪接史：體裁是回憶錄式的技術史，不建議開。
+- germany-memories-of-a-nation 第二條線「德國在哪裡」：01/03 失落的首都（柯尼斯堡、布拉格）、01/05 權力的碎片、02/04 瓦爾哈拉（語言就是國界）、03/01 查理曼與亞琛；或南線「羅曼蒂克大道與紐倫堡」：03/02 里門施奈德、04/02 杜勒。
+- penguin-history-of-new-zealand 02/09 火槍戰爭與傳教、03/02 紐西蘭戰爭；04/02 土地的壓力（Manapouri、保育運動、資源管理法）是「紐西蘭為什麼乾淨」的來源。
+- story-of-art 03–05 希臘與羅馬（衛城、勞孔、萬神殿），等希臘線或義大利線的書單定了再開。
+- almost-nearly-perfect-people 瑞典篇十一章，等北歐線確定會住瑞典再開。
+
+##### 小結
+
+- 開 16 張，全部 claim 頁，沒有 debate：十四本都是單一作者的書，站上沒有「一個問題多本書吵」的形狀；第 8 張與 Abbey 那頁並排後，導覽第四章爭點四要不要改寫，留 Fable。
+- 不開 2 本，tier 不動；第三鏟候選 9 條留在單上，不進工具。
+- 分布：podcast 3、travel-video 3、tour-leading 1、tour-design 2、destinations 7。工藝書六本開 9 張，目的地書八本開 7 張（芬蘭、華東、柏林、紐西蘭的今天、拉美西斯、十七世紀畫、印象派之後），伊斯坦堡與 travel-writer 不開。
+- 起草順序建議：6、4、5（影片線，材料最厚、與既有頁分工最清楚）→ 1、2、3（podcast）→ 14、12、10（目的地裡材料最厚的三張）→ 8、7 → 15、16、13、11 → 9。
+- 沒把握的三張：第 9 張（飯店分級，教科書章節，與 tour-supply-chain 的邊界要靠起草時守住）、第 3 張（一稿多用落在 podcast 分類但內容跨影片與文字，若 Andrew 覺得該落 travel-video 就換）、第 15 張（19 章開頭的耶穌會教堂段與既有頁的 21 章巴洛克建築重疊，單上已要求跳過）。
+- 旁註（既有頁補強，不必等第二鏟）：
+  - cultural-journey-sites 的敦煌段沒有道士塔：01-taoist-pagoda（王道士的粉刷、藏經洞的打開與官場的冷漠、外國探險家的車隊、敦煌學也在中國）是中國線最常講的一段，8.8KB 不夠單獨開頁，建議在既有頁加一條 details 並補掛 01 的 anchor。
+  - almost-nearly-perfect-five 的芬蘭段事實全在 02-silence，anchor 也只掛 02，沒有漏掛；第 10 張起草時以此為界。
+  - shooting-for-the-edit 的 anchor 掛整章 07-working-practices，正文只用了其中「為剪輯而拍」一組；第 4、5 張會再掛同一章的構圖與運鏡條目，兩頁同掛一章可以，但 label 要不同（例如「實務守則：構圖」「實務守則：運鏡」），讀者才分得出。
+  - DEEPEN-TARGETS 把八本目的地書列成「大部頭只一鏟」，其中 istanbul 與 travel-writer 本輪判不開；它們會一直留在候選表上，這是選題不是體裁，不進 EXCLUDED_KINDS。
+
 ### 2026-11-06 體檢輪（Fable）：契約層全綠之後，缺口在工具不量的地方 — **A 組已執行、C 組 0.44.0 已 tag 正在 bump、B 組 14 頁 Opus 已交付**
 
 **先拉再盤**：開工時 80 個 repo 全部落後 origin 1–5 個 commit（都乾淨、都沒 ahead）。沒拉之前算出的四筆 GUIDE-DRIFT「要改」其實上游 10-27 已修；本機 notes-core 也沒有 `prose-metrics.py`／`prose-finalize.sh`。**任何全星系盤點前先 `git pull --ff-only` 全部 repo**（memory 已記）。
