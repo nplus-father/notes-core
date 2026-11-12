@@ -1,12 +1,12 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-11-12T15:37:26+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T16:31:04+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**1** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：130 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 174 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據單薄（只有一個數字，或全靠裸年份）：127 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 191 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
 
@@ -175,12 +175,6 @@
 - 現掛：`power-of-gold` → `docs/00-prologue/`、`power-of-gold` → `docs/01-get-gold-at-all-hazards/`
 - 落空數字：1930年
 
-## economics-note / money-central-banks/gold-standard-and-fetters.md
-
-- 現掛：`lords-of-finance` → `docs/01-unexpected-storm/`、`lords-of-finance` → `docs/02-after-the-deluge/`
-- 建議 anchor：`lords-of-finance` → `docs/03-sowing-a-new-wind/`「播下新風」（1 個數字）
-- 落空數字：3.5%
-
 ## growth-note / deliberate-practice/role-of-the-teacher.md
 
 - 現掛：`peak-secrets-from-the-new-science-of-expertise` → `docs/06-gold-standard/`
@@ -226,12 +220,6 @@
 - 現掛：`hbr-guide-to-smarter-networking` → `docs/01-why-network/03-leaders-create-networks`、`hbr-guide-to-smarter-networking` → `docs/01-why-network/01-smarter-way`
 - 建議 anchor：`hbr-guide-to-smarter-networking` → `docs/04-land-great-job/`「找到好工作」（1 個數字）
 - 落空數字：100個
-
-## hbr-note / communication-collab/toxic-workplace.md
-
-- 現掛：`hbr-guide-to-navigating-the-toxic-workplace` → `docs/03-quit-or-stay/01-time-to-quit`、`hbr-guide-to-navigating-the-toxic-workplace` → `docs/04-managing-toxic-team/03-toxic-employee`、`hbr-guide-to-navigating-the-toxic-workplace` → `docs/02-toxic-boss/`、`hbr-guide-to-navigating-the-toxic-workplace` → `docs/06-action-from-top/`
-- 建議 anchor：`hbr-guide-to-navigating-the-toxic-workplace` → `docs/01-harmful-environment/`「在有害環境中工作」（1 個數字）、`hbr-guide-to-navigating-the-toxic-workplace` → `docs/04-managing-toxic-team/`「在毒性職場帶團隊」（1 個數字、擴大）、`hbr-guide-to-navigating-the-toxic-workplace` → `docs/05-culture-toxicity/`「當文化導向毒性」（1 個數字）
-- 落空數字：12000美元、70%、94%
 
 ## hbr-note / leadership-teams/hiring-for-fit.md
 
@@ -501,7 +489,7 @@
 ## management-note / org-people/first-who-then-what.md
 
 - 現掛：`good-to-great` → `docs/03-first-who-then-what/`、`built-to-last` → `docs/02-clock-building-not-time-telling/`、`no-rules-rules` → `docs/section-3-techniques-to-reinforce/07-the-keeper-test/`
-- 建議 anchor：`built-to-last` → `docs/epilogue/`「結語」（1 個數字）、`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）
+- 建議 anchor：`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）、`built-to-last` → `docs/epilogue/`「結語」（1 個數字）
 - 落空數字：2001年、21年
 
 ## management-note / org-people/trust-and-team-dysfunctions.md
@@ -752,12 +740,6 @@
 - 現掛：`on-writing` → `docs/04-cv/`、`on-writing` → `docs/05-what-writing-is/`
 - 建議 anchor：`on-writing` → `docs/09-and-furthermore-part-i-door-shut-door-open/`「此外，第一部分：關上門，打開門」（1 個數字）、`on-writing` → `docs/07-on-writing/`「論寫作」（1 個數字）
 - 落空數字：10%
-
-## writing-note / style-clarity/nuts-and-bolts.md
-
-- 現掛：`writing-tools` → `docs/01-nuts-and-bolts/01-begin-sentences-with-subjects-and-verbs/`、`writing-tools` → `docs/01-nuts-and-bolts/05-watch-those-adverbs/`、`writing-tools` → `docs/01-nuts-and-bolts/09-let-punctuation-control-pace-and-space/`、`writing-tools` → `docs/01-nuts-and-bolts/10-cut-big-then-small/`
-- 建議 anchor：`writing-tools` → `docs/01-nuts-and-bolts/`「基本要點」（1 個數字、擴大）
-- 落空數字：128個
 
 ## wujun-note / tech-civilization/wujun-information.md
 

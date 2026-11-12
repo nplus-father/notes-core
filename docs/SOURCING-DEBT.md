@@ -50,6 +50,42 @@ done | sort -rn
 
 ## 待清：無
 
+2026-11-12 第三批：Fable 開單時就撞見兩筆（fork 讀第一鏟頁時回源查不到），Opus 起草鄰頁時回原文改寫清償；起草代理另抓到四頁轉述。都是 **B 型**。
+
+**wellness `nutrition-sleep/nutrition-foundations`（校正表）**——掛江部《間歇性斷食減醣全書》，寫的卻是 Matthews 的熱量論
+
+| 原本寫的 | 原文實際說的 |
+| --- | --- |
+| 能量平衡決定體重；斷食減醣有效多半是減少了總攝取 | 江部：「重點不是熱量，而是有沒有醣」。能量平衡那句出自 Matthews《Bigger Leaner Stronger》04/01，移到新頁 flexible-dieting |
+| 蛋白質是最該顧好的營養素 | 江部書沒有；「蛋白質先排」出自 BLS 04/02 |
+| 以真食物為主、進食時機是工具不是魔法 | 江部沒講；他說「重點不是吃幾餐，而是每餐有沒有醣」 |
+| 糖與酒精推高尿酸，連到痛風、脂肪肝 | 江部書沒有尿酸、痛風、脂肪肝；他講血糖飆升、胰島素、β 細胞疲乏 |
+| 依從性是隱藏變數 | 全書沒有；江部講「沒有壓力，所以容易持續」 |
+
+頁改寫成江部的減醣理由，標題改「減醣的理由：不算熱量、脂肪燃燒與一日兩餐」；導覽官司一第三層改由 Matthews 立論、結語改掛 Ferriss 黏貼測試；導覽另三處誤連改連 daily-dozen／nutritionism；overview 一句同步。**同一個錯掛把一場三造官司（熱量、醣、植物）壓成了一句共識。**
+
+**hbr `strategy-innovation/everyday-strategic-thinking`（校正表）**
+
+| 原本寫的 | 原文實際說的 |
+| --- | --- |
+| 事前驗屍、指定唱反調者、可逆／不可逆決策 | 書裡沒有；改用 04 三章：Davey 反思三問、Larson 七步 checklist、Menon 與 Thompson 的 Data DIET；唱反調改引 01/01 Schoemaker |
+| 「向上一層」「向後拉」時段、問題框架三問 | 改用 Roger Martin 給每層主管的四問（02/02）、Bowman 每週 30 分鐘的案例（01/03）、listening tour（02/01） |
+| 策略要能在兩分鐘內講清楚 | 書裡沒有；改 Martin「策略是你做什麼，不是你說什麼」 |
+| TIP「本週我們說了哪些 No」、IMPORTANT「忙碌只是在被管理」 | 書裡沒有；改 Bowman 週會議程與 Davey「策略性最終在選擇這個點上被檢驗」 |
+| 整節「四個斷點」與「策略絞肉機」 | 書裡沒有；改連新頁 strategy-execution-gap（書的第七部）與 priorities-without-ranking |
+| 數據與 AI 一節 | 本頁無錨，刪主張改連 manager-data-literacy、ai-for-managers |
+
+導覽第四章共識三的收束「看可逆性」改成「看下一份資料會不會改變決定」（Menon 與 Thompson），overview 同步。
+
+**起草代理抓到的轉述（已改）**
+
+| 檔案 | 原寫 | 原文實際 |
+| --- | --- | --- |
+| leadership `coaching/leader-leader` | Goldsmith：8 分補成 9 分、投入從 100% 掉到 50%；「好主意，就照你的做」 | 品質可能提升 5%、承諾掉 50%；後一句書裡沒有 |
+| leadership `culture/circle-of-safety` | Horowitz「開會遲到罰跪」、看「升遷誰、開除誰、容忍誰」、「文化會複利」 | 例子是 Coughlin 準時到場罰款；前言原話「你是誰，是你做了什麼」；複利一條三本書都沒有，刪 |
+| communication `persuasion/rhetoric-toolbox` | 一整句當引文 | 引文只有前半句，後半是轉述 |
+| economics `gold-standard-and-fetters` | （開單時疑為杜撰）「符合每一條已知的規則」 | 不是杜撰：出自《黃金的魔力》第 18 章 Eugene Meyer；補掛那章 |
+
 2026-11-06 第二批起草時，起草代理回源抓到兩頁有 anchor、核心主張卻不在掛的書裡（§1.2 掃不到這一類），同日回原文改寫清償。都是 **B 型**。
 
 **hbr `leadership-teams/coaching-and-feedback`（校正表）**

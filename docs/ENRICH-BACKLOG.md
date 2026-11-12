@@ -77,6 +77,19 @@
 3. 每站收尾：`npm run build`、`npm run format`、`format:check`，蓋 `curation.enrichedAt`，`tier-audit.py <站>` 與 `galaxy-checkup.py --station <站>` 必 0 warn；overview 重數頁數；單行英文 commit、逐檔 add、**不 push**。
 4. 全部完成：`refresh-galaxy-docs.sh`，`export-seealso-gaps.py --json --allow-strict` → `apply-seealso.py --apply` 補新頁帶出的 strong 缺口，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張照書改了標題、起草代理抓到的既有頁錯誤校正表、沒寫的張與原因）。
 
+**Opus 執行（2026-11-12，Andrew「with opus, go」）— 78 頁交付、1 張擋下，33 站本機 commit（未 push）**
+- **第一波**：兩筆改判層（business-strategy essential-drucker → tool、communication speed-of-trust → delegated:covey）手改 bibliography（`apply-tiers.py` 只碰未判層的 entry），tier-audit 兩站 0；工具三改落在 notes-core `0eedafc`（EXCLUDED_KINDS +5、SETTLED_BOOKS 15 本、計數納入 problems）。DEEPEN-TARGETS 102 → **19** 本。兩筆 B 型債與約二十筆漏掛 anchor 隨各站起草一起做，校正表在 SOURCING-DEBT「2026-11-12 第三批」。
+- **第二波**：七個起草代理（每組一個、組內自己寫不再分派），每頁交 3 筆具名事實與來源檔；主會話回源 grep 抽 **52 筆、全中**。各站 build:nosearch、format:check、tier-audit、checkup 全綠。
+  - 技術 11（system-design 5、data-systems 2、clean-code 1、design-patterns 2、agile 2）；金錢 10；人與領導 14；職場 10；身心習慣 10；思考創業寫作 8 頁＋2 個 details（startup 授權、thinking 後記）；travel 15。
+  - **沒寫 1 張**：security-note `malware-behavior-and-covert-launching`。起草代理讀《Practical Malware Analysis》第五部時被模型安全機制中止（`[cyber]`），依規不換說法重試；留 Andrew 裁（自己寫、換模型、或判不開）。
+  - **照書改標題**：maxwell「高路」→「高道」、growth「第三次轉化」→「第三次轉變」、travel「布痕瓦爾德」→「布亨瓦德」，都照書 repo 譯名；wellness nutrition-foundations 重寫後改題。
+  - **單上與原文不符、照原文處理**：maxwell「八頂帽子」書裡是列了八項角色；covey 第 2 張「舊策略模型」在 02/02 不在 02/03、「七個問題對應的習慣」原文沒有；money 第 10 張「越底層越重要」原文只說使命最重要；kiyosaki `b-i-triangle` 的四面體與福特不在既有頁，不補 anchor；newport 第 66 條沒用到，不補；startup `enough-as-strategy` 沒用 Sivers，改導覽那句。
+- **頁數宣稱**：起草代理在 overview 與導覽裡改了約二十處寫死的頁數，其中半數是**新頁之前就過期、但 GUIDE-DRIFT 抓不到**的（句子沒有「全站」前綴：hbr「三十一頁」、clean-code「七十七頁」、writing「四十六頁」、thinking「六十九頁」、travel「四十頁」、career「51 頁」、hr「二十一頁」）。`export-guide-drift.py` 的句型判定值得放寬（Fable 或下次體檢）。
+- **收尾**：`export-seealso-gaps.py --allow-strict` → `apply-seealso.py` 補 8 筆（5 站，各一 commit）；有 seeAlso 的頁 662（28%）。`refresh-galaxy-docs.sh` 重算：checkup blocker 0／warn 0／nit 18（不變，等書）；tier-audit 全星系只剩 philosophy 2 筆已知衝突；GUIDE-DRIFT 要改 0；strong seeAlso 缺口 0；ANCHOR-GAPS 證據充分 1（travel recovering-from-mistakes，前輪已判誤報）。
+- **新冒出的（留 Fable）**：ORPHAN-BOOKS **26 本孤兒書**，全是 11-06 之後新建的目的地書（Bryson、Dalrymple、Thubron、Pisani、泰國史、寮國史、越南、杜拜、加拿大鐵路⋯⋯），該歸 travel-note 認領並判層。
+- **代理協作的坑**：七個代理共用 scratchpad 的 `tools/` 會互相覆寫腳本，之後每個代理給獨立子目錄；`export-guide-drift.py` 不讀參數，`--help` 也會重寫 GUIDE-DRIFT.md。
+
+
 #### 技術站第二鏟選題單（system-design／clean-code／design-patterns／agile／data-systems／security，DEEPEN-TARGETS 12 本，Fable 開單 2026-11-12）
 
 判準取自 note-check §1.3 與 §1.4：只為脊梁書開頁、主張標得到章節 anchor、與既有頁重疊低於一半、能被單獨引用。
