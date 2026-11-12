@@ -17,6 +17,498 @@
 
 ## 進行中
 
+### 2026-11-13 第三鏟（Fable 開單；起草交 Opus 子代理）— 三組代理重讀上一輪留下的候選 → **開 13 頁、不開 6 個**
+
+**來源**：上一輪各站「不開（留第三鏟）」與被裁掉的三張單。三個開單代理逐章讀完、每個引句回章節檔逐字比對；主會話抽 16 筆回源 grep 全中。
+
+**裁決（主會話；與下面單上不同處以這裡為準）**
+- philosophy 開 3 張。齊克果單章 3,429 字低於 4,000 字線仍開：昨天成頁的康德、彌爾兩章更短，且與既有頁近乎零重疊。休謨兩章不開（歸納問題一半已在 thinking-tools；設計論證是宗教哲學，本站無分類，theology、keller、science 三站各有一頁）。
+- stott 開 2 張：`comfort-and-disturb` 與單上標「另判」的 `threefold-humility`（08/05–08/08，與站上三頁零重疊）。08/08 聖靈的能力歸謙卑那張。
+- keller **改判開頁**，不做 details：開單上的改判選項 `sowing-in-tears`（11/01＋11/02）。上一輪說「forgive 頁已用約瑟」不成立，全站 grep「約瑟」只有卡夫卡的約瑟夫．K。單上的 details 工單作廢。
+- spiritual-formation `persevering-prayer`（16＋08，29 只取三處）、lewis `three-parts-of-morality`（03/01–03/04）與 `faith-two-senses`（03/11、03/12）照開。lewis 03/10 盼望、慕安得烈第 29 課單獨成頁不開。
+- liurun 舊第 9、10 張重驗後照開；第 10 張標題改「執行靠閉環、發展靠規劃、格局靠授權」，05/02 PDCA 降成一段（org-tools 已有）。
+- wan-weigang 開 `no-long-term-exponential-growth`（system 分類）；`life-as-information` 維持不開。seeAlso 的 site 鍵起草時先看 schema，不收的就不掛。
+- fengtang 開候選 (a) `results-first-is-strong-medicine`（ch11、ch13、ch19）；候選 (b) 奇貨可居不開（兩個題目、書裡呂不韋結局只有一句且與書站概覽不一致、概覽說的「四個要素」正文是「六大啟示」）。ch37 魯仲連仍是沒用過的材料。
+- 既有頁漏掛 anchor 三處（theology `argument-from-desire`、lewis `weight-of-glory`、lewis `mere-christianity`）併進信仰線那組起草時補。
+
+**起草紀律**照 2026-11-12 下午輪的「Opus 開工指令」第 0 條，另加一條：新頁落地後 grep 該站導覽與 overview 裡講那位作者或那個主題「零頁／只有轉述／還沒開頁／待挖」與寫死的頁數，一併照實改。
+
+#### philosophy（3 張）
+
+##### philosophy-note（1 本：開 3 張，休謨兩章不開）
+
+《哲學經典的 32 堂公開課》（philosophy-the-classics）三十二章各講一部原典，每章只有一個 `_index.md`、沒有子節。字數用 `wc -m` 量是每章 2100 到 3600 字（第二鏟選題單寫的「六到九千字」是位元組數）。昨天三頁的作法是：整頁只用 Warburton 那一章當骨幹，照章內順序寫核心主張、論證、章末「批評與回應」，不引原典、不加站外詮釋。下面三張照同一條界線。書 repo：`/home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics`，章節路徑都以 `[ -d site/content/<path> ]` 驗過。furtherReading 的 book 欄是 `philosophy-the-classics`，anchor 形如 `docs/<章目錄>/`，label 照既有頁「哲學經典的 32 堂公開課 — Hobbes — Leviathan」的形式。
+
+1. political `social-contract-three-versions`「社會契約的三個版本：霍布斯的利維坦、洛克的信託、盧梭的公意」— philosophy-the-classics（docs/07-hobbes-leviathan、docs/10-locke-second-treatise-of-government、docs/13-rousseau-the-social-contract）。
+   字數：07 章 2896、10 章 2975、13 章 2643，合計 8514 字。
+   第一鏟（reading-the-classics）示範 01、02、06 三章，第二鏟用了 15、18、27、28；這三章一字未用。站上霍布斯只有 great-thinkers-map 表格裡一行，洛克、盧梭只在 justice-as-fairness 被點名一次。
+   只寫：
+   - 霍布斯（07）：卷首插圖裡由數千個小人組成的巨人與「凡間之神」；自然狀態是思想實驗，沒有對與錯、沒有財產，生活「孤獨、貧窮、骯髒、野蠻而短暫」；頭兩條自然法則（盡可能尋求和平；他人也準備這樣做時放棄權利）；「沒有劍的契約只是文字，完全無力保護任何人」；人與蜜蜂和螞蟻的三點不同；主權者是人工人格、可以是議會，他對君權神授幾乎沒有尊重；自我保護的權利沒有被契約消除（死刑犯前往刑場途中反抗士兵也不算不正義）；囚徒困境收進一條 details（違背契約總是理性的選擇，所以需要執行者）；章末四條批評（對人性的看法、社會寄生蟲問題、自然狀態純屬虛構、極權主義傾向與他的回應「主權權力的害處不如缺乏它的害處大」）。
+   - 洛克（10）：1689 年匿名出版、寫於 1680 年代初期；問題是「合法的政治權威的來源和限制是什麼」；自然狀態比霍布斯溫和，因為自然法禁止傷害他人，自由不等於放縱，任何個人都有權懲罰違反自然法的行為；離開自然狀態的理由是個人執法有偏見、政府可設獨立的司法機構；財產權來自把勞動「混入」土地，限制是不得取用超過自己能使用的部分，貨幣讓人默認了物質不平等；明示同意與默示同意；政府拿到的是信託，背叛信託時人民有權推翻，不為公共利益行事的統治者如同強盜和海盜；1776 年《獨立宣言》那一句；章末三條批評（對上帝的依賴、自然法缺乏共識、階級偏見與僕人所耕作的土地歸主人而非僕人所有）。
+   - 盧梭（13）：「人生而自由，卻無處不在枷鎖之中。」與「強迫獲得自由」並列在同一本書；他給自己的任務是在不犧牲自由的前提下組成國家；公意與眾意的差別用減稅的例子；反對公意像是在反對自己更好的自我；公民自由；立法者的唯一功能是撰寫法律；政府只是執行，主權者由每一位公民組成；三種政府形式（直接民主「更適合神而非凡人」、選舉貴族制最佳、世襲君主制有把最高權力交給兒童、怪物或白癡的風險）；章末兩條批評（「強迫獲得自由」加審查官可能演變為壓迫、如何發現公意，包括不互相商量的情況下投票那個建議）。
+   - 一張三欄對照表（自然狀態長什麼樣、交出什麼、主權在誰、能不能反抗），格子裡只填三章各自寫的；三章都說契約不是歷史事件（07 章「社會契約不必具有歷史真實性」），這一點寫成共同前提。
+   避開 justice-as-fairness：那頁已寫羅爾斯把洛克、盧梭、康德的契約論一般化、契約對象從「加入哪個社會」變成「選正義原則」、原初狀態對應自然狀態但純屬假設、無知之幕、兩個原則與差異原則；這頁停在十八世紀，結尾一句連過去，不用 32 章羅爾斯。避開 categorical-imperative 的「康德的政治理論建立在想像中的契約上」（那句出自 Sandel）。避開 harm-principle 已寫的彌爾不認自然權利、消極自由對積極自由；可以一句指出彌爾拒絕了洛克用的自然權利語言，不展開，也不把「強迫獲得自由」接到積極自由（13 章沒有這樣寫）。great-thinkers-map 表格已引過霍布斯那句名言當「政治理論」的代表，這頁不重述 School of Life 的六領域框架。07 章批評裡「與柏拉圖一樣」只一句連到 philosopher-kings-and-the-cave。04 馬基維利、16 潘恩不拉進來。
+   claim 頁；related 連 justice-as-fairness、harm-principle、philosopher-kings-and-the-cave、categorical-imperative、common-good-politics。seeAlso 留空：姊妹站 grep「霍布斯／社會契約」只有借用這個詞的頁（thinking 的托兒所罰款、relationships 的反社會者），沒有契約論的頁。
+
+2. existential `either-or-aesthetic-and-ethical`「非此即彼：齊克果的審美生活、倫理生活與沒有指南的選擇」— philosophy-the-classics（docs/20-kierkegaard-either-or）。
+   字數：3429 字，單章，**低於共通指令的約 4000 字線**。仍開的理由：與既有頁重疊近於零（站上寫到齊克果的只有卡繆那一頁，內容是「一躍」，不是《非此即彼》）；昨天 harm-principle 用 18 章 3008 字、categorical-imperative 用 15 章 3525 字都成頁，這章比兩者長。主會話若守 4000 字線，退路是併進 existence-precedes-essence 加一條 details（20 章自己寫這本書「預示了一個世紀後薩特所關注的許多主題」）。
+   existential 分類三頁是卡繆兩頁加沙特一頁；齊克果在 absurd-and-philosophical-suicide 是被告，站上沒有他自己說了什麼的頁。
+   只寫：這本書更像一部小說而非哲學論文，問的是亞里斯多德的問題「我們應該如何生活？」；假名寫作不是筆名而是創造人物，Victor Eremita 買二手寫字桌、踢開暗格、找到 A 與 B 兩疊文件，B 是 Wilhelm 法官，A 的身分始終不明；暗格是「內在不等於外在」的隱喻，這是間接傳達的一個面向；審美的生活：不只是肉體享樂，還有鑑賞與對權力的愉悅，無聊是萬惡之源，輪種法與鼻子上滑落的汗珠、只看一齣戲的中間部分（Warburton 說這裡播下超現實主義的種子），開篇的 Diapsalmata，「誘惑者的日記」裡對 Cordelia 的誘惑是心理上的施虐，A 對《唐·喬萬尼》的推崇；倫理的生活：審美者被外在事件擺布、倫理者由內在驅動，B 說 A 躲在面具後面逃避對自由的責任，審美需要自我欺騙、倫理需要自我認識，「普遍個體」；三種詮釋並列不裁決：存在主義的激進選擇（選倫理的理由只有已承諾倫理的人才聽得進去）、倫理優先（以及反對它的理由：把所有精彩台詞都給了審美者 A）、隱約的自傳（Regine Olsen 14 歲時相識，1841 年、出版前兩年解除婚約）；章末兩條批評（虛假的二分法：可能還有 C、D、E、F 和 G，以及後續著作的第三種、宗教的生活態度；不確定性：角色是例示而非陳述立場）。
+   避開 absurd-and-philosophical-suicide 的 case「齊克果：從『活出荒謬』到『理智的犧牲』」：那裡已寫他增生化名與矛盾、回到基督教最嚴酷的面向、「理智的犧牲」、日記裡的兩種聲音、「齊克果想被治癒」、絕望是罪的狀態，以及卡繆的否定判斷。這頁停在 1843 年的《非此即彼》，宗教階段只寫 20 章給的那一句（後續著作概述了第三種進路），然後連過去，讓卡繆對那第三條路的批評留在原頁；不替齊克果回應卡繆，也不判誰對。避開 existence-precedes-essence 的壞信仰三場景與「被判處自由」：B 對 A 的指控與壞信仰相近，只一句指過去，不重講沙特。亞里斯多德自己的答案在 eudaimonia-and-the-mean，一句連過去；montaigne-how-to-live 也問「如何生活」，不對照。
+   claim 頁；related 連 absurd-and-philosophical-suicide、existence-precedes-essence、revolt-freedom-passion、eudaimonia-and-the-mean。seeAlso 留空：姊妹站（drucker、willard、pastoral-psychology、fromm、habits）提到齊克果的都只是一句引用，沒有講《非此即彼》的頁。
+
+3. ethics-justice `genealogy-of-morality`「道德的系譜：尼采說善惡出自怨恨，罪惡感是轉向內部的殘酷」— philosophy-the-classics（docs/23-nietzsche-on-the-genealogy-of-morality、docs/22-nietzsche-beyond-good-and-evil）。
+   字數：23 章 2886、22 章 2251，合計 5137 字。單用 23 章不到 4000 字，所以把同一位作者的 22 章掛為第二章，只取它講道德的三段。
+   分類判斷：放 ethics-justice，不放 existential。23 章的對象是道德概念的來歷（善與惡、罪惡感、禁慾理想），22 章點名的靶是康德的意圖倫理與「為既有信念合理化」的哲學家；兩章 Warburton 都沒有把尼采稱為存在主義者（22 章只說他影響了沙特）。existential 的分類簡介寫的是「卡繆這條線」，ethics-justice 寫的是效益、權利、德性三條路的辯論，這頁是對那場辯論本身的質疑，位置在後者才誠實。
+   站上尼采出現在七頁（applied/_index、philosophy-as-consolation、should-we-want-consolation、great-thinkers-map、premeditatio-malorum、revolt-freedom-passion、absurd-and-philosophical-suicide），全是 de Botton 與 School of Life 筆下「困難有價值」的尼采，或卡繆引的一句；道德的來歷一字未寫。
+   只寫：
+   - 23 章為主：這本由三篇論文組成，是尼采風格最接近傳統哲學論文的作品；它接在《快樂的科學》宣告的「上帝之死」之後，只一句；目標不是換一套道德，而是質疑道德本身的價值；譜系學方法與他的語文學訓練，道德概念有歷史這件事本身就動搖了它們的絕對性；第一篇：反對英國心理學家把「善」解釋成對受益者有用，主張「善」最初是貴族的自稱，Ressentiment 是無力直接回應的人的想像性復仇，道德中的奴隸起義，「對敵人價值觀的根本重估」，羔羊與猛禽的比喻（羔羊認定猛禽是邪惡的；他的同情在猛禽一邊而非羔羊一邊）；第二篇：壞良心來自受挫的本能，「所有未向外釋放的本能都會轉向內部」，Schuld 的原始含義是債務；第三篇：禁慾主義，從遙遠的星球看地球的那個意象，自我否定是幾乎無力者的最後手段；章末三條批評與回應（發生學謬誤與 nice 原意「精細的」的例子、缺乏證據、被反猶主義者和法西斯主義者引用）。
+   - 22 章為輔：書名的意思與權力意志（道德是它的表達，未來的哲學家「重估一切價值」）；哲學家的偏見（所謂公正思考是「無意識的告白：一種偶然的自傳」，康德與斯賓諾莎兩例）；前道德、道德、超道德三個階段（道德階段強調意圖，最明顯體現在康德倫理學中）；章末批評只取反平等主義一條（群體道德、「自由是強者的特權，而非弱者的權利」的轉述）。視角主義、危險的知識、宗教是神經症、厭女言論各一句或不寫。
+   避開 philosophy-as-consolation 已寫的「尼采 ↔ 困難與痛苦」（自我完成靠穿過痛苦、苦與樂相連、別拔雜草）；避開 should-we-want-consolation 的「反慰藉造・尼采」（不要鏟除痛苦的雜草、1865 年萊比錫舊書店與「叔本華，救救我！」、amor fati、苦樂不可分離）；避開 great-thinkers-map 的尼采列（把嫉妒當訊號、成為自己、「上帝已死」讓人失去指引、用文化填補信仰的空缺），那頁寫的「嫉妒與怨恨」是 School of Life 談民主時代的比較心，不是這裡的 Ressentiment，不要併成一件事；premeditatio-malorum 的 amor fati 不重提。康德的義務論不重講，related 連 categorical-imperative，讓讀者看到被批評的那一造；不替康德回應，也不判尼采對錯。
+   起草注意：兩章的標題與內文譯名不一致（23 章標題《道德系譜學》、內文《論道德的譜系》；22 章標題《善惡的彼岸》、內文《超越善惡》），頁內擇一並統一，label 照章標題。
+   claim 頁；related 連 categorical-imperative、three-paths-of-justice、utility-and-its-limits、should-we-want-consolation、philosophy-as-consolation。seeAlso 留空：姊妹站提到尼采的頁（de-botton `concepts/philosophy/consolations-of-philosophy/`、peterson、keller、theology）寫的都不是《道德系譜學》；de-botton 那頁與本站 philosophy-as-consolation 是同一本書，連過去等於連到要避開的東西。
+
+##### 不開
+
+- 11 休謨《人類理解研究》（3358 字）：不開。站上七個分類（intro-history、ethics-justice、stoicism、eastern、applied、political、existential）沒有知識論；唯一勉強可放的 intro-history 四頁都是「怎麼讀、怎麼想」的方法頁，放一頁休謨的心智理論不合那個分類的簡介。重疊也實在：章內最有份量的兩段，歸納問題（循環論證、只是習慣）與相容論，thinking-tools 已各用 Blackburn 寫過一條（Straightie 與 Kinkie、恆溫器）；扣掉這兩段，剩下印象與觀念、缺失的藍色陰影、奇蹟、休謨之叉四小段，整章才 3358 字，扣掉後撐不起一頁。奇蹟那段的對造在 lewis-note `concepts/apologetics/miracles/`，不在本站。
+- 12 休謨《自然宗教對話錄》（3362 字）：不開。與 thinking-tools 不重疊，材料也完整（三位對話者、設計論證、斐洛的類比薄弱與替代解釋、惡的問題四個根源、第一因論證、休謨是不是無神論者），但它是宗教哲學，本站沒有誠實的位置：applied 是 de Botton 的路數，那裡的 religion-for-atheists 開頭就把「神存不存在」擱到一邊；intro-history 同上。這章的承接頁在姊妹站：theology-note `concepts/apologetics/five-ways/`、keller-note `concepts/apologetics/clues-of-god/`、science-note `concepts/evolution-life/cumulative-selection/` 都已寫設計論證的一造。要用這章，該由 theology-note 的 apologetics 評估是否當對造開頁，或本站先有知識論／宗教哲學分類再說；這是分類決定，交主會話。
+- 兩章合成一頁「休謨的溫和懷疑論」（6720 字）也評估過：字數夠，但同樣沒有分類可放，且一半內容回到 thinking-tools 已寫的歸納與相容論。
+
+##### 小結
+
+- 開 3 張，全部 claim 頁，沒有 debate。第 2 張單章 3429 字，低於 4000 字線，已在單上註明理由與退路。
+- 三張用掉 07、10、13、20、22、23 六章；休謨 11、12 兩章不開，理由是分類，不是材料。
+
+##### 引句核對表
+
+每一筆都以 `grep -F` 在來源檔找到逐字原文。來源檔目錄前綴 `BOOK=/home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs`。
+
+第 1 張
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 凡間之神 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/07-hobbes-leviathan/_index.md |
+| 孤獨、貧窮、骯髒、野蠻而短暫 | 同上 07-hobbes-leviathan/_index.md |
+| 沒有劍的契約只是文字，完全無力保護任何人 | 同上 07-hobbes-leviathan/_index.md |
+| 蜜蜂和螞蟻 | 同上 07-hobbes-leviathan/_index.md |
+| 前往刑場途中反抗士兵也不算不正義 | 同上 07-hobbes-leviathan/_index.md |
+| 違背契約總是理性的選擇 | 同上 07-hobbes-leviathan/_index.md |
+| 主權權力的害處不如缺乏它的害處大 | 同上 07-hobbes-leviathan/_index.md |
+| 社會契約不必具有歷史真實性 | 同上 07-hobbes-leviathan/_index.md |
+| 1689 年匿名出版；1680 年代初期；1776 年 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/10-locke-second-treatise-of-government/_index.md |
+| 合法的政治權威的來源和限制是什麼 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 任何個人都有權懲罰違反自然法的行為 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 不得取用超過自己能使用的部分 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 明示同意；默示同意；信託 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 如同強盜和海盜 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 僕人所耕作的土地歸主人而非僕人所有 | 同上 10-locke-second-treatise-of-government/_index.md |
+| 人生而自由，卻無處不在枷鎖之中。 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/13-rousseau-the-social-contract/_index.md |
+| 強迫獲得自由 | 同上 13-rousseau-the-social-contract/_index.md |
+| 不犧牲自由的前提下組成國家 | 同上 13-rousseau-the-social-contract/_index.md |
+| 在反對自己更好的自我 | 同上 13-rousseau-the-social-contract/_index.md |
+| 更適合神而非凡人 | 同上 13-rousseau-the-social-contract/_index.md |
+| 兒童、怪物或白癡 | 同上 13-rousseau-the-social-contract/_index.md |
+| 不互相商量的情況下投票 | 同上 13-rousseau-the-social-contract/_index.md |
+
+第 2 張
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 更像一部小說而非哲學論文 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/20-kierkegaard-either-or/_index.md |
+| 我們應該如何生活？ | 同上 20-kierkegaard-either-or/_index.md |
+| Victor Eremita；二手寫字桌；Wilhelm | 同上 20-kierkegaard-either-or/_index.md |
+| 內在不等於外在 | 同上 20-kierkegaard-either-or/_index.md |
+| 無聊是萬惡之源 | 同上 20-kierkegaard-either-or/_index.md |
+| 鼻子上滑落的汗珠；只看一齣戲的中間部分 | 同上 20-kierkegaard-either-or/_index.md |
+| Diapsalmata；Cordelia；唐·喬萬尼 | 同上 20-kierkegaard-either-or/_index.md |
+| 心理上的施虐 | 同上 20-kierkegaard-either-or/_index.md |
+| 逃避對自由的責任；普遍個體 | 同上 20-kierkegaard-either-or/_index.md |
+| 把所有精彩台詞都給了審美者 A | 同上 20-kierkegaard-either-or/_index.md |
+| Regine Olsen 14 歲；1841 年；出版前兩年 | 同上 20-kierkegaard-either-or/_index.md |
+| C、D、E、F 和 G | 同上 20-kierkegaard-either-or/_index.md |
+| 預示了一個世紀後薩特所關注的許多主題 | 同上 20-kierkegaard-either-or/_index.md |
+
+第 3 張
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 三篇論文；風格最接近傳統哲學論文 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 《快樂的科學》；上帝之死 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 質疑道德本身的價值 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 英國心理學家；想像性復仇；道德中的奴隸起義 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 對敵人價值觀的根本重估 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 羔羊認定猛禽是邪惡的；他的同情在猛禽一邊而非羔羊一邊 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 所有未向外釋放的本能都會轉向內部 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| Schuld；債務 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 從遙遠的星球看；自我否定是幾乎無力者的最後手段 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 發生學謬誤；精細的；反猶主義者和法西斯主義者 | 同上 23-nietzsche-on-the-genealogy-of-morality/_index.md |
+| 重估一切價值 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/22-nietzsche-beyond-good-and-evil/_index.md |
+| 無意識的告白：一種偶然的自傳 | 同上 22-nietzsche-beyond-good-and-evil/_index.md |
+| 強調意圖，最明顯體現在康德倫理學中 | 同上 22-nietzsche-beyond-good-and-evil/_index.md |
+| 自由是強者的特權，而非弱者的權利 | 同上 22-nietzsche-beyond-good-and-evil/_index.md |
+
+不開的兩章（理由裡提到的詞）
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 循環論證；相容論；缺失的藍色陰影；休謨之叉 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/11-hume-enquiry-concerning-human-understanding/_index.md |
+| 設計論證；斐洛；惡的問題；第一因論證 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/philosophy/ethics/philosophy-the-classics/site/content/docs/12-hume-dialogues-concerning-natural-religion/_index.md |
+
+#### 信仰線（6 張）
+
+章節目錄全部 `[ -d ]` 驗過；單上引號裡的字句、數字、人名全部回章節檔逐字比對過（397 筆，腳本在同目錄 `faith-verify.py`，可重跑）。字數是 `wc -m` 的字元數（含 frontmatter 與標記）；主會話給的「約 18K」之類是位元組數，換成字元約三分之一強。
+
+總表：開 5 張（stott 1、spiritual-formation 1、lewis 2、keller 1 張 details 工單），另有 2 張「另判，待主會話裁決」（stott 謙卑、keller 改判開頁）。
+
+##### stott-note（1 本：開 1 張，另判 1 張）
+
+《當代講道藝術》站上 slug 是 `i-believe-in-preaching`（三頁既有頁的 `book:` 欄都是這個；`between-two-worlds` 是第一鏟那頁的頁 slug，不是書 slug）。第 8 部「勇氣與謙卑」八章 26,380 字，站上只用了 08/04 系統解經（between-two-worlds 已掛）。第 8 部自己分兩半：01 到 04 講勇氣，05 到 08 講謙卑（心思、動機、倚靠三項）。主會話候選把 08/03 與 08/08 合成一頁，讀完判定**主題不合**：08/08 聖靈的能力是「倚靠的謙卑」，是謙卑三項的第三項，不是勇氣的延伸；所以第 1 張只用勇氣那一半，08/08 連同 05 到 07 另判成第 2 張。
+
+1. discipleship `comfort-and-disturb`「講道的勇氣：令安舒的人不安，令不安的人得安慰」— i-believe-in-preaching（docs/08-courage-and-humility/01-courage、docs/08-courage-and-humility/02-the-tradition-of-bold-preaching、docs/08-courage-and-humility/03-comfort-and-disturbance）。三章 866＋3,584＋6,840＝11,290 字。
+   第一鏟（between-two-worlds）從第 8 部只取了一條「勇氣的具體作法是按次序系統解經」（08/04，已掛），外加核心條一句「真摯、熱誠、勇氣與謙卑」；勇氣為什麼必要、聖經與教會史的先例、安慰與攪擾怎麼平衡，一字未寫。
+   只寫：
+   - 為什麼必須敢說（08/01）：會眾的「耳朵發癢」；福音的藥方「必須照處方給人」；白崔克說「人會離開教會，多半不是因真理太嚴厲、令他們不安」，接著那半句是「而是我們所傳的太軟弱空洞，令他們輕視」；「懼怕人的，陷入網羅」。
+   - 勇於講道的傳統（08/02）：先知與王權的衝突（以利亞算錯了，其實有「七千之眾」；拿單、阿摩司、耶利米被指為賣國賊、施洗約翰）；新約的 parresia，即「自由、大膽、直言不諱」；教會史四人各一句：屈梭多模「這一切不過是影子和夢罷了」、威克里夫、路德「我的口中必須有牙齒」、諾克斯對瑪麗皇后說「我不是自己的主人」，摩頓伯爵在墓旁說「這裡躺著一位在人面前毫無懼色的人」；二十世紀只舉金馬丁牧師（小金的父親）。
+   - 假先知與虛謊的安慰（08/03）：巴蘭「神將甚麼話傳給我，我就說甚麼」；「以色列喜歡虛謊的安慰，不願受真實的攪擾」；「輕輕忽忽的醫治」與兩個比喻（庸醫、粉刷牆壁的人）；米該雅對四百位宮廷先知，亞哈說「只是我恨他，因為他指著我所說的預言，不說吉語，單說凶言」；漢生「我對名聲毫不動心」。
+   - 福音本質上冒犯人的驕傲（08/03）：斯托得在劍橋三一學院向同學講因恩典稱義，對方連喊「可怕！可怕！可怕！」；懷德在蘇格蘭高地聽見「不可如此！要繼續傳講，不可退縮！」。
+   - 另一側的不平衡（08/03）：也要傳「指責的話」的對照表（愛與忿怒、救恩與審判、報償與代價）；但喜歡咆哮審判是另一種病，托勒普筆下的史洛樸牧師「他的講道多半是責備」，莫瑞斯說這是供應「好罵」而不是「好信息」；牧師看會眾，「每一張凝重的臉背後，似乎都有一則悲劇」；巴克爾「要向破碎的心靈講道！」。
+   - 收束（08/03）：華爾施的定義「令安舒的人不安，而令不安的人得安慰」；約翰・牛頓「打碎剛硬的心，醫治破碎的心」；衛斯理日記兩則（一七六一年六月二十一日「許多人受了傷，許多人得了醫治」、一七八七年八月十七日）；每位傳道人同時是半尼其與巴拿巴，「而在同一篇講章內，他常常兩者皆是」。
+   避開：
+   - between-two-worlds 已寫的系統解經（牧會二十五年從未講過離婚、使會眾不猜疑動機、示範以經解經），這頁只在收尾一句連過去，08/04 不掛；它引過布魯克斯 1877 年耶魯講座的「講道是透過人格帶出真理」，這頁引同一講座的另一句「要有勇氣。要獨立。」可以，但不重講人格那句；它的 IMPORTANT（在神眼前講道、講道前禱告）不重複。
+   - objections-to-preaching 的 TIP 已引托勒普《巴徹斯特塔》「被迫聽道」那段（出自第 2 部）；這頁引的是同一本小說的史洛樸牧師（出自 08/03），寫一句分清是不同段落，不重述前者。它寫過的反權威心態、「用我們說話」、瑪拉基「你們卻說」的對話式講道，都不進這頁。
+   - preparing-a-sermon 的六階段全部不碰。
+   - 08/05 到 08/08 謙卑不進這頁（見第 2 張）；08/03 的折疊段「米該雅的故事」可用，但不要把王上二十二整段重述，三四句即可。
+   claim 頁；related 連 between-two-worlds、objections-to-preaching、preparing-a-sermon、cross-of-christ、issues-facing-christians-today（五個都 `ls` 驗過）。seeAlso 可選：theology 站 `concepts/church-and-ministry/preaching-to-a-skeptical-age/`（存在）。
+
+2. **另判，待主會話裁決** discipleship `threefold-humility`「講台是危險之地：心思、動機與倚靠的三而一謙卑」— i-believe-in-preaching（docs/08-courage-and-humility/05-humility、docs/08-courage-and-humility/06-the-word-of-god、docs/08-courage-and-humility/07-the-glory-of-christ、docs/08-courage-and-humility/08-the-power-of-the-spirit）。四章 1,108＋2,189＋2,864＋5,217＝11,378 字。
+   判斷：材料夠（08/08 單章 5,217 字，加前三章是完整的一組三分法），與站上三頁零重疊；但這會是同一本書的第五頁。不建議把 08/08 塞進第 1 張：兩半合計 22,668 字、兩個命題，一頁裝不下。若不開，08/08 維持候選，不要拆用。
+   只寫：
+   - 勇氣的陰影（08/05）：「傳道人最主要的職業危險，無疑是驕傲」；鍾馬田說的「講台人，而非傳道人」；畢闕一八七二年耶魯演講的「尼布甲尼撒式講章」；更詭譎的一種是外表謙和、內裡希望「他們會留一些頌讚給我們」。
+   - 心思的謙卑，順服神的話（08/06）：tapeinophrosune；不加添、不刪減，「增添神的話是法利賽人的錯，減少神的話則是撒都該人的錯」；傳道人不是臆測者、不是編輯，是管家，「不可多，不可少，不可以別的東西取代」；潘霍華定罪的是「閒聊」的教會。
+   - 動機的謙卑，基督的榮耀（08/07）：鄧尼會議室的匾額「沒有人能又為基督作見證，又為自己作見證」；葛理翰一九五四年五月二十日對約二千四百位牧師說「我盼望儘量站到一旁，讓聖靈來接掌聚會」；兩個比喻，婚禮上的儐相（「祂必興旺，我必衰微」）與指揮克林培勒的「看得見的無形體」。
+   - 倚靠的謙卑，聖靈的能力（08/08）：司布真「我不會嘗試教導老虎素食主義的價值」；講道少有能力「主要的原因是我們的驕傲」；哥林多書信三段經文共有的 hina（「要叫、好叫」），「神特意允許人的軟弱繼續存留」；戴德生「所有屬神的巨人都是軟弱的」；斯托得自述一九五八年六月在雪梨大學佈道會最後一晚「聲音全失」，日後一再有人對他說「我就是那天晚上信主的」；司布真「在聖靈的能力中說六個字，勝過沒有聖靈講道七十年」與十五級台階上的「我相信聖靈」（斯托得自己註明這則傳聞無法證實，照寫）。
+   - 收束：三而一的謙卑對應信息、目標、信心；匿名詩末句「藏我，於祢十字架之後」。
+   避開：between-two-worlds IMPORTANT 已寫「覺察自己在神眼前講道」與講道前的禱告，這頁不重複；第 1 張的勇氣；08/08 折疊段「四位軟弱的講壇巨人」（馬貴格、羅柏森、巴克爾、司布真）只挑一兩位，不逐一重述。
+   claim 頁；related 連 comfort-and-disturb（第 1 張）、between-two-worlds、preparing-a-sermon、radical-disciple。
+
+##### spiritual-formation-note（1 本：開 1 張）
+
+站上引 with-christ-in-the-school-of-prayer 的頁只有兩頁：第一鏟 prayer-pilgrimage/school-of-prayer（掛 01、05、21、24）與昨天的 christ-the-intercessor（掛 26、27、28、30、31）。第 16 課 4,867 字，單課剛過門檻；讀完全書目錄，與它同題的不是第 29 課而是第 8 課「神的朋友的膽量」（半夜求餅的朋友，3,406 字）：兩課是同一對比喻（路加 11 與路加 18），第 16 課的布倫哈特見證就是把兩個比喻合起來講，第 8 課還用了同一個詞「答應遲延」的學校。所以主材料改成 16＋08，第 29 課只取與「延遲」直接相關的一段。
+
+1. prayer-pilgrimage `persevering-prayer`「為什麼神延遲應允：忍了多時與快快地」— with-christ-in-the-school-of-prayer（docs/16-the-power-of-persevering-prayer、docs/08-the-boldness-of-gods-friends、docs/29-boldness-in-prayer）。三課 4,867＋3,406＋4,212＝12,485 字。
+   第一鏟寫「應允是驗算」「拒絕也是一個回答」，並說慕安德烈不肯讓人安於沒有答應；但答應若只是遲來而不是被拒，這段時間裡發生什麼、該怎麼等，那頁沒有寫。
+   只寫：
+   - 難題本身（16）：那位急切要賜福的主竟要人一求再求；「他向我們忍耐」與「快快地」兩句怎麼並存，「神絕不會多耽延一刻」。
+   - 禱告會累積（16）：水的比喻，「禱告也常常必須層層堆疊，直到神看見量器滿了，答應就來到」；農夫撒「一萬顆種子」就得走一萬步；「沒有一個信心的禱告會在天上失去效力」。
+   - 為什麼要等（16）：漸進成長之律，「孩子常想摘那半熟的果子，農夫卻懂得等到時候」；父親等獨生子訓練期滿才接他回家。
+   - 兩種信心（16）：一種握住話語、知道自己已得著答應，另一種把應許取得為「當下的經歷」；恆切禱告是從前者長到後者的地方。
+   - 給神時間（16）：「要學會給神時間」「神需要時間與我們同在」；恆切禱告本身鑒察人心。
+   - 半夜的朋友（08）：比喻的六個環節裡只取「意外的拒絕」與「不接受拒絕的恆切」；為什麼在父之外還要說「朋友」，「即使我是浪子，我仍是孩子；但友情取決於品行」；神把人放在「答應遲延」的學校，扣住賞賜是因為「我們還沒有能力承受他要給的」。
+   - 布倫哈特（16 折疊段）：他把兩個比喻用在自己身上，「我不能讓我的客人沒有東西吃」；與惡靈最初的爭戰花了「一年半以上」，其後得答應快得多。
+   - 最大的試探（16、29）：延遲時最容易想「也許把我們所求的賜給我們並非神的旨意」；第 29 課的回答是「但我們在禱告中該尋求的不是那隱祕的旨意，而是他在話語中所啟示的旨意」，分辨要話語與聖靈合一（離開話語找感覺、只有話語沒有聖靈，兩種都錯）；折疊段的水管比喻，「水管所能做的，只是決定它流向哪裡」。
+   避開：
+   - school-of-prayer 已寫的四條：應允是禱告的驗算（六重重複）、「拒絕也是一個回答」與摩西、「安於從未清楚經歷禱告蒙應允」是病態記號、不替救主加上「若合乎神的旨意」。因此第 16 課的 WARNING（懶惰的肉體披上敬虔順服的外衣）與第 29 課後半（「你們妄求」、不要把責任推給隱祕的旨意）只用一句接到那頁，不重新論證；這頁寫的是「遲」不是「拒」，開頭用一句把兩者分開。它寫過的「求、找、叩」年級也不重複。
+   - christ-the-intercessor 已寫客西馬尼的兩種祈求與「他忍受禱告不蒙應允，使我們的禱告得蒙應允」、祭司的代求；第 8 課前半「代求是禱告更高的榮耀」「君尊權柄」不展開，只取朋友與恆切兩段。
+   - 第 29 課的自由意志討論（「以為神所願的必然發生」那段）是另一個題目，只留水管比喻一句。
+   claim 頁；related 連 school-of-prayer、christ-the-intercessor、prayer-as-conversation、long-obedience、practicing-the-presence（五個都 `ls` 驗過）。seeAlso 可選：lewis 站 `concepts/devotional/letters-to-malcolm/`（存在）。
+
+##### lewis-note（1 本：開 2 張）
+
+《返璞歸真》第三卷章目錄（`[ -d ]` 驗過）：01-three-parts-of-morality、02-cardinal-virtues、03-social-morality、04-morality-and-psychoanalysis、05-sexual-morality、06-christian-marriage、07-forgiveness、08-the-great-sin、09-charity、10-hope、11-faith、12-faith-continued。站上掛了第三卷的只有 the-great-sin（07、08、09）；第一鏟 mere-christianity 只有一句「Book III 展開四樞德與三聖德」。theology 站三頁（argument-from-desire、head-or-heart-apologetics、beyond-personality）都沒掛第三卷任何一章。全四站 grep「樞德、艦隊、麻醉、閃電戰、剪刀、維多利亞十字」，除第一鏟那一句外零命中。
+
+1. devotional `three-parts-of-morality`「道德的三個部分：艦隊、四樞德與那個做選擇的核心」— mere-christianity（docs/03-christian-behaviour/01-three-parts-of-morality、docs/03-christian-behaviour/02-cardinal-virtues、docs/03-christian-behaviour/03-social-morality、docs/03-christian-behaviour/04-morality-and-psychoanalysis）。四章 2,792＋2,952＋3,420＋3,262＝12,426 字。
+   判斷：四章是第三卷的開場，01 給三層的框架，03 是第一層（人與人），02 與 04 是第二層（個人內部），第三層（人生目的）在 01 用兩個例證帶過；合成一頁站得住，04 不必另判。
+   只寫：
+   - 道德不是掃興（01）：小學生說「神大概就是那種四處監視，看到誰在開心就想阻止他的傢伙」；道德規則是運轉人這台機器的說明書；為什麼說「規則」比說「理想」誠實。
+   - 三個部分（01）：艦隊比喻（不相撞、每艘船自身堅固、朝對的方向航行）與樂團比喻；「現代人幾乎只想第一件事，忘了另兩件」；「法律不能使人為善；沒有好人，就不會有好社會」；第三層的兩個例證，我是自己身體的房東還是租客、人若活一百萬年。
+   - 四樞德（02）：Cardinal 源自「門的鉸鏈」；智慧是「小孩的心，成人的腦」，「神不喜歡頭腦上的懶人，正如祂不喜歡其他懶人一樣」；節制不是戒酒，「基督教不是禁酒的宗教，伊斯蘭教才是」，橋牌與高爾夫也可以不節制，「但神不被外表騙過」；公義與剛毅各一句；做出一個公義的行為與成為公義的人不同（網球員的比喻），神「真正要的是某一種人」。
+   - 社會道德（03）：「真正偉大的道德教師從不引入新道德」，約翰生博士「人需要被提醒的次數，遠多於需要被教導的次數」；基督教沒有政綱，工作在平信徒身上；新約暗示的社會「經濟生活很社會主義」而「家庭生活與禮節相當老派」，每個人只喜歡其中某些片段；放貸取息被三大文明譴責；施捨的尺是「唯一安全的規則，是給多於我們承受得起的份」；我們來找盟友，「而所被給的是一位主、或是一位審判者」；「因為最遠的路，往往才是回家最短的路」。
+   - 做選擇的核心（04）：精神分析處理選擇的原料，道德處理選擇本身，三個上戰場的男人；壞的心理材料「不需要被悔改，需要被醫治」；「人按外在行為彼此判斷；神按道德選擇判斷」，怕貓的人抱起貓與維多利亞十字勳章，希姆萊那一問；每一次選擇都把核心變成天上的或地獄的受造物；「好人懂善也懂惡；壞人兩者都不懂」。
+   避開：
+   - 第一鏟 mere-christianity 的道德律論證（第一卷）與「mere」的定義；這頁開頭一句接它那句四樞德即可。
+   - the-great-sin 已寫的驕傲、饒恕、愛德。兩處相鄰要分清：03/03 末的 charity 講「給多少」，the-great-sin 已寫「Charity 不等於施捨」，這頁只寫那把尺，不解釋字義；04 的「每次選擇改變核心」與那頁 IMPORTANT 的「善與惡都按複利累積」相鄰，一句 related 接過去不重述。
+   - lets-pretend 的「地下室的老鼠」（做了什麼與是什麼）與 02 的行為與品格之分相鄰，同樣一句接過去。
+   - abolition-of-man 的道：03/03「基督沒有發明新道德」只引一句、related 連過去，不展開客觀價值。
+   - 03/10 盼望不進這頁也不另開：渴望論證已在本站 weight-of-glory 與 theology 站 argument-from-desire 寫過（見下方漏掛）。03/05、03/06 不在這輪。佛洛伊德與榮格的對比（04）只一句，本站不是心理學站。
+   claim 頁；related 連 mere-christianity、the-great-sin、lets-pretend、abolition-of-man、great-divorce（五個都 `ls` 驗過）。
+
+2. devotional `faith-two-senses`「信心的兩種意義：在心情裡守住所信，與發現自己破產」— mere-christianity（docs/03-christian-behaviour/11-faith、docs/03-christian-behaviour/12-faith-continued）。兩章 3,373＋3,601＝6,974 字。
+   上一輪說這兩章「可併進 the-great-sin 收尾一段或留第三鏟」；the-great-sin 落地後沒有收這兩章（它的 furtherReading 只有 07、08、09），正文也沒有「信」的兩層。材料過門檻，命題獨立，開。
+   只寫：
+   - 第一層（11）：路易斯年輕時的困惑「接受或拒絕一組陳述，怎麼能算道德上的優劣」；他沒看見的是人不被理性完全統治，三個例證（手術台上的麻醉、明知不可信任的女子、學游泳的男孩）；「拿走我的信的不是理性」，「戰鬥是『信與理性』對『情緒與想像』之間的戰鬥」；心情對信的「閃電戰」；定義：信是在心情變遷中堅守理性已接受之事的藝術，否則人「只是一個隨天氣與消化狀況搖擺的生物」；信要被餵養（每日禱告、閱讀、上教會），「多數人不是『漂走』的嗎」。
+   - 通往第二層的路（11）：認真實踐德行，「試六週」；「沒人知道自己有多壞，直到他非常努力地試著為善」，五分鐘就投降的人不知道一小時後是什麼樣子，基督是「唯一完整的現實主義者」；被粉碎的兩個觀念（考試、交易）；孩子說「爸爸，給我六便士去買生日禮物送你」。
+   - 第二層（12）：發現自己破產；關鍵時刻是轉向神說「這得你做。我做不到。」；不要問「我到那一刻了嗎」（盯著自己會不會睡著的人最睡不著）；交給基督之後仍然嘗試，但「不是為了得救而做這些事，而是因為祂已開始拯救你」。
+   - 行為與信（12）：「一把剪刀的哪一片刀刃比較必要」；兩種扭曲（行動全是，成了「只是一場商業投機」；信仰全是，成了「只是對某些關於祂的理論的智性接受」）；腓立比書那一句把兩端鎖在一起，「我困惑，但不意外」。
+   - 收束（12）：基督教乍看全是道德與規則，卻把人引到那一切之外，那裡的人被善充滿「像鏡子被光充滿」，「他們忙著看那個源頭」。路易斯自己的提醒也照寫：這一章對沒走到那裡的人可能毫無意義，「立刻放下，別管它」。
+   避開：
+   - the-great-sin 已寫「想得謙卑的第一步是意識到自己是驕傲的」與「若我確信自己愛神，我會做什麼」；11 章從「第二步」接起，第一步只用半句帶到。
+   - lets-pretend 已寫「我無法直接控制氣質，只能由神做」「連假裝也是神在做」「把整個自然自我交出去」與納稅人比喻；12 章講到基督分享兒子身份時只一句、related 連過去，不重講第四卷的機制。
+   - theology 站 beyond-personality 的五章；第一鏟的道德律。
+   - 不把「信與理性」寫成護教論證（那是第一鏟與 theology 站 head-or-heart-apologetics 的題域）；這頁的「信」是德行不是知識論。
+   claim 頁；related 連 the-great-sin、lets-pretend、mere-christianity、surprised-by-joy、screwtape-letters（五個都 `ls` 驗過）。seeAlso 可選：theology 站 `concepts/apologetics/head-or-heart-apologetics/`（存在）。
+
+##### keller-note（1 本：details 工單 1 張，另附改判選項）
+
+先更正上一輪裁決的前提。backlog 第 492 行寫「forgive 頁已用《饒恕》的約瑟」；實際 grep 整個 keller 站，「約瑟」只出現一次，是 forgive 頁的卡夫卡「約瑟夫．K」，不是創世記的約瑟。forgive 頁沒有約瑟，suffering 頁也沒有（它只掛《同祢患難與共》導論與第一部卷層）。唯一寫過約瑟的是 theology 站 doctrine/walking-with-god-in-suffering 的「信靠」那一條，一句。所以「第三個版本的同一段敘事」這個顧慮在 keller 站不成立。
+
+第 11 部兩章共 13,793 字（11/01 登山寶訓與那座城 5,541、11/02 神的意思原是好的 8,252）。11/02 裡約瑟只佔前三分之一；其餘是雅各交叉雙手（創 48）、詩篇 126 的撒下眼淚、哥林多後書的軟弱與安慰、「他的眼淚如何改變我們的哭泣」。這些在 suffering、forgive、第一鏟 hope-in-times-of-fear 三頁都沒有。
+
+1. **details 工單（照主會話要求）** life `suffering`「同祢患難與共：苦難中的信仰」加一條 details — hope-in-times-of-fear（docs/11-hope-in-the-face-of-suffering/02-god-meant-it-for-good）。8,252 字。
+   加在哪：`## 🖼️ 火窯中的第四個人：從「認識」到「同行」` 這一節，第三部那一段（「凱勒給的不是『想通了就不痛』……火中有祂同在」）之後、`> [!IMPORTANT]` 之前。那一段剛寫完六種姿態裡的哀哭與盼望，details 接在這裡最順。
+   標題：`:::details{title="約瑟與流淚撒種：另一本書裡的同一條線"}`
+   開頭一句交代出處：凱勒在《恐懼時代的盼望》第 11 部把復活的大逆轉應用到受苦上。然後四點：
+   - 約瑟（創 50:19–20）：凱勒強調約瑟沒有替哥哥們找藉口，「他們的罪是蓄意的」；但那傷害成了打碎他傲慢的手段，也把他放到能救人的位置。書裡的話是：如同耶穌，約瑟是「藉著被勝過而得勝」。
+   - 樂觀者與悲觀者：樂觀者把患難看作反常，悲觀者把它看作正常；約瑟的視角是兩句同時成立，「苦難不是正常的」，「苦難也不是反常的」。這一點接本頁既有的「兩組必須同時握住的平衡真理」，寫一句呼應，不重講相容論。
+   - 詩篇 126：「所撒的種子，就是眼淚與哭泣本身」；凱勒的話是「我們被呼召去撒下眼淚，而不是浪費它們」，方法是詩篇的哀歌。這一點接本頁六種姿態裡的哀哭。
+   - 為什麼行得通：保羅說苦楚「成就」榮耀，凱勒解釋那個字指的是培育過程而不是賺得；根據在復活，「耶穌的受苦不只是讓位給喜樂，它產生了喜樂」。
+   不寫進 details 的：雅各交叉雙手、歐文、「不會在未解的罪疚中哀傷」三條、11/01 路加福音的好東西與難的東西。四句裝不下，硬塞會變成清單。
+   要補掛的 anchor（加在 suffering 頁 furtherReading 末）：
+   ```yaml
+     - book: hope-in-times-of-fear
+       label: "恐懼時代的盼望 — 神的意思原是好的"
+       anchor: "docs/11-hope-in-the-face-of-suffering/02-god-meant-it-for-good/"
+   ```
+   related 不必動（suffering 已連 hope-in-times-of-fear 與 forgive）。
+
+2. **改判選項，待主會話裁決** life `sowing-in-tears`「流淚撒種：難的東西怎麼通向最好的東西」— hope-in-times-of-fear（docs/11-hope-in-the-face-of-suffering/01-the-sermon-and-the-city、docs/11-hope-in-the-face-of-suffering/02-god-meant-it-for-good）。兩章 13,793 字。
+   我的判斷是材料足以成頁，而且成頁比 details 好：前提更正後（站上沒有任何一頁寫過約瑟），重疊顧慮只剩「題域相鄰」；第 11 部的四個主幹（路加六章的兩份清單、約瑟、雅各交叉雙手、詩篇 126 與哥林多後書）有三個放不進 details。反方理由只有一條：這會是這本書在 keller 站的第四頁（已有 hope-in-times-of-fear、resurrection-and-change、critique-of-secular-hope）。兩者擇一：開這張就不做第 1 張的 details，改在 suffering 頁 takeaways 的延伸句連過來。
+   只寫：
+   - 路加福音的兩份清單（11/01）：「國」指統治不是疆域（新主管空降的比喻）；世界的四樣好東西與耶穌的四樣難的東西對照；耶穌不是叫人去找苦，而是「軟弱、匱乏與排斥遲早會自己找上我們」；財主沒有名字、拉撒路是耶穌比喻裡「唯一被賜名的角色」，「沒有了財富——沒有了好東西——就沒有剩下任何自我」；華萊士「它會把你活活吃掉」。
+   - 難的東西通向最好的東西（11/01）：「當難的東西在對神的信心中被領受時，它們會通向最好的東西」；這比羅琳〈失敗的額外好處〉走得更遠，因為有些苦「永遠不可能在今生的成本效益分析中被抵平」；大德蘭那句旅館的話；「向上的路是向下」。
+   - 約瑟（11/02）：偏愛一代傳一代；「他們的罪是蓄意的」；「藉著被勝過而得勝」；約瑟「不知不覺地把耶穌救恩的模式應用在自己身上」；樂觀者與悲觀者都對了一部分，「苦難不是正常的」「苦難也不是反常的」。
+   - 雅各交叉的雙手（11/02）：創世記 48 章，約瑟以為父親弄錯，雅各的回答凱勒改述為「約瑟，我完全知道我在做什麼。你以為錯的那個兒子，其實才是對的那一個」（書裡標明是改述，照樣標）；希伯來書 11:21 把這件事選為他一生信心之舉；雅各從「這些事都歸到我身上了！」到「一生牧養我直到今日」。
+   - 撒下眼淚（11/02）：詩篇 30 是憂傷之後的喜樂，詩篇 126 是「一種透過憂傷而來、而不只是儘管有憂傷仍然來到的喜樂」；「所撒的種子，就是眼淚與哭泣本身」，「我們被呼召去撒下眼淚，而不是浪費它們」。
+   - 保羅與根據（11/02）：安慰是為了傳遞出去；「成就」是培育過程不是賺得；歐文有十一個孩子、1662 年大驅逐；「耶穌的受苦不只是讓位給喜樂，它產生了喜樂」；三種不再有的哀傷（未解的罪疚、自憐與憤怒、不耐煩）。
+   避開：
+   - suffering 頁的費里與 MTD、兩組平衡真理的展開、火窯與第四個人、六種姿態的清單（這頁只在詩篇 126 處一句接「哀哭」）、「復興不是撫慰」。
+   - 第一鏟 hope-in-times-of-fear 的大逆轉邏輯（腓立比書 2 章的「所以」、交換位置、蓋瑟寇三要素、顧問的思想實驗）：這頁是那套邏輯用在受苦上，開頭一句接過去，不重新推導。11/01 引的路易斯「捨棄你自己」那段折疊文字不用（lewis 站題域）。
+   - forgive 頁的饒恕技術：約瑟與哥哥和好只一句，不寫成饒恕論。
+   - counterfeit-gods 與 religion-vs-gospel 的偶像機制：11/01「好東西若沒有信心會反噬」只引華萊士一句、related 連過去。
+   - resurrection-and-change 的脫去與穿上。
+   - 第 11 部首頁引瓦特金的那句在 `docs/11-hope-in-the-face-of-suffering/_index.md`，不在 11/01；要用就多掛卷層，否則不引。
+   claim 頁；related 連 suffering、hope-in-times-of-fear、forgive、counterfeit-gods、resurrection-and-change（五個都 `ls` 驗過）。seeAlso 可選：theology 站 `concepts/doctrine/walking-with-god-in-suffering/`（存在，那頁「信靠」一條有約瑟一句）。
+
+##### 既有頁漏掛 anchor（事實在哪章就掛哪章；目錄都驗過）
+
+- theology-note `apologetics/argument-from-desire`：正文「渴望論證」那句（世上任何經驗都無法滿足的渴望，我是為另一個世界造的）出自 mere-christianity `docs/03-christian-behaviour/10-hope/`，現只掛第一、二卷卷層。
+- lewis-note `devotional/weight-of-glory`：IMPORTANT 裡「路易斯說，若我發現自己有一種此世任何經驗都填不滿的渴望……」同樣出自《返璞歸真》03/10，不是《榮耀之重》；要嘛補掛 mere-christianity `docs/03-christian-behaviour/10-hope/`，要嘛改成不指名出處。
+- lewis-note `apologetics/mere-christianity`：正文寫了第二卷的「侵入」「三選一」與第三卷的四樞德、驕傲，furtherReading 只掛第一、四卷卷層；可補 `docs/02-christian-beliefs/` 與 `docs/03-christian-behaviour/` 兩個卷層。
+
+##### 不開
+
+- mere-christianity 03/10-hope（2,668 字）：材料薄，且渴望論證已在兩站三處寫過；不開，也不必進第三鏟候選。
+- with-christ-in-the-school-of-prayer 第 29 課不單獨成頁：它的主論點（不要把未蒙應允推給神隱祕的旨意）與第一鏟 school-of-prayer 的 ⚖️ 節重疊過半，只在 persevering-prayer 取「隱祕與顯明的旨意」「話語與聖靈」「水管」三處。
+
+##### 引句核對表
+
+每筆都是逐字比對（`faith-verify.py` 397 筆全過，唯一沒過的「瓦特金」已在上面註明所在檔）。以下每張單列代表性的幾筆。
+
+書 repo 根：
+- S = `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility`
+- M = `/home/andrew/workspace/andrew/books-management/books-done/faith/spiritual-formation/prayer/with-christ-in-the-school-of-prayer/site/content/docs`
+- L = `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour`
+- K = `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/practical-theology/hope-in-times-of-fear/site/content/docs/11-hope-in-the-face-of-suffering`
+
+| 單 | 引句或數字 | 來源檔絕對路徑 |
+| --- | --- | --- |
+| stott 1 | 人會離開教會，多半不是因真理太嚴厲、令他們不安 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/01-courage/_index.md` |
+| stott 1 | 我的口中必須有牙齒 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/02-the-tradition-of-bold-preaching/_index.md` |
+| stott 1 | 這裡躺著一位在人面前毫無懼色的人；一五七二年 | 同上（02-the-tradition-of-bold-preaching） |
+| stott 1 | 以色列喜歡虛謊的安慰，不願受真實的攪擾 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/03-comfort-and-disturbance/_index.md` |
+| stott 1 | 不可如此！要繼續傳講，不可退縮！ | 同上（03-comfort-and-disturbance） |
+| stott 1 | 令安舒的人不安，而令不安的人得安慰 | 同上（03-comfort-and-disturbance） |
+| stott 1 | 一七六一年六月二十一日；許多人受了傷，許多人得了醫治 | 同上（03-comfort-and-disturbance） |
+| stott 2 | 傳道人最主要的職業危險，無疑是驕傲 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/05-humility/_index.md` |
+| stott 2 | 增添神的話是法利賽人的錯，減少神的話則是撒都該人的錯 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/06-the-word-of-god/_index.md` |
+| stott 2 | 一九五四年五月二十日；二千四百位牧師；我盼望儘量站到一旁，讓聖靈來接掌聚會 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/07-the-glory-of-christ/_index.md` |
+| stott 2 | 看得見的無形體 | 同上（07-the-glory-of-christ） |
+| stott 2 | 所有屬神的巨人都是軟弱的 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/pastoral/i-believe-in-preaching/site/content/docs/08-courage-and-humility/08-the-power-of-the-spirit/_index.md` |
+| stott 2 | 一九五八年六月；雪梨大學；我就是那天晚上信主的 | 同上（08-the-power-of-the-spirit） |
+| stott 2 | 在聖靈的能力中說六個字，勝過沒有聖靈講道七十年 | 同上（08-the-power-of-the-spirit） |
+| sf 1 | 禱告也常常必須層層堆疊，直到神看見量器滿了，答應就來到 | `/home/andrew/workspace/andrew/books-management/books-done/faith/spiritual-formation/prayer/with-christ-in-the-school-of-prayer/site/content/docs/16-the-power-of-persevering-prayer/_index.md` |
+| sf 1 | 沒有一個信心的禱告會在天上失去效力 | 同上（16） |
+| sf 1 | 孩子常想摘那半熟的果子，農夫卻懂得等到時候 | 同上（16） |
+| sf 1 | 一年半以上；我不能讓我的客人沒有東西吃 | 同上（16，布倫哈特折疊段） |
+| sf 1 | 即使我是浪子，我仍是孩子；但友情取決於品行 | `/home/andrew/workspace/andrew/books-management/books-done/faith/spiritual-formation/prayer/with-christ-in-the-school-of-prayer/site/content/docs/08-the-boldness-of-gods-friends/_index.md` |
+| sf 1 | 「答應遲延」的學校 | 同上（08），第 16 課也有同一詞 |
+| sf 1 | 但我們在禱告中該尋求的不是那隱祕的旨意，而是他在話語中所啟示的旨意 | `/home/andrew/workspace/andrew/books-management/books-done/faith/spiritual-formation/prayer/with-christ-in-the-school-of-prayer/site/content/docs/29-boldness-in-prayer/_index.md` |
+| sf 1 | 水管所能做的，只是決定它流向哪裡 | 同上（29，折疊段） |
+| lewis 1 | 神大概就是那種四處監視，看到誰在開心就想阻止他的傢伙 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/01-three-parts-of-morality/_index.md` |
+| lewis 1 | 現代人幾乎只想第一件事，忘了另兩件 | 同上（01） |
+| lewis 1 | 基督教不是禁酒的宗教，伊斯蘭教才是 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/02-cardinal-virtues/_index.md` |
+| lewis 1 | 神不喜歡頭腦上的懶人，正如祂不喜歡其他懶人一樣 | 同上（02） |
+| lewis 1 | 人需要被提醒的次數，遠多於需要被教導的次數 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/03-social-morality/_index.md` |
+| lewis 1 | 唯一安全的規則，是給多於我們承受得起的份 | 同上（03） |
+| lewis 1 | 人按外在行為彼此判斷；神按道德選擇判斷 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/04-morality-and-psychoanalysis/_index.md` |
+| lewis 1 | 好人懂善也懂惡；壞人兩者都不懂 | 同上（04） |
+| lewis 2 | 戰鬥是『信與理性』對『情緒與想像』之間的戰鬥 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/11-faith/_index.md` |
+| lewis 2 | 只是一個隨天氣與消化狀況搖擺的生物 | 同上（11） |
+| lewis 2 | 沒人知道自己有多壞，直到他非常努力地試著為善 | 同上（11） |
+| lewis 2 | 爸爸，給我六便士去買生日禮物送你 | 同上（11） |
+| lewis 2 | 這得你做。我做不到。 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/apologetics/mere-christianity/site/content/docs/03-christian-behaviour/12-faith-continued/_index.md` |
+| lewis 2 | 一把剪刀的哪一片刀刃比較必要 | 同上（12） |
+| lewis 2 | 他們忙著看那個源頭 | 同上（12） |
+| keller 1 | 藉著被勝過而得勝 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/practical-theology/hope-in-times-of-fear/site/content/docs/11-hope-in-the-face-of-suffering/02-god-meant-it-for-good/_index.md` |
+| keller 1 | 他們的罪是蓄意的 | 同上（11/02） |
+| keller 1 | 苦難不是正常的；苦難也不是反常的 | 同上（11/02） |
+| keller 1 | 所撒的種子，就是眼淚與哭泣本身 | 同上（11/02） |
+| keller 1 | 我們被呼召去撒下眼淚，而不是浪費它們 | 同上（11/02） |
+| keller 1 | 耶穌的受苦不只是讓位給喜樂，它產生了喜樂 | 同上（11/02） |
+| keller 2 | 當難的東西在對神的信心中被領受時，它們會通向最好的東西 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/practical-theology/hope-in-times-of-fear/site/content/docs/11-hope-in-the-face-of-suffering/01-the-sermon-and-the-city/_index.md` |
+| keller 2 | 沒有了財富——沒有了好東西——就沒有剩下任何自我 | 同上（11/01） |
+| keller 2 | 永遠不可能在今生的成本效益分析中被抵平 | 同上（11/01） |
+| keller 2 | 約瑟，我完全知道我在做什麼。你以為錯的那個兒子，其實才是對的那一個 | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/practical-theology/hope-in-times-of-fear/site/content/docs/11-hope-in-the-face-of-suffering/02-god-meant-it-for-good/_index.md` |
+| keller 2 | 這些事都歸到我身上了！；一生牧養我直到今日 | 同上（11/02） |
+| keller 2 | 十一個孩子；1662；大驅逐 | 同上（11/02，歐文折疊段） |
+| 註 | 瓦特金（「開展出一種生命的節奏、一套倫理」） | `/home/andrew/workspace/andrew/books-management/books-done/faith/theology/practical-theology/hope-in-times-of-fear/site/content/docs/11-hope-in-the-face-of-suffering/_index.md`（部首頁，不在 11/01） |
+
+#### 華文線（4 張）
+
+書 repo 根（下文章節路徑都接在 `site/content/` 之後，全部 `[ -d ]` 驗過）：
+
+- liurun-key-leap：`/home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap`
+- wan-weigang-world-has-another-plan：`/home/andrew/workspace/andrew/books-management/books-done/personal/mindset/growth/wan-weigang-world-has-another-plan`
+- fengtang-winner-method：`/home/andrew/workspace/andrew/books-management/books-done/wisdom/history/civilization/fengtang-winner-method`
+
+單上帶「」的句子與數字都回章節檔逐字比對過（腳本在同目錄 `verify_cn.py`，376 筆命中；另 9 筆是刻意測的粗體斷句與 ch46 的缺項）；章節檔裡粗體記號 `**` 夾在句中的，引句以去掉記號後的文字為準。anchor 在單上不帶結尾斜線，寫進 frontmatter 時照站上既有頁補 `/`。
+
+##### liurun-note（1 本：開 2 張，舊第 9、10 張重驗後更新）
+
+《關鍵躍升》的乘法公式四項，鼓手（four-engines-of-motivation）與教練（coach-train-reassign-replace）已落地；剩下政委與指揮。兩張重讀後都與已落地三頁重疊不到一成，照開。重疊真正要防的是 org-tools（《5 分鐘商學院 工具篇》的 PDCA 那一條），第 2 張因此把 05/02 降成只取定義。
+
+1. management `ninety-percent-communication`「政委：九成時間在溝通，想明白、說清楚、能接受」— liurun-key-leap（docs/04-communication、docs/04-communication/01-communication-exists-to-reduce-information-asymmetry、docs/04-communication/02-think-it-through-why-what-and-how、docs/04-communication/04-the-seven-weapons-of-communication、docs/04-communication/05-process-policy-and-values-communication-across-time、docs/04-communication/06-acceptance-avoiding-outward-compliance）。六個路徑合計 22,548 字（部首 977、01 4,259、02 4,100、04 6,097、05 3,462、06 3,653）；只取一句的 docs/04-communication/03-dimension-reduction-listen-speak-write-draw（4,206 字）路徑也驗過，照已落地兩頁的做法一併掛 anchor。
+   第一鏟（four-leaps-of-a-new-manager）掛導論、01 心態部、01/01，溝通只有「溝通躍升（從用自己的手，到用別人的腦）」一句；鼓手頁掛第二部六章、教練頁掛第三部六章，第四部一字未用。
+   只寫：PMI 的指導說「一個經理應該將 90% 的時間用於溝通」、「你管理的不是 10 名員工，而是一個團隊」、溝通管思想一致而協作管行為一致、第三個身份政委（部首）；「只表揚不批評」引發的勞動仲裁（員工拿出聊天記錄，被裁定回原公司工作）、從「兵頭」變成「將尾」、「職場研究如何向上溝通，管理研究如何向下溝通」、「心委屈了」、10 個員工每人每天 10 個決定、一年 25000 個決定其中 24500 個是他們自己做的、溝通的目的是減少資訊不對稱做到「沒有驚喜和意外」（No Surprise）、三個常見錯誤（把資訊當權力、說好不說壞、當老好人）本質都是「逃避溝通」、「員工把糖衣吃了，但完全沒有看見炮彈」（04/01）；「不是沒有講清楚，而是沒有想明白」、三個筐（為什麼、是什麼、怎麼做）、甘迺迪「我們要在十年之內把人送上月球，並且讓他安全地回來」只講了是什麼、「「怎麼做」是「是什麼」的答案，「是什麼」是「為什麼」的答案」、私董會上「如何給高管降薪」倒推出真正的為什麼（投資人盡職調查時高管說的戰略「結果每個人說的都不一樣」）再推出新的是什麼（建立有效的戰略執行機制）、溝通要「開始於「為什麼」，結束於「怎麼做」」、「沒有「為什麼」和「怎麼做」的「是什麼」，就是雞湯」、「你只給了他雞湯，卻沒給他勺子」（04/02）；七種武器照書的順序與名稱「一對一溝通、即時溝通、電子郵件、走動管理、例會、看板、週報」，各取一個關鍵點：一對一「那 1 小時是你的」、即時溝通效率排序「面談 ＞ 打電話 ＞ 企業微信／飛書／釘釘」、電子郵件「要有記錄」與「批評要私下進行，表揚要公開進行」、走動管理「把自己的辦公室或工位設在離茶水間或洗手間最遠的地方」與「在員工的主場溝通」、例會「一場會議的價值 ＝ 結論 − 時間成本」與停止說「這行不通」、看板「用數字、時間、百分比進行展示」、週報「常規事項只寫一條，新事項每週都要寫」，收在「難走的路，從不擁擠」（04/04）；「「以前的經理」沒有和「今天的員工」溝通過」、「語言是穿越空間的溝通工具，文字是穿越時間的溝通工具」、流程讓方法論、制度讓合規性、價值觀讓決策力穿越時間、「章」是制度而「法」是流程、有贊「絕不收客戶的禮」與潤米的「捨滿取半」（04/05）；「憑什麼是你當經理？」、服從性測試只提高「陽奉度」降不了「陰違度」、「權力是接受者賦予的」、反求諸己、讓員工接受的四個辦法（沒有私心、不要偏袒、賞罰分明、展示專業性）、「樹立權威，不是耀武揚威」（04/06）。04/03 只一句：「聽不如說，說不如寫，寫不如畫」，或把「你聽懂了嗎」換成「我講清楚了嗎？」。
+   舊單更正：七種武器舊單漏了第三種電子郵件；排序舊單寫成「面談＞打電話＞企業微信」，原文後段是三個工具並列（企業微信／飛書／釘釘），照原文。04/01 與 04/06 都有「手、腦、心」三層（不能理解不能接受用的是手、能理解不能接受用的是腦、能理解能接受用的是心），章節檔裡三個字各自加粗，寫的時候用轉述、不加引號。
+   避開 four-leaps-of-a-new-manager 的四個躍升與種樹算帳：手腦心三層是從它那句「用別人的腦」接下去的，點題引一次、連過去，不重講。避開 four-engines-of-motivation 已寫的三條：批評時守住「我是一個負責任的人」只改行為（04/01 的評價人對評價事、04/04 一對一的對事不對人是同一個意思，這頁只帶一句）；恐懼發動機強度大但要慎用（04/06「恐懼這種張力雖然強烈但短暫」只當服從性測試失效的理由帶過）；獎賞三原則（04/06 的賞罰分明只列名）。避開 coach-train-reassign-replace 的週記、分享、復盤三個幹中學方法（04/04 的週報在這頁是溝通工具，不展開復盤）與親自解雇那一段（勞動仲裁的故事只講溝通，不談怎麼解雇）。避開 org-tools（MECE、SWOT、SMART、OKR、PDCA 是另一本書的工具箱）；05/06「效率靠流程」與 05/04 文化歸第 2 張，這頁的流程、制度、價值觀只寫「跨時間的溝通」那一面。communication-note 的溝通通論不對照；pyramid-expression 在 fengtang 站不在本站。章末「學員感悟與案例」是學員的話，不當劉潤的主張引。
+   claim 頁；related 連 four-leaps-of-a-new-manager、four-engines-of-motivation、coach-train-reassign-replace、org-tools（四個都 `ls` 驗過）；第 2 張落地後互連 closed-loops-and-delegation。seeAlso 連 management 站 `concepts/managers-work/one-on-one/`（「一對一會議」，檔案實存；本站既有頁已用 `site: management`）。
+
+2. management `closed-loops-and-delegation`「指揮：執行靠閉環、發展靠規劃、格局靠授權」— liurun-key-leap（docs/05-collaboration、docs/05-collaboration/01-execution-rests-on-closed-loops、docs/05-collaboration/02-improvement-rests-on-cycles、docs/05-collaboration/03-growth-rests-on-planning、docs/05-collaboration/05-scope-rests-on-delegation）。五個路徑合計 18,669 字（部首 406、01 4,647、02 4,388、03 4,355、05 4,873）；各取一句的 docs/05-collaboration/04-health-rests-on-culture（4,296 字）與 docs/05-collaboration/06-efficiency-rests-on-process（4,314 字）路徑也驗過，一併掛 anchor。
+   第五部協作六章，第一鏟與鼓手、教練兩頁都沒碰。標題從舊單的「改進靠循環」改成書的章題用字，並把 05/03 規劃升成主段、05/02 循環降成一段：05/02 的主體就是 PDCA 四步，org-tools 已有一條。
+   只寫：賽車的比方「動力是燃料，能力是車輛架構，溝通是儀表盤，協作是駕駛技術」與第四個身份樂隊指揮（部首）；「不了了之」是最危險的小事（「今天是紙巾不見了，明天可能是數據不見了，後天可能是重大資產不見了」）、羅振宇對靠譜的解讀「凡事有交代、件件有著落、事事有回音」、為什麼只能希望不能要求（米勒法則：大腦「最多能同時記住大約 7 件事，一般人只能同時記住 3 件」）、海爾前台半小時後真的回電、「一件事有了始，就一定要有終；有了起，就必須有落」、閉環像 4×100 米接力必須有交棒（從回覆「收到」開始，不能「把棒往空中一扔」）、「責任除以 2，等於 0」、凡事有交代的主體是經理而件件有著落的主體是系統（工具 ＋ 流程）、一年 365 篇原創頭條靠四個泳道「新選題 → 寫作中 → 待發布 → 已發布」不讓文章掉在地上、「「最後期限」，就是最典型的被動工具」、期待自律但要有他律（05/01）；短期靠閉環、中期靠循環、長期靠規劃的三段式、「你會在贏得今晚的榮譽後，在明天被淘汰掉」、「用戰術上的勤奮，掩蓋戰略上的懶惰」與王興「多數人為了逃避真正的思考，願意做任何事情」、規劃就是「跳出日常工作，站在三年後，懸在半空中，用上帝視角看待團隊，然後以終為始」、三年規劃的三問（我的業務、我的同事、我自己三年之後是什麼樣子）、潤米 2018 年 7 月起做公眾號一年半不賺錢到粉絲數突破 60 萬、黃旭投資的跨境電商「人均年營業收入 380 萬元」卻多養一半的人做明後年的事與「吃一塊，夾一塊，看一塊」、一年真正有重大影響的事「一般不會超過三件」、衡量指標三原則（有總比沒有好、可衡量數據化、分清前置指標與後置指標）與西南航空的空駛率（別家落地到再起飛要 1 小時，「西南航空只需要 10 分鐘」）（05/03）；「你放著，我來」享受的是「被依賴者」的成就感、「拿著經理的工資幹員工的活」、「格局，就是你能管多少人、做多大事」、賈國龍的「我真不知道」、吳軍《富足》裡那位創始人（幾億元銷售額而「10 萬元以上的費用還需要創始人簽字批准」、「其實有些簽字就是走個形式」、替下面的管理者承擔了責任導致「懶政」、後來「把 100 萬元以下的財務權下放給他」、營業額「到現在已增長了不止 10 倍」）、「授權並不是授責，更不是分配工作」與「授權授的是「決策權」」、「我不看。這是你的責任」、授權的五個級別「指揮式、批准式、把關式、追蹤式、委託式」（追蹤式已授出「80% 的決策權」）、五級背後是從授權怎麼做、到是什麼、到為什麼，對應能管的人數（「只能管 6 ～ 10 個人」「大概能管 10 ～ 100 個人」，再往上多多益善）（05/05）。05/02 只取一段：「西瓜皮戰略」、循環是一組首尾相連而業務水平不斷提高的閉環、「你可以接受不完美，但是不能接受下一個閉環的業務水平不提高」、客服滿意度從 75% 往 90% 走的三個閉環當例子（一兩句）。05/04 一句：「鼓勵白、壓縮灰、禁止黑」或「管理者的可預測性，帶來決策的一致性，帶來授權的可能性」（後一句正好接授權段）。05/06 一句：流程是「怎麼做」的標準化，或「冗餘，是健壯的成本。複雜，是成熟的代價。」
+   舊單核對：舊單六個引句全數逐字找到；「4×100 接力」原文是「4×100 米接力跑」；授權確認是五級，名稱如上；「懶政」出自吳軍那個案例，是創始人替下面的管理者承擔了責任的後果，不是劉潤的一般論斷，照案例寫。
+   避開 org-tools 的 PDCA 與復盤那一條：它已寫 Plan 要有「Who do What by When」、Check 是收回回旋鏢、任務只有完成和放棄兩種結局。05/01 的 3W 方法與「接受者完成任務／發起者放棄任務」是同一套，這頁各引一次、連過去，篇幅放在 org-tools 沒有的交棒、系統（工具 ＋ 流程）、米勒法則與他律；05/02 的 PDCA 四步（周密計劃、嚴格執行、同步檢查、及時調整）、彎曲金字塔、嬰兒車公司 CEO 不重講。避開 results-through-others 的「授權不是放任：權責利要對等並保留檢查點」（《5 分鐘商學院》的版本；05/05 裡的權責利匹配出自學員感悟，不是劉潤正文，不引），這頁只寫五級與格局論。避開 coach-train-reassign-replace 已寫的三條：允許犯錯是培養的成本（05/05「管理者要眼睜睜地看著員工在自己眼皮底下犯錯」只帶一句）、精力 40%／40%／20% 與為明天的自己訓練團隊（05/03 的規劃從業務與指標切入，不重講培養）、替換高於團隊平均的人（05/03 一年三件事例子裡的淘汰末尾 20% 與招高於平均的人不展開）。避開 four-engines-of-motivation 的「把權力關在籠子裡」（05/04 又出現一次，不引）與考核指標必須直接可控（前置、後置指標是另一個區分，寫清楚差別即可）。避開 four-leaps-of-a-new-manager 的拆解對拆分與「把責任向下穿透」；五級授權的手、腦、心歸第 1 張，這頁只在收尾連過去。
+   claim 頁；related 連 four-leaps-of-a-new-manager、results-through-others、org-tools、coach-train-reassign-replace（四個都 `ls` 驗過）；第 1 張落地後互連 ninety-percent-communication。seeAlso 連 management 站 `concepts/org-people/intent-based-leadership/`（「意圖式領導：把權力交給資訊」，檔案實存）。
+
+###### 引句表（liurun-note）
+
+章節檔都在 `/home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/` 之下，表內寫全路徑。
+
+第 1 張：
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 一個經理應該將 90% 的時間用於溝通 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/_index.md |
+| 職場研究如何向上溝通，管理研究如何向下溝通 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/01-communication-exists-to-reduce-information-asymmetry/_index.md |
+| 你的員工一年總共要做 25000 個決定／24500 個決定都是他們自己做的 | 同上（04-communication/01-communication-exists-to-reduce-information-asymmetry/_index.md） |
+| 員工把糖衣吃了，但完全沒有看見炮彈 | 同上 |
+| 「怎麼做」是「是什麼」的答案，「是什麼」是「為什麼」的答案 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/02-think-it-through-why-what-and-how/_index.md |
+| 沒有「為什麼」和「怎麼做」的「是什麼」，就是雞湯 | 同上 |
+| 一對一溝通、即時溝通、電子郵件、走動管理、例會、看板、週報 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/04-the-seven-weapons-of-communication/_index.md |
+| 面談 ＞ 打電話 ＞ 企業微信／飛書／釘釘 | 同上 |
+| 一場會議的價值 ＝ 結論 − 時間成本 | 同上 |
+| 語言是穿越空間的溝通工具，文字是穿越時間的溝通工具 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/05-process-policy-and-values-communication-across-time/_index.md |
+| 權力是接受者賦予的／陽奉度／陰違度 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/06-acceptance-avoiding-outward-compliance/_index.md |
+| 聽不如說，說不如寫，寫不如畫 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/04-communication/03-dimension-reduction-listen-speak-write-draw/_index.md |
+
+第 2 張：
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 動力是燃料，能力是車輛架構，溝通是儀表盤，協作是駕駛技術 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/_index.md |
+| 凡事有交代、件件有著落、事事有回音 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/01-execution-rests-on-closed-loops/_index.md |
+| 一件事有了始，就一定要有終；有了起，就必須有落 | 同上 |
+| 最多能同時記住大約 7 件事，一般人只能同時記住 3 件 | 同上 |
+| 責任除以 2，等於 0 | 同上 |
+| 你可以接受不完美，但是不能接受下一個閉環的業務水平不提高 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/02-improvement-rests-on-cycles/_index.md |
+| 跳出日常工作，站在三年後，懸在半空中，用上帝視角看待團隊，然後以終為始 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/03-growth-rests-on-planning/_index.md |
+| 人均年營業收入 380 萬元／吃一塊，夾一塊，看一塊 | 同上 |
+| 西南航空只需要 10 分鐘 | 同上 |
+| 格局，就是你能管多少人、做多大事 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/05-scope-rests-on-delegation/_index.md |
+| 指揮式、批准式、把關式、追蹤式、委託式／80% 的決策權 | 同上 |
+| 10 萬元以上的費用還需要創始人簽字批准／到現在已增長了不止 10 倍 | 同上 |
+| 管理者的可預測性，帶來決策的一致性，帶來授權的可能性 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/04-health-rests-on-culture/_index.md |
+| 冗餘，是健壯的成本。複雜，是成熟的代價。 | /home/andrew/workspace/andrew/books-management/books-done/professional/leadership/team-building/liurun-key-leap/site/content/docs/05-collaboration/06-efficiency-rests-on-process/_index.md |
+
+###### 小結
+
+- 開 2 張，全 claim。舊第 9 張內容照開，補電子郵件、更正排序引句；舊第 10 張改標題、05/03 升主段、05/02 降成一段。
+- 兩張之間的分界：Why／What／How 與手腦心歸第 1 張；流程與文化在第 1 張是「跨時間的溝通」，在第 2 張各只一句。
+
+##### wan-weigang-note（1 本：開 1 張）
+
+3. system `no-long-term-exponential-growth`「沒有長期的指數成長：S 曲線、平台期與回歸平均」— wan-weigang-world-has-another-plan（docs/02-necessity-within-chance/06-compound-interest-and-real-world-growth、docs/02-necessity-within-chance/09-regression-to-the-mean）。兩章合計 8,911 字（06 4,653、09 4,258）。
+   分類判 system：06 與已落地的 expected-value-is-not-enough（05、07、08）是第二部同一組量化章，這頁把那一組補齊；09 的相關與因果偏科學思維，但單章撐不起 thinking 的一頁，而且它在這頁的用處是解釋 06 留下的問題（極端的好成績為什麼不持續）。06 自己已把兩章接起來：今年投資表現前十與去年前十，「這兩個名單非常不一樣」。
+   第一鏟（wan-weigang-world-has-another-plan）掛序、第二部、第四部，正文用 02/02、02/03、04/01 到 04/03，只在開頭提到「想靠複利發財的王先生」一句；06 與 09 沒有任何一頁用過。
+   只寫：複利的算術為什麼誘人（年利率 15% 時 34 年變成本金 100 倍、20% 時 26 年）、一個雞蛋的故事與「指望複利致富也不靠譜」、「你想去哪找長期的、穩定的、20% 的利率？」、「只有龐氏騙局那種非法集資公司會做這樣的保證」、「你可以一時打敗市場，但你沒辦法長期打敗市場」、小標題「世界上沒有長期的指數級增長」；真實世界的增長是邏輯函數（logistic function）也就是 S 曲線，三個階段嬰兒期、擴張期、成熟期，擴張期「非常像指數增長」，一定會遭遇平台因為「市場是有限的」；例子取美國 1980—1995 年新增 HIV 感染、全世界「77 億個手機用戶」「每 10 個人擁有 10.3 個手機」、「花無百日紅，潮起又潮落」；突破平台靠新的增長點（iRobot「2009 年遭遇平台期」後做醫療看護機器人），「僅僅是對原有產品的改進」不夠（iPod 歷經多次創新仍是「一條 S 曲線」），「長期的指數增長，根本不符合自然規律」；回報越高風險越大（鄧寧那段：10% 的利潤讓資本活躍，「300% 就得冒絞首的風險」）、發財靠稀缺的能力、稀缺的資源或眼光，把希望寄託在複利上的人是「認知上的懶惰者」，結尾「愛因斯坦根本沒說過」那句話（06）。高爾頓 1877 年在英國皇家科學院演示高爾頓板、加第二排豎槽後「標準差更大」而「真實世界裡一代代人的身高標準差都是一樣的」、605 個英國名人的兒子與姚明女兒的身高、他先叫它「回歸平庸」並把豎槽改成斜槽、「難道說冥冥之中有一種力量讓我們回歸平庸嗎？」；1889 年想通「根本就沒什麼特殊力量」（高個子的手臂長「但他們的手臂並不是最長的」、「父親相對於兒子，也有一個回歸平庸」）、「高爾頓是第一個意識到「相關不是因果」的人」、今天叫回歸平均（regression toward the mean）；康納曼《快思慢想》的兩個公式（「成功   = 天賦 + 運氣」「大成功 = 多一點點天賦 + 很多好運氣」，照章節檔的程式碼區塊排）、「基因可以遺傳，可是運氣不能遺傳」、富不過三代、本質是「小概率事件不會一再發生」；電影續集（「其實票房平庸很正常，第一部大獲成功才不正常。」）、NBA 新秀、以色列空軍教官那一段（「康納曼一時語塞」、「表揚固然沒有立竿見影的作用，批評的作用其實也是錯覺」）；reason 與 cause 的分別、高個父親的兒子比較矮這件事「有解釋，但沒有緣故」、世界上有些事是無緣無故發生的（章節檔「無緣無故」四字加粗，轉述不加引號）、「他的因果慣性思維害了他」；皮爾森「科學的世界裡只有相關沒有因果」與章末那個沒回答的反問（是不是從一個極端走到另一個極端），停在提問，不替書回答（09）。
+   用字：書裡通篇是「增長」「指數級增長」，引句照原文；標題與自己的行文用「成長」無妨。
+   避開 expected-value-is-not-enough 已寫的：正態分布與標準差的定義（68%、95%、99.7%）、算術平均對幾何平均、沒有遍歷性、買指數基金的結論。09 的高爾頓板只說它排出正態分布、第二排更寬，不重講標準差；06 也有一段建議買指數基金，這頁至多一句並連過去。避開 inadequate-equilibria 的有效市場四個特點與「你知道的所有信息，市場都已經知道了」（06「上市公司的未來前景其實都已經包括在它的股價裡了」只一句）。避開第一鏟的「把一生當系統」「高手的眼中只有概率」「運氣不是光環，是性格」：那頁的運氣是韋斯曼的性格論，這頁的運氣是統計上不能遺傳、不會一再發生的那一部分，起草時寫清楚差別；王先生只在點題句引一次。engineer-mindset 已有「愛因果、不愛機率」與失敗者分母，wan-weigang-master 已有「運氣被系統性低估」，不重講，related 連過去。06 的延伸段「年輕人其實不該存錢」離題，不用。
+   姊妹站：`grep -rl 回歸平均` 在 science-note、data-science-note 的 concepts 沒有任何頁；thinking-note 只有 `judgment-bias/how-false-beliefs-form` 在收束處一句「極端表現必回歸平均」（另兩頁 forecasting-as-skill、numbers-and-evidence 各一句「回歸均值」），沒有專頁，所以這頁照書把高爾頓與康納曼講完整。高爾頓的另一個版本（1875 年甜豌豆）在 investing-note 的 `market-history/invention-of-risk`，那是伯恩斯坦的敘述，這頁不並排、只 seeAlso。
+   claim 頁；related 連 wan-weigang-world-has-another-plan、expected-value-is-not-enough、inadequate-equilibria、engineer-mindset（四個都 `ls` 驗過）。seeAlso（檔案都實存）：thinking 站 `concepts/judgment-bias/how-false-beliefs-form/`（「錯誤信念如何形成：有缺陷的理性，而非非理性」）、investing 站 `concepts/market-history/invention-of-risk/`（「風險的觀念史：從骰子到效率前緣」）、data-science 站 `concepts/causal-inference/correlation-vs-causation/`（「相關不是因果：自然實驗怎麼把因果剝出來」）、career 站 `concepts/meaning-direction/second-curve-timing/`（「第二曲線：在高峰前轉身」，S 曲線的職涯版）。本站既有頁只用過 investing、learning、science、taleb 四個 site 鍵，thinking、data-science、career 三個鍵在別站的 frontmatter 都出現過，本站起草時仍先確認 schema 收。
+   `life-as-information` 維持不開，未處理。
+
+###### 引句表（wan-weigang-note）
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 世界上沒有長期的指數級增長（小標題） | /home/andrew/workspace/andrew/books-management/books-done/personal/mindset/growth/wan-weigang-world-has-another-plan/site/content/docs/02-necessity-within-chance/06-compound-interest-and-real-world-growth/_index.md |
+| 15% → 34 年變 100 倍；20% → 26 年（表格兩列） | 同上 |
+| 你想去哪找長期的、穩定的、20% 的利率？ | 同上 |
+| 77 億個手機用戶／每 10 個人擁有 10.3 個手機 | 同上 |
+| 2009 年遭遇平台期（iRobot）／一條 S 曲線（iPod） | 同上 |
+| 長期的指數增長，根本不符合自然規律 | 同上 |
+| 300% 就得冒絞首的風險／認知上的懶惰者／愛因斯坦根本沒說過 | 同上 |
+| 1877 年／605 個英國名人／1889 年 | /home/andrew/workspace/andrew/books-management/books-done/personal/mindset/growth/wan-weigang-world-has-another-plan/site/content/docs/02-necessity-within-chance/09-regression-to-the-mean/_index.md |
+| 高爾頓是第一個意識到「相關不是因果」的人 | 同上 |
+| 成功   = 天賦 + 運氣／大成功 = 多一點點天賦 + 很多好運氣 | 同上 |
+| 基因可以遺傳，可是運氣不能遺傳／小概率事件不會一再發生 | 同上 |
+| 表揚固然沒有立竿見影的作用，批評的作用其實也是錯覺 | 同上 |
+| 有解釋，但沒有緣故／科學的世界裡只有相關沒有因果 | 同上 |
+
+##### fengtang-note（1 本：開 1 張、否決 1 個候選）
+
+《勝者心法》站上已有四頁：zizhi-tongjian-lessons（序、ch14、ch42）、order-before-strategy（ch01、ch02、ch04、ch06）、decide-without-consensus（ch12、ch27、ch32、ch44）、serving-the-tiger（ch35、ch36；ch37 田單攻狄沒入文）。兩個候選與這四頁的事實重疊都不到一成（`grep` 呂不韋、范雎、黃歇、趙良、五羖、車裂在站上零筆；商鞅只出現在 ch12 的辯論與 ch14 的徙木立信），所以不是「重疊過半」的問題，是只能開一張時選哪一張。
+
+4. management `results-first-is-strong-medicine`「業績至上是虎狼之藥：用奇才的四種力、變法四條與商鞅的結局」— fengtang-winner-method（docs/part-2-zhou-chronicle-two/ch11-shang-yang-enters-qin-use-talent-to-break-through、docs/part-2-zhou-chronicle-two/ch13-shang-yang-methodology-results-first、docs/part-2-zhou-chronicle-two/ch19-zhao-liang-advises-shang-yang-virtue-and-moderation）。三章合計 5,924 字（ch11 1,775、ch13 2,304、ch19 1,845）。
+   選它的理由：三章是同一個人從入秦、方法到車裂的一條線，結局與代價就在章節檔裡，不必外求；站上兩頁已引商鞅的成功面（不與眾謀、徙木立信、行法十年成企業文化），他的下場與馮唐自己說的「虎狼之藥」還沒有任何一頁寫。分類判 management：三塊裡兩塊是寫給用人者與制度設計者的（一把手用奇才要備什麼、單一 KPI 的利弊），與 decide-without-consensus 相鄰。
+   既有頁用了什麼：decide-without-consensus 的「奇才空降先站穩」「八個問題」「商鞅對甘龍」全出自 ch12；zizhi-tongjian-lessons 的徙木立信與企業文化定義出自 ch14。ch11、ch13、ch19 一字未用。
+   只寫：秦孝公 21 歲即位的處境與求賢令「賓客群臣有能出奇計強秦者，吾且尊官，與之分土」、「破局必須用奇才」、常規之才「用得安心、配合度高，但不能破局」、用奇才要先掂量自己的四種力（權力、定力、包容力、防範能力）、馮唐說他更關注用奇才的那個人、「有些人之所以做大，就是因為面子」、公叔痤臨終兩段話（「願君舉國而聽之」與「必殺之，無令出境」）、商鞅的回答「君不能用子之言任臣，又安能用子之言殺臣乎」、魏惠王錯過商鞅在深層次上「是心胸的問題」（ch11）；「軍功第一，業績至上」、變法四條（什伍連坐與「告奸者與斬敵首同賞，不告奸者與降敵同罰」、軍功定爵禁止私鬥、耕織為本、宗室非軍功不得屬籍與「有功者顯榮，無功者雖富無所芬華」）、成事三條件（能不能幹、想不想幹、讓不讓你幹）、馮唐反駁「商鞅馭民五術」（壹民、弱民、疲民、辱民、貧民；司馬光的書「從未提及五術」）、長遠看是「虎狼之藥」、四個核心詞各有利弊（連坐：「人只是螺絲釘，無法成為飛鳥」；軍功：「KPI 過分單一」「有可能催生怪物」；本分：超穩定到不問為什麼；無軍功無貴族：「少了制衡力量」）、精髓三個詞「軍功、王權、集體」、「興起來很快，亡起來也很快」（ch13）；「最大的榮譽呼嘯而至之時，也是最大的風險呼嘯而至之時」、趙良先求免罪「千人之諾諾，不如一士之諤諤」、拿五羖大夫百里奚對照（「勞不坐乘，暑不張蓋」、死後「童子不歌謠，舂者不相杵」）對商鞅（「公子虔杜門不出已八年矣」、出門甲士夾車「此一物不具，君固不出」）、引《詩》「得人者興，失人者崩」與《書》「恃德者昌，恃力者亡」、「君之危若朝露」、商鞅不聽而五月而難作、結局「車裂以徇，盡滅其家」、逃魏而「魏人不受」、為什麼掌權多年卻沒有自己的軍隊（什伍連坐反過來擋住他，「商鞅搬起石頭砸了自己的腳」）、馮唐說就算聽了也很難改變結局（「人也變成了自己命運的俘虜」）、收在「做人留一線，日後好相見」與一個「度」字（ch19）。
+   章節檔用字：ch11 有簡體殘字（「旷世奇才」「撑起一片天」），頁面用繁體時這幾句改成不加引號的轉述，不要當逐字引句。
+   避開 decide-without-consensus 的 ch12 全部（空降開局、八個問題、甘龍的辯論、「成大功者不謀於眾」、下探一層）：ch11 寫到「公大悅，與議國事」為止，不接辯論。避開 zizhi-tongjian-lessons 的徙木立信、行法十年是企業文化、「民勇於公戰，怯於私鬥」、業績是用人的金標準：那頁的業績是選人的標準，這頁的業績是制度把什麼設成唯一指標與它的代價，起草時寫清楚差別、related 連過去。避開 order-before-strategy 的「才者，德之資也；德者，才之帥也」、仁拆成讓厚平、「在德不在險」：ch19 的「恃德者昌，恃力者亡」是同一個方向，這頁只寫趙良這一場與商鞅的下場，不回頭重講智伯與吳起。避開 serving-the-tiger 的功成身退四個關鍵：ch19 有一句「一旦領導『掛』了，這個特別能幹的人基本上也就完了」與那頁「功成身退的標誌是那個人走了」同旨，引一次、連過去。ch18 取河西（魏人不受的前因）不掛，一句帶過即可。
+   馮唐在這三章同時用了勝負與德行兩套說法，概念頁照書並陳；書站概覽對這一點的評語留給導覽。
+   claim 頁；related 連 decide-without-consensus、zizhi-tongjian-lessons、order-before-strategy、serving-the-tiger（四個都 `ls` 驗過）。seeAlso 不列：本站既有頁只連過 management 站 `org-people/first-who-then-what`，與這頁不對題。
+
+###### 否決
+
+- (b) ch46 奇貨可居加 ch38、ch39（三章合計 6,553 字：ch38 2,243、ch39 1,910、ch46 2,400）：不開。不是重疊（與既有四頁零重疊），是三個理由。
+  第一，它是兩個題目。ch38 黃歇諫秦與 ch39 范雎入秦講的是同一件事（遠交近攻、戰略是不做什麼、戰略篤定性），ch46 講風險投資，三章沒有一條共用的主張；拆開後 ch46 單章 2,400 字不足成頁，ch38 加 ch39 是 4,153 字，剛過線。
+  第二，書站概覽要求「連結局一起寫」，章節檔撐不起來。ch46 對呂不韋的結局只有一句「他最後被自己兒子杀死」，而書站概覽寫的是被逼自盡，兩處說法不一；要把結局寫實就得引章節以外的史料，過不了逐字回章的規則。
+  第三，概覽說的「四個要素」在章節檔裡找不到。ch46 正文是「六大啟示」，第四條才是看得准、做得狠、以小博大；照概覽的四要素寫，引句回不了章。
+  若日後要補第五部，材料乾淨的是 ch38 加 ch39 的遠交近攻一頁（可再看相鄰的 ch40 范雎說秦王，1,878 字），ch46 併成那頁的一條 details 並照章節原句帶上結局那一句。
+
+###### 引句表（fengtang-note）
+
+| 引句或數字 | 來源檔絕對路徑 |
+| --- | --- |
+| 賓客群臣有能出奇計強秦者，吾且尊官，與之分土 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/history/civilization/fengtang-winner-method/site/content/docs/part-2-zhou-chronicle-two/ch11-shang-yang-enters-qin-use-talent-to-break-through/_index.md |
+| 用得安心、配合度高，但不能破局／權力、定力、包容力、防範能力 | 同上 |
+| 君不能用子之言任臣，又安能用子之言殺臣乎 | 同上 |
+| 軍功第一，業績至上 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/history/civilization/fengtang-winner-method/site/content/docs/part-2-zhou-chronicle-two/ch13-shang-yang-methodology-results-first/_index.md |
+| 告奸者與斬敵首同賞，不告奸者與降敵同罰 | 同上 |
+| 虎狼之藥／人只是螺絲釘，無法成為飛鳥／KPI 過分單一 | 同上 |
+| 軍功、王權、集體／興起來很快，亡起來也很快 | 同上 |
+| 最大的榮譽呼嘯而至之時，也是最大的風險呼嘯而至之時 | /home/andrew/workspace/andrew/books-management/books-done/wisdom/history/civilization/fengtang-winner-method/site/content/docs/part-2-zhou-chronicle-two/ch19-zhao-liang-advises-shang-yang-virtue-and-moderation/_index.md |
+| 千人之諾諾，不如一士之諤諤／恃德者昌，恃力者亡／得人者興，失人者崩 | 同上 |
+| 公子虔杜門不出已八年矣／車裂以徇，盡滅其家／五月而難作 | 同上 |
+| 做人留一線，日後好相見 | 同上 |
+| 他最後被自己兒子杀死（否決理由二的依據；「四個要素」「自盡」「識人準」在此檔零筆） | /home/andrew/workspace/andrew/books-management/books-done/wisdom/history/civilization/fengtang-winner-method/site/content/docs/part-5-zhou-chronicle-five/ch46-treasure-merchandise-greatest-venture-investment/_index.md |
+
+##### 總結
+
+- 開 4 張：liurun-note 2（ninety-percent-communication、closed-loops-and-delegation）、wan-weigang-note 1（no-long-term-exponential-growth）、fengtang-note 1（results-first-is-strong-medicine）。全 claim。
+- 否決 1 個：fengtang 候選 (b)。wan-weigang 的 life-as-information 依指示未處理。
+- 旁註：上一輪第 3 張單列了 ch37（魯仲連、保持飢餓），落地的 serving-the-tiger 沒寫也沒掛（`grep` 魯仲連、攻狄零筆），那一章 docs/part-4-zhou-chronicle-four/ch37-tiandan-attacks-di-stay-hungry-to-keep-achieving（路徑實存）仍是沒用過的材料。
+
 ### 2026-11-13 Fable 輪：導覽對帳（新頁落地後過期的「零頁」句與頁書比）、對照頁不計入跨頁承重 — **不開新單**
 
 **起點**：兩輪 Opus 共落地 114 頁；checkup blocker 0／warn 0／nit 18；tier-audit 只剩 philosophy 2 筆衝突；GUIDE-DRIFT 要改 0。
@@ -29,7 +521,7 @@
 
 **交付**：philosophy `0d560b6`、fengtang `e245b50`、cloud `6dba965`、de-botton `ca06c88`、history `e1f7989`、navarro `df241e0`、schwager `7672ece`、uncle-bob `05b8a00`；philosophy 與 navarro 重新 build，八站 format check 全過；tier-audit 六類全 0。
 
-**下一輪**：沒有待起草的單。可開的只剩上一輪留第三鏟的三張（劉潤溝通、協作，萬維鋼信息論人生觀）；data-science 兩本等書；security 那張與 lotto 走不走烏茲別克、西西里仍等 Andrew。起草代理的指令要加一條：新頁落地後 grep 導覽與總覽裡講那位作者或那個主題「零頁／只有轉述／還沒開頁」的句子，一併改。
+**下一輪**：第三鏟 13 張見上一節；data-science 兩本等書；security 那張與 lotto 走不走烏茲別克、西西里仍等 Andrew。起草代理的指令要加一條：新頁落地後 grep 導覽與總覽裡講那位作者或那個主題「零頁／只有轉述／還沒開頁」的句子，一併改。
 
 ### 2026-11-12 下午 Fable 輪：三場對照頁裁決、Flow 第十章歸屬、26 本孤兒認領、信仰線與華文線選題 — **開 36 頁給 Opus**
 
