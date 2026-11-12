@@ -81,6 +81,12 @@ CAT_CLAIM = re.compile(rf"([a-z][a-z0-9-]{{2,}})\s*分類\s*{NUM}\s*頁")
 # （「測試優先（三本 owned＋一本 skipped）」「企業應用那一翼六本 owned」），拿站台總數
 # 去對必然全錯——第一版就是這樣多報了 5 筆。
 OWNED_CLAIM = re.compile(rf"收完\s*這?\s*{NUM}\s*本")
+# 沒有「站上／全站」前綴的整站宣稱：「八十頁沿十個分類鋪開」「五十五頁用到了架上四十本書」
+# 「三十一頁沿三組對話展開」。只在總覽與導覽前兩章找（這些位置寫的都是整站規模），
+# 而且數字要在句首（引號、句號、逗號或行首之後），後面接整站動詞。2026-11-12 第三批收尾時
+# 起草代理手動抓到七處這種句子早已過期，TOTAL_STRONG 一處都沒報。
+BARE_TOTAL = re.compile(rf"(?:^|(?<=[「\"。，；\n]))\s*{NUM}\s*頁(?=\s*(?:沿|用到|分在|分成|互相|讀下來|概念頁|撐起|鋪開))", re.M)
+BARE_SCOPE = re.compile(r"^(?:overview\.ts|0[12]-.*\.md)$")
 
 
 def cn2int(s):
@@ -343,6 +349,15 @@ def scan_text(st, f, fname, text):
         if verdict != "ok" and is_strong(text, m):
             verdict, reason = "drift", "句型即整站宣稱，" + reason
         rows.append((fname, "站台總頁", n, actual_total, verdict, reason, ctx(text, m)))
+    if BARE_SCOPE.match(fname):
+        for m in BARE_TOTAL.finditer(text):
+            n = cn2int(m.group(1))
+            if n is None or demoted(text, m):
+                continue
+            verdict, reason = resolve_total(text, m, n, f)
+            if verdict != "ok":
+                verdict, reason = "drift", "句首整站宣稱（無「站上」前綴），" + reason
+            rows.append((fname, "站台總頁", n, actual_total, verdict, reason, ctx(text, m)))
     for m in CAT_CLAIM.finditer(text):
         cat, n = m.group(1), cn2int(m.group(2))
         if cat in f["cats"] and n is not None:
