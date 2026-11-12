@@ -17,6 +17,20 @@
 
 ## 進行中
 
+### 2026-11-13 Fable 輪：導覽對帳（新頁落地後過期的「零頁」句與頁書比）、對照頁不計入跨頁承重 — **不開新單**
+
+**起點**：兩輪 Opus 共落地 114 頁；checkup blocker 0／warn 0／nit 18；tier-audit 只剩 philosophy 2 筆衝突；GUIDE-DRIFT 要改 0。
+
+**裁決**
+1. **philosophy 那 2 筆衝突是量法的問題，不是判層的問題**。《The Great Thinkers》與《The Daily Stoic》各被 3 頁引用，其中對照頁佔 1 頁與 2 頁；對照頁照規格重掛各造既有頁的 anchor，不是新的承重。`tier-audit.py` 的「散在幾頁」改成不計 `kind: debate`（引用次數照算，真欠債的判法不變）。全星系重跑只少這 2 筆，衝突歸 0；兩本維持 tool。
+2. **philosophy「二十六本書撐著」不改**。導覽第三章的口徑是「已挖進概念頁」＝有自己的頁；Nagel 與《自我的追尋》各被掛了一條 anchor、仍列已收待挖，所以被引用 28 本、已挖 26 本，兩個數字都對。
+3. **新頁落地後，導覽裡的「不在場」句會過期，工具量不到**。起草代理只在第三章補一句，writtenAt 跟著推，「導覽落後」那欄因此不亮。philosophy 有 9 處：Kant 與 Mill「至今零頁／只有 Sandel 的轉述」（已各有一頁 Warburton 導讀）、第三題「十頁」（現 12 頁主張頁）、收心術「十八頁」（19）、「三十五頁裡」（38 頁主張頁＋4 頁對照頁）、Jaspers 仍列在架上（08 月對帳已移出書單）。全部照現況改，並在第一章補一句連到康德與彌爾兩頁。其餘 36 個有新頁的站逐行讀過約 130 句「還沒開頁／待挖」，沒有一句指到這兩輪新開頁的書。
+4. **GUIDE-DRIFT 再放寬一型**：「N 頁概念」「N 頁對 M 本」（頁書比）不論在哪一章都當整站宣稱試讀。改完抓到 7 站 11 處：fengtang（12→15，並改每本頁數）、cloud（12→15，三處）、de-botton（15→16）、history（40→34）、schwager（12→13，教科書四頁→五頁）、uncle-bob（16→17，兩處）、navarro（第二章只涵蓋前五本 26 頁，改寫成明說並指向第六本那頁）。改後要改 0。
+
+**交付**：philosophy `0d560b6`、fengtang `e245b50`、cloud `6dba965`、de-botton `ca06c88`、history `e1f7989`、navarro `df241e0`、schwager `7672ece`、uncle-bob `05b8a00`；philosophy 與 navarro 重新 build，八站 format check 全過；tier-audit 六類全 0。
+
+**下一輪**：沒有待起草的單。可開的只剩上一輪留第三鏟的三張（劉潤溝通、協作，萬維鋼信息論人生觀）；data-science 兩本等書；security 那張與 lotto 走不走烏茲別克、西西里仍等 Andrew。起草代理的指令要加一條：新頁落地後 grep 導覽與總覽裡講那位作者或那個主題「零頁／只有轉述／還沒開頁」的句子，一併改。
+
 ### 2026-11-12 下午 Fable 輪：三場對照頁裁決、Flow 第十章歸屬、26 本孤兒認領、信仰線與華文線選題 — **開 36 頁給 Opus**
 
 **起點**：第三批 79／80 頁已 push；checkup blocker 0／warn 0／nit 18；ORPHAN-BOOKS 冒出 26 本（全是 11-06 之後新建的目的地書）；DEEPEN-TARGETS 剩 19 本。

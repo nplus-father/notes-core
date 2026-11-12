@@ -85,9 +85,11 @@ def citations(station):
                     continue
                 path = os.path.join(dirpath, fn)
                 txt = open(path, encoding="utf-8").read()
+                debate = re.search(r"^kind:\s*[\"']?debate", txt, re.M) is not None
                 for b in re.findall(r"^\s*-\s*book:\s*([\w\-.]+)", txt, re.M):
                     n[b] = n.get(b, 0) + 1
-                    pages.setdefault(b, set()).add(path)
+                    if not debate:
+                        pages.setdefault(b, set()).add(path)
     return {b: (c, len(pages.get(b, ()))) for b, c in n.items()}
 
 
