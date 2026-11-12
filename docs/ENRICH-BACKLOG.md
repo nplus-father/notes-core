@@ -77,7 +77,7 @@
 3. 每站收尾：`npm run build`、`npm run format`、`format:check`，蓋 `curation.enrichedAt`，`tier-audit.py <站>` 與 `galaxy-checkup.py --station <站>` 必 0 warn；overview 重數頁數；單行英文 commit、逐檔 add、**不 push**。
 4. 全部完成：`refresh-galaxy-docs.sh`，`export-seealso-gaps.py --json --allow-strict` → `apply-seealso.py --apply` 補新頁帶出的 strong 缺口，在本節補一段「Opus 執行」戰報（頁數、抽驗筆數、哪幾張照書改了標題、起草代理抓到的既有頁錯誤校正表、沒寫的張與原因）。
 
-**Opus 執行（2026-11-12，Andrew「with opus, go」）— 79 頁交付、1 張擋下，32 站本機 commit（未 push）**
+**Opus 執行（2026-11-12，Andrew「with opus, go」）— 79 頁交付（27 站）、1 張擋下，29 個 repo 本機 commit（未 push）**
 - **第一波**：兩筆改判層（business-strategy essential-drucker → tool、communication speed-of-trust → delegated:covey）手改 bibliography（`apply-tiers.py` 只碰未判層的 entry），tier-audit 兩站 0；工具三改落在 notes-core `0eedafc`（EXCLUDED_KINDS +5、SETTLED_BOOKS 15 本、計數納入 problems）。DEEPEN-TARGETS 102 → **19** 本。兩筆 B 型債與約二十筆漏掛 anchor 隨各站起草一起做，校正表在 SOURCING-DEBT「2026-11-12 第三批」。
 - **第二波**：七個起草代理（每組一個、組內自己寫不再分派），每頁交 3 筆具名事實與來源檔；主會話回源 grep 抽 **52 筆、全中**。各站 build:nosearch、format:check、tier-audit、checkup 全綠。
   - 技術 12（system-design 5、data-systems 2、clean-code 1、design-patterns 2、agile 2）；金錢 10；人與領導 14；職場 10；身心習慣 10；思考創業寫作 8 頁＋2 個 details（startup 授權、thinking 後記）；travel 15。
