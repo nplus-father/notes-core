@@ -1,6 +1,6 @@
 # 深挖對象：大部頭卻只有一鏟的正典
 
-> **生成於 2026-11-12T17:00:51+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T17:23:20+08:00**｜由 `tools/export-deepen-targets.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：書的層級的排序表——**進站之後該挖哪本書**。與 [DEEPEN-READY.md](./DEEPEN-READY.md) 的分工：那份回答「該進哪一站」（站的層級），這份回答「進站之後挖哪一本」。兩份都是排序表，工作日誌在 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)。
 
@@ -15,79 +15,38 @@
 | 項目 | 數 |
 | --- | ---: |
 | 掃過的站 | 78 |
-| **候選（大部頭 × ≤1 頁）** | **14** |
-| 涉及的站 | 10 |
-| 依體裁排除 | 15 |
+| **候選（大部頭 × ≤1 頁）** | **4** |
+| 涉及的站 | 3 |
+| 依體裁排除 | 14 |
 | 已裁定不開 | 17 |
 
 ## 一、前 30 名（跨站總排序）
 
 | # | 章節 | 頁 | 站 | 書 |
 | ---: | ---: | ---: | --- | --- |
-| 1 | 91 | 1 | `keller-note` | 恐懼時代的盼望 |
-| 2 | 65 | 1 | `wan-weigang-note` | 你有你的計劃，世界另有計劃 |
-| 3 | 61 | 1 | `stott-note` | 當代講道藝術 |
-| 4 | 52 | 1 | `fengtang-note` | 勝者心法：資治通鑑成事之道 |
-| 5 | 40 | 1 | `history-note` | 文學的40堂公開課 |
-| 6 | 40 | 1 | `data-science-note` | 數學之美 |
-| 7 | 38 | 1 | `spiritual-formation-note` | The Cost of Discipleship 追隨基督 |
-| 8 | 38 | 1 | `lewis-note` | 返璞歸真 |
-| 9 | 37 | 1 | `data-science-note` | Noise 雜訊 |
-| 10 | 36 | 1 | `liurun-note` | 關鍵躍升：新任管理者的底層邏輯 |
-| 11 | 34 | 1 | `history-note` | 餐桌儀式 |
-| 12 | 32 | 1 | `spiritual-formation-note` | With Christ in the School of Prayer 基督的禱告學校 |
-| 13 | 32 | 1 | `liurun-note` | 商業簡史 |
-| 14 | 30 | 1 | `security-note` | Practical Malware Analysis |
+| 1 | 64 | 1 | `life-meaning-note` | Flow 心流 |
+| 2 | 40 | 1 | `data-science-note` | 數學之美 |
+| 3 | 37 | 1 | `data-science-note` | Noise 雜訊 |
+| 4 | 30 | 1 | `security-note` | Practical Malware Analysis |
 
 ## 二、依站分組
 
 開單時整站一起看比較省力——同一站的候選常常共享脈絡。
-
-### `history-note`（2 本）
-
-- **文學的40堂公開課** — 40 章 / 1 頁（`little-history-of-literature`）
-- **餐桌儀式** — 34 章 / 1 頁（`rituals-of-dinner`）
 
 ### `data-science-note`（2 本）
 
 - **數學之美** — 40 章 / 1 頁（`wujun-beauty-of-math`）
 - **Noise 雜訊** — 37 章 / 1 頁（`noise`）
 
-### `spiritual-formation-note`（2 本）
+### `life-meaning-note`（1 本）
 
-- **The Cost of Discipleship 追隨基督** — 38 章 / 1 頁（`cost-of-discipleship`）
-- **With Christ in the School of Prayer 基督的禱告學校** — 32 章 / 1 頁（`with-christ-in-the-school-of-prayer`）
-
-### `liurun-note`（2 本）
-
-- **關鍵躍升：新任管理者的底層邏輯** — 36 章 / 1 頁（`liurun-key-leap`）
-- **商業簡史** — 32 章 / 1 頁（`liurun-evolution-of-business`）
-
-### `keller-note`（1 本）
-
-- **恐懼時代的盼望** — 91 章 / 1 頁（`hope-in-times-of-fear`）
-
-### `wan-weigang-note`（1 本）
-
-- **你有你的計劃，世界另有計劃** — 65 章 / 1 頁（`wan-weigang-world-has-another-plan`）
-
-### `stott-note`（1 本）
-
-- **當代講道藝術** — 61 章 / 1 頁（`i-believe-in-preaching`）
-
-### `fengtang-note`（1 本）
-
-- **勝者心法：資治通鑑成事之道** — 52 章 / 1 頁（`fengtang-winner-method`）
-
-### `lewis-note`（1 本）
-
-- **返璞歸真** — 38 章 / 1 頁（`mere-christianity`）
+- **Flow 心流** — 64 章 / 1 頁（`flow-psychology-of-happiness`）
 
 ### `security-note`（1 本）
 
 - **Practical Malware Analysis** — 30 章 / 1 頁（`practical-malware-analysis`）
 
-## 三、依體裁排除：15 本
+## 三、依體裁排除：14 本
 
 這些書章節數必然很高，但體裁上就不該挖成多頁——不排除會永遠霸佔排行前段。清單在 `export-deepen-targets.py` 的 `EXCLUDED_KINDS`；加新的要寫**體裁**理由，「暫時不想挖」屬於選題，不該寫進工具。
 
@@ -101,7 +60,6 @@
 - `lewis-note` — The Screwtape Letters：書信體，31 封短信各千餘字
 - `lewis-note` — 納尼亞傳奇（七部曲）：小說七部曲
 - `liurun-note` — 5分鐘商學院 工具篇：工具條目合輯，每條各自獨立
-- `philosophy-note` — Philosophy: The Classics 哲學經典的 32 堂公開課：逐本導讀，三十二章各講一部原典，按書查閱；排除是排榜，不禁止從它選題
 - `startup-note` — Rework 工作大解放：格言體雜文集，近九十節各一兩頁、只給立場不給流程
 - `theology-note` — 當代神學辭典：神學辭典，按條目查閱
 - `thinking-note` — The Art of Thinking Clearly 思考的藝術：轉譯型偏誤短文合輯，近百則互不相承

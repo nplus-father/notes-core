@@ -1,12 +1,12 @@
 # ANCHOR 覆蓋不足
 
-> **生成於 2026-11-12T16:31:04+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T17:24:09+08:00**｜由 `tools/export-anchor-gaps.py` 產生，**不要手改**——改資料源再重跑。
 
 由 `tools/export-anchor-gaps.py` 產生。判準：頁面正文用到的**具名數字**（金額、百分比、年份、人次⋯⋯）在它 `furtherReading` 掛的那本書裡找得到，卻不在掛出去的 anchor 章節底下——讀者點「延伸閱讀」會落在找不到內容的章。
 
 - 證據充分（同一章被 ≥2 個非年份數字命中）：**1** 頁
-- 證據單薄（只有一個數字，或全靠裸年份）：127 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
-- 另有 191 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
+- 證據單薄（只有一個數字，或全靠裸年份）：126 頁——裸年份如「1990年」在任何一章都可能碰巧出現，不足以當證據，列在後面備查。
+- 另有 194 筆數字在整本書摘裡查無。books-done 是摘要不是全文，全書才有的細節本來就不會進摘要，**這類不算違規**，只供抽查。
 
 修法兩種：建議章是現掛 anchor 的**祖章**→ 直接擴大；是別的子樹 → 另加一條`furtherReading`。「建議 anchor」附的標題取自該章 `_index.md`，可直接當 label。
 
@@ -23,7 +23,7 @@
 ## agile-note / scrum/timebox-is-the-constraint.md
 
 - 現掛：`essential-scrum` → `docs/01-core-concepts/04-sprints/`、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/04-time/`
-- 建議 anchor：`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）、`essential-scrum` → `docs/01-core-concepts/`「核心概念」（1 個數字、擴大）、`essential-scrum` → `docs/02-roles/`「角色」（1 個數字）
+- 建議 anchor：`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/03-teams/`「團隊，小而美」（1 個數字）、`scrum-the-art-of-doing-twice-the-work-in-half-the-time` → `docs/08-priorities/`「優先順序」（1 個數字）、`essential-scrum` → `docs/04-sprinting/`「衝刺進行」（1 個數字）
 - 落空數字：15分鐘
 
 ## behaviour-interview-note / pitfalls/common-pitfalls.md
@@ -257,11 +257,6 @@
 - 建議 anchor：`greatest-minds-and-ideas-of-all-time` → `docs/06-twelve-vital-dates-in-history/`「世界史上的十二個關鍵日期」（1 個數字）
 - 落空數字：1543年
 
-## history-note / culture-society/table-manners-as-order.md
-
-- 現掛：`rituals-of-dinner` → `docs/01-behaving/`、`rituals-of-dinner` → `docs/02-learning-to-behave/`
-- 落空數字：1931年
-
 ## history-note / historical-thinking/history-of-risk.md
 
 - 現掛：`against-the-gods` → `docs/01-beginnings/`、`against-the-gods` → `docs/02-thousand-outstanding-facts/`
@@ -489,7 +484,7 @@
 ## management-note / org-people/first-who-then-what.md
 
 - 現掛：`good-to-great` → `docs/03-first-who-then-what/`、`built-to-last` → `docs/02-clock-building-not-time-telling/`、`no-rules-rules` → `docs/section-3-techniques-to-reinforce/07-the-keeper-test/`
-- 建議 anchor：`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）、`built-to-last` → `docs/epilogue/`「結語」（1 個數字）
+- 建議 anchor：`built-to-last` → `docs/epilogue/`「結語」（1 個數字）、`good-to-great` → `docs/02-level-5-leadership/`「第五級領導」（1 個數字）
 - 落空數字：2001年、21年
 
 ## management-note / org-people/trust-and-team-dysfunctions.md

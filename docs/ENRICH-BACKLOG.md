@@ -47,6 +47,18 @@
 2. **第二波（36 頁）**，站的順序：travel 10（先 asia 單的紫禁城、澳洲、中亞、越南、芭蕉，再 west 單的荷蘭、義大利、西班牙、Runte、Nile；每頁落地時把該書的 tier 留 spine，tier-audit 真欠債隨頁數歸零）→ travel 對照頁 `the-coach-question`（Runte 頁先落地，依單上條件決定三造或四造）→ wellness `calories-or-carbs` → life-meaning `the-making-of-meaning`（落地後改 bibliography tier 與導覽第三章 28、33 行）→ 信仰線 11（philosophy 三張用 Warburton 當骨幹，alternative 照單）→ 華文線 12（liurun 先 8、7 再 12、13、11；fengtang 第 3 張若散就只寫 35、36）。
 3. 收尾照上一輪第 4 條：`refresh-galaxy-docs.sh`、`export-seealso-gaps.py --allow-strict` → `apply-seealso.py`、在本節補「Opus 執行」戰報（頁數、抽驗筆數、照書改的標題、既有頁校正表、沒寫的張）。
 
+**Opus 執行（2026-11-12 晚，Andrew「Go」）— 35 頁＋2 條 details 交付，19 站本機 commit（未 push）**
+- **第一波**：notes-core `dd6b90c`（EXCLUDED_KINDS +3、SETTLED_BOOKS +2）、`4a5362a`（`export-guide-drift.py` 新增 BARE_TOTAL：總覽與導覽 01／02 章句首、沒有「站上／全站」前綴的「N 頁沿／用到／分在…」也試讀為整站宣稱）。新判定當場抓到三筆舊帳：design overview「四十九頁」→五十一、templar 導覽 02「十四頁」→十五、philosophy overview「三十五頁」（信仰線代理順手改成四十二）。既有頁補 anchor 四處、details 兩條（walking-japan 櫻前線、keller 復活的相遇）。
+- **第二波**：五個代理（travel 11、wellness＋Flow 2、信仰線 10、華文線 12），主會話回源 grep 抽 **40 筆、全中**。
+  - travel 10 頁讓 26 本認領書的真欠債 10 → 0、導覽死鏈 10 → 0；對照頁 `the-coach-question` 寫成**四造**（Runte 頁先落地，書裡確有「公園為觀光者而設」這條線）。
+  - life-meaning `the-making-of-meaning` 落地，Flow 改 spine；tools 站少一筆 delegated，tier-audit 仍 0。
+  - 照原文改的：fengtang 第 3 張只寫 ch35、36，標題改「伴君如伴虎：樂毅的四個關鍵與田單的攬功」；劉潤護城河照原文是「四類八條」（許可、品牌；規模、管理；用戶、生態；習慣、資產）；network-density 不寫「與網絡效應的差別」（書裡沒做這個區分）；澳洲頁補掛 03/06 鯊魚灣章（點題那句總結句出自那章）。
+  - 收尾我補的事實對帳：wellness 導覽「Why We Sleep 是唯一的雙頁書」→ 七本多頁書照實列；liurun 導覽「幾乎一本一頁」補兩本體系書各三、四頁；fengtang `no-fire-on-arrival` 三條英文 label 改中文章題。
+- **收尾**：seeAlso 補 2 筆（science、wan-weigang）；`refresh-galaxy-docs.sh` 後：checkup blocker 0／warn 0／nit 18（等書）、tier-audit 只剩 philosophy 2 筆已知衝突、GUIDE-DRIFT 要改 0、strong seeAlso 缺口 0、**ORPHAN-BOOKS 0**、DEEPEN-TARGETS **4**（data-science 2 等書、security 1 待 Andrew、見文件）。
+- **代理報的、主會話判誤報**：travel `visitor-management` 的杜布羅夫尼克 12,000 人，代理說查無出處；數字在 01/07 環境衝擊章，那頁本來就掛了，不動。
+- **留給 Fable**：philosophy overview「四十二頁裡有二十六本書撐著」——概念頁實際引用 28 本，「撐著」可能另有算法，判讀句不由 Opus 改；philosophy 兩筆既成事實衝突（Great Thinkers、Daily Stoic 仍判 tool）若要重判；旅遊目的地第三鏟候選與兩個成團再升格的條件（Sri Lanka、Siberia）。
+
+
 **留給 Andrew 的三個問題**：security-note 那張（Practical Malware Analysis 第五部）要不要寫、誰寫；lotto 走不走烏茲別克（決定 lost-heart-of-asia 的層）與西西里（若走，sicily 升 spine，west 單有工單草稿的章節：04-normans、05、06）。
 
 #### 三個對照頁候選的裁決與 Flow 第十章（Fable 2026-11-12 下午）

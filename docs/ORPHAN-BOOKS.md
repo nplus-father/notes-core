@@ -1,6 +1,6 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-11-12T16:30:34+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-12T17:23:17+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
@@ -19,14 +19,14 @@
 
 | 檢查 | 數 | 後果 |
 | --- | ---: | --- |
-| 孤兒書（沒有任何站的 bibliography 指到） | **26** | 書站建了但沒有筆記在用，等於白建 |
+| 孤兒書（沒有任何站的 bibliography 指到） | **0** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **9** | 不列孤兒、不再提醒 |
 | 死鏈 slug（bibliography 指到不存在的 repo） | **0** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
 | 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **0** | 延伸閱讀連結 404 |
 
-## 一、孤兒書：26 本沒有任何站認領
+## 一、孤兒書：0 本沒有任何站認領
 
 判準＝這本書的 repo name 沒有出現在**任何**站 `bibliography.ts` 的 `slug` 欄。用 slug 而不是站數對書數，是因為它抓得到跨站分工——一本書被別站認領也算覆蓋。
 
@@ -34,13 +34,11 @@
 
 無——內容引用到的書都已經登記在盤點裡。
 
-### 1b. 開新站候選：1 個 leaf
+### 1b. 開新站候選：0 個 leaf
 
 判準沿用 2026-08-03 首輪盤點：**藏書 ≥8 本且未覆蓋 ≥60%**。低於這個比例的 leaf 表示已經有站在管、只是還沒寫完——那是 [ENRICH-BACKLOG](./ENRICH-BACKLOG.md) 的事，不是這裡的。
 
-| leaf | 未覆蓋/總數 | 未覆蓋率 | 沒人認領的是哪幾本 |
-| --- | ---: | ---: | --- |
-| `travel` | 13/20 | **65%** | The Narrow Road to the Deep North and Other Travel Sketches、Frommer's National Parks of the American West、The Nile、The Lost Heart of Asia、Ghosts of Spain、Black Dragon River: A Journey Down the Amur River at the Borderlands of Empires、Elephant Complex: Travels in Sri Lanka、Travels in Siberia、In a Sunburned Country、Hokkaido Highway Blues: Hitchhiking Japan、Indonesia, Etc.: Exploring the Improbable Nation、City of Djinns、Why the Dutch Are Different |
+無——沒有任何 leaf 同時滿足「書夠多」與「大多沒人碰」。
 
 ### 1c. 各 leaf 覆蓋率與目前誰在管
 
@@ -48,10 +46,6 @@
 
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
-| `travel` | lifestyle | 13/20 | 65% | travel(7) |
-| `modern` | history | 6/17 | 35% | history(7)、travel(2)、fromm(2) |
-| `civilization` | history | 4/38 | 11% | history(20)、travel(6)、wujun(4) |
-| `cultural` | history | 3/22 | 14% | travel(11)、history(7)、economics(2) |
 
 ### 1d. 同一作者 ≥3 本沒人認領：0 位
 
@@ -59,53 +53,7 @@
 
 無。
 
-### 1e. 全部 26 本（依 leaf 分組）
-
-#### `travel` — 13/20 沒人認領（目前：travel(7)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `black-dragon-river` | Black Dragon River: A Journey Down the Amur River at the Borderlands of Empires | Dominic Ziegler |
-| `city-of-djinns` | City of Djinns | William Dalrymple |
-| `elephant-complex` | Elephant Complex: Travels in Sri Lanka | John Gimlette |
-| `ghosts-of-spain` | Ghosts of Spain | Giles Tremlett |
-| `hokkaido-highway-blues` | Hokkaido Highway Blues: Hitchhiking Japan | Will Ferguson |
-| `in-a-sunburned-country` | In a Sunburned Country | Bill Bryson |
-| `indonesia-etc` | Indonesia, Etc.: Exploring the Improbable Nation | Elizabeth Pisani |
-| `lost-heart-of-asia` | The Lost Heart of Asia | Colin Thubron |
-| `narrow-road-to-deep-north` | The Narrow Road to the Deep North and Other Travel Sketches | Matsuo Basho |
-| `national-parks-of-the-american-west` | Frommer's National Parks of the American West | Don Laine & Barbara Laine |
-| `nile` | The Nile | Toby Wilkinson |
-| `travels-in-siberia` | Travels in Siberia | Ian Frazier |
-| `why-the-dutch-are-different` | Why the Dutch Are Different | Ben Coates |
-
-#### `modern` — 6/17 沒人認領（目前：history(7)、travel(2)、fromm(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `city-of-gold` | City of Gold: Dubai and the Dream of Capitalism | Jim Krane |
-| `history-of-thailand` | A History of Thailand | Chris Baker & Pasuk Phongpaichit |
-| `into-africa` | Into Africa: The Epic Adventures of Stanley and Livingstone | Martin Dugard |
-| `last-spike` | The Last Spike: The Great Railway, 1881-1885 | Pierre Berton |
-| `short-history-of-laos` | A Short History of Laos | Grant Evans |
-| `vietnam-rising-dragon` | Vietnam: Rising Dragon | Bill Hayton |
-
-#### `civilization` — 4/38 沒人認領（目前：history(20)、travel(6)、wujun(4)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `crossroads-malaysia-singapore` | Crossroads: A Popular History of Malaysia and Singapore | Jim Baker |
-| `habsburgs` | The Habsburgs: To Rule the World | Martyn Rady |
-| `last-days-of-the-incas` | The Last Days of the Incas | Kim MacQuarrie |
-| `sicily` | Sicily: An Island at the Crossroads of History | John Julius Norwich |
-
-#### `cultural` — 3/22 沒人認領（目前：travel(11)、history(7)、economics(2)）
-
-| 書 repo | 書名 | 作者 |
-| --- | --- | --- |
-| `forbidden-city` | The Forbidden City | Geremie R. Barmé |
-| `italians` | The Italians | John Hooper |
-| `national-parks-the-american-experience` | National Parks: The American Experience | Alfred Runte |
+### 1e. 全部 0 本（依 leaf 分組）
 
 ## 二、死鏈 slug：0 個
 
