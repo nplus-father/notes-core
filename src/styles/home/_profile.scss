@@ -18,10 +18,9 @@
   strong,
   b {
     font-weight: 900;
-    background-image: linear-gradient(var(--seal-weak), var(--seal-weak));
-    background-repeat: no-repeat;
-    background-position: 0 88%;
-    background-size: 100% 0.32em;
+    text-decoration: underline 1px var(--seal);
+    text-underline-offset: 0.22em;
+    text-decoration-skip-ink: none;
   }
 }
 

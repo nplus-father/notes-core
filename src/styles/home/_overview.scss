@@ -88,6 +88,8 @@
     padding-right: var(--gutter);
     overflow-x: auto;
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
     &::-webkit-scrollbar {
       display: none;
     }
