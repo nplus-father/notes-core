@@ -1,9 +1,136 @@
-/* 深色：套用 Shiki 雙主題的 dark 變數 */
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+@property --code-fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.prose .code-block {
+  margin: 2rem 0;
+  border-top: 1px solid var(--ink);
+  background: var(--code-bg);
+}
+
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.6rem;
+  margin: 0;
+  padding: 0 0.35rem 0 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.code-lang {
+  @include label;
+  color: var(--muted);
+}
+
+.code-copy {
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  margin-left: auto;
+  padding: 0 0.9rem;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--dur-hover) var(--ease);
+  &:hover {
+    color: var(--text);
+  }
+  &.is-done {
+    color: var(--text);
+    .icon {
+      color: var(--seal);
+    }
+  }
+}
+
+.prose .code-block pre {
+  margin: 0;
+  padding: 1.15rem 1.25rem 1.35rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  tab-size: 2;
+  font-variant-ligatures: none;
+  font-feature-settings: "calt" 0, "liga" 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-mid) transparent;
+  code {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+  }
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+.prose pre:not(.code-block pre) {
+  margin: 2rem 0;
+  padding: 1.15rem 1.25rem;
+  border-top: 1px solid var(--ink);
+  background: var(--code-bg) !important;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@keyframes code-fade {
+  from {
+    --code-fade: 3.5rem;
+  }
+  to {
+    --code-fade: 0px;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .prose .code-block pre {
+    mask-image: linear-gradient(to left, transparent 0, #000 var(--code-fade));
+    animation: code-fade linear both;
+    animation-timeline: scroll(self inline);
+  }
+}
+
+.astro-code {
+  background-color: transparent !important;
+}
+
+.lc-details > summary + .code-block {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .prose .code-block {
+    margin-inline: calc(-1 * var(--gutter));
+  }
+  .code-head {
+    padding-left: var(--gutter);
+  }
+  .prose .code-block pre {
+    padding-inline: var(--gutter);
+  }
+}
+
 [data-theme="dark"] {
   .astro-code,
   .astro-code span {
     color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;

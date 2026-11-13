@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
-import Stars from "../components/Stars.astro";
-import StatusBadge from "../components/StatusBadge.astro";
-import SourceByline from "../components/SourceByline.astro";
+import Marginalia from "../components/Marginalia.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
+import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug, byImportance } from "../lib/collections";
-import type { SiteConfig } from "../lib/site-config";
+import { splitTitle } from "../lib/reading";
+import { stripEmoji, type SiteConfig } from "../lib/site-config";
 
 interface Props {
   entry: any;
@@ -18,36 +18,56 @@ interface Props {
   allProblems: any[];
   categoryBySlug: Map<string, { slug: string; name: string; icon: string }>;
   site: SiteConfig;
+  headings?: { depth: number; slug: string; text: string }[];
+  standfirst?: string;
 }
-const { entry, allConcepts, allProblems, categoryBySlug, site } = Astro.props;
+const {
+  entry,
+  allConcepts,
+  allProblems,
+  categoryBySlug,
+  site,
+  headings = [],
+  standfirst,
+} = Astro.props;
 const d = entry.data;
 const cat = categoryBySlug.get(d.category);
 const slug = bareSlug(entry.id);
+const title = splitTitle(d.title);
 
-// related concept slug → entry
-//
-// 「相關」在語意上是對稱的，但 related 是手寫的，所以實際上幾乎都只有單向：
-// 後寫的頁面知道先寫的，先寫的那頁不知道後來有人指向它。2026-08-24 全星系掃出
-// 581 筆這種單向連結（science 15、security 12、navarro 13…），代表被指向的那頁
-// 讀者完全看不到指過來的頁。與其手改 581 筆 frontmatter，這裡直接補上反向：
-// 誰在 related 裡列了我，我就把誰也算進來。
 const conceptBySlug = bySlug(allConcepts);
 const backlinks = allConcepts
   .filter((c: any) => c.data.related.includes(slug) && !d.related.includes(bareSlug(c.id)))
   .map((c: any) => bareSlug(c.id));
+const categoryName = (s: string) => {
+  const name = categoryBySlug.get(s)?.name;
+  return name ? stripEmoji(name) : undefined;
+};
 const related = [...d.related, ...backlinks].map((s: string) => {
   const t = conceptBySlug.get(s);
-  return t ? { slug: s, title: t.data.title, href: withBase(`concepts/${t.id}/`) } : { slug: s };
+  return t
+    ? {
+        slug: s,
+        title: t.data.title,
+        href: withBase(`concepts/${t.id}/`),
+        meta: t.data.category === d.category ? undefined : categoryName(t.data.category),
+      }
+    : { slug: s };
 });
 
-// 反向連結：用到此概念的題目
 const problemBySlug = bySlug(allProblems);
 const usedBy = d.problems.map((s: string) => {
   const t = problemBySlug.get(s);
-  return t ? { slug: s, title: t.data.title, href: withBase(`problems/${t.id}/`) } : { slug: s };
+  return t
+    ? {
+        slug: s,
+        title: t.data.title,
+        href: withBase(`problems/${t.id}/`),
+        meta: t.data.difficulty,
+      }
+    : { slug: s };
 });
 
-// 同分類上一篇 / 下一篇（依 importance 高→低、再 title）
 const sameCat = allConcepts.filter((c: any) => c.data.category === d.category).sort(byImportance);
 const idx = sameCat.findIndex((c: any) => c.id === entry.id);
 const prev = idx > 0 ? sameCat[idx - 1] : null;
@@ -55,7 +75,12 @@ const next = idx >= 0 && idx < sameCat.length - 1 ? sameCat[idx + 1] : null;
 const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.title });
 ---
 
-<BaseLayout title={`${d.title} · ${site.titleBase}${site.conceptSuffix ?? "概念"}`} site={site}>
+<BaseLayout
+  title={`${d.title} · ${site.titleBase}${site.conceptSuffix ?? "概念"}`}
+  site={site}
+  description={standfirst}
+  progress
+>
   <Crumbs
     site={site}
     items={[
@@ -66,39 +91,59 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
     ]}
   />
 
-  <header class="prob-head">
-    <h1>{d.title}</h1>
-    <div class="prob-meta">
-      <Stars value={d.importance} />
-      <StatusBadge status={d.status} />
+  <div class="reading bleed" data-kind={d.kind}>
+    <header class="page-head reading-head">
+      {
+        d.kind === "debate" && (
+          <p class="reading-kicker running-head">
+            <span class="seal" aria-hidden="true" />
+            <span>Debate</span>
+          </p>
+        )
+      }
+      <h1 class="reading-title">
+        {title.main}
+        {
+          title.latin && (
+            <span class="title-latin" lang="en">
+              <span class="visually-hidden">(</span>
+              {title.latin}
+              <span class="visually-hidden">)</span>
+            </span>
+          )
+        }
+      </h1>
+    </header>
+
+    <div class="reading-grid">
+      <Marginalia
+        furtherReading={d.furtherReading}
+        importance={d.importance}
+        status={d.status}
+        headings={headings}
+      />
+      <div class="reading-body prose" data-pagefind-body>
+        <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
+        {site.hasProblems && <span class="pf-meta" data-pagefind-filter="Type">Concept</span>}
+        <span class="pf-meta" data-pagefind-filter="Category">{cat?.name ?? d.category}</span>
+        <slot />
+      </div>
     </div>
-  </header>
 
-  <SourceByline items={d.furtherReading} />
+    <div class="reading-end">
+      <FurtherReading items={d.furtherReading} />
+      <SeeAlso items={d.seeAlso} />
+      <RelatedList heading="Problems using this" items={usedBy} />
+      <RelatedList heading="Related" items={related} />
+    </div>
 
-  <p class="block-eyebrow book-eyebrow">From the Books</p>
-
-  <article class="prose" data-pagefind-body>
-    <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
-    {
-      /* 「類型」篩選僅在雙集合站有意義（概念 vs 題目）；純概念站省略，避免單值 facet 雜訊。 */
-    }
-    {site.hasProblems && <span class="pf-meta" data-pagefind-filter="Type">Concept</span>}
-    <span class="pf-meta" data-pagefind-filter="Category">{cat?.name ?? d.category}</span>
-    <slot />
-  </article>
-
-  <FurtherReading items={d.furtherReading} />
-  <SeeAlso items={d.seeAlso} />
-
-  <RelatedList heading="Problems using this" items={usedBy} />
-  <RelatedList heading="Related concepts" items={related} />
-
-  <PrevNext
-    prev={prev ? nav(prev) : null}
-    next={next ? nav(next) : null}
-    ariaLabel="Same category"
-    prevLabel="← Previous"
-    nextLabel="Next →"
-  />
+    <PrevNext
+      prev={prev ? nav(prev) : null}
+      next={next ? nav(next) : null}
+      ariaLabel="Same category"
+      prevLabel="Previous"
+      nextLabel="Next"
+    />
+  </div>
+  <ReadingScripts />
 </BaseLayout>

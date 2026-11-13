@@ -1,150 +1,181 @@
 ---
-// 導覽頁 /guide/（v0.30.0；v0.31.0 章節收進 tab）：策展層長文——
-// 「我們收完、讀完這批書之後，怎麼帶你走」。資料源 = guide collection
-// （src/content/guide/NN-<slug>.md，一章一檔，檔名 NN 定序），由 /note-guide skill 產出。
-//
-// 版面（v0.31.0）：tab 列固定（sticky，貼在 topnav 下）、一次只顯示一章、**章身自然高度**。
-// 固定形式給固定空間，但不固定高度——單章 1,500–7,500 字，固定高度必然框內捲動，
-// 頁捲＋框捲兩層巢狀是長文閱讀的大忌。非當前章 hidden="until-found"：Ctrl+F 搜得到
-// 隱藏章、命中自動切章；#<章id> 錨點（章際互連、站外深連）驅動切章，既有連結不斷；
-// 無 JS 退回五章攤開（tab 列不出）。
-// 站台完全沒有 guide 內容時 nav 不出 📖（見 BaseLayout），此頁仍會建置——
-// 直接打網址看到空狀態說明，不是 404（同 /check/ 的處理）。
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import FurtherReading from "../components/FurtherReading.astro";
+import ReadingScripts from "../components/ReadingScripts.astro";
 import { site } from "virtual:notes-core/site";
 import { getCollection, render } from "astro:content";
 
-// id 帶 guide/ 前綴（loader base 釘在 src/content，見 content.ts）；檔名 NN- 前綴定序。
 const entries = (await getCollection("guide")).sort((a, b) => a.id.localeCompare(b.id));
 const chapters = await Promise.all(
   entries.map(async (entry) => {
-    const { Content } = await render(entry);
+    const { Content, remarkPluginFrontmatter } = await render(entry);
     const slug = entry.id.replace(/^guide\//, "");
-    return { entry, Content, slug };
+    return { entry, Content, slug, standfirst: remarkPluginFrontmatter?.standfirst as string };
   })
 );
 
-// tab 標籤（v0.32.0）：優先用 frontmatter `tab`（固定骨架的英文短標，中文長題塞 tab 列
-// 太拗口——Andrew 裁定）；缺省退回標題冒號前的主標。章序數字與「第N章」眉標一併退場，
-// tab 列本身已標示位置。
 const shortTitle = (t: string) => t.split("：")[0];
 const tabLabel = (c: (typeof chapters)[number]) =>
   c.entry.data.tab ?? shortTitle(c.entry.data.title);
+const num = (i: number) => String(i + 1).padStart(2, "0");
 
-// 時效戳記：取最新一章的 writtenAt（各章可能不同天寫成）。
 const writtenAt = chapters.reduce<string>(
   (acc, c) => (c.entry.data.writtenAt > acc ? c.entry.data.writtenAt : acc),
   ""
 );
+const description = chapters[0]?.standfirst;
 ---
 
-<BaseLayout title={`Guide · ${site.brand}`} site={site} noindex={chapters.length === 0}>
+<BaseLayout
+  title={`Guide · ${site.brand}`}
+  site={site}
+  noindex={chapters.length === 0}
+  description={description}
+  progress={chapters.length > 0}
+>
   <Crumbs site={site} items={[{ label: "Guide" }]} />
-  <header class="page-head">
-    <div class="guide-head">
-      <h1>Guide</h1>
+  <div class="guide bleed">
+    <header class="page-head guide-head">
+      <h1 lang="en">Guide</h1>
       {
         writtenAt && (
-          <span class="guide-stamp" title="這份導覽依當時的站況寫成">
-            {writtenAt}
-          </span>
+          <p class="guide-stamp running-head" title="這份導覽依當時的站況寫成">
+            <span>Written</span>
+            <time datetime={writtenAt}>{writtenAt}</time>
+          </p>
         )
       }
-    </div>
-  </header>
+    </header>
 
-  {
-    chapters.length === 0 && (
-      <p class="guide-empty">
-        這一站還沒有導覽——用 /note-guide 產出 src/content/guide/ 的章節後，這裡就會長出來。
-      </p>
-    )
-  }
+    {
+      chapters.length === 0 && (
+        <p class="guide-empty">
+          這一站還沒有導覽——用 /note-guide 產出 src/content/guide/ 的章節後，這裡就會長出來。
+        </p>
+      )
+    }
 
-  {
-    chapters.length > 0 && (
-      <>
-        <div class="guide-tabs" role="group" aria-label="章節" hidden>
-          {chapters.map((c, i) => (
-            <button
-              type="button"
-              class={`guide-tab${i === 0 ? " is-active" : ""}`}
-              aria-pressed={i === 0 ? "true" : "false"}
-              data-ch={c.slug}
-            >
-              {tabLabel(c)}
-            </button>
-          ))}
-        </div>
+    {
+      chapters.length > 0 && (
+        <>
+          <div class="guide-tabs">
+            <div class="guide-tabs-inner" role="tablist" aria-label="Chapters">
+              {chapters.map((c, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  id={`tab-${c.slug}`}
+                  class={`guide-tab${i === 0 ? " is-active" : ""}`}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  aria-controls={c.slug}
+                  tabindex={i === 0 ? 0 : -1}
+                  data-ch={c.slug}
+                >
+                  <span class="guide-tab-num">{num(i)}</span>
+                  <span class="guide-tab-text">{tabLabel(c)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <div class="guide-chapters">
-          {chapters.map((c, i) => (
-            <article
-              id={c.slug}
-              class="guide-chapter"
-              data-ch={c.slug}
-              hidden={i === 0 ? undefined : "until-found"}
-            >
-              <h2 class="guide-title">{c.entry.data.title}</h2>
-              <div class="guide-body prose">
-                <c.Content />
-              </div>
-              <FurtherReading items={c.entry.data.furtherReading} />
-            </article>
-          ))}
-        </div>
+          <div class="guide-chapters">
+            {chapters.map((c, i) => (
+              <article
+                id={c.slug}
+                class="guide-chapter"
+                data-ch={c.slug}
+                hidden={i === 0 ? undefined : "until-found"}
+              >
+                <p class="guide-chapter-head running-head" aria-hidden="true">
+                  <span class="running-head-num">{num(i)}</span>
+                  <span>{tabLabel(c)}</span>
+                </p>
+                <div class="guide-chapter-main">
+                  <h2 class="guide-title">{c.entry.data.title}</h2>
+                  <div class="guide-body prose">
+                    <c.Content />
+                  </div>
+                  <FurtherReading items={c.entry.data.furtherReading} level={3} />
+                </div>
+              </article>
+            ))}
+          </div>
 
-        {/* 無 JS：tab 列不出（死鍵不如不擺），五章攤開成一頁長文。
-            global.scss 為了 tab 模式把 [hidden] 章的分隔線歸零（content-visibility 藏內容
-            但不藏元素自己的 border，會留下一疊空分隔線）——攤開時在這裡補回來。 */}
-        <noscript>
-          <style>
-            .guide-chapter[hidden] {
-              display: block;
-              content-visibility: visible;
-              margin-top: 3.6rem;
-              border-top: 1px solid var(--border);
-              padding-top: 2.6rem;
-            }
-          </style>
-        </noscript>
-      </>
-    )
-  }
+          <noscript>
+            <style>
+              .guide-tabs {
+                display: none;
+              }
+              .guide-chapter[hidden] {
+                display: grid;
+                content-visibility: visible;
+                margin-top: var(--space-section);
+                border-top: 1px solid var(--ink);
+                padding-top: 1.5rem;
+              }
+            </style>
+          </noscript>
+        </>
+      )
+    }
+  </div>
+  <ReadingScripts />
 </BaseLayout>
 
 <script>
-  // 章節切換：同一份 DOM 開關 hidden。三個入口都要收——點 tab、hash（章際互連與站外
-  // 深連 #NN-slug）、Ctrl+F 命中隱藏章（beforematch）。
-  const tabs = document.querySelector<HTMLElement>(".guide-tabs");
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>(".guide-tab")];
+  const bar = document.querySelector<HTMLElement>(".guide-tabs");
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>(".guide-tab")];
   const chapters = [...document.querySelectorAll<HTMLElement>(".guide-chapter")];
-  if (tabs && buttons.length > 0) {
-    tabs.hidden = false;
+  if (bar && tabs.length > 0) {
+    for (const c of chapters) {
+      c.setAttribute("role", "tabpanel");
+      c.setAttribute("aria-labelledby", `tab-${c.dataset.ch}`);
+    }
 
     const activate = (ch: string) => {
-      if (!chapters.some((c) => c.dataset.ch === ch)) return;
-      for (const b of buttons) {
-        const on = b.dataset.ch === ch;
-        b.classList.toggle("is-active", on);
-        b.setAttribute("aria-pressed", String(on));
+      if (!chapters.some((c) => c.dataset.ch === ch)) return false;
+      for (const t of tabs) {
+        const on = t.dataset.ch === ch;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
       }
       for (const c of chapters) {
         if (c.dataset.ch === ch) c.removeAttribute("hidden");
         else c.setAttribute("hidden", "until-found");
       }
+      return true;
     };
 
-    for (const b of buttons)
-      b.addEventListener("click", () => {
-        const ch = b.dataset.ch ?? "";
-        activate(ch);
-        // 換章即換網址（可分享、可回上一章）；replaceState 不捲動，自己捲回章首。
-        history.replaceState(null, "", `#${ch}`);
+    const go = (t: HTMLButtonElement, scroll: boolean) => {
+      const ch = t.dataset.ch ?? "";
+      if (!activate(ch)) return;
+      history.replaceState(null, "", `#${ch}`);
+      if (scroll && bar.getBoundingClientRect().top <= parseFloat(getComputedStyle(bar).top) + 1)
         document.getElementById(ch)?.scrollIntoView();
+    };
+
+    for (const t of tabs) {
+      t.addEventListener("click", () => go(t, true));
+      t.addEventListener("keydown", (e) => {
+        const i = tabs.indexOf(t);
+        const to =
+          e.key === "ArrowRight"
+            ? tabs[(i + 1) % tabs.length]
+            : e.key === "ArrowLeft"
+              ? tabs[(i - 1 + tabs.length) % tabs.length]
+              : e.key === "Home"
+                ? tabs[0]
+                : e.key === "End"
+                  ? tabs[tabs.length - 1]
+                  : null;
+        if (!to) return;
+        e.preventDefault();
+        to.focus();
+        go(to, false);
       });
+    }
     for (const c of chapters)
       c.addEventListener("beforematch", () => activate(c.dataset.ch ?? ""));
     addEventListener("hashchange", () => activate(location.hash.slice(1)));
