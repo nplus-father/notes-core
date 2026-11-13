@@ -232,6 +232,7 @@ async function auditPage(page, station, pg, collect) {
       const wait = 1500 - (Date.now() - t0);
       if (wait > 0) await new Promise((r) => setTimeout(r, wait));
       run.cls = await page.evaluate(() => Math.round((window.__cls || 0) * 10000) / 10000);
+      run.clsSrc = await page.evaluate(() => window.__clsSrc || []);
       run.console = consoleErrors.slice();
       page.off("console", onConsole);
       page.off("pageerror", onPageError);
@@ -254,7 +255,7 @@ function evaluate(rec) {
     if (r.overflow?.failed) fails.push({ check: "overflow", msg: `scrollWidth ${r.overflow.scrollWidth} > ${r.width}: ${r.overflow.offenders.join(" | ") || "no offending element found"}`, at: tag(r) });
     for (const c of r.console || []) fails.push({ check: "console", msg: c, at: tag(r) });
     for (const e of r.emoji || []) fails.push({ check: "emoji", msg: e, at: tag(r) });
-    if (r.cls >= 0.05) fails.push({ check: "cls", msg: `CLS ${r.cls}`, at: tag(r) });
+    if (r.cls >= 0.05) fails.push({ check: "cls", msg: `CLS ${r.cls} ${(r.clsSrc || []).join(' ; ')}`, at: tag(r) });
     for (const v of r.axe || []) fails.push({ check: "axe", msg: `${v.id} [${v.impact}] ${v.help} (${v.nodes} nodes) ${v.targets.join(" ; ")}`, at: tag(r) });
     for (const t of r.tap || []) warns.push({ check: "tap", msg: t, at: tag(r) });
     for (const h of r.head || []) fails.push({ check: "head", msg: h, at: tag(r) });
@@ -330,7 +331,7 @@ try {
     window.__cls = 0;
     try {
       new PerformanceObserver((list) => {
-        for (const e of list.getEntries()) if (!e.hadRecentInput) window.__cls += e.value;
+        for (const e of list.getEntries()) if (!e.hadRecentInput) { window.__cls += e.value; if (e.value > 0.005) (window.__clsSrc ||= []).push(Math.round(e.startTime) + 'ms ' + e.value.toFixed(3) + ' ' + e.sources.slice(0, 3).map((x) => (x.node && x.node.nodeType === 1 ? x.node.tagName.toLowerCase() + '.' + String(x.node.className).split(' ')[0] : 'text') + ' y' + Math.round(x.previousRect.y) + '>' + Math.round(x.currentRect.y) + ' h' + Math.round(x.previousRect.height) + '>' + Math.round(x.currentRect.height)).join(', ')); }
       }).observe({ type: "layout-shift", buffered: true });
     } catch {}
   });
