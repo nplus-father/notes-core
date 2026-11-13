@@ -4,6 +4,41 @@ const copyIcon = icons.copy;
 const doneIcon = icons.check;
 ---
 
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>(".mg-toc a[data-toc]")];
+  if (links.length > 0) {
+    const ids = [...new Set(links.map((a) => a.dataset.toc ?? ""))];
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const live = ids
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => el !== null && el.checkVisibility());
+      if (live.length === 0) return;
+      const doc = document.documentElement;
+      const atEnd = scrollY + innerHeight >= doc.scrollHeight - 4;
+      const line = innerHeight * 0.3;
+      const current = atEnd
+        ? live[live.length - 1]
+        : (live.filter((el) => el.getBoundingClientRect().top < line).at(-1) ?? live[0]);
+      for (const a of links) {
+        if (a.dataset.toc === current.id) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      }
+    };
+    const queue = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    };
+    addEventListener("scroll", queue, { passive: true });
+    addEventListener("resize", queue);
+    addEventListener("hashchange", queue);
+    document.addEventListener("click", queue);
+    update();
+  }
+</script>
+
 <script is:inline define:vars={{ copyIcon, doneIcon }}>
   (() => {
     if (!navigator.clipboard) return;

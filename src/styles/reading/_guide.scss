@@ -16,7 +16,7 @@
 }
 
 .guide-stamp {
-  color: var(--muted);
+  color: var(--text-2);
   time {
     font-family: $mono;
     letter-spacing: 0.04em;
@@ -32,7 +32,7 @@
   position: sticky;
   top: calc(var(--nav-h) - 1px);
   z-index: 10;
-  margin: 0 0 clamp(2.5rem, 5vw, 4.5rem);
+  margin: 0 0 clamp(2.5rem, 4.5vw, 3.75rem);
   background: var(--bg);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--border);
@@ -56,6 +56,7 @@
   flex: none;
   min-height: 3.25rem;
   gap: 0.6rem;
+  color: var(--text-2);
   &::before {
     display: none;
   }
@@ -71,7 +72,7 @@
 .guide-tab-num {
   font-family: $mono;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--text-2);
   .is-active & {
     color: var(--text);
   }
@@ -89,19 +90,54 @@
   padding-top: 0;
 }
 
-.guide-chapter-head {
+.guide-rail {
   grid-column: 1 / span 3;
   position: sticky;
-  top: calc(var(--nav-h) + 5rem);
-  padding-top: 0.9rem;
+  top: calc(var(--nav-h) + 5.5rem);
+  max-height: calc(100vh - var(--nav-h) - 7rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0.35rem 1.5rem 1rem 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .mg-toc {
+    margin-top: 1.35rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+  }
+}
+
+.guide-rail-head {
+  color: var(--text-2);
+}
+
+.guide-rail-date {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0.9rem 0 0;
+  .mg-label {
+    margin: 0;
+  }
+  time {
+    font-family: $mono;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
 }
 
 .guide-chapter-main {
-  grid-column: 4 / span 8;
+  grid-column: 4 / -1;
   min-width: 0;
+  > .endnote {
+    max-inline-size: var(--measure);
+  }
 }
 
 .guide-title {
+  max-inline-size: var(--measure);
   margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
   font-size: var(--fs-h1);
   line-height: 1.16;
@@ -110,19 +146,23 @@
 }
 
 .guide-body {
-  max-width: none;
-  > p:first-child,
+  > p.opening,
   > blockquote.standfirst {
-    margin: 0 0 clamp(2.25rem, 4.5vw, 3.25rem);
-    padding: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
+    margin: 0 0 clamp(2.5rem, 4.5vw, 3.25rem);
+    padding: 0;
     border: 0;
-    border-bottom: 1px solid var(--border);
     font-family: $display;
-    font-size: clamp(1.2rem, 1.75vw, 1.5rem);
+    font-size: var(--fs-lede);
     font-weight: 500;
-    line-height: 1.7;
+    line-height: 1.62;
+    letter-spacing: 0.01em;
     color: var(--text);
     text-wrap: pretty;
+    &.is-long {
+      font-size: var(--fs-intro);
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
   }
   > h2 {
     font-size: clamp(1.4rem, 2vw, 1.75rem);
@@ -133,10 +173,34 @@
   .guide-chapter {
     display: block;
   }
-  .guide-chapter-head {
+  .guide-rail {
     position: static;
-    margin-bottom: 1rem;
-    padding-top: 0;
+    max-height: none;
+    overflow: visible;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 1.5rem;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    .mg-toc {
+      margin: 0;
+      padding-top: 0;
+      border: 0;
+    }
+    > .mg-toc {
+      display: none;
+    }
+  }
+  .guide-rail-date {
+    margin: 0;
+  }
+  .guide-rail .mg-toc-fold {
+    display: block;
+    flex: 1 0 100%;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
   .guide-tabs {
     margin-inline: calc(-1 * var(--gutter));
