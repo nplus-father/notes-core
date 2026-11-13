@@ -132,51 +132,45 @@ const WIDE_CODE = 72;
 const charCols = (ch) => (/[\u1100-\uFFEF]/u.test(ch) ? 2 : 1);
 const lineCols = (line) => [...line.replace(/\t/g, "  ")].reduce((n, ch) => n + charCols(ch), 0);
 const codeCols = (value = "") => Math.max(0, ...value.split("\n").map(lineCols));
-const INTRO_MAX = 120;
 
 const textLength = (node) => [...toText(node).replace(/\s+/g, "")].length;
 
-const addClass = (node, ...names) => {
+const TABLE_MEASURE_PX = 640;
+const CELL_PAD_PX = 20;
+const CELL_MIN_PX = 112;
+const textPx = (s) => [...s].reduce((n, ch) => n + (/[ᄀ-￯]/u.test(ch) ? 15 : 8.4), 0);
+
+const tableWidth = (table) => {
+  const widths = [];
+  for (const row of table.children || []) {
+    (row.children || []).forEach((cell, i) => {
+      const w = Math.max(CELL_MIN_PX, Math.min(textPx(toText(cell)), 360)) + CELL_PAD_PX;
+      widths[i] = Math.max(widths[i] || 0, w);
+    });
+  }
+  return widths.reduce((a, b) => a + b, 0);
+};
+
+const isGuide = (file) => /[\\/]guide[\\/]/.test(String(file?.path || file?.history?.[0] || ""));
+
+const markStandfirst = (node, file) => {
   const data = node.data || (node.data = {});
   const props = (data.hProperties = { ...(data.hProperties || {}) });
   const prev = props.className ? [].concat(props.className) : [];
-  props.className = [...prev, ...names];
+  props.className = [...prev, "standfirst", ...(textLength(node) > LONG_LEAD ? ["is-long"] : [])];
+  const astro = file?.data?.astro;
+  if (astro) {
+    astro.frontmatter = astro.frontmatter || {};
+    astro.frontmatter.standfirst = toText(node).replace(/\s+/g, " ").trim();
+  }
 };
-
-const isSectionHead = (node) =>
-  (node?.type === "heading" && node.depth === 2) ||
-  (node?.type === "leafDirective" &&
-    [].concat(node.data?.hProperties?.className || []).includes("section-head"));
-
-function markIntros(tree) {
-  const top = tree.children || [];
-  const first = top[0];
-  if (first?.type === "paragraph") {
-    addClass(first, "opening", ...(textLength(first) > LONG_LEAD ? ["is-long"] : []));
-  }
-  for (let i = 1; i < top.length; i++) {
-    const node = top[i];
-    if (node.type !== "paragraph" || !isSectionHead(top[i - 1])) continue;
-    if (textLength(node) <= INTRO_MAX) addClass(node, "intro");
-  }
-}
 
 export default function remarkReading() {
   return (tree, file) => {
     const lead = tree.children?.[0];
-    if (isPlainQuote(lead)) {
-      const data = lead.data || (lead.data = {});
-      data.hProperties = {
-        ...(data.hProperties || {}),
-        className: ["standfirst", ...(textLength(lead) > LONG_LEAD ? ["is-long"] : [])],
-      };
-      const astro = file?.data?.astro;
-      if (astro) {
-        astro.frontmatter = astro.frontmatter || {};
-        astro.frontmatter.standfirst = toText(lead).replace(/\s+/g, " ").trim();
-      }
+    if (isPlainQuote(lead) || (lead?.type === "paragraph" && isGuide(file))) {
+      markStandfirst(lead, file);
     }
-    markIntros(tree);
 
     visit(tree, (node, index, parent) => {
       if (node.type === "heading" && (node.depth === 2 || node.depth === 3)) {
@@ -227,7 +221,10 @@ export default function remarkReading() {
           type: "tableScroll",
           data: {
             hName: "div",
-            hProperties: { className: ["table-scroll"], tabIndex: 0 },
+            hProperties: {
+              className: ["table-scroll", ...(tableWidth(node) > TABLE_MEASURE_PX ? ["is-wide"] : [])],
+              tabIndex: 0,
+            },
           },
           children: [node],
         };
