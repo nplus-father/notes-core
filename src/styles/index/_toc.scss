@@ -382,6 +382,9 @@ a.toc-row {
 
 .idx-list > .section-body {
   border-top: 1px solid var(--ink);
+  > .toc-lines {
+    padding-top: 0.6rem;
+  }
 }
 
 .idx-list > .running-head {
@@ -652,10 +655,14 @@ a.toc-row {
   > div {
     display: flex;
     flex-direction: column-reverse;
+    justify-content: flex-end;
     gap: 0.35rem;
   }
   dt {
     @include label;
+    display: flex;
+    align-items: center;
+    min-height: 1.1rem;
     color: var(--muted);
   }
   dd {

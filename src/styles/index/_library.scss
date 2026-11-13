@@ -491,14 +491,17 @@ details[open] > summary .ex-sign::after {
     grid-template-areas:
       "label label"
       "track n";
-    padding: 0.35rem 0;
+    row-gap: 0.15rem;
+    min-height: 0;
+    padding: 0.3rem 0;
   }
   .cov-label {
     grid-area: label;
+    line-height: 1.4;
   }
   .cov-track {
     grid-area: track;
-    min-height: 0.9rem;
+    min-height: 0.7rem;
   }
   .cov-n {
     grid-area: n;

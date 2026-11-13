@@ -3,7 +3,9 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ProblemCard from "../../../components/ProblemCard.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import { byImportance } from "../../../lib/collections";
-import { pad2, DIFFICULTY_LEVEL, latinLang } from "../../../lib/toc";
+import { pad2, DIFFICULTY_LEVEL, latinLang, splitTitle } from "../../../lib/toc";
+import { withBase } from "../../../lib/url";
+import { bySlug } from "../../../lib/collections";
 import { site } from "virtual:notes-core/site";
 import { getDomains } from "../../../lib/nav-data";
 import { getCollection } from "astro:content";
@@ -24,6 +26,15 @@ export async function getStaticPaths() {
 const { domain, items, num } = Astro.props;
 const problemLabel = site.problemLabelEn ?? "Problems";
 const conceptSet = new Set<string>(items.flatMap((p: any) => p.data.concepts ?? []));
+const conceptBySlug = bySlug(await getCollection("concepts"));
+const uses = new Map<string, number>();
+for (const p of items as any[]) {
+  for (const c of p.data.concepts ?? []) uses.set(c, (uses.get(c) ?? 0) + 1);
+}
+const drilled = [...uses.entries()]
+  .map(([slug, n]) => ({ entry: conceptBySlug.get(slug), n }))
+  .filter((x) => x.entry)
+  .sort((a, b) => b.n - a.n || a.entry!.data.title.localeCompare(b.entry!.data.title));
 const levels = ["Easy", "Medium", "Hard"]
   .map((l) => ({ l, n: items.filter((p: any) => p.data.difficulty === l).length }))
   .filter((x) => x.n > 0);
@@ -109,4 +120,36 @@ const levels = ["Easy", "Medium", "Hard"]
       )
     }
   </section>
+
+  {
+    drilled.length > 0 && (
+      <section class="section idx-list reveal" aria-labelledby="drilled-h">
+        <h2 class="running-head" id="drilled-h">
+          <span class="running-head-num">02</span>Concepts
+        </h2>
+        <div class="section-body">
+          <ul class="toc-lines">
+            {drilled.map(({ entry, n }) => {
+              const t = splitTitle(entry!.data.title);
+              return (
+                <li class="toc-line">
+                  <a class="toc-row" href={withBase(`concepts/${entry!.id}/`)}>
+                    <span class="toc-t">
+                      <span class="toc-main">{t.main}</span>
+                      {t.sub && <span class="toc-sub">{t.sub}</span>}
+                      {t.en && <span class="toc-en">{t.en}</span>}
+                    </span>
+                    <span class="toc-dots" aria-hidden="true" />
+                    <span class="toc-tier" title={`Used by ${n} of these problems`}>
+                      ×{n}
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>
