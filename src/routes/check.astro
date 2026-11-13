@@ -1,4 +1,5 @@
 ---
+import VolumeHead from "../components/VolumeHead.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Icon from "../components/Icon.astro";
@@ -40,7 +41,7 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
 <BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
   <Crumbs site={site} items={[{ label: "Check" }]} />
   <header class="page-head idx-head is-wide check-head section">
-    <p class="running-head idx-kicker">Mastery</p>
+    <VolumeHead page="Mastery" class="idx-kicker" />
     <h1 class="idx-title check-title" lang="en">Check</h1>
     {
       total > 0 && (
@@ -106,23 +107,25 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
                     <input class="check-box" type="checkbox" id={it.key} data-check-key={it.key} />
                     <span class="check-text">{it.text}</span>
                   </label>
-                  <span class="check-state" aria-hidden="true">
-                    Mastered
-                  </span>
-                  {it.href ? (
-                    <a
-                      class="check-review arrow-nudge"
-                      href={it.href}
-                      aria-label={`Review: ${it.text}`}
-                    >
-                      Review
-                      <Icon name="arrow-right" size={14} />
-                    </a>
-                  ) : (
-                    <span class="check-review is-none" aria-hidden="true">
-                      —
+                  <span class="check-end">
+                    <span class="check-state" aria-hidden="true">
+                      Mastered
                     </span>
-                  )}
+                    {it.href ? (
+                      <a
+                        class="check-review arrow-nudge"
+                        href={it.href}
+                        aria-label={`Review: ${it.text}`}
+                      >
+                        Review
+                        <Icon name="arrow-right" size={14} />
+                      </a>
+                    ) : (
+                      <span class="check-review is-none" aria-hidden="true">
+                        —
+                      </span>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>

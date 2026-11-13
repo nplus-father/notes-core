@@ -172,7 +172,10 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                           title={statusName(e.status)}
                         />
                       </td>
-                      <td class="biblio-title">
+                      <td
+                        class:list={["biblio-title", { "is-span": !e.note }]}
+                        colspan={e.note ? undefined : 2}
+                      >
                         {e.status === "owned" && e.slug ? (
                           <a href={bookUrl(e.slug)} target="_blank" rel="noopener">
                             {e.title}
@@ -182,15 +185,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                         )}
                         {e.original && <span class="biblio-orig">{e.original}</span>}
                       </td>
-                      <td class="biblio-remark">
-                        {e.note ? (
-                          e.note
-                        ) : (
-                          <span class="biblio-none" role="img" aria-label="No note">
-                            —
-                          </span>
-                        )}
-                      </td>
+                      {e.note && <td class="biblio-remark">{e.note}</td>}
                       <td class="biblio-year">
                         {typeof e.year === "number" ? (
                           yearLabel(e.year)

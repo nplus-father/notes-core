@@ -1,4 +1,5 @@
 ---
+import VolumeHead from "../components/VolumeHead.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import { withBase } from "../lib/url";
@@ -22,8 +23,8 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
 
 <BaseLayout title={`Search · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: "Search" }]} />
-  <header class="page-head idx-head is-wide section">
-    <p class="running-head idx-kicker">Full text</p>
+  <header class="page-head idx-head is-wide search-head section">
+    <VolumeHead page="Full text" class="idx-kicker" />
     <h1 class="idx-title" lang="en">Search</h1>
   </header>
 
@@ -213,6 +214,23 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
         return (open > shut ? "<mark>" : "") + excerpt.slice(at).replace(/^\s*(<\/mark>)?/, "");
       };
       const PHRASE = new RegExp(`^[${CJK}]{2,}$`);
+      let lastTerm = "";
+      const esc = (x) => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const reEsc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const bodySnippet = (content, skip) => {
+        const words = lastTerm.split(/\s+/).filter((w) => w.length > 0);
+        if (!words.length || typeof content !== "string") return "";
+        const re = new RegExp(words.map(reEsc).join("|"), "gi");
+        re.lastIndex = skip;
+        const m = re.exec(content);
+        if (!m) return "";
+        const start = Math.max(skip, m.index - 24);
+        const piece = content.slice(start, m.index + 64);
+        return esc(piece).replace(
+          new RegExp(words.map((w) => reEsc(esc(w))).join("|"), "gi"),
+          (x) => `<mark>${x}</mark>`
+        );
+      };
       const real = new URL(`${bundlePath}pagefind.js`, location.href).href;
       const ranked = [
         `import * as pf from ${JSON.stringify(real)};`,
@@ -271,6 +289,7 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
         openFilters: wide ? ["Category", "Domain", "Type"] : [],
         processTerm: (term) => {
           const t = term.trim();
+          lastTerm = t.replace(/^"|"$/g, "");
           if (!PHRASE.test(t)) looseTerm = "";
           return phrased && PHRASE.test(t) ? `"${t}"` : term;
         },
@@ -290,6 +309,19 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
           for (const s of r.sub_results ?? []) {
             s.title = strip(s.title);
             s.excerpt = tidy(dropHead(strip(s.excerpt), s.title, []));
+          }
+          const marked = (x) => typeof x === "string" && x.includes("<mark>");
+          if (!marked(r.excerpt) && r.sub_results?.length) {
+            const hit = r.sub_results.find((x) => marked(x.excerpt));
+            if (hit) {
+              r.excerpt = hit.excerpt;
+              r.sub_results = r.sub_results.filter((x) => x !== hit);
+            }
+          }
+          if (!marked(r.excerpt)) {
+            const skip = (r.meta?.title ?? "").length + values.join(" ").length + 2;
+            const snip = bodySnippet(r.content, skip);
+            if (snip) r.excerpt = tidy(snip);
           }
           return r;
         },

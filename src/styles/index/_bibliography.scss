@@ -136,7 +136,7 @@
     background-color var(--dur-hover) var(--ease),
     opacity var(--dur-hover) var(--ease);
   &.is-owned {
-    background: var(--ink);
+    background: var(--vol);
   }
   &.is-gap {
     background: var(--border-mid);
@@ -177,7 +177,7 @@
   width: 0.65rem;
   height: 0.65rem;
   &.is-owned {
-    background: var(--ink);
+    background: var(--vol);
   }
   &.is-gap {
     background: var(--border-mid);
@@ -309,8 +309,8 @@
   color: var(--muted);
 }
 
-.biblio-remark:has(> .biblio-none:only-child) {
-  text-align: center;
+.biblio-title.is-span {
+  width: auto;
 }
 
 .biblio-row:is(.is-skipped, .is-unavailable) {

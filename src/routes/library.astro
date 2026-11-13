@@ -1,4 +1,5 @@
 ---
+import VolumeHead from "../components/VolumeHead.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Bibliography from "../components/Bibliography.astro";
@@ -85,36 +86,22 @@ const ticks: number[] = [];
 for (let v = 0; v <= peak; v += step) ticks.push(v);
 
 const stats = [
-  { label: "Canon", n: entries.length, zh: "書目清單上的全部書", note: "領域公認書單" },
-  { label: "On Shelf", n: owned.length, zh: "已收進書庫、可供引用的書", note: "已收進書庫" },
+  { label: "On Shelf", n: owned.length, note: "本站書庫的書" },
   ...(showMining
     ? [
-        { label: "Cited", n: dug.length, zh: "至少被一頁筆記引用的書", note: "被筆記引用的書" },
-        ...(debt.length > 0
-          ? [
-              {
-                label: "Uncited",
-                n: debt.length,
-                zh: "已收進書庫、還沒有筆記頁引用的書",
-                note: "已收、尚未引用",
-              },
-            ]
-          : []),
-        { label: "Citations", n: totalRefs, zh: "筆記頁引用書本的總次數", note: "引用處總數" },
-        ...(excused.length > 0
-          ? [
-              {
-                label: "Referred",
-                n: excused.length,
-                zh: "只作參考或交由姊妹站深入的書",
-                note: "只作參考或交姊妹站",
-              },
-            ]
-          : []),
+        { label: "Cited", n: dug.length, note: "被筆記引用的書" },
+        { label: "Citations", n: totalRefs, note: "引用處總數" },
       ]
     : []),
 ];
-
+const unowned = entries.length - owned.length;
+const summary = [
+  showMining
+    ? `本站收 ${owned.length} 本書，其中 ${dug.length} 本被筆記引用，共 ${totalRefs} 處。`
+    : `本站收 ${owned.length} 本書。`,
+  ...(excused.length > 0 ? [`另有 ${excused.length} 本只作參考或交由姊妹站深入。`] : []),
+  ...(unowned > 0 ? [`書單上還有 ${unowned} 本尚未收進。`] : []),
+].join("");
 const sections = [
   ...(showMining ? [{ id: "coverage", label: "Coverage" }] : []),
   ...(buildTimeline(entries).show ? [{ id: "timeline", label: "Timeline" }] : []),
@@ -125,24 +112,22 @@ const sections = [
 <BaseLayout title={`Library · ${site.brand}`} site={site} noindex={entries.length === 0}>
   <Crumbs site={site} items={[{ label: "Library" }]} />
   <header class="page-head idx-head is-wide lib-head section">
-    <p class="running-head idx-kicker">Holdings</p>
+    <VolumeHead page="Holdings" class="idx-kicker" />
     <h1 class="idx-title" lang="en">Library</h1>
     {
       entries.length > 0 && (
-        <dl class="lib-stats">
-          {stats.map((s) => (
-            <div title={s.zh}>
-              <dt>
-                {s.label}
-                <span class="visually-hidden">：{s.zh}</span>
-              </dt>
-              <dd class="lib-stat-n">{s.n}</dd>
-              <dd class="lib-stat-note" aria-hidden="true">
-                {s.note}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <>
+          <dl class="lib-stats">
+            {stats.map((s) => (
+              <div>
+                <dt>{s.label}</dt>
+                <dd class="lib-stat-n">{s.n}</dd>
+                <dd class="lib-stat-note">{s.note}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="lib-summary">{summary}</p>
+        </>
       )
     }
   </header>
