@@ -1,16 +1,18 @@
 ---
+import LibRail, { type LibSection } from "./LibRail.astro";
 import { bookUrl } from "../lib/links";
+import { buildTimeline, yearLabel } from "../lib/timeline";
 import type { BibliographyEntry, BibliographyStatus } from "../lib/library";
 
 interface Props {
   entries: BibliographyEntry[];
-  heading?: string;
-  num?: string;
+  sections: LibSection[];
 }
-const { entries, heading = "Inventory", num = "01" } = Astro.props;
+const { entries, sections } = Astro.props;
+const heading = "Inventory";
 
 const STATUS: Record<BibliographyStatus, { label: string; zh: string }> = {
-  owned: { label: "Owned", zh: "已收錄" },
+  owned: { label: "On Shelf", zh: "已收錄" },
   wanted: { label: "Wanted", zh: "待收錄" },
   unavailable: { label: "Unavailable", zh: "暫無來源" },
   skipped: { label: "Skipped", zh: "略過" },
@@ -27,67 +29,7 @@ for (const e of entries) {
 const yearOf = (e: BibliographyEntry) => e.year ?? Number.MAX_SAFE_INTEGER;
 for (const g of groups) g.items.sort((a, b) => yearOf(a) - yearOf(b));
 
-const BUCKETS = [10, 20, 25, 50, 100, 200, 250, 500, 1000];
-const MAX_BARS = 14;
-const years = entries
-  .map((e) => e.year)
-  .filter((y): y is number => typeof y === "number")
-  .sort((a, b) => a - b);
-let bucket = BUCKETS[0];
-const lo = years.length ? years[0] : 0;
-const hi = years.length ? years[years.length - 1] : 0;
-
-const p5 = years.length ? years[Math.floor(years.length * 0.05)] : 0;
-const truncated = years.length >= 8 && p5 - lo > (hi - lo) * 0.5;
-const axisLo = truncated ? p5 : lo;
-const overflow = truncated
-  ? entries.filter((e) => typeof e.year === "number" && e.year < axisLo)
-  : [];
-
-type Bar = {
-  key: string;
-  label: string;
-  title: string;
-  total: number;
-  owned: number;
-  gapAfter?: boolean;
-};
-const yearLabel = (y: number) => (y < 0 ? `${-y} BC` : `${y}`);
-const bars: Bar[] = [];
-if (years.length >= 4) {
-  bucket =
-    BUCKETS.find((b) => Math.floor(hi / b) - Math.floor(axisLo / b) + 1 <= MAX_BARS) ??
-    BUCKETS[BUCKETS.length - 1];
-  if (overflow.length > 0) {
-    const ownedN = overflow.filter((e) => e.status === "owned").length;
-    bars.push({
-      key: "earlier",
-      label: "Earlier",
-      title: `${yearLabel(lo)}–${yearLabel(axisLo - 1)} · ${overflow.length} · owned ${ownedN}`,
-      total: overflow.length,
-      owned: ownedN,
-      gapAfter: true,
-    });
-  }
-  const from = Math.floor(axisLo / bucket) * bucket;
-  const to = Math.floor(hi / bucket) * bucket;
-  for (let s = from; s <= to; s += bucket) {
-    const inBucket = entries.filter(
-      (e) => typeof e.year === "number" && e.year >= s && e.year < s + bucket
-    );
-    const ownedN = inBucket.filter((e) => e.status === "owned").length;
-    bars.push({
-      key: String(s),
-      label: s >= 0 && bucket === 10 ? `${s}s` : yearLabel(s),
-      title: `${yearLabel(s)}–${yearLabel(s + bucket - 1)} · ${inBucket.length} · owned ${ownedN}`,
-      total: inBucket.length,
-      owned: ownedN,
-    });
-  }
-}
-const showChart = bars.filter((b) => b.key !== "earlier").length >= 2;
-const peak = Math.max(1, ...bars.map((b) => b.total));
-const labelEvery = bars.length > 10 ? 2 : 1;
+const { bars, years, lo, hi, show: showChart, peak, labelEvery, binWord } = buildTimeline(entries);
 
 const ownedCount = entries.filter((e) => e.status === "owned").length;
 const legend = (["owned", "wanted", "unavailable", "skipped"] as BibliographyStatus[])
@@ -95,16 +37,64 @@ const legend = (["owned", "wanted", "unavailable", "skipped"] as BibliographySta
   .filter((x) => x.n > 0);
 
 const showTabs = groups.length >= 2 && groups.every((g) => g.name);
-const binWord = bucket === 10 ? "decade" : `${bucket}-year bin`;
 ---
 
 {
+  showChart && (
+    <section class="section lib-sec timeline reveal" id="timeline" aria-labelledby="timeline-h">
+      <LibRail sections={sections} current="timeline" />
+      <div class="section-body">
+        <figure class="biblio-chart">
+          <div
+            class="biblio-bars"
+            role="img"
+            aria-label={`Publication years: ${years.length} dated books from ${yearLabel(lo)} to ${yearLabel(hi)}, ink shows copies on the shelf.`}
+          >
+            {bars.map((b, i) => (
+              <div class:list={["biblio-col", { "is-gap-after": b.gapAfter }]} title={b.title}>
+                <div class="biblio-col-track">
+                  {b.total > 0 && (
+                    <div class="biblio-col-bar" style={`height:${(b.total / peak) * 100}%`}>
+                      <span class="biblio-col-val">{b.total}</span>
+                      {b.total - b.owned > 0 && (
+                        <span
+                          class="biblio-seg is-gap"
+                          style={`flex-grow:${b.total - b.owned}`}
+                        />
+                      )}
+                      {b.owned > 0 && (
+                        <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
+                      )}
+                    </div>
+                  )}
+                </div>
+                <span class="biblio-col-label">
+                  {b.key === "earlier" || i % labelEvery === 0 ? b.label : ""}
+                </span>
+              </div>
+            ))}
+          </div>
+          <figcaption class="biblio-caption">
+            <span>Publication year · one bar per {binWord}</span>
+            <span class="biblio-key">
+              <i class="biblio-key-sw is-owned" aria-hidden="true" />
+              On shelf
+            </span>
+            <span class="biblio-key">
+              <i class="biblio-key-sw is-gap" aria-hidden="true" />
+              Not on shelf
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  )
+}
+
+{
   entries.length > 0 && (
-    <section class="section lib-sec biblio reveal" aria-labelledby="inv-h">
-      <h2 class="running-head" id="inv-h">
-        <span class="running-head-num">{num}</span>
-        {heading}
-      </h2>
+    <section class="section lib-sec biblio reveal" id="inventory" aria-labelledby="inventory-h">
+      <LibRail sections={sections} current="inventory" />
       <div class="section-body">
         <p class="biblio-legend">
           {legend.map((x) => (
@@ -117,51 +107,6 @@ const binWord = bucket === 10 ? "decade" : `${bucket}-year bin`;
             </span>
           ))}
         </p>
-
-        {showChart && (
-          <figure class="biblio-chart">
-            <div
-              class="biblio-bars"
-              role="img"
-              aria-label={`Publication years: ${years.length} dated books from ${yearLabel(lo)} to ${yearLabel(hi)}, ink shows owned copies.`}
-            >
-              {bars.map((b, i) => (
-                <div class:list={["biblio-col", { "is-gap-after": b.gapAfter }]} title={b.title}>
-                  <div class="biblio-col-track">
-                    {b.total > 0 && (
-                      <div class="biblio-col-bar" style={`height:${(b.total / peak) * 100}%`}>
-                        <span class="biblio-col-val">{b.total}</span>
-                        {b.total - b.owned > 0 && (
-                          <span
-                            class="biblio-seg is-gap"
-                            style={`flex-grow:${b.total - b.owned}`}
-                          />
-                        )}
-                        {b.owned > 0 && (
-                          <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <span class="biblio-col-label">
-                    {b.key === "earlier" || i % labelEvery === 0 ? b.label : ""}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <figcaption class="biblio-caption">
-              <span>Publication year · one bar per {binWord}</span>
-              <span class="biblio-key">
-                <i class="biblio-key-sw is-owned" aria-hidden="true" />
-                Owned
-              </span>
-              <span class="biblio-key">
-                <i class="biblio-key-sw is-gap" aria-hidden="true" />
-                Not owned
-              </span>
-            </figcaption>
-          </figure>
-        )}
 
         {showTabs && (
           <div class="biblio-tabs text-tabs" role="group" aria-label={`${heading} groups`} hidden>
@@ -230,9 +175,15 @@ const binWord = bucket === 10 ? "decade" : `${bucket}-year bin`;
                         )}
                         {e.original && <span class="biblio-orig">{e.original}</span>}
                       </td>
-                      <td class="biblio-remark">{e.note ?? ""}</td>
+                      <td class="biblio-remark">
+                        {e.note ? e.note : <span class="biblio-none">—</span>}
+                      </td>
                       <td class="biblio-year">
-                        {typeof e.year === "number" ? yearLabel(e.year) : ""}
+                        {typeof e.year === "number" ? (
+                          yearLabel(e.year)
+                        ) : (
+                          <span class="biblio-none">—</span>
+                        )}
                       </td>
                     </tr>
                   ))}

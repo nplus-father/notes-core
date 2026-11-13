@@ -1,5 +1,6 @@
 @use "../tokens.scss" as *;
 @use "../base/mixins" as *;
+@use "./micro" as *;
 
 .bm {
   display: inline-block;
@@ -47,7 +48,7 @@
 }
 
 .biblio-legend-label {
-  @include label;
+  @include micro;
   color: var(--text-2);
 }
 
@@ -59,7 +60,7 @@
 }
 
 .biblio-chart {
-  margin: clamp(2.25rem, 4vw, 3rem) 0 0;
+  margin: 0.4rem 0 0;
 }
 
 .biblio-bars {
@@ -121,7 +122,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-family: $mono;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   line-height: 1;
   color: var(--muted);
   opacity: 0;
@@ -145,7 +146,7 @@
 .biblio-col-label {
   margin-top: 0.5rem;
   font-family: $mono;
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
@@ -159,8 +160,7 @@
   align-items: center;
   gap: 0.5rem 1.5rem;
   margin: 1rem 0 0;
-  @include label;
-  font-size: 0.64rem;
+  @include micro;
   color: var(--muted);
   > span:first-child {
     margin-right: auto;
@@ -185,7 +185,7 @@
 }
 
 .biblio-tabs.text-tabs {
-  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  margin: clamp(1.75rem, 3vw, 2.5rem) 0 0;
   &[hidden] {
     display: none;
   }
@@ -214,7 +214,7 @@
 }
 
 .biblio-group-name {
-  @include label;
+  @include micro;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -283,6 +283,7 @@
   margin-top: 0.1rem;
   font-size: 0.86rem;
   font-style: italic;
+  font-synthesis: none;
   font-weight: 400;
   color: var(--muted);
 }
@@ -302,6 +303,10 @@
   white-space: nowrap;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
+}
+
+.biblio-none {
+  color: var(--muted);
 }
 
 .biblio-row:is(.is-skipped, .is-unavailable) {
@@ -352,7 +357,7 @@
     grid-row: 2;
     grid-column: 2 / -1;
     margin-top: 0.35rem;
-    &:empty {
+    &:has(> .biblio-none:only-child) {
       display: none;
     }
   }

@@ -1,0 +1,32 @@
+---
+export type LibSection = { id: string; num: string; label: string };
+interface Props {
+  sections: LibSection[];
+  current: string;
+}
+const { sections, current } = Astro.props;
+---
+
+<nav class="lib-rail" aria-label="Library sections">
+  <ol class="lib-nav">
+    {
+      sections.map((s) =>
+        s.id === current ? (
+          <li class="lib-nav-item is-current">
+            <h2 class="running-head" id={`${s.id}-h`} aria-current="location">
+              <span class="running-head-num">{s.num}</span>
+              {s.label}
+            </h2>
+          </li>
+        ) : (
+          <li class="lib-nav-item">
+            <a class="running-head" href={`#${s.id}`}>
+              <span class="running-head-num">{s.num}</span>
+              {s.label}
+            </a>
+          </li>
+        )
+      )
+    }
+  </ol>
+</nav>

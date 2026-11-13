@@ -2,9 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import Bibliography from "../components/Bibliography.astro";
+import LibRail from "../components/LibRail.astro";
 import { bookUrl, bookCoverUrl, siteUrl, siteLabel } from "../lib/links";
 import { TIER_META, authorKey, type BibliographyEntry } from "../lib/library";
 import { pad2 } from "../lib/toc";
+import { buildTimeline } from "../lib/timeline";
 import { site, bibliography } from "virtual:notes-core/site";
 import { getCollection } from "astro:content";
 
@@ -83,17 +85,27 @@ const ticks: number[] = [];
 for (let v = 0; v <= peak; v += step) ticks.push(v);
 
 const stats = [
-  { label: "Listed", n: entries.length },
-  { label: "Owned", n: owned.length },
+  { label: "Canon", n: entries.length, zh: "書目清單上的全部書" },
+  { label: "On Shelf", n: owned.length, zh: "已收進書庫、可供引用的書" },
   ...(showMining
     ? [
-        { label: "Mined", n: dug.length },
-        { label: "Unmined", n: debt.length },
-        { label: "Citations", n: totalRefs },
+        { label: "Cited", n: dug.length, zh: "至少被一頁筆記引用的書" },
+        ...(debt.length > 0
+          ? [{ label: "Uncited", n: debt.length, zh: "已收進書庫、還沒有筆記頁引用的書" }]
+          : []),
+        { label: "Citations", n: totalRefs, zh: "筆記頁引用書本的總次數" },
+        ...(excused.length > 0
+          ? [{ label: "Referred", n: excused.length, zh: "只作參考或交由姊妹站深入的書" }]
+          : []),
       ]
     : []),
-  ...(showMining && excused.length > 0 ? [{ label: "Exempt", n: excused.length }] : []),
 ];
+
+const sections = [
+  ...(showMining ? [{ id: "coverage", label: "Coverage" }] : []),
+  ...(buildTimeline(entries).show ? [{ id: "timeline", label: "Timeline" }] : []),
+  ...(entries.length > 0 ? [{ id: "inventory", label: "Inventory" }] : []),
+].map((x, i) => ({ ...x, num: pad2(i + 1) }));
 ---
 
 <BaseLayout title={`Library · ${site.brand}`} site={site} noindex={entries.length === 0}>
@@ -106,8 +118,11 @@ const stats = [
         entries.length > 0 && (
           <dl class="lib-stats">
             {stats.map((s) => (
-              <div>
-                <dt>{s.label}</dt>
+              <div title={s.zh}>
+                <dt>
+                  {s.label}
+                  <span class="visually-hidden">：{s.zh}</span>
+                </dt>
                 <dd>{s.n}</dd>
               </div>
             ))}
@@ -130,10 +145,8 @@ const stats = [
 
   {
     showMining && (
-      <section class="section lib-sec cov reveal" aria-labelledby="cov-h">
-        <h2 class="running-head" id="cov-h">
-          <span class="running-head-num">01</span>Coverage
-        </h2>
+      <section class="section lib-sec cov reveal" id="coverage" aria-labelledby="coverage-h">
+        <LibRail sections={sections} current="coverage" />
         <div class="section-body">
           {dug.length > 0 && (
             <div class="cov-chart">
@@ -191,12 +204,12 @@ const stats = [
           {debt.length > 0 && (
             <div class="cov-block">
               <h3 class="cov-block-h">
-                <span class="label">Unmined</span>
+                <span class="label">Uncited</span>
                 <span class="cov-block-n">{debt.length}</span>
               </h3>
               <p class="cov-block-note">
-                已收進書庫，但還沒有任何筆記頁引用——下一輪深化的現成材料
-                {spineDebt.length > 0 && `（其中 ${spineDebt.length} 本已判層為脊梁）`}。
+                已收進書庫，還沒有筆記頁引用；下一輪深化會從這裡取材
+                {spineDebt.length > 0 && `（朱點標的 ${spineDebt.length} 本是這個領域的正典）`}。
               </p>
               <div class="cover-wall">
                 {debt.map((r) =>
@@ -206,7 +219,7 @@ const stats = [
                       href={bookUrl(r.e.slug)}
                       target="_blank"
                       rel="noopener"
-                      title={`${r.e.title}${r.e.tier === "spine" ? "（脊梁）" : ""}`}
+                      title={`${r.e.title}${r.e.tier === "spine" ? "（領域正典）" : ""}`}
                     >
                       <img
                         class="cover-img"
@@ -235,7 +248,9 @@ const stats = [
           {excused.length > 0 && (
             <details class="ex">
               <summary class="ex-sum">
-                <span class="ex-title">另 {excused.length} 本已判層、刻意不在本站深挖</span>
+                <span class="ex-title">
+                  另有 {excused.length} 本只作參考或交由姊妹站深入，不在本站展開
+                </span>
                 <span class="ex-mix">
                   {excusedGroups.map((g) => (
                     <span class="ex-mixdot">
@@ -339,7 +354,7 @@ const stats = [
     )
   }
 
-  <Bibliography entries={entries} num={pad2(showMining ? 2 : 1)} />
+  <Bibliography entries={entries} sections={sections} />
 </BaseLayout>
 
 <script>
