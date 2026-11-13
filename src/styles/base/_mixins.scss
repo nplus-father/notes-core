@@ -129,7 +129,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px;
+    bottom: 0;
     height: 2px;
     background: var(--ink);
     transform: scaleX(0);
@@ -210,4 +210,12 @@
   font-style: normal;
   text-emphasis: filled dot currentColor;
   text-emphasis-position: under right;
+}
+
+@mixin cloth {
+  background-color: var(--cloth);
+  background-image:
+    repeating-linear-gradient(0deg, var(--cloth-weave) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, var(--cloth-weft) 0 1px, transparent 1px 3px);
+  color: var(--cloth-ink);
 }

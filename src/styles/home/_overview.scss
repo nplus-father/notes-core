@@ -111,6 +111,15 @@
     padding-top: 1rem;
     border-top: 1px solid var(--border);
   }
+  .section.is-wide {
+    > .home-head {
+      position: static;
+    }
+    > .section-body {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
 }
 
 .overview-lede {
@@ -144,28 +153,10 @@
 
 @media (max-width: $bp-nav) {
   .overview-tabs {
-    @include edge-fade(2.5rem);
-    flex-wrap: nowrap;
     gap: 0 1.5rem;
     margin-right: calc(-1 * var(--gutter));
     padding-right: var(--gutter);
-    scroll-snap-type: x mandatory;
     scroll-padding-inline: 0 var(--gutter);
-    &:not(:has(> :nth-child(5))) {
-      flex-wrap: wrap;
-      margin-right: 0;
-      padding-right: 0;
-      overflow: visible;
-      -webkit-mask-image: none;
-      mask-image: none;
-    }
-  }
-  .overview-tab {
-    flex: none;
-    scroll-snap-align: start;
-    &::after {
-      bottom: 0;
-    }
   }
 }
 
@@ -204,8 +195,12 @@
 
 .overview-text {
   margin: 0;
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  max-inline-size: var(--span-7);
+  font-size: 1.125rem;
+  line-height: 1.88;
+  letter-spacing: 0.04em;
+  line-break: strict;
+  hanging-punctuation: allow-end;
   color: var(--text);
   text-wrap: pretty;
   orphans: 2;
@@ -216,18 +211,9 @@
   }
 }
 
-@media (min-width: ($bp-grid + 1)) and (max-width: 1279px) {
-  .overview-panels {
-    max-width: var(--span-7);
-  }
-}
-
-@media (min-width: 1280px) {
+@include below-grid {
   .overview-text {
-    column-count: 2;
-    column-gap: clamp(2rem, 2.6vw, 2.5rem);
-    column-rule: 1px solid var(--border);
-    column-fill: balance;
+    max-inline-size: none;
   }
 }
 

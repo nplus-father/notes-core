@@ -471,11 +471,19 @@ export const motifLegends: Record<string, string> = {
 export interface MotifOptions {
   stroke?: number;
   className?: string;
+  draw?: boolean;
 }
 
+const drawable = (body: string) =>
+  body.replace(
+    /<(path|circle|rect|ellipse)\b(?![^>]*stroke-dasharray)(?![^>]*stroke="none")/g,
+    '<$1 pathLength="1"'
+  );
+
 export function motifSvg(name: string, opts: MotifOptions = {}): string {
-  const body = motifBodies[name];
-  if (!body) throw new Error(`unknown motif '${name}'`);
+  const raw = motifBodies[name];
+  if (!raw) throw new Error(`unknown motif '${name}'`);
+  const body = opts.draw ? drawable(raw) : raw;
   const cls = opts.className ? ` class="${opts.className}"` : "";
   return `<svg${cls} viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="${opts.stroke ?? MOTIF_STROKE}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
 }

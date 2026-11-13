@@ -40,6 +40,11 @@
   --tier-tool: #a9b6bd;
   --tier-delegated: #9c7644;
   --code-bg: #f1ede4;
+  --cloth: var(--cloth-l, #3c4b55);
+  --cloth-ink: #f4eee0;
+  --cloth-line: rgb(244 238 224 / 0.42);
+  --cloth-weave: rgb(255 255 255 / 0.026);
+  --cloth-weft: rgb(0 0 0 / 0.055);
 
   --font-display: #{$display};
   --font-sans: #{$sans};
@@ -114,4 +119,9 @@
   --guide: #b8a6e8;
   --guide-bg: #1f1a2c;
   --code-bg: #0c0b0e;
+  --cloth: var(--cloth-d, #2a353d);
+  --cloth-ink: #ece5d6;
+  --cloth-line: rgb(236 229 214 / 0.36);
+  --cloth-weave: rgb(255 255 255 / 0.022);
+  --cloth-weft: rgb(0 0 0 / 0.09);
 }
