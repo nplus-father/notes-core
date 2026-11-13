@@ -7,11 +7,11 @@ import Bookshelf from "../components/Bookshelf.astro";
 import SchoolsMap from "../components/SchoolsMap.astro";
 import AuthorProfile from "../components/AuthorProfile.astro";
 import Overview from "../components/Overview.astro";
-import CoverPlate from "../components/CoverPlate.astro";
 import { withBase } from "../lib/url";
 import { shelfFromBibliography, normalizeSchools } from "../lib/library";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
-import { coverPlateFor } from "../lib/cover-plate.ts";
+import { coverPlateFor, clothFor } from "../lib/cover-plate.ts";
+import { motifSvg } from "../lib/motifs.ts";
 import { site, books, bibliography, schools, profile, overview } from "virtual:notes-core/site";
 
 const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
@@ -27,7 +27,10 @@ const pool = axis === "person" ? personSites : topicSites;
 const idx = pool.findIndex((s) => s.slug === slug);
 const serial = idx >= 0 ? String(idx + 1).padStart(2, "0") : "";
 const plate = coverPlateFor(slug);
-const hasCover = !!plate || existsSync(resolve("public/cover.png"));
+const cloth = clothFor(slug);
+const hasPortrait = axis === "person" && existsSync(resolve("public/cover.png"));
+const foilName = plate?.en ?? site.brand.replace(/\s*Notes$/, "");
+const foilLegend = plate?.legend ?? (hasPortrait ? "Portrait" : "");
 
 const concepts = await getCollection("concepts");
 const categories = await getCollection("categories");
@@ -48,8 +51,7 @@ const stats = [
     label: categories.length === 1 ? "Category" : "Categories",
   },
   shelf.length > 0 && { n: String(shelf.length), label: shelf.length === 1 ? "Book" : "Books" },
-  updated && { n: updated, label: "Updated", date: true },
-].filter(Boolean) as { n: string; label: string; date?: boolean }[];
+].filter(Boolean) as { n: string; label: string }[];
 
 const hasOverview = !!overview && overview.sections.length > 0;
 const hasSchools = schoolsData.entries.length > 0;
@@ -70,15 +72,23 @@ const nums = {
 };
 ---
 
-<BaseLayout title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand} site={site}>
-  <header class:list={["hero", "grid-12", { "has-plate": hasCover, "has-serial": !!serial }]}>
-    {
-      serial && (
-        <div class="hero-numeral" aria-hidden="true">
-          <span class="hero-numeral-text">N°{serial}</span>
-        </div>
-      )
-    }
+<BaseLayout
+  title={site.tagline ? `${site.brand} · ${site.tagline}` : site.brand}
+  site={site}
+  themeColor={cloth}
+>
+  <header
+    class:list={[
+      "hero",
+      "grid-12",
+      {
+        "has-cloth": !!cloth,
+        "has-motif": !!plate,
+        "has-portrait": hasPortrait,
+        "has-serial": !!serial,
+      },
+    ]}
+  >
     <div class="hero-text">
       <p class="hero-kicker">
         <span class="seal" aria-hidden="true"></span>
@@ -93,39 +103,69 @@ const nums = {
       {heroLede && <p class="hero-lede" set:html={heroLede} />}
     </div>
     {
-      hasCover && (
-        <figure class:list={["hero-plate", { "is-drawn": !!plate }]}>
-          <div class="hero-plate-mat">
-            {plate ? (
-              <CoverPlate plate={plate} />
-            ) : (
-              <img
-                class="hero-plate-img"
-                src={withBase("cover.png")}
-                alt={heading}
-                width="900"
-                height="1200"
-                fetchpriority="high"
-                decoding="async"
+      cloth && (
+        <div class="hero-cloth">
+          <figure
+            class="hero-volume"
+            role={plate ? "img" : undefined}
+            aria-label={plate ? `${plate.title}：${plate.legend}` : undefined}
+          >
+            {plate && (
+              <span
+                class="hero-motif"
+                set:html={motifSvg(plate.motif, { className: "hero-motif-svg", stroke: 1.6, draw: true })}
               />
             )}
-          </div>
-          <figcaption class="hero-plate-cap" lang="en">
-            <span class="hero-plate-num">Pl. I</span>
-            <span>{axis === "person" ? "Portrait" : "Frontispiece"}</span>
-          </figcaption>
-        </figure>
+            {hasPortrait && (
+              <span class="hero-portrait">
+                <img
+                  src={withBase("cover.png")}
+                  alt={heading}
+                  width="900"
+                  height="1200"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </span>
+            )}
+            {serial && (
+              <span class="hero-numeral" aria-hidden="true">
+                N°{serial}
+              </span>
+            )}
+            <figcaption class="hero-foil" lang="en" aria-hidden="true">
+              <span class="hero-foil-name">{foilName}</span>
+              {foilLegend && <span class="hero-foil-legend">{foilLegend}</span>}
+              <span class="hero-foil-pl">Pl. I</span>
+            </figcaption>
+            <span class="hero-cloth-seal" aria-hidden="true"></span>
+          </figure>
+          {updated && (
+            <p class="hero-cloth-foot">
+              <span>Updated</span>
+              <time datetime={updated}>{updated}</time>
+            </p>
+          )}
+        </div>
       )
     }
     {
-      stats.length > 0 && (
+      (stats.length > 0 || updated) && (
         <dl class="hero-stats">
           {stats.map((s) => (
             <div class="hero-stat">
               <dt>{s.label}</dt>
-              <dd>{s.date ? <time datetime={s.n}>{s.n}</time> : s.n}</dd>
+              <dd>{s.n}</dd>
             </div>
           ))}
+          {updated && (
+            <div class="hero-stat is-date">
+              <dt>Updated</dt>
+              <dd>
+                <time datetime={updated}>{updated}</time>
+              </dd>
+            </div>
+          )}
         </dl>
       )
     }

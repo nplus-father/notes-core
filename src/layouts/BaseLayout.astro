@@ -11,7 +11,7 @@ import Icon from "../components/Icon.astro";
 import { buildNav, resolveNavLink, DEFAULT_PARENT_SITE, type SiteConfig } from "../lib/site-config";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
 import { siteUrl } from "../lib/links";
-import { coverPlateFor, stationHue } from "../lib/cover-plate";
+import { coverPlateFor, stationHue, clothFor } from "../lib/cover-plate";
 import { motifSvg } from "../lib/motifs";
 import { bibliography } from "virtual:notes-core/site";
 interface Props {
@@ -21,8 +21,16 @@ interface Props {
   noindex?: boolean;
   description?: string;
   progress?: boolean;
+  themeColor?: { light: string; dark: string };
 }
-const { title, site, noindex = false, description, progress = false } = Astro.props;
+const {
+  title,
+  site,
+  noindex = false,
+  description,
+  progress = false,
+  themeColor,
+} = Astro.props;
 // 知識軸掛在 <html> 上，讓人物站的主色（暖褐）與其站縮圖同一階——顏色只在
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
@@ -30,6 +38,14 @@ const station = siteBySlug.get(stationSlug);
 const axis = station?.axis ?? "topic";
 const hue = site.accentOverride ? undefined : stationHue(stationSlug);
 const plate = coverPlateFor(stationSlug);
+const cloth = clothFor(stationSlug);
+const htmlStyle =
+  [
+    hue === undefined ? "" : `--station-hue: ${hue}`,
+    cloth ? `--cloth-l: ${cloth.light}; --cloth-d: ${cloth.dark}` : "",
+  ]
+    .filter(Boolean)
+    .join("; ") || undefined;
 const hasCheck = (await getCollection("categories")).some(
   (c) => ((c.data as { mastery?: unknown[] }).mastery ?? []).length > 0
 );
@@ -88,7 +104,7 @@ const hasCover = existsSync(resolve("public/cover.png"));
 const absolute = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 const canonical = absolute(pathname);
 const ogImage = hasCover ? absolute(withBase("/cover.png")) : undefined;
-const THEME_COLOR = { light: "#f6f3ec", dark: "#111013" };
+const THEME_COLOR = themeColor ?? { light: "#f6f3ec", dark: "#111013" };
 const fontsHref =
   "https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Noto+Serif+TC:wght@500;700;900&display=swap";
 ---
@@ -98,7 +114,7 @@ const fontsHref =
   lang="zh-Hant"
   data-axis={axis}
   data-station-hue={hue}
-  style={hue === undefined ? undefined : `--station-hue: ${hue}`}
+  style={htmlStyle}
 >
   <head>
     <meta charset="utf-8" />
@@ -158,6 +174,7 @@ const fontsHref =
           }
           <a class="brand-avatar" href={withBase("/")} title={site.brand}>
             <img src={faviconUrl} alt={site.brand} width="32" height="32" />
+            <span class="topnav-station">{volumeName}</span>
           </a>
         </div>
         <div class="topnav-right">
@@ -201,13 +218,18 @@ const fontsHref =
 
     <footer class="colophon">
       <div class="colophon-inner">
-        <div class:list={["colophon-title", { "has-mark": !!plate }]}>
+        <div class:list={["colophon-title", { "has-mark": !!cloth }]}>
           {
-            plate && (
-              <span
-                class="colophon-mark"
-                set:html={motifSvg(plate.motif, { className: "colophon-motif", stroke: 11 })}
-              />
+            cloth && (
+              <span class:list={["colophon-mark", { "is-numeral": !plate }]} aria-hidden="true">
+                {plate ? (
+                  <Fragment
+                    set:html={motifSvg(plate.motif, { className: "colophon-motif", stroke: 7 })}
+                  />
+                ) : (
+                  <span class="colophon-mark-num">{serial}</span>
+                )}
+              </span>
             )
           }
           <p class="running-head">
@@ -280,6 +302,16 @@ const fontsHref =
     </footer>
 
     <script is:inline define:vars={{ THEME_COLOR }}>
+      const ACTIVE = '[aria-current], [aria-selected="true"], .is-active';
+      const reveal = (el) => {
+        const a = el.querySelector(ACTIVE);
+        if (!a || el.scrollWidth <= el.clientWidth) return;
+        const box = el.getBoundingClientRect();
+        const r = a.getBoundingClientRect();
+        const pad = 40;
+        if (r.left < box.left + pad) el.scrollLeft += r.left - box.left - pad;
+        else if (r.right > box.right - pad) el.scrollLeft += r.right - box.right + pad;
+      };
       for (const el of document.querySelectorAll("[data-edge-fade]")) {
         const cut = () => {
           const max = el.scrollWidth - el.clientWidth;
@@ -288,10 +320,46 @@ const fontsHref =
             .filter(Boolean)
             .join(" ");
         };
+        reveal(el);
         cut();
         el.addEventListener("scroll", cut, { passive: true });
         addEventListener("resize", cut, { passive: true });
-        el.querySelector("[aria-current]")?.scrollIntoView({ block: "nearest", inline: "nearest" });
+        new MutationObserver(() => {
+          reveal(el);
+          cut();
+        }).observe(el, {
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["aria-current", "aria-selected", "class", "hidden"],
+        });
+      }
+      const tabbar = document.querySelector(".topnav-nav");
+      const phone = matchMedia("(max-width: 720px)");
+      if (tabbar) {
+        let lastY = scrollY;
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const y = scrollY;
+          if (y <= 64 || !phone.matches) {
+            delete tabbar.dataset.away;
+            lastY = y;
+            return;
+          }
+          if (Math.abs(y - lastY) < 8) return;
+          if (y > lastY && !tabbar.contains(document.activeElement)) tabbar.dataset.away = "";
+          else delete tabbar.dataset.away;
+          lastY = y;
+        };
+        addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) requestAnimationFrame(update);
+            ticking = true;
+          },
+          { passive: true }
+        );
+        tabbar.addEventListener("focusin", () => delete tabbar.dataset.away);
       }
       document.getElementById("theme-toggle")?.addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
