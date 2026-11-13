@@ -19,6 +19,7 @@ case "$cmd" in
       rsync -a "$CORE/bin" "$CORE/src" "$CORE/package.json" "$CORE/eslint.config.js" "$CORE/prettier.config.json" "$CORE/prettierignore" "$CORE/tsconfig.base.json" "$CORE/versions.json" "$T/"
       echo "── build $st"
       (cd "$P" && systemd-run --user --scope -q -p MemoryMax=4G -p MemorySwapMax=0 npx astro build 2>&1 | tail -n "${TAIL:-6}")
+      if [ "${PAGEFIND:-0}" = "1" ]; then (cd "$P" && npx pagefind --site dist 2>&1 | tail -n 2); fi
       ln -sfn "$P/dist" "$PREVIEW_DIR/srv/$st"
     done
     ;;
