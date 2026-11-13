@@ -23,8 +23,9 @@
     list-style: none;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--fs-read, 1rem);
     line-height: 1.55;
+    letter-spacing: 0.02em;
     color: var(--text);
     transition: color var(--dur-hover) var(--ease);
     &::-webkit-details-marker {
@@ -98,7 +99,7 @@
   align-items: center;
   gap: 0.55rem;
   width: 7.25rem;
-  color: var(--muted);
+  color: var(--text-2);
   &::before {
     content: counter(pair, decimal-leading-zero);
     font-family: $mono;
@@ -113,7 +114,8 @@
   }
 }
 
-.lc-details.is-before {
+.lc-details.is-before,
+.compare {
   counter-increment: pair;
 }
 
@@ -129,12 +131,87 @@
   }
 }
 
-.lc-details.is-after + .lc-details {
-  margin-top: 2.25rem;
-}
-
 .lc-details.is-before + .lc-details.is-after {
   border-top-style: dashed;
+}
+
+.compare {
+  margin: 2.25rem 0;
+  border-top-color: var(--ink);
+  & + & {
+    margin-top: -1px;
+  }
+  > summary .details-side {
+    width: auto;
+    min-width: 11.5rem;
+    &::after {
+      border-color: var(--ink);
+    }
+  }
+}
+
+.compare-arrow {
+  color: var(--text-2);
+  font-weight: 400;
+}
+
+.compare-grid {
+  display: grid;
+  gap: 1.5rem var(--col-gap);
+  padding-top: 0.25rem;
+}
+
+.compare-pane {
+  min-width: 0;
+  > :last-child {
+    margin-bottom: 0;
+  }
+  > :not(.code-block, .compare-head) {
+    max-inline-size: var(--measure);
+  }
+  > .code-block {
+    margin: 0.75rem 0 1rem;
+  }
+  p {
+    margin-bottom: 0.6em;
+  }
+}
+
+.compare-head {
+  margin: 0;
+}
+
+.compare-side {
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text-2);
+  &::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid currentColor;
+  }
+  .is-after & {
+    color: var(--ink);
+    &::before {
+      background: var(--ink);
+    }
+  }
+}
+
+@include above-grid {
+  .compare.is-split .compare-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    pre {
+      font-size: 0.8125rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
 }
 
 @supports (interpolate-size: allow-keywords) and selector(::details-content) {
@@ -156,8 +233,25 @@
 }
 
 @include below-grid {
-  .details-side {
+  .details-side,
+  .compare > summary .details-side {
     width: auto;
     min-width: 5.5rem;
   }
+  .compare > summary {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+    .details-mark {
+      margin-left: auto;
+    }
+    .details-title {
+      flex: 1 0 100%;
+      order: 3;
+    }
+  }
+}
+
+.prose > .markdown-alert + .lc-details,
+.prose > .lc-details + .markdown-alert {
+  margin-top: -1px;
 }
