@@ -101,8 +101,20 @@ const clothOf = (h: number, tone = 0, chroma = 1): Cloth => {
   };
 };
 
-export const PERSON_CLOTH = clothOf(52, -0.02, 0.62);
-export const AXIS_CLOTH = clothOf(235, -0.01, 0.5);
+const PERSON_HUE = 52;
+const AXIS_HUE = 235;
+
+export const PERSON_CLOTH = clothOf(PERSON_HUE, -0.02, 0.62);
+export const AXIS_CLOTH = clothOf(AXIS_HUE, -0.01, 0.5);
+
+export function clothHueFor(slug: string): number | undefined {
+  const site = sites.find((s) => s.slug === slug);
+  if (!site) return undefined;
+  if (site.axis === "person") return PERSON_HUE;
+  const cover = siteCovers[slug];
+  if (!cover) return AXIS_HUE;
+  return cover.cloth?.hue ?? oklchHue(cover.accent2);
+}
 
 export function clothFor(slug: string): Cloth | undefined {
   const site = sites.find((s) => s.slug === slug);
@@ -110,5 +122,48 @@ export function clothFor(slug: string): Cloth | undefined {
   if (site.axis === "person") return PERSON_CLOTH;
   const cover = siteCovers[slug];
   if (!cover) return AXIS_CLOTH;
-  return clothOf(cover.cloth?.hue ?? oklchHue(cover.accent2), cover.cloth?.tone ?? 0);
+  return clothOf(clothHueFor(slug)!, cover.cloth?.tone ?? 0);
+}
+
+export const LIGHT_PAPERS = ["#f6f3ec", "#fbf9f4", "#efebe2"];
+export const DARK_PAPERS = ["#111013", "#18171b", "#201f24"];
+export const SEAL_MIN_CONTRAST = 4.5;
+
+const luminance = (hex: string) => {
+  const [r, g, b] = [1, 3, 5].map((i) => linear(parseInt(hex.slice(i, i + 2), 16) / 255));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+
+export function contrastRatio(a: string, b: string): number {
+  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+}
+
+const minContrast = (hex: string, papers: string[]) =>
+  Math.min(...papers.map((p) => contrastRatio(hex, p)));
+
+export interface Seal {
+  light: string;
+  dark: string;
+}
+
+export function sealOf(h: number): Seal {
+  let lightL = 0.52;
+  let light = oklchHex(lightL, 0.15, h);
+  while (minContrast(light, LIGHT_PAPERS) < SEAL_MIN_CONTRAST && lightL > 0.2) {
+    lightL -= 0.005;
+    light = oklchHex(lightL, 0.15, h);
+  }
+  let darkL = 0.76;
+  let dark = oklchHex(darkL, 0.13, h);
+  while (minContrast(dark, DARK_PAPERS) < SEAL_MIN_CONTRAST && darkL < 0.98) {
+    darkL += 0.005;
+    dark = oklchHex(darkL, 0.13, h);
+  }
+  return { light, dark };
+}
+
+export function sealFor(slug: string): Seal | undefined {
+  const hue = clothHueFor(slug);
+  return hue === undefined ? undefined : sealOf(hue);
 }

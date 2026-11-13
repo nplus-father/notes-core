@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { sites } from "../../src/lib/sites.ts";
 import { siteCovers } from "../../src/lib/site-covers.ts";
 import { motifBodies, motifLegends, motifSvg } from "../../src/lib/motifs.ts";
-import { coverPlateFor } from "../../src/lib/cover-plate.ts";
+import { coverPlateFor, sealFor } from "../../src/lib/cover-plate.ts";
 
 const siteBySlug = new Map(sites.map((s) => [s.slug, s]));
 const topicSlugs = sites.filter((s) => s.axis === "topic").map((s) => s.slug);
@@ -50,7 +50,7 @@ const PAPER = "#fbf9f4";
 const INK = "#1b1b1e";
 const RULE = "#bdb5a5";
 const MUTED = "#6c665b";
-const SEAL = "#c23b22";
+const SEAL = sealFor(slug)?.light ?? "#c23b22";
 const SERIF_TC = "'Noto Serif TC','Noto Serif CJK TC','Source Han Serif TC',serif";
 const LATIN = "Newsreader,Georgia,serif";
 const SANS = "Inter,'Noto Sans TC','Noto Sans CJK TC',sans-serif";

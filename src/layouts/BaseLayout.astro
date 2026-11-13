@@ -16,7 +16,7 @@ import Icon from "../components/Icon.astro";
 import { buildNav, DEFAULT_PARENT_SITE, type SiteConfig } from "../lib/site-config";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
 import { siteUrl } from "../lib/links";
-import { coverPlateFor, stationHue, clothFor } from "../lib/cover-plate";
+import { coverPlateFor, stationHue, clothFor, sealFor } from "../lib/cover-plate";
 import { motifSvg } from "../lib/motifs";
 import { bibliography } from "virtual:notes-core/site";
 interface Props {
@@ -44,10 +44,12 @@ const axis = station?.axis ?? "topic";
 const hue = site.accentOverride ? undefined : stationHue(stationSlug);
 const plate = coverPlateFor(stationSlug);
 const cloth = clothFor(stationSlug);
+const seal = sealFor(stationSlug);
 const htmlStyle =
   [
     hue === undefined ? "" : `--station-hue: ${hue}`,
     cloth ? `--cloth-l: ${cloth.light}; --cloth-d: ${cloth.dark}` : "",
+    seal ? `--seal-l: ${seal.light}; --seal-d: ${seal.dark}` : "",
   ]
     .filter(Boolean)
     .join("; ") || undefined;
