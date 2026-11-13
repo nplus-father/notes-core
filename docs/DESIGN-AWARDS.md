@@ -275,6 +275,14 @@ Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／
 - **首頁區塊一律 `.section.is-wide`**：書眉（編號、標籤、數量或日期）一行在上，內容 12 欄。第二輪的 `.home-rail-index` 撤銷。每個區塊邊界只有一條線（書眉上緣的墨線），區塊自己不要再畫收尾線。
 - `--fs-label` 改為 0.8125rem，`running-head` 的字色改為 `--text-2`。
 
+第五輪補充（2026-11-13）：
+
+- 手機底部分頁列保留順序改為 Guide → Concepts → Search → Check，其餘（Problems、Library、Handbook、extraNav）進 `More`；`More` 是貼在分頁列上方的整寬底部面板（紙底、墨線、`MORE` 標題、48px 列、暗幕、關閉鍵、Esc／點外面關，開啟時頁面不捲動；無 JS 仍可用 `<details>` 開關）。
+- 手機麵包屑只剩「← 上一層」一個返回連結（全文、可換行）；桌機不變。
+- 書眉一律：等寬編號、破折號、字距大寫標籤，meta 同樣字距大寫、數字與日期走等寬（`.num`／`time`）。標籤裡的 `lang="en"` 片段不再被標題的拉丁字樣式改掉字距。
+- 首頁的單欄文字（Overview 的 lede／tab／內文、Thesis）共用 8 欄寬、從第 3 欄開始。
+- 首頁 hero 進場一個 session 只播一次（`html.hero-seen`），只動書布、符號描線與卷號；文字從第一幀就在。
+
 | 名稱 | 種類 | 一行說明 |
 | --- | --- | --- |
 | `@include outlined-numeral($stroke, $width: 1px)` | mixin | 描邊不填色的數字（`-webkit-text-stroke`，不支援時退成實心）；首頁 hero 卷號用它，404 與目錄頁的大數字之後也改用它，不要各寫一份 |
