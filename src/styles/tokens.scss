@@ -10,17 +10,22 @@ $bp-grid: 900px;
 $bp-nav: 720px;
 
 $mono:
-  "JetBrains Mono", ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono",
+  "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono",
   monospace;
 
 $display:
-  "Newsreader", "Noto Serif TC", "Noto Serif CJK TC", "Source Han Serif TC", "Songti TC",
+  "Newsreader", "Newsreader Fallback", "Noto Serif TC", "Noto Serif CJK TC", "Source Han Serif TC", "Songti TC",
   "Songti SC", Georgia, serif;
+
+$display-xl:
+  "Newsreader", "Newsreader Display Fallback", "Noto Serif TC", "Noto Serif CJK TC",
+  "Source Han Serif TC", "Songti TC", "Songti SC", Georgia, serif;
 
 $serif: $display;
 
 $sans:
   "Inter",
+  "Inter Fallback",
   -apple-system,
   BlinkMacSystemFont,
   "Segoe UI",

@@ -468,10 +468,56 @@ export const motifLegends: Record<string, string> = {
   braces: "Curly Braces",
 };
 
+export const motifBounds: Record<string, [number, number, number, number]> = {
+  code: [76, 112, 324, 288],
+  patterns: [92, 96, 306, 306],
+  network: [76, 59, 324, 341],
+  db: [102, 82, 298, 318],
+  scatter: [80, 90, 314, 320],
+  route: [80, 72, 320, 322],
+  badge: [104, 92, 296, 328],
+  cloud: [99, 68, 297, 316],
+  shield: [96, 80, 304, 330],
+  chat: [96, 104, 304, 302],
+  target: [80, 76, 324, 320],
+  briefcase: [90, 114, 310, 306],
+  compass: [74, 74, 326, 326],
+  rocket: [116, 76, 284, 330],
+  megaphone: [92, 110, 343, 302],
+  chat2: [88, 100, 312, 312],
+  growth: [84, 104, 316, 312],
+  chart: [84, 88, 316, 318],
+  bill: [74, 122, 326, 278],
+  econ: [98, 86, 322, 314],
+  column: [108, 86, 292, 320],
+  hourglass: [110, 78, 290, 322],
+  bulb: [108, 66, 292, 318],
+  puzzle: [94, 94, 308, 308],
+  book: [90, 99, 310, 316],
+  flask: [95, 84, 305, 318],
+  pen: [146, 92, 254, 326],
+  golden: [126, 80, 274, 320],
+  cycle: [88, 88, 312, 312],
+  link: [72, 116, 328, 284],
+  mountain: [64, 90, 336, 304],
+  hanger: [83, 92, 317, 270],
+  checklist: [100, 100, 300, 300],
+  pulse: [60, 98, 340, 330],
+  scroll: [92, 90, 308, 310],
+  celtic: [102, 70, 298, 334],
+  journal: [100, 74, 300, 332],
+  org: [84, 86, 316, 310],
+  board: [74, 90, 326, 310],
+  sprout: [96, 116, 298, 316],
+  shepherd: [118, 100, 291, 330],
+  braces: [104, 84, 296, 316],
+};
+
 export interface MotifOptions {
   stroke?: number;
   className?: string;
   draw?: boolean;
+  fit?: boolean;
 }
 
 const drawable = (body: string) =>
@@ -485,5 +531,10 @@ export function motifSvg(name: string, opts: MotifOptions = {}): string {
   if (!raw) throw new Error(`unknown motif '${name}'`);
   const body = opts.draw ? drawable(raw) : raw;
   const cls = opts.className ? ` class="${opts.className}"` : "";
-  return `<svg${cls} viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="${opts.stroke ?? MOTIF_STROKE}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+  const box = opts.fit ? motifBounds[name] : undefined;
+  const pad = 8;
+  const viewBox = box
+    ? `${box[0] - pad} ${box[1] - pad} ${box[2] - box[0] + 2 * pad} ${box[3] - box[1] + 2 * pad}`
+    : "0 0 400 400";
+  return `<svg${cls} viewBox="${viewBox}" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="${opts.stroke ?? MOTIF_STROKE}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
 }

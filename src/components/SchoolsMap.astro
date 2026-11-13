@@ -20,7 +20,7 @@ const heading = KINDS[data.kind] ?? KINDS.schools;
 
 {
   schools.length > 0 && (
-    <section class="section schools" aria-labelledby="schools-title">
+    <section class="section is-wide schools" aria-labelledby="schools-title">
       <div class="running-head home-head">
         <h2 class="home-head-title" id="schools-title">
           {num && <span class="running-head-num">{num}</span>}
@@ -30,16 +30,6 @@ const heading = KINDS[data.kind] ?? KINDS.schools;
           <span>{String(schools.length).padStart(2, "0")}</span>
           <span lang="en">{schools.length === 1 ? "Entry" : "Entries"}</span>
         </p>
-        <ol class="home-rail-index">
-          {schools.map((s, i) => (
-            <li>
-              <a href={`#school-${i + 1}`}>
-                <span class="home-rail-num">{String(i + 1).padStart(2, "0")}</span>
-                <span>{s.name}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
       </div>
       <div class="section-body">
         {data.lede && <p class="schools-lede reveal" set:html={data.lede} />}

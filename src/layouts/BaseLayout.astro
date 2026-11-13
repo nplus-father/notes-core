@@ -64,6 +64,23 @@ const nav = buildNav(site, { hasCheck, hasGuide, hasLibrary }).map((l) => {
         : undefined;
   return { ...r, href, current };
 });
+const NAV_PRIORITY = ["guide", "concepts", "problems", "check", "search"];
+const rank = (icon: string) => {
+  const i = NAV_PRIORITY.indexOf(icon);
+  return i < 0 ? NAV_PRIORITY.length : i;
+};
+const tabbarKeep =
+  nav.length > 5
+    ? new Set(
+        [...nav]
+          .map((l, i) => ({ l, i }))
+          .sort((a, b) => rank(a.l.icon) - rank(b.l.icon) || a.i - b.i)
+          .slice(0, 4)
+          .map((x) => x.l.href)
+      )
+    : null;
+const tabbarMore = tabbarKeep ? nav.filter((l) => !tabbarKeep.has(l.href)) : [];
+const showStationInNav = site.showStationInNav ?? true;
 // 「回母站」連結：未設 → 預設連 nplus.wiki/notes/（各站零設定即有）；設 null 可隱藏。
 // v0.20.0 起同時出現在 topnav 最左（往上一層）與頁尾——原本只在頁尾，讀者滑到底才看得到。
 const parentSite = site.parentSite === undefined ? DEFAULT_PARENT_SITE : site.parentSite;
@@ -106,7 +123,9 @@ const canonical = absolute(pathname);
 const ogImage = hasCover ? absolute(withBase("/cover.png")) : undefined;
 const THEME_COLOR = themeColor ?? { light: "#f6f3ec", dark: "#111013" };
 const fontsHref =
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Noto+Serif+TC:wght@500;700;900&display=swap";
+  "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Noto+Serif+TC:wght@500;700;900&display=swap";
+const textFontsHref =
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&display=optional";
 ---
 
 <!doctype html>
@@ -137,6 +156,7 @@ const fontsHref =
     <meta name="theme-color" content={THEME_COLOR.dark} media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={textFontsHref} />
     <link rel="stylesheet" href={fontsHref} />
     <!-- 先於繪製設定主題，避免閃爍 -->
     <script is:inline define:vars={{ THEME_COLOR }}>
@@ -174,6 +194,12 @@ const fontsHref =
           }
           <a class="brand-avatar" href={withBase("/")} title={site.brand}>
             <img src={faviconUrl} alt={site.brand} width="32" height="32" />
+          </a>
+          <a
+            class:list={["topnav-chip", { "is-phone-only": !showStationInNav }]}
+            href={withBase("/")}
+          >
+            <span class="topnav-swatch" aria-hidden="true"></span>
             <span class="topnav-station">{volumeName}</span>
           </a>
         </div>
@@ -182,7 +208,7 @@ const fontsHref =
             <ul class="topnav-links" data-edge-fade>
               {
                 nav.map((l) => (
-                  <li>
+                  <li class:list={{ "is-overflow": tabbarKeep && !tabbarKeep.has(l.href) }}>
                     <a
                       class="topnav-link"
                       href={l.href}
@@ -195,6 +221,34 @@ const fontsHref =
                     </a>
                   </li>
                 ))
+              }
+              {
+                tabbarMore.length > 0 && (
+                  <li class="topnav-more">
+                    <details class="topnav-more-box">
+                      <summary class="topnav-link">
+                        <Icon name="more" size={20} />
+                        <span class="topnav-label">More</span>
+                      </summary>
+                      <ul class="topnav-sheet">
+                        {tabbarMore.map((l) => (
+                          <li>
+                            <a
+                              class="topnav-sheet-link"
+                              href={l.href}
+                              title={l.title}
+                              aria-current={l.current}
+                              {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
+                            >
+                              <Icon name={l.icon} size={20} />
+                              <span>{l.text}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  </li>
+                )
               }
             </ul>
           </nav>
@@ -224,7 +278,7 @@ const fontsHref =
               <span class:list={["colophon-mark", { "is-numeral": !plate }]} aria-hidden="true">
                 {plate ? (
                   <Fragment
-                    set:html={motifSvg(plate.motif, { className: "colophon-motif", stroke: 7 })}
+                    set:html={motifSvg(plate.motif, { className: "colophon-motif", stroke: 5, fit: true })}
                   />
                 ) : (
                   <span class="colophon-mark-num">{serial}</span>
@@ -333,6 +387,18 @@ const fontsHref =
           attributeFilter: ["aria-current", "aria-selected", "class", "hidden"],
         });
       }
+      const more = document.querySelector(".topnav-more-box");
+      if (more) {
+        document.addEventListener("click", (e) => {
+          if (more.open && !more.contains(e.target)) more.open = false;
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && more.open) {
+            more.open = false;
+            more.querySelector("summary")?.focus();
+          }
+        });
+      }
       const tabbar = document.querySelector(".topnav-nav");
       const phone = matchMedia("(max-width: 720px)");
       if (tabbar) {
@@ -347,7 +413,8 @@ const fontsHref =
             return;
           }
           if (Math.abs(y - lastY) < 8) return;
-          if (y > lastY && !tabbar.contains(document.activeElement)) tabbar.dataset.away = "";
+          if (y > lastY && !tabbar.contains(document.activeElement) && !more?.open)
+            tabbar.dataset.away = "";
           else delete tabbar.dataset.away;
           lastY = y;
         };

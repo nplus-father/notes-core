@@ -50,6 +50,7 @@ export interface SiteConfig {
   ns?: string;
   /** 是否有題庫（problems）集合。純概念站為 false。 */
   hasProblems: boolean;
+  showStationInNav?: boolean;
   /** 頁尾文字，預設「© 2026 Andrew」 */
   footer?: string;
   /**

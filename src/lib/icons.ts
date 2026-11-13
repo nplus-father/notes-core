@@ -25,6 +25,7 @@ export const icons = {
   minus: '<path d="M5 12h14"/>',
   copy: '<path d="M8.75 8.75h10.5v10.5H8.75Z"/><path d="M15.25 8.75v-4H4.75v10.5h4"/>',
   close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  more: '<path d="M4.75 6.75h14.5M4.75 12h14.5M4.75 17.25h14.5"/>',
 } as const;
 
 export type IconName = keyof typeof icons;
