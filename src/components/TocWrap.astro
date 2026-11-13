@@ -1,0 +1,27 @@
+<script is:inline>
+  (() => {
+    const lines = [...document.querySelectorAll(".toc-line")];
+    if (!lines.length) return;
+    const wide = matchMedia("(min-width: 721px)");
+    const measure = () => {
+      for (const li of lines) li.classList.remove("is-wrapped");
+      if (!wide.matches) return;
+      const wrapped = lines.filter((li) => {
+        const t = li.querySelector(".toc-t");
+        const d = li.querySelector(".toc-dots");
+        if (!t || !d) return false;
+        const lh = parseFloat(getComputedStyle(t).lineHeight) || 24;
+        return t.getBoundingClientRect().height > lh * 1.5 || d.getBoundingClientRect().width < 20;
+      });
+      for (const li of wrapped) li.classList.add("is-wrapped");
+    };
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
+    };
+    addEventListener("resize", schedule);
+    if (document.fonts) document.fonts.ready.then(schedule);
+    measure();
+  })();
+</script>

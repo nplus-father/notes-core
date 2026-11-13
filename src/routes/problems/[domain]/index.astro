@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ProblemCard from "../../../components/ProblemCard.astro";
+import TocWrap from "../../../components/TocWrap.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import { byImportance } from "../../../lib/collections";
 import { pad2, DIFFICULTY_LEVEL, latinLang, splitTitle } from "../../../lib/toc";
@@ -47,16 +48,7 @@ const levels = ["Easy", "Medium", "Hard"]
   />
   <header class="page-head idx-head chapter-open section">
     <div class="idx-side co-side">
-      <p class="co-kicker label">
-        Domain
-        {
-          domain.icon && (
-            <span class="cat-glyph" aria-hidden="true">
-              {domain.icon}
-            </span>
-          )
-        }
-      </p>
+      <p class="co-kicker label">Domain</p>
       {
         num > 0 && (
           <span class="co-num" aria-hidden="true">
@@ -103,9 +95,18 @@ const levels = ["Easy", "Medium", "Hard"]
   </header>
 
   <section class="section idx-list reveal" aria-labelledby="problems-h">
-    <h2 class="running-head" id="problems-h">
-      <span class="running-head-num">01</span>Problems
-    </h2>
+    <div class="idx-rail">
+      <h2 class="running-head" id="problems-h">
+        <span class="running-head-num">01</span>Problems
+      </h2>
+      {
+        items.length > 0 && (
+          <p class="idx-rail-n">
+            {items.length} {items.length === 1 ? "entry" : "entries"}
+          </p>
+        )
+      }
+    </div>
     {
       items.length > 0 ? (
         <div class="section-body">
@@ -124,9 +125,12 @@ const levels = ["Easy", "Medium", "Hard"]
   {
     drilled.length > 0 && (
       <section class="section idx-list reveal" aria-labelledby="drilled-h">
-        <h2 class="running-head" id="drilled-h">
-          <span class="running-head-num">02</span>Concepts
-        </h2>
+        <div class="idx-rail">
+          <h2 class="running-head" id="drilled-h">
+            <span class="running-head-num">02</span>Concepts
+          </h2>
+          <p class="idx-rail-n">{drilled.length} drilled</p>
+        </div>
         <div class="section-body">
           <ul class="toc-lines">
             {drilled.map(({ entry, n }) => {
@@ -152,4 +156,5 @@ const levels = ["Easy", "Medium", "Hard"]
       </section>
     )
   }
+  <TocWrap />
 </BaseLayout>

@@ -87,15 +87,10 @@ const conceptCount = new Set(problems.flatMap((p: any) => p.data.concepts ?? [])
             <span class="toc-num" aria-hidden="true">
               {pad2(num)}
             </span>
-            <h2 class="toc-name" id={`dm-${dm.slug}`}>
+            <h2 class="toc-name" id={`dm-${dm.slug}`} lang={latinLang(dm.name)}>
               <a class="link-draw" href={withBase(`problems/${dm.slug}/`)}>
                 {dm.name}
               </a>
-              {dm.icon && (
-                <span class="cat-glyph" aria-hidden="true">
-                  {dm.icon}
-                </span>
-              )}
             </h2>
             <p class="toc-progress">
               <span class="toc-count">{items.length}</span>
