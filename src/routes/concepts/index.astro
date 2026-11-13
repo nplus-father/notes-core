@@ -1,5 +1,5 @@
 ---
-import IndexVolumeHead from "../../components/IndexVolumeHead.astro";
+import VolumeHead from "../../components/VolumeHead.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TocWrap from "../../components/TocWrap.astro";
 import Crumbs from "../../components/Crumbs.astro";
@@ -66,7 +66,7 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
 <BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: conceptLabel }]} />
   <header class="page-head idx-head section">
-    <IndexVolumeHead page="Contents" class="idx-side" />
+    <VolumeHead index section="Contents" class="idx-side" />
     <div class="idx-main">
       <h1 class="idx-title" lang={latinLang(conceptLabel)}>{conceptLabel}</h1>
       <p class="idx-stats">

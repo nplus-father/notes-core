@@ -1,28 +1,40 @@
 ---
 import { currentVolume } from "../lib/volume";
-import { stripEmoji, type SiteConfig } from "../lib/site-config";
+import { stripEmoji } from "../lib/site-config";
+import { site } from "virtual:notes-core/site";
 import { withBase } from "../lib/url";
 
 interface Props {
-  site: SiteConfig;
   section: string;
   sectionHref?: string;
+  num?: string;
+  emblem?: boolean;
+  index?: boolean;
+  class?: string;
 }
-const { site, section, sectionHref } = Astro.props;
+const { section, sectionHref, num, emblem = false, index = false, class: cls } = Astro.props;
 const vol = currentVolume(site.titleBase ?? site.brand);
+const label = stripEmoji(section);
 ---
 
-<p class="volume-head">
+<p class:list={["volume-head", { "is-index running-head": index }, cls]}>
   <span class="volume-swatch" aria-hidden="true"></span>
   {vol.serial && <span class="volume-serial">{vol.serial}</span>}
   <a class="volume-label" href={withBase("/")}>{vol.label}</a>
-  <span class="volume-sep" aria-hidden="true">·</span>
+  <span class="volume-sep" aria-hidden="true">{index ? "/" : "·"}</span>
   {
     sectionHref ? (
-      <a class="volume-section" href={withBase(sectionHref)}>{stripEmoji(section)}</a>
+      <a class="volume-section" href={withBase(sectionHref)}>
+        {label}
+        {num && <span class="volume-num">{num}</span>}
+      </a>
     ) : (
-      <span class="volume-section">{stripEmoji(section)}</span>
+      <span class="volume-section">
+        {label}
+        {num && <span class="volume-num">{num}</span>}
+      </span>
     )
   }
-  {vol.emblem && <span class="volume-mark" aria-hidden="true" set:html={vol.emblem} />}
+  {emblem && vol.emblem && <span class="volume-mark" aria-hidden="true" set:html={vol.emblem} />}
 </p>
+{index && vol.style && <style is:inline set:html={`:root{${vol.style}}`} />}

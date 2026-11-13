@@ -44,10 +44,6 @@
   container: page-grid / inline-size;
 }
 
-main.container:has(> .reading, > .guide) {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-}
-
 .prose {
   counter-reset: sec pair;
   font-size: var(--fs-read);

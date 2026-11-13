@@ -19,10 +19,45 @@
   color: var(--text-2);
 }
 
-.volume-head {
+.volume-head:where(:not(.is-index)) {
   grid-column: 1 / -1;
   min-height: 2.5rem;
   margin-bottom: clamp(1.1rem, 2.4vw, 1.9rem);
+}
+
+.volume-head.is-index {
+  align-items: center;
+  gap: 0.3rem 0.65em;
+  font-size: max(0.8125rem, var(--fs-label));
+  color: var(--text-2);
+  .volume-swatch {
+    width: 0.7rem;
+    height: 0.7rem;
+    background: var(--vol);
+    outline: none;
+  }
+  .volume-label {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+  .volume-sep {
+    font-weight: 400;
+    color: var(--border-mid);
+  }
+  .volume-section {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+}
+
+.volume-num {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  color: var(--text);
 }
 
 .volume-swatch {

@@ -66,10 +66,10 @@
 }
 
 @media (min-width: 721px) {
-  main:has(.volume-head, .vol-line) > .crumbs {
+  main:has(.volume-head) > .crumbs {
     @include visually-hidden;
   }
-  main:has(.volume-head, .vol-line) > .crumbs:focus-within {
+  main:has(.volume-head) > .crumbs:focus-within {
     position: static !important;
     width: auto;
     height: auto;
@@ -81,7 +81,7 @@
   }
 }
 
-:is(.volume-head, .vol-line) a {
+.volume-head a {
   color: inherit;
   &:hover,
   &:focus-visible {

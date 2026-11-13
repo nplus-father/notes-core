@@ -33,12 +33,6 @@
   color: var(--muted);
 }
 
-.idx-kicker-num {
-  font-family: $mono;
-  letter-spacing: 0.04em;
-  color: var(--text);
-}
-
 .idx-title {
   margin: 0;
   font-family: $display;
@@ -123,10 +117,6 @@
   font-size: 0.8125rem;
   color: var(--muted);
   transition: color var(--dur-hover) var(--ease);
-}
-
-main.container:has(> .idx-head) {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .idx-head .running-head,
@@ -950,43 +940,6 @@ a.toc-row {
 
 [data-theme="dark"] {
   --vol: var(--vol-d, var(--ink));
-}
-
-.vol-line {
-  align-items: center;
-  gap: 0.3rem 0.65em;
-  font-size: max(0.8125rem, var(--fs-label));
-  color: var(--text-2);
-}
-
-.vol-swatch {
-  flex: none;
-  width: 0.7rem;
-  height: 0.7rem;
-  background: var(--vol);
-}
-
-.vol-serial {
-  font-family: $mono;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--text);
-}
-
-.vol-name {
-  color: var(--text);
-  &::after {
-    content: "/";
-    margin-left: 0.65em;
-    font-weight: 400;
-    color: var(--border-mid);
-  }
-}
-
-.vol-page {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.5em;
 }
 
 .idx-head .idx-stats {
