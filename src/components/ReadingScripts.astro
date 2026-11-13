@@ -46,8 +46,8 @@ const doneIcon = icons.check;
     update();
   }
 
-  for (const fig of document.querySelectorAll<HTMLElement>(".code-block")) {
-    const pre = fig.querySelector<HTMLElement>("pre");
+  for (const fig of document.querySelectorAll<HTMLElement>(".code-block, .diagram")) {
+    const pre = fig.querySelector<HTMLElement>("pre, .diagram-scroll");
     if (!pre) continue;
     const measure = () => {
       const max = pre.scrollWidth - pre.clientWidth;

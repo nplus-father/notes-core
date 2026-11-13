@@ -19,6 +19,8 @@ import { remarkAlert } from "remark-github-blockquote-alert";
 // @ts-expect-error — .mjs remark 外掛無型別宣告
 import remarkDetails from "./plugins/remark-details.mjs";
 // @ts-expect-error — .mjs remark 外掛無型別宣告
+import remarkFigure from "./plugins/remark-figure.mjs";
+// @ts-expect-error — .mjs remark 外掛無型別宣告
 import remarkResponse from "./plugins/remark-response.mjs";
 // @ts-expect-error — .mjs remark 外掛無型別宣告
 import remarkSections from "./plugins/remark-sections.mjs";
@@ -50,6 +52,7 @@ export function defineNotesAstroConfig(opts: NotesAstroConfigOptions) {
       processor: unified({
         remarkPlugins: [
           remarkDirective,
+          remarkFigure,
           remarkDetails,
           remarkResponse,
           remarkAlert,

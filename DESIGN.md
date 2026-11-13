@@ -191,6 +191,7 @@ export const overview = defineOverview({
 - 區塊標題由 **`::<name>` leaf directive** 產生（notes-core `remark-sections`，v0.5.0 起）：站上寫 `::core`，渲染成「🧠 Core Ideas」的 h2。英文標籤與 emoji 的詞彙表在 `src/plugins/remark-sections.mjs`，改字一處生效。手寫 `## 🧠 核心概念`／`## 🔑 總整理` 是 v0.5.0 前的舊骨架（`note-check` §2.6 列 nit；2026-11-06 最後 13 頁清完，全星系歸零）。
 - 第一個區塊一律 `::core`（技術站族可用 `::intuition`），收尾一律 `::takeaways` → `:::response`。
 - **分站族詞彙**（同一份外掛，各族挑自己的）：通用 `core`／`case`／`takeaways`；技術站 `intuition`／`tradeoffs`／`whentouse`／`structure`／`antipatterns`；clean-code `whyproblem`／`whymatters`／`refactor`；behaviour-interview `discussion`／`signals`／`pitfalls`／`questions`／`star`／`scenario`；system-design `requirements`／`reference`；leetcode `approaches`。
+- 題目頁的架構圖放在 `::core` 的 TIP 之後，一頁一張（見 §5.4「架構圖」）。
 - 中段的 `## ⚖️ …` 仍是手寫 h2（標題是內容，各頁不同），摺疊用 `:::details{title="…"}`（notes-core `remark-details`）。
 - Alert 用 `> [!TIP] / [!NOTE] / [!WARNING]`。
 - **頁型 `kind`（v0.38.0）**：`claim`（預設，一頁一主張）｜`debate`（一個問題、多本書吵——各方主張並排、各自溯源，不下裁決；裁決與閱讀順序歸 guide 的 Verdict）。選型的決策樹在 `note-check` §1.4。
@@ -212,6 +213,7 @@ export const overview = defineOverview({
 - **Alert（callout）**：不要整塊色底。上下各一條髮絲線，左上角 `--fs-label` 類型標籤配一個語意色小記號——TIP 圓點、NOTE 方點、IMPORTANT 菱形、WARNING 三角、CAUTION 斜線圈——靠形狀而不只靠顏色區分。
 - **details**：一列一條、右端 `+`／`−`，展開有高度過渡，不要白卡片。
 - **對照圖（compare figures）**：clean-code 一類的 Before／After 對照是編號的圖（`□ 01`），摘要（`BEFORE`／`AFTER` 各一行）留在行長內；打開的分欄才破格到 9 欄、自己一條墨線，兩欄的說明是小字圖說。手機上 Before／After 疊成兩行。
+- **架構圖（`::figure`）**：內文寫一行 `::figure[圖說]{src="./<slug>.svg"}`，SVG 與 `.md` 同資料夾（content loader 只收 `.md`，SVG 不進集合）。`remark-figure` 在 build 時把 SVG **內嵌**進頁面——不是 `<img>`，因為只有內嵌的 SVG 吃得到頁面的 CSS 變數，深淺色才會跟著切；兩張 PNG 輪流換要維護兩份、也縮放不了。圖是編號的圖：與對照圖共用 `Fig. 01` 計數，上緣一條墨線、破格到 9 欄，圖說是小字 `figcaption`。SVG 只准用 `reading/_figure.scss` 的詞彙上色——`d-box`（`is-store` 資料儲存、`is-key` 題目的關鍵決策，墨色實心反白字，一圖最多兩個）、`d-edge`（`is-async` 虛線、`is-key` 粗墨線）、`d-head` 箭頭、`d-zone` 分區虛線、`d-sub`／`d-label`／`d-tag`／`d-mono` 文字；外掛遇到寫死的 `fill`／`stroke` 顏色、`style`、`<style>`、`<script>`、`<image>`、字型屬性，或缺 `viewBox`／`<title>`／`<desc>`／圖說，build 直接失敗。`<title>`＋`<desc>` 經 `aria-labelledby`／`aria-describedby` 給輔助科技，`desc` 要用一段話把圖講完；id 自動加前綴，一頁多張不撞。SVG 文字不進 Pagefind 索引（圖說會進）。寬度：桌機撐滿 9 欄；容器窄於 `viewBox` 寬的 0.86 倍時（手機、窄平板）改為橫捲，捲動窗與程式碼同一套邊緣淡出與 `Scroll →` 提示——字不會縮到讀不了。不用 Mermaid：它在瀏覽器執行期排版、要另載一支大 JS，且版面無法逐張調到能讀。
 - **程式碼**：頂端一行語言標籤＋`Copy` 鍵；0.9rem、行高 1.65，深淺各一套 shiki 主題（淺色的 token 色在紙色程式底上過 AA）；**手機也不軟換行**，橫向溢出時隨捲動位置在被切的一側淡出，並出一次捲動提示。
 - **頁尾（end matter）**：Further Reading／Dive Deeper／Related 統一成一列一條的清單（書封縮圖＋章節標題＋書名，hover 整列底線畫出）；上一頁／下一頁是兩個並排的大字襯線連結，不要方框；最後是一行 `<VolumeColophon>` 版權行（卷號、站名、章）。
 
