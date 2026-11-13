@@ -7,6 +7,8 @@ import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
 import Kern from "../components/Kern.astro";
+import VolumeHead from "../components/VolumeHead.astro";
+import VolumeColophon from "../components/VolumeColophon.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug, byImportance } from "../lib/collections";
@@ -94,6 +96,7 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 
   <div class="reading bleed" data-kind={d.kind}>
     <header class="page-head reading-head">
+      <VolumeHead site={site} section={cat?.name ?? d.category} />
       {
         d.kind === "debate" && (
           <p class="reading-kicker running-head">
@@ -137,6 +140,13 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
       <RelatedList heading="Problems using this" items={usedBy} />
       <RelatedList heading="Related" items={related} />
     </div>
+
+    <VolumeColophon
+      site={site}
+      section={cat?.name ?? d.category}
+      page={idx >= 0 ? idx + 1 : undefined}
+      pages={sameCat.length}
+    />
 
     <PrevNext
       prev={prev ? nav(prev) : null}

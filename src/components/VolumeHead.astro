@@ -1,0 +1,20 @@
+---
+import { currentVolume } from "../lib/volume";
+import { stripEmoji, type SiteConfig } from "../lib/site-config";
+
+interface Props {
+  site: SiteConfig;
+  section: string;
+}
+const { site, section } = Astro.props;
+const vol = currentVolume(site.titleBase ?? site.brand);
+---
+
+<p class="volume-head">
+  <span class="volume-swatch" aria-hidden="true"></span>
+  {vol.serial && <span class="volume-serial">{vol.serial}</span>}
+  <span class="volume-label">{vol.label}</span>
+  <span class="volume-sep" aria-hidden="true">·</span>
+  <span class="volume-section">{stripEmoji(section)}</span>
+  {vol.emblem && <span class="volume-mark" aria-hidden="true" set:html={vol.emblem} />}
+</p>
