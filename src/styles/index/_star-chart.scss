@@ -3,7 +3,7 @@
 
 .page-head.idx-head:has(> .sc) {
   @include above-grid {
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
     align-items: start;
     > .idx-side {
       grid-column: 1 / span 5;
@@ -15,7 +15,7 @@
     }
     > .sc {
       grid-column: 1 / -1;
-      grid-row: 1 / span 3;
+      grid-row: 1 / span 4;
       display: grid;
       grid-template-columns: subgrid;
       grid-template-rows: subgrid;
@@ -26,17 +26,19 @@
       }
       > .sc-plate {
         grid-column: 6 / -1;
-        grid-row: 1 / span 3;
+        grid-row: 1 / span 4;
         justify-self: end;
         width: 100%;
-        max-width: 720px;
+        max-width: min(720px, 100svh - 200px);
       }
       > .sc-side {
         grid-column: 1 / span 5;
         grid-row: 3;
-        align-self: end;
-        padding-top: 2.5rem;
+        align-self: start;
       }
+    }
+    .idx-stats {
+      margin-top: clamp(1.25rem, 2.2vw, 1.75rem);
     }
   }
 }
@@ -212,17 +214,72 @@
   }
 }
 
-.sc-svg:has(.sc-cst:hover, .sc-cst:focus-within) {
-  .sc-cst:not(:hover, :focus-within) {
+.sc-svg:has(.sc-cst:hover, .sc-cst:focus-within),
+.sc[data-hot] .sc-svg {
+  .sc-cst:not(:hover, :focus-within, .is-hot) {
     opacity: 0.22;
   }
   .sc-x path {
     opacity: 0.12;
   }
-  .sc-cst:is(:hover, :focus-within) .sc-lines path {
-    opacity: 1;
-    stroke-width: 1.4px;
+  .sc-cst:is(:hover, :focus-within, .is-hot) {
+    .sc-lines path {
+      opacity: 1;
+      stroke-width: 1.4px;
+    }
+    .sc-tag-t {
+      fill: var(--text);
+    }
+    .sc-label,
+    .sc-numl {
+      fill: var(--text);
+    }
+    .sc-label-num {
+      fill: var(--seal);
+    }
   }
+}
+
+.sc-svg .sc-sector {
+  pointer-events: none;
+  path {
+    fill: transparent;
+    stroke: none;
+  }
+}
+
+.sc-tag {
+  pointer-events: none;
+}
+
+.sc-svg .sc-tag-lead {
+  stroke-width: 0.75px;
+  opacity: 0.55;
+}
+
+.sc-tag-t {
+  font-family: $sans;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  fill: var(--text-2);
+  stroke: var(--bg);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  dominant-baseline: central;
+  transition: fill var(--dur-hover) var(--ease);
+  &.is-latin {
+    font-size: 16.5px;
+    letter-spacing: 0.01em;
+  }
+}
+
+.sc-hint {
+  display: none;
+  margin: 0.75rem 0 0;
+  font-size: var(--fs-small);
+  color: var(--text-2);
 }
 
 .sc-label {
@@ -356,10 +413,11 @@
   display: grid;
   justify-items: start;
   gap: 0.55rem;
-  margin-top: 1.25rem;
+  margin-top: clamp(1.5rem, 2.6vw, 2rem);
   padding-top: 0.9rem;
   border-top: 1px solid var(--ink);
-  color: var(--muted);
+  font-size: max(0.8125rem, var(--fs-label));
+  color: var(--text-2);
 }
 
 .sc-cap-pl {
@@ -422,68 +480,76 @@
 }
 
 .sc-key {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  gap: 0 var(--col-gap);
+  margin: 1.5rem 0 0;
   padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
   list-style: none;
+  li {
+    border-top: 1px solid var(--border);
+  }
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    min-height: 40px;
+    padding: 0.55rem 0;
+    font-size: var(--fs-small);
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color var(--dur-hover) var(--ease);
+  }
+  li:is(.is-hot, :hover, :focus-within) a {
+    color: var(--text);
+    .sc-key-num {
+      color: var(--seal);
+    }
+  }
 }
 
-@mixin sc-key-open {
-  .sc-key {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 1.25rem 0 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
-    gap: 0 var(--col-gap);
-    li {
-      border-top: 1px solid var(--border);
-    }
+.sc-key-num,
+.sc-key-n {
+  font-family: $mono;
+  font-size: 0.8125rem;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-hover) var(--ease);
+}
+
+.sc-key-name {
+  flex: 1;
+  min-width: 0;
+}
+
+@include above-grid {
+  .idx-head .sc-key {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: column;
+    grid-template-rows: repeat(var(--rows, 5), auto);
+    margin-top: 1.4rem;
+    border-bottom: 1px solid var(--border);
     a {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      min-height: 40px;
-      padding: 0.55rem 0;
-      font-size: var(--fs-small);
-      color: var(--text-2);
-      text-decoration: none;
-      &:hover,
-      &:focus-visible {
-        color: var(--text);
-        .sc-key-num {
-          color: var(--seal);
-        }
-      }
+      min-height: 30px;
+      padding: 0.3rem 0;
+      gap: 0.6rem;
+    }
+    .sc-key-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
-  .sc-key-num,
-  .sc-key-n {
-    font-family: $mono;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-  .sc-key-name {
-    flex: 1;
+  .idx-head .sc-key.is-short {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-flow: row;
+    grid-template-rows: none;
   }
 }
 
-.sc.has-abbr {
-  @include sc-key-open;
-}
-
-@media (max-width: 600px), (min-width: ($bp-grid + 1)) and (max-width: 1080px) {
-  .sc {
-    @include sc-key-open;
+@container sc (max-width: 599px) {
+  .sc-tag {
+    display: none;
   }
 }
 
@@ -497,6 +563,29 @@
   .sc-numl {
     display: inline;
   }
+  .sc-svg .sc-sector {
+    pointer-events: auto;
+  }
+  .sc-star {
+    pointer-events: none;
+  }
+}
+
+@media (pointer: coarse) {
+  @container sc (max-width: 800px) {
+    .sc-svg .sc-sector {
+      pointer-events: auto;
+    }
+    .sc-star {
+      pointer-events: none;
+    }
+  }
+}
+
+@media (max-width: 600px), (pointer: coarse) and (max-width: $bp-grid) {
+  .sc-hint {
+    display: block;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -506,7 +595,8 @@
     animation: sc-draw 1100ms var(--ease) both;
     animation-delay: calc(var(--d, 0ms) + 700ms);
   }
-  .sc-star {
+  .sc-star,
+  .sc-tag {
     animation: sc-fade 700ms var(--ease) both;
     animation-delay: var(--d, 0ms);
   }
