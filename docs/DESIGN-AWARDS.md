@@ -246,3 +246,33 @@ Fable 收三份、取中位數、逐條裁決，開下一輪修單。同一個�
 | M | 發版與鋪開 79 站（tag、`bump-notes-core.sh`、逐站 build） | 腳本＋Andrew 放行 | 要 push，等 Andrew 說 go |
 
 流程：A →（B → C）‖ G → D ‖ E ‖ F → H → I → J → H → …（直到 §0 三道閘門全過）→ K、L → M。
+
+## 12. Foundation API（工作包 B／C 交付，D／E／F 從這裡取用）
+
+Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／`$serif`＝`$display`、`$bp-grid` 900px、`$bp-nav` 720px、`$canvas-max`、`$ease`），要用 mixin 再加 `@use "../base/mixins" as *;`。`global.scss` 只是有序的 `@use` 清單，新 partial 照層疊位置插進去。
+
+**Tokens（`base/_theme`）**：`--fs-mega／display／h1／h2／h3／lede／body／small／label`、`--lh-body`、`--font-display／sans／mono`、`--bg／surface／surface-2／border／border-mid／border-strong（＝墨）／ink／text／text-2／muted／accent／seal／seal-weak`、`--gutter／canvas／col-gap／space-section／nav-h`（64px）、`--ease／dur-hover／dur-enter／dur-hero`。`--border-mid` 是舊 `--border-strong` 的淡灰角色（空星、虛線框、未收長條），`--border-strong` 現在是墨線。
+
+**版面（`base/_layout`）**：`.container` 寬＝`--canvas`；≥ 901px 時 `main.container > *` 預設從第 4 欄開始（左 3 欄留給書眉／邊注），`.crumbs`／`.home-hero`／`.grid-12`／`.section`／`.bleed` 例外、滿版。`--span-3`／`--span-7`／`--span-9`／`--col` 是以 vw 算的欄寬長度，給還沒改成格線的舊版面對齊用。
+
+| 名稱 | 種類 | 一行說明 |
+| --- | --- | --- |
+| `.grid-12`／`@include grid-12` | class／mixin | 12 欄、欄距 `--col-gap` |
+| `.section`／`@include section-split($head, $body)` | class／mixin | 左 3 欄 `.running-head`＋右 9 欄 `.section-body`，≤ 900px 疊成單欄；相鄰 `.section` 間距 `--space-section` |
+| `.running-head`＋`.running-head-num`／`@include running-head`、`running-head-num` | class／mixin | 書眉：`--fs-label` 大寫、字距 0.14em、600；編號走 `$mono`，後面自動接「—」 |
+| `.label`／`@include label` | class／mixin | 只要書眉字樣、不要 flex 排列時用 |
+| `.seal`／`@include seal($size)` | class／mixin | 朱印實心方點（預設 0.5rem），全站唯一暖色 |
+| `.text-tabs`＋`.text-tab`／`@include text-tab`、`text-tab-active` | class／mixin | 文字 tab：底線指示從左畫出；`[aria-selected="true"]`／`[aria-current]`／`.is-active` 時墨字＋朱點＋底線 |
+| `.hairline-list`（`.is-ink`）／`@include hairline-row($color)` | class／mixin | 一列一條的髮絲線清單；`.is-ink` 換墨線 |
+| `.link-draw`／`@include link-draw($thickness)` | class／mixin | hover／focus 時底線由左畫出（可跨行） |
+| `.arrow-nudge`／`@include arrow-nudge($distance)` | class／mixin | hover 時裡面的 `.icon`／`.arrow` 右移 3px |
+| `@include above-grid`／`below-grid` | mixin | ≥ 901px／≤ 900px 的 media 包裝 |
+| `.visually-hidden`／`@include visually-hidden` | class／mixin | 只給螢幕閱讀器 |
+| `.display-latin`、`h1–h3:lang(en)` | class | 拉丁標題字重 500、字距 −0.02em（標題預設 900：中文 Noto Serif TC 900，Newsreader 封頂 700） |
+| `.reveal` | class | `animation-timeline: view()` 的 12px 升起，包在 `@supports` 與 no-preference 裡 |
+| `<BaseLayout progress>` → `.reading-progress` | prop | 內頁頂端 2px 朱線，`animation-timeline: scroll()` |
+| `<BaseLayout description="…">` | prop | 頁面點題句；省略時用 `heroLede` 去標籤 |
+| `@keyframes folio-rise／folio-fade／folio-draw` | keyframes | 進場升起／淡入／橫線 `scaleX` 畫出，hero 編排用 |
+| `<Icon name size label? class?>` | 元件 | `src/lib/icons.ts` 的單線圖示（24 格、1.5px、`currentColor`）：guide concepts problems check search library handbook archive bookmark arrow-left/right/up-right chevron-left/right sun moon checkup enrich plus minus copy close |
+
+Chrome 的 class（`.topnav*`、`.crumbs`、`.colophon*`、`.skip-link`）屬於基礎層，版面工作包不要改。換頁轉場已全站開啟（`@view-transition`），要做形變就在兩端元素上加同一個 `view-transition-name`。`prefers-reduced-motion: reduce` 會關掉所有動畫與轉場，列印樣式拿掉 chrome。
