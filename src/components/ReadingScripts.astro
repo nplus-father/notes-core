@@ -7,23 +7,31 @@ const doneIcon = icons.check;
 <script>
   const links = [...document.querySelectorAll<HTMLAnchorElement>(".mg-toc a[data-toc]")];
   if (links.length > 0) {
-    const ids = [...new Set(links.map((a) => a.dataset.toc ?? ""))];
+    const resolve = (a: HTMLAnchorElement) => {
+      const id = a.dataset.toc ?? "";
+      const scope = a.closest(".guide-chapter");
+      const el =
+        scope?.querySelector<HTMLElement>(`[id="${CSS.escape(id)}"]`) ??
+        document.getElementById(id);
+      return el ? (el.closest<HTMLElement>(".section-head") ?? el) : null;
+    };
+    const pairs = links.map((a) => ({ a, el: resolve(a) }));
     let queued = false;
     const update = () => {
       queued = false;
-      const live = ids
-        .map((id) => document.getElementById(id))
-        .filter((el): el is HTMLElement => el !== null && el.checkVisibility());
+      const live = pairs.filter(
+        (p): p is { a: HTMLAnchorElement; el: HTMLElement } =>
+          p.el !== null && p.el.checkVisibility()
+      );
       if (live.length === 0) return;
       const doc = document.documentElement;
-      const atEnd = scrollY + innerHeight >= doc.scrollHeight - 4;
-      const line = innerHeight * 0.3;
-      const current = atEnd
-        ? live[live.length - 1]
-        : (live.filter((el) => el.getBoundingClientRect().top < line).at(-1) ?? live[0]);
-      for (const a of links) {
-        if (a.dataset.toc === current.id) a.setAttribute("aria-current", "location");
-        else a.removeAttribute("aria-current");
+      const left = Math.max(0, doc.scrollHeight - innerHeight - scrollY);
+      const line = innerHeight * 0.35 + Math.max(0, innerHeight * 0.65 - left);
+      let current = live[0].el;
+      for (const p of live) if (p.el.getBoundingClientRect().top <= line) current = p.el;
+      for (const p of pairs) {
+        if (p.el === current) p.a.setAttribute("aria-current", "location");
+        else p.a.removeAttribute("aria-current");
       }
     };
     const queue = () => {
@@ -36,6 +44,23 @@ const doneIcon = icons.check;
     addEventListener("hashchange", queue);
     document.addEventListener("click", queue);
     update();
+  }
+
+  for (const fig of document.querySelectorAll<HTMLElement>(".code-block")) {
+    const pre = fig.querySelector<HTMLElement>("pre");
+    if (!pre) continue;
+    const measure = () => {
+      const max = pre.scrollWidth - pre.clientWidth;
+      const at = pre.scrollLeft;
+      fig.dataset.overflow = String(max > 2);
+      if (at > 4) fig.classList.add("is-scrolled");
+      pre.dataset.cut = [max > 2 && at > 2 && "start", max > 2 && at < max - 2 && "end"]
+        .filter(Boolean)
+        .join(" ");
+    };
+    pre.addEventListener("scroll", measure, { passive: true });
+    new ResizeObserver(measure).observe(pre);
+    measure();
   }
 </script>
 

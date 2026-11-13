@@ -1,0 +1,10 @@
+---
+import { kernPunct } from "../plugins/punct-kern.mjs";
+
+interface Props {
+  text: string;
+}
+const parts = kernPunct(Astro.props.text);
+---
+
+{parts.map((p) => (p.kern ? <span class={`pk is-${p.kern}`}>{p.text}</span> : p.text))}

@@ -59,16 +59,6 @@ export function defineNotesAstroConfig(opts: NotesAstroConfigOptions) {
       shikiConfig: {
         themes: { light: "github-light", dark: "github-dark-dimmed" },
         wrap: false,
-        transformers: [
-          {
-            name: "notes-line-indent",
-            line(node, line) {
-              const text = this.source.split("\n")[line - 1] ?? "";
-              const lead = (text.match(/^[ \t]*/)?.[0] ?? "").replace(/\t/g, "  ").length;
-              if (lead > 0) node.properties.style = `--indent:${lead}ch`;
-            },
-          },
-        ],
       },
     },
   });
