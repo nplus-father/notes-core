@@ -42,7 +42,7 @@ main:focus {
   flex-wrap: nowrap;
   align-items: stretch;
   height: $nav-h;
-  padding: 0 1.5rem;
+  padding: 0 max(var(--gutter), calc((100% - #{$canvas-max}) / 2));
   view-transition-name: topnav;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
