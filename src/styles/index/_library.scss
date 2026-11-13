@@ -9,13 +9,13 @@
 
 .lib-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
   gap: 1.25rem 0;
   margin: clamp(2rem, 4vw, 3rem) 0 0;
   border-top: 1px solid var(--ink);
   > div {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0.5rem;
     padding: 1.1rem 1rem 0 0;
   }
@@ -28,9 +28,11 @@
   }
   dt {
     @include micro;
-    color: var(--muted);
+    order: 2;
+    color: var(--text-2);
   }
-  dd {
+  .lib-stat-n {
+    order: 1;
     margin: 0;
     font-family: $mono;
     font-size: clamp(2rem, 4vw, 3.4rem);
@@ -40,35 +42,56 @@
     font-variant-numeric: tabular-nums lining-nums;
     color: var(--text);
   }
+  .lib-stat-note {
+    order: 3;
+    margin: -0.2rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
   @include below-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    > div:nth-child(3n + 1) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    > div:nth-child(2n + 1) {
       padding-left: 0;
       border-left: 0;
     }
   }
 }
 
-.section.lib-sec {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
-  > .lib-rail {
-    grid-column: 1 / span 3;
-    align-self: start;
-    padding-top: 1.1rem;
-    @include above-grid {
+.lib-body {
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  @include above-grid {
+    @include grid-12;
+    > .lib-rail {
+      grid-column: 1 / span 3;
+      grid-row: 1;
+      align-self: start;
       position: sticky;
       top: calc(var(--nav-h) + 1.5rem);
+      padding-top: 1.1rem;
     }
-  }
-  > .section-body {
-    border-top: 1px solid var(--ink);
-    padding-top: 1.1rem;
+    > .lib-main {
+      grid-column: 4 / -1;
+      grid-row: 1;
+      min-width: 0;
+    }
   }
 }
 
-.page-head.lib-head + .section.lib-sec {
-  margin-top: clamp(2.75rem, 5vw, 4rem);
+.lib-sec {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  border-top: 1px solid var(--ink);
+  padding-top: 1.1rem;
+  & + & {
+    margin-top: clamp(3.5rem, 7vw, 6rem);
+  }
+}
+
+.lib-sec-h {
+  margin: 0 0 1.25rem;
+  @include above-grid {
+    @include visually-hidden;
+  }
 }
 
 .lib-nav {
@@ -78,26 +101,12 @@
   padding: 0;
   list-style: none;
   .running-head {
-    font-size: max(0.75rem, var(--fs-label));
-  }
-  a.running-head {
     min-height: 32px;
     align-items: center;
+    font-size: max(0.75rem, var(--fs-label));
     color: var(--muted);
     text-decoration: none;
     transition: color var(--dur-hover) var(--ease);
-    .running-head-num {
-      color: var(--muted);
-    }
-    &:hover,
-    &:focus-visible {
-      color: var(--text);
-    }
-  }
-  .is-current .running-head {
-    min-height: 32px;
-    align-items: center;
-    color: var(--text);
     &::before {
       content: "";
       flex: none;
@@ -105,12 +114,43 @@
       height: 0.45rem;
       margin-right: 0.15rem;
       background: var(--seal);
+      transform: scale(0);
+      transition: transform var(--dur-hover) var(--ease);
+    }
+    &:hover,
+    &:focus-visible {
+      color: var(--text);
+    }
+    &.is-current {
+      color: var(--text);
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+  .lib-nav-num {
+    font-family: $mono;
+    letter-spacing: 0.02em;
+    &::after {
+      content: " —";
     }
   }
   @include below-grid {
-    margin-bottom: 0.5rem;
-    .lib-nav-item:not(.is-current) {
+    display: flex;
+    gap: 0 1.5rem;
+    margin: 0 0 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    .lib-nav-num {
       display: none;
+    }
+    .running-head {
+      min-height: 44px;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      &::before {
+        display: none;
+      }
     }
   }
 }

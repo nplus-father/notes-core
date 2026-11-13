@@ -39,33 +39,31 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
 
 <BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
   <Crumbs site={site} items={[{ label: "Check" }]} />
-  <header class="page-head idx-head check-head section">
-    <p class="idx-side running-head"><span class="running-head-num">00</span>Mastery</p>
-    <div class="idx-main">
-      <h1 class="idx-title check-title" lang="en">Check</h1>
-      {
-        total > 0 && (
-          <>
-            <p class="check-figure" aria-live="polite">
-              <span class="check-done" data-total-done>
-                0
-              </span>
-              <span class="check-sep" aria-hidden="true">
-                /
-              </span>
-              <span class="check-of">
-                <span class="visually-hidden">of</span>
-                {total}
-              </span>
-              <span class="check-unit">Mastered</span>
-            </p>
-            <div class="check-line" aria-hidden="true">
-              <i data-total-line />
-            </div>
-          </>
-        )
-      }
-    </div>
+  <header class="page-head idx-head is-wide check-head section">
+    <p class="running-head idx-kicker">Mastery</p>
+    <h1 class="idx-title check-title" lang="en">Check</h1>
+    {
+      total > 0 && (
+        <>
+          <p class="check-figure" aria-live="polite">
+            <span class="check-done" data-total-done>
+              0
+            </span>
+            <span class="check-sep" aria-hidden="true">
+              /
+            </span>
+            <span class="check-of">
+              <span class="visually-hidden">of</span>
+              {total}
+            </span>
+            <span class="check-unit">Mastered</span>
+          </p>
+          <div class="check-line" aria-hidden="true">
+            <i data-total-line />
+          </div>
+        </>
+      )
+    }
   </header>
 
   {
@@ -104,10 +102,13 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
             <ul class="check-list">
               {items.map((it) => (
                 <li class="check-item">
-                  <input class="check-box" type="checkbox" id={it.key} data-check-key={it.key} />
-                  <label class="check-text" for={it.key}>
-                    {it.text}
+                  <label class="check-hit">
+                    <input class="check-box" type="checkbox" id={it.key} data-check-key={it.key} />
+                    <span class="check-text">{it.text}</span>
                   </label>
+                  <span class="check-state" aria-hidden="true">
+                    Mastered
+                  </span>
                   {it.href ? (
                     <a
                       class="check-review arrow-nudge"

@@ -85,17 +85,31 @@ const ticks: number[] = [];
 for (let v = 0; v <= peak; v += step) ticks.push(v);
 
 const stats = [
-  { label: "Canon", n: entries.length, zh: "書目清單上的全部書" },
-  { label: "On Shelf", n: owned.length, zh: "已收進書庫、可供引用的書" },
+  { label: "Canon", n: entries.length, zh: "書目清單上的全部書", note: "領域公認書單" },
+  { label: "On Shelf", n: owned.length, zh: "已收進書庫、可供引用的書", note: "已收進書庫" },
   ...(showMining
     ? [
-        { label: "Cited", n: dug.length, zh: "至少被一頁筆記引用的書" },
+        { label: "Cited", n: dug.length, zh: "至少被一頁筆記引用的書", note: "被筆記引用的書" },
         ...(debt.length > 0
-          ? [{ label: "Uncited", n: debt.length, zh: "已收進書庫、還沒有筆記頁引用的書" }]
+          ? [
+              {
+                label: "Uncited",
+                n: debt.length,
+                zh: "已收進書庫、還沒有筆記頁引用的書",
+                note: "已收、尚未引用",
+              },
+            ]
           : []),
-        { label: "Citations", n: totalRefs, zh: "筆記頁引用書本的總次數" },
+        { label: "Citations", n: totalRefs, zh: "筆記頁引用書本的總次數", note: "引用處總數" },
         ...(excused.length > 0
-          ? [{ label: "Referred", n: excused.length, zh: "只作參考或交由姊妹站深入的書" }]
+          ? [
+              {
+                label: "Referred",
+                n: excused.length,
+                zh: "只作參考或交由姊妹站深入的書",
+                note: "只作參考或交姊妹站",
+              },
+            ]
           : []),
       ]
     : []),
@@ -110,26 +124,27 @@ const sections = [
 
 <BaseLayout title={`Library · ${site.brand}`} site={site} noindex={entries.length === 0}>
   <Crumbs site={site} items={[{ label: "Library" }]} />
-  <header class="page-head idx-head lib-head section">
-    <p class="idx-side running-head"><span class="running-head-num">00</span>Holdings</p>
-    <div class="idx-main">
-      <h1 class="idx-title" lang="en">Library</h1>
-      {
-        entries.length > 0 && (
-          <dl class="lib-stats">
-            {stats.map((s) => (
-              <div title={s.zh}>
-                <dt>
-                  {s.label}
-                  <span class="visually-hidden">：{s.zh}</span>
-                </dt>
-                <dd>{s.n}</dd>
-              </div>
-            ))}
-          </dl>
-        )
-      }
-    </div>
+  <header class="page-head idx-head is-wide lib-head section">
+    <p class="running-head idx-kicker">Holdings</p>
+    <h1 class="idx-title" lang="en">Library</h1>
+    {
+      entries.length > 0 && (
+        <dl class="lib-stats">
+          {stats.map((s) => (
+            <div title={s.zh}>
+              <dt>
+                {s.label}
+                <span class="visually-hidden">：{s.zh}</span>
+              </dt>
+              <dd class="lib-stat-n">{s.n}</dd>
+              <dd class="lib-stat-note" aria-hidden="true">
+                {s.note}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
   </header>
 
   {
@@ -144,217 +159,236 @@ const sections = [
   }
 
   {
-    showMining && (
-      <section class="section lib-sec cov reveal" id="coverage" aria-labelledby="coverage-h">
-        <LibRail sections={sections} current="coverage" />
-        <div class="section-body">
-          {dug.length > 0 && (
-            <div class="cov-chart">
-              <ol class="cov-rows">
-                {shownRows.map((r) => (
-                  <li class="cov-row">
-                    <span class="cov-label" title={r.e.title}>
-                      {r.e.title}
-                    </span>
-                    <span class="cov-track" aria-hidden="true">
-                      <i style={`--w:${r.n / peak}`} />
-                    </span>
-                    <span class="cov-n">
-                      {r.n}
-                      <span class="visually-hidden"> pages</span>
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              {moreRows.length > 0 && (
-                <details class="cov-more">
-                  <summary>
-                    <span class="cov-more-sign" aria-hidden="true" />
-                    {moreRows.length} more
-                  </summary>
-                  <ol class="cov-rows" start={shownRows.length + 1}>
-                    {moreRows.map((r) => (
-                      <li class="cov-row">
-                        <span class="cov-label" title={r.e.title}>
-                          {r.e.title}
-                        </span>
-                        <span class="cov-track" aria-hidden="true">
-                          <i style={`--w:${r.n / peak}`} />
-                        </span>
-                        <span class="cov-n">
-                          {r.n}
-                          <span class="visually-hidden"> pages</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ol>
-                </details>
-              )}
-              <div class="cov-axis" aria-hidden="true">
-                <span class="cov-axis-label">Pages citing</span>
-                <span class="cov-axis-scale">
-                  {ticks.map((v) => (
-                    <span style={`--x:${v / peak}`}>{v}</span>
-                  ))}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {debt.length > 0 && (
-            <div class="cov-block">
-              <h3 class="cov-block-h">
-                <span class="label">Uncited</span>
-                <span class="cov-block-n">{debt.length}</span>
-              </h3>
-              <p class="cov-block-note">
-                已收進書庫，還沒有筆記頁引用；下一輪深化會從這裡取材
-                {spineDebt.length > 0 && `（朱點標的 ${spineDebt.length} 本是這個領域的正典）`}。
-              </p>
-              <div class="cover-wall">
-                {debt.map((r) =>
-                  r.e.slug ? (
-                    <a
-                      class="cover-wall-item"
-                      href={bookUrl(r.e.slug)}
-                      target="_blank"
-                      rel="noopener"
-                      title={`${r.e.title}${r.e.tier === "spine" ? "（領域正典）" : ""}`}
-                    >
-                      <img
-                        class="cover-img"
-                        src={bookCoverUrl(r.e.slug)}
-                        data-fallback={bookUrl(r.e.slug, "cover.png")}
-                        alt={r.e.title}
-                        loading="lazy"
-                        decoding="async"
-                        width="66"
-                        height="95"
-                      />
-                      {r.e.tier === "spine" && (
-                        <span class="cover-wall-seal seal" aria-hidden="true" />
-                      )}
-                    </a>
-                  ) : (
-                    <span class="cover-wall-item is-plain" title={r.e.title}>
-                      <span class="cover-wall-ph">{r.e.title}</span>
-                    </span>
-                  )
-                )}
-              </div>
-            </div>
-          )}
-
-          {excused.length > 0 && (
-            <details class="ex">
-              <summary class="ex-sum">
-                <span class="ex-title">
-                  另有 {excused.length} 本只作參考或交由姊妹站深入，不在本站展開
-                </span>
-                <span class="ex-mix">
-                  {excusedGroups.map((g) => (
-                    <span class="ex-mixdot">
-                      <i class={`tier-dot ${g.meta.dot}`} />
-                      {g.meta.label} {g.books.length}
-                    </span>
-                  ))}
-                </span>
-                <span class="ex-sign" aria-hidden="true" />
-              </summary>
-
-              <div class="ex-body">
-                {excusedGroups.map((g) => (
-                  <section class="ex-grp">
-                    <h4>
-                      <i class={`tier-dot ${g.meta.dot}`} />
-                      {g.meta.label}
-                      <span class="ex-n">{g.books.length}</span>
-                      <span class="ex-why">{g.meta.reason}</span>
-                    </h4>
-                    {g.tier === "delegated" && delegatedChips.length > 0 && (
-                      <p class="ex-chips">
-                        {delegatedChips.map(([key, n]) => (
-                          <a class="ex-chip" href={siteUrl(key)} target="_blank" rel="noopener">
-                            {siteLabel(key)}
-                            <b>{n}</b>
-                          </a>
-                        ))}
-                      </p>
+    sections.length > 0 && (
+      <div class="lib-body bleed">
+        <LibRail sections={sections} />
+        <div class="lib-main">
+          {showMining && (
+            <section class="lib-sec cov reveal" id="coverage" aria-labelledby="coverage-h">
+              <h2 class="lib-sec-h running-head" id="coverage-h">
+                <span class="running-head-num">{sections[0].num}</span>
+                {sections[0].label}
+              </h2>
+              <div class="section-body">
+                {dug.length > 0 && (
+                  <div class="cov-chart">
+                    <ol class="cov-rows">
+                      {shownRows.map((r) => (
+                        <li class="cov-row">
+                          <span class="cov-label" title={r.e.title}>
+                            {r.e.title}
+                          </span>
+                          <span class="cov-track" aria-hidden="true">
+                            <i style={`--w:${r.n / peak}`} />
+                          </span>
+                          <span class="cov-n">
+                            {r.n}
+                            <span class="visually-hidden"> pages</span>
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                    {moreRows.length > 0 && (
+                      <details class="cov-more">
+                        <summary>
+                          <span class="cov-more-sign" aria-hidden="true" />
+                          {moreRows.length} more
+                        </summary>
+                        <ol class="cov-rows" start={shownRows.length + 1}>
+                          {moreRows.map((r) => (
+                            <li class="cov-row">
+                              <span class="cov-label" title={r.e.title}>
+                                {r.e.title}
+                              </span>
+                              <span class="cov-track" aria-hidden="true">
+                                <i style={`--w:${r.n / peak}`} />
+                              </span>
+                              <span class="cov-n">
+                                {r.n}
+                                <span class="visually-hidden"> pages</span>
+                              </span>
+                            </li>
+                          ))}
+                        </ol>
+                      </details>
                     )}
-                    <div class="ex-shelf">
-                      {g.books.map((r) =>
+                    <div class="cov-axis" aria-hidden="true">
+                      <span class="cov-axis-label">Pages citing</span>
+                      <span class="cov-axis-scale">
+                        {ticks.map((v) => (
+                          <span style={`--x:${v / peak}`}>{v}</span>
+                        ))}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {debt.length > 0 && (
+                  <div class="cov-block">
+                    <h3 class="cov-block-h">
+                      <span class="label">Uncited</span>
+                      <span class="cov-block-n">{debt.length}</span>
+                    </h3>
+                    <p class="cov-block-note">
+                      已收進書庫，還沒有筆記頁引用；下一輪深化會從這裡取材
+                      {spineDebt.length > 0 &&
+                        `（朱點標的 ${spineDebt.length} 本是這個領域的正典）`}
+                      。
+                    </p>
+                    <div class="cover-wall">
+                      {debt.map((r) =>
                         r.e.slug ? (
                           <a
-                            class="ex-bk"
+                            class="cover-wall-item"
                             href={bookUrl(r.e.slug)}
                             target="_blank"
                             rel="noopener"
-                            title={`${r.e.title}｜${g.meta.label}——${g.meta.reason}`}
+                            title={`${r.e.title}${r.e.tier === "spine" ? "（領域正典）" : ""}`}
                           >
                             <img
                               class="cover-img"
                               src={bookCoverUrl(r.e.slug)}
                               data-fallback={bookUrl(r.e.slug, "cover.png")}
-                              alt=""
+                              alt={r.e.title}
                               loading="lazy"
                               decoding="async"
                               width="66"
                               height="95"
                             />
-                            <span class="ex-cap">{r.e.title}</span>
+                            {r.e.tier === "spine" && (
+                              <span class="cover-wall-seal seal" aria-hidden="true" />
+                            )}
                           </a>
                         ) : (
-                          <span class="ex-bk is-plain" title={`${r.e.title}｜${g.meta.label}`}>
-                            <span class="ex-ph" />
-                            <span class="ex-cap">{r.e.title}</span>
+                          <span class="cover-wall-item is-plain" title={r.e.title}>
+                            <span class="cover-wall-ph">{r.e.title}</span>
                           </span>
                         )
                       )}
                     </div>
-                  </section>
-                ))}
+                  </div>
+                )}
 
-                {showClusters && (
-                  <section class="ex-grp">
-                    <h4>
-                      Authors
-                      <span class="ex-why">同一位作者 ≥2 本才列</span>
-                    </h4>
-                    <ul class="ex-cl">
-                      {authorClusters.map((c) => (
-                        <li>
-                          <span class="ex-who">{c.author}</span>
-                          <span class="ex-cn">{c.books.length}</span>
-                          <span class="ex-comp">
-                            {c.books.map((r) => (
-                              <i
-                                class={`tier-dot sm ${TIER_META[r.e.tier!].dot}`}
-                                title={TIER_META[r.e.tier!].label}
-                              />
-                            ))}
+                {excused.length > 0 && (
+                  <details class="ex">
+                    <summary class="ex-sum">
+                      <span class="ex-title">
+                        另有 {excused.length} 本只作參考或交由姊妹站深入，不在本站展開
+                      </span>
+                      <span class="ex-mix">
+                        {excusedGroups.map((g) => (
+                          <span class="ex-mixdot">
+                            <i class={`tier-dot ${g.meta.dot}`} />
+                            {g.meta.label} {g.books.length}
                           </span>
-                          <span class="ex-cmix">
-                            {EXCUSED_TIERS.filter((t) => c.books.some((r) => r.e.tier === t))
-                              .map(
-                                (t) =>
-                                  `${TIER_META[t].label} ${c.books.filter((r) => r.e.tier === t).length}`
+                        ))}
+                      </span>
+                      <span class="ex-sign" aria-hidden="true" />
+                    </summary>
+
+                    <div class="ex-body">
+                      {excusedGroups.map((g) => (
+                        <section class="ex-grp">
+                          <h4>
+                            <i class={`tier-dot ${g.meta.dot}`} />
+                            {g.meta.label}
+                            <span class="ex-n">{g.books.length}</span>
+                            <span class="ex-why">{g.meta.reason}</span>
+                          </h4>
+                          {g.tier === "delegated" && delegatedChips.length > 0 && (
+                            <p class="ex-chips">
+                              {delegatedChips.map(([key, n]) => (
+                                <a
+                                  class="ex-chip"
+                                  href={siteUrl(key)}
+                                  target="_blank"
+                                  rel="noopener"
+                                >
+                                  {siteLabel(key)}
+                                  <b>{n}</b>
+                                </a>
+                              ))}
+                            </p>
+                          )}
+                          <div class="ex-shelf">
+                            {g.books.map((r) =>
+                              r.e.slug ? (
+                                <a
+                                  class="ex-bk"
+                                  href={bookUrl(r.e.slug)}
+                                  target="_blank"
+                                  rel="noopener"
+                                  title={`${r.e.title}｜${g.meta.label}——${g.meta.reason}`}
+                                >
+                                  <img
+                                    class="cover-img"
+                                    src={bookCoverUrl(r.e.slug)}
+                                    data-fallback={bookUrl(r.e.slug, "cover.png")}
+                                    alt=""
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="66"
+                                    height="95"
+                                  />
+                                  <span class="ex-cap">{r.e.title}</span>
+                                </a>
+                              ) : (
+                                <span
+                                  class="ex-bk is-plain"
+                                  title={`${r.e.title}｜${g.meta.label}`}
+                                >
+                                  <span class="ex-ph" />
+                                  <span class="ex-cap">{r.e.title}</span>
+                                </span>
                               )
-                              .join(" · ")}
-                          </span>
-                        </li>
+                            )}
+                          </div>
+                        </section>
                       ))}
-                    </ul>
-                  </section>
+
+                      {showClusters && (
+                        <section class="ex-grp">
+                          <h4>
+                            Authors
+                            <span class="ex-why">同一位作者 ≥2 本才列</span>
+                          </h4>
+                          <ul class="ex-cl">
+                            {authorClusters.map((c) => (
+                              <li>
+                                <span class="ex-who">{c.author}</span>
+                                <span class="ex-cn">{c.books.length}</span>
+                                <span class="ex-comp">
+                                  {c.books.map((r) => (
+                                    <i
+                                      class={`tier-dot sm ${TIER_META[r.e.tier!].dot}`}
+                                      title={TIER_META[r.e.tier!].label}
+                                    />
+                                  ))}
+                                </span>
+                                <span class="ex-cmix">
+                                  {EXCUSED_TIERS.filter((t) => c.books.some((r) => r.e.tier === t))
+                                    .map(
+                                      (t) =>
+                                        `${TIER_META[t].label} ${c.books.filter((r) => r.e.tier === t).length}`
+                                    )
+                                    .join(" · ")}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      )}
+                    </div>
+                  </details>
                 )}
               </div>
-            </details>
+            </section>
           )}
+          <Bibliography entries={entries} sections={sections} />
         </div>
-      </section>
+      </div>
     )
   }
-
-  <Bibliography entries={entries} sections={sections} />
 </BaseLayout>
 
 <script>

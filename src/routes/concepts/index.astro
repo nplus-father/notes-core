@@ -108,17 +108,24 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
                 {ch.cat.name}
               </a>
             </h2>
-            <p class="toc-progress">
-              <span class="toc-count">
-                {ch.done}
-                <span class="toc-slash">/</span>
-                {ch.total}
-              </span>
-              <span class="toc-meter" aria-hidden="true">
-                <i style={`--p:${ch.total ? ch.done / ch.total : 0}`} />
-              </span>
-              <span class="visually-hidden">pages written</span>
-            </p>
+            {ch.done < ch.total ? (
+              <p class="toc-progress">
+                <span class="toc-count">
+                  {ch.done}
+                  <span class="toc-slash">/</span>
+                  {ch.total}
+                </span>
+                <span class="toc-meter" aria-hidden="true">
+                  <i style={`--p:${ch.done / ch.total}`} />
+                </span>
+                <span class="visually-hidden">pages written</span>
+              </p>
+            ) : (
+              <p class="toc-progress">
+                <span class="toc-count">{ch.total}</span>
+                <span class="toc-unit">{ch.total === 1 ? "page" : "pages"}</span>
+              </p>
+            )}
             {ch.cat.sister && (
               <a class="toc-deeper arrow-nudge" href={siteUrl(ch.cat.sister)}>
                 Deeper in {siteLabel(ch.cat.sister)} <span class="arrow">→</span>

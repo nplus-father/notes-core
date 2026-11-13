@@ -25,23 +25,21 @@ const conceptCount = new Set(problems.flatMap((p: any) => p.data.concepts ?? [])
 
 <BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: problemLabel }]} />
-  <header class="page-head idx-head section">
-    <p class="idx-side running-head"><span class="running-head-num">00</span>Contents</p>
-    <div class="idx-main">
-      <h1 class="idx-title" lang={latinLang(problemLabel)}>{problemLabel}</h1>
-      {problemsLede && <p class="idx-lede" set:html={problemsLede} />}
-      <p class="idx-stats">
-        <span><b>{problems.length}</b> {problems.length === 1 ? "Problem" : "Problems"}</span>
-        <span><b>{chapters.length}</b> Domains</span>
-        {
-          conceptCount > 0 && (
-            <span>
-              <b>{conceptCount}</b> Concepts drilled
-            </span>
-          )
-        }
-      </p>
-    </div>
+  <header class="page-head idx-head is-wide section">
+    <p class="running-head idx-kicker">Contents</p>
+    <h1 class="idx-title" lang={latinLang(problemLabel)}>{problemLabel}</h1>
+    {problemsLede && <p class="idx-lede" set:html={problemsLede} />}
+    <p class="idx-stats">
+      <span><b>{problems.length}</b> {problems.length === 1 ? "Problem" : "Problems"}</span>
+      <span><b>{chapters.length}</b> Domains</span>
+      {
+        conceptCount > 0 && (
+          <span>
+            <b>{conceptCount}</b> Concepts drilled
+          </span>
+        )
+      }
+    </p>
   </header>
 
   <div class="section idx-filter-wrap">
