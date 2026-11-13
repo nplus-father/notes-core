@@ -183,7 +183,13 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                         {e.original && <span class="biblio-orig">{e.original}</span>}
                       </td>
                       <td class="biblio-remark">
-                        {e.note ? e.note : <span class="biblio-none">—</span>}
+                        {e.note ? (
+                          e.note
+                        ) : (
+                          <span class="biblio-none" role="img" aria-label="No note">
+                            —
+                          </span>
+                        )}
                       </td>
                       <td class="biblio-year">
                         {typeof e.year === "number" ? (
