@@ -16,7 +16,7 @@ import { site, books, bibliography, schools, profile, overview } from "virtual:n
 // 反過來的話，讀者得自己從卡片拼出全貌，而那正是總覽要代勞的事。
 // 藏書盤點自 v0.30.0 遷往 /library/——收藏狀態是工作文件（採購 roadmap），不是門面；
 // 首頁書架保留（owned 封面牆是「這站有多少料」最直觀的證明），入口連過去。
-// 導覽入口卡於 v0.31.0 移除（Andrew 裁定）——導覽動線交給 topnav 的 📖，首頁不重複目錄。
+// 導覽入口卡於 v0.31.0 移除（Andrew 裁定）——導覽動線交給 topnav 的 Guide，首頁不重複目錄。
 // 總覽／導覽／側寫／地圖皆為選配，依站台是否提供資料決定；概念入口走 topnav 的 Concepts，
 // 不在首頁重複分類格——避免與 /concepts/ 學習路徑頁重覆。
 // 書架：站台給了 bibliography 就自動取其中 owned 項（單一資料源），不必再維護 books.ts。
@@ -53,7 +53,7 @@ const hasCover = existsSync(resolve("public/cover.png"));
         <img
           class="hero-cover"
           src={withBase("cover.png")}
-          alt={heading}
+          alt=""
           width="900"
           height="1200"
           fetchpriority="high"

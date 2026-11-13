@@ -31,6 +31,9 @@
   --medium-bg: #fdf3e3;
   --hard: #dc2626;
   --hard-bg: #fdeaea;
+  --easy-text: #0f7a36;
+  --medium-text: #9a5a00;
+  --hard-text: #b91c1c;
   --star: #f59e0b;
   --guide: #8250df;
   --guide-bg: #f5f0ff;
@@ -55,7 +58,7 @@
   --border-strong: #47454f;
   --text: #e8e6e1;
   --text-2: #c5c2bb;
-  --muted: #8d8a83;
+  --muted: #9a968f;
   --accent: #9db4c0;
   --accent-2: #b7c6cf;
   --accent-weak: #23282d;
@@ -74,6 +77,9 @@
   --medium-bg: #2c2207;
   --hard: #f87171;
   --hard-bg: #2e1314;
+  --easy-text: #34d399;
+  --medium-text: #fbbf24;
+  --hard-text: #f87171;
   --star: #fbbf24;
   --guide: #c4b5fd;
   --guide-bg: #211a36;
@@ -87,8 +93,74 @@
   box-sizing: border-box;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 160ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(#{$nav-h} + 1rem);
+  text-autospace: normal;
+  line-break: strict;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  &:focus,
+  &:focus-visible {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    overflow: visible;
+    clip-path: none;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: $radius;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
+
+main:focus {
+  outline: none;
 }
 
 body {
@@ -111,6 +183,8 @@ h2,
 h3 {
   font-family: $serif;
   letter-spacing: 0.02em;
+  text-wrap: balance;
+  text-spacing-trim: trim-start;
 }
 
 a {
@@ -125,15 +199,28 @@ a {
   background: var(--accent-weak);
 }
 
+.school-index,
+.reading-dot,
+.bookshelf-count,
+.overview-stamp,
+.guide-stamp,
+.biblio-tab-count,
+.footer-curation,
+.stars {
+  font-variant-numeric: tabular-nums;
+}
+
 /* ───────────────────────── 導覽列 ───────────────────────── */
 .topnav {
   position: sticky;
   top: 0;
   z-index: 20;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.7rem 1.5rem;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  height: $nav-h;
+  padding: 0 1.5rem;
+  view-transition-name: topnav;
   /* 實色底，不用毛玻璃——backdrop-filter 的 frosted glass 是另一個 SaaS 語彙。 */
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -141,6 +228,7 @@ a {
   /* 左側 = 往上一層的路徑（v0.20.0）：‹ 筆記星系 ｜ 人像。站名仍不進 topnav。 */
   .topnav-left {
     display: flex;
+    flex: none;
     align-items: center;
     gap: 0.7rem;
   }
@@ -201,26 +289,70 @@ a {
   }
 }
 
-.topnav-right {
+.topnav-links {
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  flex-wrap: nowrap;
+  min-width: 0;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  li {
+    display: flex;
+    flex: none;
+  }
+  &[data-more-end] {
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  &[data-more-start] {
+    mask-image: linear-gradient(to right, transparent, #000 28px);
+  }
+  &[data-more-start][data-more-end] {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
+  }
 }
-/* nav 項只出 emoji（🧠 📝 ✅ 🔍，title/aria 帶英文全名）——放大一階，靜置微降不搶戲、hover 全彩。 */
-.topnav-links a {
-  margin-left: 1rem;
+.topnav-link {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.625rem;
   color: var(--muted);
+  font-size: 0.8125rem;
   font-weight: 600;
-  font-size: 1.05rem;
-  opacity: 0.82;
+  white-space: nowrap;
+  scroll-snap-align: center;
+  box-shadow: inset 0 -2px 0 transparent;
+  transition:
+    color 0.12s,
+    box-shadow 0.12s;
   &:hover {
     color: var(--text);
-    opacity: 1;
     text-decoration: none;
+    box-shadow: inset 0 -2px 0 var(--border-strong);
+  }
+  &[aria-current="page"] {
+    color: var(--text);
+    box-shadow: inset 0 -2px 0 var(--text);
+  }
+  &:focus-visible {
+    outline-offset: -2px;
   }
 }
 
 .theme-toggle {
+  flex: none;
+  align-self: center;
   margin-left: 0.8rem;
   width: 36px;
   height: 36px;
@@ -267,6 +399,35 @@ a {
   }
 }
 
+@media (max-width: 599.98px) {
+  .topnav {
+    padding: 0 1rem;
+  }
+  .topnav-links {
+    flex: 1 1 auto;
+    margin-left: 0.4rem;
+    li:first-child {
+      margin-left: auto;
+    }
+  }
+  .topnav-link {
+    padding: 0 0.5rem;
+  }
+  .theme-toggle {
+    align-self: stretch;
+    width: 44px;
+    height: auto;
+    margin-left: 0;
+    border: 0;
+    border-left: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    &:hover {
+      background: var(--surface-2);
+    }
+  }
+}
+
 /* ───────────────────────── 版面 ───────────────────────── */
 .container {
   max-width: $maxw;
@@ -306,6 +467,7 @@ a {
   color: var(--muted);
   margin: 0 0 0.4rem;
   max-width: 60ch;
+  text-wrap: balance;
 }
 .muted {
   color: var(--muted);
@@ -502,7 +664,8 @@ a {
 }
 @each $d in $difficulties {
   .diff-#{$d} {
-    background: var(--#{$d});
+    background: var(--#{$d}-bg);
+    color: var(--#{$d}-text);
   }
 }
 
@@ -522,7 +685,7 @@ a {
 }
 .status-reviewed {
   background: var(--easy-bg);
-  color: var(--easy);
+  color: var(--easy-text);
 }
 
 .dot {
@@ -891,6 +1054,13 @@ a {
   font-size: 1.02rem;
   color: var(--text);
 
+  p {
+    text-wrap: pretty;
+  }
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+
   h2 {
     margin-top: 2.3rem;
     padding-bottom: 0.35rem;
@@ -1047,14 +1217,14 @@ a {
     border-left-color: var(--easy);
     background: var(--easy-bg);
     .markdown-alert-title {
-      color: var(--easy);
+      color: var(--easy-text);
     }
   }
   &-warning {
     border-left-color: var(--medium);
     background: var(--medium-bg);
     .markdown-alert-title {
-      color: var(--medium);
+      color: var(--medium-text);
     }
   }
   &-note {
@@ -1075,7 +1245,7 @@ a {
     border-left-color: var(--hard);
     background: var(--hard-bg);
     .markdown-alert-title {
-      color: var(--hard);
+      color: var(--hard-text);
     }
   }
 }
@@ -1790,9 +1960,6 @@ a {
   gap: 1.1rem;
   align-items: start;
 }
-.ladder-card {
-  scroll-margin-top: 70px;
-}
 
 /* ───────────────────────── 全文搜尋 (Pagefind) ───────────────────────── */
 /* Pagefind 索引用的隱藏 metadata：視覺隱藏但保留文字供索引（勿用 display:none / hidden，
@@ -2131,13 +2298,13 @@ a {
   font-weight: 600;
   letter-spacing: 0.32em;
   color: var(--muted);
-  opacity: 0.8;
 }
 .hero-serial {
   margin-left: 0.9em;
   font-family: $serif;
   font-weight: 400;
   letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
 }
 /* 短橫線走 data-axis 的 accent（人物暖褐／主題冷藍）——封面上那條 ink 短線的活字版。 */
 .hero-rule {
@@ -2234,9 +2401,6 @@ a {
     color 0.16s ease;
   &:hover {
     @include lift;
-  }
-  &:focus-visible {
-    @include focus-ring;
   }
   &.is-active {
     border-color: var(--accent);
@@ -2658,9 +2822,6 @@ a {
   &:hover {
     @include lift;
   }
-  &:focus-visible {
-    @include focus-ring;
-  }
   &.is-active {
     border-color: var(--accent);
     color: var(--accent);
@@ -2724,6 +2885,15 @@ a {
 .biblio-title {
   min-width: 14rem;
   font-weight: 600;
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 0.2em;
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
 }
 .biblio-orig {
   display: block;
@@ -3152,17 +3322,14 @@ a {
   &:hover {
     @include lift;
   }
-  &:focus-visible {
-    @include focus-ring;
-  }
   &.is-active {
     border-color: var(--accent);
     color: var(--accent);
   }
 }
 .guide-chapter {
-  /* 錨點跳轉時讓章標題落在 topnav＋tab 列之下。 */
-  scroll-margin-top: 6.8rem;
+  /* 錨點跳轉時讓章標題落在 tab 列之下（topnav 那段由 html 的 scroll-padding-top 負責）。 */
+  scroll-margin-top: 2.3rem;
 }
 .guide-chapter + .guide-chapter {
   margin-top: 3.6rem;
@@ -3497,5 +3664,44 @@ a {
 @media (max-width: 640px) {
   .mining-row {
     grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 2rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .topnav-up,
+  .brand-avatar {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  .overview-tab,
+  .biblio-tab,
+  .guide-tab,
+  .prevnext .pn {
+    min-height: 44px;
+  }
+  .crumbs .crumb-home,
+  .check-review,
+  .school-cat,
+  .bookshelf-more {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 44px;
+      transform: translateY(-50%);
+    }
+  }
+  .check-list label {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
   }
 }

@@ -61,6 +61,17 @@ const searchLede = site.searchLede ? site.searchLede.replaceAll("{base}", withBa
           searching: "Searching [SEARCH_TERM]…",
         },
       });
+      const root = document.getElementById("search");
+      const label = () => {
+        const input = root?.querySelector("input");
+        if (!input) return false;
+        input.setAttribute("aria-label", "Search notes");
+        return true;
+      };
+      if (root && !label()) {
+        const mo = new MutationObserver(() => label() && mo.disconnect());
+        mo.observe(root, { childList: true, subtree: true });
+      }
     });
   </script>
 </BaseLayout>

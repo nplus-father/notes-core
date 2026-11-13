@@ -12,16 +12,19 @@ $mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation M
 // "Noto Serif TC" 是 macOS/Windows 那邊的名字，"Noto Serif CJK TC" 是 Linux 這邊的。
 // 標題與品牌字走這個，正文仍走 $sans——全篇襯線在螢幕上不好讀。
 $serif:
-  "Noto Serif TC",
   "Noto Serif CJK TC",
   "Source Han Serif TC",
   "Songti TC",
+  "Noto Serif TC",
   "Songti SC",
   Georgia,
   "Times New Roman",
   serif;
 
+$nav-h: 56px;
+
 $sans:
+  "Inter Variable",
   "Inter",
   -apple-system,
   BlinkMacSystemFont,

@@ -130,6 +130,7 @@ const showMining = owned.length >= 4;
         <div
           class="mining-rows"
           role="img"
+          tabindex="0"
           aria-label={`開採度：${owned.length} 本已收書中 ${dug.length} 本已被筆記引用、${undug.length} 本尚未；逐筆資料見下方盤點表。`}
         >
           {dug.map((r) => (

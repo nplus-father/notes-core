@@ -10,8 +10,8 @@ export interface NavLink {
   // base-relative，如 "/concepts/"（會經 withBase 前綴 base）；
   // 若為絕對 http(s) 網址（如姊妹 handbook 站），則原樣輸出並以新分頁開啟。
   href: string;
-  label: string; // 顯示文字（標準四項為 emoji，見 buildNav）
-  /** hover／aria-label 用的英文全名（emoji 項必填；extraNav 可省略） */
+  label: string; // 顯示文字（標準項為簡短英文，見 buildNav）
+  /** hover／aria-label 用的全名（label 已是全名時省略） */
   title?: string;
 }
 
@@ -22,15 +22,15 @@ export interface SiteConfig {
   titleBase: string;
   /**
    * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 自動生成
-   * 固定 emoji 項（🧠 /（📝）/（✅）/ 🔍，不含首頁，左上人像已連 home）。
+   * 固定英文短詞（Concepts /（Problems）/（Check）/ Search，不含首頁，左上人像已連 home）。
    * 只有需要完全掌控順序/內容的特例才給這個。
    */
   nav?: NavLink[];
-  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。想配 emoji 自己寫進 label。 */
+  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。label 原樣輸出。 */
   extraNav?: NavLink[];
-  /** 選用：概念區的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律 emoji）。 */
+  /** 選用：概念區的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律用固定詞彙）。 */
   conceptLabelEn?: string;
-  /** 選用：題庫區的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律 emoji）。 */
+  /** 選用：題庫區的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律用固定詞彙）。 */
   problemLabelEn?: string;
   /**
    * @deprecated 原為複習紀錄的 localStorage 命名空間；該機制已移除，core 內已無人讀取。
@@ -103,13 +103,12 @@ export function defineSite(c: SiteConfig): SiteConfig {
 
 /**
  * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
- *   （📖 Guide，僅 hasGuide）/ 🧠 Concepts /（📝 Problems，僅 hasProblems）/（✅ Check，僅 hasCheck）/ …extraNav / 🔍 Search /（📚 Library，僅 hasLibrary）
- * 📖 放最左（v0.32.0）——導覽是「先讀我」的入口，排在概念庫之前；
- * 📚 放最右、在 🔍 之後（v0.33.0）——藏書盤點是工作文件，收在閱讀動線的尾端。皆 Andrew 裁定。
- * 全星系固定這幾個詞彙、只出 emoji（hover／aria-label 帶英文全名）——
+ *   （Guide，僅 hasGuide）/ Concepts /（Problems，僅 hasProblems）/（Check，僅 hasCheck）/ …extraNav / Search /（Library，僅 hasLibrary）
+ * Guide 放最左（v0.32.0）——導覽是「先讀我」的入口，排在概念庫之前；
+ * Library 放最右、在 Search 之後（v0.33.0）——藏書盤點是工作文件，收在閱讀動線的尾端。皆 Andrew 裁定。
+ * 全星系固定這幾個英文短詞（v0.45.0 起取代 emoji，2026-11-13 Andrew 裁定）——
  * conceptLabelEn / problemLabelEn 不再影響 nav。不含「首頁」——左上人像已連 home。
- * hasCheck / hasGuide 由 BaseLayout 依內容集合判定（有資料才出 tab）。
- * /library/ 不進 nav——藏書盤點是工作文件，入口在首頁書架區，nav 留給閱讀動線。
+ * hasCheck / hasGuide / hasLibrary 由 BaseLayout 依內容集合與 bibliography 判定（有資料才出 tab）。
  * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
  */
 export function buildNav(
@@ -118,12 +117,12 @@ export function buildNav(
 ): NavLink[] {
   if (c.nav) return c.nav;
   return [
-    ...(opts.hasGuide ? [{ href: "/guide/", label: "📖", title: "Guide" }] : []),
-    { href: "/concepts/", label: "🧠", title: "Concepts" },
-    ...(c.hasProblems ? [{ href: "/problems/", label: "📝", title: "Problems" }] : []),
-    ...(opts.hasCheck ? [{ href: "/check/", label: "✅", title: "Check" }] : []),
+    ...(opts.hasGuide ? [{ href: "/guide/", label: "Guide" }] : []),
+    { href: "/concepts/", label: "Concepts" },
+    ...(c.hasProblems ? [{ href: "/problems/", label: "Problems" }] : []),
+    ...(opts.hasCheck ? [{ href: "/check/", label: "Check" }] : []),
     ...(c.extraNav ?? []),
-    { href: "/search/", label: "🔍", title: "Search" },
-    ...(opts.hasLibrary ? [{ href: "/library/", label: "📚", title: "Library" }] : []),
+    { href: "/search/", label: "Search" },
+    ...(opts.hasLibrary ? [{ href: "/library/", label: "Library" }] : []),
   ];
 }

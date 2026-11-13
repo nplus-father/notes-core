@@ -53,7 +53,7 @@ const { books, heading = "Sources", note = "", moreHref } = Astro.props;
                 class="cover-img"
                 src={bookCoverUrl(b.slug)}
                 data-fallback={bookUrl(b.slug, "cover.png")}
-                alt={b.title}
+                alt=""
                 loading="lazy"
                 decoding="async"
                 width="132"

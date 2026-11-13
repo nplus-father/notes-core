@@ -8,7 +8,11 @@
 
 ## 1. 版面骨架（notes-core `BaseLayout`）
 
-- **Topnav（v0.19.0）**：左**只放人像**連首頁（與 favicon 同一張圖，core asset）——站名退出 topnav，身分由人像＋首頁 hero 承擔，62 站的導覽列長得一模一樣。右為 `buildNav()` 自動生成的**固定 emoji 分頁**：🧠 Concepts ／（📝 Problems，僅 `hasProblems`）／（✅ Check，僅站台有 mastery 資料）／ 🔍 Search（hover／aria-label 帶英文全名，**不含首頁**）＋ 深淺色切換。詞彙全星系統一、只出 emoji；`conceptLabelEn` / `problemLabelEn` 只用於麵包屑與頁標題，不再影響 nav。姊妹手冊用 `extraNav`（插在 Search 前，想配 emoji 自己寫進 label），特例可用 `nav` 完全覆寫。
+- **Topnav（v0.45.0，2026-11-13 Andrew 裁定，取代 v0.19.0 的 emoji 分頁）**：左**只放人像**連首頁（與 favicon 同一張人像，core asset；nav 用 96px WebP 縮圖，favicon 仍是原 PNG）——站名退出 topnav，身分由人像＋首頁 hero 承擔，各站的導覽列長得一模一樣。右為 `buildNav()` 自動生成的**文字分頁**：（Guide，僅有導覽）／ Concepts ／（Problems，僅 `hasProblems`）／（Check，僅站台有 mastery 資料）／ …`extraNav` ／ Search ／（Library，僅有 bibliography），**不含首頁**，順序與出現條件同 v0.33.0。詞彙全星系統一、只出簡短英文、不出 emoji；`conceptLabelEn` / `problemLabelEn` 只用於麵包屑與頁標題，不影響 nav。
+  - **樣式＝portal 的分區列**：0.8125rem、600、`--muted`，不填底色；分頁高＝nav 高（56px）；hover 轉 `--text` 並出 2px `--border-strong` 底線，當前頁轉 `--text` 並出 2px `--text` 底線＋`aria-current="page"`（pathname 以該 href 開頭即當前；首頁沒有當前分頁）。底線是 inset `box-shadow`，貼齊 nav 的底框。
+  - **手機（< 600px）一列不換行**：分頁列自己是橫向捲動窗（隱藏捲軸、`scroll-snap-type: x proximity`），左側返回箭頭＋人像固定、右側深淺色切換固定（左側 1px 分隔線）。當前分頁以設定捲動窗的 `scrollLeft` 置中（不用 `scrollIntoView`，它會捲動整頁）；溢出的一側以 `data-more-start` / `data-more-end` 驅動的 mask 淡出，與 portal 的 TopNav 同一套。
+  - **姊妹手冊 `extraNav`**：label 原樣輸出；但 label 只有 emoji（如各站慣用的 `📘`）而有 `title` 時，改以 `title` 當可見文字——不然「nav 不出 emoji」在 42 個用 📘 的站上就破功。`nav` 完全覆寫仍是逃生口，內容原樣採用。
+  - `title`／`aria-label` 只在可見文字不是全名時才加，不重複唸同一個詞。
 - **往上一層（v0.20.0）**：topnav 最左是「‹ 筆記星系」，連 `site.parentSite`（預設 `DEFAULT_PARENT_SITE` = `https://nplus.wiki/notes/`，**不是 wiki 根**——從一個筆記站往上就是那張主題／人物索引）；窄螢幕只留箭頭。同一連結仍在頁尾出現一次；`parentSite: null` 兩處一起隱藏。
 - **麵包屑 `<Crumbs>`（v0.20.0）**：所有子頁（分類／概念／題目／檢核／搜尋）統一用這個元件，六個路由不再各寫一份 `<nav class="crumbs">`。**第一項固定是回本站首頁**，做成有框線的返回鍵、文字用 `site.brand` 而非泛稱的 "Home"（62 站同網域，"Home" 是哪個家不自明）；其後才是祖先鏈。於是「star 站 → 本站 → 本層」三級都是一步。
 - **Footer**：預設 `© 2026 Andrew`（可用 `site.footer` 覆寫）。不要再加「· 筆記星系的一站 · 延伸閱讀…」那串。
@@ -17,6 +21,36 @@
 - 版面全在 notes-core：升 `package.json` 的 notes-core 版本即全站同步，**各站不寫 `.astro` 外殼**。
 - **v0.11.0 起 astro.config 也收進 core**：各站 `astro.config.mjs` 只剩 `defineNotesAstroConfig({ base, site, bibliography, profile?|schools?, overview? })` 一句（markdown pipeline／shiki／sitemap 由 `@nplus-father/notes-core/astro-config` 工廠提供，Astro 升版遷移只改 core 一處）。`ns` 欄位同時轉 optional，各站已清除。
 
+## 1.1 排版基礎（v0.45.0）
+
+與 portal 同一層基礎，只動排版行為、**不動字級、行高與行長**：
+
+- `html`：`text-autospace: normal`（中英之間自動留白）、`line-break: strict`（不讓標點落到行首）。不支援的瀏覽器直接忽略。
+- `h1`–`h3`：`text-wrap: balance`＋`text-spacing-trim: trim-start`；hero 與列表頁的 `.lede` 也 balance；`.prose` 段落 `text-wrap: pretty`（少一字孤行）。
+- 數字欄位一律 `tabular-nums`：計數、日期戳記、`N°` 編號、星等、表格。
+
+## 1.2 字型（v0.45.0）
+
+v0.44 以前字型堆疊寫著 `Inter`，但沒有字型檔隨站出貨——拉丁字落到裝置有什麼用什麼。
+
+- **Inter 隨站出貨**：`@fontsource-variable/inter` 是 notes-core 的 `dependencies`，`BaseLayout` 匯入 `wght.css` 一次，`$sans` 第一順位是 `"Inter Variable"`。字型檔依 unicode-range 切片，中文頁只抓 latin 那片（約 47 KB）。
+- **中文襯線刻意交給系統字**：`$serif`（hero h1、h2／h3、卡片標題）是系統字優先的堆疊——`Noto Serif CJK TC` → `Source Han Serif TC` → `Songti TC` → `Noto Serif TC` → …，站台不出貨 CJK 襯線 webfont。CJK webfont 是逐字切片：一個三字的 hero 標籤就要抓三片（約 139 KB），外加約 137 KB 的 `@font-face` 宣告 CSS——為了首頁一個詞不值得（v0.45.0 開發時實測首頁傳輸 561 → 823 KB，因此撤掉）。
+- **portal 才出貨展示用襯線**：nplus.wiki 門廳的 masthead 載 Noto Serif TC 700／900；筆記站不跟。
+- 不連任何第三方字型主機。
+
+## 1.3 動態（v0.45.0，與 portal 同值）
+
+- **跨頁 view transition**：`@view-transition { navigation: auto }`，root 新舊畫面 160ms 交叉淡化、`cubic-bezier(0.2, 0.7, 0.2, 1)`。topnav 的 `view-transition-name` 是 `topnav`，與 portal 的 nav 同名——portal ↔ 站台互跳時兩條導覽列原地變形，而不是閃一下。
+- **減少動態**：`prefers-reduced-motion: reduce` 下所有動畫／轉場 0.01ms、`scroll-behavior: auto`、`@view-transition { navigation: none }`。
+- 錨點落點：`html { scroll-padding-top: 56px + 1rem }`（topnav 高＋留白），站內錨點不再落到 nav 底下；原本各自補 nav 高度的 `scroll-margin-top` 已拿掉或扣掉這段（導覽章節只補 tab 列）。
+- 站台**沒有進場動畫**；**任何 hover 都不位移**（既有規則）。
+
+## 1.4 觸控、焦點、跳到內容（v0.45.0）
+
+- `@media (pointer: coarse)`：chrome 裡每個控制項的點擊區至少 44px 高——nav 分頁、深淺色切換、返回鍵、Overview／盤點表／導覽的切換鍵、上一頁／下一頁、學派卡的「站內筆記」鍵、檢核頁的勾選與複習鍵。能撐高的直接 `min-height`；外觀要維持小框的（返回鍵、複習鍵、站內筆記、書架入口）用透明的 `::after` 撐出點擊區。
+- **跳到內容**：`BaseLayout` 第一個可聚焦元素是「跳到內容」連結，平時隱藏、聚焦才出現，目標是 `<main id="main" tabindex="-1">`。
+- **焦點環統一**：`:focus-visible` 一律 2px `--accent` outline、offset 2px；輸入框（篩選列）維持 `focus-ring` mixin。
+
 ## 2. 首頁（notes-core `routes/index.astro`）
 
 > **Chrome 語彙原則（v0.34.0，Andrew 裁定）**：固定標題與標籤一律**簡短英文**（Overview／Schools／Methods／Themes／Thesis／Contributions／Reading Path／Influences／Sources／Inventory／Coverage…），中文長標拗口；區塊副標說明句一律**省略**（標題自己講完了）；**內文維持繁中**。guide 章內小標屬內容、不在此列（2026-08-15 裁決：只動 chrome）。
@@ -24,7 +58,7 @@
 由上而下：
 
 1. **Hero（v0.36.0）**：左＝**直式站封面 `public/cover.png`**（224px 寬、髮絲框，portal 卡片同一張——人物站肖像／主題站印刷風設計圖，見 §3；無封面的新站純文字呈現、不出破圖）＋ 右＝扉頁排版攤成活字：眉標（軸別＋同軸 `N°` 編號）→ registry `label` 襯線大字 h1 → accent 短橫線 → `site.brand` 寬字距副題 → `site.heroLede`。h1 自此是 label 不是 brand——與封面的主從一致；`<title>` 仍用 brand。
-2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。標題固定 **"Overview"**（v0.34.0，無副標）；**lede 常駐、段落收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段），段落 heading＝tab 標籤，**標準英文詞彙**：人物站 `Background / Contributions / Claims`（＋選配 `Verdict`）、主題站 `Landscape / Threads / Verdict`；行長不設上限（tab 化後一次只有一段，文字用滿方框）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 📖。
+2. **總覽 `<Overview>`（v0.29.0，見 §4.2）**：首頁唯一的長散文區，排在 hero 之後、其餘區塊之前——**先讀懂「這是什麼」，再往下看結構化的卡片與表格**。標題固定 **"Overview"**（v0.34.0，無副標）；**lede 常駐、段落收進切換鍵**（機制同盤點表分組鍵：無 JS 攤開、Ctrl+F 命中隱藏段自動切段），段落 heading＝tab 標籤，**標準英文詞彙**：人物站 `Background / Contributions / Claims`（＋選配 `Verdict`）、主題站 `Landscape / Threads / Verdict`；行長不設上限（tab 化後一次只有一段，文字用滿方框）。首頁**沒有**導覽入口卡（v0.30.0 曾有、v0.31.0 移除）——導覽動線交給 topnav 的 Guide。
 3. **思想側寫 `<AuthorProfile>`**（人物站必備，見 §4.1）：中心思想、特定貢獻（連站內概念頁）、建議閱讀路徑（**直式 stepper**：N° 節點＋書封＋一行 why——階段名短、不做名詞解釋條列）、思想脈絡。
 4. **領域地圖 `<SchoolsMap>`**（主題站**必備**，見 §4.1）：領域鳥瞰——主張、代表人物（有作者站就跨站連結）、站內分類；標題依 `kind` 三選一（學派／方法／主題地圖），可加一句 `lede` 提綱挈領。卡片上的「站內筆記 →」**v0.20.0 起是鍵不是小灰字**（框線＋箭頭，整張卡 hover 先亮框、滑到鍵上轉主色）——那是每張卡唯一的去處，得看得出可以點。
 3. **書架 `<Bookshelf>`**：本站彙整自哪些 owned books（見 §4）。**v0.29.0 起固定高度**（約兩排半封面）＋垂直捲動，標題列右端補書數——書多的站（startup 61 本）攤開就是五六排 190px 的封面。有 bibliography 的站，標題列再補「盤點與開採度 →」連 `/library/`。
@@ -124,7 +158,7 @@ export const overview = defineOverview({
 ### 5.3 兩層模型（**書本位** vs **心得層**）
 
 - **正文層 = 書本位**：內容精確由 owned books 組成、可溯源；引不到書的主張不寫進正文。譯者角色限縮在繁中轉譯、結構、串接、illustrative 程式碼。
-- **心得 / Q&A 層 = `:::response`**：與正文**分開、明標**（notes-core `remark-response` 渲染成「✍️ 我的回應」）。**只收**真實 Q&A 或使用者心得；沒有就留空。**不自行杜撰這層。** **v0.44.0 起空塊不渲染**：來源檔仍保留 `:::response` 空區塊當兩層模型的標記，頁面上什麼都不出現——與 ✅ Check／📖 Guide「有資料才出現」同一原則。v0.43 以前畫一個「No notes yet」空框，2026-11-06 盤點時 2233 頁有 2197 頁是那個空框，佔位變成了噪音。
+- **心得 / Q&A 層 = `:::response`**：與正文**分開、明標**（notes-core `remark-response` 渲染成「✍️ 我的回應」）。**只收**真實 Q&A 或使用者心得；沒有就留空。**不自行杜撰這層。** **v0.44.0 起空塊不渲染**：來源檔仍保留 `:::response` 空區塊當兩層模型的標記，頁面上什麼都不出現——與 topnav 的 Check／Guide「有資料才出現」同一原則。v0.43 以前畫一個「No notes yet」空框，2026-11-06 盤點時 2233 頁有 2197 頁是那個空框，佔位變成了噪音。
 
 ## 6. 概念總覽 = 分層學習路徑
 
@@ -140,7 +174,7 @@ export const overview = defineOverview({
 
 - 頁面依分類分組（沿用分類 emoji 與名稱），`slug` 填同分類的概念頁 → 渲染「複習 →」回連（只連真的存在的頁）。**v0.20.0 起**它是**靠右對齊的幽靈鍵**（框線＋箭頭）而非句尾的一行小字——句子長短不一時仍排成整齊一行，一眼看得出每條都能回去重讀；已勾選的那條會連鍵一起淡出。
 - 勾選記進 localStorage（key = `check:<base>`，62 站同網域不互撞）；頁首與各分類顯示進度。
-- topnav 的 ✅ 只在站台有任何 mastery 時出現；路由恆注入，沒資料時是空狀態頁不是 404。
+- topnav 的 Check 只在站台有任何 mastery 時出現；路由恆注入，沒資料時是空狀態頁不是 404。
 - mastery 句子維持**書本位**——每句都要能溯源到某本 owned book；存量站隨 `note-check --enrich` 補（記進 ENRICH-BACKLOG），note-check 檢查。
 
 ## 6.2 導覽頁 `/guide/`（v0.30.0）
@@ -151,12 +185,12 @@ export const overview = defineOverview({
 - **章節收進 tab（v0.31.0）**：tab 列 sticky 貼在 topnav 下、一次只顯示一章、**章身自然高度**——固定形式給固定空間，但不固定高度（單章 1,500–7,500 字，固定高度必然框內捲動，頁捲＋框捲巢狀是長文閱讀大忌）。非當前章 `hidden="until-found"`（Ctrl+F 搜得到、命中自動切章）；`#<章id>` 錨點驅動切章，章際互連與站外深連不斷；無 JS 退回五章攤開。頁首無 lede（h1＋章節自己會說話），writtenAt 戳記保留；**無章序數字、無「第N章」眉標**（v0.32.0——tab 列本身已標示位置）。accent 沿 `data-axis` 分岔（人物暖褐／主題冷藍），導覽天生帶站型識別。`[hidden]` 章的分隔線要歸零——`content-visibility` 藏內容不藏元素自身的 border，否則當前章下面留一疊空線（2026-08-15 抓到的 bug）。
 - 章尾 `furtherReading` 用概念頁同款卡片（`<FurtherReading>`）；行長紀律同總覽（42em）。
 - 骨架（`/note-guide` 產出的預設五章）：人物站＝這個人是誰／思想主線／經典著作導讀／爭議與侷限／怎麼讀；主題站＝領域在回答什麼問題／流派敘事／經典書導讀／共識與爭點／閱讀路徑。
-- topnav 的 📖 只在站台有 guide 內容時出現（同 ✅ 機制），**排在最左**（v0.32.0——導覽是「先讀我」的入口，在概念庫之前）；路由恆注入，沒資料時是空狀態頁。
+- topnav 的 Guide 只在站台有 guide 內容時出現（同 Check 機制），**排在最左**（v0.32.0——導覽是「先讀我」的入口，在概念庫之前）；路由恆注入，沒資料時是空狀態頁。
 - `writtenAt` 流進 `/index.json` 的 `guide`（章數＋最新日期）——`note-check` 拿它比對 `enrichedAt`，站再深化過而導覽沒跟上就列 warning。
 
 ## 6.3 藏書頁 `/library/`（v0.30.0）
 
-盤點表（§2 的遷移注記）＋**開採度圖**。入口兩個：首頁書架標題列的「盤點與開採度 →」＋ topnav 的 **📚（v0.33.0，排在 🔍 右邊、整列最右）**——工作文件收在閱讀動線的尾端；有 bibliography 的站才出。
+盤點表（§2 的遷移注記）＋**開採度圖**。入口兩個：首頁書架標題列的「盤點與開採度 →」＋ topnav 的 **Library（v0.33.0，排在 Search 右邊、整列最右）**——工作文件收在閱讀動線的尾端；有 bibliography 的站才出。
 
 - **開採度（頁面標題 "Coverage"，v0.34.0）**＝每本 owned 書被幾頁筆記（concepts＋problems 的 `furtherReading`）引用，**build 時全自動計算、零人工欄位**。水平條列、單一色相（站台 accent）、行多收捲動窗；**未挖（0 頁）的書不畫零長條**——v0.34.0 起列成**書封牆**（一排小封面，hover 書名，附一句白話說明「已收進書庫、尚無筆記頁引用——下一輪深化的現成材料」），它們的身分本來就是 `note-check --enrich` 的下一批材料。
 - 少於 4 本 owned 不畫（一兩本畫不成分佈）；無 bibliography 時整頁空狀態＋noindex。
