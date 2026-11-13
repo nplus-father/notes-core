@@ -26,7 +26,7 @@
 
 .code-lang {
   @include label;
-  color: var(--muted);
+  color: var(--text-2);
 }
 
 .code-copy {
@@ -39,7 +39,7 @@
   padding: 0 0.9rem;
   border: 0;
   background: none;
-  color: var(--muted);
+  color: var(--text-2);
   cursor: pointer;
   transition: color var(--dur-hover) var(--ease);
   &:hover {
@@ -53,9 +53,15 @@
   }
 }
 
+@include above-grid {
+  .prose > .lc-details > .code-block.is-wide {
+    inline-size: var(--span-9);
+  }
+}
+
 .prose .code-block pre {
   margin: 0;
-  padding: 1.15rem 1.25rem 1.35rem;
+  padding: 1.15rem 0 1.35rem 1.25rem;
   border: 0;
   border-radius: 0;
   background: transparent !important;
@@ -69,7 +75,10 @@
   scrollbar-width: thin;
   scrollbar-color: var(--border-mid) transparent;
   code {
-    padding: 0;
+    display: block;
+    inline-size: max-content;
+    min-inline-size: 100%;
+    padding: 0 1.25rem 0 0;
     border: 0;
     background: none;
     font-size: inherit;
@@ -102,7 +111,9 @@
 @supports (animation-timeline: scroll()) {
   .prose .code-block pre {
     mask-image: linear-gradient(to left, transparent 0, #000 var(--code-fade));
-    animation: code-fade linear both;
+    animation-name: code-fade;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
     animation-timeline: scroll(self inline);
   }
 }
@@ -117,13 +128,18 @@
 
 @media (max-width: 640px) {
   .prose .code-block {
+    max-inline-size: none;
     margin-inline: calc(-1 * var(--gutter));
   }
   .code-head {
     padding-left: var(--gutter);
   }
   .prose .code-block pre {
-    padding-inline: var(--gutter);
+    padding-inline-start: var(--gutter);
+    font-size: 0.8125rem;
+    code {
+      padding-inline-end: var(--gutter);
+    }
   }
 }
 

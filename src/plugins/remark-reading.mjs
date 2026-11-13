@@ -126,18 +126,57 @@ function joinCjkLines(node, index, parent) {
   });
 }
 
+const LONG_LEAD = 90;
+const WIDE_CODE = 72;
+
+const charCols = (ch) => (/[\u1100-\uFFEF]/u.test(ch) ? 2 : 1);
+const lineCols = (line) => [...line.replace(/\t/g, "  ")].reduce((n, ch) => n + charCols(ch), 0);
+const codeCols = (value = "") => Math.max(0, ...value.split("\n").map(lineCols));
+const INTRO_MAX = 120;
+
+const textLength = (node) => [...toText(node).replace(/\s+/g, "")].length;
+
+const addClass = (node, ...names) => {
+  const data = node.data || (node.data = {});
+  const props = (data.hProperties = { ...(data.hProperties || {}) });
+  const prev = props.className ? [].concat(props.className) : [];
+  props.className = [...prev, ...names];
+};
+
+const isSectionHead = (node) =>
+  (node?.type === "heading" && node.depth === 2) ||
+  (node?.type === "leafDirective" &&
+    [].concat(node.data?.hProperties?.className || []).includes("section-head"));
+
+function markIntros(tree) {
+  const top = tree.children || [];
+  const first = top[0];
+  if (first?.type === "paragraph") {
+    addClass(first, "opening", ...(textLength(first) > LONG_LEAD ? ["is-long"] : []));
+  }
+  for (let i = 1; i < top.length; i++) {
+    const node = top[i];
+    if (node.type !== "paragraph" || !isSectionHead(top[i - 1])) continue;
+    if (textLength(node) <= INTRO_MAX) addClass(node, "intro");
+  }
+}
+
 export default function remarkReading() {
   return (tree, file) => {
     const lead = tree.children?.[0];
     if (isPlainQuote(lead)) {
       const data = lead.data || (lead.data = {});
-      data.hProperties = { ...(data.hProperties || {}), className: ["standfirst"] };
+      data.hProperties = {
+        ...(data.hProperties || {}),
+        className: ["standfirst", ...(textLength(lead) > LONG_LEAD ? ["is-long"] : [])],
+      };
       const astro = file?.data?.astro;
       if (astro) {
         astro.frontmatter = astro.frontmatter || {};
         astro.frontmatter.standfirst = toText(lead).replace(/\s+/g, " ").trim();
       }
     }
+    markIntros(tree);
 
     visit(tree, (node, index, parent) => {
       if (node.type === "heading" && (node.depth === 2 || node.depth === 3)) {
@@ -174,7 +213,10 @@ export default function remarkReading() {
           type: "codeFigure",
           data: {
             hName: "figure",
-            hProperties: { className: ["code-block"], dataLang: lang || "text" },
+            hProperties: {
+              className: ["code-block", ...(codeCols(node.value) > WIDE_CODE ? ["is-wide"] : [])],
+              dataLang: lang || "text",
+            },
           },
           children: [caption, node],
         };
