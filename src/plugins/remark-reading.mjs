@@ -128,6 +128,7 @@ function joinCjkLines(node, index, parent) {
 
 const LONG_LEAD = 90;
 const WIDE_CODE = 72;
+const NARROW_CODE = 44;
 
 const charCols = (ch) => (/[\u1100-\uFFEF]/u.test(ch) ? 2 : 1);
 const lineCols = (line) => [...line.replace(/\t/g, "  ")].reduce((n, ch) => n + charCols(ch), 0);
@@ -193,22 +194,33 @@ export default function remarkReading() {
         const caption = {
           type: "paragraph",
           data: { hName: "figcaption", hProperties: { className: ["code-head"] } },
-          children: name
-            ? [
-                {
-                  type: "emphasis",
-                  data: { hName: "span", hProperties: { className: ["code-lang"] } },
-                  children: [{ type: "text", value: name }],
-                },
-              ]
-            : [],
+          children: [
+            ...(name
+              ? [
+                  {
+                    type: "emphasis",
+                    data: { hName: "span", hProperties: { className: ["code-lang"] } },
+                    children: [{ type: "text", value: name }],
+                  },
+                ]
+              : []),
+            {
+              type: "emphasis",
+              data: { hName: "span", hProperties: { className: ["code-scroll"], ariaHidden: "true" } },
+              children: [{ type: "text", value: "Scroll →" }],
+            },
+          ],
         };
         parent.children[index] = {
           type: "codeFigure",
           data: {
             hName: "figure",
             hProperties: {
-              className: ["code-block", ...(codeCols(node.value) > WIDE_CODE ? ["is-wide"] : [])],
+              className: [
+                "code-block",
+                ...(codeCols(node.value) > WIDE_CODE ? ["is-wide"] : []),
+                ...(codeCols(node.value) > NARROW_CODE ? ["is-scroll"] : []),
+              ],
               dataLang: lang || "text",
             },
           },
