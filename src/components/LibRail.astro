@@ -2,31 +2,58 @@
 export type LibSection = { id: string; num: string; label: string };
 interface Props {
   sections: LibSection[];
-  current: string;
 }
-const { sections, current } = Astro.props;
+const { sections } = Astro.props;
 ---
 
 <nav class="lib-rail" aria-label="Library sections">
   <ol class="lib-nav">
     {
-      sections.map((s) =>
-        s.id === current ? (
-          <li class="lib-nav-item is-current">
-            <h2 class="running-head" id={`${s.id}-h`} aria-current="location">
-              <span class="running-head-num">{s.num}</span>
-              {s.label}
-            </h2>
-          </li>
-        ) : (
-          <li class="lib-nav-item">
-            <a class="running-head" href={`#${s.id}`}>
-              <span class="running-head-num">{s.num}</span>
-              {s.label}
-            </a>
-          </li>
-        )
-      )
+      sections.map((s) => (
+        <li class="lib-nav-item">
+          <a class="running-head" href={`#${s.id}`} data-lib-link={s.id}>
+            <span class="lib-nav-num">{s.num}</span>
+            {s.label}
+          </a>
+        </li>
+      ))
     }
   </ol>
 </nav>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-lib-link]")];
+  const targets = links
+    .map((a) => document.getElementById(a.dataset.libLink ?? ""))
+    .filter((el): el is HTMLElement => el !== null);
+  if (links.length > 0 && targets.length > 0 && "IntersectionObserver" in window) {
+    const inBand = new Set<Element>();
+    const atEnd = () =>
+      innerHeight + scrollY >= document.documentElement.scrollHeight - 2 &&
+      inBand.has(targets[targets.length - 1]);
+    const mark = () => {
+      const current = atEnd() ? targets[targets.length - 1] : targets.find((t) => inBand.has(t));
+      if (!current) return;
+      for (const a of links) {
+        const on = a.dataset.libLink === current.id;
+        a.classList.toggle("is-current", on);
+        if (on) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      }
+    };
+    const navH =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 64;
+    const io = new IntersectionObserver(
+      (records) => {
+        for (const r of records) {
+          if (r.isIntersecting) inBand.add(r.target);
+          else inBand.delete(r.target);
+        }
+        mark();
+      },
+      { rootMargin: `-${navH + 24}px 0px -35% 0px` }
+    );
+    for (const t of targets) io.observe(t);
+    addEventListener("scroll", mark, { passive: true });
+  }
+</script>

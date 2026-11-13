@@ -1,5 +1,5 @@
 ---
-import LibRail, { type LibSection } from "./LibRail.astro";
+import type { LibSection } from "./LibRail.astro";
 import { bookUrl } from "../lib/links";
 import { buildTimeline, yearLabel } from "../lib/timeline";
 import type { BibliographyEntry, BibliographyStatus } from "../lib/library";
@@ -36,13 +36,20 @@ const legend = (["owned", "wanted", "unavailable", "skipped"] as BibliographySta
   .map((s) => ({ s, n: entries.filter((e) => e.status === s).length }))
   .filter((x) => x.n > 0);
 
+const sectionOf = (id: string) => sections.find((x) => x.id === id);
+const timelineSec = sectionOf("timeline");
+const inventorySec = sectionOf("inventory");
+
 const showTabs = groups.length >= 2 && groups.every((g) => g.name);
 ---
 
 {
   showChart && (
-    <section class="section lib-sec timeline reveal" id="timeline" aria-labelledby="timeline-h">
-      <LibRail sections={sections} current="timeline" />
+    <section class="lib-sec timeline reveal" id="timeline" aria-labelledby="timeline-h">
+      <h2 class="lib-sec-h running-head" id="timeline-h">
+        <span class="running-head-num">{timelineSec?.num}</span>
+        Timeline
+      </h2>
       <div class="section-body">
         <figure class="biblio-chart">
           <div
@@ -57,10 +64,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                     <div class="biblio-col-bar" style={`height:${(b.total / peak) * 100}%`}>
                       <span class="biblio-col-val">{b.total}</span>
                       {b.total - b.owned > 0 && (
-                        <span
-                          class="biblio-seg is-gap"
-                          style={`flex-grow:${b.total - b.owned}`}
-                        />
+                        <span class="biblio-seg is-gap" style={`flex-grow:${b.total - b.owned}`} />
                       )}
                       {b.owned > 0 && (
                         <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
@@ -93,8 +97,11 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
 
 {
   entries.length > 0 && (
-    <section class="section lib-sec biblio reveal" id="inventory" aria-labelledby="inventory-h">
-      <LibRail sections={sections} current="inventory" />
+    <section class="lib-sec biblio reveal" id="inventory" aria-labelledby="inventory-h">
+      <h2 class="lib-sec-h running-head" id="inventory-h">
+        <span class="running-head-num">{inventorySec?.num}</span>
+        {heading}
+      </h2>
       <div class="section-body">
         <p class="biblio-legend">
           {legend.map((x) => (
