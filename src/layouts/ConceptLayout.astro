@@ -96,7 +96,11 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
 
   <div class="reading bleed" data-kind={d.kind}>
     <header class="page-head reading-head">
-      <VolumeHead site={site} section={cat?.name ?? d.category} />
+      <VolumeHead
+        site={site}
+        section={cat?.name ?? d.category}
+        sectionHref={cat ? `/concepts/${cat.slug}/` : "/concepts/"}
+      />
       {
         d.kind === "debate" && (
           <p class="reading-kicker running-head">

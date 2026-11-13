@@ -64,3 +64,28 @@
     }
   }
 }
+
+@media (min-width: 721px) {
+  main:has(.volume-head, .vol-line) > .crumbs {
+    @include visually-hidden;
+  }
+  main:has(.volume-head, .vol-line) > .crumbs:focus-within {
+    position: static !important;
+    width: auto;
+    height: auto;
+    margin: 0 0 1rem;
+    clip: auto;
+    clip-path: none;
+    overflow: visible;
+    white-space: normal;
+  }
+}
+
+:is(.volume-head, .vol-line) a {
+  color: inherit;
+  &:hover,
+  &:focus-visible {
+    color: var(--seal);
+    text-decoration: none;
+  }
+}

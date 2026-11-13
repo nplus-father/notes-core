@@ -1,6 +1,7 @@
 ---
 import { volume } from "../lib/vol";
 import { site } from "virtual:notes-core/site";
+import { withBase } from "../lib/url";
 
 interface Props {
   page: string;
@@ -14,7 +15,7 @@ const v = volume(site.titleBase ?? site.brand);
 <p class:list={["vol-line running-head", cls]}>
   <span class="vol-swatch" aria-hidden="true"></span>
   {v.serial && <span class="vol-serial">{v.serial}</span>}
-  <span class="vol-name">{v.label}</span>
+  <a class="vol-name" href={withBase("/")}>{v.label}</a>
   <span class="vol-page">
     {page}
     {num && <span class="idx-kicker-num">{num}</span>}

@@ -98,7 +98,11 @@ const problemLabel = site.problemLabelEn ?? "Problems";
 
   <div class="reading bleed" data-kind="problem">
     <header class="page-head reading-head">
-      <VolumeHead site={site} section={domain?.name ?? d.domain} />
+      <VolumeHead
+        site={site}
+        section={domain?.name ?? d.domain}
+        sectionHref={domain ? `/problems/${domain.slug}/` : "/problems/"}
+      />
       <h1 class="reading-title">
         <Kern text={title.main} />
         {
