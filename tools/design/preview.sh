@@ -17,6 +17,7 @@ case "$cmd" in
       T="$P/node_modules/@nplus-father/notes-core"
       rm -rf "$T" && mkdir -p "$T"
       rsync -a "$CORE/bin" "$CORE/src" "$CORE/package.json" "$CORE/eslint.config.js" "$CORE/prettier.config.json" "$CORE/prettierignore" "$CORE/tsconfig.base.json" "$CORE/versions.json" "$T/"
+      rm -rf "$P/node_modules/.astro"
       echo "── build $st"
       (cd "$P" && systemd-run --user --scope -q -p MemoryMax=4G -p MemorySwapMax=0 npx astro build 2>&1 | tail -n "${TAIL:-6}")
       if [ "${PAGEFIND:-0}" = "1" ]; then (cd "$P" && npx pagefind --site dist 2>&1 | tail -n 2); fi
