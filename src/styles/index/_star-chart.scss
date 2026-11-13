@@ -148,7 +148,7 @@
 .sc-x path {
   stroke-width: 0.75px;
   stroke-dasharray: 2 4;
-  opacity: 0.32;
+  opacity: 0.26;
   transition: opacity var(--dur-hover) var(--ease);
 }
 
@@ -170,7 +170,7 @@
   stroke: none;
 }
 
-.sc-svg .sc-ray-def {
+.sc-svg .sc-rays {
   stroke-width: 0.75px;
   stroke-linecap: round;
 }
@@ -203,7 +203,7 @@
       fill: var(--seal);
     }
     .sc-rays {
-      color: var(--seal);
+      stroke: var(--seal);
     }
   }
   &:hover .sc-ring,
@@ -242,6 +242,7 @@
   }
   &:not(.is-latin) {
     font-family: $display;
+    font-size: calc(19px * var(--ls, 1));
     font-weight: 700;
     letter-spacing: 0.12em;
   }

@@ -62,6 +62,7 @@ const starsLabel = (n: number) => `${n} ${n === 1 ? "star" : "stars"}`;
 const cstLabel = (n: number) => `${n} ${n === 1 ? "constellation" : "constellations"}`;
 const byK = chart ? chart.labels.map((l) => chart.stars.filter((s) => s.k === l.k)) : [];
 const segByK = chart ? chart.labels.map((l) => chart.segments.filter((s) => s.k === l.k)) : [];
+const rayD = new Map(f?.rays.map((r) => [r.mag, r.d]) ?? []);
 const nameOf = (k: number) => input[k]?.name ?? "";
 ---
 
@@ -78,9 +79,6 @@ const nameOf = (k: number) => input[k]?.name ?? "";
         >
           <defs>
             {chart.labels.flatMap((l) => l.lines.map((ln) => <path id={ln.id} d={ln.d} />))}
-            {f.rays.map((r) => (
-              <path class="sc-ray-def" id={`sc-ray-${r.mag}`} d={r.d} />
-            ))}
           </defs>
           <g class="sc-furn" aria-hidden="true">
             <circle class="sc-rim" cx={f.c} cy={f.c} r={f.rOuter} />
@@ -121,8 +119,8 @@ const nameOf = (k: number) => input[k]?.name ?? "";
                     <textPath href={`#${ln.id}`} startOffset="50%">
                       {j === 0 && <tspan class="sc-label-num">{pad2(l.num)}</tspan>}
                       {l.fits && (
-                        <tspan class="sc-label-name" dx={j === 0 ? 9 : undefined}>
-                          {ln.text}
+                        <tspan class="sc-label-name" dx={j === 0 ? 4 : undefined}>
+                          {` ${ln.text}`}
                         </tspan>
                       )}
                     </textPath>
@@ -151,7 +149,7 @@ const nameOf = (k: number) => input[k]?.name ?? "";
                     <circle class="sc-hit" r={s.hit} />
                     <circle class="sc-ring" r={Math.min(s.hit, s.r + 6)} />
                     <circle class="sc-dot" r={s.r} />
-                    {s.mag >= 4 && <use class="sc-rays" href={`#sc-ray-${s.mag}`} />}
+                    {s.mag >= 4 && <path class="sc-rays" d={rayD.get(s.mag)} />}
                   </a>
                 ) : (
                   <g

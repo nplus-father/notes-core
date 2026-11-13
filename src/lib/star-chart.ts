@@ -102,6 +102,7 @@ const R_FIELD = 434;
 const R_IN = 62;
 const R_OUT = 404;
 const LABEL_SIZE = 17;
+const CJK_SIZE = 19;
 const NUM_SIZE = 13;
 const MAG_R = [0, 2.3, 3.2, 4.3, 5.7, 7.4];
 const PLANNED_R = 3.4;
@@ -167,7 +168,8 @@ const CJK = /[⺀-鿿豈-﫿＀-￯　-〿]/;
 
 export const isLatin = (text: string) => !CJK.test(text);
 
-export function labelWidth(text: string, size: number, latin: boolean): number {
+export function labelWidth(text: string, base: number, latin: boolean): number {
+  const size = latin ? base : (base * CJK_SIZE) / LABEL_SIZE;
   let w = 0;
   for (const ch of text) {
     if (CJK.test(ch)) w += size * 1.06;
@@ -673,7 +675,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
   if (K > 1) {
     for (const { s0 } of sectors) {
       const b = s0 - gap / 2;
-      const [x0, y0] = polar(R_IN - 8, b);
+      const [x0, y0] = polar(140, b);
       const [x1, y1] = polar(R_FIELD, b);
       boundaries.push(`M${r1(x0)} ${r1(y0)}L${r1(x1)} ${r1(y1)}`);
       const [x2, y2] = polar(R_FIELD, b);
