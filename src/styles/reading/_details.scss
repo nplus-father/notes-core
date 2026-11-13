@@ -316,12 +316,21 @@
   padding-top: 1.1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   border-top: 1px solid var(--ink);
+  &::before {
+    @include label;
+    content: "Fig. " counter(pair, decimal-leading-zero);
+    grid-column: 1 / -1;
+    margin-bottom: -0.5rem;
+    color: var(--text);
+  }
   .code-block {
     border-top-color: var(--border-mid);
   }
-  p {
-    font-size: 1rem;
-    line-height: 1.8;
+  .compare-pane > p {
+    max-inline-size: 38em;
+    font-size: var(--fs-small);
+    line-height: 1.75;
+    color: var(--text-2);
   }
 }
 
