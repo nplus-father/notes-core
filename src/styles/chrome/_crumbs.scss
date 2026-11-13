@@ -41,44 +41,45 @@
 }
 
 @media (max-width: $bp-nav) {
-  .crumbs ol {
-    display: none;
-  }
-  .crumb-back {
-    @include label;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    min-height: 44px;
-    color: var(--text);
-    .icon {
-      flex: none;
-      transition: transform var(--dur-hover) var(--ease);
+  main:not(:has(.volume-head)) > .crumbs {
+    ol {
+      display: none;
     }
-    &:hover,
-    &:focus-visible {
-      text-decoration: none;
+    .crumb-back {
+      @include label;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      min-height: 44px;
+      color: var(--text);
       .icon {
-        transform: translateX(-3px);
+        flex: none;
+        transition: transform var(--dur-hover) var(--ease);
+      }
+      &:hover,
+      &:focus-visible {
+        text-decoration: none;
+        .icon {
+          transform: translateX(-3px);
+        }
       }
     }
   }
 }
 
-@media (min-width: 721px) {
-  main:has(.volume-head) > .crumbs {
-    @include visually-hidden;
-  }
-  main:has(.volume-head) > .crumbs:focus-within {
-    position: static !important;
-    width: auto;
-    height: auto;
-    margin: 0 0 1rem;
-    clip: auto;
-    clip-path: none;
-    overflow: visible;
-    white-space: normal;
-  }
+main:has(.volume-head) > .crumbs {
+  @include visually-hidden;
+}
+
+main:has(.volume-head) > .crumbs:focus-within {
+  position: static !important;
+  width: auto;
+  height: auto;
+  margin: 0 0 1rem;
+  clip: auto;
+  clip-path: none;
+  overflow: visible;
+  white-space: normal;
 }
 
 .volume-head a {

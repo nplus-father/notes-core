@@ -24,7 +24,7 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
 <BaseLayout title={`Search · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: "Search" }]} />
   <header class="page-head idx-head is-wide search-head section">
-    <VolumeHead index section="Full text" class="idx-kicker" />
+    <VolumeHead index section="Full text" sectionHref="/" class="idx-kicker" />
     <h1 class="idx-title" lang="en">Search</h1>
   </header>
 

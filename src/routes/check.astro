@@ -41,7 +41,7 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
 <BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
   <Crumbs site={site} items={[{ label: "Check" }]} />
   <header class="page-head idx-head is-wide check-head section">
-    <VolumeHead index section="Mastery" class="idx-kicker" />
+    <VolumeHead index section="Mastery" sectionHref="/" class="idx-kicker" />
     <h1 class="idx-title check-title" lang="en">Check</h1>
     {
       total > 0 && (

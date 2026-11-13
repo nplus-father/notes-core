@@ -48,7 +48,13 @@ const levels = ["Easy", "Medium", "Hard"]
     items={[{ label: problemLabel, href: "/problems/" }, { label: domain.name }]}
   />
   <header class="page-head idx-head is-wide chapter-open section">
-    <VolumeHead index section="Domain" num={num > 0 ? pad2(num) : undefined} class="idx-kicker" />
+    <VolumeHead
+      index
+      section="Domain"
+      sectionHref="/problems/"
+      num={num > 0 ? pad2(num) : undefined}
+      class="idx-kicker"
+    />
     <h1 class="idx-title" lang={latinLang(domain.name)}>{domain.name}</h1>
     <dl class="co-stats">
       <div>

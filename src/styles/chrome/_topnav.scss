@@ -122,6 +122,8 @@
 
 .topnav-station {
   @include link-draw;
+  position: relative;
+  top: 0.235em;
   display: block;
   min-width: 0;
   max-width: 16em;
