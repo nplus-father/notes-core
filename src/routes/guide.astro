@@ -5,6 +5,7 @@ import FurtherReading from "../components/FurtherReading.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import Contents from "../components/Contents.astro";
 import { splitTitle } from "../lib/reading";
+import { splitTitle as splitColon } from "../lib/toc";
 import { stripEmoji } from "../lib/site-config";
 import { site } from "virtual:notes-core/site";
 import { getCollection, render } from "astro:content";
@@ -32,7 +33,7 @@ const tabLabel = (c: (typeof chapters)[number]) =>
   c.entry.data.tab ?? shortTitle(c.entry.data.title);
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
-const writtenAt = chapters.reduce<string>(
+const updatedAt = chapters.reduce<string>(
   (acc, c) => (c.entry.data.writtenAt > acc ? c.entry.data.writtenAt : acc),
   ""
 );
@@ -51,10 +52,10 @@ const description = chapters[0]?.standfirst;
     <header class="page-head guide-head">
       <h1 lang="en">Guide</h1>
       {
-        writtenAt && (
-          <p class="guide-stamp running-head" title="這份導覽依當時的站況寫成">
-            <span>Written</span>
-            <time datetime={writtenAt}>{writtenAt}</time>
+        updatedAt && (
+          <p class="guide-stamp running-head" title="最新一章的撰寫日期">
+            <span>Updated</span>
+            <time datetime={updatedAt}>{updatedAt}</time>
           </p>
         )
       }
@@ -72,7 +73,7 @@ const description = chapters[0]?.standfirst;
       chapters.length > 0 && (
         <>
           <div class="guide-tabs">
-            <div class="guide-tabs-inner" role="tablist" aria-label="Chapters">
+            <div class="guide-tabs-inner" role="tablist" aria-label="Chapters" data-guide-strip>
               {chapters.map((c, i) => (
                 <button
                   type="button"
@@ -113,7 +114,19 @@ const description = chapters[0]?.standfirst;
                   <Contents items={c.toc} />
                 </aside>
                 <div class="guide-chapter-main">
-                  <h2 class="guide-title">{c.entry.data.title}</h2>
+                  <h2 class="guide-title">
+                    {(() => {
+                      const t = splitColon(c.entry.data.title);
+                      return t.sub ? (
+                        <>
+                          <span class="guide-title-main">{t.main}</span>
+                          <span class="guide-title-sub">{t.sub}</span>
+                        </>
+                      ) : (
+                        c.entry.data.title
+                      );
+                    })()}
+                  </h2>
                   <div class="guide-body prose">
                     <c.Content />
                   </div>
@@ -154,13 +167,39 @@ const description = chapters[0]?.standfirst;
       c.setAttribute("aria-labelledby", `tab-${c.dataset.ch}`);
     }
 
-    const activate = (ch: string) => {
+    const strip = bar.querySelector<HTMLElement>("[data-guide-strip]");
+    const cut = () => {
+      if (!strip) return;
+      const max = strip.scrollWidth - strip.clientWidth;
+      const at = strip.scrollLeft;
+      strip.dataset.cut = [max > 2 && at > 2 && "start", max > 2 && at < max - 2 && "end"]
+        .filter(Boolean)
+        .join(" ");
+    };
+    const reveal = (t: HTMLElement, smooth: boolean) => {
+      if (!strip || strip.scrollWidth <= strip.clientWidth) return;
+      const pad = 40;
+      const left = t.getBoundingClientRect().left - strip.getBoundingClientRect().left + strip.scrollLeft;
+      const right = left + t.offsetWidth;
+      let to = strip.scrollLeft;
+      if (left - pad < to) to = left - pad;
+      else if (right + pad > to + strip.clientWidth) to = right + pad - strip.clientWidth;
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      strip.scrollTo({ left: Math.max(0, to), behavior: smooth && !reduce ? "smooth" : "auto" });
+    };
+    if (strip) {
+      strip.addEventListener("scroll", cut, { passive: true });
+      addEventListener("resize", cut, { passive: true });
+    }
+
+    const activate = (ch: string, smooth = true) => {
       if (!chapters.some((c) => c.dataset.ch === ch)) return false;
       for (const t of tabs) {
         const on = t.dataset.ch === ch;
         t.classList.toggle("is-active", on);
         t.setAttribute("aria-selected", String(on));
         t.tabIndex = on ? 0 : -1;
+        if (on) reveal(t, smooth);
       }
       for (const c of chapters) {
         if (c.dataset.ch === ch) c.removeAttribute("hidden");
@@ -200,6 +239,10 @@ const description = chapters[0]?.standfirst;
     for (const c of chapters)
       c.addEventListener("beforematch", () => activate(c.dataset.ch ?? ""));
     addEventListener("hashchange", () => activate(location.hash.slice(1)));
-    if (location.hash) activate(location.hash.slice(1));
+    if (!(location.hash && activate(location.hash.slice(1), false))) {
+      const first = tabs.find((t) => t.classList.contains("is-active"));
+      if (first) reveal(first, false);
+    }
+    cut();
   }
 </script>

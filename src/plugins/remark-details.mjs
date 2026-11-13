@@ -62,7 +62,11 @@ function compare(before, after, b, a, open) {
         type: "paragraph",
         data: { hName: "summary" },
         children: [
-          span(["details-side"], "Before / After", { lang: "en" }),
+          {
+            type: "emphasis",
+            data: { hName: "span", hProperties: { className: ["details-side"], lang: "en" } },
+            children: [span(["details-side-text"], "Before / After")],
+          },
           {
             type: "emphasis",
             data: { hName: "span", hProperties: { className: ["details-title"] } },
