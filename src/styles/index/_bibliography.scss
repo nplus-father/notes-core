@@ -150,7 +150,7 @@
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--text-2);
   transition: color var(--dur-hover) var(--ease);
 }
 
@@ -301,7 +301,7 @@
   font-size: 0.8125rem;
   text-align: right;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--text-2);
   font-variant-numeric: tabular-nums;
 }
 

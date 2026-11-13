@@ -264,7 +264,7 @@
     transform: translateX(-50%);
     font-family: $mono;
     font-size: 0.8125rem;
-    color: var(--muted);
+    color: var(--text-2);
     font-variant-numeric: tabular-nums;
     &:first-child {
       transform: none;
@@ -450,8 +450,8 @@ details[open] > summary .ex-sign::after {
   flex-wrap: wrap;
   gap: 0.2rem 1.1rem;
   margin-left: auto;
-  font-size: 0.8rem;
-  color: var(--muted);
+  font-size: 0.8125rem;
+  color: var(--text-2);
   font-variant-numeric: tabular-nums;
 }
 
@@ -485,13 +485,13 @@ details[open] > summary .ex-sign::after {
   font-family: $mono;
   font-size: 0.8125rem;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text-2);
 }
 
 .ex-why {
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text-2);
 }
 
 .ex-chips {

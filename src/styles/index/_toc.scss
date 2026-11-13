@@ -346,7 +346,7 @@
   letter-spacing: 0.08em;
   text-align: right;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text-2);
   transition: color var(--dur-hover) var(--ease);
 }
 
@@ -567,7 +567,7 @@ a.toc-row {
   grid-area: num;
   font-family: $mono;
   font-size: 0.8125rem;
-  color: var(--muted);
+  color: var(--text-2);
   font-variant-numeric: tabular-nums;
   transition: color var(--dur-hover) var(--ease);
 }
