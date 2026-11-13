@@ -1,0 +1,527 @@
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+.page-head.idx-head:has(> .sc) {
+  @include above-grid {
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+    > .idx-side {
+      grid-column: 1 / span 5;
+      grid-row: 1;
+    }
+    > .idx-main {
+      grid-column: 1 / span 5;
+      grid-row: 2;
+    }
+    > .sc {
+      grid-column: 1 / -1;
+      grid-row: 1 / span 3;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+      max-width: none;
+      pointer-events: none;
+      > * {
+        pointer-events: auto;
+      }
+      > .sc-plate {
+        grid-column: 6 / -1;
+        grid-row: 1 / span 3;
+        justify-self: end;
+        width: 100%;
+        max-width: 720px;
+      }
+      > .sc-side {
+        grid-column: 1 / span 5;
+        grid-row: 3;
+        align-self: end;
+        padding-top: 2.5rem;
+      }
+    }
+  }
+}
+
+.sc {
+  width: 100%;
+  margin: 0;
+  @include below-grid {
+    max-width: 640px;
+    margin: clamp(2rem, 6vw, 3rem) auto 0;
+  }
+}
+
+.sc-plate {
+  container: sc / inline-size;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.sc-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+  color: var(--text);
+  :where(path, circle) {
+    vector-effect: non-scaling-stroke;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+  }
+  a {
+    color: inherit;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.sc-furn {
+  color: var(--text);
+  .sc-rim {
+    stroke-width: 1px;
+  }
+  .sc-rim-in {
+    stroke-width: 0.75px;
+    opacity: 0.6;
+  }
+  .sc-field-rim {
+    stroke-width: 1px;
+  }
+  .sc-tick {
+    vector-effect: none;
+    opacity: 0.55;
+  }
+  .sc-tick-1 {
+    stroke-width: 6;
+    stroke-dasharray: 0.14 0.86;
+    stroke-dashoffset: 0.07;
+  }
+  .sc-tick-5 {
+    stroke-width: 10;
+    stroke-dasharray: 0.028 0.972;
+    stroke-dashoffset: 0.014;
+  }
+  .sc-tick-10 {
+    stroke-width: 16;
+    stroke-dasharray: 0.014 0.986;
+    stroke-dashoffset: 0.007;
+    opacity: 0.8;
+  }
+  .sc-dec {
+    stroke-width: 0.5px;
+    opacity: 0.32;
+  }
+  .sc-hour {
+    stroke-width: 0.5px;
+    opacity: 0.2;
+  }
+  .sc-bound {
+    stroke-width: 0.75px;
+    stroke-dasharray: 1 5;
+    stroke-linecap: round;
+    opacity: 0.5;
+  }
+  .sc-div {
+    stroke-width: 0.75px;
+    opacity: 0.6;
+  }
+  .sc-fs,
+  .sc-fl {
+    vector-effect: none;
+    stroke-linecap: round;
+    color: var(--muted);
+    opacity: 0.6;
+  }
+  .sc-fs {
+    stroke-width: 1.7;
+  }
+  .sc-fl {
+    stroke-width: 2.8;
+  }
+  .sc-pole {
+    stroke-width: 0.75px;
+    opacity: 0.7;
+  }
+}
+
+.sc-x path {
+  stroke-width: 0.75px;
+  stroke-dasharray: 2 4;
+  opacity: 0.32;
+  transition: opacity var(--dur-hover) var(--ease);
+}
+
+.sc-cst {
+  color: var(--accent);
+  transition: opacity var(--dur-hover) var(--ease);
+}
+
+.sc-lines path {
+  stroke-width: 1px;
+  opacity: 0.78;
+  transition:
+    opacity var(--dur-hover) var(--ease),
+    stroke-width var(--dur-hover) var(--ease);
+}
+
+.sc-svg .sc-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.sc-svg .sc-ray-def {
+  stroke-width: 0.75px;
+  stroke-linecap: round;
+}
+
+.sc-svg .sc-hit {
+  fill: transparent;
+  stroke: none;
+}
+
+.sc-svg .sc-ring {
+  stroke: var(--ink);
+  stroke-width: 1.25px;
+  opacity: 0;
+  transition: opacity var(--dur-hover) var(--ease);
+}
+
+.sc-star {
+  cursor: pointer;
+  &.is-planned {
+    cursor: default;
+    .sc-dot {
+      fill: var(--bg);
+      stroke: currentColor;
+      stroke-width: 0.9px;
+      opacity: 0.6;
+    }
+  }
+  &.is-alpha {
+    .sc-dot {
+      fill: var(--seal);
+    }
+    .sc-rays {
+      color: var(--seal);
+    }
+  }
+  &:hover .sc-ring,
+  &:focus-visible .sc-ring {
+    opacity: 1;
+  }
+}
+
+.sc-svg:has(.sc-cst:hover, .sc-cst:focus-within) {
+  .sc-cst:not(:hover, :focus-within) {
+    opacity: 0.22;
+  }
+  .sc-x path {
+    opacity: 0.12;
+  }
+  .sc-cst:is(:hover, :focus-within) .sc-lines path {
+    opacity: 1;
+    stroke-width: 1.4px;
+  }
+}
+
+.sc-label {
+  font-family: $sans;
+  font-size: calc(17px * var(--ls, 1));
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  fill: var(--text-2);
+  stroke: none;
+  dominant-baseline: central;
+  text-anchor: middle;
+  transition: fill var(--dur-hover) var(--ease);
+  &.is-latin {
+    font-family: $display;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+  &:not(.is-latin) {
+    font-family: $display;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+}
+
+.sc-bayer {
+  font-family: $display;
+  font-size: 16px;
+  font-style: italic;
+  fill: var(--text-2);
+  stroke: none;
+  dominant-baseline: central;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.sc-bright {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.35rem 0 0.2rem;
+  padding: 0;
+  list-style: none;
+  font-family: $sans;
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+  a {
+    color: var(--text);
+    text-decoration: none;
+  }
+}
+
+.sc-bright-l {
+  flex: none;
+  width: 1rem;
+  font-family: $display;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--muted);
+  li:first-child & {
+    color: var(--seal);
+  }
+}
+
+.sc-label-num {
+  font-family: $mono;
+  font-size: calc(13px * var(--ls, 1));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  fill: var(--accent);
+}
+
+.sc-numl {
+  display: none;
+  font-family: $mono;
+  font-size: 30px;
+  font-weight: 600;
+  fill: var(--text-2);
+  dominant-baseline: central;
+  text-anchor: middle;
+}
+
+.sc-name {
+  &:hover,
+  &:focus-visible {
+    .sc-label,
+    .sc-numl {
+      fill: var(--text);
+    }
+    .sc-label-num {
+      fill: var(--seal);
+    }
+  }
+  &:focus-visible .sc-label-name,
+  &:focus-visible .sc-numl {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.sc-tip {
+  position: absolute;
+  z-index: 2;
+  max-width: min(18rem, 60%);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--ink);
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(14px, -50%);
+  transition: opacity var(--dur-hover) var(--ease);
+  &.is-left {
+    transform: translate(calc(-100% - 14px), -50%);
+  }
+  &.is-on {
+    opacity: 1;
+  }
+}
+
+.sc-cap {
+  @include label;
+  display: grid;
+  justify-items: start;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ink);
+  color: var(--muted);
+}
+
+.sc-cap-pl {
+  display: grid;
+  gap: 0.35rem;
+  > span:last-child {
+    font-family: $display;
+    font-size: var(--fs-h3);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.3;
+    text-transform: none;
+    color: var(--text);
+  }
+}
+
+.sc-cap-num {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.sc-cap-count {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+}
+
+.sc-legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.75rem;
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--text);
+  }
+  circle {
+    fill: currentColor;
+  }
+}
+
+.sc-legend-t {
+  margin-right: 0.15rem;
+}
+
+.sc-legend-i {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  &.is-planned circle {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    opacity: 0.7;
+  }
+}
+
+.sc-key {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  list-style: none;
+}
+
+@mixin sc-key-open {
+  .sc-key {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 1.25rem 0 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    gap: 0 var(--col-gap);
+    li {
+      border-top: 1px solid var(--border);
+    }
+    a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      min-height: 40px;
+      padding: 0.55rem 0;
+      font-size: var(--fs-small);
+      color: var(--text-2);
+      text-decoration: none;
+      &:hover,
+      &:focus-visible {
+        color: var(--text);
+        .sc-key-num {
+          color: var(--seal);
+        }
+      }
+    }
+  }
+  .sc-key-num,
+  .sc-key-n {
+    font-family: $mono;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .sc-key-name {
+    flex: 1;
+  }
+}
+
+.sc.has-abbr {
+  @include sc-key-open;
+}
+
+@media (max-width: 600px), (min-width: ($bp-grid + 1)) and (max-width: 1080px) {
+  .sc {
+    @include sc-key-open;
+  }
+}
+
+@container sc (max-width: 560px) {
+  .sc-bayer {
+    display: none;
+  }
+  .sc-label {
+    display: none;
+  }
+  .sc-numl {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sc-lines path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: sc-draw 1100ms var(--ease) both;
+    animation-delay: calc(var(--d, 0ms) + 700ms);
+  }
+  .sc-star {
+    animation: sc-fade 700ms var(--ease) both;
+    animation-delay: var(--d, 0ms);
+  }
+}
+
+@keyframes sc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sc-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
