@@ -127,6 +127,32 @@ function joinCjkLines(node, index, parent) {
   });
 }
 
+const INLINE = new Set(["link", "linkReference", "emphasis", "strong", "delete", "inlineCode"]);
+const CJK_EDGE = /[\p{Script=Han}\u3000-\u303F\uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF65」』）》〉]/u;
+
+function tightenInline(parent) {
+  const kids = parent.children;
+  kids.forEach((node, i) => {
+    if (!INLINE.has(node.type) || node.data?.hName) return;
+    const inner = toText(node);
+    const code = node.type === "inlineCode";
+    const prev = kids[i - 1];
+    const next = kids[i + 1];
+    if (prev?.type === "text" && (code || CJK_EDGE.test(inner.charAt(0)))) {
+      const m = prev.value.match(/[ \t]+$/);
+      if (m && CJK_EDGE.test(prev.value.charAt(prev.value.length - m[0].length - 1))) {
+        prev.value = prev.value.slice(0, -m[0].length);
+      }
+    }
+    if (next?.type === "text" && (code || CJK_EDGE.test(inner.charAt(inner.length - 1)))) {
+      const m = next.value.match(/^[ \t]+/);
+      if (m && CJK_EDGE.test(next.value.charAt(m[0].length))) {
+        next.value = next.value.slice(m[0].length);
+      }
+    }
+  });
+}
+
 const LONG_LEAD = 90;
 const BODY_LEAD = 160;
 const WIDE_CODE = 72;
@@ -194,6 +220,9 @@ export default function remarkReading() {
       if (node.type === "text" && parent) {
         joinCjkLines(node, index, parent);
         return;
+      }
+      if (node.type === "paragraph" || node.type === "tableCell" || node.type === "heading") {
+        tightenInline(node);
       }
       if (node.type === "code" && parent && index != null) {
         const lang = (node.lang || "").toLowerCase();
