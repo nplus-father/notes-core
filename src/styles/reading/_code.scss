@@ -126,6 +126,27 @@
   margin-top: 0.25rem;
 }
 
+@media (max-width: $bp-nav) {
+  .prose .code-block pre,
+  .prose pre:not(.code-block pre) {
+    overflow-x: visible;
+    font-size: 0.8125rem;
+    mask-image: none;
+    animation: none;
+    code {
+      inline-size: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .line {
+      display: inline-block;
+      inline-size: 100%;
+      padding-inline-start: calc(var(--indent, 0ch) + 2ch);
+      text-indent: calc(-1 * (var(--indent, 0ch) + 2ch));
+    }
+  }
+}
+
 @media (max-width: 640px) {
   .prose .code-block {
     max-inline-size: none;
@@ -136,7 +157,6 @@
   }
   .prose .code-block pre {
     padding-inline-start: var(--gutter);
-    font-size: 0.8125rem;
     code {
       padding-inline-end: var(--gutter);
     }
