@@ -42,7 +42,7 @@
 }
 
 .reading-body {
-  grid-column: 4 / span 7;
+  grid-column: 4 / -1;
   min-width: 0;
 }
 
@@ -72,7 +72,7 @@
 .mg-label {
   @include label;
   margin: 0 0 0.45rem;
-  color: var(--muted);
+  color: var(--text-2);
 }
 
 .mg-value {
@@ -111,7 +111,7 @@
     }
   }
   span {
-    color: var(--muted);
+    color: var(--text-2);
   }
 }
 
@@ -147,14 +147,15 @@
     padding: 0.28rem 0;
     font-size: var(--fs-small);
     line-height: 1.45;
-    color: var(--muted);
+    color: var(--text-2);
     text-decoration: none;
     transition: color var(--dur-hover) var(--ease);
     &::before {
       content: "";
       width: 0.4rem;
       height: 0.4rem;
-      align-self: center;
+      align-self: start;
+      margin-top: calc(0.725em - 0.2rem);
       background: var(--seal);
       transform: scale(0);
       transition: transform var(--dur-enter) var(--ease);
@@ -174,12 +175,47 @@
 
 .mg-toc-num {
   font-family: $mono;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
 }
 
+.mg-toc-fold {
+  display: none;
+  > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    list-style: none;
+    cursor: pointer;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::marker {
+      content: "";
+    }
+  }
+  .details-mark {
+    margin-left: auto;
+  }
+  .mg-toc {
+    padding: 0 0 0.75rem;
+  }
+}
+
+.mg-toc-fold-label {
+  @include label;
+  color: var(--text);
+}
+
+.mg-toc-fold-count {
+  font-family: $mono;
+  font-size: 0.75rem;
+  color: var(--text-2);
+}
+
 .reading-end {
-  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  margin-top: clamp(3rem, 5vw, 4.25rem);
 }
 
 @include below-grid {
@@ -252,8 +288,14 @@
     font-size: 1rem;
     line-height: 1.6;
   }
-  .mg-toc {
+  .mg-inner > .mg-toc {
     display: none !important;
+  }
+  .mg-toc-fold {
+    display: block;
+    flex: 1 0 100%;
+    margin-top: 0.35rem;
+    border-top: 1px solid var(--border);
   }
 }
 
@@ -262,7 +304,8 @@
     position: static;
     max-height: none;
   }
-  .mg-toc {
+  .mg-toc,
+  .mg-toc-fold {
     display: none;
   }
 }

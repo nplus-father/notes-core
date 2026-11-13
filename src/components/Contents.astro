@@ -1,0 +1,52 @@
+---
+interface Item {
+  slug: string;
+  text: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+const num = (i: number) => String(i + 1).padStart(2, "0");
+---
+
+{
+  items.length > 1 && (
+    <>
+      <nav class="mg-block mg-toc" aria-label="On this page">
+        <p class="mg-label">Contents</p>
+        <ol>
+          {items.map((h, i) => (
+            <li>
+              <a href={`#${h.slug}`} data-toc={h.slug}>
+                <span class="mg-toc-num">{num(i)}</span>
+                <span class="mg-toc-text">{h.text}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <details class="mg-toc-fold">
+        <summary>
+          <span class="mg-toc-fold-label" lang="en">
+            Contents
+          </span>
+          <span class="mg-toc-fold-count">{num(items.length - 1)}</span>
+          <span class="details-mark" aria-hidden="true" />
+        </summary>
+        <nav class="mg-toc" aria-label="On this page">
+          <ol>
+            {items.map((h, i) => (
+              <li>
+                <a href={`#${h.slug}`} data-toc={h.slug}>
+                  <span class="mg-toc-num">{num(i)}</span>
+                  <span class="mg-toc-text">{h.text}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </details>
+    </>
+  )
+}

@@ -3,15 +3,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
+import Contents from "../components/Contents.astro";
+import { splitTitle } from "../lib/reading";
+import { stripEmoji } from "../lib/site-config";
 import { site } from "virtual:notes-core/site";
 import { getCollection, render } from "astro:content";
 
 const entries = (await getCollection("guide")).sort((a, b) => a.id.localeCompare(b.id));
 const chapters = await Promise.all(
   entries.map(async (entry) => {
-    const { Content, remarkPluginFrontmatter } = await render(entry);
+    const { Content, headings, remarkPluginFrontmatter } = await render(entry);
     const slug = entry.id.replace(/^guide\//, "");
-    return { entry, Content, slug, standfirst: remarkPluginFrontmatter?.standfirst as string };
+    const toc = headings
+      .filter((h) => h.depth === 2 && h.slug !== "footnote-label")
+      .map((h) => ({ slug: h.slug, text: splitTitle(stripEmoji(h.text)).main }));
+    return {
+      entry,
+      Content,
+      slug,
+      toc,
+      standfirst: remarkPluginFrontmatter?.standfirst as string,
+    };
   })
 );
 
@@ -87,10 +99,19 @@ const description = chapters[0]?.standfirst;
                 data-ch={c.slug}
                 hidden={i === 0 ? undefined : "until-found"}
               >
-                <p class="guide-chapter-head running-head" aria-hidden="true">
-                  <span class="running-head-num">{num(i)}</span>
-                  <span>{tabLabel(c)}</span>
-                </p>
+                <aside class="guide-rail" aria-label={`Chapter ${num(i)}`}>
+                  <p class="guide-rail-head running-head">
+                    <span class="running-head-num">{num(i)}</span>
+                    <span>{tabLabel(c)}</span>
+                  </p>
+                  {c.entry.data.writtenAt && (
+                    <p class="guide-rail-date">
+                      <span class="mg-label">Written</span>
+                      <time datetime={c.entry.data.writtenAt}>{c.entry.data.writtenAt}</time>
+                    </p>
+                  )}
+                  <Contents items={c.toc} />
+                </aside>
                 <div class="guide-chapter-main">
                   <h2 class="guide-title">{c.entry.data.title}</h2>
                   <div class="guide-body prose">

@@ -2,6 +2,7 @@
 import SourceByline from "./SourceByline.astro";
 import Stars from "./Stars.astro";
 import DifficultyPill from "./DifficultyPill.astro";
+import Contents from "./Contents.astro";
 import { stripEmoji } from "../lib/site-config";
 import { splitTitle } from "../lib/reading";
 
@@ -22,7 +23,6 @@ const toc = headings
   .filter((h) => h.depth === 2 && h.slug !== "footnote-label")
   .map((h) => ({ slug: h.slug, text: splitTitle(stripEmoji(h.text)).main }));
 const statusLabel = status === "draft" ? "" : status === "studied" ? "Studied" : "Reviewed";
-const num = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
 <aside class="marginalia" aria-label="About this page">
@@ -50,56 +50,7 @@ const num = (i: number) => String(i + 1).padStart(2, "0");
         )
       }
     </div>
-    {
-      toc.length > 1 && (
-        <nav class="mg-block mg-toc" aria-label="On this page">
-          <p class="mg-label">Contents</p>
-          <ol>
-            {toc.map((h, i) => (
-              <li>
-                <a href={`#${h.slug}`} data-toc={h.slug}>
-                  <span class="mg-toc-num">{num(i)}</span>
-                  <span class="mg-toc-text">{h.text}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      )
-    }
+    <Contents items={toc} />
   </div>
 </aside>
 
-<script>
-  const links = [...document.querySelectorAll<HTMLAnchorElement>(".mg-toc a[data-toc]")];
-  const targets = links
-    .map((a) => document.getElementById(a.dataset.toc ?? ""))
-    .filter((el): el is HTMLElement => el !== null);
-  if (links.length > 0 && targets.length > 0 && "IntersectionObserver" in window) {
-    const visible = new Set<string>();
-    const mark = (id: string) => {
-      for (const a of links) {
-        if (a.dataset.toc === id) a.setAttribute("aria-current", "location");
-        else a.removeAttribute("aria-current");
-      }
-    };
-    const pick = () => {
-      const order = targets.map((t) => t.id);
-      const current = order.find((id) => visible.has(id));
-      if (current) return mark(current);
-      const above = targets.filter((t) => t.getBoundingClientRect().top < innerHeight * 0.3);
-      mark((above.at(-1) ?? targets[0]).id);
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) visible.add(e.target.id);
-          else visible.delete(e.target.id);
-        }
-        pick();
-      },
-      { rootMargin: "-15% 0px -55% 0px" }
-    );
-    for (const t of targets) io.observe(t);
-  }
-</script>
