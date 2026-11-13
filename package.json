@@ -28,6 +28,7 @@
     "./eslint": "./eslint.config.js",
     "./prettier": "./prettier.config.json",
     "./remark-details": "./src/plugins/remark-details.mjs",
+    "./remark-figure": "./src/plugins/remark-figure.mjs",
     "./remark-response": "./src/plugins/remark-response.mjs",
     "./remark-sections": "./src/plugins/remark-sections.mjs",
     "./content": "./src/content.ts",
