@@ -130,6 +130,24 @@
   color: var(--text);
 }
 
+.mg-meter {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.15rem 0 0;
+  .stars {
+    margin-top: 0;
+  }
+}
+
+.mg-meter-num {
+  font-family: $mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
 .mg-toc {
   ol {
     margin: 0.2rem 0 0;

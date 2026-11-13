@@ -39,7 +39,12 @@ const statusLabel = status === "draft" ? "" : status === "studied" ? "Studied" :
       }
       <div class="mg-importance">
         <p class="mg-label">Importance</p>
-        <Stars value={importance} />
+        <p class="mg-meter">
+          <Stars value={importance} />
+          <span class="mg-meter-num" aria-hidden="true">
+            {Math.max(0, Math.min(5, Math.round(importance)))} / 5
+          </span>
+        </p>
       </div>
       {
         statusLabel && (
