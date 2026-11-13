@@ -92,7 +92,7 @@
   @include link-draw;
   color: var(--text);
   background-size: 100% 1px;
-  background-image: linear-gradient(var(--border-mid), var(--border-mid));
+  background-image: linear-gradient(var(--muted), var(--muted));
   &:hover,
   &:focus-visible {
     color: var(--seal);
@@ -102,6 +102,7 @@
 
 .school-figure {
   white-space: nowrap;
+  color: var(--muted);
 }
 
 .school-sep {

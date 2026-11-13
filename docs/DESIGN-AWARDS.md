@@ -260,12 +260,22 @@ Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／
 - **站色（第二墨）**：主題站的 `<html>` 帶 `data-station-hue` 與 `--station-hue`（`site-covers.ts` 的 `accent2` 換成 OKLCH 色相，build 時算好）。`--accent`／`--accent-2`／`--accent-weak`／`--ring` 由這個色相以固定的低彩度推出（淺 L 0.40 C 0.055、深 L 0.80 C 0.045），不支援 OKLCH 的瀏覽器與人物站、設了 `accentOverride` 的站維持原本的軸色。用途：連結、選取底色、書眉編號（`.running-head-num`）、首頁的條目編號與頁尾的符號印記。朱印不被取代，一頁仍只有它是暖色訊號。
 - ≤ 720px 的導覽是**底部分頁列**：同一組 `.topnav-link` 改成固定在底部的列（圖示＋短英文標籤、目前項朱色方點、墨色髮絲線、`env(safe-area-inset-bottom)`），塞不下時橫向捲動加吸附與邊緣淡出；頂列只剩返回、人像、深淺色。`body` 底部留 `--tabbar-h`。版面工作包的 sticky 元素一律用 `var(--nav-h)` 對齊頂列，不要寫死 64px；固定在底部的元素要讓出 `--tabbar-h`。
 
+第三輪補充（2026-11-13）：
+
+- **書布（cloth）**：每一站是布面精裝書系裡的一卷。`BaseLayout` 在 `<html>` 寫 `--cloth-l`／`--cloth-d`（build 時由 `cover-plate.ts` 的 `clothFor()` 從站色相算成 sRGB hex：淺 L≈0.42、深 L≈0.34，暖色相提亮加彩、藍綠紫降彩），`--cloth` 依主題取其一；`--cloth-ink`（紙色墨，對所有書布 ≥ 4.5:1）、`--cloth-line`（布上的髮絲線）。`@include cloth` 給底色＋極淡的經緯織紋。人物站一律暖褐布、`siteCovers` 沒登記的主題站用軸色石板布、registry 查不到的站沒有布。`site-covers.ts` 的 `cloth: { hue?, tone? }` 覆寫色相與明度（tone 是 L 的增減），用來把色相太近的站拉開；`--station-hue` 也跟著 `cloth.hue` 走，連結色與書布同色相。書布只出現在三處：首頁 hero 的布面（`view-transition-name: station-cover`）、頁尾版權頁的布面小方塊、首頁的 `theme-color`。朱印仍是唯一的暖色 UI 訊號。
+- **`.section.is-wide`**：左欄只會放一個標籤的區塊，改用這個修飾：書眉疊在上方，`.section-body` 跨滿 12 欄。不要留一條只有標籤的空左欄。首頁 Thesis 已採用；索引與閱讀頁同樣情況請直接加 class。
+- **`.text-tabs` 一律單行**：不換行、可橫向捲動、`scroll-snap`、被切掉的那一側淡出（`edge-fade`），底線畫在列底、指示線在 tab 內（`bottom: 0`，不再 `-1px` 被捲動容器切掉）。**要讓目前的 tab 自動捲進視野**：tab 列加 `data-edge-fade`，目前項用 `aria-selected="true"`／`aria-current`／`.is-active` 標示；`BaseLayout` 的 script 在載入時與這三個屬性變動時（MutationObserver）把它捲進來，只動 `scrollLeft`、不捲整頁。Guide 的章節 tab 用 `@include text-tab` 自己排的話，在捲動容器上加 `data-edge-fade` 與 `@include edge-fade` 即可拿到同一套行為。
+- **手機頂列站名**：≤ 720px 頂列在人像右邊顯示 registry `label`（襯線、超出以刪節號截斷），這是「站名不進 topnav」唯一核准的例外，只在手機。底部分頁列往下捲時藏起、往上捲或回到頁頂時出現（只用 `transform`；reduced motion 時不藏；焦點在列內時不藏；無 JS 時永遠在）。
+
 | 名稱 | 種類 | 一行說明 |
 | --- | --- | --- |
 | `@include outlined-numeral($stroke, $width: 1px)` | mixin | 描邊不填色的數字（`-webkit-text-stroke`，不支援時退成實心）；首頁 hero 卷號用它，404 與目錄頁的大數字之後也改用它，不要各寫一份 |
 | `.edge-fade`／`@include edge-fade($size)`＋`data-edge-fade` | class／mixin＋屬性 | 橫向捲動列：吸附、隱藏捲軸，只在被切掉的那一側淡出。元素加 `data-edge-fade`，`BaseLayout` 的 inline script 依捲動位置寫 `data-cut="start end"`；無 JS 時不淡出、照樣可捲 |
 | `@include cjk-emphasis` | mixin | `em`／`i` 在中文裡不做假斜體，改用著重號（字下圓點） |
 | `.home-rail-index`＋`.home-rail-num` | class | 首頁區塊左欄的小目錄（編號＋名稱，錨點），≥ 901px 才出現 |
+| `.section.is-wide` | class | 書眉疊在上方、內容跨滿 12 欄；給左欄只會有標籤的區塊 |
+| `@include cloth` | mixin | 書布底色＋織紋＋`--cloth-ink` 字色 |
+| `data-edge-fade` | 屬性 | 橫向捲動列：邊緣淡出，且目前項（`aria-selected`／`aria-current`／`.is-active`）自動捲進視野 |
 
 **版面（`base/_layout`）**：`.container` 寬＝`--canvas`；≥ 901px 時 `main.container > *` 預設從第 4 欄開始（左 3 欄留給書眉／邊注），`.crumbs`／`.home-hero`／`.grid-12`／`.section`／`.bleed` 例外、滿版。`--span-3`／`--span-7`／`--span-9`／`--col` 是以 vw 算的欄寬長度，給還沒改成格線的舊版面對齊用。
 
