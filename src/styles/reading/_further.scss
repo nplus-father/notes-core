@@ -19,7 +19,7 @@
 }
 
 .rl {
-  grid-column: 4 / span 7;
+  grid-column: 5 / span 7;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -67,11 +67,8 @@
 }
 
 .related .rl-row {
-  align-items: baseline;
-  .rl-arrow {
-    align-self: start;
-    margin-top: calc((1.1rem * 1.45 - 18px) / 2);
-  }
+  min-height: 4.875rem;
+  align-items: center;
 }
 
 .rl-text {

@@ -1,0 +1,35 @@
+---
+import { currentVolume } from "../lib/volume";
+import { stripEmoji, type SiteConfig } from "../lib/site-config";
+
+interface Props {
+  site: SiteConfig;
+  section: string;
+  page?: number;
+  pages?: number;
+}
+const { site, section, page, pages } = Astro.props;
+const vol = currentVolume(site.titleBase ?? site.brand);
+const parts = [
+  vol.serial,
+  vol.label,
+  stripEmoji(section),
+  page && pages ? `page ${page} of ${pages}` : "",
+].filter(Boolean);
+---
+
+<p class="volume-colophon">
+  <span class="volume-swatch" aria-hidden="true"></span>
+  {
+    parts.map((p, i) => (
+      <>
+        {i > 0 && (
+          <span class="volume-sep" aria-hidden="true">
+            ·
+          </span>
+        )}
+        <span>{p}</span>
+      </>
+    ))
+  }
+</p>

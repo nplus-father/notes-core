@@ -8,6 +8,10 @@
   flex-wrap: wrap;
   gap: 0.75rem 2rem;
   margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  .volume-head {
+    flex: 1 0 100%;
+    margin-bottom: 0.25rem;
+  }
   h1 {
     margin: 0;
     font-size: var(--fs-h1);
@@ -34,7 +38,7 @@
   z-index: 10;
   margin: 0 0 clamp(2.5rem, 4.5vw, 3.75rem);
   background: var(--bg);
-  border-top: 1px solid var(--ink);
+  border-top: 3px solid var(--cloth, var(--ink));
   border-bottom: 1px solid var(--border);
   &[hidden] {
     display: none;

@@ -5,6 +5,7 @@ import FurtherReading from "../components/FurtherReading.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import Contents from "../components/Contents.astro";
 import Kern from "../components/Kern.astro";
+import VolumeHead from "../components/VolumeHead.astro";
 import { splitTitle } from "../lib/reading";
 import { splitTitle as splitColon } from "../lib/toc";
 import { stripEmoji } from "../lib/site-config";
@@ -51,6 +52,7 @@ const description = chapters[0]?.standfirst;
   <Crumbs site={site} items={[{ label: "Guide" }]} />
   <div class="guide bleed">
     <header class="page-head guide-head">
+      <VolumeHead site={site} section="Guide" />
       <h1 lang="en">Guide</h1>
       {
         updatedAt && (

@@ -7,6 +7,8 @@ import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
 import Kern from "../components/Kern.astro";
+import VolumeHead from "../components/VolumeHead.astro";
+import VolumeColophon from "../components/VolumeColophon.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug } from "../lib/collections";
@@ -96,6 +98,7 @@ const problemLabel = site.problemLabelEn ?? "Problems";
 
   <div class="reading bleed" data-kind="problem">
     <header class="page-head reading-head">
+      <VolumeHead site={site} section={domain?.name ?? d.domain} />
       <h1 class="reading-title">
         <Kern text={title.main} />
         {
@@ -119,10 +122,14 @@ const problemLabel = site.problemLabelEn ?? "Problems";
         difficulty={d.difficulty}
       />
       <div id="solution" class="reading-body prose" data-pagefind-body>
-        <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
-        <span class="pf-meta" data-pagefind-filter="Type">Problem</span>
-        <span class="pf-meta" data-pagefind-filter="Difficulty">{d.difficulty}</span>
-        <span class="pf-meta" data-pagefind-filter="Domain">{domain?.name ?? d.domain}</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-meta="title">{d.title}</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Type">Problem</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Difficulty"
+          >{d.difficulty}</span
+        >
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Domain"
+          >{domain?.name ?? d.domain}</span
+        >
         <slot />
       </div>
     </div>
@@ -133,6 +140,13 @@ const problemLabel = site.problemLabelEn ?? "Problems";
       <SeeAlso items={d.seeAlso} />
       <RelatedList heading="Related" items={related} />
     </div>
+
+    <VolumeColophon
+      site={site}
+      section={domain?.name ?? d.domain}
+      page={idx >= 0 ? idx + 1 : undefined}
+      pages={sameDomain.length}
+    />
 
     <PrevNext
       prev={prev ? nav(prev) : null}

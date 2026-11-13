@@ -13,6 +13,9 @@ interface Props {
   nextLabel: string;
 }
 const { prev, next, ariaLabel, prevLabel, nextLabel } = Astro.props;
+const p = prev ? splitTitle(prev.title) : null;
+const n = next ? splitTitle(next.title) : null;
+const showLatin = [p, n].every((t) => t === null || t.latin !== null);
 ---
 
 {
@@ -25,10 +28,10 @@ const { prev, next, ariaLabel, prevLabel, nextLabel } = Astro.props;
             {prevLabel}
           </span>
           <span class="pn-title">
-            <span class="pn-title-text">{splitTitle(prev.title).main}</span>
-            {splitTitle(prev.title).latin && (
+            <span class="pn-title-text">{p?.main}</span>
+            {showLatin && p?.latin && (
               <span class="pn-latin" lang="en">
-                {splitTitle(prev.title).latin}
+                {p.latin}
               </span>
             )}
           </span>
@@ -43,10 +46,10 @@ const { prev, next, ariaLabel, prevLabel, nextLabel } = Astro.props;
             <Icon name="arrow-right" size={16} />
           </span>
           <span class="pn-title">
-            <span class="pn-title-text">{splitTitle(next.title).main}</span>
-            {splitTitle(next.title).latin && (
+            <span class="pn-title-text">{n?.main}</span>
+            {showLatin && n?.latin && (
               <span class="pn-latin" lang="en">
-                {splitTitle(next.title).latin}
+                {n.latin}
               </span>
             )}
           </span>

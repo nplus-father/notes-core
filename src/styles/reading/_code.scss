@@ -73,8 +73,10 @@
 }
 
 @include above-grid {
+  .prose > :is(.code-block.is-wide, pre.is-wide),
   .prose > .lc-details > .code-block.is-wide {
-    inline-size: var(--span-9);
+    max-inline-size: none;
+    margin-inline: calc(-1 * var(--bleed));
   }
 }
 
