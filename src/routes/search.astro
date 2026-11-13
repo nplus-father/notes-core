@@ -64,31 +64,120 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
     </div>
   </section>
 
-  <link href={pagefindUiCss} rel="stylesheet" />
+  <link id="pf-css" href={pagefindUiCss} rel="stylesheet" />
   <script is:inline src={pagefindUiJs}></script>
   <script define:vars={{ bundlePath, placeholder }}>
     window.addEventListener("DOMContentLoaded", () => {
+      const host = document.getElementById("search");
+      const reveal = () => host?.setAttribute("data-ready", "");
       if (typeof PagefindUI === "undefined") {
+        reveal();
         document.getElementById("pf-fallback")?.removeAttribute("hidden");
         return;
       }
+      const CJK = "\\u3400-\\u9fff\\uf900-\\ufaff";
+      const PUNCT = "\\u3000-\\u303f\\uff01-\\uff0f\\uff1a-\\uff20\\uff3b-\\uff40\\uff5b-\\uff65";
+      const TAG = "(?:</?mark>)*";
+      const LABELS = [
+        "Core Ideas",
+        "Case Study",
+        "Takeaways",
+        "Intuition",
+        "Tradeoffs",
+        "When to Use",
+        "Structure (?:&|&amp;) Variants",
+        "Misuse (?:&|&amp;) Anti-patterns",
+        "Approaches",
+        "Why It(?:'|&#39;|&#x27;|’)s a Problem",
+        "Why It Matters",
+        "Discussion Log",
+        "Signals",
+        "Pitfalls",
+        "Common Questions",
+        "STAR Example",
+        "Scenario",
+        "Requirements",
+        "Reference Design",
+      ].join("|");
+      const reLabel = new RegExp(
+        `(^|[${CJK}${PUNCT}.!?:]${TAG}\\s)(?:${LABELS})\\s(?=${TAG}[${CJK}${PUNCT}])`,
+        "g"
+      );
+      const reStop = new RegExp(`([${CJK}])(${TAG})\\.\\s+`, "g");
+      const reGap = new RegExp(`([${CJK}${PUNCT}])(${TAG})\\s+(${TAG})(?=[${CJK}${PUNCT}])`, "g");
+      const rePunctSpace = new RegExp(`([${PUNCT}])(${TAG})\\s+`, "g");
+      const reEnd = new RegExp(`[。！？!?…]${TAG}$`);
       const strip = (s) =>
         typeof s === "string"
-          ? s.replace(/[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}]️?\s*/gu, "").trim()
+          ? s.replace(/[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}]\uFE0F?\s*/gu, "").trim()
           : s;
+      const tidy = (s) => {
+        if (typeof s !== "string" || !s) return s;
+        let x = strip(s).replace(/\s+/g, " ").trim();
+        x = x.replace(reLabel, "$1");
+        x = x.replace(reStop, "$1$2。");
+        x = x.replace(reGap, "$1$2$3");
+        x = x.replace(rePunctSpace, "$1$2");
+        x = x.replace(/^[\s,，、。.;；:：]+/, "").trim();
+        if (!x) return x;
+        return "…" + x + (reEnd.test(x) ? "" : "…");
+      };
+      const EN_TAIL = /^(.*?[^\s])\s*[（(]([^()（）]*[A-Za-z][^()（）]*)[)）]\s*$/;
+      const HAS_CJK = new RegExp(`[${CJK}]`);
+      const splitTitle = (title) => {
+        const m = title.match(EN_TAIL);
+        return m && HAS_CJK.test(m[1]) && !HAS_CJK.test(m[2])
+          ? { main: m[1], en: m[2] }
+          : { main: title, en: "" };
+      };
+      const decorate = () => {
+        const links = host.querySelectorAll(
+          ".pagefind-ui__result-inner > .pagefind-ui__result-title > .pagefind-ui__result-link"
+        );
+        for (const a of links) {
+          let main = a.querySelector(":scope > .pf-t-main");
+          if (!main) {
+            const text = [...a.childNodes].find((n) => n.nodeType === 3);
+            if (!text) continue;
+            main = document.createElement("span");
+            main.className = "pf-t-main";
+            a.insertBefore(main, text);
+            main.appendChild(text);
+          }
+          const node = main.firstChild;
+          if (!node || node.nodeType !== 3 || a.dataset.split === node.data) continue;
+          const t = splitTitle(node.data);
+          let en = a.querySelector(":scope > .pf-t-en");
+          if (t.en) {
+            node.data = t.main;
+            if (!en) {
+              en = document.createElement("span");
+              en.className = "pf-t-en";
+              en.lang = "en";
+              a.appendChild(en);
+            }
+            en.textContent = t.en;
+          } else if (en) {
+            en.remove();
+          }
+          a.dataset.split = node.data;
+        }
+      };
+      const wide = matchMedia("(min-width: 901px)").matches;
       new PagefindUI({
         element: "#search",
         bundlePath,
         showSubResults: true,
         showImages: false,
         pageSize: 8,
-        excerptLength: 22,
+        excerptLength: 26,
+        openFilters: wide ? ["Category", "Domain", "Type"] : [],
         processResult: (r) => {
           if (r.meta) r.meta.title = strip(r.meta.title);
-          r.excerpt = strip(r.excerpt);
+          r.excerpt = tidy(r.excerpt);
           for (const s of r.sub_results ?? []) {
             s.title = strip(s.title);
-            s.excerpt = strip(s.excerpt);
+            s.excerpt = tidy(s.excerpt);
           }
           return r;
         },
@@ -106,8 +195,20 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
           searching: "Searching “[SEARCH_TERM]”…",
         },
       });
-      const input = document.querySelector("#search .pagefind-ui__search-input");
+      const input = host.querySelector(".pagefind-ui__search-input");
       if (input) input.setAttribute("aria-label", "Search notes");
+      let frame = 0;
+      new MutationObserver(() => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(decorate);
+      }).observe(host, { childList: true, subtree: true, characterData: true });
+      const css = document.getElementById("pf-css");
+      if (css?.sheet) reveal();
+      else {
+        css?.addEventListener("load", reveal);
+        css?.addEventListener("error", reveal);
+        setTimeout(reveal, 2500);
+      }
     });
   </script>
 </BaseLayout>
