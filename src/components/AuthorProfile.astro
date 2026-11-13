@@ -52,7 +52,7 @@ const maxCovers = Math.max(1, ...readingPath.map((r) => r.slugs.length));
           <span lang="en">Contributions</span>
         </h2>
         <p class="home-head-meta">
-          <span>{String(contributions.length).padStart(2, "0")}</span>
+          <span class="num">{String(contributions.length).padStart(2, "0")}</span>
           <span lang="en">{contributions.length === 1 ? "Entry" : "Entries"}</span>
         </p>
       </div>
@@ -96,7 +96,7 @@ const maxCovers = Math.max(1, ...readingPath.map((r) => r.slugs.length));
           <span lang="en">Reading Path</span>
         </h2>
         <p class="home-head-meta">
-          <span>{String(readingPath.length).padStart(2, "0")}</span>
+          <span class="num">{String(readingPath.length).padStart(2, "0")}</span>
           <span lang="en">{readingPath.length === 1 ? "Stage" : "Stages"}</span>
         </p>
       </div>
@@ -151,7 +151,7 @@ const maxCovers = Math.max(1, ...readingPath.map((r) => r.slugs.length));
           <span lang="en">Influences</span>
         </h2>
         <p class="home-head-meta">
-          <span>{String(influences.length).padStart(2, "0")}</span>
+          <span class="num">{String(influences.length).padStart(2, "0")}</span>
           <span lang="en">{influences.length === 1 ? "Name" : "Names"}</span>
         </p>
       </div>

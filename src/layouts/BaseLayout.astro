@@ -64,7 +64,7 @@ const nav = buildNav(site, { hasCheck, hasGuide, hasLibrary }).map((l) => {
         : undefined;
   return { ...r, href, current };
 });
-const NAV_PRIORITY = ["guide", "concepts", "problems", "check", "search"];
+const NAV_PRIORITY = ["guide", "concepts", "search", "check"];
 const rank = (icon: string) => {
   const i = NAV_PRIORITY.indexOf(icon);
   return i < 0 ? NAV_PRIORITY.length : i;
@@ -121,6 +121,7 @@ const hasCover = existsSync(resolve("public/cover.png"));
 const absolute = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 const canonical = absolute(pathname);
 const ogImage = hasCover ? absolute(withBase("/cover.png")) : undefined;
+const HOME_PATH = withBase("/");
 const THEME_COLOR = themeColor ?? { light: "#f6f3ec", dark: "#111013" };
 const fontsHref =
   "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Noto+Serif+TC:wght@500;700;900&display=swap";
@@ -159,9 +160,13 @@ const textFontsHref =
     <link rel="stylesheet" href={textFontsHref} />
     <link rel="stylesheet" href={fontsHref} />
     <!-- 先於繪製設定主題，避免閃爍 -->
-    <script is:inline define:vars={{ THEME_COLOR }}>
+    <script is:inline define:vars={{ THEME_COLOR, HOME_PATH }}>
       (() => {
         const root = document.documentElement;
+        try {
+          if (sessionStorage.getItem("hero-seen")) root.classList.add("hero-seen");
+          else if (location.pathname === HOME_PATH) sessionStorage.setItem("hero-seen", "1");
+        } catch {}
         const saved = localStorage.getItem("theme");
         const sys = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         root.dataset.theme = saved ?? sys;
@@ -189,6 +194,9 @@ const textFontsHref =
               <a class="topnav-up" href={parentSite.href} title={`回 ${parentSite.label}`}>
                 <Icon name="chevron-left" size={16} />
                 <span class="topnav-up-label">{parentSite.short ?? parentSite.label}</span>
+                <span class="topnav-up-mini">
+                  {parentSite.mini ?? parentSite.short ?? parentSite.label}
+                </span>
               </a>
             )
           }
@@ -230,22 +238,37 @@ const textFontsHref =
                         <Icon name="more" size={20} />
                         <span class="topnav-label">More</span>
                       </summary>
-                      <ul class="topnav-sheet">
-                        {tabbarMore.map((l) => (
-                          <li>
-                            <a
-                              class="topnav-sheet-link"
-                              href={l.href}
-                              title={l.title}
-                              aria-current={l.current}
-                              {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
-                            >
-                              <Icon name={l.icon} size={20} />
-                              <span>{l.text}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                      <div class="topnav-scrim" data-sheet-close aria-hidden="true"></div>
+                      <div class="topnav-sheet">
+                        <div class="topnav-sheet-head">
+                          <span class="topnav-sheet-title">More</span>
+                          <button
+                            type="button"
+                            class="topnav-sheet-close"
+                            data-sheet-close
+                            aria-label="Close"
+                            hidden
+                          >
+                            <Icon name="close" size={20} />
+                          </button>
+                        </div>
+                        <ul class="topnav-sheet-list">
+                          {tabbarMore.map((l) => (
+                            <li>
+                              <a
+                                class="topnav-sheet-link"
+                                href={l.href}
+                                title={l.title}
+                                aria-current={l.current}
+                                {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
+                              >
+                                <Icon name={l.icon} size={22} />
+                                <span>{l.text}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </details>
                   </li>
                 )
@@ -389,14 +412,22 @@ const textFontsHref =
       }
       const more = document.querySelector(".topnav-more-box");
       if (more) {
+        const close = (focus) => {
+          more.open = false;
+          if (focus) more.querySelector("summary")?.focus();
+        };
+        for (const b of more.querySelectorAll("[data-sheet-close]")) {
+          b.hidden = false;
+          b.addEventListener("click", () => close(b.tagName === "BUTTON"));
+        }
+        more.addEventListener("toggle", () => {
+          document.documentElement.classList.toggle("is-sheet-open", more.open);
+        });
         document.addEventListener("click", (e) => {
-          if (more.open && !more.contains(e.target)) more.open = false;
+          if (more.open && !more.contains(e.target)) close(false);
         });
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && more.open) {
-            more.open = false;
-            more.querySelector("summary")?.focus();
-          }
+          if (e.key === "Escape" && more.open) close(true);
         });
       }
       const tabbar = document.querySelector(".topnav-nav");

@@ -43,8 +43,8 @@
   --cloth: var(--cloth-l, #3c4b55);
   --cloth-ink: #f4eee0;
   --cloth-line: rgb(244 238 224 / 0.42);
-  --cloth-weave: rgb(255 255 255 / 0.026);
-  --cloth-weft: rgb(0 0 0 / 0.055);
+  --cloth-weave: rgb(255 255 255 / 0.05);
+  --cloth-weft: rgb(0 0 0 / 0.09);
 
   --font-display: #{$display};
   --font-sans: #{$sans};
@@ -122,6 +122,6 @@
   --cloth: var(--cloth-d, #2a353d);
   --cloth-ink: #ece5d6;
   --cloth-line: rgb(236 229 214 / 0.36);
-  --cloth-weave: rgb(255 255 255 / 0.022);
-  --cloth-weft: rgb(0 0 0 / 0.09);
+  --cloth-weave: rgb(255 255 255 / 0.04);
+  --cloth-weft: rgb(0 0 0 / 0.16);
 }

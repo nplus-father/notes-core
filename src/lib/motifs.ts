@@ -518,6 +518,7 @@ export interface MotifOptions {
   className?: string;
   draw?: boolean;
   fit?: boolean;
+  stamp?: boolean;
 }
 
 const drawable = (body: string) =>
@@ -529,7 +530,10 @@ const drawable = (body: string) =>
 export function motifSvg(name: string, opts: MotifOptions = {}): string {
   const raw = motifBodies[name];
   if (!raw) throw new Error(`unknown motif '${name}'`);
-  const body = opts.draw ? drawable(raw) : raw;
+  const drawn = opts.draw ? drawable(raw) : raw;
+  const body = opts.stamp
+    ? `<g class="motif-shade" transform="translate(0.7 0.7)">${drawn}</g><g>${drawn}</g>`
+    : drawn;
   const cls = opts.className ? ` class="${opts.className}"` : "";
   const box = opts.fit ? motifBounds[name] : undefined;
   const pad = 8;

@@ -24,6 +24,14 @@ const entry = siteBySlug.get(slug);
 const axis = entry?.axis ?? "topic";
 const heading = entry?.label ?? site.titleBase ?? site.brand;
 const headingIsLatin = /^[\p{Script=Latin}\p{N}\s.,'’&\-]+$/u.test(heading);
+const titleScale = (() => {
+  if (headingIsLatin) {
+    const n = heading.length;
+    return n <= 8 ? 1.35 : n <= 11 ? 1.2 : n <= 14 ? 1.1 : 1;
+  }
+  const n = [...heading.replace(/\s/g, "")].length;
+  return n <= 2 ? 1.9 : n === 3 ? 1.5 : n === 4 ? 1.25 : 1;
+})();
 const pool = axis === "person" ? personSites : topicSites;
 const idx = pool.findIndex((s) => s.slug === slug);
 const serial = idx >= 0 ? String(idx + 1).padStart(2, "0") : "";
@@ -96,7 +104,11 @@ const nums = {
         <span>{axis === "person" ? "Person" : "Topic"}</span>
         {serial && <span class="hero-serial">N°{serial}</span>}
       </p>
-      <h1 class="hero-title" lang={headingIsLatin ? "en" : undefined}>
+      <h1
+        class="hero-title"
+        lang={headingIsLatin ? "en" : undefined}
+        style={titleScale === 1 ? undefined : `--title-scale: ${titleScale}`}
+      >
         <span class="hero-title-inner">{heading}</span>
       </h1>
       <span class="hero-rule" aria-hidden="true"></span>
@@ -125,6 +137,7 @@ const nums = {
                     stroke: 1.6,
                     draw: true,
                     fit: true,
+                    stamp: true,
                   })}
                 />
               )}
@@ -143,7 +156,6 @@ const nums = {
             </div>
             <div class="hero-volume-foot" aria-hidden="true">
               {serial && <span class="hero-numeral">N°{serial}</span>}
-              <span class="hero-cloth-seal"></span>
             </div>
           </figure>
           {updated && (
