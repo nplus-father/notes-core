@@ -233,7 +233,7 @@
 }
 
 .reading-end {
-  margin-top: clamp(3rem, 5vw, 4.25rem);
+  margin-top: var(--sec-gap);
 }
 
 @include below-grid {

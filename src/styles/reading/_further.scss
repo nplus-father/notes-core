@@ -5,9 +5,10 @@
   @include grid-12;
   padding-top: 1.15rem;
   border-top: 1px solid var(--ink);
-  & + & {
-    margin-top: clamp(2.5rem, 4vw, 3.5rem);
-  }
+}
+
+:where(.endnote) ~ .endnote {
+  margin-top: var(--sec-gap, clamp(2.5rem, 4vw, 3.5rem));
 }
 
 .endnote-head {
@@ -143,7 +144,7 @@
 
 .guide-chapter .endnote {
   display: block;
-  margin-top: clamp(3rem, 5vw, 4rem);
+  margin-top: var(--sec-gap);
   .rl {
     margin-top: 0.6rem;
   }

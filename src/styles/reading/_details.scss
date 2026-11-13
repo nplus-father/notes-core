@@ -68,6 +68,10 @@
   height: 0.8rem;
   align-self: center;
   margin-right: 0.15rem;
+  .lc-details > summary > & {
+    align-self: flex-start;
+    margin-top: calc(0.775em - 0.4rem);
+  }
   &::before,
   &::after {
     content: "";
@@ -305,7 +309,12 @@
   }
 }
 
-.prose > .markdown-alert + .lc-details,
-.prose > .lc-details + .markdown-alert {
+.prose > .markdown-alert:has(+ .lc-details:not(.compare)),
+.prose > .lc-details:not(.compare):has(+ .markdown-alert) {
+  margin-bottom: 0;
+}
+
+.prose > .markdown-alert + .lc-details:not(.compare),
+.prose > .lc-details:not(.compare) + .markdown-alert {
   margin-top: -1px;
 }
