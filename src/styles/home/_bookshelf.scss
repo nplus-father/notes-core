@@ -17,45 +17,63 @@
 
 .shelf-bar {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem 1.5rem;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  visibility: hidden;
+  &.is-ready {
+    visibility: visible;
+  }
 }
 
-.shelf-count {
+.shelf-pos {
   @include label;
   display: flex;
   align-items: baseline;
-  gap: 0.6em;
+  gap: 0.5em;
   margin: 0;
+  font-family: $mono;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
 
-.shelf-count-n {
-  font-family: $mono;
+.shelf-pos-range {
   color: var(--text);
 }
 
-.shelf-hint {
-  @include label;
-  color: var(--muted);
-  letter-spacing: 0.1em;
+.shelf-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shelf-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    color var(--dur-hover) var(--ease),
+    background-color var(--dur-hover) var(--ease);
+  &:hover:not(:disabled) {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  &:disabled {
+    border-color: var(--border);
+    color: var(--border-mid);
+    cursor: default;
+  }
 }
 
 .shelf-more {
-  @include label;
-  @include arrow-nudge;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55em;
-  min-height: 40px;
-  margin-left: auto;
-  color: var(--text);
-  &:hover,
-  &:focus-visible {
-    color: var(--seal);
-    text-decoration: none;
-  }
+  margin-top: 0.5rem;
   .arrow {
     font-family: $sans;
     font-size: 1.1em;
@@ -65,9 +83,10 @@
 
 .shelf-scroller {
   --shelf-fade: clamp(3rem, 8vw, 9rem);
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   margin-right: calc(-1 * var(--gutter));
   padding: 1.25rem var(--gutter) 2.9rem 0;
+  scroll-padding-inline: 0 var(--gutter);
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
@@ -170,9 +189,6 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  .shelf-hint {
-    display: none;
-  }
   .shelf-scroller {
     cursor: auto;
   }

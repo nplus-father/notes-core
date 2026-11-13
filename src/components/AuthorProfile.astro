@@ -49,11 +49,21 @@ const influences = profile.influences ?? [];
           <span>{String(contributions.length).padStart(2, "0")}</span>
           <span lang="en">{contributions.length === 1 ? "Entry" : "Entries"}</span>
         </p>
+        <ol class="home-rail-index">
+          {contributions.map((c, i) => (
+            <li>
+              <a href={`#contrib-${i + 1}`}>
+                <span class="home-rail-num">{pad(i)}</span>
+                <span>{c.title}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
       <div class="section-body">
         <ol class="contrib-grid">
           {contributions.map((c, i) => (
-            <li class="contrib reveal">
+            <li class="contrib reveal" id={`contrib-${i + 1}`}>
               <span class="contrib-num" aria-hidden="true">
                 {pad(i)}
               </span>
@@ -90,11 +100,21 @@ const influences = profile.influences ?? [];
           <span>{String(readingPath.length).padStart(2, "0")}</span>
           <span lang="en">{readingPath.length === 1 ? "Stage" : "Stages"}</span>
         </p>
+        <ol class="home-rail-index">
+          {readingPath.map((r, i) => (
+            <li>
+              <a href={`#stage-${i + 1}`}>
+                <span class="home-rail-num">{pad(i)}</span>
+                <span>{r.stage}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
       <div class="section-body">
         <ol class="reading-path">
           {readingPath.map((r, i) => (
-            <li class="reading-stage reveal">
+            <li class="reading-stage reveal" id={`stage-${i + 1}`}>
               <span class="reading-node" aria-hidden="true">
                 <span class="reading-dot" />
                 <span class="reading-num">{pad(i)}</span>
@@ -141,6 +161,10 @@ const influences = profile.influences ?? [];
           {nums.influences && <span class="running-head-num">{nums.influences}</span>}
           <span lang="en">Influences</span>
         </h2>
+        <p class="home-head-meta">
+          <span>{String(influences.length).padStart(2, "0")}</span>
+          <span lang="en">{influences.length === 1 ? "Name" : "Names"}</span>
+        </p>
       </div>
       <div class="section-body">
         <ul class="influences reveal">
