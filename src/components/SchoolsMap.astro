@@ -1,21 +1,15 @@
 ---
-// 首頁「領域地圖」：主題站的領域鳥瞰——每張卡：主張、代表人物
-// （有作者站就跨站連結）、對應的站內概念分類。人物站的對應物是 AuthorProfile。
-// 資料由各站 src/data/schools.ts 提供（型別見 lib/library.ts）。
-//
-// 口味詞彙表（v0.19.0）：標題與副標由 kind 決定、收斂在這裡——站台只挑 enum、
-// 不寫自由文字；要新口味改 core 一處，62 站一起變。
 import { withBase } from "../lib/url";
 import { siteUrl } from "../lib/links";
 import type { SchoolsData, SchoolsKind } from "../lib/library";
 
 interface Props {
   schools: SchoolsData;
+  num?: string;
 }
-const { schools: data } = Astro.props;
+const { schools: data, num = "" } = Astro.props;
 const schools = data.entries;
 
-// chrome 一律簡短英文（v0.34.0，Andrew 裁定）；副標說明句移除——標題自己講完了。
 const KINDS: Record<SchoolsKind, string> = {
   schools: "Schools",
   methods: "Methods",
@@ -26,50 +20,72 @@ const heading = KINDS[data.kind] ?? KINDS.schools;
 
 {
   schools.length > 0 && (
-    <section class="schools">
-      <div class="schools-head">
-        <h2>{heading}</h2>
+    <section class="section schools" aria-labelledby="schools-title">
+      <div class="running-head home-head">
+        <h2 class="home-head-title" id="schools-title">
+          {num && <span class="running-head-num">{num}</span>}
+          <span lang="en">{heading}</span>
+        </h2>
+        <p class="home-head-meta">
+          <span>{String(schools.length).padStart(2, "0")}</span>
+          <span lang="en">{schools.length === 1 ? "Entry" : "Entries"}</span>
+        </p>
       </div>
-      {data.lede && <p class="schools-lede" set:html={data.lede} />}
-      <div class="school-grid">
-        {schools.map((s, i) => (
-          <article class="school-card">
-            <div class="school-head">
-              {/* 序號記號取代各站 schools.ts 的 emoji 圖示（📜 ⚖️ 🏛 …）——與站縮圖
-                  的 N° 同一個裝置，35 個主題站因此不必逐站改資料就一起變。
-                  School.icon 已標 deprecated，這裡刻意不再渲染。 */}
-              <span class="school-index">{String(i + 1).padStart(2, "0")}</span>
-              <span class="school-name">{s.name}</span>
-              {/* 卡片唯一的去處，所以做成鍵而不是一行小灰字——原本它只是右上角一句
-                  「站內筆記」，跟卡片其他文字同色同粗細，看不出可以點。
-                  框線已經在說「這是可按的」，箭頭是第二次說同一件事，故不畫。 */}
-              {s.categorySlug && (
-                <a class="school-cat" href={withBase(`/concepts/${s.categorySlug}/`)}>
-                  站內筆記
-                </a>
-              )}
-            </div>
-            <p class="school-claim" set:html={s.claim} />
-            {s.figures && s.figures.length > 0 && (
-              <div class="school-figures">
-                {s.figures.map((f) =>
-                  f.site ? (
-                    <a
-                      class="school-figure is-linked"
-                      href={siteUrl(f.site, "/")}
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      {f.name}
-                    </a>
-                  ) : (
-                    <span class="school-figure">{f.name}</span>
-                  )
+      <div class="section-body">
+        {data.lede && <p class="schools-lede reveal" set:html={data.lede} />}
+        <ol class="school-list">
+          {schools.map((s, i) => (
+            <li class="school-row reveal">
+              <span class="school-num" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div class="school-main">
+                <h3 class="school-name">{s.name}</h3>
+                <p class="school-claim" set:html={s.claim} />
+              </div>
+              <div class="school-side">
+                {s.figures && s.figures.length > 0 && (
+                  <p class="school-figures">
+                    <span class="school-side-label" lang="en">
+                      Figures
+                    </span>
+                    <span class="school-figure-list">
+                      {s.figures.map((f, j) => (
+                        <>
+                          {f.site ? (
+                            <a
+                              class="school-figure is-linked"
+                              href={siteUrl(f.site, "/")}
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              {f.name}
+                            </a>
+                          ) : (
+                            <span class="school-figure">{f.name}</span>
+                          )}
+                          {j < s.figures!.length - 1 && <span class="school-sep">, </span>}
+                        </>
+                      ))}
+                    </span>
+                  </p>
+                )}
+                {s.categorySlug && (
+                  <a
+                    class="school-cat"
+                    href={withBase(`/concepts/${s.categorySlug}/`)}
+                    aria-label={`Notes · ${s.name}`}
+                  >
+                    <span lang="en">Notes</span>
+                    <span class="arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </a>
                 )}
               </div>
-            )}
-          </article>
-        ))}
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   )

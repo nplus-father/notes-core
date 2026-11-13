@@ -1,81 +1,358 @@
 @use "../tokens.scss" as *;
 @use "../base/mixins" as *;
 
-/* ───────────────────────── 首頁 Hero + 站封面 ───────────────────────── */
-/* v0.36.0：hero 改放直式站封面（portal 同一張 public/cover.png——人物站＝傳主肖像、
- * 主題站＝印刷風設計圖），扉頁的排版元素（眉標／襯線大字／短橫線／寬字距副題）攤成
- * 活字排在右欄。橫式 site-cover.svg 退役：它把旁邊 h1 / heroLede 的內容用圖片再印
- * 一次，而 portal 上讀者憑直式封面挑站，點進來就該再看到同一張圖。 */
-.home-hero {
-  display: flex;
+:root {
+  --numeral-stroke: #b9b0a0;
+  --plate-mat: transparent;
+  --plate-pad: 0px;
+  --plate-frame: var(--ink);
+}
+
+[data-theme="dark"] {
+  --numeral-stroke: #4a4650;
+  --plate-mat: #ece6d9;
+  --plate-pad: clamp(8px, 0.9vw, 14px);
+  --plate-frame: #ece6d9;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  grid-template-rows: 1fr auto;
   align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin: 0.5rem 0 1.8rem;
+  min-height: calc(min(86svh, 860px) - clamp(1.75rem, 4vw, 3.25rem));
+  margin: 0;
 }
-/* 3:4 書封尺寸感：寬固定 ~224px（460px 的直式圖會高 613px，把 Overview 推出首屏）。
- * 髮絲框沿用、不加圓角陰影——浮卡效果會把印刷感拉回 SaaS 卡片。白底肖像照靠這條框
- * 在紙色底上讀成「印刷品裡貼的一張照片」，而不是浮著的白色矩形。 */
-.hero-cover {
-  width: 224px;
-  max-width: 42vw;
-  /* height 屬性（1200）是 presentational hint，必須明確蓋掉，否則圖被拉高。 */
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border: 1px solid var(--border);
+
+.hero-text {
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  align-self: center;
+  padding-block: clamp(1rem, 3vw, 2.5rem) clamp(2rem, 5vw, 4.5rem);
+  z-index: 1;
 }
-/* 深色模式下白底肖像刺眼，壓一階亮度即可——不做反色，照片不是 UI。 */
-[data-theme="dark"] .hero-cover {
-  filter: brightness(0.85);
-}
-.home-hero-body {
-  flex: 1;
-  min-width: 260px;
-  h1 {
-    margin: 0;
-    font-size: clamp(1.9rem, 4.5vw, 2.7rem);
-    line-height: 1.15;
+
+.hero-kicker {
+  @include running-head;
+  align-items: center;
+  gap: 0 0.75em;
+  color: var(--text);
+  .seal {
+    width: 0.55rem;
+    height: 0.55rem;
+    align-self: center;
   }
 }
-/* 眉標：軸別＋同軸編號，與封面左上／右上角同一組資訊，收成一行。 */
-.hero-kicker {
-  margin: 0 0 0.7rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.32em;
-  color: var(--muted);
-  opacity: 0.8;
-}
+
 .hero-serial {
-  margin-left: 0.9em;
-  font-family: $serif;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-}
-/* 短橫線走 data-axis 的 accent（人物暖褐／主題冷藍）——封面上那條 ink 短線的活字版。 */
-.hero-rule {
-  display: block;
-  width: 64px;
-  height: 2px;
-  margin: 0.85rem 0;
-  background: var(--accent);
-}
-.hero-brand {
-  margin: 0 0 0.9rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
+  font-family: $mono;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
 
-@include above-grid {
-  .home-hero {
-    flex-wrap: nowrap;
-    gap: var(--col-gap);
+.hero-title {
+  margin: clamp(1.1rem, 2.4vw, 1.9rem) 0 0;
+  font-size: var(--fs-display);
+  line-height: 1.04;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+  overflow: clip;
+  overflow-clip-margin: 0.12em;
+  padding-bottom: 0.06em;
+  &:lang(en) {
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
-  .hero-cover {
-    width: calc(var(--span-3) - var(--col-gap));
+}
+
+.hero-title-inner {
+  display: inline-block;
+  view-transition-name: station-title;
+}
+
+.hero-rule {
+  display: block;
+  width: clamp(56px, 6vw, 88px);
+  height: 2px;
+  margin: clamp(1.4rem, 2.6vw, 2.1rem) 0 clamp(1rem, 1.8vw, 1.4rem);
+  background: var(--seal);
+  transform-origin: left center;
+}
+
+.hero-brand {
+  @include label;
+  margin: 0;
+  letter-spacing: 0.32em;
+  color: var(--muted);
+}
+
+.hero-lede {
+  margin: clamp(1.4rem, 2.6vw, 2rem) 0 0;
+  max-width: 30em;
+  font-family: $display;
+  font-size: var(--fs-lede);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-2);
+  text-wrap: pretty;
+  strong,
+  b {
+    font-weight: 700;
+    color: var(--text);
+  }
+  a {
+    @include link-draw;
+    background-size: 100% 1px;
+    color: var(--text);
+  }
+}
+
+.hero-plate {
+  grid-column: 9 / -1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  width: min(
+    clamp(220px, 26vw, 380px),
+    calc((min(86svh, 860px) - var(--fs-mega) * 0.72 - 10rem) * 0.75)
+  );
+  margin: clamp(0.5rem, 2vw, 1.5rem) 0 0;
+  z-index: 1;
+}
+
+.hero-plate-mat {
+  padding: var(--plate-pad);
+  background: var(--plate-mat);
+  outline: 1px solid var(--plate-frame);
+  view-transition-name: station-cover;
+}
+
+.hero-plate-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.hero-plate-cap {
+  @include label;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  color: var(--muted);
+}
+
+.hero-plate-num {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.hero-numeral {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: end;
+  justify-self: end;
+  width: min(100%, calc(var(--fs-mega) * 2.5));
+  height: calc(var(--fs-mega) * 0.72);
+  overflow: clip;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-numeral-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-right: -0.04em;
+  overflow: visible;
+  text {
+    font-family: $display;
+    font-size: 380px;
+    font-weight: 300;
+    font-variant-numeric: lining-nums;
+    letter-spacing: -0.02em;
+    fill: none;
+    stroke: var(--numeral-stroke);
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 3200;
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-stats {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.hero-stat {
+  @include label;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+  color: var(--muted);
+  dt {
+    order: 2;
+  }
+  dd {
+    order: 1;
+    margin: 0;
+    font-family: $mono;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+  &:has(time) {
+    dt {
+      order: 1;
+    }
+    dd {
+      order: 2;
+    }
+  }
+  & + &::before {
+    content: "";
+    order: 0;
+    align-self: center;
+    width: 0.3rem;
+    height: 1px;
+    margin-inline: 1.1rem 0.5rem;
+    background: var(--border-mid);
+  }
+}
+
+@include above-grid {
+  .hero:not(.has-plate) .hero-text {
+    grid-column: 1 / span 9;
+  }
+  .hero-stats {
+    gap: 0;
+  }
+  .hero-stat:last-child {
+    margin-left: auto;
+    &::before {
+      display: none;
+    }
+  }
+}
+
+@include below-grid {
+  .hero {
+    grid-template-rows: auto auto auto;
+    min-height: 0;
+    row-gap: 0;
+  }
+  .hero-text {
+    grid-column: 1 / -1;
+    padding-block: 0.5rem 2.25rem;
+  }
+  .hero-plate {
+    grid-column: 1 / span 7;
+    grid-row: 2;
+    justify-self: start;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 0 2rem;
+  }
+  .hero-numeral {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    width: min(100%, calc(var(--fs-numeral-sm) * 2.5));
+    height: calc(var(--fs-numeral-sm) * 0.72);
+  }
+  .hero.has-plate .hero-numeral {
+    --plate-w: min(320px, var(--span-7));
+    --spine: calc(var(--plate-w) * 4 / 3 / 0.82);
+    position: relative;
+    grid-column: 8 / -1;
+    align-self: stretch;
+    justify-self: stretch;
+    width: auto;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  .hero.has-plate .hero-numeral-svg {
+    position: absolute;
+    left: calc(var(--spine) * -0.07);
+    top: calc(var(--plate-w) * 4 / 3 + var(--spine) * 0.17);
+    width: var(--spine);
     max-width: none;
-    flex: none;
+    height: calc(var(--spine) * 0.4);
+    margin: 0;
+    transform-origin: 0 0;
+    transform: rotate(-90deg);
+  }
+  .hero-stats {
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem var(--col-gap);
+  }
+  .hero-stat + .hero-stat::before {
+    display: none;
+  }
+  .hero-lede {
+    max-width: none;
+  }
+}
+
+:root {
+  --fs-numeral-sm: clamp(6rem, 33vw, 13rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-numeral-svg text {
+    animation: hero-stroke 2.2s var(--ease) 0.05s both;
+  }
+  .hero-kicker {
+    animation: folio-fade var(--dur-enter) var(--ease) 0.1s both;
+  }
+  .hero-title-inner {
+    animation: hero-line var(--dur-hero) var(--ease) 0.15s both;
+  }
+  .hero-rule {
+    animation: folio-draw var(--dur-hero) var(--ease) 0.55s both;
+  }
+  .hero-brand {
+    animation: folio-rise var(--dur-enter) var(--ease) 0.65s both;
+  }
+  .hero-lede {
+    animation: folio-rise var(--dur-hero) var(--ease) 0.75s both;
+  }
+  .hero-plate {
+    animation: folio-fade var(--dur-hero) var(--ease) 0.4s both;
+  }
+  .hero-stats {
+    animation: folio-fade var(--dur-hero) var(--ease) 0.95s both;
+  }
+}
+
+@keyframes hero-stroke {
+  from {
+    stroke-dashoffset: 3200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-line {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
   }
 }

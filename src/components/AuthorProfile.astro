@@ -1,55 +1,108 @@
 ---
-// 首頁「思想側寫」：人物站的主軸——一句話中心思想、特定貢獻（連站內概念頁）、
-// 建議閱讀路徑（直式 stepper：N° 節點＋書封＋一行 why）、思想脈絡（有姊妹站就跨站連結）。
-// 資料由各站 src/data/profile.ts 提供（型別見 lib/library.ts）。
 import { withBase } from "../lib/url";
 import { bookUrl, bookCoverUrl, siteUrl } from "../lib/links";
 import type { AuthorProfile, BibliographyEntry } from "../lib/library";
 
+interface Nums {
+  thesis?: string;
+  contributions?: string;
+  readingPath?: string;
+  influences?: string;
+}
 interface Props {
   profile: AuthorProfile;
   bibliography?: BibliographyEntry[];
+  nums?: Nums;
 }
-const { profile, bibliography = [] } = Astro.props;
+const { profile, bibliography = [], nums = {} } = Astro.props;
 const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slug, e.title]));
+const pad = (i: number) => String(i + 1).padStart(2, "0");
+const contributions = profile.contributions ?? [];
+const readingPath = profile.readingPath ?? [];
+const influences = profile.influences ?? [];
 ---
 
-<section class="profile">
-  <blockquote class="profile-thesis">
-    <span class="profile-thesis-label">Thesis</span>
-    <p set:html={profile.thesis} />
-  </blockquote>
-
-  <h2>Contributions</h2>
-  <div class="contrib-grid">
-    {
-      profile.contributions.map((c) => (
-        <article class="contrib-card">
-          <div class="contrib-title">
-            {c.conceptPath ? (
-              <a href={withBase(`/concepts/${c.conceptPath}/`)}>{c.title}</a>
-            ) : (
-              c.title
-            )}
-          </div>
-          <p class="contrib-summary" set:html={c.summary} />
-        </article>
-      ))
-    }
+<section class="section profile-thesis" aria-labelledby="thesis-title">
+  <div class="running-head home-head">
+    <h2 class="home-head-title" id="thesis-title">
+      {nums.thesis && <span class="running-head-num">{nums.thesis}</span>}
+      <span lang="en">Thesis</span>
+    </h2>
   </div>
+  <div class="section-body">
+    <blockquote class="thesis reveal">
+      <span class="thesis-mark" aria-hidden="true">“</span>
+      <p set:html={profile.thesis} />
+    </blockquote>
+  </div>
+</section>
 
-  {
-    profile.readingPath && profile.readingPath.length > 0 && (
-      <>
-        <h2>Reading Path</h2>
-        {/* 直式 stepper：節點編號沿用學派卡的 N° 裝置；書封與書架同一個代理
-            （.cover-img 掛的是 Bookshelf 的退路監聽——首頁書架必在，共用即可）。 */}
+{
+  contributions.length > 0 && (
+    <section class="section profile-contrib" aria-labelledby="contrib-title">
+      <div class="running-head home-head">
+        <h2 class="home-head-title" id="contrib-title">
+          {nums.contributions && <span class="running-head-num">{nums.contributions}</span>}
+          <span lang="en">Contributions</span>
+        </h2>
+        <p class="home-head-meta">
+          <span>{String(contributions.length).padStart(2, "0")}</span>
+          <span lang="en">{contributions.length === 1 ? "Entry" : "Entries"}</span>
+        </p>
+      </div>
+      <div class="section-body">
+        <ol class="contrib-grid">
+          {contributions.map((c, i) => (
+            <li class="contrib reveal">
+              <span class="contrib-num" aria-hidden="true">
+                {pad(i)}
+              </span>
+              <h3 class="contrib-title">
+                {c.conceptPath ? (
+                  <a class="contrib-link" href={withBase(`/concepts/${c.conceptPath}/`)}>
+                    <span class="contrib-link-text">{c.title}</span>
+                    <span class="arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </a>
+                ) : (
+                  c.title
+                )}
+              </h3>
+              <p class="contrib-summary" set:html={c.summary} />
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
+{
+  readingPath.length > 0 && (
+    <section class="section profile-path" aria-labelledby="path-title">
+      <div class="running-head home-head">
+        <h2 class="home-head-title" id="path-title">
+          {nums.readingPath && <span class="running-head-num">{nums.readingPath}</span>}
+          <span lang="en">Reading Path</span>
+        </h2>
+        <p class="home-head-meta">
+          <span>{String(readingPath.length).padStart(2, "0")}</span>
+          <span lang="en">{readingPath.length === 1 ? "Stage" : "Stages"}</span>
+        </p>
+      </div>
+      <div class="section-body">
         <ol class="reading-path">
-          {profile.readingPath.map((r, i) => (
-            <li class="reading-stage">
-              <span class="reading-dot">{String(i + 1).padStart(2, "0")}</span>
-              <span class="reading-stage-name">{r.stage}</span>
-              <span class="reading-why">{r.why}</span>
+          {readingPath.map((r, i) => (
+            <li class="reading-stage reveal">
+              <span class="reading-node" aria-hidden="true">
+                <span class="reading-dot" />
+                <span class="reading-num">{pad(i)}</span>
+              </span>
+              <div class="reading-text">
+                <h3 class="reading-stage-name">{r.stage}</h3>
+                <p class="reading-why">{r.why}</p>
+              </div>
               <span class="reading-books">
                 {r.slugs.map((slug) => (
                   <a
@@ -60,14 +113,14 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
                     title={titleBySlug.get(slug) ?? slug}
                   >
                     <img
-                      class="cover-img"
+                      class="cover-img reading-cover-img"
                       src={bookCoverUrl(slug)}
                       data-fallback={bookUrl(slug, "cover.png")}
                       alt={titleBySlug.get(slug) ?? slug}
                       loading="lazy"
                       decoding="async"
-                      width="84"
-                      height="121"
+                      width="132"
+                      height="190"
                     />
                   </a>
                 ))}
@@ -75,20 +128,27 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
             </li>
           ))}
         </ol>
-      </>
-    )
-  }
+      </div>
+    </section>
+  )
+}
 
-  {
-    profile.influences && profile.influences.length > 0 && (
-      <>
-        <h2>Influences</h2>
-        <ul class="influences">
-          {profile.influences.map((i) => (
-            <li>
+{
+  influences.length > 0 && (
+    <section class="section profile-influences" aria-labelledby="influences-title">
+      <div class="running-head home-head">
+        <h2 class="home-head-title" id="influences-title">
+          {nums.influences && <span class="running-head-num">{nums.influences}</span>}
+          <span lang="en">Influences</span>
+        </h2>
+      </div>
+      <div class="section-body">
+        <ul class="influences reveal">
+          {influences.map((i) => (
+            <li class="influence">
               {i.site ? (
                 <a
-                  class="influence-name"
+                  class="influence-name is-linked"
                   href={siteUrl(i.site, "/")}
                   target="_blank"
                   rel="noopener"
@@ -102,7 +162,7 @@ const titleBySlug = new Map(bibliography.filter((e) => e.slug).map((e) => [e.slu
             </li>
           ))}
         </ul>
-      </>
-    )
-  }
-</section>
+      </div>
+    </section>
+  )
+}

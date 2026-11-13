@@ -1,68 +1,73 @@
 ---
-// 首頁「總覽」（v0.29.0；v0.31.0 分段收進 tab）：讓人一次讀懂這個領域／這個人的樣貌。
-// 資料由各站 src/data/overview.ts 提供（型別見 lib/library.ts），由 /note-guide 產出。
-//
-// 版面（v0.31.0）：lede 一句話**常駐**——它是把全站壓成一句的那行，是這一格的存在理由，
-// 不進 tab；三段（背景／貢獻／主要論點…）收進切換鍵，減少首頁置放長度。
-// 機制沿 Bibliography 分組鍵的同一套語彙：鍵預設 hidden、由 script 打開，無 JS 退回全段攤開；
-// 非當前段 hidden="until-found"（伺服端就標好，不閃版），Ctrl+F 搜得到、搜到自動切段，
-// 無 JS 由 <noscript> 樣式攤開。
 import type { SiteOverview } from "../lib/library";
 
 interface Props {
   overview?: SiteOverview | null;
+  num?: string;
 }
-const { overview } = Astro.props;
-// 標題固定 "Overview"（v0.34.0）——chrome 一律簡短英文（Andrew 裁定：中文長標拗口）；
-// 人物／領域之分由內容自明，不必印在標題上。段落 heading（tab 標籤）由站台資料提供，
-// 標準詞彙：person = Background / Contributions / Claims（+ Verdict 選配）；
-// domain = Landscape / Threads / Verdict（正本見 DESIGN.md §4.2）。
+const { overview, num = "" } = Astro.props;
+const uid = "ov";
 ---
 
 {
   overview && overview.sections.length > 0 && (
-    <section class="overview">
-      <div class="overview-head">
-        <h2>Overview</h2>
-        {/* 判讀會過期（書單再進新書、概念頁再翻修），所以把「依哪一版站況寫的」印出來，
-            與頁尾的 curation 徽章同一個理由。沒填就不出，不要假裝新鮮。 */}
+    <section class="section overview" aria-labelledby={`${uid}-title`}>
+      <div class="running-head home-head">
+        <h2 class="home-head-title" id={`${uid}-title`}>
+          {num && <span class="running-head-num">{num}</span>}
+          <span lang="en">Overview</span>
+        </h2>
         {overview.writtenAt && (
-          <span class="overview-stamp" title="這份總覽依當時的站況寫成">
-            {overview.writtenAt}
-          </span>
+          <p class="home-head-meta">
+            <span lang="en">Written</span>
+            <time datetime={overview.writtenAt}>{overview.writtenAt}</time>
+          </p>
         )}
       </div>
 
-      <div class="overview-body">
-        <p class="overview-lede" set:html={overview.lede} />
+      <div class="section-body overview-body">
+        <p class="overview-lede reveal" set:html={overview.lede} />
 
-        <div class="overview-tabs" role="group" aria-label="總覽段落" hidden>
+        <div class="overview-tabs text-tabs" role="tablist" aria-label="Overview sections" hidden>
           {overview.sections.map((s, i) => (
             <button
               type="button"
-              class={`overview-tab${i === 0 ? " is-active" : ""}`}
-              aria-pressed={i === 0 ? "true" : "false"}
+              role="tab"
+              class="text-tab overview-tab"
+              id={`${uid}-tab-${i}`}
+              aria-controls={`${uid}-panel-${i}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              tabindex={i === 0 ? "0" : "-1"}
               data-sec={String(i)}
             >
-              {s.heading}
+              <span class="overview-tab-num" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{s.heading}</span>
             </button>
           ))}
         </div>
 
-        {overview.sections.map((s, i) => (
-          <div
-            class="overview-section"
-            data-sec={String(i)}
-            hidden={i === 0 ? undefined : "until-found"}
-          >
-            <h3 class="overview-section-name">{s.heading}</h3>
-            <p class="overview-text" set:html={s.body} />
-          </div>
-        ))}
+        <div class="overview-panels">
+          {overview.sections.map((s, i) => (
+            <div
+              class="overview-section"
+              id={`${uid}-panel-${i}`}
+              data-sec={String(i)}
+              hidden={i === 0 ? undefined : "until-found"}
+            >
+              <h3 class="overview-section-name">
+                <span class="overview-section-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {s.heading}
+              </h3>
+              <p class="overview-text" set:html={s.body} />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* 無 JS：切換鍵不出（死鍵不如不擺），三段攤開。hidden="until-found" 在支援的瀏覽器
-          是 content-visibility、其餘退化成 display:none——兩者都在這裡蓋回可見。 */}
       <noscript>
         <style>
           .overview-section[hidden] {
@@ -76,31 +81,52 @@ const { overview } = Astro.props;
 }
 
 <script>
-  // 段落切換：同一份 DOM 開關 hidden，不重畫。找頁（Ctrl+F）命中隱藏段時瀏覽器發
-  // beforematch——把該段轉為當前 tab，別讓命中內容亮一下又被收回去。
   for (const root of document.querySelectorAll<HTMLElement>(".overview")) {
-    const tabs = root.querySelector<HTMLElement>(".overview-tabs");
-    const buttons = [...root.querySelectorAll<HTMLButtonElement>(".overview-tab")];
-    const sections = [...root.querySelectorAll<HTMLElement>(".overview-section")];
-    if (!tabs || buttons.length === 0) continue;
+    const list = root.querySelector<HTMLElement>(".overview-tabs");
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>(".overview-tab")];
+    const panels = [...root.querySelectorAll<HTMLElement>(".overview-section")];
+    if (!list || tabs.length === 0) continue;
 
-    tabs.hidden = false;
-    root.classList.add("is-tabbed"); // tab 化後段內 h3 與鍵重複，由 CSS 收掉
+    list.hidden = false;
+    root.classList.add("is-tabbed");
+    panels.forEach((p, i) => {
+      p.setAttribute("role", "tabpanel");
+      p.setAttribute("aria-labelledby", tabs[i]?.id ?? "");
+      p.tabIndex = 0;
+    });
 
-    const activate = (sec: string) => {
-      for (const b of buttons) {
-        const on = b.dataset.sec === sec;
-        b.classList.toggle("is-active", on);
-        b.setAttribute("aria-pressed", String(on));
+    const activate = (sec: string, focus = false) => {
+      for (const t of tabs) {
+        const on = t.dataset.sec === sec;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
       }
-      for (const s of sections) {
-        if (s.dataset.sec === sec) s.removeAttribute("hidden");
-        else s.setAttribute("hidden", "until-found");
+      for (const p of panels) {
+        if (p.dataset.sec === sec) p.removeAttribute("hidden");
+        else p.setAttribute("hidden", "until-found");
       }
     };
 
-    for (const b of buttons) b.addEventListener("click", () => activate(b.dataset.sec ?? "0"));
-    for (const s of sections)
-      s.addEventListener("beforematch", () => activate(s.dataset.sec ?? "0"));
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => activate(t.dataset.sec ?? "0"));
+      t.addEventListener("keydown", (e) => {
+        const last = tabs.length - 1;
+        const to =
+          e.key === "ArrowRight" || e.key === "ArrowDown"
+            ? i === last ? 0 : i + 1
+            : e.key === "ArrowLeft" || e.key === "ArrowUp"
+              ? i === 0 ? last : i - 1
+              : e.key === "Home"
+                ? 0
+                : e.key === "End"
+                  ? last
+                  : -1;
+        if (to < 0) return;
+        e.preventDefault();
+        activate(tabs[to].dataset.sec ?? "0", true);
+      });
+    });
+    for (const p of panels) p.addEventListener("beforematch", () => activate(p.dataset.sec ?? "0"));
   }
 </script>
