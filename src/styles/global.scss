@@ -34,6 +34,7 @@
   --easy-text: #0f7a36;
   --medium-text: #9a5a00;
   --hard-text: #b91c1c;
+  --on-accent: #ffffff;
   --star: #f59e0b;
   --guide: #8250df;
   --guide-bg: #f5f0ff;
@@ -80,6 +81,7 @@
   --easy-text: #34d399;
   --medium-text: #fbbf24;
   --hard-text: #f87171;
+  --on-accent: #16151a;
   --star: #fbbf24;
   --guide: #c4b5fd;
   --guide-bg: #211a36;
@@ -864,7 +866,7 @@ a {
   }
   &.is-primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
 }
 
@@ -1039,7 +1041,7 @@ a {
 .pp-primary {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--on-accent);
   background: var(--accent);
   border-radius: 4px;
   padding: 0.05rem 0.3rem;
@@ -1578,7 +1580,7 @@ a {
   &:hover {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
 }
 .queue {
@@ -1771,11 +1773,11 @@ a {
     background: color-mix(in srgb, var(--easy) 22%, var(--surface));
   }
   &.h2 {
-    background: color-mix(in srgb, var(--easy) 50%, var(--surface));
+    background: color-mix(in srgb, var(--easy) 40%, var(--surface));
   }
   &.h3 {
-    background: var(--easy);
-    color: #fff;
+    background: var(--easy-text);
+    color: var(--on-accent);
   }
 }
 .heat-empty {
@@ -1913,7 +1915,7 @@ a {
   .step-here {
     @include pill;
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font-size: 0.66rem;
   }
 
@@ -1921,7 +1923,7 @@ a {
     .step-order {
       background: var(--accent);
       border-color: var(--accent);
-      color: #fff;
+      color: var(--on-accent);
     }
     .step-link {
       background: var(--accent-weak);
