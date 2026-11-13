@@ -20,8 +20,8 @@ body:has(.hero-cloth) {
 .hero-text {
   grid-column: 1 / span 7;
   grid-row: 1;
-  align-self: center;
-  padding-block: clamp(1rem, 3vw, 2.5rem) clamp(2rem, 5vw, 4.5rem);
+  align-self: start;
+  padding-block: clamp(2rem, calc(24svh - 4rem), 9.5rem) clamp(2rem, 5vw, 4.5rem);
   padding-right: var(--col-gap);
   z-index: 1;
 }
@@ -47,6 +47,7 @@ body:has(.hero-cloth) {
 
 .hero-title {
   margin: clamp(1.1rem, 2.4vw, 1.9rem) 0 0;
+  font-family: $display-xl;
   font-size: var(--fs-display);
   line-height: 1.04;
   letter-spacing: 0.02em;
@@ -159,7 +160,7 @@ body:has(.hero-cloth) {
   position: absolute;
   left: calc(var(--cloth-pad) - 0.04em);
   bottom: calc(var(--cloth-pad) * 0.5);
-  font-family: $display;
+  font-family: $display-xl;
   font-size: min(32cqw, 27cqh);
   font-weight: 300;
   line-height: 0.78;
