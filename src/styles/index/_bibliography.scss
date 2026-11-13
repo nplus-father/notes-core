@@ -54,7 +54,7 @@
 
 .biblio-legend-n {
   font-family: $mono;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
@@ -66,7 +66,7 @@
 .biblio-bars {
   display: flex;
   align-items: flex-end;
-  padding-top: 1.4rem;
+  padding-top: 1.2rem;
   overflow-x: auto;
 }
 
@@ -122,7 +122,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-family: $mono;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1;
   color: var(--muted);
   opacity: 0;
@@ -146,7 +146,7 @@
 .biblio-col-label {
   margin-top: 0.5rem;
   font-family: $mono;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
@@ -161,7 +161,7 @@
   gap: 0.5rem 1.5rem;
   margin: 1rem 0 0;
   @include micro;
-  color: var(--muted);
+  color: var(--text-2);
   > span:first-child {
     margin-right: auto;
   }
@@ -197,7 +197,7 @@
 
 .biblio-tab-count {
   font-family: $mono;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0;
   color: var(--muted);
@@ -298,7 +298,7 @@
   width: 3.75rem;
   padding-top: 1rem !important;
   font-family: $mono;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   text-align: right;
   white-space: nowrap;
   color: var(--muted);
@@ -307,6 +307,10 @@
 
 .biblio-none {
   color: var(--muted);
+}
+
+.biblio-remark:has(> .biblio-none:only-child) {
+  text-align: center;
 }
 
 .biblio-row:is(.is-skipped, .is-unavailable) {

@@ -11,7 +11,7 @@
 }
 .card-cat {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   margin-bottom: 0.3rem;
   font-weight: 600;
@@ -39,7 +39,7 @@
   }
   .card-num {
     font-family: $mono;
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     color: var(--muted);
   }
   .card-title {
@@ -55,7 +55,7 @@
     flex-wrap: wrap;
   }
   .card-cx {
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
     margin-left: auto;

@@ -2,5 +2,6 @@
 
 @mixin micro {
   @include label;
-  font-size: max(0.75rem, var(--fs-label));
+  font-size: max(0.8125rem, var(--fs-label));
+  color: var(--text-2);
 }

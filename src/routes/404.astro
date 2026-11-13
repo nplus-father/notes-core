@@ -2,7 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import { withBase } from "../lib/url";
-import { site } from "virtual:notes-core/site";
+import { site, bibliography } from "virtual:notes-core/site";
+import { getCollection } from "astro:content";
+
+const hasGuide = (await getCollection("guide")).length > 0;
+const hasConcepts = (await getCollection("concepts")).length > 0;
+const hasLibrary = (bibliography as unknown[]).length > 0;
+const conceptLabel = site.conceptLabelEn ?? "Concepts";
+const suggestions = [
+  hasGuide && { href: withBase("guide/"), label: "Guide" },
+  hasConcepts && { href: withBase("concepts/"), label: conceptLabel },
+  hasLibrary && { href: withBase("library/"), label: "Library" },
+].filter(Boolean) as { href: string; label: string }[];
 ---
 
 <BaseLayout title={`Not found · ${site.brand}`} site={site} noindex>
@@ -11,10 +22,35 @@ import { site } from "virtual:notes-core/site";
     <div class="nf-body">
       <p class="nf-kicker label"><span class="seal" aria-hidden="true"></span>Not found</p>
       <h1 class="nf-title" id="nf-h">這一頁不在書裡，可能是網址打錯了，或它已經換了位置。</h1>
-      <a class="nf-home arrow-nudge" href={withBase("/")}>
-        <span class="nf-home-text">Back to {site.brand}</span>
-        <Icon name="arrow-right" size={20} />
-      </a>
+      <form class="nf-search" action={withBase("search/")} method="get" role="search">
+        <label class="nf-search-label label" for="nf-q">Search this station</label>
+        <div class="nf-search-row">
+          <input
+            id="nf-q"
+            name="q"
+            type="search"
+            autocomplete="off"
+            placeholder={site.searchPlaceholder ?? "Search notes…"}
+          />
+          <button type="submit" class="nf-search-go">
+            <span>Search</span>
+            <Icon name="arrow-right" size={18} />
+          </button>
+        </div>
+      </form>
+      <nav class="nf-links" aria-label="Suggestions">
+        {
+          suggestions.map((l) => (
+            <a class="link-draw" href={l.href}>
+              {l.label}
+            </a>
+          ))
+        }
+        <a class="nf-home arrow-nudge" href={withBase("/")}>
+          <span class="nf-home-text">Back to {site.brand}</span>
+          <Icon name="arrow-right" size={18} />
+        </a>
+      </nav>
     </div>
   </section>
 </BaseLayout>

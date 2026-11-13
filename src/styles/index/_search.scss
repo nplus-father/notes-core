@@ -123,7 +123,7 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     padding: 0 0 0 1rem;
     transform: translateY(-50%);
     background: transparent;
-    color: var(--muted);
+    color: var(--text-2);
     cursor: pointer;
     &:hover,
     &:focus-visible {
@@ -153,7 +153,7 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     grid-column: 10 / -1;
     grid-row: 1;
     min-width: 0;
-    margin: 1.6rem 0 0;
+    margin: 3.55rem 0 0;
     padding: 0;
     @include below-grid {
       order: -1;
@@ -188,7 +188,17 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     min-height: 40px;
     padding: 0;
     color: var(--text);
+    &[data-active]::before {
+      content: attr(data-active);
+      order: 1;
+      margin: 0 auto 0 0.8rem;
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--ink);
+      color: var(--text);
+      letter-spacing: 0.08em;
+    }
     &::after {
+      order: 2;
       position: static;
       flex: none;
       width: 0.7rem;
@@ -261,7 +271,7 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     min-height: 0;
     margin: 0;
     padding: 1.6rem 0 1rem;
-    color: var(--muted);
+    color: var(--text-2);
   }
 
   &[style*="--pf-loose"] .pagefind-ui__message::after {
@@ -298,7 +308,7 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
       content: counter(pf, decimal-leading-zero);
       padding-top: 0.45rem;
       font-family: $mono;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       color: var(--muted);
     }
     &:last-of-type {
@@ -355,27 +365,46 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
     text-decoration-skip-ink: none;
   }
 
+  .pf-line {
+    @include micro;
+    margin: 0.3rem 0 0;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+  }
+
   .pagefind-ui__result-nested {
     display: block;
-    margin-top: 0.6rem;
-    padding: 0.55rem 0 0 1.1rem;
-    border-left: 1px solid var(--border);
+    margin-top: 0.75rem;
+    padding: 0 0 0 1.1rem;
+    border-left: 0;
     &:first-of-type {
-      margin-top: 0.9rem;
+      margin-top: 1rem;
     }
     .pagefind-ui__result-title {
-      font-size: 1rem;
-      font-weight: 500;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: 0.7rem;
+      font-family: $display;
+      font-size: 1.02rem;
+      font-weight: 600;
+      &::before {
+        @include micro;
+        content: "Section";
+        flex: none;
+        letter-spacing: 0.12em;
+        color: var(--text-2);
+      }
     }
     .pagefind-ui__result-link {
-      color: var(--text-2);
+      color: var(--text);
       &::before {
         content: none;
       }
     }
     .pagefind-ui__result-excerpt {
       margin-top: 0.15rem;
-      font-size: 0.82rem;
+      font-size: var(--fs-small);
     }
   }
 
@@ -428,12 +457,12 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
 .search-browse-h {
   @include micro;
   margin: 0 0 0.25rem;
-  color: var(--muted);
+  color: var(--text-2);
 }
 
 .search-browse-n {
   margin-left: auto;
   font-family: $mono;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
 }

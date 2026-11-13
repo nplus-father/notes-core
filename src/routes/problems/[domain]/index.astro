@@ -52,7 +52,6 @@ const levels = ["Easy", "Medium", "Hard"]
       {num > 0 && <span class="idx-kicker-num">{pad2(num)}</span>}
     </p>
     <h1 class="idx-title" lang={latinLang(domain.name)}>{domain.name}</h1>
-    {domain.intro && <p class="co-intro">{domain.intro}</p>}
     <dl class="co-stats">
       <div>
         <dt>Problems</dt>
@@ -84,21 +83,13 @@ const levels = ["Easy", "Medium", "Hard"]
         )
       }
     </dl>
+    {domain.intro && <p class="co-intro">{domain.intro}</p>}
   </header>
 
-  <section class="section idx-list reveal" aria-labelledby="problems-h">
-    <div class="idx-rail">
-      <h2 class="running-head" id="problems-h">
-        <span class="running-head-num">01</span>Problems
-      </h2>
-      {
-        items.length > 0 && (
-          <p class="idx-rail-n">
-            {items.length} {items.length === 1 ? "entry" : "entries"}
-          </p>
-        )
-      }
-    </div>
+  <section class="section idx-list is-wide reveal" aria-labelledby="problems-h">
+    <h2 class="running-head" id="problems-h">
+      <span class="running-head-num">01</span>Problems
+    </h2>
     {
       items.length > 0 ? (
         <div class="section-body">
@@ -126,13 +117,10 @@ const levels = ["Easy", "Medium", "Hard"]
 
   {
     drilled.length > 0 && (
-      <section class="section idx-list reveal" aria-labelledby="drilled-h">
-        <div class="idx-rail">
-          <h2 class="running-head" id="drilled-h">
-            <span class="running-head-num">02</span>Concepts
-          </h2>
-          <p class="idx-rail-n">{drilled.length} drilled</p>
-        </div>
+      <section class="section idx-list is-wide reveal" aria-labelledby="drilled-h">
+        <h2 class="running-head" id="drilled-h">
+          <span class="running-head-num">02</span>Concepts
+        </h2>
         <div class="section-body">
           <ul class="toc-lines">
             {drilled.map(({ entry, n }) => {

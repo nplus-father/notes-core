@@ -143,6 +143,19 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
             a.insertBefore(main, text);
             main.appendChild(text);
           }
+          const href = a.getAttribute("href");
+          const line = metaByUrl.get(href);
+          const titleEl = a.parentElement;
+          let lineEl = titleEl?.nextElementSibling;
+          if (line && titleEl) {
+            if (!lineEl?.classList.contains("pf-line")) {
+              lineEl = document.createElement("p");
+              lineEl.className = "pf-line";
+              lineEl.lang = "en";
+              titleEl.after(lineEl);
+            }
+            if (lineEl.textContent !== line) lineEl.textContent = line;
+          }
           const node = main.firstChild;
           if (!node || node.nodeType !== 3 || a.dataset.split === node.data) continue;
           const t = splitTitle(node.data);
@@ -161,6 +174,43 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
           }
           a.dataset.split = node.data;
         }
+      };
+      const metaByUrl = new Map();
+      const squash = (x) => x.replace(/\s+/g, "");
+      const dropHead = (excerpt, title, values) => {
+        if (typeof excerpt !== "string" || !excerpt) return excerpt;
+        const plain = [];
+        const re = /<[^>]*>|[\s\S]/g;
+        let m;
+        while ((m = re.exec(excerpt))) {
+          if (m[0].length === 1 && !/\s/.test(m[0])) plain.push({ ch: m[0], end: re.lastIndex });
+        }
+        const text = plain.map((p) => p.ch).join("");
+        let cut = 0;
+        const head = squash(title || "");
+        for (let k = Math.min(head.length, text.length); k >= 4; k--) {
+          if (text.startsWith(head.slice(head.length - k))) {
+            cut = k;
+            break;
+          }
+        }
+        if (!cut && head && text.startsWith(head)) cut = head.length;
+        let more = true;
+        while (more) {
+          more = false;
+          for (const v of values) {
+            const w = squash(v);
+            if (w && text.startsWith(w, cut)) {
+              cut += w.length;
+              more = true;
+            }
+          }
+        }
+        if (!cut) return excerpt;
+        const at = plain[cut - 1]?.end ?? 0;
+        const open = (excerpt.slice(0, at).match(/<mark>/g) ?? []).length;
+        const shut = (excerpt.slice(0, at).match(/<\/mark>/g) ?? []).length;
+        return (open > shut ? "<mark>" : "") + excerpt.slice(at).replace(/^\s*(<\/mark>)?/, "");
       };
       const PHRASE = new RegExp(`^[${CJK}]{2,}$`);
       const real = new URL(`${bundlePath}pagefind.js`, location.href).href;
@@ -210,10 +260,11 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
         else host.style.removeProperty("--pf-loose");
       };
       const wide = matchMedia("(min-width: 901px)").matches;
-      new PagefindUI({
+      const ui = new PagefindUI({
         element: "#search",
         bundlePath: phrased ? rankedPath : bundlePath,
         showSubResults: true,
+        showEmptyFilters: false,
         showImages: false,
         pageSize: 8,
         excerptLength: 26,
@@ -225,10 +276,20 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
         },
         processResult: (r) => {
           if (r.meta) r.meta.title = strip(r.meta.title);
-          r.excerpt = tidy(r.excerpt);
+          const f = r.filters ?? {};
+          const values = Object.values(f).flat();
+          const line = [
+            ...(f.Category ?? f.Domain ?? []),
+            ...(f.Difficulty ?? []),
+            ...(f.Type ?? []),
+          ]
+            .filter(Boolean)
+            .join(" · ");
+          if (line) metaByUrl.set(r.url, line);
+          r.excerpt = tidy(dropHead(strip(r.excerpt), r.meta?.title, values));
           for (const s of r.sub_results ?? []) {
             s.title = strip(s.title);
-            s.excerpt = tidy(s.excerpt);
+            s.excerpt = tidy(dropHead(strip(s.excerpt), s.title, []));
           }
           return r;
         },
@@ -252,11 +313,41 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
         input.removeAttribute("aria-label");
         document.querySelector(".search-label")?.removeAttribute("hidden");
       }
+      const q = new URLSearchParams(location.search).get("q")?.trim();
+      if (q) {
+        if (input) input.value = q;
+        ui.triggerSearch(q);
+      }
+      const desk = matchMedia("(min-width: 901px)");
+      const align = () => {
+        const panel = host.querySelector(".pagefind-ui__filter-panel");
+        const list = host.querySelector(".pagefind-ui__results");
+        const drawer = host.querySelector(".pagefind-ui__drawer");
+        if (!panel) return;
+        const off =
+          desk.matches && list && drawer
+            ? `${Math.round(list.getBoundingClientRect().top - drawer.getBoundingClientRect().top)}px`
+            : "";
+        if (panel.style.marginTop !== off) panel.style.marginTop = off;
+        for (const block of host.querySelectorAll(".pagefind-ui__filter-block")) {
+          const n = block.querySelectorAll(".pagefind-ui__filter-checkbox:checked").length;
+          const name = block.querySelector(".pagefind-ui__filter-name");
+          if (!name) continue;
+          const want = n ? `${n} active` : null;
+          if (name.getAttribute("data-active") !== want) {
+            if (want) name.setAttribute("data-active", want);
+            else name.removeAttribute("data-active");
+          }
+        }
+      };
+      host.addEventListener("change", () => requestAnimationFrame(align));
+      addEventListener("resize", () => requestAnimationFrame(align));
       let frame = 0;
       new MutationObserver(() => {
         cancelAnimationFrame(frame);
         frame = requestAnimationFrame(() => {
           decorate();
+          align();
           const settled = !host.querySelector(".pagefind-ui__loading");
           if (settled) showLoose(looseTerm && input?.value.trim() === looseTerm ? looseTerm : "");
         });

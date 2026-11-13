@@ -65,6 +65,17 @@ export interface ChartLabel {
   numY: number;
 }
 
+export interface ChartTag {
+  k: number;
+  i: number;
+  text: string;
+  latin: boolean;
+  x: number;
+  y: number;
+  anchor: "start" | "middle" | "end";
+  leader: string | null;
+}
+
 export interface ChartFurniture {
   size: number;
   c: number;
@@ -91,6 +102,8 @@ export interface ChartLayout {
   abbreviated: boolean;
   labelScale: number;
   bayer: { i: number; letter: string; x: number; y: number }[];
+  tags: ChartTag[];
+  sectors: { k: number; d: string }[];
 }
 
 const SIZE = 1000;
@@ -107,6 +120,9 @@ const NUM_SIZE = 13;
 const MAG_R = [0, 2.3, 3.2, 4.3, 5.7, 7.4];
 const PLANNED_R = 3.4;
 const SPACING = 30;
+const TAG_CJK = 19;
+const TAG_LATIN = 17.5;
+const TAG_CAP = 12;
 
 const r1 = (n: number) => Math.round(n * 10) / 10;
 const rad = (deg: number) => (deg * Math.PI) / 180;
@@ -239,6 +255,80 @@ function rayPath(x: number, y: number, r: number, mag: number): string {
     parts.push(`M${r1(x0)} ${r1(y0)}L${r1(xe)} ${r1(ye)}`);
   }
   return parts.join("");
+}
+
+type Box = { x0: number; y0: number; x1: number; y1: number };
+
+const TITLE_EN_TAIL = /^(.*?[^\s])\s*[（(][^()（）]*[)）]\s*$/;
+
+export function tagText(title: string): { text: string; latin: boolean } {
+  let main = title.replace(TITLE_EN_TAIL, "$1");
+  const cut = main.search(/[：:，、]|, |——/);
+  if (cut > 0) main = main.slice(0, cut);
+  main = main.trim();
+  const units = (ch: string) => (CJK.test(ch) ? 2 : 1);
+  const chars = [...main];
+  const total = chars.reduce((n, ch) => n + units(ch), 0);
+  const latin = !CJK.test(main);
+  if (total <= 16) return { text: main, latin };
+  let used = 0;
+  let end = 0;
+  while (end < chars.length && used + units(chars[end]) <= 14) used += units(chars[end++]);
+  let head = chars.slice(0, end).join("");
+  if (latin) {
+    const sp = head.lastIndexOf(" ");
+    if (sp > 6) head = head.slice(0, sp);
+  }
+  return { text: head.replace(/[\s,:;–—-]+$/, "") + "…", latin };
+}
+
+function tagWidth(text: string, size: number): number {
+  let w = 0;
+  for (const ch of text) {
+    if (CJK.test(ch)) w += size;
+    else if (ch === " ") w += size * 0.28;
+    else if (ch === "…") w += size * 0.9;
+    else if (/[MWmw]/.test(ch)) w += size * 0.82;
+    else if (/[A-Z]/.test(ch)) w += size * 0.66;
+    else if (/[il.,'’|]/.test(ch)) w += size * 0.26;
+    else w += size * 0.54;
+  }
+  return w;
+}
+
+const boxHitsCircle = (b: Box, x: number, y: number, r: number) =>
+  Math.hypot(x - clamp(x, b.x0, b.x1), y - clamp(y, b.y0, b.y1)) < r;
+
+const boxesOverlap = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+
+function boxHitsSeg(b: Box, p: [number, number], q: [number, number]): boolean {
+  const inside = (v: [number, number]) => v[0] > b.x0 && v[0] < b.x1 && v[1] > b.y0 && v[1] < b.y1;
+  if (inside(p) || inside(q)) return true;
+  const c: [number, number][] = [
+    [b.x0, b.y0],
+    [b.x1, b.y0],
+    [b.x1, b.y1],
+    [b.x0, b.y1],
+  ];
+  for (let j = 0; j < 4; j++) if (segCross(p, q, c[j], c[(j + 1) % 4])) return true;
+  return false;
+}
+
+function annularSector(r0: number, r1o: number, from: number, to: number): string {
+  if (to - from >= 359.9) {
+    const ring = (r: number) =>
+      `M${C - r} ${C}A${r} ${r} 0 1 1 ${C + r} ${C}A${r} ${r} 0 1 1 ${C - r} ${C}Z`;
+    return ring(r1o) + ring(r0);
+  }
+  const [ax, ay] = polar(r1o, from);
+  const [bx, by] = polar(r1o, to);
+  const [cx, cy] = polar(r0, to);
+  const [dx, dy] = polar(r0, from);
+  const large = to - from > 180 ? 1 : 0;
+  return (
+    `M${r1(ax)} ${r1(ay)}A${r1o} ${r1o} 0 ${large} 1 ${r1(bx)} ${r1(by)}` +
+    `L${r1(cx)} ${r1(cy)}A${r0} ${r0} 0 ${large} 0 ${r1(dx)} ${r1(dy)}Z`
+  );
 }
 
 export function layoutStarChart(input: ChartInput): ChartLayout | null {
@@ -707,6 +797,156 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
     (frand() < 0.22 ? large : small).push(`M${r1(x)} ${r1(y)}h0`);
   }
 
+  const pts: [number, number][][] = segments.map((sg) => [
+    [stars[sg.a].x, stars[sg.a].y],
+    [stars[sg.b].x, stars[sg.b].y],
+  ]);
+  for (const ln of links) {
+    const A = stars[ln.a];
+    const B = stars[ln.b];
+    const m = ln.d.match(/Q([\d.-]+) ([\d.-]+)/);
+    if (!m) continue;
+    const qx = +m[1];
+    const qy = +m[2];
+    let prev: [number, number] = [A.x, A.y];
+    for (let j = 1; j <= 8; j++) {
+      const t = j / 8;
+      const u = 1 - t;
+      const nxt: [number, number] = [
+        u * u * A.x + 2 * u * t * qx + t * t * B.x,
+        u * u * A.y + 2 * u * t * qy + t * t * B.y,
+      ];
+      pts.push([prev, nxt]);
+      prev = nxt;
+    }
+  }
+  const glyphBoxes: Box[] = bayer.map((b) => ({
+    x0: b.x - 8,
+    y0: b.y - 10,
+    x1: b.x + 8,
+    y1: b.y + 10,
+  }));
+  glyphBoxes.push({ x0: C - 14, y0: C - 14, x1: C + 14, y1: C + 14 });
+  const tagBoxes: Box[] = [];
+  const leaders: [number, number][][] = [];
+  const reach = (s: ChartStar) => s.r + (s.mag >= 5 ? 10 : s.mag >= 4 ? 8 : 5);
+  const lead: ChartStar[][] = [];
+  cats.forEach((_, k) => {
+    const own = stars.filter((s) => s.k === k && s.written);
+    if (!own.length) return;
+    own.sort(
+      (a, b) =>
+        Number(b.alpha) - Number(a.alpha) ||
+        b.mag - a.mag ||
+        hash(input.seed + a.slug) - hash(input.seed + b.slug)
+    );
+    lead.push(own.slice(0, 3));
+  });
+  const sizeOf = (k: number) => cats[k].pages.length;
+  const pick = lead
+    .slice()
+    .sort((a, b) => sizeOf(b[0].k) - sizeOf(a[0].k) || b[0].mag - a[0].mag)
+    .slice(0, TAG_CAP);
+  const tags: ChartTag[] = [];
+  const tryTag = (s: ChartStar): boolean => {
+    const { text, latin } = tagText(s.title);
+    if (!text) return false;
+    const size = latin ? TAG_LATIN : TAG_CJK;
+    const w = tagWidth(text, size);
+    const h = size * 1.3;
+    const g = reach(s) + 3;
+    const outX = s.x >= C ? 1 : -1;
+    const cands: { box: Box; anchor: ChartTag["anchor"]; tx: number; far: boolean }[] = [];
+    const dirs = [0, 180, -30, 30, 150, 210, -60, 60, 120, 240, -90, 90];
+    for (const extra of [0, 24, 50]) {
+      for (const base of dirs) {
+        const deg = outX > 0 ? base : 180 - base;
+        const ux = Math.cos(rad(deg));
+        const uy = Math.sin(rad(deg));
+        const d = g + extra;
+        const px = s.x + ux * d;
+        const py = s.y + uy * d;
+        let anchor: ChartTag["anchor"];
+        let x0: number;
+        if (ux > 0.3) {
+          anchor = "start";
+          x0 = px;
+        } else if (ux < -0.3) {
+          anchor = "end";
+          x0 = px - w;
+        } else {
+          anchor = "middle";
+          x0 = px - w / 2;
+        }
+        const y0 =
+          Math.abs(uy) < 0.3
+            ? py - h / 2
+            : uy < 0
+              ? py - h * (Math.abs(ux) > 0.3 ? 0.75 : 1)
+              : py - h * (Math.abs(ux) > 0.3 ? 0.25 : 0);
+        const box = { x0, y0, x1: x0 + w, y1: y0 + h };
+        const tx = anchor === "start" ? box.x0 : anchor === "end" ? box.x1 : (box.x0 + box.x1) / 2;
+        cands.push({ box, anchor, tx, far: extra > 0 });
+      }
+    }
+    for (const cand of cands) {
+      const b = cand.box;
+      const pad: Box = { x0: b.x0 - 4, y0: b.y0 - 3, x1: b.x1 + 4, y1: b.y1 + 3 };
+      const corners: [number, number][] = [
+        [pad.x0, pad.y0],
+        [pad.x1, pad.y0],
+        [pad.x1, pad.y1],
+        [pad.x0, pad.y1],
+      ];
+      if (corners.some(([x, y]) => Math.hypot(x - C, y - C) > R_FIELD - 8)) continue;
+      if (stars.some((o) => boxHitsCircle(pad, o.x, o.y, reach(o)))) continue;
+      if (pts.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
+      if (glyphBoxes.some((o) => boxesOverlap(pad, o))) continue;
+      if (tagBoxes.some((o) => boxesOverlap(pad, o))) continue;
+      if (leaders.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
+      let leader: string | null = null;
+      if (cand.far) {
+        const cx = clamp(s.x, b.x0, b.x1);
+        const cy = clamp(s.y, b.y0, b.y1);
+        const dist = Math.hypot(cx - s.x, cy - s.y) || 1;
+        const ux = (cx - s.x) / dist;
+        const uy = (cy - s.y) / dist;
+        const p: [number, number] = [s.x + ux * (reach(s) + 1), s.y + uy * (reach(s) + 1)];
+        const q: [number, number] = [cx - ux * 4, cy - uy * 4];
+        if (stars.some((o) => o !== s && pointSegDist([o.x, o.y], p, q) < reach(o))) continue;
+        if (tagBoxes.some((o) => boxHitsSeg(o, p, q))) continue;
+        leaders.push([p, q]);
+        leader = `M${r1(p[0])} ${r1(p[1])}L${r1(q[0])} ${r1(q[1])}`;
+      }
+      tagBoxes.push(pad);
+      tags.push({
+        k: s.k,
+        i: s.i,
+        text,
+        latin,
+        x: r1(cand.tx),
+        y: r1((b.y0 + b.y1) / 2),
+        anchor: cand.anchor,
+        leader,
+      });
+      return true;
+    }
+    return false;
+  };
+  for (const group of pick) {
+    for (const s of group) if (tryTag(s)) break;
+  }
+
+  const sectorPaths = sectors.map((sc, k) => ({
+    k,
+    d: annularSector(
+      R_IN - 30,
+      R_TICK,
+      sc.s0 - (K > 1 ? gap / 2 : 0),
+      sc.s1 + (K > 1 ? gap / 2 : 0)
+    ),
+  }));
+
   const plannedCount = stars.filter((s) => !s.written).length;
   return {
     stars,
@@ -737,5 +977,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
     abbreviated: labels.some((l) => !l.fits),
     labelScale: Math.round(labelScale * 100) / 100,
     bayer,
+    tags,
+    sectors: sectorPaths,
   };
 }
