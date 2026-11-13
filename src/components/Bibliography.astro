@@ -55,6 +55,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
           <div
             class="biblio-bars"
             role="img"
+            tabindex="0"
             aria-label={`Publication years: ${years.length} dated books from ${yearLabel(lo)} to ${yearLabel(hi)}, ink shows copies on the shelf.`}
           >
             {bars.map((b, i) => (
