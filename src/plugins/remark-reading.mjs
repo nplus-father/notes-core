@@ -83,8 +83,34 @@ function wrapHeadingEmoji(node) {
   if (first.type !== "text") return;
   const m = first.value.match(LEADING_EMOJI);
   if (!m) return;
-  const rest = first.value.slice(m[1].length);
-  node.children.splice(0, 1, emojiSpan(m[1]), { type: "text", value: rest });
+  const rest = first.value.slice(m[0].length);
+  const after = rest + node.children.slice(1).map(toText).join("");
+  if (/\p{Extended_Pictographic}/u.test(after)) return;
+  node.children.splice(0, 1, emojiSpan(m[1]), { type: "text", value: first.value.slice(m[1].length) });
+}
+
+const TRAILING_LATIN = /\s*[(（]\s*([^()（）]*[A-Za-z][^()（）]*?)\s*[)）]\s*$/;
+const HAN = /\p{Script=Han}/u;
+
+const hidden = (value) => ({
+  type: "emphasis",
+  data: { hName: "span", hProperties: { className: ["visually-hidden"] } },
+  children: [{ type: "text", value }],
+});
+
+function splitHeadingLatin(node) {
+  const last = node.children?.[node.children.length - 1];
+  if (!last || last.type !== "text") return;
+  const m = last.value.match(TRAILING_LATIN);
+  if (!m || HAN.test(m[1])) return;
+  const head = last.value.slice(0, m.index);
+  const before = node.children.slice(0, -1).map(toText).join("") + head;
+  if (!HAN.test(before)) return;
+  node.children.splice(node.children.length - 1, 1, { type: "text", value: head }, {
+    type: "emphasis",
+    data: { hName: "span", hProperties: { className: ["h-latin"], lang: "en" } },
+    children: [hidden(" ("), { type: "text", value: m[1] }, hidden(")")],
+  });
 }
 
 function joinCjkLines(node, index, parent) {
@@ -116,6 +142,7 @@ export default function remarkReading() {
     visit(tree, (node, index, parent) => {
       if (node.type === "heading" && (node.depth === 2 || node.depth === 3)) {
         wrapHeadingEmoji(node);
+        splitHeadingLatin(node);
         return;
       }
       if (node.type === "textDirective" && !node.data?.hName && parent && index != null) {

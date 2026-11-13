@@ -3,6 +3,7 @@ import SourceByline from "./SourceByline.astro";
 import Stars from "./Stars.astro";
 import DifficultyPill from "./DifficultyPill.astro";
 import { stripEmoji } from "../lib/site-config";
+import { splitTitle } from "../lib/reading";
 
 interface Heading {
   depth: number;
@@ -19,7 +20,7 @@ interface Props {
 const { furtherReading, importance, status, headings, difficulty } = Astro.props;
 const toc = headings
   .filter((h) => h.depth === 2 && h.slug !== "footnote-label")
-  .map((h) => ({ slug: h.slug, text: stripEmoji(h.text) }));
+  .map((h) => ({ slug: h.slug, text: splitTitle(stripEmoji(h.text)).main }));
 const statusLabel = status === "draft" ? "" : status === "studied" ? "Studied" : "Reviewed";
 const num = (i: number) => String(i + 1).padStart(2, "0");
 ---

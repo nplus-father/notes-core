@@ -99,8 +99,7 @@
   display: block;
   margin-top: 0.3rem;
   color: var(--muted);
-  .further &,
-  .seealso & {
+  .further & {
     font-family: $display;
     font-size: 0.95rem;
     font-style: italic;

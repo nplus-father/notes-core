@@ -50,7 +50,7 @@ const related = [...d.related, ...backlinks].map((s: string) => {
         slug: s,
         title: t.data.title,
         href: withBase(`concepts/${t.id}/`),
-        meta: categoryName(t.data.category),
+        meta: t.data.category === d.category ? undefined : categoryName(t.data.category),
       }
     : { slug: s };
 });

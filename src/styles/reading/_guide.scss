@@ -118,9 +118,9 @@
     border: 0;
     border-bottom: 1px solid var(--border);
     font-family: $display;
-    font-size: var(--fs-lede);
+    font-size: clamp(1.2rem, 1.75vw, 1.5rem);
     font-weight: 500;
-    line-height: 1.62;
+    line-height: 1.7;
     color: var(--text);
     text-wrap: pretty;
   }
