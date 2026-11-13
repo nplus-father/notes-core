@@ -121,7 +121,7 @@ const MAG_R = [0, 2.3, 3.2, 4.3, 5.7, 7.4];
 const PLANNED_R = 3.4;
 const SPACING = 30;
 const TAG_CJK = 19;
-const TAG_LATIN = 16.5;
+const TAG_LATIN = 17.5;
 const TAG_CAP = 12;
 
 const r1 = (n: number) => Math.round(n * 10) / 10;

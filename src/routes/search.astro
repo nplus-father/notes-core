@@ -286,10 +286,10 @@ const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
             .filter(Boolean)
             .join(" · ");
           if (line) metaByUrl.set(r.url, line);
-          r.excerpt = tidy(dropHead(r.excerpt, r.meta?.title, values));
+          r.excerpt = tidy(dropHead(strip(r.excerpt), r.meta?.title, values));
           for (const s of r.sub_results ?? []) {
             s.title = strip(s.title);
-            s.excerpt = tidy(s.excerpt);
+            s.excerpt = tidy(dropHead(strip(s.excerpt), s.title, []));
           }
           return r;
         },
