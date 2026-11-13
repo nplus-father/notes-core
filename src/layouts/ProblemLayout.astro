@@ -119,10 +119,14 @@ const problemLabel = site.problemLabelEn ?? "Problems";
         difficulty={d.difficulty}
       />
       <div id="solution" class="reading-body prose" data-pagefind-body>
-        <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
-        <span class="pf-meta" data-pagefind-filter="Type">Problem</span>
-        <span class="pf-meta" data-pagefind-filter="Difficulty">{d.difficulty}</span>
-        <span class="pf-meta" data-pagefind-filter="Domain">{domain?.name ?? d.domain}</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-meta="title">{d.title}</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Type">Problem</span>
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Difficulty"
+          >{d.difficulty}</span
+        >
+        <span class="pf-meta" data-pagefind-ignore data-pagefind-filter="Domain"
+          >{domain?.name ?? d.domain}</span
+        >
         <slot />
       </div>
     </div>
