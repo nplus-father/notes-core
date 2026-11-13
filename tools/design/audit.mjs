@@ -119,7 +119,7 @@ const overflowProbe = () => {
 const emojiProbe = () => {
   const re = /\p{Extended_Pictographic}/gu;
   const out = [];
-  for (const sel of ["nav.topnav", "footer", ".crumbs", "h1"]) {
+  for (const sel of [".topnav", ".tabbar", "footer", ".crumbs", "h1"]) {
     for (const el of document.querySelectorAll(sel)) {
       const text = el.textContent || "";
       const hits = [];
@@ -143,7 +143,7 @@ const emojiProbe = () => {
 
 const tapProbe = () => {
   const out = [];
-  for (const el of document.querySelectorAll("nav.topnav :is(a, button, input, summary, [role=tab])")) {
+  for (const el of document.querySelectorAll(".topnav :is(a, button, input, summary, [role=tab]), .tabbar :is(a, button, input, summary, [role=tab])")) {
     const r = el.getBoundingClientRect();
     if (r.width === 0 && r.height === 0) continue;
     const cs = getComputedStyle(el);
