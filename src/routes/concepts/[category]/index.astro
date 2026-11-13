@@ -44,63 +44,63 @@ const bookSet = new Set<string>(
     site={site}
     items={[{ label: conceptLabel, href: "/concepts/" }, { label: category.name }]}
   />
-  <header class="page-head idx-head chapter-open section">
-    <div class="idx-side co-side">
-      <p class="co-kicker label">Chapter</p>
+  <header class="page-head idx-head is-wide chapter-open section">
+    <p class="running-head idx-kicker">
+      Chapter
+      {num > 0 && <span class="idx-kicker-num">{pad2(num)}</span>}
+    </p>
+    <h1 class="idx-title" lang={latinLang(category.name)}>{category.name}</h1>
+    {category.intro && <p class="co-intro">{category.intro}</p>}
+    <dl class="co-stats">
       {
-        num > 0 && (
-          <span class="co-num" aria-hidden="true">
-            {pad2(num)}
-          </span>
+        planned.length > 0 ? (
+          <div class="co-written">
+            <dt>Written</dt>
+            <dd>
+              {items.length}
+              <span class="toc-slash">/</span>
+              {items.length + planned.length}
+              <span class="toc-meter" aria-hidden="true">
+                <i style={`--p:${items.length / (items.length + planned.length)}`} />
+              </span>
+            </dd>
+          </div>
+        ) : (
+          <div>
+            <dt>Pages</dt>
+            <dd>{items.length}</dd>
+          </div>
         )
       }
-    </div>
-    <div class="idx-main">
-      <h1 class="idx-title" lang={latinLang(category.name)}>{category.name}</h1>
-      {category.intro && <p class="co-intro">{category.intro}</p>}
-      <dl class="co-stats">
-        <div>
-          <dt>Pages</dt>
-          <dd>{items.length}</dd>
-        </div>
-        {
-          planned.length > 0 && (
-            <div>
-              <dt>Planned</dt>
-              <dd>{planned.length}</dd>
-            </div>
-          )
-        }
-        {
-          bookSet.size > 0 && (
-            <div>
-              <dt>{bookSet.size === 1 ? "Book" : "Books"}</dt>
-              <dd>{bookSet.size}</dd>
-            </div>
-          )
-        }
-        {
-          problemSet.size > 0 && (
-            <div>
-              <dt>Problems</dt>
-              <dd>{problemSet.size}</dd>
-            </div>
-          )
-        }
-        {
-          category.sister && (
-            <div class="co-deeper">
-              <dt>Deeper</dt>
-              <dd>
-                <a class="link-draw arrow-nudge" href={siteUrl(category.sister)}>
-                  {siteLabel(category.sister)} <span class="arrow">→</span>
-                </a>
-              </dd>
-            </div>
-          )
-        }
-      </dl>
-    </div>
+      {
+        bookSet.size > 0 && (
+          <div>
+            <dt>{bookSet.size === 1 ? "Book" : "Books"}</dt>
+            <dd>{bookSet.size}</dd>
+          </div>
+        )
+      }
+      {
+        problemSet.size > 0 && (
+          <div>
+            <dt>Problems</dt>
+            <dd>{problemSet.size}</dd>
+          </div>
+        )
+      }
+      {
+        category.sister && (
+          <div class="co-deeper">
+            <dt>Deeper</dt>
+            <dd>
+              <a class="link-draw arrow-nudge" href={siteUrl(category.sister)}>
+                {siteLabel(category.sister)} <span class="arrow">→</span>
+              </a>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
   </header>
 
   {
@@ -115,6 +115,16 @@ const bookSet = new Set<string>(
           </p>
         </div>
         <div class="section-body">
+          <p class="rows-key" aria-hidden="true">
+            Importance
+            <span class="imp">
+              <i class="on" />
+              <i class="on" />
+              <i class="on" />
+              <i />
+              <i />
+            </span>
+          </p>
           <ol class="rows">
             {items.map((entry: any, i: number) => (
               <ConceptCard entry={entry} index={i + 1} />

@@ -29,9 +29,7 @@ main.container:has(> .nf) {
   font-weight: 300;
   line-height: 0.8;
   letter-spacing: -0.06em;
-  font-variant-numeric: lining-nums;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--ink);
+  @include outlined-numeral(var(--ink));
   user-select: none;
   @include below-grid {
     grid-row: 1;

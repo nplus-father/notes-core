@@ -24,6 +24,21 @@
   }
 }
 
+.page-head.idx-head.is-wide {
+  display: block;
+}
+
+.idx-kicker {
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  color: var(--muted);
+}
+
+.idx-kicker-num {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
 .idx-title {
   margin: 0;
   font-family: $display;
@@ -604,10 +619,25 @@ a.toc-row {
 .row-arrow {
   grid-area: arrow;
   align-self: center;
-  color: var(--border-mid);
+  color: var(--muted);
   transition:
     color var(--dur-hover) var(--ease),
     transform var(--dur-hover) var(--ease);
+}
+
+.rows-key {
+  @include micro;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.7rem calc(1.25rem + clamp(0.9rem, 1.6vw, 1.5rem)) 0 0;
+  color: var(--muted);
+  @include below-grid {
+    justify-content: flex-start;
+    padding: 0.7rem 0 0 calc(2rem + clamp(0.9rem, 1.6vw, 1.5rem));
+  }
 }
 
 .imp {
@@ -828,4 +858,18 @@ a.toc-row {
 
 .section.idx-filter-wrap + .toc {
   margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.co-stats .co-written dd {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  .toc-slash {
+    margin: 0 0.1em;
+  }
+  .toc-meter {
+    flex: none;
+    width: 4.5rem;
+    margin-left: 0.75rem;
+  }
 }

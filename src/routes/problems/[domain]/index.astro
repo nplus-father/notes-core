@@ -46,52 +46,44 @@ const levels = ["Easy", "Medium", "Hard"]
     site={site}
     items={[{ label: problemLabel, href: "/problems/" }, { label: domain.name }]}
   />
-  <header class="page-head idx-head chapter-open section">
-    <div class="idx-side co-side">
-      <p class="co-kicker label">Domain</p>
+  <header class="page-head idx-head is-wide chapter-open section">
+    <p class="running-head idx-kicker">
+      Domain
+      {num > 0 && <span class="idx-kicker-num">{pad2(num)}</span>}
+    </p>
+    <h1 class="idx-title" lang={latinLang(domain.name)}>{domain.name}</h1>
+    {domain.intro && <p class="co-intro">{domain.intro}</p>}
+    <dl class="co-stats">
+      <div>
+        <dt>Problems</dt>
+        <dd>{items.length}</dd>
+      </div>
       {
-        num > 0 && (
-          <span class="co-num" aria-hidden="true">
-            {pad2(num)}
-          </span>
+        levels.map((x) => (
+          <div>
+            <dt>
+              <span class="diff" data-level={DIFFICULTY_LEVEL[x.l.toLowerCase()]}>
+                <span class="diff-bars" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                {x.l}
+              </span>
+            </dt>
+            <dd>{x.n}</dd>
+          </div>
+        ))
+      }
+      {
+        conceptSet.size > 0 && (
+          <div>
+            <dt>Concepts</dt>
+            <dd>{conceptSet.size}</dd>
+          </div>
         )
       }
-    </div>
-    <div class="idx-main">
-      <h1 class="idx-title" lang={latinLang(domain.name)}>{domain.name}</h1>
-      {domain.intro && <p class="co-intro">{domain.intro}</p>}
-      <dl class="co-stats">
-        <div>
-          <dt>Problems</dt>
-          <dd>{items.length}</dd>
-        </div>
-        {
-          levels.map((x) => (
-            <div>
-              <dt>
-                <span class="diff" data-level={DIFFICULTY_LEVEL[x.l.toLowerCase()]}>
-                  <span class="diff-bars" aria-hidden="true">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  {x.l}
-                </span>
-              </dt>
-              <dd>{x.n}</dd>
-            </div>
-          ))
-        }
-        {
-          conceptSet.size > 0 && (
-            <div>
-              <dt>Concepts</dt>
-              <dd>{conceptSet.size}</dd>
-            </div>
-          )
-        }
-      </dl>
-    </div>
+    </dl>
   </header>
 
   <section class="section idx-list reveal" aria-labelledby="problems-h">
@@ -110,6 +102,16 @@ const levels = ["Easy", "Medium", "Hard"]
     {
       items.length > 0 ? (
         <div class="section-body">
+          <p class="rows-key" aria-hidden="true">
+            Importance
+            <span class="imp">
+              <i class="on" />
+              <i class="on" />
+              <i class="on" />
+              <i />
+              <i />
+            </span>
+          </p>
           <ol class="rows">
             {items.map((entry: any, i: number) => (
               <ProblemCard entry={entry} index={i + 1} />
