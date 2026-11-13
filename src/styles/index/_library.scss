@@ -9,10 +9,10 @@
 
 .lib-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem 0;
   margin: clamp(2rem, 4vw, 3rem) 0 0;
-  border-top: 1px solid var(--ink);
+  border-top: 3px solid var(--vol);
   > div {
     display: flex;
     flex-direction: column;
@@ -22,9 +22,6 @@
   > div + div {
     padding-left: 1rem;
     border-left: 1px solid var(--border);
-  }
-  > div[title] {
-    cursor: help;
   }
   dt {
     @include micro;
@@ -45,17 +42,37 @@
   .lib-stat-note {
     order: 3;
     margin: -0.2rem 0 0;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     line-height: 1.45;
-    color: var(--muted);
+    color: var(--text-2);
   }
-  @include below-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    > div:nth-child(2n + 1) {
-      padding-left: 0;
-      border-left: 0;
+  @media (max-width: $bp-nav) {
+    > div {
+      gap: 0.35rem;
+      padding: 0.8rem 0.6rem 0 0;
+    }
+    > div + div {
+      padding-left: 0.75rem;
+    }
+    .lib-stat-n {
+      font-size: clamp(1.6rem, 8vw, 2.2rem);
+    }
+    dt {
+      letter-spacing: 0.08em;
+    }
+    .lib-stat-note {
+      font-size: 0.8125rem;
     }
   }
+}
+
+.lib-summary {
+  max-width: 46em;
+  text-wrap: pretty;
+  margin: 1.4rem 0 0;
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: var(--text-2);
 }
 
 .lib-body {
@@ -211,7 +228,7 @@
     min-width: 2px;
     height: 5px;
     transform: translateY(-50%);
-    background: var(--ink);
+    background: var(--vol);
     transition: background-color var(--dur-hover) var(--ease);
   }
 }

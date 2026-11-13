@@ -64,12 +64,20 @@ const byK = chart ? chart.labels.map((l) => chart.stars.filter((s) => s.k === l.
 const segByK = chart ? chart.labels.map((l) => chart.segments.filter((s) => s.k === l.k)) : [];
 const rayD = new Map(f?.rays.map((r) => [r.mag, r.d]) ?? []);
 const nameOf = (k: number) => input[k]?.name ?? "";
-const tagsByK = chart ? chart.labels.map((l) => chart.tags.filter((t) => t.k === l.k)) : [];
+const tagsByK = chart
+  ? chart.labels.map((l) => [
+      ...chart.tags.filter((t) => t.k === l.k).map((t) => ({ t, m: false })),
+      ...chart.mobileTags.filter((t) => t.k === l.k).map((t) => ({ t, m: true })),
+    ])
+  : [];
 ---
 
 {
   chart && f && (
-    <figure class:list={["sc", { "has-abbr": chart.abbreviated }]} aria-labelledby="sc-cap">
+    <figure
+      class:list={["sc", { "has-abbr": chart.abbreviated, "is-sparse": chart.sparse }]}
+      aria-labelledby="sc-cap"
+    >
       <div class="sc-plate">
         <svg
           class="sc-svg"
@@ -80,6 +88,7 @@ const tagsByK = chart ? chart.labels.map((l) => chart.tags.filter((t) => t.k ===
         >
           <defs>
             {chart.labels.flatMap((l) => l.lines.map((ln) => <path id={ln.id} d={ln.d} />))}
+            {chart.labels.map((l) => l.mobile && <path id={l.mobile.id} d={l.mobile.d} />)}
           </defs>
           <g class="sc-furn" aria-hidden="true">
             <circle class="sc-rim" cx={f.c} cy={f.c} r={f.rOuter} />
@@ -117,7 +126,11 @@ const tagsByK = chart ? chart.labels.map((l) => chart.tags.filter((t) => t.k ===
                   <path d={s.d} pathLength="1" style={`--d:${l.k * 70 + s.order * 45}ms`} />
                 ))}
               </g>
-              <a class="sc-name" href={`#${l.slug}`} aria-label={`${pad2(l.num)} ${nameOf(l.k)}`}>
+              <a
+                class:list={["sc-name", { "has-m": l.mobile }]}
+                href={`#${l.slug}`}
+                aria-label={`${pad2(l.num)} ${nameOf(l.k)}`}
+              >
                 {(l.fits ? l.lines : l.lines.slice(0, 1)).map((ln, j) => (
                   <text class:list={["sc-label", { "is-latin": l.latin }]}>
                     <textPath href={`#${ln.id}`} startOffset="50%">
@@ -130,6 +143,16 @@ const tagsByK = chart ? chart.labels.map((l) => chart.tags.filter((t) => t.k ===
                     </textPath>
                   </text>
                 ))}
+                {l.mobile && (
+                  <text class:list={["sc-label-m", { "is-latin": l.latin }]}>
+                    <textPath href={`#${l.mobile.id}`} startOffset="50%">
+                      <tspan class="sc-label-num">{pad2(l.num)}</tspan>
+                      <tspan class="sc-label-name" dx="6">
+                        {` ${l.text}`}
+                      </tspan>
+                    </textPath>
+                  </text>
+                )}
                 <text class="sc-numl" x={l.numX} y={l.numY}>
                   {pad2(l.num)}
                 </text>
@@ -141,16 +164,25 @@ const tagsByK = chart ? chart.labels.map((l) => chart.tags.filter((t) => t.k ===
                     {b.letter}
                   </text>
                 ))}
-              {tagsByK[l.k].map((t) => (
-                <g class="sc-tag" aria-hidden="true" style={`--d:${1300 + l.k * 70}ms`}>
+              {tagsByK[l.k].map(({ t, m }) => (
+                <g
+                  class:list={["sc-tag", m ? "is-m" : "is-d"]}
+                  aria-hidden="true"
+                  style={`--d:${1300 + l.k * 70}ms`}
+                >
                   {t.leader && <path class="sc-tag-lead" d={t.leader} />}
                   <text
                     class:list={["sc-tag-t", { "is-latin": t.latin }]}
                     x={t.x}
                     y={t.y}
                     text-anchor={t.anchor}
+                    font-size={t.size}
                   >
-                    {t.text}
+                    {t.lines.map((ln, j) => (
+                      <tspan x={t.x} dy={j === 0 ? `${-(t.lines.length - 1) * 0.61}em` : "1.22em"}>
+                        {ln}
+                      </tspan>
+                    ))}
                   </text>
                 </g>
               ))}

@@ -349,7 +349,7 @@ main.container:has(> .idx-head) {
 
 .toc-tier {
   flex: none;
-  min-width: 2.75rem;
+  width: 3.6rem;
   font-family: $mono;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -372,6 +372,34 @@ a.toc-row {
     .toc-tier {
       color: var(--seal);
     }
+  }
+}
+
+.toc-line.is-split {
+  .toc-row {
+    display: grid;
+    grid-template-columns: auto minmax(1.25rem, 1fr) auto;
+    grid-template-areas:
+      "main dots tier"
+      "en en en";
+    column-gap: 0.6rem;
+  }
+  .toc-t {
+    display: contents;
+  }
+  .toc-main {
+    grid-area: main;
+  }
+  .toc-dots {
+    grid-area: dots;
+    align-self: center;
+  }
+  .toc-tier {
+    grid-area: tier;
+  }
+  .toc-en {
+    grid-area: en;
+    margin-left: 0;
   }
 }
 
@@ -914,4 +942,59 @@ a.toc-row {
     width: 3rem;
     margin: 0 0.4rem 0 0.6rem;
   }
+}
+
+:root {
+  --vol: var(--vol-l, var(--ink));
+}
+
+[data-theme="dark"] {
+  --vol: var(--vol-d, var(--ink));
+}
+
+.vol-line {
+  align-items: center;
+  gap: 0.3rem 0.65em;
+  font-size: max(0.8125rem, var(--fs-label));
+  color: var(--text-2);
+}
+
+.vol-swatch {
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--vol);
+}
+
+.vol-serial {
+  font-family: $mono;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.vol-name {
+  color: var(--text);
+  &::after {
+    content: "/";
+    margin-left: 0.65em;
+    font-weight: 400;
+    color: var(--border-mid);
+  }
+}
+
+.vol-page {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.idx-head .idx-stats {
+  border-top: 3px solid var(--vol);
+}
+
+.page-head.chapter-open + .section.idx-list.is-wide,
+.check-head + .toc > .toc-ch:first-child,
+.search-head + .search-wrap {
+  border-top: 3px solid var(--vol);
 }

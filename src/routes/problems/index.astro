@@ -1,4 +1,5 @@
 ---
+import IndexVolumeHead from "../../components/IndexVolumeHead.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProblemCard from "../../components/ProblemCard.astro";
 import Crumbs from "../../components/Crumbs.astro";
@@ -26,7 +27,7 @@ const conceptCount = new Set(problems.flatMap((p: any) => p.data.concepts ?? [])
 <BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: problemLabel }]} />
   <header class="page-head idx-head is-wide section">
-    <p class="running-head idx-kicker">Contents</p>
+    <IndexVolumeHead page="Contents" class="idx-kicker" />
     <h1 class="idx-title" lang={latinLang(problemLabel)}>{problemLabel}</h1>
     {problemsLede && <p class="idx-lede" set:html={problemsLede} />}
     <p class="idx-stats">

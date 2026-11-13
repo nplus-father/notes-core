@@ -1,4 +1,5 @@
 ---
+import IndexVolumeHead from "../../../components/IndexVolumeHead.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ConceptCard from "../../../components/ConceptCard.astro";
 import TocWrap from "../../../components/TocWrap.astro";
@@ -45,10 +46,7 @@ const bookSet = new Set<string>(
     items={[{ label: conceptLabel, href: "/concepts/" }, { label: category.name }]}
   />
   <header class="page-head idx-head is-wide chapter-open section">
-    <p class="running-head idx-kicker">
-      Chapter
-      {num > 0 && <span class="idx-kicker-num">{pad2(num)}</span>}
-    </p>
+    <IndexVolumeHead page="Chapter" num={num > 0 ? pad2(num) : undefined} class="idx-kicker" />
     <h1 class="idx-title" lang={latinLang(category.name)}>{category.name}</h1>
     <dl class="co-stats">
       {

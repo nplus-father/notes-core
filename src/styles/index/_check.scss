@@ -78,19 +78,39 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
 
 .check-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  grid-template-areas: "hit state review";
+  grid-template-columns: minmax(0, 1fr) 7rem;
+  grid-template-areas: "hit end";
   column-gap: clamp(0.9rem, 1.6vw, 1.4rem);
   align-items: start;
   & + & {
     border-top: 1px solid var(--border);
   }
   @include below-grid {
-    grid-template-columns: calc(1.25rem + 0.9rem) auto minmax(0, 1fr);
+    grid-template-columns: calc(1.25rem + 0.9rem) minmax(0, 1fr);
     grid-template-areas:
-      "hit hit hit"
-      ". review state";
+      "hit hit"
+      ". end";
     column-gap: 0;
+  }
+}
+
+.check-end {
+  grid-area: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 0.95rem;
+  .check-item:first-child & {
+    padding-top: 0.35rem;
+  }
+  @include below-grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 0.35rem;
+    .check-item:first-child & {
+      padding-top: 0;
+    }
   }
 }
 
@@ -161,16 +181,12 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
 
 .check-state {
   @include micro;
-  grid-area: state;
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 0.5em;
-  min-height: 40px;
-  margin-top: 0.65rem;
-  font-size: max(0.8125rem, var(--fs-label));
+  min-height: 1.7rem;
   color: var(--seal);
   white-space: nowrap;
-  visibility: hidden;
   &::before {
     content: "";
     width: 0.4rem;
@@ -178,18 +194,11 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
     background: currentColor;
   }
   .check-item:has(.check-box:checked) & {
-    visibility: visible;
-  }
-  .check-item:first-child & {
-    margin-top: 0.05rem;
+    display: inline-flex;
   }
   @include below-grid {
-    justify-self: end;
+    order: 2;
     min-height: 44px;
-    margin-top: 0;
-    .check-item:first-child & {
-      margin-top: 0;
-    }
   }
 }
 
@@ -198,39 +207,38 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
-  grid-area: review;
-  min-height: 40px;
-  margin-top: 0.65rem;
-  padding-left: 0.5rem;
-  color: var(--text-2);
+  min-height: 1.7rem;
+  color: var(--muted);
   text-decoration: none;
   white-space: nowrap;
-  transition:
-    color var(--dur-hover) var(--ease),
-    opacity var(--dur-enter) var(--ease);
+  transition: color var(--dur-hover) var(--ease);
+  .icon {
+    transition: opacity var(--dur-hover) var(--ease);
+  }
+  @media (hover: hover) {
+    .icon {
+      opacity: 0;
+    }
+    .check-item:is(:hover, :focus-within) & {
+      color: var(--text);
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
   &:hover,
   &:focus-visible {
     color: var(--text);
     text-decoration: none;
   }
   &.is-none {
-    justify-content: flex-end;
-    min-width: 5.5rem;
     color: var(--border-mid);
     font-family: $mono;
     letter-spacing: 0;
   }
-  .check-item:first-child & {
-    margin-top: 0.05rem;
-  }
   @include below-grid {
-    justify-self: start;
+    order: 1;
     min-height: 44px;
-    padding-left: 0;
-    margin-top: 0;
-    .check-item:first-child & {
-      margin-top: 0;
-    }
     &.is-none {
       display: none;
     }

@@ -20,6 +20,10 @@ $icon-search: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' view
   margin-top: clamp(2rem, 4vw, 3rem);
 }
 
+.search-head + .search-wrap {
+  padding-top: 1.25rem;
+}
+
 .search-label {
   display: block;
   margin: 0;

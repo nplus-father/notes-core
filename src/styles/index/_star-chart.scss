@@ -231,6 +231,7 @@
       fill: var(--text);
     }
     .sc-label,
+    .sc-label-m,
     .sc-numl {
       fill: var(--text);
     }
@@ -257,38 +258,66 @@
   opacity: 0.55;
 }
 
+@mixin knockout($w: 0.34em) {
+  stroke: var(--bg);
+  stroke-width: $w;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  paint-order: stroke fill;
+}
+
 .sc-tag-t {
+  @include knockout;
   font-family: $sans;
-  font-size: 19px;
   font-weight: 500;
   letter-spacing: 0.02em;
+  line-height: 1.22;
   fill: var(--text-2);
-  stroke: var(--bg);
-  stroke-width: 5px;
-  stroke-linejoin: round;
-  paint-order: stroke;
   dominant-baseline: central;
   transition: fill var(--dur-hover) var(--ease);
   &.is-latin {
-    font-size: 17.5px;
     letter-spacing: 0.01em;
+  }
+}
+
+.sc-tag.is-m {
+  display: none;
+}
+
+.sc-label-m .sc-label-num {
+  font-size: 22px;
+}
+
+.sc-label-m {
+  @include knockout(0.3em);
+  display: none;
+  font-family: $sans;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  fill: var(--text-2);
+  dominant-baseline: central;
+  text-anchor: middle;
+  &.is-latin {
+    font-size: 25px;
+    letter-spacing: 0.1em;
   }
 }
 
 .sc-hint {
   display: none;
-  margin: 0.75rem 0 0;
+  margin: 0.35rem 0 0;
   font-size: var(--fs-small);
   color: var(--text-2);
 }
 
 .sc-label {
+  @include knockout(0.3em);
   font-family: $sans;
   font-size: calc(17px * var(--ls, 1));
   font-weight: 600;
   letter-spacing: 0.06em;
   fill: var(--text-2);
-  stroke: none;
   dominant-baseline: central;
   text-anchor: middle;
   transition: fill var(--dur-hover) var(--ease);
@@ -548,12 +577,26 @@
 }
 
 @container sc (max-width: 599px) {
-  .sc-tag {
+  .sc-tag.is-d {
     display: none;
+  }
+  .sc-tag.is-m {
+    display: inline;
+  }
+  .has-m .sc-label-m {
+    display: inline;
+  }
+  .has-m .sc-numl {
+    display: none;
+  }
+  .sc-svg .sc-cst:is(.is-hot, :focus-within) .sc-sector path,
+  .sc-svg .sc-sector:is(:hover, :active, :focus-visible) path {
+    fill: currentColor;
+    fill-opacity: 0.09;
   }
 }
 
-@container sc (max-width: 560px) {
+@container sc (max-width: 599px) {
   .sc-bayer {
     display: none;
   }
