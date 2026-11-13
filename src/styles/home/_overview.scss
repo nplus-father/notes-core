@@ -2,9 +2,11 @@
 @use "../base/mixins" as *;
 
 .home-head {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--ink);
 }
@@ -25,61 +27,11 @@
   display: flex;
   gap: 0.6em;
   margin: 0;
-  color: var(--muted);
+  color: var(--text-2);
   > :first-child {
     font-family: $mono;
     letter-spacing: 0.04em;
   }
-}
-
-.home-rail-index {
-  display: none;
-  margin: 1.1rem 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--border);
-  a {
-    @include label;
-    display: flex;
-    align-items: baseline;
-    gap: 0.75em;
-    min-height: 32px;
-    padding: 0.4rem 0;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    text-transform: none;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    &:hover,
-    &:focus-visible {
-      color: var(--text);
-      text-decoration: none;
-    }
-    &[aria-current] {
-      color: var(--text);
-      .home-rail-num::before {
-        content: "";
-        display: inline-block;
-        width: 0.4rem;
-        height: 0.4rem;
-        margin-right: 0.5em;
-        vertical-align: 0.1em;
-        background: var(--seal);
-      }
-    }
-  }
-  li + li {
-    border-top: 1px solid var(--border);
-  }
-}
-
-.home-rail-num {
-  flex: none;
-  font-family: $mono;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--accent);
 }
 
 .home-rail-more {
@@ -89,6 +41,7 @@
   align-items: center;
   gap: 0.55em;
   min-height: 40px;
+  margin: -0.6rem 0 -0.6rem auto;
   color: var(--text);
   &:hover,
   &:focus-visible {
@@ -97,33 +50,9 @@
   }
 }
 
-@include above-grid {
-  .home-head {
-    position: sticky;
-    top: calc(var(--nav-h) + 1.75rem);
-  }
-  .home-rail-index {
-    display: block;
-    align-self: stretch;
-    width: 100%;
-  }
-  .section > .section-body {
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-  .section.is-wide {
-    > .home-head {
-      position: static;
-    }
-    > .section-body {
-      padding-top: 0;
-      border-top: 0;
-    }
-  }
-}
-
 .overview-lede {
   margin: 0;
+  max-inline-size: var(--span-9);
   font-family: $display;
   font-size: var(--fs-lede);
   font-weight: 500;
@@ -212,6 +141,7 @@
 }
 
 @include below-grid {
+  .overview-lede,
   .overview-text {
     max-inline-size: none;
   }
@@ -224,6 +154,10 @@
   .overview-section + .overview-section {
     margin-top: 0;
   }
+}
+
+.pt {
+  margin-inline-start: -0.5em;
 }
 
 :is(

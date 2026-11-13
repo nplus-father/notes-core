@@ -48,12 +48,9 @@
 
 .colophon-motif {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 190%;
-  height: auto;
-  aspect-ratio: 1;
-  translate: -34% -46%;
+  inset: 18%;
+  width: 64%;
+  height: 64%;
   overflow: visible;
 }
 

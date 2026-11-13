@@ -16,7 +16,7 @@ const { books, heading = "Sources", moreHref, num = "" } = Astro.props;
 
 {
   books.length > 0 && (
-    <section class="section shelf" aria-labelledby="shelf-title">
+    <section class="section is-wide shelf" aria-labelledby="shelf-title">
       <div class="running-head home-head">
         <h2 class="home-head-title" id="shelf-title">
           {num && <span class="running-head-num">{num}</span>}

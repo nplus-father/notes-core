@@ -267,12 +267,19 @@ Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／
 - **`.text-tabs` 一律單行**：不換行、可橫向捲動、`scroll-snap`、被切掉的那一側淡出（`edge-fade`），底線畫在列底、指示線在 tab 內（`bottom: 0`，不再 `-1px` 被捲動容器切掉）。**要讓目前的 tab 自動捲進視野**：tab 列加 `data-edge-fade`，目前項用 `aria-selected="true"`／`aria-current`／`.is-active` 標示；`BaseLayout` 的 script 在載入時與這三個屬性變動時（MutationObserver）把它捲進來，只動 `scrollLeft`、不捲整頁。Guide 的章節 tab 用 `@include text-tab` 自己排的話，在捲動容器上加 `data-edge-fade` 與 `@include edge-fade` 即可拿到同一套行為。
 - **手機頂列站名**：≤ 720px 頂列在人像右邊顯示 registry `label`（襯線、超出以刪節號截斷），這是「站名不進 topnav」唯一核准的例外，只在手機。底部分頁列往下捲時藏起、往上捲或回到頁頂時出現（只用 `transform`；reduced motion 時不藏；焦點在列內時不藏；無 JS 時永遠在）。
 
+第四輪補充（2026-11-13）：
+
+- **字體換入不位移**：`$display`／`$sans`／`$mono` 在 webfont 後面接本機度量對齊的後備（`Newsreader Fallback`、`Newsreader Display Fallback`（`$display-xl`，給 hero 標題與卷號）、`Inter Fallback`、`JetBrains Mono Fallback`，以 Times New Roman／Liberation Serif、Arial／Liberation Sans、Courier New／Liberation Mono 加 `size-adjust` 與 ascent/descent override 對齊）。Inter 與 JetBrains Mono 用 `display=optional`（內文永不在讀到一半時重排），Newsreader 與 Noto Serif TC 仍 `swap`。新的大字標題若在首屏、又用 Newsreader 拉丁字，改用 `$display-xl`。
+- **站名回到桌機 topnav**：人像後面一個書布色小方塊＋站名（襯線），連回本站首頁；`site.config` 的 `showStationInNav: false` 關掉桌機版（手機頂列站名不受影響）。每頁 topnav 頂端一條 3px 書布色帶。`--cloth`／`--cloth-ink` 在每一頁的 `<html>` 都有。
+- **手機底部分頁列最多五格**：超過五個目的地時第五格是 `More`（`<details>` 彈出清單，無 JS 可用、有 JS 時點外面或 Esc 關）。保留順序 Guide → Concepts → Problems → Check → Search，其餘（Library、Handbook、extraNav）進 More。
+- **首頁區塊一律 `.section.is-wide`**：書眉（編號、標籤、數量或日期）一行在上，內容 12 欄。第二輪的 `.home-rail-index` 撤銷。每個區塊邊界只有一條線（書眉上緣的墨線），區塊自己不要再畫收尾線。
+- `--fs-label` 改為 0.8125rem，`running-head` 的字色改為 `--text-2`。
+
 | 名稱 | 種類 | 一行說明 |
 | --- | --- | --- |
 | `@include outlined-numeral($stroke, $width: 1px)` | mixin | 描邊不填色的數字（`-webkit-text-stroke`，不支援時退成實心）；首頁 hero 卷號用它，404 與目錄頁的大數字之後也改用它，不要各寫一份 |
 | `.edge-fade`／`@include edge-fade($size)`＋`data-edge-fade` | class／mixin＋屬性 | 橫向捲動列：吸附、隱藏捲軸，只在被切掉的那一側淡出。元素加 `data-edge-fade`，`BaseLayout` 的 inline script 依捲動位置寫 `data-cut="start end"`；無 JS 時不淡出、照樣可捲 |
 | `@include cjk-emphasis` | mixin | `em`／`i` 在中文裡不做假斜體，改用著重號（字下圓點） |
-| `.home-rail-index`＋`.home-rail-num` | class | 首頁區塊左欄的小目錄（編號＋名稱，錨點），≥ 901px 才出現 |
 | `.section.is-wide` | class | 書眉疊在上方、內容跨滿 12 欄；給左欄只會有標籤的區塊 |
 | `@include cloth` | mixin | 書布底色＋織紋＋`--cloth-ink` 字色 |
 | `data-edge-fade` | 屬性 | 橫向捲動列：邊緣淡出，且目前項（`aria-selected`／`aria-current`／`.is-active`）自動捲進視野 |

@@ -1,5 +1,6 @@
 ---
 import { withBase } from "../lib/url";
+import { tightenPunct } from "../lib/punct";
 import { bookUrl, bookCoverUrl, siteUrl } from "../lib/links";
 import type { AuthorProfile, BibliographyEntry } from "../lib/library";
 
@@ -20,6 +21,11 @@ const pad = (i: number) => String(i + 1).padStart(2, "0");
 const contributions = profile.contributions ?? [];
 const readingPath = profile.readingPath ?? [];
 const influences = profile.influences ?? [];
+const balancedCols = (n: number, options: number[]) =>
+  options.find((c) => n % c === 0) ?? options.find((c) => n % c !== 1) ?? options[0];
+const contribCols = balancedCols(contributions.length, [4, 3]);
+const contribColsMid = balancedCols(contributions.length, [2, 3]);
+const maxCovers = Math.max(1, ...readingPath.map((r) => r.slugs.length));
 ---
 
 <section class="section is-wide profile-thesis" aria-labelledby="thesis-title">
@@ -32,14 +38,14 @@ const influences = profile.influences ?? [];
   <div class="section-body">
     <blockquote class="thesis reveal">
       <span class="thesis-mark" aria-hidden="true">“</span>
-      <p set:html={profile.thesis} />
+      <p set:html={tightenPunct(profile.thesis)} />
     </blockquote>
   </div>
 </section>
 
 {
   contributions.length > 0 && (
-    <section class="section profile-contrib" aria-labelledby="contrib-title">
+    <section class="section is-wide profile-contrib" aria-labelledby="contrib-title">
       <div class="running-head home-head">
         <h2 class="home-head-title" id="contrib-title">
           {nums.contributions && <span class="running-head-num">{nums.contributions}</span>}
@@ -49,19 +55,12 @@ const influences = profile.influences ?? [];
           <span>{String(contributions.length).padStart(2, "0")}</span>
           <span lang="en">{contributions.length === 1 ? "Entry" : "Entries"}</span>
         </p>
-        <ol class="home-rail-index">
-          {contributions.map((c, i) => (
-            <li>
-              <a href={`#contrib-${i + 1}`}>
-                <span class="home-rail-num">{pad(i)}</span>
-                <span>{c.title}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
       </div>
       <div class="section-body">
-        <ol class="contrib-grid">
+        <ol
+          class="contrib-grid"
+          style={`--contrib-cols: ${contribCols}; --contrib-cols-mid: ${contribColsMid}`}
+        >
           {contributions.map((c, i) => (
             <li class="contrib reveal" id={`contrib-${i + 1}`}>
               <span class="contrib-num" aria-hidden="true">
@@ -90,7 +89,7 @@ const influences = profile.influences ?? [];
 
 {
   readingPath.length > 0 && (
-    <section class="section profile-path" aria-labelledby="path-title">
+    <section class="section is-wide profile-path" aria-labelledby="path-title">
       <div class="running-head home-head">
         <h2 class="home-head-title" id="path-title">
           {nums.readingPath && <span class="running-head-num">{nums.readingPath}</span>}
@@ -100,19 +99,9 @@ const influences = profile.influences ?? [];
           <span>{String(readingPath.length).padStart(2, "0")}</span>
           <span lang="en">{readingPath.length === 1 ? "Stage" : "Stages"}</span>
         </p>
-        <ol class="home-rail-index">
-          {readingPath.map((r, i) => (
-            <li>
-              <a href={`#stage-${i + 1}`}>
-                <span class="home-rail-num">{pad(i)}</span>
-                <span>{r.stage}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
       </div>
       <div class="section-body">
-        <ol class="reading-path">
+        <ol class="reading-path" style={`--covers: ${maxCovers}`}>
           {readingPath.map((r, i) => (
             <li class="reading-stage reveal" id={`stage-${i + 1}`}>
               <span class="reading-node" aria-hidden="true">
@@ -155,7 +144,7 @@ const influences = profile.influences ?? [];
 
 {
   influences.length > 0 && (
-    <section class="section profile-influences" aria-labelledby="influences-title">
+    <section class="section is-wide profile-influences" aria-labelledby="influences-title">
       <div class="running-head home-head">
         <h2 class="home-head-title" id="influences-title">
           {nums.influences && <span class="running-head-num">{nums.influences}</span>}

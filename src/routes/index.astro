@@ -8,13 +8,14 @@ import SchoolsMap from "../components/SchoolsMap.astro";
 import AuthorProfile from "../components/AuthorProfile.astro";
 import Overview from "../components/Overview.astro";
 import { withBase } from "../lib/url";
+import { tightenPunct } from "../lib/punct";
 import { shelfFromBibliography, normalizeSchools } from "../lib/library";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
 import { coverPlateFor, clothFor } from "../lib/cover-plate.ts";
 import { motifSvg } from "../lib/motifs.ts";
 import { site, books, bibliography, schools, profile, overview } from "virtual:notes-core/site";
 
-const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
+const heroLede = tightenPunct((site.heroLede ?? "").replaceAll("{base}", withBase("/")));
 const shelf = bibliography.length > 0 ? shelfFromBibliography(bibliography) : books;
 const schoolsData = normalizeSchools(schools);
 
@@ -110,35 +111,40 @@ const nums = {
             role={plate ? "img" : undefined}
             aria-label={plate ? `${plate.title}：${plate.legend}` : undefined}
           >
-            {plate && (
-              <span
-                class="hero-motif"
-                set:html={motifSvg(plate.motif, { className: "hero-motif-svg", stroke: 1.6, draw: true })}
-              />
-            )}
-            {hasPortrait && (
-              <span class="hero-portrait">
-                <img
-                  src={withBase("cover.png")}
-                  alt={heading}
-                  width="900"
-                  height="1200"
-                  fetchpriority="high"
-                  decoding="async"
-                />
-              </span>
-            )}
-            {serial && (
-              <span class="hero-numeral" aria-hidden="true">
-                N°{serial}
-              </span>
-            )}
             <figcaption class="hero-foil" lang="en" aria-hidden="true">
               <span class="hero-foil-name">{foilName}</span>
               {foilLegend && <span class="hero-foil-legend">{foilLegend}</span>}
               <span class="hero-foil-pl">Pl. I</span>
             </figcaption>
-            <span class="hero-cloth-seal" aria-hidden="true"></span>
+            <div class="hero-art">
+              {plate && (
+                <span
+                  class="hero-motif"
+                  set:html={motifSvg(plate.motif, {
+                    className: "hero-motif-svg",
+                    stroke: 1.6,
+                    draw: true,
+                    fit: true,
+                  })}
+                />
+              )}
+              {hasPortrait && (
+                <span class="hero-portrait">
+                  <img
+                    src={withBase("cover.png")}
+                    alt={heading}
+                    width="900"
+                    height="1200"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                </span>
+              )}
+            </div>
+            <div class="hero-volume-foot" aria-hidden="true">
+              {serial && <span class="hero-numeral">N°{serial}</span>}
+              <span class="hero-cloth-seal"></span>
+            </div>
           </figure>
           {updated && (
             <p class="hero-cloth-foot">
