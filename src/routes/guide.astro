@@ -59,7 +59,7 @@ const description = chapters[0]?.standfirst;
     {
       chapters.length > 0 && (
         <>
-          <div class="guide-tabs" hidden>
+          <div class="guide-tabs">
             <div class="guide-tabs-inner" role="tablist" aria-label="Chapters">
               {chapters.map((c, i) => (
                 <button
@@ -104,6 +104,9 @@ const description = chapters[0]?.standfirst;
 
           <noscript>
             <style>
+              .guide-tabs {
+                display: none;
+              }
               .guide-chapter[hidden] {
                 display: grid;
                 content-visibility: visible;
@@ -125,7 +128,6 @@ const description = chapters[0]?.standfirst;
   const tabs = [...document.querySelectorAll<HTMLButtonElement>(".guide-tab")];
   const chapters = [...document.querySelectorAll<HTMLElement>(".guide-chapter")];
   if (bar && tabs.length > 0) {
-    bar.hidden = false;
     for (const c of chapters) {
       c.setAttribute("role", "tabpanel");
       c.setAttribute("aria-labelledby", `tab-${c.dataset.ch}`);
