@@ -154,7 +154,8 @@
       content: "";
       width: 0.4rem;
       height: 0.4rem;
-      align-self: center;
+      align-self: start;
+      margin-top: calc(0.725em - 0.2rem);
       background: var(--seal);
       transform: scale(0);
       transition: transform var(--dur-enter) var(--ease);

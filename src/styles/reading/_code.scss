@@ -152,3 +152,18 @@
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
 }
+
+:root:not([data-theme="dark"]) .astro-code span {
+  &[style*="color:#D73A49"] {
+    color: #b62b3a !important;
+  }
+  &[style*="color:#E36209"] {
+    color: #a84a00 !important;
+  }
+  &[style*="color:#22863A"] {
+    color: #1d6f30 !important;
+  }
+  &[style*="color:#6A737D"] {
+    color: #5a626b !important;
+  }
+}
