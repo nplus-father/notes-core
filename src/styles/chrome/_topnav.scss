@@ -424,3 +424,7 @@
     mask-image: none;
   }
 }
+
+[data-theme="dark"] .topnav-swatch {
+  outline: 1px solid var(--border-mid);
+}
