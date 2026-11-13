@@ -4,6 +4,8 @@
 
 **誠實的邊界**：真的得獎要送件、要評審投票，這裡做不到。能做到的是用同一套評分制度（Awwwards 的 Design 40％／Usability 30％／Creativity 20％／Content 10％）找不看規格的獨立評審打分，加上機器量得到的硬指標。過關＝這個代理指標過關。
 
+> **2026-11-13 註（與 v0.45.0 合併，發為 v0.46.0）**：這一輪進行中 upstream 先發了 v0.45.0，Andrew 對衝突裁了四條：字型、nav、動態照 v0.45.0，其餘照本輪。下文凡是講 Google Fonts／Noto Serif TC webfont、圖示 nav、底部分頁列、topnav 站名、hero 進場、`.reveal`、箭頭位移、具名形變轉場的地方，**已不是現況**；現況以 `DESIGN.md` §1.2、§1 Topnav、§1.3 為準，以下各處只加註、不改寫歷史。
+
 ---
 
 ## 0. 驗收閘門
@@ -74,9 +76,13 @@
 
 這一輪**推翻**的一條，理由要寫進 `DESIGN.md`：topnav「只出 emoji」改成**單線 SVG 圖示＋英文標籤**（窄螢幕只留圖示）。詞彙與順序不變，變的只是字符。
 
+> 2026-11-13 註：這條推翻沒有成立。v0.45.0 先以文字分頁取代 emoji，Andrew 裁定照它，圖示 nav 撤回。
+
 ## 4. Tokens
 
 ### 4.1 字體
+
+> 2026-11-13 註：已改。不連 Google Fonts；Inter、Newsreader（`opsz`）、JetBrains Mono 由 fontsource 套件隨站出貨，族名是 `Inter Variable`／`Newsreader Variable`／`JetBrains Mono Variable`；中文襯線是系統字（Noto Serif CJK TC → Source Han Serif TC → Songti TC → Noto Serif TC），不載 CJK webfont。見 `DESIGN.md` §1.2。
 
 以 Google Fonts 一條 `<link>` 載入（`preconnect` 兩個網域、`display=swap`），放在 `BaseLayout` 的 `<head>`：
 
@@ -139,6 +145,8 @@ Noto Serif TC:wght@500;700;900
 
 ### 4.5 動態
 
+> 2026-11-13 註：已改。只留星圖描線（一個 session 一次）與閱讀進度線兩支動畫；hero 進場、捲動進場、箭頭 hover 位移、標題與封面的具名形變全部撤掉；換頁只有 v0.45.0 的 160ms root 淡接與 `topnav` 具名轉場。見 `DESIGN.md` §1.3。
+
 - `--ease: cubic-bezier(0.2, 0.7, 0.1, 1)`；時長 160ms（hover）／420ms（進場）／700ms（hero）。
 - **換頁**：`@view-transition { navigation: auto; }`，整頁淡接；首頁 h1 與封面、概念卡標題與內頁 h1 用 `view-transition-name` 做形變。零 JS。
 - **進場**：hero 一次編排好的進場（卷號描線、標題逐行升起、短橫線畫出、封面淡入），其餘區塊用 `animation-timeline: view()` 做 12px 的升起，包在 `@supports` 裡，不支援就靜止。
@@ -147,6 +155,8 @@ Noto Serif TC:wght@500;700;900
 - `prefers-reduced-motion: reduce` 時全部關掉。動效一律不擋內容、不造成 CLS。
 
 ## 5. chrome
+
+> 2026-11-13 註：topnav 已改回 v0.45.0：文字分頁、無圖示、站名不進 topnav、高 56px、手機是頂列單行橫捲。本輪只留每頁頂端 3px 書布色帶；跳到內容連結用 v0.45.0 那一個；焦點框改為 2px `--accent`。見 `DESIGN.md` §1、§1.4。
 
 - **topnav**：高 64px、紙色實底、底下一條墨色髮絲線。左：`‹ 筆記星系`＋人像。右：單線圖示（24px 格、1.5px 線、`currentColor`）＋英文小標，目前頁有朱色小方點（`aria-current="page"`）。≤ 720px 只留圖示，一行排完，觸控目標 ≥ 40px。圖示集放 `src/components/Icon.astro`，一個元件、以 `name` 取用。
 - **麵包屑**：改成書眉一行——`CLEAN CODE NOTES / CONCEPTS / FUNCTIONS`，`--fs-label`，第一項仍是回本站首頁，不要方框鍵。
@@ -263,6 +273,8 @@ Fable 收三份、取中位數、逐條裁決，開下一輪修單。同一個�
 流程：A →（B → C）‖ G → D ‖ E ‖ F → H → I → J → H → …（直到 §0 三道閘門全過）→ K、L → M。
 
 ## 12. Foundation API（工作包 B／C 交付，D／E／F 從這裡取用）
+
+> 2026-11-13 註（v0.46.0）：本節以下這些項目已不成立——`--nav-h` 恆為 56px、`--tabbar-h` 已刪；底部分頁列、`More` 面板、桌機站名晶片與 `showStationInNav`、手機頂列站名已刪；`$display`／`$sans`／`$mono` 的第一順位改為 fontsource 的 `Newsreader Variable`／`Inter Variable`／`JetBrains Mono Variable`，Inter 與 JetBrains Mono 不再是 `display=optional`（fontsource 預設 `swap`，後備字度量對齊、延遲 1.5 秒載入的 CLS ≤ 0.0004）；`.reveal`、`.arrow-nudge`／`@include arrow-nudge`、`@keyframes folio-rise／folio-reveal／folio-fade／folio-draw`、`html.hero-seen` 已刪；圖示集只剩非 nav 用的箭頭、保養、加減、複製。新增 `base/_touch.scss`（粗指標 44px 點擊區）與 `--on-accent`。
 
 Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／`$serif`＝`$display`、`$bp-grid` 900px、`$bp-nav` 720px、`$canvas-max`、`$ease`），要用 mixin 再加 `@use "../base/mixins" as *;`。`global.scss` 只是有序的 `@use` 清單，新 partial 照層疊位置插進去。
 
