@@ -96,7 +96,7 @@ export const siteCovers: Record<string, SiteCover> = {
   "learning-note": { accent: "#4d9dff", accent2: "#2a6ac9", motif: "book" },
   "science-note": { accent: "#3db8e8", accent2: "#1f7fa8", motif: "flask" },
   "writing-note": { accent: "#6d8cff", accent2: "#3a52cc", motif: "pen" },
-  "design-note": { accent: "#ff9f43", accent2: "#cc6f1a", motif: "nib" },
+  "design-note": { accent: "#ff9f43", accent2: "#cc6f1a", motif: "golden" },
 
   // ── 個人 ──────────────────────────────────────────────
   "growth-note": { accent: "#4fc26b", accent2: "#2f8f46", motif: "growth" },

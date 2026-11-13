@@ -12,7 +12,7 @@
 # 這支工具刻意不在 package.json 的 files 白名單裡——62 站建置時會 import notes-core，
 # 不該把 Chrome 與 ImageMagick 拖進那條依賴鏈。它只跟著 repo 走。
 #
-# 需求：node (>=22，直接吃 .ts)、google-chrome、ImageMagick(convert)、Noto Sans CJK TC 字型
+# 需求：node (>=22，直接吃 .ts)、google-chrome、ImageMagick 或 ffmpeg、Noto Serif CJK TC 字型
 #
 # 用法：
 #   ./render.sh <slug> [outfile.png]              # 產生單一封面（預設輸出到 ./<slug>.png）
@@ -39,13 +39,19 @@ topic_slugs() {
   "
 }
 
-render() {  # <slug> <outPng>
+render() {
   local slug="$1" out="$2"
   node "$DIR/cover-gen.mjs" "$slug" "$TMP/$slug.html"
-  google-chrome --headless=new --disable-gpu --hide-scrollbars \
+  google-chrome --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=8000 \
     --force-device-scale-factor=2 --window-size=900,1200 \
     --screenshot="$TMP/$slug@2x.png" "file://$TMP/$slug.html" >/dev/null 2>&1
-  convert "$TMP/$slug@2x.png" -resize 900x1200 -strip -quality 95 "$out"
+  if command -v magick >/dev/null; then
+    magick "$TMP/$slug@2x.png" -resize 900x1200 -strip -quality 95 "$out"
+  elif command -v convert >/dev/null; then
+    convert "$TMP/$slug@2x.png" -resize 900x1200 -strip -quality 95 "$out"
+  else
+    ffmpeg -loglevel error -y -i "$TMP/$slug@2x.png" -vf scale=900:1200:flags=lanczos "$out"
+  fi
   echo "rendered $slug -> $out"
 }
 
