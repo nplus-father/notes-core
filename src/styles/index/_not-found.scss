@@ -1,37 +1,87 @@
-/* ───────────────────────── 404 ───────────────────────── */
-.notfound {
-  text-align: center;
-  padding: 3rem 1rem 4rem;
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+.nf {
+  position: relative;
+  align-items: end;
+  padding-top: clamp(2rem, 9vw, 8rem);
+  border-bottom: 1px solid var(--ink);
 }
-.notfound .nf-code {
-  font-size: clamp(4rem, 18vw, 9rem);
-  font-weight: 800;
-  line-height: 1;
-  margin: 0;
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
+
+.nf-num {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: end;
+  margin: 0 0 clamp(1.75rem, 3.2vw, 3rem);
+  font-family: $display;
+  font-size: var(--fs-mega);
+  font-weight: 300;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-variant-numeric: lining-nums;
   color: transparent;
+  -webkit-text-stroke: 1px var(--ink);
+  user-select: none;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: folio-fade var(--dur-hero) var(--ease) both;
+  }
 }
-.notfound h1 {
-  margin: 0.5rem 0 0.25rem;
+
+.nf-body {
+  position: relative;
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  padding: 0 0 clamp(2rem, 4vw, 3.25rem);
+  @include below-grid {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 2rem;
+  }
 }
-.notfound .nf-actions {
-  display: flex;
+
+.nf-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+.nf-title {
+  margin: 0;
+  max-width: 18em;
+  font-family: $display;
+  font-size: var(--fs-h1);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.nf-home {
+  display: inline-flex;
+  align-items: center;
   gap: 0.6rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-.notfound .nf-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
+  min-height: 44px;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
   color: var(--text);
-  font-weight: 600;
+  font-family: $display;
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+  &:hover .nf-home-text,
+  &:focus-visible .nf-home-text {
+    background-size: 100% 1px;
+  }
 }
-.notfound .nf-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+
+.nf-home-text {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size var(--dur-enter) var(--ease);
 }

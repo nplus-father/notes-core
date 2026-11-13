@@ -1,24 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
 import { withBase } from "../lib/url";
 import { site } from "virtual:notes-core/site";
-const conceptLabel = site.conceptLabelEn ?? "Concepts";
-const problemLabel = site.problemLabelEn ?? "Problems";
-const lede = site.hasProblems
-  ? "This page doesn't exist. Head home to browse concepts or problems, or use search."
-  : "This page doesn't exist. Head home to start over, or use search.";
 ---
 
-<BaseLayout title={`Not found · ${site.brand}`} site={site}>
-  <section class="notfound">
-    <p class="nf-code">404</p>
-    <h1>This page isn't here — or the URL is off</h1>
-    <p class="lede">{lede}</p>
-    <p class="nf-actions">
-      <a class="nf-btn" href={withBase("/")}>← Home</a>
-      <a class="nf-btn" href={withBase("/concepts/")}>Browse {conceptLabel}</a>
-      {site.hasProblems && <a class="nf-btn" href={withBase("/problems/")}>Browse {problemLabel}</a>}
-      <a class="nf-btn" href={withBase("/search/")}>Search</a>
-    </p>
+<BaseLayout title={`Not found · ${site.brand}`} site={site} noindex>
+  <section class="nf grid-12" aria-labelledby="nf-h">
+    <p class="nf-num" aria-hidden="true">404</p>
+    <div class="nf-body">
+      <p class="nf-kicker label"><span class="seal" aria-hidden="true"></span>Not found</p>
+      <h1 class="nf-title" id="nf-h">這一頁不在書裡，可能是網址打錯了，或它已經換了位置。</h1>
+      <a class="nf-home arrow-nudge" href={withBase("/")}>
+        <span class="nf-home-text">Back to {site.brand}</span>
+        <Icon name="arrow-right" size={20} />
+      </a>
+    </div>
   </section>
 </BaseLayout>

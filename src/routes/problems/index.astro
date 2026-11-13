@@ -4,6 +4,7 @@ import ProblemCard from "../../components/ProblemCard.astro";
 import Crumbs from "../../components/Crumbs.astro";
 import { withBase } from "../../lib/url";
 import { byImportance } from "../../lib/collections";
+import { pad2, latinLang } from "../../lib/toc";
 import { site } from "virtual:notes-core/site";
 import { getDomains } from "../../lib/nav-data";
 import { getCollection } from "astro:content";
@@ -12,63 +13,106 @@ const problems = await getCollection("problems");
 const { domains: doms } = await getDomains();
 const problemLabel = site.problemLabelEn ?? "Problems";
 const problemsLede = site.problemsLede ? site.problemsLede.replaceAll("{base}", withBase("/")) : "";
-const byDomain = new Map<string, any[]>();
-for (const dm of doms) {
-  byDomain.set(dm.slug, problems.filter((p) => p.data.domain === dm.slug).sort(byImportance));
-}
+const chapters = doms
+  .map((dm) => ({
+    dm,
+    items: problems.filter((p) => p.data.domain === dm.slug).sort(byImportance),
+  }))
+  .filter((ch) => ch.items.length > 0)
+  .map((ch, i) => ({ ...ch, num: i + 1 }));
+const conceptCount = new Set(problems.flatMap((p: any) => p.data.concepts ?? [])).size;
 ---
 
 <BaseLayout title={`${problemLabel} · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: problemLabel }]} />
-  <header class="page-head">
-    <h1>{problemLabel}</h1>
-    {
-      problemsLede ? (
-        <p class="lede" set:html={problemsLede} />
-      ) : (
-        <p class="lede">Grouped by domain. Each problem tags the concepts it exercises and links back.</p>
-      )
-    }
+  <header class="page-head idx-head section">
+    <p class="idx-side running-head"><span class="running-head-num">00</span>Contents</p>
+    <div class="idx-main">
+      <h1 class="idx-title" lang={latinLang(problemLabel)}>{problemLabel}</h1>
+      {problemsLede && <p class="idx-lede" set:html={problemsLede} />}
+      <p class="idx-stats">
+        <span><b>{problems.length}</b> {problems.length === 1 ? "Problem" : "Problems"}</span>
+        <span><b>{chapters.length}</b> Domains</span>
+        {
+          conceptCount > 0 && (
+            <span>
+              <b>{conceptCount}</b> Concepts drilled
+            </span>
+          )
+        }
+      </p>
+    </div>
   </header>
 
-  <div class="filterbar">
-    <input id="q" type="search" placeholder="Search problems…" autocomplete="off" />
-    <select id="f-diff"
-      ><option value="">Difficulty (all)</option><option>Easy</option><option>Medium</option><option
-        >Hard</option
-      ></select
+  <div class="section idx-filter-wrap">
+    <p class="idx-side running-head">Filter</p>
+    <form
+      class="idx-filter"
+      role="search"
+      aria-label={`Filter ${problemLabel}`}
+      onsubmit="return false"
     >
-    <select id="f-status"
-      ><option value="">Status (all)</option><option value="draft">Draft</option><option
-        value="studied">Studied</option
-      ><option value="reviewed">Reviewed</option></select
-    >
-    <span id="count" class="filter-count"></span>
+      <label class="visually-hidden" for="q">Title</label>
+      <input id="q" type="search" placeholder="Title…" autocomplete="off" />
+      <label class="visually-hidden" for="f-diff">Difficulty</label>
+      <select id="f-diff">
+        <option value="">Any difficulty</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <label class="visually-hidden" for="f-status">Status</label>
+      <select id="f-status">
+        <option value="">Any status</option>
+        <option value="draft">Draft</option>
+        <option value="studied">Studied</option>
+        <option value="reviewed">Reviewed</option>
+      </select>
+      <output id="count" class="idx-filter-count" aria-live="polite"
+        >{problems.length} / {problems.length}</output
+      >
+    </form>
   </div>
 
-  {
-    doms.map((dm) => {
-      const items = byDomain.get(dm.slug) ?? [];
-      return (
-        items.length > 0 && (
-          <section class="domain-block" data-domain={dm.slug}>
-            <h2 id={dm.slug}>
-              <a href={withBase(`problems/${dm.slug}/`)}>
-                {dm.icon} {dm.name}
+  <div class="toc bleed">
+    {
+      chapters.map(({ dm, items, num }) => (
+        <section
+          class="toc-ch is-rows"
+          id={dm.slug}
+          data-domain-block
+          aria-labelledby={`dm-${dm.slug}`}
+        >
+          <div class="toc-side">
+            <span class="toc-num" aria-hidden="true">
+              {pad2(num)}
+            </span>
+            <h2 class="toc-name" id={`dm-${dm.slug}`}>
+              <a class="link-draw" href={withBase(`problems/${dm.slug}/`)}>
+                {dm.name}
               </a>
+              {dm.icon && (
+                <span class="cat-glyph" aria-hidden="true">
+                  {dm.icon}
+                </span>
+              )}
             </h2>
-            <div class="card-grid">
-              {items.map((entry: any) => (
-                <ProblemCard entry={entry} />
-              ))}
-            </div>
-          </section>
-        )
-      );
-    })
-  }
+            <p class="toc-progress">
+              <span class="toc-count">{items.length}</span>
+              <span class="toc-unit">{items.length === 1 ? "problem" : "problems"}</span>
+            </p>
+          </div>
+          <ol class="rows">
+            {items.map((entry: any, i: number) => (
+              <ProblemCard entry={entry} index={i + 1} />
+            ))}
+          </ol>
+        </section>
+      ))
+    }
+  </div>
 
-  <p id="empty-all" class="empty" hidden>No matching problems.</p>
+  <p id="empty-all" class="idx-empty is-filter-empty" hidden>No problems match these filters.</p>
 
   <script is:inline>
     (() => {
@@ -77,25 +121,24 @@ for (const dm of doms) {
       const fs = document.getElementById("f-status");
       const count = document.getElementById("count");
       const emptyAll = document.getElementById("empty-all");
-      const cards = [...document.querySelectorAll(".card")];
+      const rows = [...document.querySelectorAll("[data-row]")];
       const apply = () => {
         const t = (q.value || "").trim().toLowerCase();
-        const dv = fd.value.toLowerCase();
+        const dv = fd.value;
         const sv = fs.value;
         let shown = 0;
-        for (const c of cards) {
+        for (const r of rows) {
           const ok =
-            (!t || c.dataset.title.includes(t)) &&
-            (!dv || c.dataset.difficulty === dv) &&
-            (!sv || c.dataset.status === sv);
-          c.style.display = ok ? "" : "none";
+            (!t || r.dataset.title.includes(t)) &&
+            (!dv || r.dataset.difficulty === dv) &&
+            (!sv || r.dataset.status === sv);
+          r.hidden = !ok;
           if (ok) shown++;
         }
-        for (const block of document.querySelectorAll(".domain-block")) {
-          const any = [...block.querySelectorAll(".card")].some((c) => c.style.display !== "none");
-          block.style.display = any ? "" : "none";
+        for (const block of document.querySelectorAll("[data-domain-block]")) {
+          block.hidden = ![...block.querySelectorAll("[data-row]")].some((r) => !r.hidden);
         }
-        count.textContent = shown + " / " + cards.length;
+        count.textContent = shown + " / " + rows.length;
         emptyAll.hidden = shown !== 0;
       };
       [q, fd, fs].forEach((el) => el.addEventListener("input", apply));

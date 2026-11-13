@@ -3,6 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ProblemCard from "../../../components/ProblemCard.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import { byImportance } from "../../../lib/collections";
+import { pad2, DIFFICULTY_LEVEL, latinLang } from "../../../lib/toc";
 import { site } from "virtual:notes-core/site";
 import { getDomains } from "../../../lib/nav-data";
 import { getCollection } from "astro:content";
@@ -10,42 +11,102 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const problems = await getCollection("problems");
   const { domains } = await getDomains();
-  return domains.map((dm: any) => ({
-    params: { domain: dm.slug },
-    props: {
-      domain: dm,
-      items: problems.filter((p) => p.data.domain === dm.slug).sort(byImportance),
-    },
-  }));
+  let n = 0;
+  return domains.map((dm: any) => {
+    const items = problems.filter((p) => p.data.domain === dm.slug).sort(byImportance);
+    return {
+      params: { domain: dm.slug },
+      props: { domain: dm, items, num: items.length > 0 ? ++n : 0 },
+    };
+  });
 }
 
-const { domain, items } = Astro.props;
+const { domain, items, num } = Astro.props;
 const problemLabel = site.problemLabelEn ?? "Problems";
+const conceptSet = new Set<string>(items.flatMap((p: any) => p.data.concepts ?? []));
+const levels = ["Easy", "Medium", "Hard"]
+  .map((l) => ({ l, n: items.filter((p: any) => p.data.difficulty === l).length }))
+  .filter((x) => x.n > 0);
 ---
 
-<BaseLayout title={`${domain.name} · ${problemLabel}`} site={site}>
+<BaseLayout title={`${domain.name} · ${problemLabel}`} site={site} description={domain.intro}>
   <Crumbs
     site={site}
-    items={[
-      { label: problemLabel, href: "/problems/" },
-      { label: domain.name, icon: domain.icon },
-    ]}
+    items={[{ label: problemLabel, href: "/problems/" }, { label: domain.name }]}
   />
-  <header class="page-head">
-    <h1>{domain.icon} {domain.name}</h1>
-    <p class="lede">{domain.intro}</p>
-    <p class="muted">{items.length} problems</p>
+  <header class="page-head idx-head chapter-open section">
+    <div class="idx-side co-side">
+      <p class="co-kicker label">
+        Domain
+        {
+          domain.icon && (
+            <span class="cat-glyph" aria-hidden="true">
+              {domain.icon}
+            </span>
+          )
+        }
+      </p>
+      {
+        num > 0 && (
+          <span class="co-num" aria-hidden="true">
+            {pad2(num)}
+          </span>
+        )
+      }
+    </div>
+    <div class="idx-main">
+      <h1 class="idx-title" lang={latinLang(domain.name)}>{domain.name}</h1>
+      {domain.intro && <p class="co-intro">{domain.intro}</p>}
+      <dl class="co-stats">
+        <div>
+          <dt>Problems</dt>
+          <dd>{items.length}</dd>
+        </div>
+        {
+          levels.map((x) => (
+            <div>
+              <dt>
+                <span class="diff" data-level={DIFFICULTY_LEVEL[x.l.toLowerCase()]}>
+                  <span class="diff-bars" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  {x.l}
+                </span>
+              </dt>
+              <dd>{x.n}</dd>
+            </div>
+          ))
+        }
+        {
+          conceptSet.size > 0 && (
+            <div>
+              <dt>Concepts</dt>
+              <dd>{conceptSet.size}</dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
   </header>
 
-  {
-    items.length > 0 ? (
-      <section class="card-grid">
-        {items.map((entry: any) => (
-          <ProblemCard entry={entry} />
-        ))}
-      </section>
-    ) : (
-      <p class="empty">No problems in this domain yet.</p>
-    )
-  }
+  <section class="section idx-list reveal" aria-labelledby="problems-h">
+    <h2 class="running-head" id="problems-h">
+      <span class="running-head-num">01</span>Problems
+    </h2>
+    {
+      items.length > 0 ? (
+        <div class="section-body">
+          <ol class="rows">
+            {items.map((entry: any, i: number) => (
+              <ProblemCard entry={entry} index={i + 1} />
+            ))}
+          </ol>
+        </div>
+      ) : (
+        <p class="section-body idx-empty">這個領域還沒有寫成的題目。</p>
+      )
+    }
+  </section>
 </BaseLayout>

@@ -3,17 +3,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Crumbs from "../../components/Crumbs.astro";
 import { withBase } from "../../lib/url";
 import { bareSlug } from "../../lib/collections";
+import { siteUrl, siteLabel } from "../../lib/links";
+import { splitTitle, pad2, chapterNumbers, latinLang } from "../../lib/toc";
 import { site } from "virtual:notes-core/site";
 import { getCategories } from "../../lib/nav-data";
 import { getCollection } from "astro:content";
 
 const concepts = await getCollection("concepts");
-const { categories, roadmap } = await getCategories();
-// chrome 統一英文；標籤與 topnav 的 Concepts 項一致（語意站用 conceptLabelEn，如 Patterns）。
+const { categories } = await getCategories();
 const conceptLabel = site.conceptLabelEn ?? "Concepts";
-const hasSister = categories.some((c: any) => c.sister);
 
-// 依分類建 bareSlug → 已寫頁 的索引（collection id 形如 "naming/intention-revealing-names"）
 const writtenByCat = new Map<string, Map<string, (typeof concepts)[number]>>();
 for (const c of concepts) {
   const cat = c.data.category;
@@ -21,82 +20,147 @@ for (const c of concepts) {
   writtenByCat.get(cat)!.set(bareSlug(c.id), c);
 }
 
-const cats = [...categories].sort((a: any, b: any) => a.order - b.order);
+const numbers = chapterNumbers(
+  categories as any[],
+  (slug) => (writtenByCat.get(slug)?.size ?? 0) > 0
+);
 
-// 每個分類：只收「已成頁」的 roadmap 節點（待寫節點不再顯示），依 tier 分成兩條 lane。
-// 只有基礎/進階兩步，故用兩條標示清楚的 lane 呈現（取代會因字數換行錯位的單列 rail）。
-const tracks = cats
+type Line = { title: string; tier: "basic" | "advanced" | null; href: string | null };
+
+const chapters = [...categories]
+  .sort((a: any, b: any) => a.order - b.order)
+  .filter((c: any) => numbers.has(c.slug))
   .map((c: any) => {
-    const nodes = ((roadmap as any)[c.slug] ?? [])
-      .map((n: any) => {
-        const entry = writtenByCat.get(c.slug)?.get(n.slug);
-        return entry
-          ? { title: entry.data.title, tier: n.tier, href: withBase(`concepts/${entry.id}/`) }
-          : null;
-      })
-      .filter(Boolean);
-    return {
-      cat: c,
-      basic: nodes.filter((n: any) => n.tier === "basic"),
-      advanced: nodes.filter((n: any) => n.tier === "advanced"),
-    };
-  })
-  .filter((t: any) => t.basic.length + t.advanced.length > 0);
+    const written = writtenByCat.get(c.slug) ?? new Map();
+    const seen = new Set<string>();
+    const lines: Line[] = (c.roadmap ?? []).map((n: any) => {
+      seen.add(n.slug);
+      const entry = written.get(n.slug);
+      return entry
+        ? { title: entry.data.title, tier: n.tier, href: withBase(`concepts/${entry.id}/`) }
+        : { title: n.title, tier: n.tier, href: null };
+    });
+    for (const [slug, entry] of written) {
+      if (!seen.has(slug)) {
+        lines.push({
+          title: entry.data.title,
+          tier: null,
+          href: withBase(`concepts/${entry.id}/`),
+        });
+      }
+    }
+    const rank = (l: Line) => (l.tier === "basic" ? 0 : l.tier === "advanced" ? 1 : 2);
+    lines.sort((a, b) => rank(a) - rank(b));
+    const done = lines.filter((l) => l.href).length;
+    return { cat: c, num: numbers.get(c.slug)!, lines, done, total: lines.length };
+  });
+
+const writtenTotal = chapters.reduce((s, ch) => s + ch.done, 0);
+const plannedTotal = chapters.reduce((s, ch) => s + ch.total - ch.done, 0);
+const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
 ---
 
 <BaseLayout title={`${conceptLabel} · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: conceptLabel }]} />
-  <header class="page-head">
-    <h1>{conceptLabel}</h1>
-    {hasSister && <p class="lede">Tracks marked ↘ dive deeper into a sister site.</p>}
+  <header class="page-head idx-head section">
+    <p class="idx-side running-head"><span class="running-head-num">00</span>Contents</p>
+    <div class="idx-main">
+      <h1 class="idx-title" lang={latinLang(conceptLabel)}>{conceptLabel}</h1>
+      <p class="idx-stats">
+        <span><b>{writtenTotal}</b> Written</span>
+        {
+          plannedTotal > 0 && (
+            <span>
+              <b>{plannedTotal}</b> Planned
+            </span>
+          )
+        }
+        <span><b>{chapters.length}</b> {chapters.length === 1 ? "Chapter" : "Chapters"}</span>
+      </p>
+      {
+        chapters.length > 1 && (
+          <ol class="idx-jump" aria-label="Chapters">
+            {chapters.map((ch) => (
+              <li>
+                <a href={`#${ch.cat.slug}`}>
+                  <span class="idx-jump-num">{pad2(ch.num)}</span>
+                  {ch.cat.name}
+                </a>
+              </li>
+            ))}
+          </ol>
+        )
+      }
+    </div>
   </header>
 
-  <section class="tracks">
+  <div class="toc bleed">
     {
-      tracks.map(({ cat, basic, advanced }: any) => (
-        <article class="track">
-          <div class="track-head">
-            <span class="track-icon">{cat.icon}</span>
-            <a class="track-name" href={withBase(`concepts/${cat.slug}/`)}>
-              {cat.name}
-            </a>
-            {cat.sister && (
-              <span class="deep-tag" title={`Dive deeper → ${cat.sister}`}>
-                ↘ {cat.sister}
+      chapters.map((ch) => (
+        <section class="toc-ch reveal" id={ch.cat.slug} aria-labelledby={`ch-${ch.cat.slug}`}>
+          <div class="toc-side">
+            <span class="toc-num" aria-hidden="true">
+              {pad2(ch.num)}
+            </span>
+            <h2 class="toc-name" id={`ch-${ch.cat.slug}`}>
+              <a class="link-draw" href={withBase(`concepts/${ch.cat.slug}/`)}>
+                {ch.cat.name}
+              </a>
+              {ch.cat.icon && (
+                <span class="cat-glyph" aria-hidden="true">
+                  {ch.cat.icon}
+                </span>
+              )}
+            </h2>
+            <p class="toc-progress">
+              <span class="toc-count">
+                {ch.done}
+                <span class="toc-slash">/</span>
+                {ch.total}
               </span>
+              <span class="toc-meter" aria-hidden="true">
+                <i style={`--p:${ch.total ? ch.done / ch.total : 0}`} />
+              </span>
+              <span class="visually-hidden">pages written</span>
+            </p>
+            {ch.cat.sister && (
+              <a class="toc-deeper arrow-nudge" href={siteUrl(ch.cat.sister)}>
+                Deeper in {siteLabel(ch.cat.sister)} <span class="arrow">→</span>
+              </a>
             )}
           </div>
-
-          <div class="rail">
-            {basic.length > 0 && (
-              <div class="lane">
-                <span class="lane-label">Basic</span>
-                <div class="lane-nodes">
-                  {basic.map((n: any) => (
-                    <a class="node done" href={n.href}>
-                      <span class="node-dot" />
-                      {n.title}
+          <ul class="toc-lines">
+            {ch.lines.map((l) => {
+              const t = splitTitle(l.title);
+              const inner = (
+                <>
+                  <span class="toc-t">
+                    <span class="toc-main">{t.main}</span>
+                    {t.sub && <span class="toc-sub">{t.sub}</span>}
+                    {t.en && <span class="toc-en">{t.en}</span>}
+                  </span>
+                  <span class="toc-dots" aria-hidden="true" />
+                  <span class="toc-tier">{l.tier ? TIER_TAG[l.tier] : ""}</span>
+                </>
+              );
+              return (
+                <li class={`toc-line${l.href ? "" : " is-planned"}`}>
+                  {l.href ? (
+                    <a class="toc-row" href={l.href}>
+                      {inner}
                     </a>
-                  ))}
-                </div>
-              </div>
-            )}
-            {advanced.length > 0 && (
-              <div class="lane">
-                <span class="lane-label adv">Advanced</span>
-                <div class="lane-nodes">
-                  {advanced.map((n: any) => (
-                    <a class="node done" href={n.href}>
-                      <span class="node-dot" />
-                      {n.title}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </article>
+                  ) : (
+                    <span class="toc-row">
+                      {inner}
+                      <span class="visually-hidden">(planned)</span>
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       ))
     }
-  </section>
+  </div>
 </BaseLayout>

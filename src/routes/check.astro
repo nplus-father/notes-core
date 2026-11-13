@@ -1,13 +1,10 @@
 ---
-// 檢核頁 /check/：這一站「讀完」的定義——出師條件。
-// 資料源 = 各分類 _index.md 的 mastery 欄位（roadmap 說讀什麼、mastery 說讀完該會什麼），
-// 依分類分組、每句可帶「複習」鍵連回教它的概念頁；勾選記進 localStorage（key 含站台
-// base，62 站同網域不互撞）。站台完全沒有 mastery 時 nav 不出 ✅（見 BaseLayout），
-// 此頁仍會建置——直接打網址會看到空狀態說明，不是 404。
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
+import Icon from "../components/Icon.astro";
 import { withBase } from "../lib/url";
 import { bareSlug } from "../lib/collections";
+import { pad2 } from "../lib/toc";
 import { site } from "virtual:notes-core/site";
 import { getCategories } from "../lib/nav-data";
 import { getCollection } from "astro:content";
@@ -15,7 +12,6 @@ import { getCollection } from "astro:content";
 const concepts = await getCollection("concepts");
 const { categories } = await getCategories();
 
-// 分類內 bare slug → 已寫概念頁；「複習」鍵只連真的存在的頁，待寫節點不出死鏈。
 const writtenByCat = new Map<string, Map<string, (typeof concepts)[number]>>();
 for (const c of concepts) {
   const cat = c.data.category;
@@ -38,24 +34,35 @@ const groups = categories
   .filter((g) => g.items.length > 0);
 const total = groups.reduce((n, g) => n + g.items.length, 0);
 
-// 勾選記憶的 localStorage key：含站台 base（= /<slug>/），站與站不互撞。
 const storeKey = `check:${import.meta.env.BASE_URL}`;
 ---
 
-{
-  /* 還沒定義 mastery 的站，這頁只有空狀態說明——掛 noindex，別讓 62 站各交一份
-    幾乎相同的空頁給搜尋引擎（路由恆注入，故不能靠 sitemap 的 config 期過濾）。 */
-}
 <BaseLayout title={`Check · ${site.brand}`} site={site} noindex={total === 0}>
   <Crumbs site={site} items={[{ label: "Check" }]} />
-  <header class="page-head">
-    <div class="check-head">
-      <h1>Check</h1>
+  <header class="page-head idx-head check-head section">
+    <p class="idx-side running-head"><span class="running-head-num">00</span>Mastery</p>
+    <div class="idx-main">
+      <h1 class="idx-title check-title" lang="en">Check</h1>
       {
         total > 0 && (
-          <span class="check-total" data-total-prog>
-            進度 0 / {total}
-          </span>
+          <>
+            <p class="check-figure" aria-live="polite">
+              <span class="check-done" data-total-done>
+                0
+              </span>
+              <span class="check-sep" aria-hidden="true">
+                /
+              </span>
+              <span class="check-of">
+                <span class="visually-hidden">of</span>
+                {total}
+              </span>
+              <span class="check-unit">Mastered</span>
+            </p>
+            <div class="check-line" aria-hidden="true">
+              <i data-total-line />
+            </div>
+          </>
         )
       }
     </div>
@@ -63,48 +70,77 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
 
   {
     total === 0 && (
-      <p class="check-empty">
-        這一站還沒定義檢核清單——各分類 _index.md 的 mastery 欄位補上後，這裡就會長出來。
-      </p>
+      <section class="section idx-list">
+        <p class="running-head">
+          <span class="running-head-num">01</span>Empty
+        </p>
+        <p class="section-body idx-empty">這一站還沒有檢核清單。</p>
+      </section>
     )
   }
 
   {
-    groups.map(({ cat, items }) => (
-      <section class="check-cat" data-cat>
-        <div class="check-cat-head">
-          <span class="check-cat-icon">{cat.icon}</span>
-          <span class="check-cat-name">{cat.name}</span>
-          <span class="check-prog" data-cat-prog />
-        </div>
-        <ul class="check-list">
-          {items.map((it) => (
-            <li>
-              <input type="checkbox" id={it.key} data-check-key={it.key} />
-              <label for={it.key}>{it.text}</label>
-              {it.href && (
-                <a class="check-review" href={it.href} title={`複習：${it.text}`}>
-                  複習
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))
+    total > 0 && (
+      <div class="toc check-toc bleed">
+        {groups.map(({ cat, items }, gi) => (
+          <section class="toc-ch check-ch reveal" data-cat aria-labelledby={`ck-${cat.slug}`}>
+            <div class="toc-side">
+              <span class="toc-num" aria-hidden="true">
+                {pad2(gi + 1)}
+              </span>
+              <h2 class="toc-name" id={`ck-${cat.slug}`}>
+                {cat.name}
+                {cat.icon && (
+                  <span class="cat-glyph" aria-hidden="true">
+                    {cat.icon}
+                  </span>
+                )}
+              </h2>
+              <p class="toc-progress">
+                <span class="toc-count" data-cat-prog>
+                  0<span class="toc-slash">/</span>
+                  {items.length}
+                </span>
+                <span class="toc-meter" aria-hidden="true">
+                  <i data-cat-line style="--p:0" />
+                </span>
+              </p>
+            </div>
+            <ul class="check-list">
+              {items.map((it) => (
+                <li class="check-item">
+                  <input class="check-box" type="checkbox" id={it.key} data-check-key={it.key} />
+                  <label class="check-text" for={it.key}>
+                    {it.text}
+                  </label>
+                  {it.href ? (
+                    <a
+                      class="check-review arrow-nudge"
+                      href={it.href}
+                      aria-label={`Review: ${it.text}`}
+                    >
+                      Review
+                      <Icon name="arrow-right" size={14} />
+                    </a>
+                  ) : (
+                    <span class="check-review is-none" aria-hidden="true" />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )
   }
 
-  {
-    /* 勾選記憶＋進度計數。存 key 陣列而非 index bitmap——分類增刪句子時不錯位。
-      無條件掛載：空狀態時 boxes 為空、自然不動作（script 不能包在 JSX 條件裡）。 */
-  }
   <script is:inline define:vars={{ storeKey }}>
     const boxes = [...document.querySelectorAll("input[data-check-key]")];
     let saved = [];
     try {
       saved = JSON.parse(localStorage.getItem(storeKey) || "[]");
     } catch {
-      saved = []; // 壞資料當沒存過
+      saved = [];
     }
     const on = new Set(saved);
     for (const b of boxes) b.checked = on.has(b.dataset.checkKey);
@@ -112,17 +148,24 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
       for (const sec of document.querySelectorAll("[data-cat]")) {
         const all = sec.querySelectorAll("input[data-check-key]").length;
         const done = sec.querySelectorAll("input[data-check-key]:checked").length;
-        sec.querySelector("[data-cat-prog]").textContent = `${done} / ${all}`;
+        const prog = sec.querySelector("[data-cat-prog]");
+        prog.firstChild.textContent = String(done);
+        sec.querySelector("[data-cat-line]").style.setProperty("--p", all ? done / all : 0);
+        sec.classList.toggle("is-complete", all > 0 && done === all);
       }
       const done = boxes.filter((b) => b.checked).length;
-      const totalEl = document.querySelector("[data-total-prog]");
-      if (totalEl) totalEl.textContent = `進度 ${done} / ${boxes.length}`;
+      const doneEl = document.querySelector("[data-total-done]");
+      if (doneEl) doneEl.textContent = String(done);
+      const line = document.querySelector("[data-total-line]");
+      if (line) line.style.setProperty("--p", boxes.length ? done / boxes.length : 0);
     };
     document.addEventListener("change", (e) => {
       const t = e.target;
       if (!(t instanceof HTMLInputElement) || !t.dataset.checkKey) return;
       const checked = boxes.filter((b) => b.checked).map((b) => b.dataset.checkKey);
-      localStorage.setItem(storeKey, JSON.stringify(checked));
+      try {
+        localStorage.setItem(storeKey, JSON.stringify(checked));
+      } catch {}
       update();
     });
     update();

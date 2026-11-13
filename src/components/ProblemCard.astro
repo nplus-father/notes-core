@@ -1,28 +1,57 @@
 ---
-import DifficultyPill from "./DifficultyPill.astro";
-import Stars from "./Stars.astro";
+import Icon from "./Icon.astro";
 import { withBase } from "../lib/url";
+import { splitTitle, standfirst, pad2, STATUS_MARK, DIFFICULTY_LEVEL } from "../lib/toc";
 
-const { entry } = Astro.props;
+interface Props {
+  entry: any;
+  index: number;
+}
+const { entry, index } = Astro.props;
 const d = entry.data;
 const href = withBase(`problems/${entry.id}/`);
+const t = splitTitle(d.title);
+const sf = standfirst(entry.body);
+const mark = STATUS_MARK[d.status];
+const imp = Math.max(0, Math.min(5, Number(d.importance) || 0));
+const diff = d.difficulty.toLowerCase();
+const level = DIFFICULTY_LEVEL[diff] ?? 2;
 ---
 
-<a
-  class="card"
-  href={href}
-  data-difficulty={d.difficulty.toLowerCase()}
+<li
+  class="row"
+  data-row
+  data-difficulty={diff}
   data-status={d.status}
   data-importance={d.importance}
   data-domain={d.domain}
   data-title={d.title.toLowerCase()}
 >
-  <span class="card-top">
-    {d.status !== "draft" && <span class={`dot status-${d.status}`} title={d.status} />}
-  </span>
-  <span class="card-title">{d.title}</span>
-  <span class="card-meta">
-    <DifficultyPill difficulty={d.difficulty} />
-    <Stars value={d.importance} />
-  </span>
-</a>
+  <a class="row-link" href={href}>
+    <span class="row-num" aria-hidden="true">{pad2(index)}</span>
+    <span class="row-body">
+      <span class="row-title">
+        <span class="row-t">{t.main}</span>
+        {t.sub && <span class="row-sub">{t.sub}</span>}
+        {t.en && <span class="row-en">{t.en}</span>}
+      </span>
+      {sf && <span class="row-sf">{sf}</span>}
+    </span>
+    <span class="row-meta">
+      {mark && <span class={`row-mark is-${d.status}`}>{mark}</span>}
+      <span class="diff" data-level={level}>
+        <span class="diff-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        {d.difficulty}
+      </span>
+      <span
+        class="imp"
+        role="img"
+        aria-label={`Importance ${imp} of 5`}
+        title={`Importance ${imp} / 5`}
+      >
+        {[1, 2, 3, 4, 5].map((i) => <i class={i <= imp ? "on" : undefined} />)}
+      </span>
+    </span>
+    <Icon name="arrow-right" size={18} class="row-arrow" />
+  </a>
+</li>

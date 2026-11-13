@@ -1,31 +1,56 @@
 ---
-import Stars from "./Stars.astro";
+import Icon from "./Icon.astro";
 import { withBase } from "../lib/url";
+import { splitTitle, standfirst, pad2, STATUS_MARK } from "../lib/toc";
 
-const { entry } = Astro.props;
+interface Props {
+  entry: any;
+  index: number;
+}
+const { entry, index } = Astro.props;
 const d = entry.data;
 const href = withBase(`concepts/${entry.id}/`);
+const t = splitTitle(d.title);
+const sf = standfirst(entry.body);
+const mark = STATUS_MARK[d.status];
+const imp = Math.max(0, Math.min(5, Number(d.importance) || 0));
 ---
 
-<a
-  class="card"
-  href={href}
+<li
+  class="row"
+  data-row
   data-status={d.status}
   data-importance={d.importance}
   data-title={d.title.toLowerCase()}
 >
-  <span class="card-top">
-    {d.status !== "draft" && <span class={`dot status-${d.status}`} title={d.status} />}
-  </span>
-  <span class="card-title">{d.title}</span>
-  <span class="card-meta">
-    <Stars value={d.importance} />
-    {
-      d.problems.length > 0 && (
-        <span class="card-cx" title="Linked problems">
-          {d.problems.length} 題
-        </span>
-      )
-    }
-  </span>
-</a>
+  <a class="row-link" href={href}>
+    <span class="row-num" aria-hidden="true">{pad2(index)}</span>
+    <span class="row-body">
+      <span class="row-title">
+        <span class="row-t">{t.main}</span>
+        {t.sub && <span class="row-sub">{t.sub}</span>}
+        {t.en && <span class="row-en">{t.en}</span>}
+      </span>
+      {sf && <span class="row-sf">{sf}</span>}
+    </span>
+    <span class="row-meta">
+      {mark && <span class={`row-mark is-${d.status}`}>{mark}</span>}
+      {
+        d.problems.length > 0 && (
+          <span class="row-cx">
+            {d.problems.length} {d.problems.length === 1 ? "problem" : "problems"}
+          </span>
+        )
+      }
+      <span
+        class="imp"
+        role="img"
+        aria-label={`Importance ${imp} of 5`}
+        title={`Importance ${imp} / 5`}
+      >
+        {[1, 2, 3, 4, 5].map((i) => <i class={i <= imp ? "on" : undefined} />)}
+      </span>
+    </span>
+    <Icon name="arrow-right" size={18} class="row-arrow" />
+  </a>
+</li>

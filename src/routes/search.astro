@@ -2,35 +2,67 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
 import { withBase } from "../lib/url";
+import { pad2 } from "../lib/toc";
 import { site } from "virtual:notes-core/site";
+import { getCategories } from "../lib/nav-data";
+import { getCollection } from "astro:content";
 
-// Pagefind 資源在 build 後輸出到 <base>/pagefind/。base 路徑要一起帶上。
 const pagefindUiCss = withBase("pagefind/pagefind-ui.css");
 const pagefindUiJs = withBase("pagefind/pagefind-ui.js");
 const bundlePath = withBase("pagefind/");
 const placeholder = site.searchPlaceholder ?? "Search notes…";
 const searchLede = site.searchLede ? site.searchLede.replaceAll("{base}", withBase("/")) : "";
+const conceptLabel = site.conceptLabelEn ?? "Concepts";
+
+const concepts = await getCollection("concepts");
+const { categories } = await getCategories();
+const counts = new Map<string, number>();
+for (const c of concepts) counts.set(c.data.category, (counts.get(c.data.category) ?? 0) + 1);
+const browse = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
 ---
 
 <BaseLayout title={`Search · ${site.brand}`} site={site}>
   <Crumbs site={site} items={[{ label: "Search" }]} />
-  <header class="page-head">
-    <h1>Search</h1>
-    {
-      searchLede ? (
-        <p class="lede" set:html={searchLede} />
-      ) : (
-        <p class="lede">Search the full <strong>text</strong> of every page. Use the filters to narrow by category.</p>
-      )
-    }
+  <header class="page-head idx-head section">
+    <p class="idx-side running-head"><span class="running-head-num">00</span>Full text</p>
+    <div class="idx-main">
+      <h1 class="idx-title" lang="en">Search</h1>
+      {searchLede && <p class="idx-lede" set:html={searchLede} />}
+    </div>
   </header>
 
-  <div id="search" class="pf-search"></div>
-
-  <p id="pf-fallback" class="muted" hidden>
-    Search index not built yet. It's generated during <code>npm run build</code> — run
-    <code>npm run build &amp;&amp; npm run preview</code> to browse this page (<code>astro dev</code> doesn't load the index).
-  </p>
+  <section class="section search-wrap" aria-label="Search">
+    <p class="running-head"><span class="running-head-num">01</span>Query</p>
+    <div class="section-body">
+      <div id="search" class="pf-search"></div>
+      <noscript>
+        <p class="idx-empty search-quiet">搜尋需要 JavaScript；下面的目錄一樣可以帶你到每一頁。</p>
+      </noscript>
+      <p id="pf-fallback" class="idx-empty search-quiet" hidden>
+        搜尋暫時無法使用；下面的目錄一樣可以帶你到每一頁。
+      </p>
+      {
+        browse.length > 0 && (
+          <nav class="search-browse" aria-labelledby="browse-h">
+            <h2 class="label search-browse-h" id="browse-h">
+              Browse {conceptLabel}
+            </h2>
+            <ol class="idx-jump">
+              {browse.map((c, i) => (
+                <li>
+                  <a href={withBase(`concepts/${c.slug}/`)}>
+                    <span class="idx-jump-num">{pad2(i + 1)}</span>
+                    {c.name}
+                    <span class="search-browse-n">{counts.get(c.slug)}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+    </div>
+  </section>
 
   <link href={pagefindUiCss} rel="stylesheet" />
   <script is:inline src={pagefindUiJs}></script>
@@ -40,25 +72,38 @@ const searchLede = site.searchLede ? site.searchLede.replaceAll("{base}", withBa
         document.getElementById("pf-fallback")?.removeAttribute("hidden");
         return;
       }
+      const strip = (s) =>
+        typeof s === "string"
+          ? s.replace(/[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}]️?\s*/gu, "").trim()
+          : s;
       new PagefindUI({
         element: "#search",
         bundlePath,
         showSubResults: true,
         showImages: false,
         pageSize: 8,
-        excerptLength: 24,
+        excerptLength: 22,
+        processResult: (r) => {
+          if (r.meta) r.meta.title = strip(r.meta.title);
+          r.excerpt = strip(r.excerpt);
+          for (const s of r.sub_results ?? []) {
+            s.title = strip(s.title);
+            s.excerpt = strip(s.excerpt);
+          }
+          return r;
+        },
         translations: {
           placeholder,
           clear_search: "Clear",
-          load_more: "Load more results",
+          load_more: "More results",
           search_label: "Search notes",
-          filters_label: "Filters",
-          zero_results: "No results for [SEARCH_TERM]",
-          many_results: "[COUNT] results for [SEARCH_TERM]",
-          one_result: "[COUNT] result for [SEARCH_TERM]",
-          alt_search: "No results for [SEARCH_TERM]; showing results for [DIFFERENT_TERM] instead",
-          search_suggestion: "No results for [SEARCH_TERM]. Try one of these:",
-          searching: "Searching [SEARCH_TERM]…",
+          filters_label: "Filter",
+          zero_results: "Nothing found for “[SEARCH_TERM]”",
+          many_results: "[COUNT] results for “[SEARCH_TERM]”",
+          one_result: "[COUNT] result for “[SEARCH_TERM]”",
+          alt_search: "Nothing for “[SEARCH_TERM]” — showing “[DIFFERENT_TERM]”",
+          search_suggestion: "Nothing found for “[SEARCH_TERM]”",
+          searching: "Searching “[SEARCH_TERM]”…",
         },
       });
     });

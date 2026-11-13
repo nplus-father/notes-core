@@ -1,27 +1,22 @@
 ---
-// 首頁「藏書盤點」：人物站 = 作者全集、主題站 = 領域經典的完整清單——
-// 已收錄的連書站，缺口（待收錄／暫無來源）如實顯示，兼作收書 roadmap。
-// 資料由各站 src/data/bibliography.ts 提供（型別見 lib/library.ts）。
 import { bookUrl } from "../lib/links";
 import type { BibliographyEntry, BibliographyStatus } from "../lib/library";
 
 interface Props {
   entries: BibliographyEntry[];
   heading?: string;
-  note?: string;
+  num?: string;
 }
-// 標題預設 "Inventory"（v0.34.0）——chrome 一律簡短英文。
-const { entries, heading = "Inventory", note } = Astro.props;
+const { entries, heading = "Inventory", num = "01" } = Astro.props;
 
-// 狀態只出 emoji（hover 有全名），第一欄一掃就知道收藏進度；文字 badge 退役（v0.19.0）。
-const STATUS: Record<BibliographyStatus, { icon: string; label: string }> = {
-  owned: { icon: "✅", label: "已收錄" },
-  wanted: { icon: "⬜", label: "待收錄" },
-  unavailable: { icon: "🚫", label: "暫無來源" },
-  skipped: { icon: "➖", label: "略過" },
+const STATUS: Record<BibliographyStatus, { label: string; zh: string }> = {
+  owned: { label: "Owned", zh: "已收錄" },
+  wanted: { label: "Wanted", zh: "待收錄" },
+  unavailable: { label: "Unavailable", zh: "暫無來源" },
+  skipped: { label: "Skipped", zh: "略過" },
 };
+const statusName = (s: BibliographyStatus) => `${STATUS[s].label}（${STATUS[s].zh}）`;
 
-// 依 group 首次出現的順序分組（無 group 的歸入空字串組，直接平鋪）。
 const groups: { name: string; items: BibliographyEntry[] }[] = [];
 for (const e of entries) {
   const name = e.group ?? "";
@@ -29,17 +24,10 @@ for (const e of entries) {
   if (g) g.items.push(e);
   else groups.push({ name, items: [e] });
 }
-// 組內一律依出版年由早到晚（v0.20.0）——分組給的是「哪一類」，年份給的是「怎麼長出來的」，
-// 兩個軸疊起來這張表才讀得出思想的推進。沒填年份的沉底（sort 穩定，維持站台原順序）。
-// 排的是 groups 內新建的陣列，不動 entries 本身——首頁書架仍照站台給的順序。
 const yearOf = (e: BibliographyEntry) => e.year ?? Number.MAX_SAFE_INTEGER;
 for (const g of groups) g.items.sort((a, b) => yearOf(a) - yearOf(b));
 
-// ── 年代分佈長條圖：把上面那條年份軸畫出來，順便疊上收藏進度。
-// 桶寬自適應：主題站多半集中在近幾十年（10 年一格剛好），神學／哲學站卻橫跨
-// 318–2024（10 年一格會變成 170 根針）。取「能把格數壓進 MAX_BARS 以內」的最小桶寬。
 const BUCKETS = [10, 20, 25, 50, 100, 200, 250, 500, 1000];
-// 14 根是「窄螢幕排得下、又不必隔兩根才標一次年份」的上限；再多就換更寬的桶。
 const MAX_BARS = 14;
 const years = entries
   .map((e) => e.year)
@@ -49,11 +37,6 @@ let bucket = BUCKETS[0];
 const lo = years.length ? years[0] : 0;
 const hi = years.length ? years[years.length - 1] : 0;
 
-// 上古離群值的處理：business-strategy 的 51 本裡有 50 本在 1960 之後，但《孫子兵法》
-// 一筆 -500 就把軸拉成 2500 年——14 格裡 12 格全空、50 本全擠進最右邊那格，圖就廢了。
-// 作法：軸只涵蓋「主群」（第 5 百分位起），更早的收進一根標成「更早」的溢位柱，
-// 且僅在「主群之前的尾巴比主群本身還長」時才啟動——theology 那種真的橫跨古今的站不受影響。
-// 這是截軸不是砍資料：那幾本仍在溢位柱裡計數，hover 說得出是哪個區間。
 const p5 = years.length ? years[Math.floor(years.length * 0.05)] : 0;
 const truncated = years.length >= 8 && p5 - lo > (hi - lo) * 0.5;
 const axisLo = truncated ? p5 : lo;
@@ -61,163 +44,181 @@ const overflow = truncated
   ? entries.filter((e) => typeof e.year === "number" && e.year < axisLo)
   : [];
 
-const bars: { start: number; total: number; owned: number }[] = [];
+type Bar = {
+  key: string;
+  label: string;
+  title: string;
+  total: number;
+  owned: number;
+  gapAfter?: boolean;
+};
+const yearLabel = (y: number) => (y < 0 ? `${-y} BC` : `${y}`);
+const bars: Bar[] = [];
 if (years.length >= 4) {
   bucket =
     BUCKETS.find((b) => Math.floor(hi / b) - Math.floor(axisLo / b) + 1 <= MAX_BARS) ??
     BUCKETS[BUCKETS.length - 1];
+  if (overflow.length > 0) {
+    const ownedN = overflow.filter((e) => e.status === "owned").length;
+    bars.push({
+      key: "earlier",
+      label: "Earlier",
+      title: `${yearLabel(lo)}–${yearLabel(axisLo - 1)} · ${overflow.length} · owned ${ownedN}`,
+      total: overflow.length,
+      owned: ownedN,
+      gapAfter: true,
+    });
+  }
   const from = Math.floor(axisLo / bucket) * bucket;
   const to = Math.floor(hi / bucket) * bucket;
   for (let s = from; s <= to; s += bucket) {
     const inBucket = entries.filter(
       (e) => typeof e.year === "number" && e.year >= s && e.year < s + bucket
     );
+    const ownedN = inBucket.filter((e) => e.status === "owned").length;
     bars.push({
-      start: s,
+      key: String(s),
+      label: s >= 0 && bucket === 10 ? `${s}s` : yearLabel(s),
+      title: `${yearLabel(s)}–${yearLabel(s + bucket - 1)} · ${inBucket.length} · owned ${ownedN}`,
       total: inBucket.length,
-      owned: inBucket.filter((e) => e.status === "owned").length,
+      owned: ownedN,
     });
   }
 }
-// 一根柱不叫分佈；跨不過一格就不畫。
-const showChart = bars.length >= 2;
+const showChart = bars.filter((b) => b.key !== "earlier").length >= 2;
 const peak = Math.max(1, ...bars.map((b) => b.total));
-// 格數多時隔一根才標，免得 0.62rem 的年份標籤在窄螢幕上疊在一起。
 const labelEvery = bars.length > 10 ? 2 : 1;
-const yearLabel = (y: number) => (y < 0 ? `${-y} BC` : `${y}`);
-// 10 年一格才寫成「1990s」；格子更寬時只標起始年，範圍留給 hover 的 title。
-const barLabel = (start: number) => (start >= 0 && bucket === 10 ? `${start}s` : yearLabel(start));
-const barTitle = (b: (typeof bars)[number]) =>
-  `${yearLabel(b.start)}–${yearLabel(b.start + bucket - 1)} · ${b.total} 本 · 已收錄 ${b.owned}`;
 
-const owned = entries.filter((e) => e.status === "owned").length;
-// 表頭那行兼作圖例：進度＋只列實際出現過的狀態。
-const rest = (["wanted", "unavailable", "skipped"] as BibliographyStatus[])
-  .filter((s) => entries.some((e) => e.status === s))
-  .map((s) => `${STATUS[s].icon} ${STATUS[s].label}`)
-  .join(" · ");
-const defaultNote = `✅ 已收錄 ${owned} / ${entries.length}${rest ? ` · ${rest}` : ""}`;
+const ownedCount = entries.filter((e) => e.status === "owned").length;
+const legend = (["owned", "wanted", "unavailable", "skipped"] as BibliographyStatus[])
+  .map((s) => ({ s, n: entries.filter((e) => e.status === s).length }))
+  .filter((x) => x.n > 0);
 
-// 分組鍵只在「真的有多組」時才有意義：沒填 group 的站會落成單一無名組，
-// 給它一排只有「全部」的鍵是噪音。
 const showTabs = groups.length >= 2 && groups.every((g) => g.name);
+const binWord = bucket === 10 ? "decade" : `${bucket}-year bin`;
 ---
 
 {
   entries.length > 0 && (
-    <section class="biblio">
-      <div class="biblio-head">
-        <h2>{heading}</h2>
-        <span class="biblio-note">{note ?? defaultNote}</span>
-      </div>
+    <section class="section lib-sec biblio reveal" aria-labelledby="inv-h">
+      <h2 class="running-head" id="inv-h">
+        <span class="running-head-num">{num}</span>
+        {heading}
+      </h2>
+      <div class="section-body">
+        <p class="biblio-legend">
+          {legend.map((x) => (
+            <span class="biblio-legend-item">
+              <span class={`bm bm-${x.s}`} aria-hidden="true" />
+              <span class="biblio-legend-label">{STATUS[x.s].label}</span>
+              <span class="biblio-legend-n">
+                {x.s === "owned" ? `${ownedCount} / ${entries.length}` : x.n}
+              </span>
+            </span>
+          ))}
+        </p>
 
-      {showChart && (
-        <figure
-          class="biblio-chart"
-          role="img"
-          aria-label={`年代分佈：${years.length} 本標了出版年的書落在 ${yearLabel(lo)}–${yearLabel(hi)} 之間，深色段為已收錄。逐筆資料見下方表格。`}
-        >
-          <div class="biblio-bars">
-            {/* 溢位柱：軸起點之前的書全收在這裡，與主軸之間留一道間隙表示「不連續」。 */}
-            {overflow.length > 0 && (
-              <div class="biblio-bar-col is-overflow">
-                <div
-                  class="biblio-bar-track"
-                  title={`${yearLabel(lo)}–${yearLabel(axisLo - 1)} · ${overflow.length} 本 · 已收錄 ${overflow.filter((e) => e.status === "owned").length}`}
-                >
-                  <div
-                    class="biblio-bar"
-                    style={`height:${Math.min(100, Math.max(6, (overflow.length / peak) * 100))}%`}
-                  >
-                    {overflow.length - overflow.filter((e) => e.status === "owned").length > 0 && (
-                      <span
-                        class="biblio-seg is-gap"
-                        style={`flex-grow:${overflow.length - overflow.filter((e) => e.status === "owned").length}`}
-                      />
-                    )}
-                    {overflow.filter((e) => e.status === "owned").length > 0 && (
-                      <span
-                        class="biblio-seg is-owned"
-                        style={`flex-grow:${overflow.filter((e) => e.status === "owned").length}`}
-                      />
+        {showChart && (
+          <figure class="biblio-chart">
+            <div
+              class="biblio-bars"
+              role="img"
+              aria-label={`Publication years: ${years.length} dated books from ${yearLabel(lo)} to ${yearLabel(hi)}, ink shows owned copies.`}
+            >
+              {bars.map((b, i) => (
+                <div class:list={["biblio-col", { "is-gap-after": b.gapAfter }]} title={b.title}>
+                  <div class="biblio-col-track">
+                    {b.total > 0 && (
+                      <div class="biblio-col-bar" style={`height:${(b.total / peak) * 100}%`}>
+                        <span class="biblio-col-val">{b.total}</span>
+                        {b.total - b.owned > 0 && (
+                          <span
+                            class="biblio-seg is-gap"
+                            style={`flex-grow:${b.total - b.owned}`}
+                          />
+                        )}
+                        {b.owned > 0 && (
+                          <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
+                        )}
+                      </div>
                     )}
                   </div>
+                  <span class="biblio-col-label">
+                    {b.key === "earlier" || i % labelEvery === 0 ? b.label : ""}
+                  </span>
                 </div>
-                <span class="biblio-bar-label">更早</span>
-              </div>
-            )}
-            {bars.map((b, i) => (
-              <div class="biblio-bar-col">
-                <div class="biblio-bar-track" title={barTitle(b)}>
-                  {b.total > 0 && (
-                    <div class="biblio-bar" style={`height:${(b.total / peak) * 100}%`}>
-                      {b.total - b.owned > 0 && (
-                        <span class="biblio-seg is-gap" style={`flex-grow:${b.total - b.owned}`} />
-                      )}
-                      {b.owned > 0 && (
-                        <span class="biblio-seg is-owned" style={`flex-grow:${b.owned}`} />
-                      )}
-                    </div>
-                  )}
-                </div>
-                <span class="biblio-bar-label">
-                  {i % labelEvery === 0 ? barLabel(b.start) : ""}
-                </span>
-              </div>
+              ))}
+            </div>
+            <figcaption class="biblio-caption">
+              <span>Publication year · one bar per {binWord}</span>
+              <span class="biblio-key">
+                <i class="biblio-key-sw is-owned" aria-hidden="true" />
+                Owned
+              </span>
+              <span class="biblio-key">
+                <i class="biblio-key-sw is-gap" aria-hidden="true" />
+                Not owned
+              </span>
+            </figcaption>
+          </figure>
+        )}
+
+        {showTabs && (
+          <div class="biblio-tabs text-tabs" role="group" aria-label={`${heading} groups`} hidden>
+            <button
+              type="button"
+              class="text-tab biblio-tab is-active"
+              aria-pressed="true"
+              data-group=""
+            >
+              All
+              <span class="biblio-tab-count">{entries.length}</span>
+            </button>
+            {groups.map((g) => (
+              <button
+                type="button"
+                class="text-tab biblio-tab"
+                aria-pressed="false"
+                data-group={g.name}
+              >
+                {g.name}
+                <span class="biblio-tab-count">{g.items.length}</span>
+              </button>
             ))}
           </div>
-          <figcaption class="biblio-chart-note">
-            <span>
-              年代分佈，每格 {bucket} 年{truncated && `（更早的 ${overflow.length} 本併入首格）`}
-            </span>
-            <span class="biblio-key">
-              <i class="biblio-key-dot is-owned" aria-hidden="true" />
-              已收錄
-            </span>
-            <span class="biblio-key">
-              <i class="biblio-key-dot is-gap" aria-hidden="true" />
-              未收
-            </span>
-          </figcaption>
-        </figure>
-      )}
+        )}
+        {showTabs && (
+          <script is:inline>document.currentScript.previousElementSibling.hidden = false;</script>
+        )}
 
-      {/* 分組切換鍵（v0.29.0）。**預設 hidden，由下面的 script 打開**——沒有 JS 時
-          按鈕按不動，與其擺一排死鍵，不如整條不出、退回「所有組全部攤開」的舊行為。
-          第一個鍵是「全部」而不是第一組：分組一旦變成篩選器，預設就該是**看得到全部**，
-          否則 Ctrl+F 只找得到當下那一組，等於把資料藏起來。 */}
-      {/* ARIA 用 group + aria-pressed，**不是** tablist/tab：這排鍵是同一份表格的篩選器，
-          底下沒有多個 tabpanel 可對應。掛 role="tab" 而沒有 tabpanel 是壞掉的 tab 模式，
-          螢幕閱讀器會去找不存在的面板；一排 toggle button 才是它真正的樣子。 */}
-      {showTabs && (
-        <div class="biblio-tabs" role="group" aria-label={`${heading}分組篩選`} hidden>
-          <button type="button" class="biblio-tab is-active" aria-pressed="true" data-group="">
-            全部
-            <span class="biblio-tab-count">{entries.length}</span>
-          </button>
+        <div class="biblio-groups">
           {groups.map((g) => (
-            <button type="button" class="biblio-tab" aria-pressed="false" data-group={g.name}>
-              {g.name}
-              <span class="biblio-tab-count">{g.items.length}</span>
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* 固定高度的捲動窗：盤點表動輒上百列，攤開會把首頁拉到十幾個螢幕高。
-          高度收在 CSS（--biblio-pane-h），這裡只負責結構。 */}
-      <div class="biblio-panes">
-        {groups.map((g) => (
-          <div class="biblio-group" data-group={g.name}>
-            {g.name && <h3 class="biblio-group-name">{g.name}</h3>}
-            <div class="biblio-scroll">
+            <div class="biblio-group" data-group={g.name}>
+              {g.name && (
+                <h3 class="biblio-group-name">
+                  <span>{g.name}</span>
+                  <span class="biblio-group-n">{g.items.length}</span>
+                </h3>
+              )}
               <table class="biblio-table">
+                <thead class="visually-hidden">
+                  <tr>
+                    <th scope="col">Status</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Year</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {g.items.map((e) => (
                     <tr class={`biblio-row is-${e.status}`}>
-                      {/* 欄序（v0.19.0）：收錄 → 書名 → 註記 → 年份——年份最不重要，靠右淡化。 */}
-                      <td class="biblio-status" title={STATUS[e.status].label}>
-                        {STATUS[e.status].icon}
+                      <td class="biblio-status">
+                        <span
+                          class={`bm bm-${e.status}`}
+                          role="img"
+                          aria-label={statusName(e.status)}
+                          title={statusName(e.status)}
+                        />
                       </td>
                       <td class="biblio-title">
                         {e.status === "owned" && e.slug ? (
@@ -225,12 +226,11 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                             {e.title}
                           </a>
                         ) : (
-                          e.title
+                          <span>{e.title}</span>
                         )}
                         {e.original && <span class="biblio-orig">{e.original}</span>}
                       </td>
                       <td class="biblio-remark">{e.note ?? ""}</td>
-                      {/* 負數年＝西元前，要寫成「500 BC」；直接印 e.year 會出現裸的 -500。 */}
                       <td class="biblio-year">
                         {typeof e.year === "number" ? yearLabel(e.year) : ""}
                       </td>
@@ -239,27 +239,19 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
                 </tbody>
               </table>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
 <script>
-  // 分組切換：不重畫 DOM，只在 .biblio-group 上開關 .is-hidden——同一份表格既是
-  // 「全部」也是各分組，不必把每筆書渲染兩次（大站兩百多列，複製一份就是白白兩倍 HTML）。
-  // 一站只有一個盤點區，但寫成 querySelectorAll 以免日後一頁放兩份時默默壞掉。
   for (const root of document.querySelectorAll<HTMLElement>(".biblio")) {
     const tabs = root.querySelector<HTMLElement>(".biblio-tabs");
     const buttons = [...root.querySelectorAll<HTMLButtonElement>(".biblio-tab")];
     const groups = [...root.querySelectorAll<HTMLElement>(".biblio-group")];
-    const pane = root.querySelector<HTMLElement>(".biblio-panes");
     if (!tabs || buttons.length === 0) continue;
-
-    // 有 JS 才出鍵（見上面的註解）。
-    tabs.hidden = false;
-
     for (const btn of buttons) {
       btn.addEventListener("click", () => {
         const want = btn.dataset.group ?? "";
@@ -271,10 +263,9 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
         for (const g of groups) {
           g.classList.toggle("is-hidden", want !== "" && g.dataset.group !== want);
         }
-        // 只在「選了某一組」時收掉組標題——「全部」那格還要靠標題分辨組界。
         root.classList.toggle("is-filtered", want !== "");
-        // 換組後捲回頂端——不然切到短組時視窗停在上一組的捲動位置，看起來像空白。
-        if (pane) pane.scrollTop = 0;
+        const top = tabs.getBoundingClientRect().top;
+        if (top < 0) tabs.scrollIntoView({ block: "start" });
       });
     }
   }
