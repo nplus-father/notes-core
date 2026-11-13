@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TocWrap from "../../components/TocWrap.astro";
 import Crumbs from "../../components/Crumbs.astro";
 import { withBase } from "../../lib/url";
 import { bareSlug } from "../../lib/collections";
@@ -102,15 +103,10 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
             <span class="toc-num" aria-hidden="true">
               {pad2(ch.num)}
             </span>
-            <h2 class="toc-name" id={`ch-${ch.cat.slug}`}>
+            <h2 class="toc-name" id={`ch-${ch.cat.slug}`} lang={latinLang(ch.cat.name)}>
               <a class="link-draw" href={withBase(`concepts/${ch.cat.slug}/`)}>
                 {ch.cat.name}
               </a>
-              {ch.cat.icon && (
-                <span class="cat-glyph" aria-hidden="true">
-                  {ch.cat.icon}
-                </span>
-              )}
             </h2>
             <p class="toc-progress">
               <span class="toc-count">
@@ -163,4 +159,5 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
       ))
     }
   </div>
+  <TocWrap />
 </BaseLayout>

@@ -1,0 +1,6 @@
+@use "../base/mixins" as *;
+
+@mixin micro {
+  @include label;
+  font-size: max(0.75rem, var(--fs-label));
+}

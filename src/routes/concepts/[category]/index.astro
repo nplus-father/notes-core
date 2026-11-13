@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ConceptCard from "../../../components/ConceptCard.astro";
+import TocWrap from "../../../components/TocWrap.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import { siteUrl, siteLabel } from "../../../lib/links";
 import { byImportance, bareSlug } from "../../../lib/collections";
@@ -45,16 +46,7 @@ const bookSet = new Set<string>(
   />
   <header class="page-head idx-head chapter-open section">
     <div class="idx-side co-side">
-      <p class="co-kicker label">
-        Chapter
-        {
-          category.icon && (
-            <span class="cat-glyph" aria-hidden="true">
-              {category.icon}
-            </span>
-          )
-        }
-      </p>
+      <p class="co-kicker label">Chapter</p>
       {
         num > 0 && (
           <span class="co-num" aria-hidden="true">
@@ -114,9 +106,14 @@ const bookSet = new Set<string>(
   {
     items.length > 0 ? (
       <section class="section idx-list reveal" aria-labelledby="pages-h">
-        <h2 class="running-head" id="pages-h">
-          <span class="running-head-num">01</span>Pages
-        </h2>
+        <div class="idx-rail">
+          <h2 class="running-head" id="pages-h">
+            <span class="running-head-num">01</span>Pages
+          </h2>
+          <p class="idx-rail-n">
+            {items.length} {items.length === 1 ? "entry" : "entries"}
+          </p>
+        </div>
         <div class="section-body">
           <ol class="rows">
             {items.map((entry: any, i: number) => (
@@ -138,9 +135,12 @@ const bookSet = new Set<string>(
   {
     planned.length > 0 && (
       <section class="section idx-list reveal" aria-labelledby="planned-h">
-        <h2 class="running-head" id="planned-h">
-          <span class="running-head-num">02</span>Planned
-        </h2>
+        <div class="idx-rail">
+          <h2 class="running-head" id="planned-h">
+            <span class="running-head-num">02</span>Planned
+          </h2>
+          <p class="idx-rail-n">{planned.length} to write</p>
+        </div>
         <div class="section-body">
           <ul class="toc-lines is-planned-list">
             {planned.map((n: any) => {
@@ -164,4 +164,5 @@ const bookSet = new Set<string>(
       </section>
     )
   }
+  <TocWrap />
 </BaseLayout>

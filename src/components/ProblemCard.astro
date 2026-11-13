@@ -39,7 +39,7 @@ const level = DIFFICULTY_LEVEL[diff] ?? 2;
     </span>
     <span class="row-meta">
       {mark && <span class={`row-mark is-${d.status}`}>{mark}</span>}
-      <span class="diff" data-level={level}>
+      <span class="diff" data-level={level} title={`Difficulty: ${d.difficulty}`}>
         <span class="diff-bars" aria-hidden="true"><i></i><i></i><i></i></span>
         {d.difficulty}
       </span>
@@ -47,7 +47,7 @@ const level = DIFFICULTY_LEVEL[diff] ?? 2;
         class="imp"
         role="img"
         aria-label={`Importance ${imp} of 5`}
-        title={`Importance ${imp} / 5`}
+        title={`Importance ${imp} of 5`}
       >
         {[1, 2, 3, 4, 5].map((i) => <i class={i <= imp ? "on" : undefined} />)}
       </span>

@@ -1,5 +1,6 @@
 @use "../tokens.scss" as *;
 @use "../base/mixins" as *;
+@use "./micro" as *;
 
 $tick-light: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.6 8.4 6.6 11.3 12.4 4.8' fill='none' stroke='%23f6f3ec' stroke-width='1.9' stroke-linecap='square'/%3E%3C/svg%3E";
 $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.6 8.4 6.6 11.3 12.4 4.8' fill='none' stroke='%23111013' stroke-width='1.9' stroke-linecap='square'/%3E%3C/svg%3E";
@@ -33,7 +34,7 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
 }
 
 .check-unit {
-  @include label;
+  @include micro;
   align-self: flex-end;
   margin: 0 0 0.55rem 1.25rem;
   letter-spacing: 0.14em;
@@ -141,9 +142,8 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
 }
 
 .check-box:checked + .check-text {
-  color: var(--muted);
-  opacity: 0.6;
-  text-decoration-color: var(--muted);
+  color: var(--text-2);
+  text-decoration-color: var(--text-2);
 }
 
 .check-item:hover .check-box:not(:checked) {
@@ -151,7 +151,7 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
 }
 
 .check-review {
-  @include label;
+  @include micro;
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
@@ -170,7 +170,11 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
     text-decoration: none;
   }
   &.is-none {
-    min-height: 0;
+    justify-content: flex-end;
+    min-width: 5.5rem;
+    color: var(--border-mid);
+    font-family: $mono;
+    letter-spacing: 0;
   }
   @include below-grid {
     grid-column: 2;
@@ -180,13 +184,5 @@ $tick-dark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBo
     &.is-none {
       display: none;
     }
-  }
-}
-
-.check-item:has(.check-box:checked) .check-review {
-  opacity: 0.4;
-  &:hover,
-  &:focus-visible {
-    opacity: 1;
   }
 }
