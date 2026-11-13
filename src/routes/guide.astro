@@ -4,6 +4,7 @@ import Crumbs from "../components/Crumbs.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import Contents from "../components/Contents.astro";
+import Kern from "../components/Kern.astro";
 import { splitTitle } from "../lib/reading";
 import { splitTitle as splitColon } from "../lib/toc";
 import { stripEmoji } from "../lib/site-config";
@@ -119,11 +120,11 @@ const description = chapters[0]?.standfirst;
                       const t = splitColon(c.entry.data.title);
                       return t.sub ? (
                         <>
-                          <span class="guide-title-main">{t.main}</span>
-                          <span class="guide-title-sub">{t.sub}</span>
+                          <span class="guide-title-main"><Kern text={t.main} /></span>
+                          <span class="guide-title-sub"><Kern text={t.sub} /></span>
                         </>
                       ) : (
-                        c.entry.data.title
+                        <Kern text={c.entry.data.title} />
                       );
                     })()}
                   </h2>

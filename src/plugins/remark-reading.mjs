@@ -1,4 +1,5 @@
 import { visit, SKIP } from "unist-util-visit";
+import { kernTree } from "./punct-kern.mjs";
 
 const LEADING_EMOJI =
   /^((?:\p{Extended_Pictographic}|\p{Regional_Indicator})(?:️|⃣|‍\p{Extended_Pictographic}|\p{Emoji_Modifier}|\p{Regional_Indicator})*)\s*/u;
@@ -127,6 +128,7 @@ function joinCjkLines(node, index, parent) {
 }
 
 const LONG_LEAD = 90;
+const BODY_LEAD = 160;
 const WIDE_CODE = 72;
 const NARROW_CODE = 44;
 
@@ -158,7 +160,13 @@ const markStandfirst = (node, file) => {
   const data = node.data || (node.data = {});
   const props = (data.hProperties = { ...(data.hProperties || {}) });
   const prev = props.className ? [].concat(props.className) : [];
-  props.className = [...prev, "standfirst", ...(textLength(node) > LONG_LEAD ? ["is-long"] : [])];
+  const length = textLength(node);
+  props.className = [
+    ...prev,
+    "standfirst",
+    ...(length > LONG_LEAD ? ["is-long"] : []),
+    ...(length > BODY_LEAD ? ["is-body"] : []),
+  ];
   const astro = file?.data?.astro;
   if (astro) {
     astro.frontmatter = astro.frontmatter || {};
@@ -169,9 +177,8 @@ const markStandfirst = (node, file) => {
 export default function remarkReading() {
   return (tree, file) => {
     const lead = tree.children?.[0];
-    if (isPlainQuote(lead) || (lead?.type === "paragraph" && isGuide(file))) {
-      markStandfirst(lead, file);
-    }
+    const standfirst = isPlainQuote(lead) || (lead?.type === "paragraph" && isGuide(file));
+    if (standfirst) markStandfirst(lead, file);
 
     visit(tree, (node, index, parent) => {
       if (node.type === "heading" && (node.depth === 2 || node.depth === 3)) {
@@ -243,5 +250,7 @@ export default function remarkReading() {
         return SKIP;
       }
     });
+
+    if (standfirst && !lead.data.hProperties.className.includes("is-body")) kernTree(lead);
   };
 }

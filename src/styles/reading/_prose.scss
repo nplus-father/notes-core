@@ -5,6 +5,19 @@
   display: none;
 }
 
+:is(.reading-title, .guide-title, .standfirst:not(.is-body)) {
+  text-spacing-trim: space-all;
+}
+
+.pk {
+  &.is-half {
+    margin-inline-start: -0.5em;
+  }
+  &.is-quarter {
+    margin-inline-start: -0.25em;
+  }
+}
+
 .reading,
 .guide {
   --sec-gap: clamp(3rem, 5vw, 4.25rem);
@@ -208,6 +221,30 @@ main.container:has(> .reading, > .guide) {
       font-size: var(--fs-intro);
       line-height: 1.75;
       letter-spacing: 0.02em;
+    }
+    &.is-body {
+      margin-bottom: clamp(2rem, 3.5vw, 2.75rem);
+      font-family: $sans;
+      font-size: var(--fs-read);
+      font-weight: 400;
+      line-height: var(--lh-read);
+      letter-spacing: 0.02em;
+      color: var(--text);
+      strong {
+        font-weight: 650;
+        color: var(--ink);
+      }
+      &::before {
+        content: "";
+        display: block;
+        width: 3.5rem;
+        height: 2px;
+        margin-bottom: clamp(1.1rem, 2vw, 1.5rem);
+        background: var(--ink);
+      }
+      &::after {
+        content: none;
+      }
     }
     p {
       margin: 0;
