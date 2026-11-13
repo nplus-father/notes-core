@@ -53,7 +53,7 @@
 
 @include above-grid {
   .section.is-wide:is(.overview, .profile-thesis) > .section-body {
-    grid-column: 3 / span 8;
+    grid-column: 3 / span 7;
   }
 }
 
