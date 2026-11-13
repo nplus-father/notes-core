@@ -1,0 +1,8 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 版面 ───────────────────────── */
+.container {
+  max-width: $maxw;
+  margin: 0 auto;
+  padding: 2.2rem 1.5rem 4rem;
+}

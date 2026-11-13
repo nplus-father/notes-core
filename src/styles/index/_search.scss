@@ -1,0 +1,42 @@
+/* ───────────────────────── 全文搜尋 (Pagefind) ───────────────────────── */
+/* Pagefind 索引用的隱藏 metadata：視覺隱藏但保留文字供索引（勿用 display:none / hidden，
+   否則 Pagefind 可能略過不索引）。 */
+.pf-meta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 把 Pagefind 預設 UI 對映到本站主題變數 */
+.pf-search {
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--surface);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--surface-2);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-font: inherit;
+  margin-top: 0.5rem;
+}
+.pf-search .pagefind-ui__result {
+  border-top: 1px solid var(--border);
+}
+.pf-search .pagefind-ui__result-link {
+  color: var(--text);
+}
+.pf-search .pagefind-ui__result-link:hover {
+  color: var(--accent);
+}
+.pf-search .pagefind-ui__result-excerpt mark {
+  background: var(--accent-weak);
+  color: var(--accent);
+  border-radius: 3px;
+  padding: 0 2px;
+}

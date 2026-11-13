@@ -1,0 +1,92 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 內文 / Markdown ───────────────────────── */
+.prose {
+  font-size: 1.02rem;
+  color: var(--text);
+
+  h2 {
+    margin-top: 2.3rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    margin-top: 1.6rem;
+  }
+
+  // 模板化區塊小標（::core / ::case / ::takeaways）＋ case 補述副標（搬進內容區）。
+  .section-head {
+    margin-top: 2.3rem;
+    h2 {
+      margin-top: 0;
+    }
+  }
+  .section-sub {
+    margin: 0.55rem 0 0;
+    color: var(--text-2);
+    font-size: 0.96rem;
+    font-style: italic;
+  }
+
+  a {
+    font-weight: 500;
+  }
+
+  code {
+    font-family: $mono;
+    font-size: 0.88em;
+    background: var(--accent-weak);
+    color: var(--accent);
+    padding: 0.12em 0.4em;
+    border-radius: 6px;
+  }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: $radius;
+    padding: 1.1rem 1.2rem;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+    code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: 0.86rem;
+    }
+  }
+
+  blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1.1rem;
+    border-left: 3px solid var(--border-strong);
+    color: var(--text-2);
+    background: var(--surface-2);
+    border-radius: 0 $radius-sm $radius-sm 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.3rem;
+  }
+  li {
+    margin: 0.25rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+    }
+    th {
+      background: var(--surface-2);
+    }
+  }
+}

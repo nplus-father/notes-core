@@ -1,0 +1,78 @@
+/* ───────────────────────── 主題變數 ───────────────────────── */
+:root {
+  color-scheme: light;
+  // 紙色平底，不用漸層。原本是兩層 radial-gradient（indigo + cyan）配 fixed
+  // attachment——那是「AI 生成的 landing page」最好認的背景，62 站共用一張更明顯。
+  --bg: #faf9f7;
+  --bg-grad: none;
+  --surface: #ffffff;
+  --surface-2: #f6f5f3;
+  --border: #e3e0da;
+  --border-strong: #c9c5bd;
+  --text: #26262a;
+  --text-2: #4a4a50;
+  --muted: #6b665f;
+  // 墨色取代 indigo→violet（#4f46e5 / #7c3aed 就是舊封面那組漸層色）。
+  // 人物站由 BaseLayout 的 data-axis 換成暖褐，與站縮圖同一階。
+  --accent: #2f4858;
+  --accent-2: #4a6272;
+  --accent-weak: #eef1f3;
+  --ring: rgba(47, 72, 88, 0.22);
+  // 髮絲線取代浮卡陰影；shadow-lg 只在真需要分層（drawer/modal）時才略深。
+  --shadow: none;
+  --shadow-lg: 0 2px 10px rgba(38, 38, 42, 0.08);
+
+  --easy: #16a34a;
+  --easy-bg: #e9f9ef;
+  --medium: #d97706;
+  --medium-bg: #fdf3e3;
+  --hard: #dc2626;
+  --hard-bg: #fdeaea;
+  --star: #f59e0b;
+  --guide: #8250df;
+  --guide-bg: #f5f0ff;
+
+  /* 判層色點（v0.43.0）。前三層同一族由重到輕——脊梁／支架／工具書是一個「深度」尺度；
+     姊妹站另給暖褐，因為它不在那個尺度上，意思是「帳記到別本去了」。
+     刻意不借用 --easy/--medium/--hard：那是嚴重度語意，判層不是好壞，是分工。 */
+  --tier-spine: #2f4858;
+  --tier-support: #6d8494;
+  --tier-tool: #a9b6bd;
+  --tier-delegated: #9c7644;
+  --code-bg: #f8fafc;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #16151a;
+  --bg-grad: none;
+  --surface: #1e1d23;
+  --surface-2: #26252c;
+  --border: #34323b;
+  --border-strong: #47454f;
+  --text: #e8e6e1;
+  --text-2: #c5c2bb;
+  --muted: #8d8a83;
+  --accent: #9db4c0;
+  --accent-2: #b7c6cf;
+  --accent-weak: #23282d;
+  --ring: rgba(157, 180, 192, 0.28);
+  --shadow: none;
+  --shadow-lg: 0 2px 12px rgba(0, 0, 0, 0.45);
+
+  --tier-spine: #9db4c0;
+  --tier-support: #6d8494;
+  --tier-tool: #565f66;
+  --tier-delegated: #b3894f;
+
+  --easy: #34d399;
+  --easy-bg: #0e2b20;
+  --medium: #fbbf24;
+  --medium-bg: #2c2207;
+  --hard: #f87171;
+  --hard-bg: #2e1314;
+  --star: #fbbf24;
+  --guide: #c4b5fd;
+  --guide-bg: #211a36;
+  --code-bg: #0f141d;
+}

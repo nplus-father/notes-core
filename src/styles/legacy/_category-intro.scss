@@ -1,0 +1,45 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 分類導讀 ───────────────────────── */
+.cat-overview {
+  @include card;
+  margin-bottom: 1.8rem;
+  padding: 0 1.3rem;
+  border-left: 4px solid var(--accent);
+
+  > summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text);
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::after {
+      content: "▸";
+      margin-left: auto;
+      color: var(--accent);
+      transition: transform 0.18s ease;
+    }
+  }
+  &[open] {
+    padding-bottom: 0.6rem;
+    > summary {
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    > summary::after {
+      transform: rotate(90deg);
+    }
+  }
+  .prose {
+    font-size: 0.98rem;
+  }
+  .prose h2:first-of-type {
+    margin-top: 0.6rem;
+  }
+}

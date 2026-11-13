@@ -1,0 +1,71 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 分類首頁 ───────────────────────── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+.cat-card {
+  @include card;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1.05rem 1.15rem;
+  color: var(--text);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(var(--accent), var(--accent-2));
+    opacity: 0.85;
+  }
+  &:hover {
+    @include lift;
+    text-decoration: none;
+  }
+
+  .cat-icon {
+    font-size: 1.7rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--accent-weak);
+    flex: none;
+  }
+  .cat-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+  .cat-name {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .cat-intro {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cat-count {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.82rem;
+    flex: none;
+  }
+}

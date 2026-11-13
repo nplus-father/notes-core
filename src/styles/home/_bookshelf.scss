@@ -1,0 +1,89 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 書架縮圖（cover.png） ───────────────────────── */
+/* v0.29.2：Sources 拉平成與 .schools / .biblio 同一個語彙——無框、無陰影、無圓角、
+ * 無內距，區塊之間只靠 2.2rem 的上緣間距分開。舊的卡片外觀（14px 圓角＋陰影）住在
+ * two-block.scss，已一併移除；首頁四區從此長得一樣。 */
+.bookshelf {
+  margin: 2.2rem 0 0;
+}
+.bookshelf-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  h2 {
+    margin: 0;
+  }
+}
+.bookshelf-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.bookshelf-count {
+  margin-left: auto;
+  font-family: $mono;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+/* 固定高度的捲動窗（v0.29.0）：封面 190px 高，書多的站攤開就是五六排、
+ * 把下面的盤點表整個推出首屏。兩排半＝看得出「還有更多」又不吃掉整個首頁。 */
+.bookshelf-scroll {
+  --shelf-h: 27rem;
+  max-height: var(--shelf-h);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* 捲動內容貼著切邊會看不出「還沒到底」，留一道淡邊界當提示。 */
+  padding-right: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+/* v0.34.2：flex＋固定 132px 每排都在右緣留一塊死空間（除不盡的餘數）。改 auto-fill
+ * grid＋流體封面：欄數由容器寬度決定、餘數平均分給每欄，桌機手機都貼滿右緣。
+ * 只影響書架；FurtherReading／reading-path 的小封面各自覆寫尺寸，不受牽連。 */
+.cover-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 1.1rem 1rem;
+}
+.cover-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  &:hover {
+    text-decoration: none;
+    .cover-img {
+      @include lift;
+    }
+    .cover-cap {
+      color: var(--accent);
+    }
+  }
+}
+.cover-img {
+  width: 132px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+/* 書架格內的封面跟著欄寬伸縮（比例鎖 132:190）；其他場合維持基底固定尺寸。 */
+.cover-row .cover-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 132 / 190;
+}
+.cover-cap {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--muted);
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

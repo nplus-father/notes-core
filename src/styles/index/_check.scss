@@ -1,0 +1,100 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 檢核頁（/check/） ───────────────────────── */
+.check-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  h1 {
+    margin: 0;
+  }
+}
+.check-total,
+.check-prog {
+  font-family: $mono;
+  font-size: 0.74rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.check-empty {
+  color: var(--muted);
+}
+.check-cat {
+  margin-top: 1.6rem;
+}
+.check-cat-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+.check-cat-name {
+  font-family: $serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.check-prog {
+  margin-left: auto;
+}
+.check-list {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  li {
+    display: flex;
+    gap: 0.55rem;
+    align-items: baseline;
+    padding: 0.24rem 0;
+  }
+  input {
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+    flex: none;
+    transform: translateY(2px);
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+    min-width: 0; /* 長句子要能斷行，否則會把靠右的複習鍵推出去 */
+  }
+  input:checked + label {
+    color: var(--muted);
+  }
+}
+/* 複習鍵：靠右對齊排成一直行——原本它緊跟在句子後面，句子長短不一就參差不齊，
+ * 一眼看不出「每條都可以回去重讀」。靜置是灰框幽靈鍵，不與勾選框搶注意力。 */
+.check-review {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: 0.06rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border-color: var(--accent);
+  }
+}
+/* 勾掉的條目：複習鍵一起退到底色，讓還沒過關的那幾條自己浮出來。 */
+.check-list li:has(input:checked) .check-review {
+  opacity: 0.45;
+  &:hover {
+    opacity: 1;
+  }
+}

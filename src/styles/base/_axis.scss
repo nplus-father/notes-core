@@ -1,0 +1,14 @@
+// 人物站主色：暖褐（INK.person，portal 占位卡同值）。主題站沿用 :root 的冷灰藍。
+// 放在兩個主題區塊之後，故亮/暗色都吃得到；站台自己的 accentOverride 特異度更高，仍勝出。
+[data-axis="person"] {
+  --accent: #5c4433;
+  --accent-2: #755944;
+  --accent-weak: #f4f1ee;
+  --ring: rgba(92, 68, 51, 0.22);
+}
+[data-theme="dark"][data-axis="person"] {
+  --accent: #c8ac96;
+  --accent-2: #d6bfae;
+  --accent-weak: #2b2521;
+  --ring: rgba(200, 172, 150, 0.28);
+}

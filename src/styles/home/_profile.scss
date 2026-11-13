@@ -1,0 +1,135 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 思想側寫（AuthorProfile） ───────────────────────── */
+.profile {
+  margin: 2.2rem 0 0;
+  > h2 {
+    margin: 1.6rem 0 0.8rem;
+  }
+}
+.profile-thesis {
+  @include card;
+  margin: 0;
+  padding: 1.1rem 1.3rem;
+  border-left: 4px solid var(--accent);
+  p {
+    margin: 0.35rem 0 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
+.profile-thesis-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+.contrib-card {
+  @include card;
+  padding: 0.95rem 1.1rem;
+}
+.contrib-title {
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  a:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+}
+.contrib-summary {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+/* 建議閱讀路徑（v0.19.0）：直式 stepper——左 rail＋N° 節點＋書封＋一行 why。
+   節點編號與學派卡的 school-index 同一裝置；書封吃書架同一個 cover 代理。 */
+.reading-path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: var(--border-strong);
+  }
+}
+.reading-stage {
+  position: relative;
+  padding: 0 0 1.3rem 2.5rem;
+  &:last-child {
+    padding-bottom: 0.2rem;
+  }
+}
+.reading-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  display: grid;
+  place-items: center;
+  font-family: $mono;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.reading-stage-name {
+  display: block;
+  font-family: $serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 27px;
+}
+.reading-why {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.15rem 0 0.55rem;
+}
+.reading-books {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.reading-cover img {
+  display: block;
+  width: 84px;
+  height: 121px;
+  object-fit: cover;
+  border-radius: $radius-sm;
+  border: 1px solid var(--border);
+  transition: border-color 0.16s ease;
+}
+.reading-cover:hover img {
+  border-color: var(--accent);
+}
+.influences {
+  margin: 0;
+  padding-left: 1.3rem;
+  li {
+    margin-bottom: 0.35rem;
+  }
+}
+.influence-name {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.influence-note {
+  font-size: 0.84rem;
+  color: var(--text-2);
+}

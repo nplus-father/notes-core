@@ -1,0 +1,16 @@
+/* 題庫的領域分區 */
+.domain-block {
+  margin: 0 0 2rem;
+}
+.domain-block > h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+  a {
+    color: var(--text);
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}

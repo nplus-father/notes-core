@@ -1,0 +1,177 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 演化鏈 Variant Ladder ───────────────────────── */
+.ladder-section {
+  margin-top: 2.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+  h2 {
+    font-size: 1.15rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .ladder-all {
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+}
+
+.ladder {
+  @include card;
+  padding: 1.1rem 1.2rem;
+}
+.ladder-head {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-bottom: 0.9rem;
+}
+.ladder-icon {
+  font-size: 1.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent-weak);
+}
+.ladder-meta {
+  min-width: 0;
+}
+.ladder-title {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+.ladder-summary {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ladder-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.ladder-step {
+  position: relative;
+  display: flex;
+  gap: 0.85rem;
+  padding-bottom: 0.9rem;
+
+  /* 連接線 */
+  &:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 0.85rem;
+    top: 1.8rem;
+    bottom: -0.1rem;
+    width: 2px;
+    background: var(--border-strong);
+  }
+
+  .step-order {
+    flex: none;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    color: var(--text-2);
+    z-index: 1;
+  }
+
+  .step-link {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    padding: 0.1rem 0.6rem 0.2rem;
+    border-radius: $radius-sm;
+    color: var(--text);
+    text-decoration: none;
+  }
+  a.step-link:hover {
+    background: var(--surface-2);
+  }
+
+  .step-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+  .step-hash {
+    font-family: $mono;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .step-note {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+
+  .step-here {
+    @include pill;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.66rem;
+  }
+
+  &.current {
+    .step-order {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .step-link {
+      background: var(--accent-weak);
+    }
+    .step-title {
+      color: var(--accent);
+    }
+  }
+  &.missing .step-link {
+    opacity: 0.6;
+  }
+}
+
+/* /ladders 總覽頁 */
+.ladder-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+  a {
+    @include pill;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-2);
+    font-weight: 600;
+    &:hover {
+      background: var(--surface-2);
+      border-color: var(--border-strong);
+      text-decoration: none;
+    }
+  }
+}
+.ladder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.1rem;
+  align-items: start;
+}
+.ladder-card {
+  scroll-margin-top: 70px;
+}

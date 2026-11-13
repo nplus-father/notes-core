@@ -1,0 +1,34 @@
+@use "../tokens.scss" as *;
+
+/* 摺疊解法 */
+.lc-details {
+  @include card;
+  margin: 0.85rem 0;
+  padding: 0 1.1rem;
+  box-shadow: none;
+
+  > summary {
+    cursor: pointer;
+    font-weight: 650;
+    padding: 0.85rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::before {
+      content: "▸";
+      color: var(--accent);
+      transition: transform 0.18s ease;
+    }
+  }
+  &[open] {
+    padding-bottom: 0.9rem;
+    border-color: var(--border-strong);
+    > summary::before {
+      transform: rotate(90deg);
+    }
+  }
+}

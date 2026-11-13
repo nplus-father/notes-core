@@ -1,0 +1,44 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 篩選列 ───────────────────────── */
+.filterbar {
+  position: sticky;
+  top: 56px;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 1.6rem;
+  padding: 0.7rem;
+  border-radius: $radius;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+
+  input,
+  select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.9rem;
+    transition:
+      box-shadow 0.15s,
+      border-color 0.15s;
+    &:focus {
+      @include focus-ring;
+    }
+  }
+  #f-search {
+    flex: 1;
+    min-width: 200px;
+  }
+  #f-count {
+    margin-left: auto;
+    font-size: 0.84rem;
+  }
+}

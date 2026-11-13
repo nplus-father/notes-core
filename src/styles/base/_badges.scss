@@ -1,0 +1,59 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 徽章 / pill / 星等 ───────────────────────── */
+.pill {
+  @include pill;
+  color: #fff;
+}
+@each $d in $difficulties {
+  .diff-#{$d} {
+    background: var(--#{$d});
+  }
+}
+
+.badge {
+  @include pill;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+.status-draft {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+.status-written {
+  background: var(--accent-weak);
+  color: var(--accent);
+}
+.status-reviewed {
+  background: var(--easy-bg);
+  color: var(--easy);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  &.status-draft {
+    background: var(--muted);
+  }
+  &.status-written {
+    background: var(--accent);
+  }
+  &.status-reviewed {
+    background: var(--easy);
+  }
+}
+
+.stars {
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  .stars-full {
+    color: var(--star);
+  }
+  .stars-empty {
+    color: var(--border-strong);
+  }
+}

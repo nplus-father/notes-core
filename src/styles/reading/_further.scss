@@ -1,0 +1,84 @@
+@use "../tokens.scss" as *;
+
+/* 延伸閱讀 */
+.further,
+.seealso {
+  margin: 2rem 0 0;
+}
+.further > h2,
+.seealso > h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.7rem;
+}
+.seealso-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+/* 卡片版型（v0.19.0）：章節子標題當主角、書名退為小字，書的身分交給右側書圖。 */
+.further-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.7rem;
+}
+.further-card {
+  @include card;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.7rem 0.85rem;
+  &:hover {
+    @include lift;
+    text-decoration: none;
+  }
+}
+.further-body {
+  flex: 1;
+  min-width: 0;
+}
+.further-chapter {
+  display: block;
+  font-family: $serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--accent);
+}
+.further-book {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.further-cover {
+  flex: none;
+  width: 66px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: $radius-sm;
+  border: 1px solid var(--border);
+}
+.seealso-list li {
+  @include card;
+  padding: 0.65rem 0.85rem;
+  a {
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+.seealso-site {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-weak);
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}

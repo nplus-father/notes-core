@@ -1,0 +1,109 @@
+/* ───────────────────────── 技法熱圖 ───────────────────────── */
+.dash-heat {
+  margin-bottom: 2.4rem;
+  h2 {
+    font-size: 1.15rem;
+  }
+}
+.heat-hint {
+  font-size: 0.84rem;
+  margin: 0.2rem 0 0.9rem;
+}
+.heat-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.heat-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  &.h0 {
+    background: var(--surface-2);
+  }
+  &.h1 {
+    background: color-mix(in srgb, var(--easy) 25%, var(--surface));
+  }
+  &.h2 {
+    background: color-mix(in srgb, var(--easy) 55%, var(--surface));
+  }
+  &.h3 {
+    background: var(--easy);
+  }
+}
+.heat-dash {
+  margin-left: 0.4rem;
+  color: var(--muted);
+}
+.heat-scroll {
+  overflow-x: auto;
+}
+.heat {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+  th,
+  td {
+    padding: 0.32rem 0.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  thead th {
+    background: var(--surface-2);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+  }
+}
+.heat-rowhead {
+  text-align: left !important;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.heat-rowhead a {
+  color: var(--text);
+  &:hover {
+    color: var(--accent);
+  }
+}
+.heat-grouprow td {
+  text-align: left;
+  background: var(--surface-2);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-left: none;
+  border-right: none;
+}
+.heat-cell {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+  transition: background 0.15s;
+  &.h0 {
+    background: var(--surface-2);
+  }
+  &.h1 {
+    background: color-mix(in srgb, var(--easy) 22%, var(--surface));
+  }
+  &.h2 {
+    background: color-mix(in srgb, var(--easy) 50%, var(--surface));
+  }
+  &.h3 {
+    background: var(--easy);
+    color: #fff;
+  }
+}
+.heat-empty {
+  color: var(--muted);
+  opacity: 0.5;
+}
+.heat-rowtotal {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-weight: 600;
+}

@@ -1,0 +1,120 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 導覽列 ───────────────────────── */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.5rem;
+  /* 實色底，不用毛玻璃——backdrop-filter 的 frosted glass 是另一個 SaaS 語彙。 */
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+
+  /* 左側 = 往上一層的路徑（v0.20.0）：‹ 筆記星系 ｜ 人像。站名仍不進 topnav。 */
+  .topnav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  /* 跨站的「上一層」：回 nplus.wiki/notes/。灰字＋左向 chevron，靜置不搶人像的戲；
+   * hover 才轉主色並讓箭頭往左挪一格（方向就是它會帶你去的方向）。 */
+  .topnav-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.35rem;
+    border: 1px solid transparent;
+    border-radius: $radius;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      color 0.15s,
+      background 0.15s,
+      border-color 0.15s;
+    svg {
+      transition: transform 0.15s ease;
+    }
+    &:hover {
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--accent-weak);
+      border-color: var(--border);
+      svg {
+        transform: translateX(-2px);
+      }
+    }
+  }
+  /* 窄螢幕只留箭頭——title 仍帶全名，導覽列不因中文字被擠爆。 */
+  @media (max-width: 560px) {
+    .topnav-up-label {
+      display: none;
+    }
+    .topnav-up {
+      padding: 0.2rem 0.3rem;
+    }
+  }
+
+  .brand-avatar {
+    display: grid;
+    place-items: center;
+    img {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+    }
+    &:hover img {
+      border-color: var(--accent);
+    }
+  }
+}
+
+.topnav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+/* nav 項只出 emoji（🧠 📝 ✅ 🔍，title/aria 帶英文全名）——放大一階，靜置微降不搶戲、hover 全彩。 */
+.topnav-links a {
+  margin-left: 1rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 1.05rem;
+  opacity: 0.82;
+  &:hover {
+    color: var(--text);
+    opacity: 1;
+    text-decoration: none;
+  }
+}
+
+.theme-toggle {
+  margin-left: 0.8rem;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  &:hover {
+    background: var(--surface-2);
+    border-color: var(--border-strong);
+  }
+  .icon-dark {
+    display: none;
+  }
+}

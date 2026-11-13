@@ -1,0 +1,24 @@
+/* 首頁分區（概念 / 題目） */
+.home-section {
+  margin: 0 0 2.4rem;
+}
+.home-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.9rem;
+  h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+  }
+}
+.see-all {
+  font-size: 0.84rem;
+  color: var(--muted);
+  white-space: nowrap;
+  &:hover {
+    color: var(--accent);
+  }
+}

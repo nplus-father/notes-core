@@ -1,0 +1,42 @@
+@use "../tokens.scss" as *;
+
+/* 同分類 上一題 / 下一題 */
+.prevnext {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 2rem 0 0.5rem;
+}
+.prevnext .pn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  background: var(--surface);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+  &:hover {
+    border-color: var(--accent);
+    background: var(--surface-2);
+  }
+}
+.prevnext .pn-next {
+  text-align: right;
+}
+.prevnext .pn-dir {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.prevnext .pn-title {
+  font-size: 0.92rem;
+  color: var(--text);
+  font-weight: 600;
+}
+.prevnext .pn-empty {
+  border: none;
+  background: none;
+}

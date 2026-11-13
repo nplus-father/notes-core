@@ -1,0 +1,314 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 藏書頁（Library /library/）＋開採度 ───────────────────────── */
+.library-empty {
+  color: var(--muted);
+}
+.bookshelf-more {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.mining {
+  margin: 0.4rem 0 0;
+}
+.mining-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+  h2 {
+    margin: 0;
+  }
+}
+.mining-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* 條列圖：一行一本書。細條、貼齊左基線、圓端收在 2px（版面走切邊語彙，不用膠囊）。
+ * 行數多的站（leadership 54 行）收進固定高度捲動窗——同 bookshelf / biblio 的做法。 */
+.mining-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 24rem;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+}
+.mining-row {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 2.2rem;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 1.35rem;
+}
+.mining-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+.mining-track {
+  display: block;
+  height: 8px;
+  border-radius: $radius-sm;
+  background: var(--surface-2);
+}
+.mining-bar {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  border-radius: $radius-sm;
+  background: var(--accent);
+}
+.mining-count {
+  font-family: $mono;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+/* 未挖的書不畫零長條（看不見的條不是資訊）——v0.34.0 起列成書封牆：
+ * 一排小封面比一串書名 chip 簡潔有力，這排就是下一輪 enrich 的材料清單。 */
+.mining-undug {
+  margin-top: 1.4rem;
+}
+.mining-undug-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.mining-undug-covers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+.mining-cover {
+  display: block;
+  line-height: 0;
+  img {
+    width: 66px;
+    height: 95px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    transition: border-color 0.16s ease;
+  }
+  &:hover img {
+    border-color: var(--accent);
+  }
+}
+/* 分層豁免（v0.38.1）：決策紀錄不是待辦，預設摺疊；展開是書名｜理由對照表。 */
+/* 分層豁免（v0.43.0）：摘要行帶組成，收合時就看得出形狀；展開才露出書封與叢集。 */
+.tier-dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  display: inline-block;
+  flex: 0 0 auto;
+  align-self: center;
+  &.sm {
+    width: 0.44rem;
+    height: 0.44rem;
+  }
+}
+.tier-spine {
+  background: var(--tier-spine);
+}
+.tier-support {
+  background: var(--tier-support);
+}
+.tier-tool {
+  background: var(--tier-tool);
+}
+.tier-delegated {
+  background: var(--tier-delegated);
+}
+
+.mining-excused {
+  margin-top: 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  > summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 1rem;
+    padding: 0.6rem 0.8rem;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::before {
+      content: "▸";
+      color: var(--accent);
+      transition: transform 0.18s ease;
+    }
+    &:hover {
+      background: var(--accent-weak);
+    }
+  }
+  &[open] > summary::before {
+    transform: rotate(90deg);
+  }
+}
+.ex-mix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.8rem;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.ex-mixdot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+}
+.ex-body {
+  border-top: 1px solid var(--border);
+}
+.ex-grp {
+  padding: 0.9rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  &:last-child {
+    border-bottom: 0;
+  }
+  h4 {
+    font-size: 0.88rem;
+    margin: 0 0 0.65rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+}
+.ex-n {
+  color: var(--muted);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.ex-why {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.78rem;
+}
+.ex-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.7rem;
+}
+.ex-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-size: 0.78rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  color: var(--text-2);
+  b {
+    font-variant-numeric: tabular-nums;
+  }
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-weak);
+  }
+}
+.ex-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.ex-bk {
+  width: 66px;
+  color: var(--muted);
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  img,
+  .ex-ph {
+    display: block;
+    width: 66px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+}
+.ex-cap {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.63rem;
+  line-height: 1.3;
+  margin-top: 0.26rem;
+}
+.ex-cl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+    padding: 0.4rem 0.1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+.ex-who {
+  min-width: 10rem;
+}
+.ex-cn {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.ex-comp {
+  display: inline-flex;
+  gap: 0.16rem;
+}
+.ex-cmix {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+.mining-chip {
+  display: inline-block;
+  margin: 0 0.35rem 0.35rem 0;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  color: var(--text-2);
+  font-size: 0.78rem;
+  &:hover {
+    text-decoration: none;
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-weak);
+  }
+  &.is-plain:hover {
+    color: var(--text-2);
+    border-color: var(--border);
+    background: none;
+  }
+}
+@media (max-width: 640px) {
+  .mining-row {
+    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 2rem;
+  }
+}

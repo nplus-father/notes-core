@@ -1,0 +1,19 @@
+/* 空狀態 / 計數 */
+.empty {
+  color: var(--muted);
+  padding: 1.4rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  text-align: center;
+  code {
+    background: var(--surface-2);
+    padding: 0.1rem 0.35rem;
+    border-radius: 5px;
+  }
+}
+.filter-count {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-left: auto;
+  align-self: center;
+}

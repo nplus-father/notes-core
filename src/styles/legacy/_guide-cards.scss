@@ -1,0 +1,32 @@
+@use "../tokens.scss" as *;
+
+/* ───────────────────────── 主題導讀 ───────────────────────── */
+.guide-tag {
+  @include pill;
+  color: var(--guide);
+  background: var(--guide-bg);
+  border: 1px solid color-mix(in srgb, var(--guide) 30%, transparent);
+}
+.guide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+.guide-card {
+  @include card;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.1rem;
+  border-left: 4px solid var(--guide);
+  color: var(--text);
+  font-weight: 650;
+  &:hover {
+    @include lift;
+    text-decoration: none;
+  }
+  .guide-ico {
+    font-size: 1.1rem;
+  }
+}
