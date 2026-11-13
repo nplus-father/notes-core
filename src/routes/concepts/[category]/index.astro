@@ -50,7 +50,6 @@ const bookSet = new Set<string>(
       {num > 0 && <span class="idx-kicker-num">{pad2(num)}</span>}
     </p>
     <h1 class="idx-title" lang={latinLang(category.name)}>{category.name}</h1>
-    {category.intro && <p class="co-intro">{category.intro}</p>}
     <dl class="co-stats">
       {
         planned.length > 0 ? (
@@ -101,19 +100,15 @@ const bookSet = new Set<string>(
         )
       }
     </dl>
+    {category.intro && <p class="co-intro">{category.intro}</p>}
   </header>
 
   {
     items.length > 0 ? (
-      <section class="section idx-list reveal" aria-labelledby="pages-h">
-        <div class="idx-rail">
-          <h2 class="running-head" id="pages-h">
-            <span class="running-head-num">01</span>Pages
-          </h2>
-          <p class="idx-rail-n">
-            {items.length} {items.length === 1 ? "entry" : "entries"}
-          </p>
-        </div>
+      <section class="section idx-list is-wide reveal" aria-labelledby="pages-h">
+        <h2 class="running-head" id="pages-h">
+          <span class="running-head-num">01</span>Pages
+        </h2>
         <div class="section-body">
           <p class="rows-key" aria-hidden="true">
             Importance
@@ -133,7 +128,7 @@ const bookSet = new Set<string>(
         </div>
       </section>
     ) : (
-      <section class="section idx-list">
+      <section class="section idx-list is-wide">
         <h2 class="running-head">
           <span class="running-head-num">01</span>Pages
         </h2>
@@ -144,13 +139,10 @@ const bookSet = new Set<string>(
 
   {
     planned.length > 0 && (
-      <section class="section idx-list reveal" aria-labelledby="planned-h">
-        <div class="idx-rail">
-          <h2 class="running-head" id="planned-h">
-            <span class="running-head-num">02</span>Planned
-          </h2>
-          <p class="idx-rail-n">{planned.length} to write</p>
-        </div>
+      <section class="section idx-list is-wide reveal" aria-labelledby="planned-h">
+        <h2 class="running-head" id="planned-h">
+          <span class="running-head-num">02</span>Planned
+        </h2>
         <div class="section-body">
           <ul class="toc-lines is-planned-list">
             {planned.map((n: any) => {
