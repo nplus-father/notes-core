@@ -43,26 +43,72 @@
   }
 }
 
-/* 我的回應：與書本位正文另一種聲音（accent 左線 + 淡底） */
 .prose .my-response {
-  margin: 2.2rem 0 0;
-  padding: 1rem 1.15rem 1.1rem;
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 12px;
-  background: var(--accent-weak);
+  position: relative;
+  margin: clamp(3.5rem, 6vw, 5rem) 0 0;
+  padding: 0.2rem 0 0.2rem 1.5rem;
+  border: 0;
+  border-left: 1px solid var(--accent);
+  border-radius: 0;
+  background: none;
+  font-family: var(--font-display);
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: var(--accent);
   > * + * {
-    margin-top: 0.6rem;
+    margin-top: 0.75rem;
   }
-  p {
-    color: var(--text-2);
+  p,
+  li {
+    color: inherit;
+  }
+  em,
+  i {
+    font-style: italic;
+  }
+  strong {
+    color: inherit;
+    font-weight: 700;
+  }
+  ul > li::before {
+    background: var(--accent);
+  }
+  h3 {
+    margin: 1.75rem 0 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
   }
   .my-response-head {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 0.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 0.2rem;
+    &::before {
+      content: "";
+      width: 1.5rem;
+      height: 1px;
+      background: currentColor;
+    }
+  }
+  .my-response-head + h3 {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .reading-body .my-response {
+    margin-left: calc(var(--col) + var(--col-gap));
+    margin-right: calc(-2 * (var(--col) + var(--col-gap)));
   }
 }
 

@@ -1,57 +1,72 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Crumbs from "../components/Crumbs.astro";
-import DifficultyPill from "../components/DifficultyPill.astro";
-import Stars from "../components/Stars.astro";
-import StatusBadge from "../components/StatusBadge.astro";
+import Marginalia from "../components/Marginalia.astro";
 import FurtherReading from "../components/FurtherReading.astro";
-import SourceByline from "../components/SourceByline.astro";
 import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
 import PrevNext from "../components/PrevNext.astro";
+import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug } from "../lib/collections";
-import type { SiteConfig } from "../lib/site-config";
+import { splitTitle } from "../lib/reading";
+import { stripEmoji, type SiteConfig } from "../lib/site-config";
 
 interface Props {
   entry: any;
   allProblems: any[];
   allConcepts: any[];
   domainBySlug: Map<string, { slug: string; name: string; icon: string }>;
-  categoryBySlug: Map<string, { icon: string }>;
+  categoryBySlug: Map<string, { icon: string; name?: string }>;
   site: SiteConfig;
+  headings?: { depth: number; slug: string; text: string }[];
+  standfirst?: string;
 }
-const { entry, allProblems, allConcepts, domainBySlug, categoryBySlug, site } = Astro.props;
+const {
+  entry,
+  allProblems,
+  allConcepts,
+  domainBySlug,
+  categoryBySlug,
+  site,
+  headings = [],
+  standfirst,
+} = Astro.props;
 const d = entry.data;
 const domain = domainBySlug.get(d.domain);
 const slug = bareSlug(entry.id);
+const title = splitTitle(d.title);
 
-// 練到的概念 chips
 const conceptBySlug = bySlug(allConcepts);
-const conceptChips = d.concepts.map((s: string) => {
+const practices = d.concepts.map((s: string) => {
   const t = conceptBySlug.get(s);
-  const cat = t ? categoryBySlug.get(t.data.category) : null;
+  const cat = t ? categoryBySlug.get(t.data.category) : undefined;
   return t
     ? {
         slug: s,
         title: t.data.title,
-        icon: cat?.icon ?? "",
         href: withBase(`concepts/${t.id}/`),
+        meta: cat?.name ? stripEmoji(cat.name) : undefined,
       }
-    : { slug: s, title: s, icon: "", href: null };
+    : { slug: s };
 });
 
-// related problems（同 ConceptLayout：related 是對稱關係，這裡補上手寫時漏掉的反向）
 const problemBySlug = bySlug(allProblems);
 const backlinks = allProblems
   .filter((p: any) => p.data.related.includes(slug) && !d.related.includes(bareSlug(p.id)))
   .map((p: any) => bareSlug(p.id));
 const related = [...d.related, ...backlinks].map((s: string) => {
   const t = problemBySlug.get(s);
-  return t ? { slug: s, title: t.data.title, href: withBase(`problems/${t.id}/`) } : { slug: s };
+  return t
+    ? {
+        slug: s,
+        title: t.data.title,
+        href: withBase(`problems/${t.id}/`),
+        meta: t.data.difficulty,
+      }
+    : { slug: s };
 });
 
-// 同 domain 上一題 / 下一題
 const sameDomain = allProblems
   .filter((p: any) => p.data.domain === d.domain)
   .sort((a: any, b: any) => a.data.title.localeCompare(b.data.title));
@@ -62,7 +77,12 @@ const nav = (p: any) => ({ href: withBase(`problems/${p.id}/`), title: p.data.ti
 const problemLabel = site.problemLabelEn ?? "Problems";
 ---
 
-<BaseLayout title={`${d.title} · ${site.titleBase}${site.problemSuffix ?? "題"}`} site={site}>
+<BaseLayout
+  title={`${d.title} · ${site.titleBase}${site.problemSuffix ?? "題"}`}
+  site={site}
+  description={standfirst}
+  progress
+>
   <Crumbs
     site={site}
     items={[
@@ -73,56 +93,53 @@ const problemLabel = site.problemLabelEn ?? "Problems";
     ]}
   />
 
-  <header class="prob-head">
-    <h1>{d.title}</h1>
-    <div class="prob-meta">
-      <DifficultyPill difficulty={d.difficulty} />
-      <Stars value={d.importance} />
-      <StatusBadge status={d.status} />
-    </div>
-  </header>
-
-  <SourceByline items={d.furtherReading} />
-
-  {
-    conceptChips.length > 0 && (
-      <div class="pat-chips">
-        <span class="pat-chips-label">Concepts practiced</span>
-        {conceptChips.map((c: any) =>
-          c.href ? (
-            <a class="pat-chip" href={c.href}>
-              {c.icon} {c.title}
-            </a>
-          ) : (
-            <span class="pat-chip muted">
-              {c.icon} {c.title}
+  <div class="reading bleed" data-kind="problem">
+    <header class="page-head reading-head">
+      <h1 class="reading-title">
+        {title.main}
+        {
+          title.latin && (
+            <span class="title-latin" lang="en">
+              <span class="visually-hidden">(</span>
+              {title.latin}
+              <span class="visually-hidden">)</span>
             </span>
           )
-        )}
+        }
+      </h1>
+    </header>
+
+    <div class="reading-grid">
+      <Marginalia
+        furtherReading={d.furtherReading}
+        importance={d.importance}
+        status={d.status}
+        headings={headings}
+        difficulty={d.difficulty}
+      />
+      <div id="solution" class="reading-body prose" data-pagefind-body>
+        <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
+        <span class="pf-meta" data-pagefind-filter="Type">Problem</span>
+        <span class="pf-meta" data-pagefind-filter="Difficulty">{d.difficulty}</span>
+        <span class="pf-meta" data-pagefind-filter="Domain">{domain?.name ?? d.domain}</span>
+        <slot />
       </div>
-    )
-  }
+    </div>
 
-  <p class="block-eyebrow book-eyebrow">From the Books</p>
+    <div class="reading-end">
+      <FurtherReading items={d.furtherReading} />
+      <RelatedList heading="Concepts Practiced" items={practices} />
+      <SeeAlso items={d.seeAlso} />
+      <RelatedList heading="Related" items={related} />
+    </div>
 
-  <article id="solution" class="prose" data-pagefind-body>
-    <span class="pf-meta" data-pagefind-meta="title">{d.title}</span>
-    <span class="pf-meta" data-pagefind-filter="Type">Problem</span>
-    <span class="pf-meta" data-pagefind-filter="Difficulty">{d.difficulty}</span>
-    <span class="pf-meta" data-pagefind-filter="Domain">{domain?.name ?? d.domain}</span>
-    <slot />
-  </article>
-
-  <FurtherReading items={d.furtherReading} />
-  <SeeAlso items={d.seeAlso} />
-
-  <RelatedList heading="Related problems" items={related} />
-
-  <PrevNext
-    prev={prev ? nav(prev) : null}
-    next={next ? nav(next) : null}
-    ariaLabel="Same domain"
-    prevLabel="← Previous"
-    nextLabel="Next →"
-  />
+    <PrevNext
+      prev={prev ? nav(prev) : null}
+      next={next ? nav(next) : null}
+      ariaLabel="Same domain"
+      prevLabel="Previous"
+      nextLabel="Next"
+    />
+  </div>
+  <ReadingScripts />
 </BaseLayout>

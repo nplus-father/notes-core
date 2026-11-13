@@ -1,39 +1,55 @@
 @use "../tokens.scss" as *;
+@use "./mixins" as *;
 
-/* ───────────────────────── 徽章 / pill / 星等 ───────────────────────── */
 .pill {
-  @include pill;
-  color: #fff;
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  white-space: nowrap;
 }
-@each $d in $difficulties {
-  .diff-#{$d} {
-    background: var(--#{$d});
+
+.diff-easy {
+  --diff: var(--easy);
+}
+.diff-medium {
+  --diff: var(--medium);
+}
+.diff-hard {
+  --diff: var(--hard);
+}
+
+.diff-steps {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.diff-step {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid var(--border-mid);
+  &.is-on {
+    border-color: var(--diff, var(--ink));
+    background: var(--diff, var(--ink));
   }
 }
 
 .badge {
-  @include pill;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--text-2);
-}
-.status-draft {
-  background: var(--surface-2);
-  color: var(--muted);
-}
-.status-written {
-  background: var(--accent-weak);
-  color: var(--accent);
-}
-.status-reviewed {
-  background: var(--easy-bg);
-  color: var(--easy);
+  white-space: nowrap;
 }
 
 .dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
   display: inline-block;
   &.status-draft {
     background: var(--muted);
@@ -47,13 +63,19 @@
 }
 
 .stars {
-  font-size: 0.82rem;
-  letter-spacing: 1px;
-  white-space: nowrap;
-  .stars-full {
-    color: var(--star);
-  }
-  .stars-empty {
-    color: var(--border-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.stars-cell {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid var(--border-mid);
+  &.is-on {
+    border-color: var(--ink);
+    background: var(--ink);
   }
 }

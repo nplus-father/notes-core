@@ -1,0 +1,17 @@
+<script>
+  document.addEventListener(
+    "error",
+    (e) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement) || !img.classList.contains("rl-cover")) return;
+      const fallback = img.dataset.fallback;
+      if (fallback && img.src !== fallback) {
+        img.src = fallback;
+        delete img.dataset.fallback;
+        return;
+      }
+      img.closest(".rl-row")?.classList.add("is-coverless");
+    },
+    true
+  );
+</script>

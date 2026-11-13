@@ -1,0 +1,262 @@
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+.reading-head {
+  @include grid-12;
+  margin: 0 0 clamp(2rem, 4.5vw, 3.75rem);
+  padding-bottom: clamp(1.75rem, 3.5vw, 3rem);
+  border-bottom: 1px solid var(--ink);
+}
+
+.reading-kicker {
+  grid-column: 1 / -1;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+  align-items: center;
+}
+
+.page-head .reading-title {
+  grid-column: 1 / span 10;
+  margin: 0;
+  font-size: var(--fs-h1);
+  line-height: 1.14;
+  letter-spacing: 0.015em;
+  view-transition-name: page-title;
+}
+
+.title-latin {
+  display: block;
+  margin-top: 0.55em;
+  font-family: $display;
+  font-size: 0.48em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--text-2);
+}
+
+.reading-grid {
+  @include grid-12;
+  align-items: start;
+}
+
+.reading-body {
+  grid-column: 4 / span 7;
+  min-width: 0;
+}
+
+.marginalia {
+  grid-column: 1 / span 3;
+  align-self: start;
+  position: sticky;
+  top: calc(var(--nav-h) + 2.25rem);
+  max-height: calc(100vh - var(--nav-h) - 3.5rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0.35rem 1.5rem 1rem 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mg-block {
+  margin: 0;
+  & + & {
+    margin-top: 1.35rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border);
+  }
+}
+
+.mg-label {
+  @include label;
+  margin: 0 0 0.45rem;
+  color: var(--muted);
+}
+
+.mg-value {
+  margin: 0;
+}
+
+.mg-books,
+.mg-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li + li {
+    margin-top: 0.3rem;
+  }
+}
+
+.mg-books a {
+  @include link-draw;
+  font-family: $display;
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 500;
+  font-synthesis-style: none;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.mg-links {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  a {
+    @include link-draw;
+    color: var(--text-2);
+    &:hover {
+      color: var(--text);
+    }
+  }
+  span {
+    color: var(--muted);
+  }
+}
+
+.mg-rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 2rem;
+  .stars,
+  .pill {
+    margin-top: 0.15rem;
+  }
+}
+
+.mg-value {
+  @include label;
+  color: var(--text);
+}
+
+.mg-toc {
+  ol {
+    margin: 0.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  li + li {
+    margin-top: 0.1rem;
+  }
+  a {
+    display: grid;
+    grid-template-columns: 0.4rem 1.6rem 1fr;
+    column-gap: 0.55rem;
+    align-items: baseline;
+    padding: 0.28rem 0;
+    font-size: var(--fs-small);
+    line-height: 1.45;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--dur-hover) var(--ease);
+    &::before {
+      content: "";
+      width: 0.4rem;
+      height: 0.4rem;
+      align-self: center;
+      background: var(--seal);
+      transform: scale(0);
+      transition: transform var(--dur-enter) var(--ease);
+    }
+    &:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+    &[aria-current] {
+      color: var(--text);
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.mg-toc-num {
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.reading-end {
+  margin-top: clamp(4.5rem, 9vw, 8rem);
+}
+
+@include below-grid {
+  .page-head .reading-title {
+    grid-column: 1 / -1;
+  }
+  .reading-head {
+    margin-bottom: 0;
+    padding-bottom: 1.5rem;
+  }
+  .reading-grid {
+    display: block;
+  }
+  .marginalia {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    display: block;
+    margin: 0 0 2.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mg-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+  }
+  .mg-rating > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .mg-rating {
+    gap: 0.5rem 1.5rem;
+  }
+  .mg-block,
+  .mg-block + .mg-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.6rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .mg-label {
+    margin: 0;
+  }
+  .mg-books,
+  .mg-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    li + li {
+      margin: 0;
+      &::before {
+        content: "·";
+        margin-right: 0.5rem;
+        color: var(--muted);
+      }
+    }
+  }
+  .mg-books a {
+    font-size: 1rem;
+  }
+  .mg-toc {
+    display: none !important;
+  }
+}
+
+@media print {
+  .marginalia {
+    position: static;
+    max-height: none;
+  }
+  .mg-toc {
+    display: none;
+  }
+}

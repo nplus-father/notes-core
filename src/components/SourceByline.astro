@@ -1,6 +1,4 @@
 ---
-// 頁首優雅的來源 byline：把 furtherReading 的書名低調列在標題下，
-// 不在內文逐段標「出自哪本書哪章」。完整章節清單見頁尾「內容來源」。
 import { bookUrl, splitBookLabel } from "../lib/links";
 interface Item {
   book: string;
@@ -12,22 +10,22 @@ interface Props {
 }
 const { items } = Astro.props;
 const books = [...new Map(items.map((it) => [it.book, it])).values()];
-// 書名 = label 分隔號前段；拆法與頁尾卡片共用（連字號書名不會被攔腰斬）。
 const bookName = (label: string) => splitBookLabel(label).book || label.trim();
 ---
 
 {
   books.length > 0 && (
-    <p class="source-byline">
-      <span class="byline-mark">⟢</span> From
-      {books.map((it, i) => (
-        <>
-          {i > 0 && <span class="byline-sep">·</span>}
-          <a href={bookUrl(it.book, it.anchor)} target="_blank" rel="noopener">
-            {bookName(it.label)}
-          </a>
-        </>
-      ))}
-    </p>
+    <div class="mg-block mg-from">
+      <p class="mg-label">From</p>
+      <ul class="mg-books">
+        {books.map((it) => (
+          <li>
+            <a href={bookUrl(it.book)} target="_blank" rel="noopener">
+              {bookName(it.label)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

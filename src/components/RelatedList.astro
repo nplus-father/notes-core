@@ -1,29 +1,53 @@
 ---
-// 交叉 / 反向連結清單（相關概念、相關題目、用到此概念的題目…）。
-// 未收錄的 slug 以低調 muted 呈現。heading 由呼叫端指定。
+import Icon from "./Icon.astro";
+import { splitTitle } from "../lib/reading";
 interface Item {
   slug: string;
   title?: string;
   href?: string | null;
+  meta?: string;
 }
 interface Props {
   heading: string;
   items: Item[];
 }
 const { heading, items } = Astro.props;
+const num = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
 {
   items.length > 0 && (
-    <section class="related">
-      <h2>{heading}</h2>
-      <ul>
-        {items.map((r) => (
+    <section class="endnote related">
+      <h2 class="endnote-head">{heading}</h2>
+      <ul class="rl">
+        {items.map((r, i) => (
           <li>
             {r.href ? (
-              <a href={r.href}>{r.title}</a>
+              <a class="rl-row" href={r.href}>
+                <span class="rl-num" aria-hidden="true">
+                  {num(i)}
+                </span>
+                <span class="rl-text">
+                  <span class="rl-title">{splitTitle(r.title ?? "").main}</span>
+                  {splitTitle(r.title ?? "").latin && (
+                    <span class="rl-latin" lang="en">
+                      {splitTitle(r.title ?? "").latin}
+                    </span>
+                  )}
+                  {r.meta && <span class="rl-meta">{r.meta}</span>}
+                </span>
+                <Icon name="arrow-right" size={18} class="rl-arrow" />
+              </a>
             ) : (
-              <span class="muted">{r.slug} (not yet added)</span>
+              <span class="rl-row is-pending">
+                <span class="rl-num" aria-hidden="true">
+                  {num(i)}
+                </span>
+                <span class="rl-text">
+                  <span class="rl-title">{r.slug}</span>
+                  <span class="rl-meta">Not yet written</span>
+                </span>
+              </span>
             )}
           </li>
         ))}
