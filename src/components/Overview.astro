@@ -23,12 +23,34 @@ const uid = "ov";
             <time datetime={overview.writtenAt}>{overview.writtenAt}</time>
           </p>
         )}
+        {overview.sections.length > 1 && (
+          <ol class="home-rail-index overview-index">
+            {overview.sections.map((s, i) => (
+              <li>
+                <a
+                  href={`#${uid}-panel-${i}`}
+                  data-sec={String(i)}
+                  aria-current={i === 0 ? "true" : undefined}
+                >
+                  <span class="home-rail-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span>{s.heading}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
 
       <div class="section-body overview-body">
         <p class="overview-lede reveal" set:html={overview.lede} />
 
-        <div class="overview-tabs text-tabs" role="tablist" aria-label="Overview sections" hidden>
+        <div
+          class="overview-tabs text-tabs"
+          role="tablist"
+          aria-label="Overview sections"
+          data-edge-fade
+          hidden
+        >
           {overview.sections.map((s, i) => (
             <button
               type="button"
@@ -84,10 +106,12 @@ const uid = "ov";
   for (const root of document.querySelectorAll<HTMLElement>(".overview")) {
     const list = root.querySelector<HTMLElement>(".overview-tabs");
     const tabs = [...root.querySelectorAll<HTMLButtonElement>(".overview-tab")];
+    const index = [...root.querySelectorAll<HTMLAnchorElement>(".overview-index a")];
     const panels = [...root.querySelectorAll<HTMLElement>(".overview-section")];
     if (!list || tabs.length === 0) continue;
 
     list.hidden = false;
+    list.dispatchEvent(new Event("scroll"));
     root.classList.add("is-tabbed");
     panels.forEach((p, i) => {
       p.setAttribute("role", "tabpanel");
@@ -106,7 +130,18 @@ const uid = "ov";
         if (p.dataset.sec === sec) p.removeAttribute("hidden");
         else p.setAttribute("hidden", "until-found");
       }
+      for (const a of index) {
+        if (a.dataset.sec === sec) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      }
     };
+
+    for (const a of index) {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        activate(a.dataset.sec ?? "0");
+      });
+    }
 
     tabs.forEach((t, i) => {
       t.addEventListener("click", () => activate(t.dataset.sec ?? "0"));

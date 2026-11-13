@@ -7,9 +7,14 @@
 
 .section {
   @include section-split;
-  & + & {
-    margin-top: var(--space-section);
-  }
+}
+
+:where(.section, .hero) ~ :where(.section) {
+  margin-top: var(--space-section);
+}
+
+.edge-fade {
+  @include edge-fade;
 }
 
 .running-head {

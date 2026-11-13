@@ -13,11 +13,13 @@
     display: inline-flex;
     align-items: baseline;
     min-width: 0;
+    white-space: nowrap;
   }
   li + li::before {
     content: "/";
+    flex: none;
     margin: 0 0.75em;
-    color: var(--border-mid);
+    color: var(--muted);
   }
   a {
     @include link-draw;
@@ -31,5 +33,29 @@
   }
   [aria-current] {
     color: var(--text);
+  }
+}
+
+@media (max-width: $bp-nav) {
+  .crumbs {
+    ol {
+      flex-wrap: nowrap;
+      letter-spacing: 0.08em;
+    }
+    li {
+      flex: 0 1 auto;
+      > * {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    li:not(:first-child, :last-child) {
+      flex-shrink: 100;
+      min-width: 3.5em;
+    }
+    li:first-child {
+      flex-shrink: 2;
+    }
   }
 }

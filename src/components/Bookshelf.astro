@@ -1,5 +1,6 @@
 ---
 import { bookUrl, bookCoverUrl } from "../lib/links";
+import Icon from "./Icon.astro";
 interface Book {
   slug: string;
   title: string;
@@ -21,24 +22,34 @@ const { books, heading = "Sources", moreHref, num = "" } = Astro.props;
           {num && <span class="running-head-num">{num}</span>}
           <span lang="en">{heading}</span>
         </h2>
+        <p class="home-head-meta">
+          <span>{String(books.length).padStart(2, "0")}</span>
+          <span lang="en">{books.length === 1 ? "Book" : "Books"}</span>
+        </p>
+        {moreHref && (
+          <a class="home-rail-more shelf-more" href={moreHref}>
+            <span lang="en">Library</span>
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </a>
+        )}
       </div>
       <div class="section-body shelf-body">
-        <div class="shelf-bar">
-          <p class="shelf-count">
-            <span class="shelf-count-n">{books.length}</span>
-            <span lang="en">{books.length === 1 ? "Book" : "Books"}</span>
+        <div class="shelf-bar" data-shelf-bar>
+          <p class="shelf-pos" aria-live="polite">
+            <span class="shelf-pos-range">1–{books.length}</span>
+            <span class="shelf-pos-sep">/</span>
+            <span>{books.length}</span>
           </p>
-          <span class="shelf-hint" aria-hidden="true" lang="en">
-            Drag or use arrow keys
-          </span>
-          {moreHref && (
-            <a class="shelf-more" href={moreHref}>
-              <span lang="en">Library</span>
-              <span class="arrow" aria-hidden="true">
-                →
-              </span>
-            </a>
-          )}
+          <div class="shelf-nav">
+            <button type="button" class="shelf-btn" data-dir="-1" aria-label="Previous books">
+              <Icon name="arrow-left" size={20} />
+            </button>
+            <button type="button" class="shelf-btn" data-dir="1" aria-label="Next books">
+              <Icon name="arrow-right" size={20} />
+            </button>
+          </div>
         </div>
         <div
           class="shelf-scroller"
@@ -77,12 +88,35 @@ const { books, heading = "Sources", moreHref, num = "" } = Astro.props;
 
 <script>
   for (const el of document.querySelectorAll<HTMLElement>("[data-shelf]")) {
+    const bar = el.parentElement?.querySelector<HTMLElement>("[data-shelf-bar]");
+    const range = bar?.querySelector<HTMLElement>(".shelf-pos-range");
+    const [prev, next] = [...(bar?.querySelectorAll<HTMLButtonElement>(".shelf-btn") ?? [])];
+    const books = [...el.querySelectorAll<HTMLElement>(".shelf-book")];
     const update = () => {
       const max = el.scrollWidth - el.clientWidth;
-      el.classList.toggle("at-start", el.scrollLeft <= 2);
-      el.classList.toggle("at-end", el.scrollLeft >= max - 2);
+      const atStart = el.scrollLeft <= 2;
+      const atEnd = el.scrollLeft >= max - 2;
+      el.classList.toggle("at-start", atStart);
+      el.classList.toggle("at-end", atEnd);
       el.classList.toggle("is-static", max <= 2);
+      if (!bar) return;
+      bar.classList.toggle("is-ready", max > 2);
+      const box = el.getBoundingClientRect();
+      const right = box.right - parseFloat(getComputedStyle(el).paddingRight);
+      const seen = books
+        .map((b, i) => ({ r: b.getBoundingClientRect(), i }))
+        .filter(({ r }) => r.left >= box.left - 2 && r.right <= right + 2)
+        .map(({ i }) => i + 1);
+      if (range && seen.length) range.textContent = `${seen[0]}–${seen.at(-1)}`;
+      if (prev) prev.disabled = atStart;
+      if (next) next.disabled = atEnd;
     };
+    const page = (dir: number) => {
+      const step = Math.max(el.clientWidth - parseFloat(getComputedStyle(el).paddingRight) - 40, 120);
+      el.scrollBy({ left: dir * step, behavior: "smooth" });
+    };
+    prev?.addEventListener("click", () => page(-1));
+    next?.addEventListener("click", () => page(1));
     update();
     el.addEventListener("scroll", update, { passive: true });
     addEventListener("resize", update, { passive: true });

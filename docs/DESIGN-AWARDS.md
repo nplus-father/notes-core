@@ -251,7 +251,21 @@ Fable 收三份、取中位數、逐條裁決，開下一輪修單。同一個�
 
 Partial 一律 `@use "../tokens.scss" as *;`（`$display`／`$sans`／`$mono`／`$serif`＝`$display`、`$bp-grid` 900px、`$bp-nav` 720px、`$canvas-max`、`$ease`），要用 mixin 再加 `@use "../base/mixins" as *;`。`global.scss` 只是有序的 `@use` 清單，新 partial 照層疊位置插進去。
 
-**Tokens（`base/_theme`）**：`--fs-mega／display／h1／h2／h3／lede／body／small／label`、`--lh-body`、`--font-display／sans／mono`、`--bg／surface／surface-2／border／border-mid／border-strong（＝墨）／ink／text／text-2／muted／accent／seal／seal-weak`、`--gutter／canvas／col-gap／space-section／nav-h`（64px）、`--ease／dur-hover／dur-enter／dur-hero`。`--border-mid` 是舊 `--border-strong` 的淡灰角色（空星、虛線框、未收長條），`--border-strong` 現在是墨線。
+**Tokens（`base/_theme`）**：`--fs-mega／display／h1／h2／h3／lede／intro／body／small／label`、`--lh-body`、`--font-display／sans／mono`、`--bg／surface／surface-2／border／border-mid／border-strong（＝墨）／ink／text／text-2／muted／accent／seal／seal-weak`、`--gutter／canvas／col-gap／space-section／nav-h`（64px，≤ 720px 52px）`／tabbar-h`（≤ 720px 底部分頁列的高度含 safe-area，其餘 0）、`--ease／dur-hover／dur-enter／dur-hero`。`--border-mid` 是舊 `--border-strong` 的淡灰角色（空星、虛線框、未收長條），`--border-strong` 現在是墨線。
+
+第二輪補充（2026-11-13）：
+
+- `--fs-intro: 1.25rem` 是 body 與 lede 之間的那一階，給區塊開頭的導言段落（如 Schools 的 lede）；`--fs-label` 提到 `0.75rem`，`--muted` 在 `--bg`／`--surface`／`--surface-2` 兩種主題都過 AA（最低 4.78）。
+- `--space-section` 改成 `clamp(3.5rem, 7vw, 6.5rem)`。間距只由 `:where(.section, .hero) ~ :where(.section)` 給一次（零特異度、跨過 Astro 插在元件之間的 `<script>`），區塊自己不要再加 `padding-bottom`；要特別的間距就用更具體的選擇器覆寫 `margin-top`。`main.container` 的底部留白是 `clamp(3rem, 6vw, 5rem)`（頁尾自己有墨線與上緣留白），各頁不必再覆寫。`.reveal` 與 `.reading-progress` 的捲動動畫寫成 longhand（`animation-timeline` 放最後），否則壓縮器會把它併進 `animation` 簡寫而失效；新的 `scroll()`／`view()` 規則照這個寫法。
+- **站色（第二墨）**：主題站的 `<html>` 帶 `data-station-hue` 與 `--station-hue`（`site-covers.ts` 的 `accent2` 換成 OKLCH 色相，build 時算好）。`--accent`／`--accent-2`／`--accent-weak`／`--ring` 由這個色相以固定的低彩度推出（淺 L 0.40 C 0.055、深 L 0.80 C 0.045），不支援 OKLCH 的瀏覽器與人物站、設了 `accentOverride` 的站維持原本的軸色。用途：連結、選取底色、書眉編號（`.running-head-num`）、首頁的條目編號與頁尾的符號印記。朱印不被取代，一頁仍只有它是暖色訊號。
+- ≤ 720px 的導覽是**底部分頁列**：同一組 `.topnav-link` 改成固定在底部的列（圖示＋短英文標籤、目前項朱色方點、墨色髮絲線、`env(safe-area-inset-bottom)`），塞不下時橫向捲動加吸附與邊緣淡出；頂列只剩返回、人像、深淺色。`body` 底部留 `--tabbar-h`。版面工作包的 sticky 元素一律用 `var(--nav-h)` 對齊頂列，不要寫死 64px；固定在底部的元素要讓出 `--tabbar-h`。
+
+| 名稱 | 種類 | 一行說明 |
+| --- | --- | --- |
+| `@include outlined-numeral($stroke, $width: 1px)` | mixin | 描邊不填色的數字（`-webkit-text-stroke`，不支援時退成實心）；首頁 hero 卷號用它，404 與目錄頁的大數字之後也改用它，不要各寫一份 |
+| `.edge-fade`／`@include edge-fade($size)`＋`data-edge-fade` | class／mixin＋屬性 | 橫向捲動列：吸附、隱藏捲軸，只在被切掉的那一側淡出。元素加 `data-edge-fade`，`BaseLayout` 的 inline script 依捲動位置寫 `data-cut="start end"`；無 JS 時不淡出、照樣可捲 |
+| `@include cjk-emphasis` | mixin | `em`／`i` 在中文裡不做假斜體，改用著重號（字下圓點） |
+| `.home-rail-index`＋`.home-rail-num` | class | 首頁區塊左欄的小目錄（編號＋名稱，錨點），≥ 901px 才出現 |
 
 **版面（`base/_layout`）**：`.container` 寬＝`--canvas`；≥ 901px 時 `main.container > *` 預設從第 4 欄開始（左 3 欄留給書眉／邊注），`.crumbs`／`.home-hero`／`.grid-12`／`.section`／`.bleed` 例外、滿版。`--span-3`／`--span-7`／`--span-9`／`--col` 是以 vw 算的欄寬長度，給還沒改成格線的舊版面對齊用。
 

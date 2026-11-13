@@ -1,0 +1,19 @@
+---
+import { motifSvg } from "../lib/motifs.ts";
+import type { CoverPlateData } from "../lib/cover-plate.ts";
+
+interface Props {
+  plate: CoverPlateData;
+  stroke?: number;
+}
+
+const { plate, stroke } = Astro.props;
+---
+
+<div class="cover-plate" role="img" aria-label={`${plate.title}：${plate.legend}`}>
+  <div class="cover-plate-mark">
+    <Fragment set:html={motifSvg(plate.motif, { className: "cover-plate-motif", stroke })} />
+  </div>
+  <p class="cover-plate-legend" lang="en">{plate.legend}</p>
+  <span class="cover-plate-seal"></span>
+</div>

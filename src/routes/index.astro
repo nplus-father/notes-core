@@ -7,9 +7,11 @@ import Bookshelf from "../components/Bookshelf.astro";
 import SchoolsMap from "../components/SchoolsMap.astro";
 import AuthorProfile from "../components/AuthorProfile.astro";
 import Overview from "../components/Overview.astro";
+import CoverPlate from "../components/CoverPlate.astro";
 import { withBase } from "../lib/url";
 import { shelfFromBibliography, normalizeSchools } from "../lib/library";
 import { siteBySlug, topicSites, personSites } from "../lib/sites";
+import { coverPlateFor } from "../lib/cover-plate.ts";
 import { site, books, bibliography, schools, profile, overview } from "virtual:notes-core/site";
 
 const heroLede = (site.heroLede ?? "").replaceAll("{base}", withBase("/"));
@@ -24,7 +26,8 @@ const headingIsLatin = /^[\p{Script=Latin}\p{N}\s.,'’&\-]+$/u.test(heading);
 const pool = axis === "person" ? personSites : topicSites;
 const idx = pool.findIndex((s) => s.slug === slug);
 const serial = idx >= 0 ? String(idx + 1).padStart(2, "0") : "";
-const hasCover = existsSync(resolve("public/cover.png"));
+const plate = coverPlateFor(slug);
+const hasCover = !!plate || existsSync(resolve("public/cover.png"));
 
 const concepts = await getCollection("concepts");
 const categories = await getCollection("categories");
@@ -72,11 +75,7 @@ const nums = {
     {
       serial && (
         <div class="hero-numeral" aria-hidden="true">
-          <svg class="hero-numeral-svg" viewBox="0 0 1000 400" preserveAspectRatio="xMaxYMax meet">
-            <text x="1000" y="352" text-anchor="end">
-              N°{serial}
-            </text>
-          </svg>
+          <span class="hero-numeral-text">N°{serial}</span>
         </div>
       )
     }
@@ -95,17 +94,21 @@ const nums = {
     </div>
     {
       hasCover && (
-        <figure class="hero-plate">
+        <figure class:list={["hero-plate", { "is-drawn": !!plate }]}>
           <div class="hero-plate-mat">
-            <img
-              class="hero-plate-img"
-              src={withBase("cover.png")}
-              alt={heading}
-              width="900"
-              height="1200"
-              fetchpriority="high"
-              decoding="async"
-            />
+            {plate ? (
+              <CoverPlate plate={plate} />
+            ) : (
+              <img
+                class="hero-plate-img"
+                src={withBase("cover.png")}
+                alt={heading}
+                width="900"
+                height="1200"
+                fetchpriority="high"
+                decoding="async"
+              />
+            )}
           </div>
           <figcaption class="hero-plate-cap" lang="en">
             <span class="hero-plate-num">Pl. I</span>

@@ -21,6 +21,17 @@
   }
 }
 
+@keyframes folio-reveal {
+  from {
+    clip-path: inset(-100vh -100vw 100% -100vw);
+    transform: translateY(12px);
+  }
+  to {
+    clip-path: inset(-100vh -100vw -100vh -100vw);
+    transform: none;
+  }
+}
+
 @keyframes folio-fade {
   from {
     opacity: 0;
@@ -51,7 +62,10 @@
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
-      animation: folio-rise linear both;
+      animation-name: folio-reveal;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
     }
@@ -75,7 +89,10 @@
     transform-origin: 0 50%;
     transform: scaleX(0);
     pointer-events: none;
-    animation: folio-progress linear both;
+    animation-name: folio-progress;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
     animation-timeline: scroll(root block);
   }
 }
