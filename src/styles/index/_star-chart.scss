@@ -227,9 +227,6 @@
       opacity: 1;
       stroke-width: 1.4px;
     }
-    .sc-tag-t {
-      fill: var(--text);
-    }
     .sc-label,
     .sc-label-m,
     .sc-numl {
@@ -239,6 +236,19 @@
       fill: var(--seal);
     }
   }
+}
+
+.sc[data-hot] .sc-tag:not(.is-hot) {
+  .sc-tag-t {
+    opacity: 0.22;
+  }
+  .sc-tag-lead {
+    opacity: 0.12;
+  }
+}
+
+.sc[data-hot] .sc-tag.is-hot .sc-tag-t {
+  fill: var(--text);
 }
 
 .sc-svg .sc-sector {
@@ -268,7 +278,7 @@
 
 .sc-tag-t {
   @include knockout;
-  font-family: $sans;
+  font-family: $display;
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.22;
@@ -291,7 +301,7 @@
 .sc-label-m {
   @include knockout(0.3em);
   display: none;
-  font-family: $sans;
+  font-family: $display;
   font-size: 28px;
   font-weight: 600;
   letter-spacing: 0.04em;

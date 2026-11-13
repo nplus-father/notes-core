@@ -339,13 +339,27 @@ function tokenize(text: string): { t: string; w: number; brk: number }[] {
   return out;
 }
 
-export function tagText(title: string): { lines: string[]; latin: boolean } | null {
-  let main = title.replace(TITLE_EN_TAIL, "$1");
-  const cut = main.search(/[：:，、；;。！？!?（(「『]|, |——|—/);
+export function tagTexts(title: string): { lines: string[]; latin: boolean }[] {
+  const full = title.replace(TITLE_EN_TAIL, "$1");
+  const PUNCT = /[：:，、；;。！？!?（(「『]|, |——|—/;
+  let main = full;
+  const cut = main.search(PUNCT);
   if (cut > 0) main = main.slice(0, cut);
   main = main.trim();
-  if (!main) return null;
+  if (main && !CJK.test(main) && CJK.test(full.slice(cut))) {
+    const clause = full
+      .split(PUNCT)
+      .map((x) => x.trim())
+      .find((x) => CJK.test(x));
+    if (clause) main = clause;
+  }
+  if (!main) return [];
   const latin = !CJK.test(main);
+  const found: { lines: string[]; latin: boolean }[] = [];
+  const add = (lines: string[] | null) => {
+    if (lines && !found.some((f) => f.lines.join("|") === lines.join("|")))
+      found.push({ lines, latin });
+  };
   if (latin) {
     const fit = (text: string): string[] | null => {
       if (text.length <= 16) return [text];
@@ -365,18 +379,18 @@ export function tagText(title: string): { lines: string[]; latin: boolean } | nu
       return best;
     };
     const first = main.split(/\s+(?:and|&|vs\.?|or)\s+|:\s*/i)[0].trim();
-    const lines = fit(main) ?? fit(first);
-    return lines ? { lines, latin } : null;
+    add(fit(main));
+    add(fit(first));
+    return found;
   }
   const tries = [main, main.replace(FUNCTION_TAIL, "")];
-  const clause = main.split(/\s*vs\.?\s*|與|和|及|或|\s+/)[0];
+  const clause = main.split(/\s*vs\.?\s*|與|和|(?<!埃)及|或|\s+/)[0];
   if (clause && clause !== main) tries.push(clause);
   for (const text of tries) {
     if ([...text].filter((ch) => CJK.test(ch)).length < 2 && tokenize(text).length < 2) continue;
-    const lines = balance(tokenize(text), 7);
-    if (lines) return { lines, latin };
+    add(balance(tokenize(text), 7));
   }
-  return null;
+  return found;
 }
 
 function tagWidth(text: string, size: number): number {
@@ -395,6 +409,19 @@ function tagWidth(text: string, size: number): number {
 
 const boxHitsCircle = (b: Box, x: number, y: number, r: number) =>
   Math.hypot(x - clamp(x, b.x0, b.x1), y - clamp(y, b.y0, b.y1)) < r;
+
+function boxHitsRing(b: Box, r: number): boolean {
+  const near = Math.hypot(C - clamp(C, b.x0, b.x1), C - clamp(C, b.y0, b.y1));
+  const far = Math.max(
+    ...[
+      [b.x0, b.y0],
+      [b.x1, b.y0],
+      [b.x0, b.y1],
+      [b.x1, b.y1],
+    ].map(([x, y]) => Math.hypot(x - C, y - C))
+  );
+  return near < r && far > r;
+}
 
 const boxesOverlap = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
 
@@ -434,6 +461,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
   const K = cats.length;
   const starTotal = cats.reduce((a, c) => a + c.pages.length, 0);
   const sparse = starTotal < 15;
+  const declination = sparse ? [180, 320] : [140, 250, 360];
   const rOut = sparse ? 340 : R_OUT;
   const mScale = sparse ? 1.4 : 1;
   const magR = (m: number) => r1(MAG_R[m] * mScale);
@@ -847,8 +875,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
       MOBILE_RING * 1.4 + labelWidth(texts[k].text, MOBILE_RING, texts[k].latin) + 36
     );
     return {
-      mobile:
-        s1 - s0 >= mNeed ? { id: `sc-arc-${k}-m`, d: arcPath(R_LABEL, s0, s1, reverse) } : null,
+      mobile: s1 - s0 >= mNeed ? { id: `sc-arc-${k}-m`, d: arcPath(R_LABEL, s0, s1, reverse) } : null,
       k,
       slug: cat.slug,
       num: cat.num,
@@ -862,6 +889,8 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
       numY: r1(ny),
     };
   });
+
+  if (labels.some((l) => !l.mobile)) for (const l of labels) l.mobile = null;
 
   const boundaries: string[] = [];
   const dividers: string[] = [];
@@ -947,7 +976,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
         b.mag - a.mag ||
         hash(input.seed + a.slug) - hash(input.seed + b.slug)
     );
-    lead.push(own.slice(0, 3));
+    lead.push(own.slice(0, 6));
   });
   const sizeOf = (k: number) => cats[k].pages.length;
 
@@ -955,17 +984,22 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
     const tagBoxes: Box[] = [];
     const leaders: [number, number][][] = [];
     const out: ChartTag[] = [];
-    const tryTag = (s: ChartStar, strict: boolean): boolean => {
-      const t = tagText(s.title);
-      if (!t) return false;
+    const tryTag = (s: ChartStar): boolean => {
+      for (const t of tagTexts(s.title)) if (tryText(s, t)) return true;
+      return false;
+    };
+    const tryText = (s: ChartStar, t: { lines: string[]; latin: boolean }): boolean => {
       const size = (t.latin ? TAG_LATIN : TAG_CJK) * scale;
       const lh = size * 1.22;
       const w = Math.max(...t.lines.map((ln) => tagWidth(ln, size)));
       const h = lh * t.lines.length + size * 0.08;
       const g = reach(s) + 3;
       const outX = s.x >= C ? 1 : -1;
-      const dirs = [0, 180, -30, 30, 150, 210, -60, 60, 120, 240, -90, 90];
-      for (const extra of [0, 24 * scale, 50 * scale]) {
+      const dirs = [0, 180, -30, 30, 150, 210, -60, 60, 120, 240, -90, 90, -15, 15, 165, 195];
+      dirs.push(...[-45, 45, 135, 225, -75, 75, 105, 255]);
+      const extras: number[] = [];
+      for (let e = 0; e <= h * 1.6 + 4; e += 6 * scale) extras.push(e);
+      for (const extra of extras) {
         for (const base of dirs) {
           const deg = outX > 0 ? base : 180 - base;
           const ux = Math.cos(rad(deg));
@@ -1002,7 +1036,8 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
           if (corners.some(([x, y]) => Math.hypot(x - C, y - C) > R_FIELD - 8)) continue;
           if (stars.some((o) => boxHitsCircle(pad, o.x, o.y, reach(o)))) continue;
           if (pts.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
-          if (strict && rules.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
+          if (rules.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
+          if (declination.some((r) => boxHitsRing(pad, r))) continue;
           if (glyphBoxes.some((o) => boxesOverlap(pad, o))) continue;
           if (tagBoxes.some((o) => boxesOverlap(pad, o))) continue;
           if (leaders.some(([p, q]) => boxHitsSeg(pad, p, q))) continue;
@@ -1015,10 +1050,13 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
             const ly = (cy - s.y) / dist;
             const p: [number, number] = [s.x + lx * (reach(s) + 1), s.y + ly * (reach(s) + 1)];
             const q: [number, number] = [cx - lx * 4, cy - ly * 4];
+            if (Math.hypot(q[0] - p[0], q[1] - p[1]) > h * 1.6) continue;
             if (stars.some((o) => o !== s && pointSegDist([o.x, o.y], p, q) < reach(o))) continue;
             if (tagBoxes.some((o) => boxHitsSeg(o, p, q))) continue;
-            leaders.push([p, q]);
-            leader = `M${r1(p[0])} ${r1(p[1])}L${r1(q[0])} ${r1(q[1])}`;
+            if (Math.hypot(q[0] - p[0], q[1] - p[1]) >= 8) {
+              leaders.push([p, q]);
+              leader = `M${r1(p[0])} ${r1(p[1])}L${r1(q[0])} ${r1(q[1])}`;
+            }
           }
           tagBoxes.push(pad);
           out.push({
@@ -1039,16 +1077,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
     };
     for (const group of groups) {
       if (out.length >= cap) break;
-      let done = false;
-      for (const strict of [true, false]) {
-        for (const st of group) {
-          if (tryTag(st, strict)) {
-            done = true;
-            break;
-          }
-        }
-        if (done) break;
-      }
+      for (const st of group) if (tryTag(st)) break;
     }
     return out;
   };
@@ -1095,7 +1124,7 @@ export function layoutStarChart(input: ChartInput): ChartLayout | null {
       rTick: R_TICK,
       rLabel: R_LABEL,
       rField: R_FIELD,
-      declination: sparse ? [180, 320] : [140, 250, 360],
+      declination,
       boundaries: boundaries.join(""),
       dividers: dividers.join(""),
       hours: hours.join(""),

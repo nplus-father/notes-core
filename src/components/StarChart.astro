@@ -164,28 +164,6 @@ const tagsByK = chart
                     {b.letter}
                   </text>
                 ))}
-              {tagsByK[l.k].map(({ t, m }) => (
-                <g
-                  class:list={["sc-tag", m ? "is-m" : "is-d"]}
-                  aria-hidden="true"
-                  style={`--d:${1300 + l.k * 70}ms`}
-                >
-                  {t.leader && <path class="sc-tag-lead" d={t.leader} />}
-                  <text
-                    class:list={["sc-tag-t", { "is-latin": t.latin }]}
-                    x={t.x}
-                    y={t.y}
-                    text-anchor={t.anchor}
-                    font-size={t.size}
-                  >
-                    {t.lines.map((ln, j) => (
-                      <tspan x={t.x} dy={j === 0 ? `${-(t.lines.length - 1) * 0.61}em` : "1.22em"}>
-                        {ln}
-                      </tspan>
-                    ))}
-                  </text>
-                </g>
-              ))}
               {byK[l.k].map((s) =>
                 s.href ? (
                   <a
@@ -214,6 +192,32 @@ const tagsByK = chart
               )}
             </g>
           ))}
+          <g class="sc-tags" aria-hidden="true">
+            {chart.labels.map((l) =>
+              tagsByK[l.k].map(({ t, m }) => (
+                <g
+                  class:list={["sc-tag", m ? "is-m" : "is-d"]}
+                  data-k={l.k}
+                  style={`--d:${1300 + l.k * 70}ms`}
+                >
+                  {t.leader && <path class="sc-tag-lead" d={t.leader} />}
+                  <text
+                    class:list={["sc-tag-t", { "is-latin": t.latin }]}
+                    x={t.x}
+                    y={t.y}
+                    text-anchor={t.anchor}
+                    font-size={t.size}
+                  >
+                    {t.lines.map((ln, j) => (
+                      <tspan x={t.x} dy={j === 0 ? `${-(t.lines.length - 1) * 0.61}em` : "1.22em"}>
+                        {ln}
+                      </tspan>
+                    ))}
+                  </text>
+                </g>
+              ))
+            )}
+          </g>
         </svg>
         <span class="sc-tip" aria-hidden="true" />
       </div>
