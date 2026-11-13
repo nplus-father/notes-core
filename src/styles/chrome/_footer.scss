@@ -126,22 +126,12 @@
     min-height: 44px;
     color: var(--text);
     text-decoration: none;
-    .icon {
-      transition: transform var(--dur-hover) var(--ease);
-    }
     &:hover {
       color: var(--text);
       .colophon-vol-name {
         background-size: 100% 1px;
       }
     }
-  }
-  .colophon-vol-prev:hover .icon {
-    transform: translateX(-3px);
-  }
-  .colophon-vol-next:hover .icon,
-  .colophon-vol-up:hover .icon {
-    transform: translateX(3px);
   }
   .colophon-vol-next {
     justify-content: flex-end;

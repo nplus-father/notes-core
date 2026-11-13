@@ -36,9 +36,6 @@ main.container:has(> .nf) {
     justify-self: start;
     margin: 0;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    animation: folio-fade var(--dur-hero) var(--ease) both;
-  }
 }
 
 .nf-body {
@@ -131,10 +128,6 @@ main.container:has(> .nf) {
   &:hover,
   &:focus-visible {
     color: var(--seal);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 2px;
   }
 }
 

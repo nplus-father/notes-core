@@ -135,7 +135,7 @@
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: 0.02em;
-    scroll-margin-top: calc(var(--nav-h) + 2rem);
+    scroll-margin-top: 1rem;
     &:lang(en) {
       font-weight: 600;
       letter-spacing: -0.012em;
@@ -178,7 +178,7 @@
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 0.02em;
-    scroll-margin-top: calc(var(--nav-h) + 2rem);
+    scroll-margin-top: 1rem;
   }
 
   .h-latin {

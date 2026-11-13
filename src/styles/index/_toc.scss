@@ -135,7 +135,6 @@
   row-gap: 1.25rem;
   padding: clamp(1.5rem, 2.4vw, 2.1rem) 0 clamp(1.6rem, 2.6vw, 2.3rem);
   border-top: 1px solid var(--ink);
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
   > .toc-side {
     grid-column: 1 / span 3;
     align-self: start;
@@ -551,7 +550,6 @@ a.toc-row {
     }
     .row-arrow {
       color: var(--text);
-      transform: translateX(3px);
     }
   }
   @include below-grid {
@@ -659,9 +657,7 @@ a.toc-row {
   grid-area: arrow;
   align-self: center;
   color: var(--muted);
-  transition:
-    color var(--dur-hover) var(--ease),
-    transform var(--dur-hover) var(--ease);
+  transition: color var(--dur-hover) var(--ease);
 }
 
 .rows-key {

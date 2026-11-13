@@ -74,6 +74,16 @@ const tagsByK = chart
 
 {
   chart && f && (
+    <script is:inline>
+      try {
+        if (sessionStorage.getItem("sc-seen")) document.documentElement.classList.add("sc-seen");
+        else sessionStorage.setItem("sc-seen", "1");
+      } catch {}
+    </script>
+  )
+}
+{
+  chart && f && (
     <figure
       class:list={["sc", { "has-abbr": chart.abbreviated, "is-sparse": chart.sparse }]}
       aria-labelledby="sc-cap"

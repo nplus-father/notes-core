@@ -119,16 +119,10 @@
 
 .rl-arrow {
   color: var(--muted);
-  transition:
-    transform var(--dur-hover) var(--ease),
-    color var(--dur-hover) var(--ease);
+  transition: color var(--dur-hover) var(--ease);
   .rl-row:hover &,
   .rl-row:focus-visible & {
     color: var(--ink);
-    transform: translateX(3px);
-  }
-  .rl-row:hover &.icon-arrow-up-right {
-    transform: translate(2px, -2px);
   }
 }
 

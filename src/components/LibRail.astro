@@ -42,7 +42,7 @@ const { sections } = Astro.props;
       }
     };
     const navH =
-      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 64;
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 56;
     const io = new IntersectionObserver(
       (records) => {
         for (const r of records) {

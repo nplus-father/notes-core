@@ -1,93 +1,52 @@
 @use "../tokens.scss" as *;
-@use "../base/mixins" as *;
 
 .skip-link {
-  @include label;
-  position: fixed;
-  top: 0.75rem;
-  left: 0.75rem;
-  z-index: 100;
-  padding: 0.7rem 1rem;
-  background: var(--ink);
-  color: var(--bg);
-  transform: translateY(-200%);
-  transition: transform var(--dur-hover) var(--ease);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
   &:focus,
   &:focus-visible {
-    transform: none;
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    overflow: visible;
+    clip-path: none;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: $radius;
+    font-weight: 600;
     text-decoration: none;
-    outline-color: var(--seal);
   }
+}
+
+main:focus {
+  outline: none;
 }
 
 .topnav {
   position: sticky;
   top: 0;
   z-index: 20;
-  height: var(--nav-h);
-  background: var(--bg);
-  border-bottom: 1px solid var(--ink);
-}
-
-.topnav-inner {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: var(--canvas);
-  height: 100%;
-  margin-inline: auto;
-}
+  flex-wrap: nowrap;
+  align-items: stretch;
+  height: $nav-h;
+  padding: 0 1.5rem;
+  view-transition-name: topnav;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 
-.topnav-left {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  min-width: 0;
-}
-
-.topnav-up {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  min-height: 40px;
-  padding-right: 0.25rem;
-  color: var(--text-2);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  .icon {
-    transition: transform var(--dur-hover) var(--ease);
-  }
-  &:hover {
-    color: var(--text);
-    text-decoration: none;
-    .icon {
-      transform: translateX(-3px);
-    }
-  }
-}
-
-.brand-avatar {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  img {
-    display: block;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--ink);
-    filter: grayscale(0.15);
-  }
-  &:hover img {
-    border-color: var(--seal);
-  }
-}
-
-.topnav {
   &::before {
     content: "";
     position: absolute;
@@ -95,160 +54,143 @@
     height: 3px;
     background: var(--cloth);
   }
-}
 
-.topnav-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-width: 0;
-  min-height: 40px;
-  color: var(--text);
-  &:hover,
-  &:focus-visible {
-    text-decoration: none;
-    .topnav-station {
-      background-size: 100% 1px;
+  .topnav-left {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .topnav-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.35rem;
+    border: 1px solid transparent;
+    border-radius: $radius;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      color 0.15s,
+      background 0.15s,
+      border-color 0.15s;
+    &:hover {
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--accent-weak);
+      border-color: var(--border);
     }
   }
-}
-
-.topnav-swatch {
-  flex: none;
-  width: 10px;
-  height: 10px;
-  background: var(--cloth);
-}
-
-.topnav-station {
-  @include link-draw;
-  position: relative;
-  top: 0.235em;
-  display: block;
-  min-width: 0;
-  max-width: 16em;
-  overflow: hidden;
-  font-family: $display;
-  font-size: 1.0625rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.topnav-more {
-  display: none;
-}
-
-@media (min-width: ($bp-nav + 1)) {
-  .topnav-chip.is-phone-only {
-    display: none;
+  @media (max-width: 560px) {
+    .topnav-up-label {
+      display: none;
+    }
+    .topnav-up {
+      padding: 0.2rem 0.3rem;
+    }
   }
-}
 
-@media (min-width: ($bp-nav + 1)) and (max-width: 1100px) {
-  .topnav-station {
-    @include visually-hidden;
-  }
-}
-
-.topnav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 0;
-}
-
-.topnav-nav {
-  min-width: 0;
-  padding: 6px 5px;
-  margin: -6px -5px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  .brand-avatar {
+    display: grid;
+    place-items: center;
+    img {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+    }
+    &:hover img {
+      border-color: var(--accent);
+    }
   }
 }
 
 .topnav-links {
   display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  margin: 0;
+  flex-wrap: nowrap;
+  min-width: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  li {
+    display: flex;
+    flex: none;
+  }
+  &[data-more-end] {
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  &[data-more-start] {
+    mask-image: linear-gradient(to right, transparent, #000 28px);
+  }
+  &[data-more-start][data-more-end] {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
+  }
 }
 
 .topnav-link {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  min-height: 40px;
-  padding: 0 0.6rem;
-  color: var(--text-2);
+  height: 100%;
+  padding: 0 0.625rem;
+  color: var(--muted);
   font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 600;
   white-space: nowrap;
-  transition: color var(--dur-hover) var(--ease);
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0.6rem;
-    right: 0.6rem;
-    bottom: 6px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur-enter) var(--ease);
-  }
+  scroll-snap-align: center;
+  box-shadow: inset 0 -2px 0 transparent;
+  transition:
+    color 0.12s,
+    box-shadow 0.12s;
   &:hover {
     color: var(--text);
     text-decoration: none;
-    &::after {
-      transform: scaleX(1);
-    }
+    box-shadow: inset 0 -2px 0 var(--border-mid);
   }
-  &[aria-current] {
+  &[aria-current="page"] {
     color: var(--text);
+    box-shadow: inset 0 -2px 0 var(--text);
   }
-  &[aria-current]::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 3px;
-    width: 5px;
-    height: 5px;
-    margin-left: -2.5px;
-    background: var(--seal);
+  &:focus-visible {
+    outline-offset: -2px;
   }
-}
-
-.topnav-label {
-  line-height: 1;
 }
 
 .theme-toggle {
+  flex: none;
+  align-self: center;
+  margin-left: 0.8rem;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-left: 0.35rem;
-  padding: 0;
+  border-radius: 2px;
   border: 1px solid var(--border);
-  border-radius: 0;
-  background: transparent;
+  background: var(--surface);
   color: var(--text-2);
   cursor: pointer;
+  font-size: 1rem;
   transition:
-    color var(--dur-hover) var(--ease),
-    border-color var(--dur-hover) var(--ease);
+    background 0.15s,
+    border-color 0.15s;
   &:hover {
-    color: var(--text);
-    border-color: var(--ink);
+    background: var(--surface-2);
+    border-color: var(--border-strong);
   }
   .icon-dark {
     display: none;
@@ -264,229 +206,31 @@
   }
 }
 
-.topnav-up-mini {
-  display: none;
-}
-
-@media (max-width: 1040px) {
-  .topnav-up-label {
-    display: none;
-  }
-  .topnav-up-mini {
-    display: inline;
-  }
-}
-
-@media (max-width: $bp-nav) {
-  body {
-    padding-bottom: var(--tabbar-h);
-  }
-  .topnav-inner {
-    width: auto;
-    margin-inline: 0.5rem 0.75rem;
-  }
-  .topnav-left {
-    gap: 0.25rem;
-  }
-  .topnav-up {
-    min-width: 44px;
-    min-height: 44px;
-    justify-content: center;
-  }
-  .topnav-left {
-    flex: 1 1 auto;
-  }
-  .brand-avatar {
-    width: 44px;
-    height: 44px;
-  }
-  .topnav-chip {
-    min-height: 44px;
-    gap: 0.5rem;
-  }
-  .topnav-station {
-    max-width: none;
-  }
-  .topnav-links > li.is-overflow {
-    display: none;
-  }
-  .topnav-more {
-    display: block;
-  }
-  .topnav-more-box {
-    position: static;
-    > summary {
-      list-style: none;
-      cursor: pointer;
-      &::-webkit-details-marker {
-        display: none;
-      }
-    }
-    &[open] > summary {
-      color: var(--text);
-    }
-  }
-  .topnav-scrim {
-    position: fixed;
-    inset: 0 0 var(--tabbar-h);
-    z-index: 1;
-    background: rgb(17 16 19 / 0.42);
-  }
-  .topnav-sheet {
-    position: fixed;
-    inset: auto 0 var(--tabbar-h);
-    z-index: 2;
-    padding: 0 0 0.5rem;
-    background: var(--bg);
-    border-top: 1px solid var(--ink);
-  }
-  .topnav-sheet-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 48px;
-    padding: 0 0.5rem 0 1.25rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .topnav-sheet-title {
-    @include label;
-    color: var(--text-2);
-  }
-  .topnav-sheet-close {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--text);
-    cursor: pointer;
-    &[hidden] {
-      display: none;
-    }
-  }
-  .topnav-sheet-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .topnav-sheet-link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-height: 48px;
-    padding: 0 1.25rem;
-    color: var(--text-2);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    &:hover,
-    &:focus-visible {
-      color: var(--text);
-      background: var(--surface-2);
-      text-decoration: none;
-    }
-    &[aria-current] {
-      color: var(--text);
-      font-weight: 600;
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0.5rem;
-        width: 5px;
-        height: 5px;
-        background: var(--seal);
-      }
-    }
-  }
-  .theme-toggle {
-    width: 44px;
-    height: 44px;
-    margin-left: 0;
-    border-color: transparent;
-  }
-  .topnav-nav {
-    position: fixed;
-    inset: auto 0 0;
-    z-index: 30;
-    margin: 0;
-    padding: 0 0 env(safe-area-inset-bottom, 0px);
-    overflow: visible;
-    background: var(--bg);
-    border-top: 1px solid var(--ink);
-    transition: transform 280ms var(--ease);
-    &[data-away]:not(:focus-within) {
-      transform: translateY(100%);
-    }
+@media (max-width: 599.98px) {
+  .topnav {
+    padding: 0 1rem;
   }
   .topnav-links {
-    @include edge-fade(2.25rem);
-    scroll-snap-type: x mandatory;
-    gap: 0;
-  }
-  .topnav-links > li {
-    flex: 1 0 auto;
-    scroll-snap-align: start;
+    flex: 1 1 auto;
+    margin-left: 0.4rem;
+    li:first-child {
+      margin-left: auto;
+    }
   }
   .topnav-link {
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
-    min-width: 48px;
-    height: 56px;
-    padding: 2px 0.4rem 0;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    color: var(--text-2);
-    &::after {
-      display: none;
-    }
-    .icon {
-      width: 22px;
-      height: 22px;
-    }
-    &[aria-current] {
-      color: var(--text);
-      font-weight: 600;
-    }
-    &[aria-current]::before {
-      top: 0;
-      bottom: auto;
-      width: 6px;
-      height: 6px;
-      margin-left: -3px;
-    }
+    padding: 0 0.5rem;
   }
-  .topnav-label {
-    display: block;
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: $bp-nav) and (prefers-reduced-motion: reduce) {
-  .topnav-nav[data-away] {
-    transform: none;
-  }
-}
-
-@media (max-width: $bp-nav) {
-  .topnav-links:has(.topnav-more) {
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-}
-
-[data-theme="dark"] .topnav-swatch {
-  outline: 1px solid var(--border-mid);
-}
-
-@media (max-width: $bp-nav) {
-  html.is-sheet-open,
-  html.is-sheet-open body {
-    overflow: hidden;
+  .theme-toggle {
+    align-self: stretch;
+    width: 44px;
+    height: auto;
+    margin-left: 0;
+    border: 0;
+    border-left: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    &:hover {
+      background: var(--surface-2);
+    }
   }
 }

@@ -96,7 +96,7 @@ const bookSet = new Set<string>(
           <div class="co-deeper">
             <dt>Deeper</dt>
             <dd>
-              <a class="link-draw arrow-nudge" href={siteUrl(category.sister)}>
+              <a class="link-draw" href={siteUrl(category.sister)}>
                 {siteLabel(category.sister)} <span class="arrow">→</span>
               </a>
             </dd>
@@ -109,7 +109,7 @@ const bookSet = new Set<string>(
 
   {
     items.length > 0 ? (
-      <section class="section idx-list is-wide reveal" aria-labelledby="pages-h">
+      <section class="section idx-list is-wide" aria-labelledby="pages-h">
         <h2 class="running-head" id="pages-h">
           <span class="running-head-num">01</span>Pages
         </h2>
@@ -143,7 +143,7 @@ const bookSet = new Set<string>(
 
   {
     planned.length > 0 && (
-      <section class="section idx-list is-wide reveal" aria-labelledby="planned-h">
+      <section class="section idx-list is-wide" aria-labelledby="planned-h">
         <h2 class="running-head" id="planned-h">
           <span class="running-head-num">02</span>Planned
         </h2>

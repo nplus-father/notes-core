@@ -63,7 +63,6 @@ body:has(.hero-cloth) {
 
 .hero-title-inner {
   display: inline-block;
-  view-transition-name: station-title;
 }
 
 .hero-rule {
@@ -112,7 +111,6 @@ body:has(.hero-cloth) {
   margin-top: calc(-1 * var(--hero-pull));
   margin-right: calc((var(--canvas-w) - 100vw) / 2);
   overflow: clip;
-  view-transition-name: station-cover;
 }
 
 .hero-volume {
@@ -419,64 +417,3 @@ body:has(.hero-cloth) {
     grid-column: 1 / -1;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  html:not(.hero-seen) {
-    .hero-cloth {
-      animation: cloth-in 650ms var(--ease) both;
-    }
-    .hero-motif-svg [pathLength] {
-      stroke-dasharray: 1;
-      animation: motif-draw 900ms cubic-bezier(0.45, 0.05, 0.2, 1) 250ms both;
-    }
-    .hero-portrait {
-      animation: cloth-lift 600ms var(--ease) 250ms both;
-    }
-    .hero-numeral {
-      animation: cloth-lift 600ms var(--ease) 500ms both;
-    }
-    .hero-foil,
-    .hero-cloth-foot {
-      animation: hero-wipe 500ms var(--ease) 550ms both;
-    }
-  }
-}
-
-@keyframes cloth-in {
-  from {
-    clip-path: inset(0 0 0 100%);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes cloth-lift {
-  from {
-    clip-path: inset(100% 0 0 0);
-    transform: translateY(6%);
-  }
-  to {
-    clip-path: inset(-20% -20% -20% -20%);
-    transform: none;
-  }
-}
-
-@keyframes motif-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes hero-wipe {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-

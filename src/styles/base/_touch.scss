@@ -1,0 +1,33 @@
+@use "../tokens.scss" as *;
+
+@media (pointer: coarse) {
+  .theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .topnav .topnav-up,
+  .topnav .brand-avatar {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  .text-tab,
+  .school-cat,
+  .check-hit {
+    min-height: 44px;
+  }
+  .crumbs a,
+  .check-review:not(.is-none),
+  .shelf-more {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 44px;
+      transform: translateY(-50%);
+    }
+  }
+}

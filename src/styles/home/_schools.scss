@@ -22,7 +22,7 @@
 .school-row {
   display: grid;
   grid-template-columns: clamp(3rem, 5vw, 4.5rem) minmax(0, 1fr) minmax(14rem, 0.55fr);
-  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+  scroll-margin-top: 0.5rem;
   column-gap: var(--col-gap);
   align-items: start;
   padding-block: clamp(1.6rem, 2.6vw, 2.25rem);
@@ -118,7 +118,6 @@
 
 .school-cat {
   @include label;
-  @include arrow-nudge;
   display: inline-flex;
   align-items: center;
   gap: 0.55em;

@@ -37,7 +37,6 @@
 
 .home-rail-more {
   @include label;
-  @include arrow-nudge;
   display: inline-flex;
   align-items: center;
   gap: 0.55em;

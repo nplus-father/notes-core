@@ -6,23 +6,13 @@
 //   import { defineSite } from "@nplus-father/notes-core/site";
 //   export const site = defineSite({ brand: "…", titleBase: "…", hasProblems: false });
 
-import type { IconName } from "./icons";
-
 export interface NavLink {
   // base-relative，如 "/concepts/"（會經 withBase 前綴 base）；
   // 若為絕對 http(s) 網址（如姊妹 handbook 站），則原樣輸出並以新分頁開啟。
   href: string;
-  label: string;
+  label: string; // 顯示文字（標準項為簡短英文，見 buildNav）
+  /** hover／aria-label 用的全名（label 已是全名時省略） */
   title?: string;
-  icon?: IconName;
-}
-
-export interface ResolvedNavLink {
-  href: string;
-  text: string;
-  title: string;
-  icon: IconName;
-  external: boolean;
 }
 
 export interface SiteConfig {
@@ -32,15 +22,15 @@ export interface SiteConfig {
   titleBase: string;
   /**
    * 選用：完全覆寫 topnav 連結。多數站不用填——nav 由 buildNav() 自動生成
-   * 固定項（Concepts /（Problems）/（Check）/ Search，不含首頁，左上人像已連 home）。
+   * 固定英文短詞（Concepts /（Problems）/（Check）/ Search，不含首頁，左上人像已連 home）。
    * 只有需要完全掌控順序/內容的特例才給這個。
    */
   nav?: NavLink[];
-  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。 */
+  /** 選用：額外 nav 連結（如姊妹 handbook），插在 Search 之前。label 原樣輸出。 */
   extraNav?: NavLink[];
-  /** 選用：概念區的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav。 */
+  /** 選用：概念區的英文標籤，預設 "Concepts"（如 design-patterns 設 "Patterns"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律用固定詞彙）。 */
   conceptLabelEn?: string;
-  /** 選用：題庫區的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav。 */
+  /** 選用：題庫區的英文標籤，預設 "Problems"（如 behaviour 設 "Competencies"）。v0.19.0 起只用於麵包屑／頁標題，不再影響 nav（nav 一律用固定詞彙）。 */
   problemLabelEn?: string;
   /**
    * @deprecated 原為複習紀錄的 localStorage 命名空間；該機制已移除，core 內已無人讀取。
@@ -50,7 +40,6 @@ export interface SiteConfig {
   ns?: string;
   /** 是否有題庫（problems）集合。純概念站為 false。 */
   hasProblems: boolean;
-  showStationInNav?: boolean;
   /** 頁尾文字，預設「© 2026 Andrew」 */
   footer?: string;
   /**
@@ -71,7 +60,7 @@ export interface SiteConfig {
    * 設 `null` → 兩處都隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
    * `short` 是 topnav 用的短名（省略則沿用 `label`）——導覽列塞不下全名。
    */
-  parentSite?: { href: string; label: string; short?: string; mini?: string } | null;
+  parentSite?: { href: string; label: string; short?: string } | null;
   /** 選用：覆寫品牌主色（--accent），不填則用共用設計系統的預設 indigo。 */
   accentOverride?: string;
   /** 選用：概念區的顯示標籤（麵包屑），預設「概念」；有些站叫「主題」。 */
@@ -105,7 +94,6 @@ export const DEFAULT_PARENT_SITE = {
   href: "https://nplus.wiki/notes/",
   label: "nplus.wiki 筆記星系",
   short: "筆記星系",
-  mini: "星系",
 };
 
 /** 身分設定 helper：純粹回傳原物件，提供型別檢查與 IDE 補全。 */
@@ -113,58 +101,34 @@ export function defineSite(c: SiteConfig): SiteConfig {
   return c;
 }
 
+/**
+ * 生成 topnav 連結。統一在 core，各站不再手寫 nav：
+ *   （Guide，僅 hasGuide）/ Concepts /（Problems，僅 hasProblems）/（Check，僅 hasCheck）/ …extraNav / Search /（Library，僅 hasLibrary）
+ * Guide 放最左（v0.32.0）——導覽是「先讀我」的入口，排在概念庫之前；
+ * Library 放最右、在 Search 之後（v0.33.0）——藏書盤點是工作文件，收在閱讀動線的尾端。皆 Andrew 裁定。
+ * 全星系固定這幾個英文短詞（v0.45.0 起取代 emoji，2026-11-13 Andrew 裁定）——
+ * conceptLabelEn / problemLabelEn 不再影響 nav。不含「首頁」——左上人像已連 home。
+ * hasCheck / hasGuide / hasLibrary 由 BaseLayout 依內容集合與 bibliography 判定（有資料才出 tab）。
+ * 若站台給了 `nav` 則原樣採用（完全覆寫的逃生口）。
+ */
 export function buildNav(
   c: SiteConfig,
   opts: { hasCheck?: boolean; hasGuide?: boolean; hasLibrary?: boolean } = {}
 ): NavLink[] {
   if (c.nav) return c.nav;
   return [
-    ...(opts.hasGuide
-      ? [{ href: "/guide/", label: "Guide", title: "Guide", icon: "guide" as const }]
-      : []),
-    { href: "/concepts/", label: "Concepts", title: "Concepts", icon: "concepts" },
-    ...(c.hasProblems
-      ? [{ href: "/problems/", label: "Problems", title: "Problems", icon: "problems" as const }]
-      : []),
-    ...(opts.hasCheck
-      ? [{ href: "/check/", label: "Check", title: "Check", icon: "check" as const }]
-      : []),
+    ...(opts.hasGuide ? [{ href: "/guide/", label: "Guide" }] : []),
+    { href: "/concepts/", label: "Concepts" },
+    ...(c.hasProblems ? [{ href: "/problems/", label: "Problems" }] : []),
+    ...(opts.hasCheck ? [{ href: "/check/", label: "Check" }] : []),
     ...(c.extraNav ?? []),
-    { href: "/search/", label: "Search", title: "Search", icon: "search" },
-    ...(opts.hasLibrary
-      ? [{ href: "/library/", label: "Library", title: "Library", icon: "library" as const }]
-      : []),
+    { href: "/search/", label: "Search" },
+    ...(opts.hasLibrary ? [{ href: "/library/", label: "Library" }] : []),
   ];
 }
-
-const EMOJI_ICON: Record<string, IconName> = {
-  "📖": "guide",
-  "🧠": "concepts",
-  "📝": "problems",
-  "✅": "check",
-  "🔍": "search",
-  "🔎": "search",
-  "📚": "library",
-  "📘": "handbook",
-  "📗": "handbook",
-  "📙": "handbook",
-  "📕": "handbook",
-  "🗄": "archive",
-};
 
 const EMOJI = /\p{Extended_Pictographic}|\u{FE0F}|\u{200D}|\u{20E3}/gu;
 
 export function stripEmoji(text: string): string {
   return text.replace(EMOJI, "").replace(/\s+/g, " ").trim();
-}
-
-export function resolveNavLink(l: NavLink): ResolvedNavLink {
-  const external = /^https?:\/\//.test(l.href);
-  const glyph = [...l.label].find((ch) => EMOJI_ICON[ch]);
-  const icon: IconName =
-    l.icon ?? (glyph ? EMOJI_ICON[glyph] : external ? "arrow-up-right" : "bookmark");
-  const title = stripEmoji(l.title ?? "") || stripEmoji(l.label) || l.href;
-  const short = icon === "handbook" ? "Handbook" : title.replace(/\s+Notes$/, "");
-  const text = stripEmoji(l.label) || short;
-  return { href: l.href, text, title, icon, external };
 }

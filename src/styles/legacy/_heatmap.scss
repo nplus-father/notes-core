@@ -91,11 +91,11 @@
     background: color-mix(in srgb, var(--easy) 22%, var(--surface));
   }
   &.h2 {
-    background: color-mix(in srgb, var(--easy) 50%, var(--surface));
+    background: color-mix(in srgb, var(--easy) 40%, var(--surface));
   }
   &.h3 {
     background: var(--easy);
-    color: #fff;
+    color: var(--on-accent);
   }
 }
 .heat-empty {

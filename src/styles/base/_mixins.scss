@@ -99,19 +99,6 @@
   }
 }
 
-@mixin arrow-nudge($distance: 3px) {
-  .icon,
-  .arrow {
-    transition: transform var(--dur-hover) var(--ease);
-  }
-  &:hover .icon,
-  &:hover .arrow,
-  &:focus-visible .icon,
-  &:focus-visible .arrow {
-    transform: translateX($distance);
-  }
-}
-
 @mixin text-tab {
   @include label;
   position: relative;

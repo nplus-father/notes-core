@@ -39,17 +39,6 @@
   align-items: center;
   gap: 0.6rem;
   color: var(--text-2);
-  .icon {
-    transition: transform var(--dur-hover) var(--ease);
-  }
-}
-
-.prevnext .pn-prev:hover .icon {
-  transform: translateX(-3px);
-}
-
-.prevnext .pn-next:hover .icon {
-  transform: translateX(3px);
 }
 
 .prevnext .pn-title {

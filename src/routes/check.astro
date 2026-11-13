@@ -82,7 +82,7 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
     total > 0 && (
       <div class="toc check-toc bleed">
         {groups.map(({ cat, items }, gi) => (
-          <section class="toc-ch check-ch reveal" data-cat aria-labelledby={`ck-${cat.slug}`}>
+          <section class="toc-ch check-ch" data-cat aria-labelledby={`ck-${cat.slug}`}>
             <div class="toc-side">
               <span class="toc-num" aria-hidden="true">
                 {pad2(gi + 1)}
@@ -113,7 +113,7 @@ const storeKey = `check:${import.meta.env.BASE_URL}`;
                     </span>
                     {it.href ? (
                       <a
-                        class="check-review arrow-nudge"
+                        class="check-review"
                         href={it.href}
                         aria-label={`Review: ${it.text}`}
                       >

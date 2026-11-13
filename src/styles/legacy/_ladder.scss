@@ -125,7 +125,7 @@
   .step-here {
     @include pill;
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font-size: 0.66rem;
   }
 
@@ -133,7 +133,7 @@
     .step-order {
       background: var(--accent);
       border-color: var(--accent);
-      color: #fff;
+      color: var(--on-accent);
     }
     .step-link {
       background: var(--accent-weak);
@@ -171,7 +171,4 @@
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1.1rem;
   align-items: start;
-}
-.ladder-card {
-  scroll-margin-top: 70px;
 }

@@ -160,7 +160,6 @@
   background: var(--surface-2);
   outline: 1px solid rgba(0, 0, 0, 0.08);
   outline-offset: -1px;
-  transition: transform var(--dur-enter) var(--ease);
 }
 
 .shelf-title {
@@ -180,9 +179,6 @@
 
 .shelf-link:hover,
 .shelf-link:focus-visible {
-  .shelf-cover {
-    transform: translateY(-6px);
-  }
   .shelf-title {
     color: var(--text);
   }

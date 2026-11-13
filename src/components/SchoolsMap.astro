@@ -32,10 +32,10 @@ const heading = KINDS[data.kind] ?? KINDS.schools;
         </p>
       </div>
       <div class="section-body">
-        {data.lede && <p class="schools-lede reveal" set:html={data.lede} />}
+        {data.lede && <p class="schools-lede" set:html={data.lede} />}
         <ol class="school-list">
           {schools.map((s, i) => (
-            <li class="school-row reveal" id={`school-${i + 1}`}>
+            <li class="school-row" id={`school-${i + 1}`}>
               <span class="school-num" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}
               </span>

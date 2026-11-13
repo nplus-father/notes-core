@@ -642,14 +642,13 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sc-lines path {
+  html:not(.sc-seen) .sc-lines path {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
     animation: sc-draw 1100ms var(--ease) both;
     animation-delay: calc(var(--d, 0ms) + 700ms);
   }
-  .sc-star,
-  .sc-tag {
+  html:not(.sc-seen) :is(.sc-star, .sc-tag) {
     animation: sc-fade 700ms var(--ease) both;
     animation-delay: var(--d, 0ms);
   }

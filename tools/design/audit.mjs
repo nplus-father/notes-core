@@ -22,8 +22,9 @@ if (!stations.length) {
 
 const WIDTHS = [320, 390, 768, 1440];
 const THEMES = ["light", "dark"];
-const FAMILIES = ["Newsreader", "Noto Serif TC", "Inter", "JetBrains Mono"];
-const CHECKS = ["overflow", "console", "emoji", "cls", "axe", "tap", "head", "fonts"];
+const FAMILIES = ["Newsreader Variable", "Inter Variable", "JetBrains Mono Variable"];
+const BANNED_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
+const CHECKS = ["overflow", "console", "emoji", "cls", "axe", "tap", "head", "fonts", "3rdparty"];
 const MAX_DETAIL_LINES = 110;
 
 const status = async (url) => {
@@ -119,7 +120,7 @@ const overflowProbe = () => {
 const emojiProbe = () => {
   const re = /\p{Extended_Pictographic}/gu;
   const out = [];
-  for (const sel of [".topnav", ".tabbar", "footer", ".crumbs", "h1"]) {
+  for (const sel of [".topnav", "footer", ".crumbs", "h1"]) {
     for (const el of document.querySelectorAll(sel)) {
       const text = el.textContent || "";
       const hits = [];
@@ -143,7 +144,7 @@ const emojiProbe = () => {
 
 const tapProbe = () => {
   const out = [];
-  for (const el of document.querySelectorAll(".topnav :is(a, button, input, summary, [role=tab]), .tabbar :is(a, button, input, summary, [role=tab])")) {
+  for (const el of document.querySelectorAll(".topnav :is(a, button, input, summary, [role=tab])")) {
     const r = el.getBoundingClientRect();
     if (r.width === 0 && r.height === 0) continue;
     const cs = getComputedStyle(el);
@@ -193,8 +194,17 @@ async function auditPage(page, station, pg, collect) {
         consoleErrors.push(m.text().slice(0, 200) + (loc ? ` [${loc.replace(base, "")}]` : ""));
       };
       const onPageError = (e) => consoleErrors.push("pageerror: " + String(e.message || e).slice(0, 200));
+      const banned = [];
+      const onRequest = (req) => {
+        let host = "";
+        try {
+          host = new URL(req.url()).host;
+        } catch {}
+        if (BANNED_HOSTS.includes(host)) banned.push(req.url().slice(0, 160));
+      };
       page.on("console", onConsole);
       page.on("pageerror", onPageError);
+      page.on("request", onRequest);
       const t0 = Date.now();
       let resp;
       try {
@@ -202,6 +212,7 @@ async function auditPage(page, station, pg, collect) {
       } catch (e) {
         page.off("console", onConsole);
         page.off("pageerror", onPageError);
+        page.off("request", onRequest);
         rec.runs.push({ theme, width: w, error: "navigation: " + e.message });
         continue;
       }
@@ -234,8 +245,10 @@ async function auditPage(page, station, pg, collect) {
       run.cls = await page.evaluate(() => Math.round((window.__cls || 0) * 10000) / 10000);
       run.clsSrc = await page.evaluate(() => window.__clsSrc || []);
       run.console = consoleErrors.slice();
+      run.banned = banned.slice();
       page.off("console", onConsole);
       page.off("pageerror", onPageError);
+      page.off("request", onRequest);
       rec.runs.push(run);
     }
   }
@@ -254,6 +267,7 @@ function evaluate(rec) {
     if (r.httpStatus) fails.push({ check: "console", msg: `HTTP ${r.httpStatus}`, at: tag(r) });
     if (r.overflow?.failed) fails.push({ check: "overflow", msg: `scrollWidth ${r.overflow.scrollWidth} > ${r.width}: ${r.overflow.offenders.join(" | ") || "no offending element found"}`, at: tag(r) });
     for (const c of r.console || []) fails.push({ check: "console", msg: c, at: tag(r) });
+    for (const b of r.banned || []) fails.push({ check: "3rdparty", msg: `request to third-party font host: ${b}`, at: tag(r) });
     for (const e of r.emoji || []) fails.push({ check: "emoji", msg: e, at: tag(r) });
     if (r.cls >= 0.05) fails.push({ check: "cls", msg: `CLS ${r.cls} ${(r.clsSrc || []).join(' ; ')}`, at: tag(r) });
     for (const v of r.axe || []) fails.push({ check: "axe", msg: `${v.id} [${v.impact}] ${v.help} (${v.nodes} nodes) ${v.targets.join(" ; ")}`, at: tag(r) });

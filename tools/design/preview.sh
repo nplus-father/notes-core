@@ -17,6 +17,13 @@ case "$cmd" in
       T="$P/node_modules/@nplus-father/notes-core"
       rm -rf "$T" && mkdir -p "$T"
       rsync -a "$CORE/bin" "$CORE/src" "$CORE/package.json" "$CORE/eslint.config.js" "$CORE/prettier.config.json" "$CORE/prettierignore" "$CORE/tsconfig.base.json" "$CORE/versions.json" "$T/"
+      for pkg in $(node -e 'const d=require(process.argv[1]).dependencies||{};for(const k of Object.keys(d))if(k.startsWith("@fontsource"))console.log(k)' "$CORE/package.json"); do
+        if [ ! -d "$P/node_modules/$pkg" ]; then
+          [ -d "$CORE/node_modules/$pkg" ] || { echo "missing $CORE/node_modules/$pkg (run npm install in core)" >&2; exit 1; }
+          mkdir -p "$(dirname "$P/node_modules/$pkg")"
+          cp -r "$CORE/node_modules/$pkg" "$P/node_modules/$pkg"
+        fi
+      done
       rm -rf "$P/node_modules/.astro"
       echo "── build $st"
       (cd "$P" && systemd-run --user --scope -q -p MemoryMax=4G -p MemorySwapMax=0 npx astro build 2>&1 | tail -n "${TAIL:-6}")

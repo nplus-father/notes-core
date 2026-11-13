@@ -137,10 +137,6 @@
   text-decoration: none;
   &:hover {
     text-decoration: none;
-    .cover-img {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
     .cover-cap {
       color: var(--accent);
     }

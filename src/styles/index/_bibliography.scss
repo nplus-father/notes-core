@@ -254,7 +254,7 @@
 }
 
 .biblio-row:hover .biblio-title a {
-  background-size: 100% 1px;
+  text-decoration-color: currentColor;
 }
 
 .biblio-status {
@@ -274,7 +274,13 @@
   line-height: 1.5;
   a {
     color: var(--text);
-    @include link-draw;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--border-mid);
+    text-underline-offset: 0.2em;
+    &:hover {
+      text-decoration-color: currentColor;
+    }
   }
 }
 

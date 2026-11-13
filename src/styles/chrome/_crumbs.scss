@@ -54,14 +54,10 @@
       color: var(--text);
       .icon {
         flex: none;
-        transition: transform var(--dur-hover) var(--ease);
       }
       &:hover,
       &:focus-visible {
         text-decoration: none;
-        .icon {
-          transform: translateX(-3px);
-        }
       }
     }
   }

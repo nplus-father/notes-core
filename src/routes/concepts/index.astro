@@ -87,7 +87,7 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
   <div class="toc bleed">
     {
       chapters.map((ch) => (
-        <section class="toc-ch reveal" id={ch.cat.slug} aria-labelledby={`ch-${ch.cat.slug}`}>
+        <section class="toc-ch" id={ch.cat.slug} aria-labelledby={`ch-${ch.cat.slug}`}>
           <div class="toc-side">
             <span class="toc-num" aria-hidden="true">
               {pad2(ch.num)}
@@ -116,7 +116,7 @@ const TIER_TAG = { basic: "Basic", advanced: "Adv" } as const;
               </p>
             )}
             {ch.cat.sister && (
-              <a class="toc-deeper arrow-nudge" href={siteUrl(ch.cat.sister)}>
+              <a class="toc-deeper" href={siteUrl(ch.cat.sister)}>
                 Deeper in {siteLabel(ch.cat.sister)} <span class="arrow">→</span>
               </a>
             )}

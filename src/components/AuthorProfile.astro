@@ -39,7 +39,7 @@ const spanOf = (i: number, n: number, cols: number) => {
     </h2>
   </div>
   <div class="section-body">
-    <blockquote class="thesis reveal">
+    <blockquote class="thesis">
       <span class="thesis-mark" aria-hidden="true">“</span>
       <p set:html={tightenPunct(profile.thesis)} />
     </blockquote>
@@ -63,7 +63,7 @@ const spanOf = (i: number, n: number, cols: number) => {
         <ol class="contrib-grid">
           {contributions.map((c, i) => (
             <li
-              class="contrib reveal"
+              class="contrib"
               id={`contrib-${i + 1}`}
               style={`--span: ${spanOf(i, contributions.length, contribCols)}; --span-mid: ${spanOf(i, contributions.length, contribColsMid)}`}
             >
@@ -107,7 +107,7 @@ const spanOf = (i: number, n: number, cols: number) => {
       <div class="section-body">
         <ol class="reading-path">
           {readingPath.map((r, i) => (
-            <li class="reading-stage reveal" id={`stage-${i + 1}`}>
+            <li class="reading-stage" id={`stage-${i + 1}`}>
               <span class="reading-node" aria-hidden="true">
                 <span class="reading-dot" />
                 <span class="reading-num">{pad(i)}</span>
@@ -160,7 +160,7 @@ const spanOf = (i: number, n: number, cols: number) => {
         </p>
       </div>
       <div class="section-body">
-        <ul class="influences reveal">
+        <ul class="influences">
           {influences.map((i) => (
             <li class="influence">
               {i.site ? (

@@ -86,7 +86,7 @@
 .guide-chapter {
   @include grid-12;
   align-items: start;
-  scroll-margin-top: calc(var(--nav-h) + 4.5rem);
+  scroll-margin-top: 3.5rem;
 }
 
 .guide-chapter[hidden] {
@@ -169,7 +169,7 @@
 
 .guide-body > :is(h2, h3),
 .guide-body > .section-head > h2 {
-  scroll-margin-top: calc(var(--nav-h) + 5.5rem);
+  scroll-margin-top: 4.5rem;
 }
 
 @include below-grid {

@@ -45,7 +45,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
 
 {
   showChart && (
-    <section class="lib-sec timeline reveal" id="timeline" aria-labelledby="timeline-h">
+    <section class="lib-sec timeline" id="timeline" aria-labelledby="timeline-h">
       <h2 class="lib-sec-h running-head" id="timeline-h">
         <span class="running-head-num">{timelineSec?.num}</span>
         Timeline
@@ -97,7 +97,7 @@ const showTabs = groups.length >= 2 && groups.every((g) => g.name);
 
 {
   entries.length > 0 && (
-    <section class="lib-sec biblio reveal" id="inventory" aria-labelledby="inventory-h">
+    <section class="lib-sec biblio" id="inventory" aria-labelledby="inventory-h">
       <h2 class="lib-sec-h running-head" id="inventory-h">
         <span class="running-head-num">{inventorySec?.num}</span>
         {heading}
