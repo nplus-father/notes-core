@@ -29,7 +29,7 @@
  * 底色配方同 .filterbar：半透明＋模糊，捲動時內文從底下滑過不打架。 */
 .guide-tabs {
   position: sticky;
-  top: 56px;
+  top: var(--nav-h);
   z-index: 10;
   display: flex;
   flex-wrap: wrap;

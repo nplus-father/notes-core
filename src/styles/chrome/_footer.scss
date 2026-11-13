@@ -1,20 +1,158 @@
-.footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.85rem;
-  padding: 2.5rem 1rem;
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
 
-  .footer-sep {
-    margin: 0 0.5rem;
-    opacity: 0.6;
+.colophon {
+  margin-top: 0;
+  border-top: 1px solid var(--ink);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+}
+
+.colophon-inner {
+  @include grid-12;
+  row-gap: 2.5rem;
+  width: var(--canvas);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+.colophon-title {
+  grid-column: 1 / span 5;
+  .running-head {
+    margin-bottom: 0.9rem;
   }
-  .footer-home {
+}
+
+.colophon-name {
+  margin: 0;
+  font-family: $display;
+  font-size: var(--fs-h1);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.colophon-brand {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+}
+
+.colophon-care,
+.colophon-vols {
+  .running-head {
+    margin-bottom: 0.9rem;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--border);
+  }
+  li {
+    border-top: 1px solid var(--border);
+  }
+}
+
+.colophon-care {
+  grid-column: 7 / span 2;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 44px;
+  }
+  .icon {
     color: var(--muted);
-    font-weight: 600;
-    transition: color 0.15s;
-    &:hover {
-      color: var(--accent);
-      text-decoration: none;
+  }
+  time {
+    margin-left: auto;
+    font-family: $mono;
+    font-size: 0.8rem;
+    color: var(--text);
+  }
+}
+
+.colophon-vols {
+  grid-column: 9 / -1;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    color: var(--text);
+    text-decoration: none;
+    .icon {
+      transition: transform var(--dur-hover) var(--ease);
     }
+    &:hover {
+      color: var(--text);
+      .colophon-vol-name {
+        background-size: 100% 1px;
+      }
+    }
+  }
+  .colophon-vol-prev:hover .icon {
+    transform: translateX(-3px);
+  }
+  .colophon-vol-next:hover .icon,
+  .colophon-vol-up:hover .icon {
+    transform: translateX(3px);
+  }
+  .colophon-vol-next {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+
+.colophon-vol-num {
+  font-family: $mono;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.colophon-vol-name {
+  @include link-draw;
+  font-family: $display;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.colophon-base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  width: var(--canvas);
+  margin-inline: auto;
+  padding: 1.1rem 0 1.6rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.colophon-seal {
+  @include seal(0.45rem);
+  margin-right: 0.6rem;
+  vertical-align: 0.05em;
+}
+
+@media (max-width: 1100px) {
+  .colophon-title {
+    grid-column: 1 / -1;
+  }
+  .colophon-care {
+    grid-column: 1 / span 5;
+  }
+  .colophon-vols {
+    grid-column: 7 / -1;
+  }
+}
+
+@media (max-width: $bp-grid) {
+  .colophon-inner {
+    display: flex;
+    flex-direction: column;
   }
 }

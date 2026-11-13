@@ -1,0 +1,81 @@
+@use "../tokens.scss" as *;
+@use "./mixins" as *;
+
+.grid-12 {
+  @include grid-12;
+}
+
+.section {
+  @include section-split;
+  & + & {
+    margin-top: var(--space-section);
+  }
+}
+
+.running-head {
+  @include running-head;
+}
+
+.running-head-num {
+  @include running-head-num;
+}
+
+.label {
+  @include label;
+}
+
+.seal {
+  @include seal;
+}
+
+.text-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.text-tab {
+  @include text-tab;
+  &[aria-selected="true"],
+  &[aria-current],
+  &.is-active {
+    @include text-tab-active;
+  }
+}
+
+.hairline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+  > li {
+    @include hairline-row;
+  }
+  &.is-ink > li {
+    border-top-color: var(--ink);
+  }
+}
+
+.link-draw {
+  @include link-draw;
+}
+
+.arrow-nudge {
+  @include arrow-nudge;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.icon {
+  flex: none;
+  vertical-align: middle;
+  > * {
+    vector-effect: non-scaling-stroke;
+  }
+}

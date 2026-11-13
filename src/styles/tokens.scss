@@ -3,36 +3,37 @@
 // 圓角收到近乎直角：12px/18px 是 SaaS 卡片的手感，排版型版面要的是切邊。
 $radius-sm: 2px;
 $radius: 3px;
-$radius-lg: 4px;
+$radius-lg: 3px;
 $maxw: 900px;
+$canvas-max: 1320px;
+$bp-grid: 900px;
+$bp-nav: 720px;
 
-$mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-// 中文襯線體必須指名到底：generic `serif` 在 Linux 解析中文時會落到 Noto Sans CJK，
-// 襯線意圖會靜默失效（實測 Chrome 上 serif 與 sans-serif 的中文是同一套字）。
-// "Noto Serif TC" 是 macOS/Windows 那邊的名字，"Noto Serif CJK TC" 是 Linux 這邊的。
-// 標題與品牌字走這個，正文仍走 $sans——全篇襯線在螢幕上不好讀。
-$serif:
-  "Noto Serif TC",
-  "Noto Serif CJK TC",
-  "Source Han Serif TC",
-  "Songti TC",
-  "Songti SC",
-  Georgia,
-  "Times New Roman",
-  serif;
+$mono:
+  "JetBrains Mono", ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono",
+  monospace;
+
+$display:
+  "Newsreader", "Noto Serif TC", "Noto Serif CJK TC", "Source Han Serif TC", "Songti TC",
+  "Songti SC", Georgia, serif;
+
+$serif: $display;
 
 $sans:
   "Inter",
   -apple-system,
   BlinkMacSystemFont,
   "Segoe UI",
-  "Noto Sans TC",
   "PingFang TC",
+  "Noto Sans TC",
+  "Noto Sans CJK TC",
   "Microsoft JhengHei",
   sans-serif;
 
 // 難度 → (亮色, 對應的淺背景 token 名)
 $difficulties: easy, medium, hard;
+
+$ease: cubic-bezier(0.2, 0.7, 0.1, 1);
 
 @mixin card {
   background: var(--surface);

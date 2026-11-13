@@ -3,7 +3,7 @@
 /* ───────────────────────── 篩選列 ───────────────────────── */
 .filterbar {
   position: sticky;
-  top: 56px;
+  top: var(--nav-h);
   z-index: 10;
   display: flex;
   flex-wrap: wrap;

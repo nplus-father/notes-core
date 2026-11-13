@@ -1,8 +1,30 @@
 @use "../tokens.scss" as *;
+@use "./mixins" as *;
 
-/* ───────────────────────── 版面 ───────────────────────── */
+:root {
+  --canvas-w: min(100vw - 2 * var(--gutter), #{$canvas-max});
+  --col: calc((var(--canvas-w) - 11 * var(--col-gap)) / 12);
+  --span-3: calc(3 * (var(--col) + var(--col-gap)));
+  --span-7: calc(7 * var(--col) + 6 * var(--col-gap));
+  --span-9: calc(9 * var(--col) + 8 * var(--col-gap));
+}
+
+.canvas {
+  width: var(--canvas);
+  margin-inline: auto;
+}
+
 .container {
-  max-width: $maxw;
-  margin: 0 auto;
-  padding: 2.2rem 1.5rem 4rem;
+  width: var(--canvas);
+  margin-inline: auto;
+  padding: clamp(1.75rem, 4vw, 3.25rem) 0 var(--space-section);
+}
+
+@include above-grid {
+  main.container > * {
+    margin-inline-start: var(--span-3);
+  }
+  main.container > :is(.crumbs, .home-hero, .grid-12, .section, .bleed) {
+    margin-inline-start: 0;
+  }
 }

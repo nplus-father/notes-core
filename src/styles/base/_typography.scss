@@ -1,6 +1,5 @@
 @use "../tokens.scss" as *;
 
-/* ───────────────────────── 基礎 ───────────────────────── */
 *,
 *::before,
 *::after {
@@ -9,28 +8,53 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   font-family: $sans;
+  font-size: var(--fs-body);
   color: var(--text);
   background: var(--bg);
-  background-image: var(--bg-grad);
-  background-attachment: fixed;
   line-height: 1.7;
+  font-variant-numeric: tabular-nums lining-nums;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
 }
 
-/* 標題與品牌字走襯線體，正文留無襯線——與站封面（cover.png）同一套字，
- * 62 站因此讀起來像一套書系而不是一批生成頁。 */
 h1,
 h2,
 h3 {
-  font-family: $serif;
-  letter-spacing: 0.02em;
+  font-family: $display;
+  font-weight: 900;
+  font-optical-sizing: auto;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+:is(h1, h2, h3):lang(en),
+:is(h1, h2, h3) :lang(en),
+.display-latin {
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -38,9 +62,39 @@ a {
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: $mono;
+}
+
 ::selection {
-  background: var(--accent-weak);
+  background: var(--seal-weak);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }

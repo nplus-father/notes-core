@@ -1,42 +1,92 @@
 ---
 import "../styles/global.scss";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { getCollection } from "astro:content";
 import { withBase } from "../lib/url";
 // 人像 = 星系共用（single source of truth）：favicon 與左上回首頁共用同一張圖，
 // 圖歸 notes-core 管，各站不另存。以 ?url 匯入 → Vite 產出帶站台 base 的雜湊 URL。
 import faviconUrl from "../assets/favicon.png?url";
-import { buildNav, DEFAULT_PARENT_SITE, type SiteConfig } from "../lib/site-config";
-import { siteBySlug } from "../lib/sites";
+import Icon from "../components/Icon.astro";
+import { buildNav, resolveNavLink, DEFAULT_PARENT_SITE, type SiteConfig } from "../lib/site-config";
+import { siteBySlug, topicSites, personSites } from "../lib/sites";
+import { siteUrl } from "../lib/links";
 import { bibliography } from "virtual:notes-core/site";
 interface Props {
   title: string;
   site: SiteConfig;
   /** 這一頁沒有實質內容（如尚未定義 mastery 的空檢核頁），不要讓搜尋引擎收錄。 */
   noindex?: boolean;
+  description?: string;
+  progress?: boolean;
 }
-const { title, site, noindex = false } = Astro.props;
+const { title, site, noindex = false, description, progress = false } = Astro.props;
 // 知識軸掛在 <html> 上，讓人物站的主色（暖褐）與其站縮圖同一階——顏色只在
 // global.scss 分岔一次，元件不必知道自己在哪種站。registry 查不到就走主題站預設。
 const stationSlug = import.meta.env.BASE_URL.replace(/^\/|\/$/g, "");
-const axis = siteBySlug.get(stationSlug)?.axis ?? "topic";
-// nav 統一由 core 生成：固定詞彙、只出 emoji（📖 🧠 📝 ✅ 🔍 📚，hover 帶英文全名）。
-// ✅ / 📖 / 📚 只在站台真的有資料時出現——沒補 mastery／沒寫導覽／沒有盤點的站不出空 tab。
+const station = siteBySlug.get(stationSlug);
+const axis = station?.axis ?? "topic";
 const hasCheck = (await getCollection("categories")).some(
   (c) => ((c.data as { mastery?: unknown[] }).mastery ?? []).length > 0
 );
 const hasGuide = (await getCollection("guide")).length > 0;
 const hasLibrary = (bibliography as unknown[]).length > 0;
-const nav = buildNav(site, { hasCheck, hasGuide, hasLibrary });
+const pathname = Astro.url.pathname;
+const nav = buildNav(site, { hasCheck, hasGuide, hasLibrary }).map((l) => {
+  const r = resolveNavLink(l);
+  const href = r.external ? r.href : withBase(r.href);
+  const current = r.external
+    ? undefined
+    : pathname === href
+      ? "page"
+      : pathname.startsWith(href) && href !== withBase("/")
+        ? "true"
+        : undefined;
+  return { ...r, href, current };
+});
 // 「回母站」連結：未設 → 預設連 nplus.wiki/notes/（各站零設定即有）；設 null 可隱藏。
 // v0.20.0 起同時出現在 topnav 最左（往上一層）與頁尾——原本只在頁尾，讀者滑到底才看得到。
 const parentSite = site.parentSite === undefined ? DEFAULT_PARENT_SITE : site.parentSite;
-// 保養戳記：蓋過章的站在頁尾露出日期（日期本身就是時效訊號，舊了讀者自然看得出來）。
-const curationLine = [
-  site.curation?.checkedAt && `🩺 體檢 ${site.curation.checkedAt}`,
-  site.curation?.enrichedAt && `✍️ 補齊 ${site.curation.enrichedAt}`,
-]
-  .filter(Boolean)
-  .join(" · ");
+
+const pool = axis === "person" ? personSites : topicSites;
+const volIdx = pool.findIndex((s) => s.slug === stationSlug);
+const serialOf = (i: number) => `N°${String(i + 1).padStart(2, "0")}`;
+const serial = volIdx >= 0 ? serialOf(volIdx) : "";
+const prevVol = volIdx > 0 ? pool[volIdx - 1] : null;
+const nextVol = volIdx >= 0 && volIdx < pool.length - 1 ? pool[volIdx + 1] : null;
+const volumeName = station?.label ?? site.titleBase ?? site.brand;
+const curation = [
+  site.curation?.checkedAt && {
+    icon: "checkup" as const,
+    label: "Checked",
+    date: site.curation.checkedAt,
+    title: "本站最近一次全站體檢（/note-check）",
+  },
+  site.curation?.enrichedAt && {
+    icon: "enrich" as const,
+    label: "Enriched",
+    date: site.curation.enrichedAt,
+    title: "本站最近一次內容補齊（/note-check --enrich）",
+  },
+].filter(Boolean) as { icon: "checkup" | "enrich"; label: string; date: string; title: string }[];
+
+const plain = (html: string) =>
+  html
+    .replaceAll("{base}", withBase("/"))
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+const metaDescription = (() => {
+  const text = plain(description ?? site.heroLede ?? site.tagline ?? "");
+  return text.length > 160 ? `${text.slice(0, 157)}…` : text;
+})();
+const hasCover = existsSync(resolve("public/cover.png"));
+const absolute = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
+const canonical = absolute(pathname);
+const ogImage = hasCover ? absolute(withBase("/cover.png")) : undefined;
+const THEME_COLOR = { light: "#f6f3ec", dark: "#111013" };
+const fontsHref =
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Noto+Serif+TC:wght@500;700;900&display=swap";
 ---
 
 <!doctype html>
@@ -44,16 +94,35 @@ const curationLine = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href={faviconUrl} type="image/png" />
-    {noindex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
+    {metaDescription && <meta name="description" content={metaDescription} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={faviconUrl} type="image/png" />
+    {Astro.site && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:title" content={title} />
+    {metaDescription && <meta property="og:description" content={metaDescription} />}
+    {Astro.site && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="900" />}
+    {ogImage && <meta property="og:image:height" content="1200" />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content={THEME_COLOR.light} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={THEME_COLOR.dark} media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontsHref} />
     <!-- 先於繪製設定主題，避免閃爍 -->
-    <script is:inline>
+    <script is:inline define:vars={{ THEME_COLOR }}>
       (() => {
         const root = document.documentElement;
         const saved = localStorage.getItem("theme");
         const sys = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         root.dataset.theme = saved ?? sys;
+        document
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((m) => m.setAttribute("content", THEME_COLOR[root.dataset.theme]));
       })();
     </script>
     {
@@ -66,131 +135,141 @@ const curationLine = [
     }
   </head>
   <body>
-    <nav class="topnav">
-      {
-        /* 左側 = 一條往上的路：‹ 筆記星系（跨站，回 nplus.wiki/notes/）｜ 人像（本站首頁）。
-          站名仍不進 topnav——身分由人像＋首頁 hero 承擔，62 站的導覽列長得一模一樣。 */
-      }
-      <div class="topnav-left">
-        {
-          parentSite && (
-            <a class="topnav-up" href={parentSite.href} title={`回 ${parentSite.label}`}>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path
-                  d="M8.6 3.2 4.8 7l3.8 3.8"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span class="topnav-up-label">{parentSite.short ?? parentSite.label}</span>
-            </a>
-          )
-        }
-        <a class="brand-avatar" href={withBase("/")} title={site.brand}>
-          <img src={faviconUrl} alt={site.brand} width="30" height="30" />
-        </a>
-      </div>
-      <div class="topnav-right">
-        <span class="topnav-links">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topnav">
+      <div class="topnav-inner">
+        <div class="topnav-left">
           {
-            nav.map((l) =>
-              /^https?:\/\//.test(l.href) ? (
-                <a
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener"
-                  title={l.title}
-                  aria-label={l.title}
-                >
-                  {l.label}
-                </a>
-              ) : (
-                <a href={withBase(l.href)} title={l.title} aria-label={l.title}>
-                  {l.label}
-                </a>
-              )
+            parentSite && (
+              <a class="topnav-up" href={parentSite.href} title={`回 ${parentSite.label}`}>
+                <Icon name="chevron-left" size={16} />
+                <span class="topnav-up-label">{parentSite.short ?? parentSite.label}</span>
+              </a>
             )
           }
-        </span>
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          type="button"
-          aria-label="Toggle dark / light"
-        >
-          {/* 極簡線性 icon 取代 🌙 / ☀️ emoji；currentColor 讓它跟著 --text-2 走。 */}
-          <svg
-            class="icon-light"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
+          <a class="brand-avatar" href={withBase("/")} title={site.brand}>
+            <img src={faviconUrl} alt={site.brand} width="32" height="32" />
+          </a>
+        </div>
+        <div class="topnav-right">
+          <nav class="topnav-nav" aria-label="Primary">
+            <ul class="topnav-links">
+              {
+                nav.map((l) => (
+                  <li>
+                    <a
+                      class="topnav-link"
+                      href={l.href}
+                      title={l.title}
+                      aria-current={l.current}
+                      {...(l.external ? { target: "_blank", rel: "noopener" } : {})}
+                    >
+                      <Icon name={l.icon} size={20} />
+                      <span class="topnav-label">{l.text}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle dark / light"
           >
-            <path
-              d="M13.2 9.7A5.6 5.6 0 0 1 6.3 2.8a5.6 5.6 0 1 0 6.9 6.9Z"
-              stroke="currentColor"
-              stroke-width="1.2"
-              stroke-linejoin="round"></path>
-          </svg>
-          <svg
-            class="icon-dark"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-          >
-            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.2"></circle>
-            <path
-              d="M8 1v1.8M8 13.2V15M1 8h1.8M13.2 8H15M3.1 3.1l1.3 1.3M11.6 11.6l1.3 1.3M12.9 3.1l-1.3 1.3M4.4 11.6l-1.3 1.3"
-              stroke="currentColor"
-              stroke-width="1.2"
-              stroke-linecap="round"></path>
-          </svg>
-        </button>
+            <Icon name="moon" size={18} class="icon-light" />
+            <Icon name="sun" size={18} class="icon-dark" />
+          </button>
+        </div>
       </div>
-    </nav>
+    </header>
+    {progress && <div class="reading-progress" aria-hidden="true" />}
 
-    <main class="container">
+    <main id="main" class="container" tabindex="-1">
       <slot />
     </main>
 
-    <footer class="footer">
-      <span>{site.footer ?? "© 2026 Andrew"}</span>
-      {
-        parentSite && (
-          <>
-            <span class="footer-sep" aria-hidden="true">
-              ·
-            </span>
-            <a class="footer-home" href={parentSite.href}>
-              {parentSite.label}
-            </a>
-          </>
-        )
-      }
-      {
-        curationLine && (
-          <>
-            <span class="footer-sep" aria-hidden="true">
-              ·
-            </span>
-            <span class="footer-curation" title="本站最近一次全站體檢／內容補齊（/note-check）">
-              {curationLine}
-            </span>
-          </>
-        )
-      }
+    <footer class="colophon">
+      <div class="colophon-inner">
+        <div class="colophon-title">
+          <p class="running-head">
+            {serial && <span class="running-head-num">{serial}</span>}
+            <span>{axis === "person" ? "Person" : "Topic"}</span>
+          </p>
+          <p class="colophon-name">{volumeName}</p>
+          <p class="colophon-brand label">{site.brand}</p>
+        </div>
+        {
+          curation.length > 0 && (
+            <div class="colophon-care">
+              <p class="running-head">Upkeep</p>
+              <ul>
+                {curation.map((c) => (
+                  <li title={c.title}>
+                    <Icon name={c.icon} size={18} />
+                    <span>{c.label}</span>
+                    <time datetime={c.date}>{c.date}</time>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          (prevVol || nextVol || parentSite) && (
+            <nav class="colophon-vols" aria-label="Volumes">
+              <p class="running-head">Volumes</p>
+              <ul>
+                {prevVol && (
+                  <li>
+                    <a class="colophon-vol-prev" href={siteUrl(prevVol.key)} rel="prev">
+                      <Icon name="arrow-left" size={18} />
+                      <span class="colophon-vol-num">{serialOf(volIdx - 1)}</span>
+                      <span class="colophon-vol-name">{prevVol.label}</span>
+                    </a>
+                  </li>
+                )}
+                {nextVol && (
+                  <li>
+                    <a class="colophon-vol-next" href={siteUrl(nextVol.key)} rel="next">
+                      <span class="colophon-vol-num">{serialOf(volIdx + 1)}</span>
+                      <span class="colophon-vol-name">{nextVol.label}</span>
+                      <Icon name="arrow-right" size={18} />
+                    </a>
+                  </li>
+                )}
+                {parentSite && (
+                  <li>
+                    <a class="colophon-vol-up" href={parentSite.href}>
+                      <span class="colophon-vol-name">{parentSite.label}</span>
+                      <Icon name="arrow-up-right" size={18} />
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </nav>
+          )
+        }
+      </div>
+      <div class="colophon-base">
+        <span
+          ><span class="colophon-seal" aria-hidden="true"></span>{
+            site.footer ?? "© 2026 Andrew"
+          }</span
+        >
+        <span>Set in Newsreader, Noto Serif TC, Inter &amp; JetBrains Mono</span>
+      </div>
     </footer>
 
-    <script is:inline>
+    <script is:inline define:vars={{ THEME_COLOR }}>
       document.getElementById("theme-toggle")?.addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
         document.documentElement.dataset.theme = next;
         localStorage.setItem("theme", next);
+        document
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((m) => m.setAttribute("content", THEME_COLOR[next]));
       });
     </script>
   </body>

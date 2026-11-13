@@ -1,0 +1,59 @@
+@media print {
+  :root,
+  [data-theme="dark"] {
+    color-scheme: light;
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #fff;
+    --text: #000;
+    --text-2: #111;
+    --muted: #444;
+    --border: #bbb;
+    --border-strong: #000;
+    --ink: #000;
+    --accent: #000;
+    --seal: #000;
+    --code-bg: #fff;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+  .topnav,
+  .skip-link,
+  .colophon,
+  .reading-progress,
+  .theme-toggle,
+  .crumbs {
+    display: none !important;
+  }
+  .container {
+    width: auto;
+    padding: 0;
+  }
+  main.container > * {
+    margin-inline-start: 0 !important;
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-break: break-all;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  pre,
+  blockquote,
+  table,
+  img,
+  figure {
+    break-inside: avoid;
+  }
+}

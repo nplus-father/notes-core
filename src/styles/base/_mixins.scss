@@ -1,0 +1,167 @@
+@use "../tokens.scss" as *;
+
+@mixin below-grid {
+  @media (max-width: $bp-grid) {
+    @content;
+  }
+}
+
+@mixin above-grid {
+  @media (min-width: ($bp-grid + 1)) {
+    @content;
+  }
+}
+
+@mixin grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+}
+
+@mixin section-split($head: ".running-head", $body: ".section-body") {
+  @include grid-12;
+  row-gap: 1rem;
+  > #{$head} {
+    grid-column: 1 / span 3;
+    align-self: start;
+  }
+  > #{$body} {
+    grid-column: 4 / -1;
+    min-width: 0;
+  }
+  @include below-grid {
+    display: block;
+    > #{$head} {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
+
+@mixin label {
+  font-family: $sans;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+@mixin running-head {
+  @include label;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.6em;
+  margin: 0;
+  color: var(--muted);
+}
+
+@mixin running-head-num {
+  font-family: $mono;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  &::after {
+    content: "—";
+    margin-left: 0.6em;
+    font-family: $sans;
+    font-weight: 400;
+    color: var(--muted);
+  }
+}
+
+@mixin seal($size: 0.5rem) {
+  display: inline-block;
+  flex: none;
+  width: $size;
+  height: $size;
+  background: var(--seal);
+  border-radius: 0;
+}
+
+@mixin hairline-row($color: var(--border)) {
+  border-top: 1px solid $color;
+  padding-block: 1rem;
+}
+
+@mixin link-draw($thickness: 1px) {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 $thickness;
+  transition: background-size var(--dur-enter) var(--ease);
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+    background-size: 100% $thickness;
+  }
+}
+
+@mixin arrow-nudge($distance: 3px) {
+  .icon,
+  .arrow {
+    transition: transform var(--dur-hover) var(--ease);
+  }
+  &:hover .icon,
+  &:hover .arrow,
+  &:focus-visible .icon,
+  &:focus-visible .arrow {
+    transform: translateX($distance);
+  }
+}
+
+@mixin text-tab {
+  @include label;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  min-height: 40px;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-enter) var(--ease);
+  }
+  &:hover {
+    color: var(--text);
+  }
+}
+
+@mixin text-tab-active {
+  color: var(--text);
+  &::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    background: var(--seal);
+  }
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -13,7 +13,7 @@
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 999px;
-  border: 1.5px solid var(--border-strong);
+  border: 1.5px solid var(--border-mid);
   background: transparent;
   &.done {
     border-color: transparent;
@@ -146,7 +146,7 @@
 }
 .node.done {
   color: var(--text);
-  border-color: var(--border-strong);
+  border-color: var(--border-mid);
   background: var(--surface);
   .node-dot {
     background: linear-gradient(var(--accent), var(--accent-2));
@@ -161,7 +161,7 @@
   color: var(--muted);
   border-style: dashed;
   .node-dot {
-    border: 1.5px solid var(--border-strong);
+    border: 1.5px solid var(--border-mid);
   }
   em {
     font-style: normal;

@@ -1,36 +1,36 @@
-/* ───────────────────────── 主題變數 ───────────────────────── */
+@use "../tokens.scss" as *;
+
 :root {
   color-scheme: light;
-  // 紙色平底，不用漸層。原本是兩層 radial-gradient（indigo + cyan）配 fixed
-  // attachment——那是「AI 生成的 landing page」最好認的背景，62 站共用一張更明顯。
-  --bg: #faf9f7;
+  --bg: #f6f3ec;
   --bg-grad: none;
-  --surface: #ffffff;
-  --surface-2: #f6f5f3;
-  --border: #e3e0da;
-  --border-strong: #c9c5bd;
-  --text: #26262a;
-  --text-2: #4a4a50;
-  --muted: #6b665f;
-  // 墨色取代 indigo→violet（#4f46e5 / #7c3aed 就是舊封面那組漸層色）。
-  // 人物站由 BaseLayout 的 data-axis 換成暖褐，與站縮圖同一階。
+  --surface: #fbf9f4;
+  --surface-2: #efebe2;
+  --border: #dcd6c8;
+  --border-mid: #bdb5a5;
+  --border-strong: #1b1b1e;
+  --ink: #1b1b1e;
+  --text: #1b1b1e;
+  --text-2: #45444a;
+  --muted: #6c665b;
   --accent: #2f4858;
   --accent-2: #4a6272;
-  --accent-weak: #eef1f3;
+  --accent-weak: #e7e9e5;
   --ring: rgba(47, 72, 88, 0.22);
-  // 髮絲線取代浮卡陰影；shadow-lg 只在真需要分層（drawer/modal）時才略深。
+  --seal: #c23b22;
+  --seal-weak: rgba(194, 59, 34, 0.1);
   --shadow: none;
-  --shadow-lg: 0 2px 10px rgba(38, 38, 42, 0.08);
+  --shadow-lg: 0 2px 10px rgba(27, 27, 30, 0.08);
 
-  --easy: #16a34a;
-  --easy-bg: #e9f9ef;
-  --medium: #d97706;
-  --medium-bg: #fdf3e3;
-  --hard: #dc2626;
-  --hard-bg: #fdeaea;
-  --star: #f59e0b;
-  --guide: #8250df;
-  --guide-bg: #f5f0ff;
+  --easy: #2f7a4a;
+  --easy-bg: #e5ede0;
+  --medium: #95590c;
+  --medium-bg: #f2e8d4;
+  --hard: #a8392d;
+  --hard-bg: #f4e2da;
+  --star: #a8741a;
+  --guide: #6d4cb0;
+  --guide-bg: #ece6f2;
 
   /* 判層色點（v0.43.0）。前三層同一族由重到輕——脊梁／支架／工具書是一個「深度」尺度；
      姊妹站另給暖褐，因為它不在那個尺度上，意思是「帳記到別本去了」。
@@ -39,40 +39,70 @@
   --tier-support: #6d8494;
   --tier-tool: #a9b6bd;
   --tier-delegated: #9c7644;
-  --code-bg: #f8fafc;
+  --code-bg: #f1ede4;
+
+  --font-display: #{$display};
+  --font-sans: #{$sans};
+  --font-mono: #{$mono};
+
+  --fs-mega: clamp(4.5rem, 17vw, 15rem);
+  --fs-display: clamp(2.75rem, 7.2vw, 6.5rem);
+  --fs-h1: clamp(2.1rem, 4.4vw, 3.6rem);
+  --fs-h2: clamp(1.5rem, 2.4vw, 2rem);
+  --fs-h3: 1.2rem;
+  --fs-lede: clamp(1.3rem, 2.1vw, 1.75rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.72rem;
+  --lh-body: 1.85;
+
+  --gutter: clamp(1.25rem, 4.5vw, 4rem);
+  --canvas: min(100% - 2 * var(--gutter), #{$canvas-max});
+  --col-gap: clamp(1rem, 2vw, 2rem);
+  --space-section: clamp(4rem, 10vw, 9rem);
+  --nav-h: 64px;
+
+  --ease: #{$ease};
+  --dur-hover: 160ms;
+  --dur-enter: 420ms;
+  --dur-hero: 700ms;
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #16151a;
+  --bg: #111013;
   --bg-grad: none;
-  --surface: #1e1d23;
-  --surface-2: #26252c;
-  --border: #34323b;
-  --border-strong: #47454f;
-  --text: #e8e6e1;
-  --text-2: #c5c2bb;
-  --muted: #8d8a83;
-  --accent: #9db4c0;
-  --accent-2: #b7c6cf;
-  --accent-weak: #23282d;
-  --ring: rgba(157, 180, 192, 0.28);
+  --surface: #18171b;
+  --surface-2: #201f24;
+  --border: #2e2c33;
+  --border-mid: #4a4751;
+  --border-strong: #e9e5da;
+  --ink: #e9e5da;
+  --text: #ece8de;
+  --text-2: #bdb9af;
+  --muted: #8f8b82;
+  --accent: #a9bfca;
+  --accent-2: #bfd0d8;
+  --accent-weak: #1c2226;
+  --ring: rgba(169, 191, 202, 0.28);
+  --seal: #e8654c;
+  --seal-weak: rgba(232, 101, 76, 0.14);
   --shadow: none;
   --shadow-lg: 0 2px 12px rgba(0, 0, 0, 0.45);
 
-  --tier-spine: #9db4c0;
+  --tier-spine: #a9bfca;
   --tier-support: #6d8494;
   --tier-tool: #565f66;
   --tier-delegated: #b3894f;
 
-  --easy: #34d399;
-  --easy-bg: #0e2b20;
-  --medium: #fbbf24;
-  --medium-bg: #2c2207;
-  --hard: #f87171;
-  --hard-bg: #2e1314;
-  --star: #fbbf24;
-  --guide: #c4b5fd;
-  --guide-bg: #211a36;
-  --code-bg: #0f141d;
+  --easy: #6fbf8a;
+  --easy-bg: #13221a;
+  --medium: #d9a45a;
+  --medium-bg: #271f12;
+  --hard: #e88a7c;
+  --hard-bg: #2a1614;
+  --star: #d9a45a;
+  --guide: #b8a6e8;
+  --guide-bg: #1f1a2c;
+  --code-bg: #0c0b0e;
 }

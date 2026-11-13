@@ -1,52 +1,35 @@
 @use "../tokens.scss" as *;
+@use "../base/mixins" as *;
 
 .crumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.84rem;
-  color: var(--muted);
-  margin-bottom: 1.1rem;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  ol {
+    @include running-head;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: inline-flex;
+    align-items: baseline;
+    min-width: 0;
+  }
+  li + li::before {
+    content: "/";
+    margin: 0 0.75em;
+    color: var(--border-mid);
+  }
   a {
+    @include link-draw;
     color: var(--muted);
     &:hover {
       color: var(--text);
     }
   }
-}
-.crumb-sep {
-  opacity: 0.55;
-}
-.crumb-icon {
-  margin-right: 0.25rem;
-}
-/* 第一項＝回本站首頁。做成鍵（框線 + 左向 chevron），在一串灰字裡一眼認得出來，
- * 與 topnav 最左那顆「‹ 筆記星系」是同一套語彙、只差一層——上一層是站，再上一層是星系。 */
-.crumbs .crumb-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.14rem 0.5rem 0.14rem 0.36rem;
-  border: 1px solid var(--border);
-  border-radius: $radius;
-  background: var(--surface);
-  color: var(--text-2);
-  font-weight: 600;
-  transition:
-    color 0.15s,
-    background 0.15s,
-    border-color 0.15s;
-  svg {
-    transition: transform 0.15s ease;
+  .crumb-home {
+    color: var(--text);
   }
-  &:hover {
-    text-decoration: none;
-    color: var(--accent);
-    background: var(--accent-weak);
-    border-color: var(--accent);
-    svg {
-      transform: translateX(-2px);
-    }
+  [aria-current] {
+    color: var(--text);
   }
 }

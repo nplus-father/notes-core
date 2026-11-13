@@ -1,4 +1,5 @@
 @use "../tokens.scss" as *;
+@use "../base/mixins" as *;
 
 /* ───────────────────────── 首頁 Hero + 站封面 ───────────────────────── */
 /* v0.36.0：hero 改放直式站封面（portal 同一張 public/cover.png——人物站＝傳主肖像、
@@ -65,4 +66,16 @@
   font-size: 0.85rem;
   letter-spacing: 0.2em;
   color: var(--muted);
+}
+
+@include above-grid {
+  .home-hero {
+    flex-wrap: nowrap;
+    gap: var(--col-gap);
+  }
+  .hero-cover {
+    width: calc(var(--span-3) - var(--col-gap));
+    max-width: none;
+    flex: none;
+  }
 }
