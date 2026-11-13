@@ -1,7 +1,7 @@
 import { visit, SKIP } from "unist-util-visit";
 
 const PAIR = /^(前|後)\s*[—–-]+\s*/;
-const SPLIT_COLS = 54;
+const FITS = [32, 40, 48, 56];
 
 const span = (className, value, extra = {}) => ({
   type: "emphasis",
@@ -47,13 +47,14 @@ function pane(node, info) {
 }
 
 function compare(before, after, b, a, open) {
-  const split = widest(before) <= SPLIT_COLS && widest(after) <= SPLIT_COLS;
+  const need = Math.max(widest(before), widest(after));
+  const fit = FITS.find((n) => need <= n);
   return {
     type: "compare",
     data: {
       hName: "details",
       hProperties: {
-        className: ["lc-details", "compare", split ? "is-split" : "is-stacked"],
+        className: ["lc-details", "compare", ...(fit ? [`fit-${fit}`] : [])],
         ...(open ? { open: true } : {}),
       },
     },

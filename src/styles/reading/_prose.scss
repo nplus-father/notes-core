@@ -31,11 +31,17 @@
 .reading-body,
 .guide-chapter-main {
   --measure: 100%;
-  --wide: 100%;
+  --bleed: 0px;
   --col-w: var(--col);
   @include above-grid {
-    --measure: var(--span-7);
+    --bleed: calc(var(--col) + var(--col-gap));
+    padding-inline: var(--bleed);
   }
+}
+
+.reading-grid,
+.guide-chapter {
+  container: page-grid / inline-size;
 }
 
 main.container:has(> .reading, > .guide) {
@@ -59,9 +65,6 @@ main.container:has(> .reading, > .guide) {
     max-inline-size: var(--measure);
   }
 
-  > :is(.compare.is-split, .table-scroll.is-wide, .code-block.is-wide, pre.is-wide) {
-    max-inline-size: var(--wide);
-  }
 
   :is(code, pre, kbd, samp, table) {
     letter-spacing: 0;
@@ -397,6 +400,13 @@ main.container:has(> .reading, > .guide) {
     }
   }
 
+  > .table-scroll.is-wide {
+    @include above-grid {
+      max-inline-size: none;
+      margin-inline: calc(-1 * var(--bleed));
+    }
+  }
+
   .table-scroll {
     margin: 2.25rem 0;
     overflow-x: auto;
@@ -503,7 +513,11 @@ main.container:has(> .reading, > .guide) {
   padding-bottom: 0;
 }
 
-.prose > .compare:is(:has(+ :is(h2, .section-head, .markdown-alert)), :last-child) {
+.prose > .compare:has(+ .compare) {
+  margin-bottom: 0;
+}
+
+.prose > .compare:is(:has(+ :is(h2, .section-head, .markdown-alert, .compare)), :last-child) {
   > summary,
   .compare-grid {
     border-bottom-color: transparent;
