@@ -1,84 +1,151 @@
 @use "../tokens.scss" as *;
+@use "../base/mixins" as *;
 
-/* 延伸閱讀 */
-.further,
-.seealso {
-  margin: 2rem 0 0;
+.endnote {
+  @include grid-12;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--ink);
+  & + & {
+    margin-top: clamp(3rem, 5vw, 4.5rem);
+  }
 }
-.further > h2,
-.seealso > h2 {
-  font-size: 1.05rem;
-  margin: 0 0 0.7rem;
+
+.endnote-head {
+  @include label;
+  grid-column: 1 / span 3;
+  margin: 0.95rem 0 0;
+  color: var(--text);
 }
-.seealso-list {
-  list-style: none;
+
+.rl {
+  grid-column: 4 / span 7;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 0.5rem;
+  list-style: none;
+  > li + li {
+    border-top: 1px solid var(--border);
+  }
 }
-/* 卡片版型（v0.19.0）：章節子標題當主角、書名退為小字，書的身分交給右側書圖。 */
-.further-grid {
+
+.rl-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 0.7rem;
-}
-.further-card {
-  @include card;
-  display: flex;
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.9rem;
-  padding: 0.7rem 0.85rem;
+  column-gap: 1.25rem;
+  padding: 0.95rem 0;
+  color: var(--text);
+  text-decoration: none;
   &:hover {
-    @include lift;
     text-decoration: none;
   }
-}
-.further-body {
-  flex: 1;
-  min-width: 0;
-}
-.further-chapter {
-  display: block;
-  font-family: $serif;
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.45;
-  color: var(--accent);
-}
-.further-book {
-  display: block;
-  margin-top: 0.15rem;
-  font-size: 0.76rem;
-  color: var(--muted);
-}
-.further-cover {
-  flex: none;
-  width: 66px;
-  height: 95px;
-  object-fit: cover;
-  border-radius: $radius-sm;
-  border: 1px solid var(--border);
-}
-.seealso-list li {
-  @include card;
-  padding: 0.65rem 0.85rem;
-  a {
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    &:hover {
-      color: var(--accent);
-    }
+  &:focus-visible {
+    outline-offset: 4px;
   }
 }
-.seealso-site {
-  font-size: 0.68rem;
+
+.rl-cover {
+  display: block;
+  width: 2.5rem;
+  height: auto;
+  aspect-ratio: 40 / 54;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  .is-coverless & {
+    visibility: hidden;
+  }
+}
+
+.rl-num {
+  font-family: $mono;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.rl-text {
+  min-width: 0;
+}
+
+.rl-title {
+  font-family: $display;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--accent);
-  background: var(--accent-weak);
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  white-space: nowrap;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size var(--dur-enter) var(--ease);
+  .rl-row:hover &,
+  .rl-row:focus-visible & {
+    background-size: 100% 1px;
+  }
+}
+
+.rl-latin {
+  display: block;
+  font-family: $display;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+.rl-meta {
+  @include label;
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  .further & {
+    font-family: $display;
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 400;
+    font-synthesis-style: none;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+}
+
+.rl-arrow {
+  color: var(--border-mid);
+  transition:
+    transform var(--dur-hover) var(--ease),
+    color var(--dur-hover) var(--ease);
+  .rl-row:hover &,
+  .rl-row:focus-visible & {
+    color: var(--ink);
+    transform: translateX(3px);
+  }
+  .rl-row:hover &.icon-arrow-up-right {
+    transform: translate(2px, -2px);
+  }
+}
+
+.rl-row.is-pending {
+  color: var(--muted);
+  .rl-title {
+    font-style: italic;
+    font-weight: 500;
+  }
+}
+
+.guide-chapter .endnote {
+  display: block;
+  margin-top: 3.5rem;
+  .rl {
+    margin-top: 0.6rem;
+  }
+}
+
+@include below-grid {
+  .endnote {
+    display: block;
+  }
+  .endnote-head {
+    margin: 0 0 0.5rem;
+  }
 }

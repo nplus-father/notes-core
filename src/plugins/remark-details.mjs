@@ -1,15 +1,7 @@
 import { visit } from "unist-util-visit";
 
-/**
- * 把 remark-directive 解析出的 `:::details{title="..."}` 容器
- * 轉成原生 <details><summary>title</summary>…</details>。
- *
- * 來源（Hugo）：{{% details "標題" %}} … {{% /details %}}
- * 遷移後：     :::details{title="標題"}  … :::
- *
- * 內部 Markdown（含 ```kotlin code fence）會照常被 remark 解析，
- * 這正是不用 MDX 也能保留摺疊解法的關鍵。
- */
+const PAIR = /^(前|後)\s*[—–-]+\s*/;
+
 export default function remarkDetails() {
   return (tree) => {
     visit(tree, (node) => {
@@ -18,16 +10,46 @@ export default function remarkDetails() {
       const attrs = node.attributes || {};
       const title = attrs.title || "Details";
       const open = attrs.open !== undefined;
+      const pair = title.match(PAIR);
+      const side = pair ? (pair[1] === "前" ? "before" : "after") : null;
+      const text = pair ? title.slice(pair[0].length) : title;
+
+      const className = ["lc-details"];
+      if (side) className.push(`is-${side}`);
 
       const data = node.data || (node.data = {});
       data.hName = "details";
-      data.hProperties = { className: ["lc-details"], ...(open ? { open: true } : {}) };
+      data.hProperties = { className, ...(open ? { open: true } : {}) };
 
-      // 在最前面插入 <summary>標題</summary>
+      const summaryKids = [];
+      if (side) {
+        summaryKids.push({
+          type: "emphasis",
+          data: {
+            hName: "span",
+            hProperties: { className: ["details-side"], lang: "en" },
+          },
+          children: [{ type: "text", value: side === "before" ? "Before" : "After" }],
+        });
+      }
+      summaryKids.push({
+        type: "emphasis",
+        data: { hName: "span", hProperties: { className: ["details-title"] } },
+        children: [{ type: "text", value: text }],
+      });
+      summaryKids.push({
+        type: "emphasis",
+        data: {
+          hName: "span",
+          hProperties: { className: ["details-mark"], ariaHidden: "true" },
+        },
+        children: [],
+      });
+
       node.children.unshift({
         type: "paragraph",
         data: { hName: "summary" },
-        children: [{ type: "text", value: title }],
+        children: summaryKids,
       });
     });
   };

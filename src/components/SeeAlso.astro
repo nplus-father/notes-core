@@ -1,5 +1,8 @@
 ---
-import { siteUrl, siteLabel } from "../lib/links";
+import Icon from "./Icon.astro";
+import CoverFallback from "./CoverFallback.astro";
+import { siteUrl, siteLabel, bookCoverUrl } from "../lib/links";
+import { siteByKey } from "../lib/sites";
 interface Item {
   site: string;
   path: string;
@@ -9,18 +12,32 @@ interface Props {
   items: Item[];
 }
 const { items } = Astro.props;
+const slugOf = (key: string) => siteByKey.get(key)?.slug ?? key;
 ---
 
 {
   items.length > 0 && (
-    <section class="seealso">
-      <h2>Dive Deeper</h2>
-      <ul class="seealso-list">
+    <section class="endnote seealso">
+      <h2 class="endnote-head">Dive Deeper</h2>
+      <ul class="rl">
         {items.map((it) => (
           <li>
-            <a href={siteUrl(it.site, it.path)}>
-              <span class="seealso-site">{siteLabel(it.site)}</span>
-              {it.label}
+            <a class="rl-row" href={siteUrl(it.site, it.path)}>
+              <img
+                class="rl-cover"
+                src={bookCoverUrl(slugOf(it.site), 120)}
+                data-fallback={siteUrl(it.site, "cover.png")}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="40"
+                height="54"
+              />
+              <span class="rl-text">
+                <span class="rl-title">{it.label}</span>
+                <span class="rl-meta">{siteLabel(it.site)}</span>
+              </span>
+              <Icon name="arrow-up-right" size={18} class="rl-arrow" />
             </a>
           </li>
         ))}
@@ -28,3 +45,4 @@ const { items } = Astro.props;
     </section>
   )
 }
+<CoverFallback />

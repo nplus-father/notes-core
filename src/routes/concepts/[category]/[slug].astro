@@ -6,7 +6,6 @@ import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const concepts = await getCollection("concepts");
-  // 雙集合站：概念頁需要 allProblems 才能算「用到此概念的題目」反向連結。
   const allProblems = site.hasProblems ? await getCollection("problems") : [];
   return concepts.map((entry) => {
     const [category, slug] = entry.id.split("/");
@@ -19,7 +18,7 @@ export async function getStaticPaths() {
 
 const { entry, allConcepts, allProblems } = Astro.props;
 const { categoryBySlug } = await getCategories();
-const { Content } = await render(entry);
+const { Content, headings, remarkPluginFrontmatter } = await render(entry);
 ---
 
 <ConceptLayout
@@ -28,6 +27,8 @@ const { Content } = await render(entry);
   allProblems={allProblems}
   categoryBySlug={categoryBySlug}
   site={site}
+  headings={headings}
+  standfirst={remarkPluginFrontmatter?.standfirst}
 >
   <Content />
 </ConceptLayout>

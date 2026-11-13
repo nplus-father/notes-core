@@ -48,5 +48,7 @@
 @use "./home/profile";
 @use "./index/check";
 @use "./reading/guide";
+@use "./reading/article";
 @use "./index/library";
+@use "./index/toc";
 @use "./base/print";

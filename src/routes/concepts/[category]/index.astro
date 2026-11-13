@@ -3,7 +3,8 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ConceptCard from "../../../components/ConceptCard.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import { siteUrl, siteLabel } from "../../../lib/links";
-import { byImportance } from "../../../lib/collections";
+import { byImportance, bareSlug } from "../../../lib/collections";
+import { splitTitle, pad2, chapterNumbers, latinLang } from "../../../lib/toc";
 import { site } from "virtual:notes-core/site";
 import { getCategories } from "../../../lib/nav-data";
 import { getCollection } from "astro:content";
@@ -11,52 +12,156 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const concepts = await getCollection("concepts");
   const { categories } = await getCategories();
-  return categories.map((c: any) => ({
-    params: { category: c.slug },
-    props: {
-      category: c,
-      items: concepts.filter((p) => p.data.category === c.slug).sort(byImportance),
-    },
-  }));
+  const numbers = chapterNumbers(categories as any[], (slug) =>
+    concepts.some((p) => p.data.category === slug)
+  );
+  return categories.map((c: any) => {
+    const items = concepts.filter((p) => p.data.category === c.slug).sort(byImportance);
+    const written = new Set(items.map((p) => bareSlug(p.id)));
+    return {
+      params: { category: c.slug },
+      props: {
+        category: c,
+        items,
+        num: numbers.get(c.slug) ?? 0,
+        planned: (c.roadmap ?? []).filter((n: any) => !written.has(n.slug)),
+      },
+    };
+  });
 }
 
-const { category, items } = Astro.props;
+const { category, items, num, planned } = Astro.props;
 const conceptLabel = site.conceptLabelEn ?? "Concepts";
+const problemSet = new Set<string>(items.flatMap((p: any) => p.data.problems ?? []));
+const bookSet = new Set<string>(
+  items.flatMap((p: any) => (p.data.furtherReading ?? []).map((f: any) => f.book))
+);
 ---
 
-<BaseLayout title={`${category.name} · ${conceptLabel}`} site={site}>
+<BaseLayout title={`${category.name} · ${conceptLabel}`} site={site} description={category.intro}>
   <Crumbs
     site={site}
-    items={[
-      { label: conceptLabel, href: "/concepts/" },
-      { label: category.name, icon: category.icon },
-    ]}
+    items={[{ label: conceptLabel, href: "/concepts/" }, { label: category.name }]}
   />
-  <header class="page-head">
-    <h1>{category.icon} {category.name}</h1>
-    <p class="lede">{category.intro}</p>
-    <p class="muted">
-      {items.length} pages
+  <header class="page-head idx-head chapter-open section">
+    <div class="idx-side co-side">
+      <p class="co-kicker label">
+        Chapter
+        {
+          category.icon && (
+            <span class="cat-glyph" aria-hidden="true">
+              {category.icon}
+            </span>
+          )
+        }
+      </p>
       {
-        category.sister && (
-          <>
-            {" "}
-            · Dive deeper → <a href={siteUrl(category.sister)}>{siteLabel(category.sister)}</a>
-          </>
+        num > 0 && (
+          <span class="co-num" aria-hidden="true">
+            {pad2(num)}
+          </span>
         )
       }
-    </p>
+    </div>
+    <div class="idx-main">
+      <h1 class="idx-title" lang={latinLang(category.name)}>{category.name}</h1>
+      {category.intro && <p class="co-intro">{category.intro}</p>}
+      <dl class="co-stats">
+        <div>
+          <dt>Pages</dt>
+          <dd>{items.length}</dd>
+        </div>
+        {
+          planned.length > 0 && (
+            <div>
+              <dt>Planned</dt>
+              <dd>{planned.length}</dd>
+            </div>
+          )
+        }
+        {
+          bookSet.size > 0 && (
+            <div>
+              <dt>{bookSet.size === 1 ? "Book" : "Books"}</dt>
+              <dd>{bookSet.size}</dd>
+            </div>
+          )
+        }
+        {
+          problemSet.size > 0 && (
+            <div>
+              <dt>Problems</dt>
+              <dd>{problemSet.size}</dd>
+            </div>
+          )
+        }
+        {
+          category.sister && (
+            <div class="co-deeper">
+              <dt>Deeper</dt>
+              <dd>
+                <a class="link-draw arrow-nudge" href={siteUrl(category.sister)}>
+                  {siteLabel(category.sister)} <span class="arrow">→</span>
+                </a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
   </header>
 
   {
     items.length > 0 ? (
-      <section class="card-grid">
-        {items.map((entry: any) => (
-          <ConceptCard entry={entry} />
-        ))}
+      <section class="section idx-list reveal" aria-labelledby="pages-h">
+        <h2 class="running-head" id="pages-h">
+          <span class="running-head-num">01</span>Pages
+        </h2>
+        <div class="section-body">
+          <ol class="rows">
+            {items.map((entry: any, i: number) => (
+              <ConceptCard entry={entry} index={i + 1} />
+            ))}
+          </ol>
+        </div>
       </section>
     ) : (
-      <p class="empty">No pages in this category yet.</p>
+      <section class="section idx-list">
+        <h2 class="running-head">
+          <span class="running-head-num">01</span>Pages
+        </h2>
+        <p class="section-body idx-empty">這一章還沒有寫成的頁面。</p>
+      </section>
+    )
+  }
+
+  {
+    planned.length > 0 && (
+      <section class="section idx-list reveal" aria-labelledby="planned-h">
+        <h2 class="running-head" id="planned-h">
+          <span class="running-head-num">02</span>Planned
+        </h2>
+        <div class="section-body">
+          <ul class="toc-lines is-planned-list">
+            {planned.map((n: any) => {
+              const t = splitTitle(n.title);
+              return (
+                <li class="toc-line is-planned">
+                  <span class="toc-row">
+                    <span class="toc-t">
+                      <span class="toc-main">{t.main}</span>
+                      {t.sub && <span class="toc-sub">{t.sub}</span>}
+                      {t.en && <span class="toc-en">{t.en}</span>}
+                    </span>
+                    <span class="toc-dots" aria-hidden="true" />
+                    <span class="toc-tier">{n.tier === "basic" ? "Basic" : "Adv"}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
     )
   }
 </BaseLayout>

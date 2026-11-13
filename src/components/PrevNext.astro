@@ -1,6 +1,6 @@
 ---
-// 同分類 / 同領域的「上一篇 / 下一篇」導航。文案（prevLabel/nextLabel/ariaLabel）
-// 由 layout 傳入，因概念頁說「篇」、題目頁說「題」。
+import Icon from "./Icon.astro";
+import { splitTitle } from "../lib/reading";
 interface Item {
   href: string;
   title: string;
@@ -20,16 +20,36 @@ const { prev, next, ariaLabel, prevLabel, nextLabel } = Astro.props;
     <nav class="prevnext" aria-label={ariaLabel}>
       {prev ? (
         <a class="pn pn-prev" href={prev.href}>
-          <span class="pn-dir">{prevLabel}</span>
-          <span class="pn-title">{prev.title}</span>
+          <span class="pn-dir">
+            <Icon name="arrow-left" size={16} />
+            {prevLabel}
+          </span>
+          <span class="pn-title">
+            <span class="pn-title-text">{splitTitle(prev.title).main}</span>
+            {splitTitle(prev.title).latin && (
+              <span class="pn-latin" lang="en">
+                {splitTitle(prev.title).latin}
+              </span>
+            )}
+          </span>
         </a>
       ) : (
         <span class="pn pn-empty" />
       )}
       {next ? (
         <a class="pn pn-next" href={next.href}>
-          <span class="pn-dir">{nextLabel}</span>
-          <span class="pn-title">{next.title}</span>
+          <span class="pn-dir">
+            {nextLabel}
+            <Icon name="arrow-right" size={16} />
+          </span>
+          <span class="pn-title">
+            <span class="pn-title-text">{splitTitle(next.title).main}</span>
+            {splitTitle(next.title).latin && (
+              <span class="pn-latin" lang="en">
+                {splitTitle(next.title).latin}
+              </span>
+            )}
+          </span>
         </a>
       ) : (
         <span class="pn pn-empty" />

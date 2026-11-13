@@ -4,10 +4,10 @@ interface Props {
 }
 const { status } = Astro.props;
 const label: Record<Props["status"], string> = {
-  draft: "Draft",
+  draft: "",
   studied: "Studied",
   reviewed: "Reviewed",
 };
 ---
 
-<span class={`badge status-${status}`}>{label[status]}</span>
+{label[status] && <span class={`badge status-${status}`}>{label[status]}</span>}

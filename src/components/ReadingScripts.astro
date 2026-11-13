@@ -1,0 +1,38 @@
+---
+import { icons } from "../lib/icons";
+const copyIcon = icons.copy;
+const doneIcon = icons.check;
+---
+
+<script is:inline define:vars={{ copyIcon, doneIcon }}>
+  (() => {
+    if (!navigator.clipboard) return;
+    const svg = (body) =>
+      `<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+    for (const fig of document.querySelectorAll(".code-block")) {
+      const head = fig.querySelector(".code-head");
+      const code = fig.querySelector("pre code");
+      if (!head || !code) continue;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "code-copy";
+      btn.innerHTML = `${svg(copyIcon)}<span>Copy</span>`;
+      btn.setAttribute("aria-label", "Copy code");
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(code.innerText.replace(/\n$/, ""));
+          btn.innerHTML = `${svg(doneIcon)}<span>Copied</span>`;
+          btn.classList.add("is-done");
+        } catch {
+          btn.innerHTML = `${svg(copyIcon)}<span>Press Ctrl+C</span>`;
+        }
+        clearTimeout(btn._t);
+        btn._t = setTimeout(() => {
+          btn.innerHTML = `${svg(copyIcon)}<span>Copy</span>`;
+          btn.classList.remove("is-done");
+        }, 1800);
+      });
+      head.append(btn);
+    }
+  })();
+</script>
