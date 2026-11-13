@@ -28,8 +28,9 @@
   gap: 0.6em;
   margin: 0;
   color: var(--text-2);
-  > :first-child {
+  :is(time, .num) {
     font-family: $mono;
+    font-weight: 600;
     letter-spacing: 0.04em;
   }
 }
@@ -50,9 +51,14 @@
   }
 }
 
+@include above-grid {
+  .section.is-wide:is(.overview, .profile-thesis) > .section-body {
+    grid-column: 3 / span 8;
+  }
+}
+
 .overview-lede {
   margin: 0;
-  max-inline-size: var(--span-9);
   font-family: $display;
   font-size: var(--fs-lede);
   font-weight: 500;
@@ -62,7 +68,7 @@
   text-wrap: pretty;
   strong,
   b {
-    font-weight: 900;
+    font-weight: 700;
   }
 }
 
@@ -124,7 +130,6 @@
 
 .overview-text {
   margin: 0;
-  max-inline-size: var(--span-7);
   font-size: 1.125rem;
   line-height: 1.88;
   letter-spacing: 0.04em;
@@ -137,13 +142,6 @@
   strong,
   b {
     font-weight: 700;
-  }
-}
-
-@include below-grid {
-  .overview-lede,
-  .overview-text {
-    max-inline-size: none;
   }
 }
 

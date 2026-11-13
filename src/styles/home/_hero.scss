@@ -48,7 +48,7 @@ body:has(.hero-cloth) {
 .hero-title {
   margin: clamp(1.1rem, 2.4vw, 1.9rem) 0 0;
   font-family: $display-xl;
-  font-size: var(--fs-display);
+  font-size: calc(var(--fs-display) * var(--title-scale, 1));
   line-height: 1.04;
   letter-spacing: 0.02em;
   text-wrap: balance;
@@ -143,6 +143,10 @@ body:has(.hero-cloth) {
   color: var(--cloth-ink);
 }
 
+.hero-motif-svg .motif-shade {
+  color: rgb(0 0 0 / 0.32);
+}
+
 .hero-motif-svg {
   display: block;
   width: 100%;
@@ -221,15 +225,6 @@ body:has(.hero-cloth) {
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.01em;
-}
-
-.hero-cloth-seal {
-  flex: none;
-  width: 0.7rem;
-  height: 0.7rem;
-  margin-bottom: 0.15rem;
-  background: var(--seal);
-  box-shadow: 0 0 0 1px var(--cloth-line);
 }
 
 .hero-cloth-foot {
@@ -394,9 +389,6 @@ body:has(.hero-cloth) {
   .hero-portrait {
     outline-offset: 5px;
   }
-  .hero-cloth-seal {
-    display: none;
-  }
   .hero-foil-name {
     letter-spacing: 0.22em;
   }
@@ -407,7 +399,7 @@ body:has(.hero-cloth) {
 
 @media (max-width: $bp-nav) {
   .hero-cloth {
-    height: clamp(210px, 34svh, 380px);
+    height: clamp(170px, 26svh, 280px);
   }
   .hero-title {
     margin-top: 0.9rem;
@@ -429,40 +421,24 @@ body:has(.hero-cloth) {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-cloth {
-    animation: cloth-in 900ms var(--ease) both;
-  }
-  .hero-motif-svg [pathLength] {
-    stroke-dasharray: 1;
-    animation: motif-draw 1.8s cubic-bezier(0.45, 0.05, 0.2, 1) 0.45s both;
-  }
-  .hero-portrait {
-    animation: cloth-lift var(--dur-hero) var(--ease) 0.45s both;
-  }
-  .hero-numeral {
-    animation: cloth-lift 1s var(--ease) 0.7s both;
-  }
-  .hero-foil,
-  .hero-cloth-foot {
-    animation: hero-wipe var(--dur-hero) var(--ease) 0.85s both;
-  }
-  .hero-kicker {
-    animation: hero-wipe var(--dur-hero) var(--ease) 0.2s both;
-  }
-  .hero-title-inner {
-    animation: hero-line var(--dur-hero) var(--ease) 0.3s both;
-  }
-  .hero-rule {
-    animation: folio-draw var(--dur-hero) var(--ease) 0.65s both;
-  }
-  .hero-brand {
-    animation: hero-wipe var(--dur-hero) var(--ease) 0.7s both;
-  }
-  .hero-lede {
-    animation: hero-wipe 900ms var(--ease) 0.8s both;
-  }
-  .hero-stats {
-    animation: hero-wipe 900ms var(--ease) 1s both;
+  html:not(.hero-seen) {
+    .hero-cloth {
+      animation: cloth-in 650ms var(--ease) both;
+    }
+    .hero-motif-svg [pathLength] {
+      stroke-dasharray: 1;
+      animation: motif-draw 900ms cubic-bezier(0.45, 0.05, 0.2, 1) 250ms both;
+    }
+    .hero-portrait {
+      animation: cloth-lift 600ms var(--ease) 250ms both;
+    }
+    .hero-numeral {
+      animation: cloth-lift 600ms var(--ease) 500ms both;
+    }
+    .hero-foil,
+    .hero-cloth-foot {
+      animation: hero-wipe 500ms var(--ease) 550ms both;
+    }
   }
 }
 
@@ -504,11 +480,3 @@ body:has(.hero-cloth) {
   }
 }
 
-@keyframes hero-line {
-  from {
-    transform: translateY(105%);
-  }
-  to {
-    transform: none;
-  }
-}

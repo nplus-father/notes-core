@@ -27,7 +27,7 @@ const heading = KINDS[data.kind] ?? KINDS.schools;
           <span lang="en">{heading}</span>
         </h2>
         <p class="home-head-meta">
-          <span>{String(schools.length).padStart(2, "0")}</span>
+          <span class="num">{String(schools.length).padStart(2, "0")}</span>
           <span lang="en">{schools.length === 1 ? "Entry" : "Entries"}</span>
         </p>
       </div>

@@ -71,7 +71,7 @@ export interface SiteConfig {
    * 設 `null` → 兩處都隱藏；給物件 → 覆寫文字／網址。回母站採同分頁導覽（不開新頁）。
    * `short` 是 topnav 用的短名（省略則沿用 `label`）——導覽列塞不下全名。
    */
-  parentSite?: { href: string; label: string; short?: string } | null;
+  parentSite?: { href: string; label: string; short?: string; mini?: string } | null;
   /** 選用：覆寫品牌主色（--accent），不填則用共用設計系統的預設 indigo。 */
   accentOverride?: string;
   /** 選用：概念區的顯示標籤（麵包屑），預設「概念」；有些站叫「主題」。 */
@@ -105,6 +105,7 @@ export const DEFAULT_PARENT_SITE = {
   href: "https://nplus.wiki/notes/",
   label: "nplus.wiki 筆記星系",
   short: "筆記星系",
+  mini: "星系",
 };
 
 /** 身分設定 helper：純粹回傳原物件，提供型別檢查與 IDE 補全。 */

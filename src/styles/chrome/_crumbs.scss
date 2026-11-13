@@ -36,26 +36,31 @@
   }
 }
 
+.crumb-back {
+  display: none;
+}
+
 @media (max-width: $bp-nav) {
-  .crumbs {
-    ol {
-      flex-wrap: nowrap;
-      letter-spacing: 0.08em;
+  .crumbs ol {
+    display: none;
+  }
+  .crumb-back {
+    @include label;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    min-height: 44px;
+    color: var(--text);
+    .icon {
+      flex: none;
+      transition: transform var(--dur-hover) var(--ease);
     }
-    li {
-      flex: 0 1 auto;
-      > * {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+      .icon {
+        transform: translateX(-3px);
       }
-    }
-    li:not(:first-child, :last-child) {
-      flex-shrink: 100;
-      min-width: 3.5em;
-    }
-    li:first-child {
-      flex-shrink: 2;
     }
   }
 }

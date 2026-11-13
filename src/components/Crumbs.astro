@@ -1,6 +1,7 @@
 ---
 import { withBase } from "../lib/url";
 import { stripEmoji, type SiteConfig } from "../lib/site-config";
+import Icon from "./Icon.astro";
 
 interface Crumb {
   label: string;
@@ -14,6 +15,11 @@ interface Props {
   items?: Crumb[];
 }
 const { site, items = [] } = Astro.props;
+const linked = items.filter((c) => c.href);
+const parent = linked.length > 0 ? linked[linked.length - 1] : null;
+const back = parent
+  ? { href: withBase(parent.href!), label: stripEmoji(parent.label) }
+  : { href: withBase("/"), label: site.brand };
 ---
 
 <nav class="crumbs" aria-label="Breadcrumb">
@@ -31,4 +37,8 @@ const { site, items = [] } = Astro.props;
       ))
     }
   </ol>
+  <a class="crumb-back" href={back.href}>
+    <Icon name="arrow-left" size={16} />
+    <span>{back.label}</span>
+  </a>
 </nav>

@@ -23,7 +23,7 @@ const { books, heading = "Sources", moreHref, num = "" } = Astro.props;
           <span lang="en">{heading}</span>
         </h2>
         <p class="home-head-meta">
-          <span>{String(books.length).padStart(2, "0")}</span>
+          <span class="num">{String(books.length).padStart(2, "0")}</span>
           <span lang="en">{books.length === 1 ? "Book" : "Books"}</span>
         </p>
         {moreHref && (

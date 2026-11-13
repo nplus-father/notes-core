@@ -29,6 +29,11 @@
   @include label;
 }
 
+:is(.running-head, .label) :lang(en) {
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
 .seal {
   @include seal;
 }
