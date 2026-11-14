@@ -202,10 +202,10 @@
   }
   &.is-alpha {
     .sc-dot {
-      fill: var(--seal);
+      fill: var(--alpha-star);
     }
     .sc-rays {
-      stroke: var(--seal);
+      stroke: var(--alpha-star);
     }
   }
   &:hover .sc-ring,
@@ -385,7 +385,7 @@
   font-style: italic;
   color: var(--muted);
   li:first-child & {
-    color: var(--seal);
+    color: var(--alpha-star);
   }
 }
 
