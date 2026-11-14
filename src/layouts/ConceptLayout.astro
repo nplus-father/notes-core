@@ -5,21 +5,24 @@ import Marginalia from "../components/Marginalia.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
-import PrevNext from "../components/PrevNext.astro";
 import Kern from "../components/Kern.astro";
 import VolumeHead from "../components/VolumeHead.astro";
 import VolumeColophon from "../components/VolumeColophon.astro";
+import ChapterPlate from "../components/ChapterPlate.astro";
+import Endpaper from "../components/Endpaper.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug, byImportance } from "../lib/collections";
 import { splitTitle } from "../lib/reading";
 import { stripEmoji, type SiteConfig } from "../lib/site-config";
+import { chapterNumbers } from "../lib/toc";
+import { folioFor, chapterPrefix, sourceBooks } from "../lib/folio";
 
 interface Props {
   entry: any;
   allConcepts: any[];
   allProblems: any[];
-  categoryBySlug: Map<string, { slug: string; name: string; icon: string }>;
+  categoryBySlug: Map<string, { slug: string; name: string; icon: string; order: number }>;
   site: SiteConfig;
   headings?: { depth: number; slug: string; text: string }[];
   standfirst?: string;
@@ -76,6 +79,22 @@ const idx = sameCat.findIndex((c: any) => c.id === entry.id);
 const prev = idx > 0 ? sameCat[idx - 1] : null;
 const next = idx >= 0 && idx < sameCat.length - 1 ? sameCat[idx + 1] : null;
 const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.title });
+
+const cats = [...categoryBySlug.values()];
+const chapters = chapterNumbers(cats, (s) => allConcepts.some((c: any) => c.data.category === s));
+const volume = cats
+  .filter((c) => chapters.has(c.slug))
+  .sort((a, b) => a.order - b.order)
+  .flatMap((c) => allConcepts.filter((x: any) => x.data.category === c.slug).sort(byImportance));
+const folio = folioFor({
+  entry,
+  unit: "Chapter",
+  num: chapters.get(d.category) ?? 0,
+  name: stripEmoji(cat?.name ?? d.category),
+  href: cat ? `/concepts/${cat.slug}/` : "/concepts/",
+  siblings: sameCat,
+  volume,
+});
 ---
 
 <BaseLayout
@@ -94,13 +113,19 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
     ]}
   />
 
-  <div class="reading bleed" data-kind={d.kind}>
+  <div
+    class="reading bleed"
+    data-kind={d.kind}
+    style={chapterPrefix(folio)}
+    data-folio
+    data-ch={folio.num > 0 ? "" : undefined}
+  >
     <header class="page-head reading-head">
       <VolumeHead
-        emblem
         section={cat?.name ?? d.category}
         sectionHref={cat ? `/concepts/${cat.slug}/` : "/concepts/"}
       />
+      <ChapterPlate folio={folio} />
       {
         d.kind === "debate" && (
           <p class="reading-kicker running-head">
@@ -145,20 +170,14 @@ const nav = (c: any) => ({ href: withBase(`concepts/${c.id}/`), title: c.data.ti
       <RelatedList heading="Related" items={related} />
     </div>
 
-    <VolumeColophon
-      site={site}
-      section={cat?.name ?? d.category}
-      page={idx >= 0 ? idx + 1 : undefined}
-      pages={sameCat.length}
-    />
-
-    <PrevNext
-      prev={prev ? nav(prev) : null}
-      next={next ? nav(next) : null}
-      ariaLabel="Same category"
-      prevLabel="Previous"
-      nextLabel="Next"
-    />
+    <VolumeColophon site={site} folio={folio} books={sourceBooks(d.furtherReading)} />
   </div>
   <ReadingScripts />
+  <Endpaper
+    slot="after"
+    folio={folio}
+    prev={prev ? nav(prev) : null}
+    next={next ? nav(next) : null}
+    ariaLabel="Same category"
+  />
 </BaseLayout>

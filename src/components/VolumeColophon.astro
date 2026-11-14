@@ -1,35 +1,89 @@
 ---
 import { currentVolume } from "../lib/volume";
-import { stripEmoji, type SiteConfig } from "../lib/site-config";
+import { pad2 } from "../lib/toc";
+import type { SiteConfig } from "../lib/site-config";
+import type { Folio } from "../lib/folio";
 
 interface Props {
   site: SiteConfig;
-  section: string;
-  page?: number;
-  pages?: number;
+  folio: Folio;
+  books?: string[];
 }
-const { site, section, page, pages } = Astro.props;
+const { site, folio, books = [] } = Astro.props;
 const vol = currentVolume(site.titleBase ?? site.brand);
-const parts = [
-  vol.serial,
-  vol.label,
-  stripEmoji(section),
-  page && pages ? `page ${page} of ${pages}` : "",
-].filter(Boolean);
+const checked = site.curation?.checkedAt;
 ---
 
-<p class="volume-colophon">
-  <span class="volume-swatch" aria-hidden="true"></span>
+<section class="page-colophon" aria-label="Colophon" data-pagefind-ignore>
   {
-    parts.map((p, i) => (
-      <>
-        {i > 0 && (
-          <span class="volume-sep" aria-hidden="true">
+    folio.page > 0 && (
+      <p class="folio" aria-hidden="true">
+        {folio.page}
+      </p>
+    )
+  }
+  <p class="pc-line pc-place">
+    <span class="pc-g">
+      {vol.serial && <span class="pc-k">{vol.serial}</span>}
+      {vol.serial && " "}
+      {vol.label}
+    </span>
+    <span class="pc-sep" aria-hidden="true">·</span>
+    <span class="pc-g">
+      {
+        folio.num > 0 && (
+          <>
+            {folio.unit} <span class="pc-k">{pad2(folio.num)}</span>{" "}
+          </>
+        )
+      }
+      {folio.name}
+    </span>
+    {
+      folio.page > 0 && (
+        <>
+          <span class="pc-sep" aria-hidden="true">
+            ·
+          </span>
+          <span class="pc-g">
+            <span class="pc-nb">
+              page <span class="pc-k">{folio.page}</span> of <span class="pc-k">{folio.pages}</span>
+            </span>
+            {folio.leaf > 0 && folio.leaves > 1 && (
+              <>
+                <span class="pc-sep" aria-hidden="true">
+                  ·
+                </span>
+                <span class="pc-nb">
+                  leaf <span class="pc-k">{folio.leaf}</span> of{" "}
+                  <span class="pc-k">{folio.leaves}</span>
+                </span>
+              </>
+            )}
+          </span>
+        </>
+      )
+    }
+  </p>
+  {
+    (books.length > 0 || checked) && (
+      <p class="pc-line">
+        {books.length > 0 && (
+          <span>
+            Drawn from <em>{books.join(", ")}</em>
+          </span>
+        )}
+        {books.length > 0 && checked && (
+          <span class="pc-sep" aria-hidden="true">
             ·
           </span>
         )}
-        <span>{p}</span>
-      </>
-    ))
+        {checked && (
+          <span class="pc-g">
+            checked <time class="pc-k">{checked}</time>
+          </span>
+        )}
+      </p>
+    )
   }
-</p>
+</section>

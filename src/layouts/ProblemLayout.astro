@@ -5,21 +5,23 @@ import Marginalia from "../components/Marginalia.astro";
 import FurtherReading from "../components/FurtherReading.astro";
 import SeeAlso from "../components/SeeAlso.astro";
 import RelatedList from "../components/RelatedList.astro";
-import PrevNext from "../components/PrevNext.astro";
 import Kern from "../components/Kern.astro";
 import VolumeHead from "../components/VolumeHead.astro";
 import VolumeColophon from "../components/VolumeColophon.astro";
+import ChapterPlate from "../components/ChapterPlate.astro";
+import Endpaper from "../components/Endpaper.astro";
 import ReadingScripts from "../components/ReadingScripts.astro";
 import { withBase } from "../lib/url";
 import { bareSlug, bySlug } from "../lib/collections";
 import { splitTitle } from "../lib/reading";
 import { stripEmoji, type SiteConfig } from "../lib/site-config";
+import { folioFor, chapterPrefix, sourceBooks } from "../lib/folio";
 
 interface Props {
   entry: any;
   allProblems: any[];
   allConcepts: any[];
-  domainBySlug: Map<string, { slug: string; name: string; icon: string }>;
+  domainBySlug: Map<string, { slug: string; name: string; icon: string; order: number }>;
   categoryBySlug: Map<string, { icon: string; name?: string }>;
   site: SiteConfig;
   headings?: { depth: number; slug: string; text: string }[];
@@ -70,14 +72,29 @@ const related = [...d.related, ...backlinks].map((s: string) => {
     : { slug: s };
 });
 
-const sameDomain = allProblems
-  .filter((p: any) => p.data.domain === d.domain)
-  .sort((a: any, b: any) => a.data.title.localeCompare(b.data.title));
+const byTitle = (a: any, b: any) => a.data.title.localeCompare(b.data.title);
+const sameDomain = allProblems.filter((p: any) => p.data.domain === d.domain).sort(byTitle);
 const idx = sameDomain.findIndex((p: any) => p.id === entry.id);
 const prev = idx > 0 ? sameDomain[idx - 1] : null;
 const next = idx >= 0 && idx < sameDomain.length - 1 ? sameDomain[idx + 1] : null;
 const nav = (p: any) => ({ href: withBase(`problems/${p.id}/`), title: p.data.title });
 const problemLabel = site.problemLabelEn ?? "Problems";
+
+const domainOrder = [...domainBySlug.values()]
+  .sort((a, b) => a.order - b.order)
+  .filter((dm) => allProblems.some((p: any) => p.data.domain === dm.slug));
+const domainNum = domainOrder.findIndex((dm) => dm.slug === d.domain) + 1;
+const folio = folioFor({
+  entry,
+  unit: "Domain",
+  num: domainNum,
+  name: stripEmoji(domain?.name ?? d.domain),
+  href: domain ? `/problems/${domain.slug}/` : "/problems/",
+  siblings: sameDomain,
+  volume: domainOrder.flatMap((dm) =>
+    allProblems.filter((p: any) => p.data.domain === dm.slug).sort(byTitle)
+  ),
+});
 ---
 
 <BaseLayout
@@ -96,13 +113,19 @@ const problemLabel = site.problemLabelEn ?? "Problems";
     ]}
   />
 
-  <div class="reading bleed" data-kind="problem">
+  <div
+    class="reading bleed"
+    data-kind="problem"
+    style={chapterPrefix(folio)}
+    data-folio
+    data-ch={folio.num > 0 ? "" : undefined}
+  >
     <header class="page-head reading-head">
       <VolumeHead
-        emblem
         section={domain?.name ?? d.domain}
         sectionHref={domain ? `/problems/${domain.slug}/` : "/problems/"}
       />
+      <ChapterPlate folio={folio} />
       <h1 class="reading-title">
         <Kern text={title.main} />
         {
@@ -145,20 +168,14 @@ const problemLabel = site.problemLabelEn ?? "Problems";
       <RelatedList heading="Related" items={related} />
     </div>
 
-    <VolumeColophon
-      site={site}
-      section={domain?.name ?? d.domain}
-      page={idx >= 0 ? idx + 1 : undefined}
-      pages={sameDomain.length}
-    />
-
-    <PrevNext
-      prev={prev ? nav(prev) : null}
-      next={next ? nav(next) : null}
-      ariaLabel="Same domain"
-      prevLabel="Previous"
-      nextLabel="Next"
-    />
+    <VolumeColophon site={site} folio={folio} books={sourceBooks(d.furtherReading)} />
   </div>
   <ReadingScripts />
+  <Endpaper
+    slot="after"
+    folio={folio}
+    prev={prev ? nav(prev) : null}
+    next={next ? nav(next) : null}
+    ariaLabel="Same domain"
+  />
 </BaseLayout>

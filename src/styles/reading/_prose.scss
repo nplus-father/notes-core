@@ -163,6 +163,17 @@
     margin-top: 0;
   }
 
+  .reading[data-folio] &.reading-body > h2::before,
+  .reading[data-folio] &.reading-body > .section-head > h2::before {
+    content: var(--ch, "") counter(sec, decimal-leading-zero);
+    margin-bottom: 0.6rem;
+    font-family: $display;
+    font-size: 1.55rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--accent);
+  }
+
   .section-sub {
     margin: 0.9rem 0 0;
     font-family: $display;

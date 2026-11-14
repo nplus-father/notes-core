@@ -1,0 +1,175 @@
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+.chapter-plate {
+  @include cloth;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
+  grid-template-areas: "chapter pages emblem";
+  align-items: end;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  margin: 0 0 clamp(1.75rem, 3.5vw, 2.75rem);
+  padding: clamp(1.1rem, 2.2vw, 1.6rem) clamp(1.1rem, 2.4vw, 1.9rem);
+  border-radius: 2px;
+}
+
+.cp-chapter {
+  grid-area: chapter;
+  display: grid;
+  justify-items: start;
+  margin: 0;
+}
+
+.cp-label {
+  @include label;
+  margin: 0;
+  color: var(--cloth-ink);
+}
+
+.cp-mono {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+}
+
+.cp-num {
+  margin: 0.35rem 0 0.45rem;
+  font-family: $display-xl;
+  font-size: clamp(3.25rem, 6.4vw, 5.75rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+}
+
+.cp-name {
+  font-family: $display;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.chapter-plate.is-unnumbered .cp-name {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+
+.cp-pages {
+  grid-area: pages;
+  min-width: 0;
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+  border-left: 1px solid var(--cloth-line);
+}
+
+.cp-meter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 22rem;
+  margin: 0.7rem 0 0.75rem;
+  padding: 0;
+  list-style: none;
+  li {
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 1px solid var(--cloth-line);
+  }
+  .is-read {
+    background: var(--cloth-line);
+  }
+  .is-here {
+    background: var(--cloth-ink);
+    border-color: var(--cloth-ink);
+  }
+}
+
+.cp-bar {
+  position: relative;
+  display: block;
+  max-width: 22rem;
+  height: 0.75rem;
+  margin: 0.7rem 0 0.75rem;
+  border: 1px solid var(--cloth-line);
+  background: linear-gradient(var(--cloth-line), var(--cloth-line)) 0 0 / calc(var(--at) * 100%)
+    100% no-repeat;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: calc(var(--at) * 100% - 1.5px);
+    width: 3px;
+    background: var(--cloth-ink);
+  }
+}
+
+.cp-leaf {
+  letter-spacing: 0.1em;
+}
+
+.cp-emblem {
+  grid-area: emblem;
+  display: block;
+  align-self: center;
+  width: clamp(3.75rem, 8vw, 6.5rem);
+  height: clamp(3.75rem, 8vw, 6.5rem);
+  color: var(--cloth-ink);
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  &.is-serial {
+    width: auto;
+    height: auto;
+    font-family: $display-xl;
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    line-height: 1;
+    @include outlined-numeral(var(--cloth-ink));
+  }
+}
+
+@media (max-width: 600px) {
+  .chapter-plate {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "chapter chapter emblem" "pages pages emblem";
+    align-items: center;
+    column-gap: 0.9rem;
+    row-gap: 0.2rem;
+    margin-bottom: 1.25rem;
+    padding: 0.7rem 0.9rem;
+  }
+  .cp-chapter {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    column-gap: 0.55rem;
+  }
+  .cp-num {
+    margin: 0;
+    font-family: $display;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .cp-name,
+  .chapter-plate.is-unnumbered .cp-name {
+    font-size: 1rem;
+  }
+  .cp-pages {
+    padding: 0;
+    border: 0;
+  }
+  .cp-meter,
+  .cp-bar,
+  .cp-leaf {
+    display: none;
+  }
+  .cp-emblem {
+    width: 2.25rem;
+    height: 2.25rem;
+    &.is-serial {
+      width: auto;
+      height: auto;
+      font-size: 1.5rem;
+    }
+  }
+}

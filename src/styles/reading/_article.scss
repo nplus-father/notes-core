@@ -8,6 +8,10 @@
   border-bottom: 3px solid var(--cloth, var(--ink));
 }
 
+.reading[data-folio] .reading-head {
+  border-bottom: 1px solid var(--ink);
+}
+
 .volume-head,
 .volume-colophon {
   @include label;
@@ -306,6 +310,13 @@ a.volume-section {
   font-family: $mono;
   font-size: 0.75rem;
   letter-spacing: 0.02em;
+  &::before {
+    content: var(--ch, none);
+  }
+}
+
+.reading[data-ch] .mg-toc a {
+  grid-template-columns: 0.4rem 2.4rem 1fr;
 }
 
 .mg-toc-fold {

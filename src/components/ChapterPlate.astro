@@ -1,0 +1,71 @@
+---
+import { currentVolume } from "../lib/volume";
+import { pad2 } from "../lib/toc";
+import { site } from "virtual:notes-core/site";
+import type { Folio } from "../lib/folio";
+
+interface Props {
+  folio: Folio;
+}
+const { folio } = Astro.props;
+const vol = currentVolume(site.titleBase ?? site.brand);
+const METER_MAX = 30;
+const squares = folio.pages > 0 && folio.pages <= METER_MAX;
+const leaf = folio.leaf > 0 && folio.leaves > 1;
+---
+
+<div class:list={["chapter-plate", { "is-unnumbered": folio.num === 0 }]} data-pagefind-ignore>
+  <p class="cp-chapter">
+    {
+      folio.num > 0 && (
+        <>
+          <span class="cp-label">{folio.unit}</span>
+          <span class="cp-num">{pad2(folio.num)}</span>
+        </>
+      )
+    }
+    <span class="cp-name">{folio.name}</span>
+  </p>
+  {
+    folio.page > 0 && (
+      <div class="cp-pages">
+        <p class="cp-label">
+          Page <span class="cp-mono">{pad2(folio.page)}</span> of{" "}
+          <span class="cp-mono">{pad2(folio.pages)}</span>
+        </p>
+        {squares ? (
+          <ol class="cp-meter" aria-hidden="true">
+            {Array.from({ length: folio.pages }, (_, i) => (
+              <li class:list={{ "is-read": i < folio.page - 1, "is-here": i === folio.page - 1 }} />
+            ))}
+          </ol>
+        ) : (
+          <span
+            class="cp-bar"
+            aria-hidden="true"
+            style={`--at: ${((folio.page - 0.5) / folio.pages).toFixed(4)}`}
+          />
+        )}
+        {leaf && (
+          <p class="cp-label cp-leaf">
+            {vol.serial && <span class="cp-mono">{vol.serial}</span>}
+            {vol.serial && <span aria-hidden="true"> · </span>}
+            Leaf <span class="cp-mono">{folio.leaf}</span> of{" "}
+            <span class="cp-mono">{folio.leaves}</span>
+          </p>
+        )}
+      </div>
+    )
+  }
+  {
+    vol.emblem ? (
+      <span class="cp-emblem" aria-hidden="true" set:html={vol.emblem} />
+    ) : (
+      vol.serial && (
+        <span class="cp-emblem is-serial" aria-hidden="true">
+          {vol.serial}
+        </span>
+      )
+    )
+  }
+</div>

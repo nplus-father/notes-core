@@ -8,11 +8,10 @@ interface Props {
   section: string;
   sectionHref?: string;
   num?: string;
-  emblem?: boolean;
   index?: boolean;
   class?: string;
 }
-const { section, sectionHref, num, emblem = false, index = false, class: cls } = Astro.props;
+const { section, sectionHref, num, index = false, class: cls } = Astro.props;
 const vol = currentVolume(site.titleBase ?? site.brand);
 const label = stripEmoji(section);
 ---
@@ -35,6 +34,5 @@ const label = stripEmoji(section);
       </span>
     )
   }
-  {emblem && vol.emblem && <span class="volume-mark" aria-hidden="true" set:html={vol.emblem} />}
 </p>
 {index && vol.style && <style is:inline set:html={`:root{${vol.style}}`} />}

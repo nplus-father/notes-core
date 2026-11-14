@@ -15,6 +15,11 @@
     --seal: #000;
     --alpha-star: #000;
     --code-bg: #fff;
+    --cloth: #fff;
+    --cloth-ink: #000;
+    --cloth-line: #888;
+    --cloth-weave: transparent;
+    --cloth-weft: transparent;
   }
   body {
     background: #fff;
@@ -26,8 +31,12 @@
   .colophon,
   .reading-progress,
   .theme-toggle,
-  .crumbs {
+  .crumbs,
+  .endpaper {
     display: none !important;
+  }
+  .chapter-plate {
+    border: 1px solid #000;
   }
   .container {
     width: auto;

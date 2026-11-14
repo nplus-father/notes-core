@@ -1,0 +1,145 @@
+@use "../tokens.scss" as *;
+@use "../base/mixins" as *;
+
+.page-colophon {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  margin-top: var(--sec-gap);
+  text-align: center;
+}
+
+.folio {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 0 0 0.6rem;
+  font-family: $display-xl;
+  font-size: clamp(2.25rem, 3.6vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text);
+  &::before,
+  &::after {
+    content: "";
+    width: 2.5rem;
+    height: 1px;
+    background: var(--ink);
+  }
+}
+
+.pc-line {
+  @include label;
+  text-wrap: balance;
+  max-width: 90ch;
+  margin: 0;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  em {
+    font-family: $display;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+  }
+}
+
+.pc-nb {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .pc-place {
+    > .pc-g {
+      display: block;
+    }
+    > .pc-sep {
+      display: none;
+    }
+  }
+}
+
+.pc-k {
+  font-family: $mono;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.pc-sep {
+  margin: 0 0.55em;
+  color: var(--muted);
+}
+
+.endpaper {
+  @include cloth;
+  position: relative;
+  padding: clamp(1.75rem, 4vw, 3.5rem) 0;
+  &.has-motif::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--cloth-line);
+    opacity: 0.4;
+    mask: var(--ep-motif) 0 0 / 4.5rem 4.5rem space;
+  }
+}
+
+.endpaper-inner {
+  @include cloth;
+  position: relative;
+  width: var(--canvas);
+  margin-inline: auto;
+  padding: clamp(1.25rem, 2.6vw, 2rem) clamp(1.25rem, 3vw, 2.5rem);
+  outline: 1px solid var(--cloth-line);
+  outline-offset: -0.5rem;
+}
+
+.endpaper-head {
+  @include label;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 1.5rem;
+  margin: 0;
+  color: var(--cloth-ink);
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-left: auto;
+    color: var(--cloth-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--cloth-line);
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color var(--dur-hover) var(--ease);
+    &:hover {
+      text-decoration-color: var(--cloth-ink);
+    }
+  }
+}
+
+.endpaper .prevnext {
+  margin-top: 0.75rem;
+  border-top-color: var(--cloth-line);
+  .pn,
+  .pn-dir,
+  .pn-latin {
+    color: var(--cloth-ink);
+  }
+  @include below-grid {
+    .pn + .pn {
+      border-top-color: var(--cloth-line);
+    }
+  }
+}
+
+.endpaper :focus-visible {
+  outline-color: var(--cloth-ink);
+}
+
+.endpaper + .colophon {
+  border-top: 0;
+}

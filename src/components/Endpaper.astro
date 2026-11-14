@@ -1,0 +1,30 @@
+---
+import PrevNext from "./PrevNext.astro";
+import { withBase } from "../lib/url";
+import { pad2 } from "../lib/toc";
+import { endpaperPattern, type Folio } from "../lib/folio";
+
+interface Item {
+  href: string;
+  title: string;
+}
+interface Props {
+  folio: Folio;
+  prev: Item | null;
+  next: Item | null;
+  ariaLabel: string;
+}
+const { folio, prev, next, ariaLabel } = Astro.props;
+const pattern = endpaperPattern(import.meta.env.BASE_URL.replace(/^\/|\/$/g, ""));
+const contents = folio.num > 0 ? `${folio.unit} ${pad2(folio.num)} contents` : "Contents";
+---
+
+<div class:list={["endpaper", { "has-motif": !!pattern }]} style={pattern} data-pagefind-ignore>
+  <div class="endpaper-inner">
+    <p class="endpaper-head">
+      {folio.page > 0 && <span>End of page {folio.page}</span>}
+      <a href={withBase(folio.href)}>{contents}</a>
+    </p>
+    <PrevNext prev={prev} next={next} ariaLabel={ariaLabel} prevLabel="Previous" nextLabel="Next" />
+  </div>
+</div>
