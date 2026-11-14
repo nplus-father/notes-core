@@ -44,9 +44,10 @@ v0.44 以前字型堆疊寫著 `Inter`，但沒有字型檔隨站出貨——拉
   | --- | --- | --- |
   | `$sans` 內文、chrome | `"Inter Variable"` | `@fontsource-variable/inter/wght.css` |
   | `$display` 標題、卷號、引文 | `"Newsreader Variable"`（含 `opsz` 光學尺寸軸） | `@fontsource-variable/newsreader/opsz.css`＋`opsz-italic.css` |
-  | `$mono` 程式碼、書眉編號、日期 | `"JetBrains Mono Variable"` | `@fontsource-variable/jetbrains-mono/wght.css`（只載正體；一個可變檔 40 KB，比靜態 400＋600 兩檔 43 KB 小） |
-- 中文永遠落到系統字：`$display` 在 Newsreader 之後接 `$cjk-serif`（＝上面 v0.45.0 的系統襯線堆疊，順序一字不改），`$sans` 接 PingFang TC／Noto Sans TC／Microsoft JhengHei。字型檔依 unicode-range 切片，中文頁只抓用得到的 latin 片：Inter 約 47 KB、Newsreader 正體 129 KB（斜體 143 KB，頁面有斜體才抓）、JetBrains Mono 40 KB。`opsz` 軸讓同一個字族在 15rem 的卷號與 13px 的圖說都對；代價是檔案比只有 `wght` 軸的版本大一倍多（57 KB → 129 KB）。v0.46.0 實測 clean-code 首頁（不含封面與人像圖）傳輸：v0.45.0 約 66 KB（壓縮後）→ v0.46.0 桌機約 405 KB、手機約 261 KB，其中字型 360／216 KB（桌機多抓一支 Newsreader 斜體，給 hero 的斜體圖說）。要省這段就改匯入 `wght.css`／`wght-italic.css`，大字會失去展示切面。
-- **換字不位移**：fontsource 預設 `font-display: swap`。三個字族後面各接一個本機度量對齊的後備字（`Newsreader Fallback`、首屏大字用的 `Newsreader Display Fallback`（`$display-xl`）、`Inter Fallback`、`JetBrains Mono Fallback`；`src: local()` 指向 Times New Roman／Liberation Serif、Arial／Liberation Sans、Courier New／Liberation Mono，以 `size-adjust` 與 ascent／descent override 對齊），webfont 晚到時行高與行寬不變。驗收：把字型請求延遲 1.5 秒，首頁與概念頁在 1440／390 的 CLS < 0.02（v0.46.0 實測：clean-code 首頁、概念頁與 drucker 首頁在 1440／390 都 ≤ 0.0004）。新的首屏大字若用 Newsreader 拉丁字，用 `$display-xl`。
+  | `$mono` 程式碼、書眉編號、日期 | 系統等寬字（`ui-monospace` → SF Mono → Menlo → Consolas → Liberation Mono） | 不出貨（v0.48.0 起，見下條） |
+- **等寬字改用系統字（2026-11-14 Andrew 裁定，v0.48.0）**：v0.46.0–v0.47.0 出貨 JetBrains Mono（40 KB），首頁傳輸因此比 v0.45.0 多一截；等寬字只用在程式碼、書眉編號與日期，換成系統等寬字看不太出差別，所以拿掉套件與它的度量後備字。
+- 中文永遠落到系統字：`$display` 在 Newsreader 之後接 `$cjk-serif`（＝上面 v0.45.0 的系統襯線堆疊，順序一字不改），`$sans` 接 PingFang TC／Noto Sans TC／Microsoft JhengHei。字型檔依 unicode-range 切片，中文頁只抓用得到的 latin 片：Inter 約 47 KB、Newsreader 正體 129 KB（斜體 143 KB，頁面有斜體才抓）、JetBrains Mono 40 KB（v0.48.0 拿掉）。`opsz` 軸讓同一個字族在 15rem 的卷號與 13px 的圖說都對；代價是檔案比只有 `wght` 軸的版本大一倍多（57 KB → 129 KB）。v0.46.0 實測 clean-code 首頁（不含封面與人像圖）傳輸：v0.45.0 約 66 KB（壓縮後）→ v0.46.0 桌機約 405 KB、手機約 261 KB，其中字型 360／216 KB（桌機多抓一支 Newsreader 斜體，給 hero 的斜體圖說）。要省這段就改匯入 `wght.css`／`wght-italic.css`，大字會失去展示切面。
+- **換字不位移**：fontsource 預設 `font-display: swap`。出貨的字族後面各接一個本機度量對齊的後備字（`Newsreader Fallback`、首屏大字用的 `Newsreader Display Fallback`（`$display-xl`）、`Inter Fallback`；`src: local()` 指向 Times New Roman／Liberation Serif、Arial／Liberation Sans，以 `size-adjust` 與 ascent／descent override 對齊），webfont 晚到時行高與行寬不變。驗收：把字型請求延遲 1.5 秒，首頁與概念頁在 1440／390 的 CLS < 0.02（v0.46.0 實測：clean-code 首頁、概念頁與 drucker 首頁在 1440／390 都 ≤ 0.0004）。新的首屏大字若用 Newsreader 拉丁字，用 `$display-xl`。
 - **系統中文襯線的差異是刻意接受的**：Linux 有 Noto Serif CJK TC（700／900 齊）、macOS 是 Songti TC，Windows 沒有繁中襯線，會落到 Georgia／系統 serif 的中文後備（新細明體一類）。標題的字重、字寬因此因平台而異；版面不依賴任何一款中文字的度量（hero 標題的縮放、星圖標籤寬度、目錄點線都用字數或保守的固定寬估算）。
 
 ## 1.3 動態（v0.45.0，與 portal 同值）
@@ -81,7 +82,7 @@ v0.44 以前字型堆疊寫著 `Inter`，但沒有字型檔隨站出貨——拉
 - **書布（cloth）**：每站一塊布面精裝的書布色。`BaseLayout` 在 `<html>` 寫 `--cloth-l`／`--cloth-d`，build 時由 `cover-plate.ts` 的 `clothFor()` 從站色相（`site-covers.ts` 的 `accent2` 換成 OKLCH 色相）算成 sRGB：淺 L≈0.42、深再暗 0.1，暖色相提亮加彩、藍綠紫降彩；人物站一律暖褐布，`siteCovers` 沒登記的主題站用軸色石板布，registry 查不到的站沒有布。`site-covers.ts` 的 `cloth: { hue?, tone? }` 可把色相太近的兩站拉開。`--cloth-ink` 是布上的紙色字（對每一塊布 ≥ 4.5:1）。
 - **書布出現的地方是固定的**：每頁 topnav 頂端 3px 色帶、首頁 hero 的布面、頁尾版權頁的小印記，以及閱讀／索引頁的 `--vol`——`volume.ts` 把書布色寫成 `--vol-l`／`--vol-d`，只有對紙色／夜色 ≥ 3:1 時才用，否則退成墨；它畫書眉的色塊、頁首標題下與目錄章節上緣的 3px 色線、藏書頁的開採度長條與年代圖。首頁的 `theme-color` 取書布色。其他地方不用書布。
 - **第二墨（站色相）**：主題站 `<html>` 帶 `data-station-hue`，`--accent`／`--accent-2`／`--accent-weak`／`--ring` 由該色相以固定低彩度推出（淺 L 0.40 C 0.055、深 L 0.80 C 0.045）；人物站、不支援 OKLCH 的瀏覽器、設了 `accentOverride` 的站維持軸色。用途：連結、選取底色、書眉編號。
-- **印由書布決定（2026-11-14 Andrew 裁定，v0.47.0）**：`--seal` 是唯一的「你在這裡／已完成」訊號，色相跟著這一卷的書布走，不再是固定朱色。`cover-plate.ts` 的 `sealFor()` 吃 `clothFor()` 用的同一個最終色相（含 `cloth.hue` 覆寫；人物站共用暖褐布的色相，所以人物站的印也是同一個），算成 sRGB：淺色從 OKLCH L 0.52 C 0.15 起、超出色域先降彩度，再以 0.005 一步壓低 L，直到對三張紙（`#f6f3ec`／`#fbf9f4`／`#efebe2`）都 ≥ 4.5:1；深色從 L 0.76 C 0.13 起，必要時提高 L，直到對三種夜色（`#111013`／`#18171b`／`#201f24`）都 ≥ 4.5:1。`BaseLayout` 在寫書布變數的同一處寫 `--seal-l`／`--seal-d`；`_theme` 是 `--seal: var(--seal-l, #c23b22)`（深 `var(--seal-d, #e8654c)`），registry 查不到、沒有書布的站維持舊朱色。`--seal-weak` 是 `--seal` 與透明的 `color-mix`（淺 10％、深 14％）。用途不變：眉標方點、目錄與邊注的目前項、檢核頁的勾選、閱讀進度線、首頁 hero 的短橫線、文字 tab 的目前項方點。一頁印色面積不超過 2％；不拿來當一般強調色。印與第二墨同色相，靠彩度與明度分開（印 C≈0.09–0.15，第二墨 C 0.045–0.055）；某個色相若分不開，在色域內加彩度，不換色相。印不畫在書布上——同色相會消失；布上的記號一律用 `--cloth-ink`／`--cloth-line`。`tools/cover` 生成的主題站封面，右下角的印也取 `sealFor()` 的淺色（重新產生封面才會換）。
+- **印由書布決定（2026-11-14 Andrew 裁定，v0.47.0）**：`--seal` 是唯一的「你在這裡／已完成」訊號，色相跟著這一卷的書布走，不再是固定朱色。`cover-plate.ts` 的 `sealFor()` 吃 `clothFor()` 用的同一個最終色相（含 `cloth.hue` 覆寫；人物站共用暖褐布的色相，所以人物站的印也是同一個），算成 sRGB：淺色從 OKLCH L 0.52 C 0.15 起、超出色域先降彩度，再以 0.005 一步壓低 L，直到對三張紙（`#f6f3ec`／`#fbf9f4`／`#efebe2`）都 ≥ 4.5:1；深色從 L 0.70 C 0.13 起（v0.47.0 是 0.76，v0.48.0 降低以免暗色印太亮、太像語意色），必要時提高 L，直到對三種夜色（`#111013`／`#18171b`／`#201f24`）都 ≥ 4.5:1。`BaseLayout` 在寫書布變數的同一處寫 `--seal-l`／`--seal-d`；`_theme` 是 `--seal: var(--seal-l, #c23b22)`（深 `var(--seal-d, #e8654c)`），registry 查不到、沒有書布的站維持舊朱色。`--seal-weak` 是 `--seal` 與透明的 `color-mix`（淺 10％、深 14％）。用途不變：眉標方點、目錄與邊注的目前項、檢核頁的勾選、閱讀進度線、首頁 hero 的短橫線、文字 tab 的目前項方點。一頁印色面積不超過 2％；不拿來當一般強調色。印與第二墨同色相，靠彩度與明度分開（印 C≈0.09–0.15，第二墨 C 0.045–0.055）；某個色相若分不開，在色域內加彩度，不換色相。印不畫在書布上——同色相會消失；**星圖的 α 星例外（v0.48.0）**：最亮那顆星與圖說的 α 用固定朱色 `--alpha-star`（淺 `#c23b22`、深 `#e8654c`），因為印色換成書布色相後，在藍、紫站的星圖上幾乎認不出來；其他星圖記號仍用印。布上的記號一律用 `--cloth-ink`／`--cloth-line`。`tools/cover` 生成的主題站封面，右下角的印也取 `sealFor()` 的淺色（重新產生封面才會換）。
 
 ## 1.7 書眉 `<VolumeHead>`（v0.46.0）
 
@@ -277,7 +278,7 @@ export const overview = defineOverview({
 - 左：書布色小印記（主題站是符號、人物站是卷號）＋書眉（`N°04 — Topic`）＋大字站名（registry `label`）＋寬字距的 `site.brand`。
 - 中：`Upkeep`——`Checked`／`Enriched` 兩行日期（`site.curation`，單線圖示，不用 emoji），沒有就不出。
 - 右：`Volumes`——依 `sites.ts` 同軸順序的上一卷／下一卷，以及回 `parentSite`（`null` 時不出）。
-- 最下一行：印色小方點＋`© 2026 Andrew`（`site.footer` 可覆寫），右側排印說明「Set in Newsreader, Inter & JetBrains Mono; Chinese in the system serif & sans」——說的是真的出貨的字（§1.2），換字時一起改。
+- 最下一行：印色小方點＋`© 2026 Andrew`（`site.footer` 可覆寫），右側排印說明「Set in Newsreader & Inter; code in the system mono; Chinese in the system serif & sans」——說的是真的出貨的字（§1.2），換字時一起改。
 
 ## 6.7 試過而撤回（v0.46.0 定案，不要再提）
 
