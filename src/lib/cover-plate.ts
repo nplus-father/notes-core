@@ -154,7 +154,7 @@ export function sealOf(h: number): Seal {
     lightL -= 0.005;
     light = oklchHex(lightL, 0.15, h);
   }
-  let darkL = 0.76;
+  let darkL = 0.7;
   let dark = oklchHex(darkL, 0.13, h);
   while (minContrast(dark, DARK_PAPERS) < SEAL_MIN_CONTRAST && darkL < 0.98) {
     darkL += 0.005;
