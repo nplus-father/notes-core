@@ -353,25 +353,37 @@ from pathlib import Path
 #   借了 26 本 owned 當底座開起來的，所以這 39 本才是它真正的主幹。先排 14 本：每個分類
 #   至少一本正典，六本線上免費（Blitzstein、ISLP、McKinney、Wilke、Mixtape、ESL）可以先做
 #   站不用等書。key ＝英文主標的 slug（冒號前）。
+# 2026-11-14（data-science-note 第一批收書對帳）：Andrew 一次建了 12 個書站，其中 10 本正是
+#   上一版 TOP20 的格子（Spiegelhalter、Harford、Pearl、Kohavi、Huyen、McKinney、Wilke、
+#   Provost、Hubbard、O'Neil），回填成 owned 後 wanted 39 → 29；hr 的 4 格（fearless-organization、
+#   nine-lies-about-work、thanks-for-the-feedback、compensation）早已不在 wanted，一併清掉。
+#   全星系只剩這一站有 wanted，沒有快歸零的站、也沒有多站共等，準則①②這輪是空的。
+#   data-science-note 的概念頁還沒點名任何一本 wanted（每本只出現在 bibliography.ts），
+#   所以準則④只剩同作者書櫃（gh repo list nplus-father，2009 repos）可用。
+#   排法：先補書櫃已有同作者／同條線的（Wheelan、Huyen、Knaflic→Dykes、Christian、Wilke→Tufte），
+#   再讓每個還沒有正典的分類（機率與貝氏、因果、ML 基礎）各有一本，線上免費的優先。
+#   Géron 的 TensorFlow 版不排：Andrew 已建 PyTorch 版站，是否算數待他裁決。
 TOP20 = [
-    ("the-art-of-statistics", "統計思維分類的正典入門；整個站的第一本"),
-    ("the-data-detective", "看數字的十條規則；薄、起手容易"),
-    ("the-fearless-organization", "心理安全感的原典：全星系 7 站 18 頁在談心理安全，架上只有 Edmondson 的 Right Kind of Wrong；hr 站留才分類的 psychological-safety 節點在等它"),
-    ("nine-lies-about-work", "hr 脊梁 First, Break All the Rules（hr 已 2 頁）二十年後的續篇；績效分類的 nine-lies-about-ratings 節點在等它"),
-    ("introduction-to-probability", "機率基礎的教科書，線上免費，可先做站"),
-    ("the-book-of-why", "因果分類的脊梁：因果階梯與反事實"),
-    ("trustworthy-online-controlled-experiments", "A/B 測試正典；工程師做實驗的第一本"),
-    ("an-introduction-to-statistical-learning-with-applications-in-python", "ML 基礎的正典入門（ISLP），線上免費"),
-    ("hands-on-machine-learning-with-scikit-learn-keras-tensorflow", "動手做的 ML 主幹；收第三版"),
-    ("designing-machine-learning-systems", "把已收的兩本 ML system design interview 接成正典"),
-    ("python-for-data-analysis", "pandas 作者親寫，線上免費；實作分類的第一本"),
-    ("practical-statistics-for-data-scientists", "資料科學家該懂的五十個統計概念"),
-    ("fundamentals-of-data-visualization", "視覺化的系統課，線上免費"),
-    ("thanks-for-the-feedback", "同作者群的 Difficult Conversations 已有書站、被 4 頁引用；這本補回饋的接收方，hr 績效分類只有給回饋的一半"),
-    ("data-science-for-business", "把商業問題翻成資料問題的框架；分析與決策分類的脊梁"),
-    ("how-to-measure-anything", "校準估計與資訊價值；「無形資產」也能量"),
-    ("weapons-of-math-destruction", "演算法與社會分類的入門；有中譯"),
-    ("compensation", "薪酬結構教科書；hr 薪酬分類只有 Work Rules! 一本，pay-structure-basics 節點在等它"),
+    ("naked-statistics", "同作者的 Naked Economics 已有書站；有繁中《聰明學統計的 13 又 ½ 堂課》，統計思維分類剩下的入門首選"),
+    ("how-to-lie-with-statistics", "不到兩百頁的原典，Data Detective 開篇就是在回應它（導論標題 How to Lie with Statistics）"),
+    ("calling-bullshit", "有繁中《數據的假象》；Weapons of Math Destruction 剛建站，這本補上個人層級的鬼扯偵測"),
+    ("introduction-to-probability", "機率與貝氏分類 4 本 wanted、0 本正典；哈佛 Stat 110 教科書，線上免費可先做站"),
+    ("bayesian-statistics-the-fun-way", "同分類的無痛入門，薄；Blitzstein 之後接這本"),
+    ("causal-inference", "Book of Why 剛建站，因果分類需要一本實作課；The Mixtape 線上免費"),
+    ("an-introduction-to-statistical-learning-with-applications-in-python", "ML 基礎分類 5 本 wanted 的正典入門（ISLP），線上免費"),
+    ("ai-engineering", "Chip Huyen 書櫃剛有第 1 本（Designing Machine Learning Systems），這本是同作者的下一冊"),
+    ("practical-statistics-for-data-scientists", "BookMaterials 已有第 3 版 Early Release（只有 2 章）；收第二版（2020）"),
+    ("think-stats", "實作分類用 Python 做探索式統計，線上免費；接已建的 Python for Data Analysis"),
+    ("the-visual-display-of-quantitative-information", "Fundamentals of Data Visualization 剛建站，這本是它反覆引用的原典（資料墨水比）"),
+    ("effective-data-storytelling", "Knaflic 的 Storytelling with Data 已有書站；這本是視覺化與敘事分類的下一本"),
+    ("the-alignment-problem", "同作者的 Algorithms to Live By 已有書站；演算法與社會分類的 ML 面"),
+    ("everybody-lies", "有繁中《數據、謊言與真相》；演算法與社會分類"),
+    ("invisible-women", "有繁中《被隱形的女性》；資料缺口即偏見，接 Weapons of Math Destruction"),
+    ("prediction-machines", "有繁中《AI 經濟的策略思維》；分析與決策分類"),
+    ("lean-analytics", "分析與決策分類；接 startup 站的 Lean Startup 書櫃"),
+    ("statistics-done-wrong", "p 值與多重比較的錯誤圖鑑，薄、線上免費"),
+    ("data-science-from-scratch", "實作分類從零手刻演算法；收第二版（2019）"),
+    ("the-hundred-page-machine-learning-book", "一百頁的 ML 骨架，ML 基礎分類最薄的一本"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
