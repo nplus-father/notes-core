@@ -22,7 +22,7 @@ if (!stations.length) {
 
 const WIDTHS = [320, 390, 768, 1440];
 const THEMES = ["light", "dark"];
-const FAMILIES = ["Newsreader Variable", "Inter Variable", "JetBrains Mono Variable"];
+const FAMILIES = ["Newsreader Variable", "Inter Variable"];
 const BANNED_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com"];
 const CHECKS = ["overflow", "console", "emoji", "cls", "axe", "tap", "head", "fonts", "3rdparty"];
 const MAX_DETAIL_LINES = 110;
