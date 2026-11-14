@@ -1,5 +1,5 @@
 import { siteBySlug, topicSites, personSites } from "./sites";
-import { clothFor, coverPlateFor } from "./cover-plate";
+import { clothFor, coverPlateFor, sealFor } from "./cover-plate";
 import { motifSvg } from "./motifs";
 
 const PAPER = "#f6f3ec";
@@ -35,9 +35,10 @@ export function currentVolume(fallbackLabel: string): Volume {
   const plate = coverPlateFor(slug);
   const cloth = clothFor(slug);
   const vars: string[] = [];
+  const seal = sealFor(slug);
   if (cloth) {
-    const light = [cloth.light].find((c) => contrast(c, PAPER) >= 3);
-    const dark = [cloth.dark, cloth.light].find((c) => contrast(c, NIGHT) >= 3);
+    const light = [cloth.light, seal?.light].find((c) => c && contrast(c, PAPER) >= 3);
+    const dark = [cloth.dark, cloth.light, seal?.dark].find((c) => c && contrast(c, NIGHT) >= 3);
     if (light) vars.push(`--vol-l: ${light}`);
     if (dark) vars.push(`--vol-d: ${dark}`);
   }
