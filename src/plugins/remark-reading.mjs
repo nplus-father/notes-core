@@ -242,7 +242,7 @@ export default function remarkReading() {
               : []),
             {
               type: "emphasis",
-              data: { hName: "span", hProperties: { className: ["code-scroll"], ariaHidden: "true" } },
+              data: { hName: "span", hProperties: { className: ["code-scroll"], ariaHidden: "true", dataPagefindIgnore: "" } },
               children: [{ type: "text", value: "Scroll →" }],
             },
           ],
