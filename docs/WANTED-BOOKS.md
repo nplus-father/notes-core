@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-11-14T10:16:56+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-14T11:53:25+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -10,9 +10,9 @@
 
 **已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，2010 個 repo）。
 
-## 先收這 20 本
+## 先收這 9 本
 
-整份 29 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+整份 10 筆太長，這是從裡面挑出來的採購順序，也是建議的消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
 
 「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
 
@@ -20,26 +20,15 @@
 
 | # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | **Naked Statistics** | Charles Wheelan | 聰明學統計的 13 又 ½ 堂課 | 2013 | data-science(28) | 同作者的 Naked Economics 已有書站；有繁中《聰明學統計的 13 又 ½ 堂課》，統計思維分類剩下的入門首選 |
-| 2 | **How to Lie with Statistics** | Darrell Huff |  | 1954 | data-science(28) | 不到兩百頁的原典，Data Detective 開篇就是在回應它（導論標題 How to Lie with Statistics） |
-| 3 | **Calling Bullshit** | Carl T. Bergstrom & Jevin D. West | 數據的假象 | 2020 | data-science(28) | 有繁中《數據的假象》；Weapons of Math Destruction 剛建站，這本補上個人層級的鬼扯偵測 |
-| 4 | **Introduction to Probability** | Joseph K. Blitzstein & Jessica Hwang |  | 2019 | data-science(28) | 機率與貝氏分類 4 本 wanted、0 本正典；哈佛 Stat 110 教科書，線上免費可先做站 |
-| 5 | **Bayesian Statistics the Fun Way** | Will Kurt |  | 2019 | data-science(28) | 同分類的無痛入門，薄；Blitzstein 之後接這本 |
-| 6 | **Causal Inference: The Mixtape** | Scott Cunningham |  | 2021 | data-science(28) | Book of Why 剛建站，因果分類需要一本實作課；The Mixtape 線上免費 |
-| 7 | **An Introduction to Statistical Learning with Applications in Python** | Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani & Jonathan Taylor |  | 2023 | data-science(28) | ML 基礎分類 5 本 wanted 的正典入門（ISLP），線上免費 |
-| 8 | **AI Engineering** | Chip Huyen |  | 2025 | data-science(28) | Chip Huyen 書櫃剛有第 1 本（Designing Machine Learning Systems），這本是同作者的下一冊 |
-| 9 | **Practical Statistics for Data Scientists** | Peter Bruce, Andrew Bruce & Peter Gedeck |  | 2017 | data-science(28) | BookMaterials 已有第 3 版 Early Release（只有 2 章）；收第二版（2020） |
-| 10 | **Think Stats** | Allen B. Downey |  | 2011 | data-science(28) | 實作分類用 Python 做探索式統計，線上免費；接已建的 Python for Data Analysis |
-| 11 | **The Visual Display of Quantitative Information** | Edward R. Tufte |  | 1983 | data-science(28) | Fundamentals of Data Visualization 剛建站，這本是它反覆引用的原典（資料墨水比） |
-| 12 | **Effective Data Storytelling** | Brent Dykes |  | 2019 | data-science(28) | Knaflic 的 Storytelling with Data 已有書站；這本是視覺化與敘事分類的下一本 |
-| 13 | **The Alignment Problem** | Brian Christian |  | 2020 | data-science(28) | 同作者的 Algorithms to Live By 已有書站；演算法與社會分類的 ML 面 |
-| 14 | **Everybody Lies** | Seth Stephens-Davidowitz | 數據、謊言與真相 | 2017 | data-science(28) | 有繁中《數據、謊言與真相》；演算法與社會分類 |
-| 15 | **Invisible Women** | Caroline Criado Perez | 被隱形的女性 | 2019 | data-science(28) | 有繁中《被隱形的女性》；資料缺口即偏見，接 Weapons of Math Destruction |
-| 16 | **Prediction Machines** | Ajay Agrawal, Joshua Gans & Avi Goldfarb |  | 2018 | data-science(28) | 有繁中《AI 經濟的策略思維》；分析與決策分類 |
-| 17 | **Lean Analytics** | Alistair Croll & Benjamin Yoskovitz |  | 2013 | data-science(28) | 分析與決策分類；接 startup 站的 Lean Startup 書櫃 |
-| 18 | **Statistics Done Wrong** | Alex Reinhart |  | 2015 | data-science(28) | p 值與多重比較的錯誤圖鑑，薄、線上免費 |
-| 19 | **Data Science from Scratch** | Joel Grus |  | 2015 | data-science(28) | 實作分類從零手刻演算法；收第二版（2019） |
-| 20 | **The Hundred-Page Machine Learning Book** | Andriy Burkov |  | 2019 | data-science(28) | 一百頁的 ML 骨架，ML 基礎分類最薄的一本 |
+| 1 | **The Elements of Statistical Learning** | Trevor Hastie, Robert Tibshirani & Jerome Friedman |  | 2001 | data-science(9) | ISLP 2026-11-14 剛建站，ESL 是同一組作者（Hastie、Tibshirani）的數學完整版；線上免費，可先做站 |
+| 2 | **The Hundred-Page Machine Learning Book** | Andriy Burkov |  | 2019 | data-science(9) | ML 基礎分類只剩它與 ESL；一百頁，最薄、最快消化 |
+| 3 | **Statistical Rethinking** | Richard McElreath |  | 2020 | data-science(9) | 機率與貝氏分類剛建了 Blitzstein、Kurt 兩本入門，缺一本貝氏建模的進階課 |
+| 4 | **Mastering 'Metrics** | Joshua D. Angrist & Jörn-Steffen Pischke |  | 2014 | data-science(9) | Causal Inference: The Mixtape 剛建站，這本是同一套五招（隨機、迴歸、IV、RDD、DiD）的平易版 |
+| 5 | **Bernoulli's Fallacy** | Aubrey Clayton |  | 2021 | data-science(9) | Signal and the Noise 第 8 章那場頻率派 vs 貝氏論戰的整本版；Taleb 書櫃已 7 本，同一條機率哲學線 |
+| 6 | **Competing on Analytics** | Thomas H. Davenport & Jeanne G. Harris |  | 2007 | data-science(9) | 本站概念頁 consumer-of-analytics 已點名 Davenport（1 處，另見 schools.ts），portal 上 Davenport 0 本 |
+| 7 | **The Model Thinker** | Scott E. Page |  | 2018 | data-science(9) | 分析與決策分類的多模型思維；portal 上 Scott E. Page 0 本 |
+| 8 | **Ace the Data Science Interview** | Nick Singh & Kevin Huo |  | 2021 | data-science(9) | portal 已有 14 個名稱含 interview 的書 repo（system design、behavioral、coding、PM、ML system design），獨缺資料科學版 |
+| 9 | **（統計學，最強的商業武器）** | 西內啓 |  | 2013 | data-science(9) | 日系商業統計入門，繁中在版；統計思維分類收尾 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -59,12 +48,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2379 筆（去重 1840 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **29 筆（去重 29 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2398 筆（去重 1859 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **10 筆（去重 10 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 87 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 87 筆 |
 
-> `owned` 去重後的 1840 是**已建成書站的書**（2379 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1859 是**已建成書站的書**（2398 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -104,41 +93,22 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 29 筆）
+## 完整清單（依站，共 10 筆）
 
-### data-science-note — 29 本
+### data-science-note — 10 本
 
 | 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
 | --- | --- | --- | --- | --- |
-| Naked Statistics | Charles Wheelan | 聰明學統計的 13 又 ½ 堂課 | 2013 | 與已收的 Naked Economics 同作者同路數；迴歸、推論、中央極限定理的無痛版 |
-| How to Lie with Statistics | Darrell Huff |  | 1954 | 七十年不過時的短書：平均的選擇、被截的軸、樣本偏差 |
-| Statistics Done Wrong | Alex Reinhart |  | 2015 | p 值、檢定力、多重比較的錯誤圖鑑；線上有免費版 |
-| Calling Bullshit | Carl T. Bergstrom & Jevin D. West | 數據的假象 | 2020 | 資料時代的鬼扯偵測：選擇偏差、誤導圖表、大數據的傲慢 |
 | （統計學，最強的商業武器） | 西內啓 | 統計學，最強的商業武器 | 2013 | 日系商業統計入門；把「為什麼要學統計」講給經理人聽 |
-| Introduction to Probability | Joseph K. Blitzstein & Jessica Hwang |  | 2019 | 哈佛 Stat 110 教科書，機率基礎的正典；第二版線上免費 |
-| Bayesian Statistics the Fun Way | Will Kurt |  | 2019 | 貝氏統計的無痛入門：從星際大戰到 A/B 測試 |
 | Statistical Rethinking | Richard McElreath |  | 2020 | 貝氏建模與因果思維的進階課；第二版 |
 | Bernoulli's Fallacy | Aubrey Clayton |  | 2021 | 頻率派統計的邏輯缺陷與再現性危機——Silver 第 8 章那場論戰的整本版 |
-| Causal Inference: The Mixtape | Scott Cunningham |  | 2021 | DAG、工具變數、DiD、RDD 的實作課；線上免費 |
 | Mastering 'Metrics | Joshua D. Angrist & Jörn-Steffen Pischke |  | 2014 | 計量經濟五招（隨機、迴歸、工具變數、RDD、DiD）的平易版；接 economics 站 |
-| An Introduction to Statistical Learning with Applications in Python | Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani & Jonathan Taylor |  | 2023 | ISLP；ML 基礎的正典入門：偏差—變異、交叉驗證、樹與 boosting，線上免費 |
 | Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow | Aurélien Géron | 精通機器學習 | 2017 | 動手做的 ML 主幹；收第三版（2022） |
 | The Hundred-Page Machine Learning Book | Andriy Burkov |  | 2019 | 一百頁講完 ML 的骨架；複習用 |
-| AI Engineering | Chip Huyen |  | 2025 | 基礎模型時代的應用工程：評估、RAG、微調、推論最佳化 |
 | The Elements of Statistical Learning | Trevor Hastie, Robert Tibshirani & Jerome Friedman |  | 2001 | ISL 的數學完整版；查閱用，線上免費 |
-| Practical Statistics for Data Scientists | Peter Bruce, Andrew Bruce & Peter Gedeck |  | 2017 | 統計學家會用、資料科學家該懂的五十個概念；收第二版（2020） |
-| Data Science from Scratch | Joel Grus |  | 2015 | 不靠套件從零手刻演算法，理解比效率重要時讀它；收第二版（2019） |
-| Think Stats | Allen B. Downey |  | 2011 | 用 Python 做探索式統計；收第三版（2025），線上免費 |
-| The Visual Display of Quantitative Information | Edward R. Tufte |  | 1983 | 資料墨水比、圖表垃圾、Minard 的拿破崙圖——視覺化的原典 |
-| Effective Data Storytelling | Brent Dykes |  | 2019 | 資料、敘事、視覺三者交集的框架；Knaflic 之後的下一本 |
-| Lean Analytics | Alistair Croll & Benjamin Yoskovitz |  | 2013 | One Metric That Matters、各商業模式的關鍵指標；接 startup 站 |
-| Prediction Machines | Ajay Agrawal, Joshua Gans & Avi Goldfarb |  | 2018 | 中譯《AI 經濟的策略思維》；AI＝預測變便宜，預測與判斷分工的經濟學 |
 | Competing on Analytics | Thomas H. Davenport & Jeanne G. Harris |  | 2007 | 分析型競爭者的組織條件；Davenport 那篇 HBR 文章的整本版 |
 | The Model Thinker | Scott E. Page |  | 2018 | 多模型思維：同一現象用幾個簡單模型交叉看 |
 | Ace the Data Science Interview | Nick Singh & Kevin Huo |  | 2021 | 接 leetcode／system-design／behaviour-interview 三個面試站的資料科學版 |
-| Everybody Lies | Seth Stephens-Davidowitz | 數據、謊言與真相 | 2017 | Google 搜尋資料揭露人們不會對問卷說的事；大數據的四種力量與極限 |
-| Invisible Women | Caroline Criado Perez | 被隱形的女性 | 2019 | 資料缺口本身就是偏見：從撞擊測試假人到藥物劑量 |
-| The Alignment Problem | Brian Christian |  | 2020 | ML 系統怎麼學到我們沒打算教的東西；與 Algorithms to Live By 同作者 |
 
 ## 沒有英文書名的 1 本（華文／日文原著）
 

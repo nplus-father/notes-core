@@ -363,27 +363,26 @@ from pathlib import Path
 #   排法：先補書櫃已有同作者／同條線的（Wheelan、Huyen、Knaflic→Dykes、Christian、Wilke→Tufte），
 #   再讓每個還沒有正典的分類（機率與貝氏、因果、ML 基礎）各有一本，線上免費的優先。
 #   Géron 的 TensorFlow 版不排：Andrew 已建 PyTorch 版站，是否算數待他裁決。
+# 2026-11-14（同日第二輪，`/note-wanted` 全跑；資料源 GitHub 現況 2028 repos）：Andrew 再建 19 個
+#   書站，上一版 TOP20 有 **19 格**當場作廢（第 1–19 格，只剩 Burkov），wanted 29 → 10。
+#   a. **ISLP 沒進「先扣掉」**：portal 書名是 `An Introduction to Statistical Learning: with
+#      Applications in Python`（帶冒號），去副標後只剩主標，和 wanted 的整串書名對不上。照
+#      2026-08-20 b 的前例**不寫 ALIASES**，直接回填 `introduction-to-statistical-learning-python`。
+#   b. 準則①②③這輪仍是空的（單站、無快歸零、無站主自標），全靠準則④＋⑤排：
+#      ESL 接剛建的 ISLP；Mixtape 建好後 Mastering 'Metrics 是同一套五招的平易版；
+#      Blitzstein＋Kurt 建好後機率與貝氏分類缺進階建模（McElreath）。
+#   c. Géron TensorFlow 版**仍不排**：PyTorch 版 `hands-on-machine-learning-with-scikit-learn-and-pytorch`
+#      已建站，是否以它結案待 Andrew 裁決（第二輪問）。
 TOP20 = [
-    ("naked-statistics", "同作者的 Naked Economics 已有書站；有繁中《聰明學統計的 13 又 ½ 堂課》，統計思維分類剩下的入門首選"),
-    ("how-to-lie-with-statistics", "不到兩百頁的原典，Data Detective 開篇就是在回應它（導論標題 How to Lie with Statistics）"),
-    ("calling-bullshit", "有繁中《數據的假象》；Weapons of Math Destruction 剛建站，這本補上個人層級的鬼扯偵測"),
-    ("introduction-to-probability", "機率與貝氏分類 4 本 wanted、0 本正典；哈佛 Stat 110 教科書，線上免費可先做站"),
-    ("bayesian-statistics-the-fun-way", "同分類的無痛入門，薄；Blitzstein 之後接這本"),
-    ("causal-inference", "Book of Why 剛建站，因果分類需要一本實作課；The Mixtape 線上免費"),
-    ("an-introduction-to-statistical-learning-with-applications-in-python", "ML 基礎分類 5 本 wanted 的正典入門（ISLP），線上免費"),
-    ("ai-engineering", "Chip Huyen 書櫃剛有第 1 本（Designing Machine Learning Systems），這本是同作者的下一冊"),
-    ("practical-statistics-for-data-scientists", "BookMaterials 已有第 3 版 Early Release（只有 2 章）；收第二版（2020）"),
-    ("think-stats", "實作分類用 Python 做探索式統計，線上免費；接已建的 Python for Data Analysis"),
-    ("the-visual-display-of-quantitative-information", "Fundamentals of Data Visualization 剛建站，這本是它反覆引用的原典（資料墨水比）"),
-    ("effective-data-storytelling", "Knaflic 的 Storytelling with Data 已有書站；這本是視覺化與敘事分類的下一本"),
-    ("the-alignment-problem", "同作者的 Algorithms to Live By 已有書站；演算法與社會分類的 ML 面"),
-    ("everybody-lies", "有繁中《數據、謊言與真相》；演算法與社會分類"),
-    ("invisible-women", "有繁中《被隱形的女性》；資料缺口即偏見，接 Weapons of Math Destruction"),
-    ("prediction-machines", "有繁中《AI 經濟的策略思維》；分析與決策分類"),
-    ("lean-analytics", "分析與決策分類；接 startup 站的 Lean Startup 書櫃"),
-    ("statistics-done-wrong", "p 值與多重比較的錯誤圖鑑，薄、線上免費"),
-    ("data-science-from-scratch", "實作分類從零手刻演算法；收第二版（2019）"),
-    ("the-hundred-page-machine-learning-book", "一百頁的 ML 骨架，ML 基礎分類最薄的一本"),
+    ("the-elements-of-statistical-learning", "ISLP 2026-11-14 剛建站，ESL 是同一組作者（Hastie、Tibshirani）的數學完整版；線上免費，可先做站"),
+    ("the-hundred-page-machine-learning-book", "ML 基礎分類只剩它與 ESL；一百頁，最薄、最快消化"),
+    ("statistical-rethinking", "機率與貝氏分類剛建了 Blitzstein、Kurt 兩本入門，缺一本貝氏建模的進階課"),
+    ("mastering-metrics", "Causal Inference: The Mixtape 剛建站，這本是同一套五招（隨機、迴歸、IV、RDD、DiD）的平易版"),
+    ("bernoulli-s-fallacy", "Signal and the Noise 第 8 章那場頻率派 vs 貝氏論戰的整本版；Taleb 書櫃已 7 本，同一條機率哲學線"),
+    ("competing-on-analytics", "本站概念頁 consumer-of-analytics 已點名 Davenport（1 處，另見 schools.ts），portal 上 Davenport 0 本"),
+    ("the-model-thinker", "分析與決策分類的多模型思維；portal 上 Scott E. Page 0 本"),
+    ("ace-the-data-science-interview", "portal 已有 14 個名稱含 interview 的書 repo（system design、behavioral、coding、PM、ML system design），獨缺資料科學版"),
+    ("cjk::統計學，最強的商業武器", "日系商業統計入門，繁中在版；統計思維分類收尾"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
