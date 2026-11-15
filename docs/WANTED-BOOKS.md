@@ -1,6 +1,6 @@
 # 待收書單（bibliography `wanted` 全星系匯出）
 
-> **生成於 2026-11-15T11:27:28+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-15T14:47:49+08:00**｜由 `tools/export-wanted.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：各 note 站 `src/data/bibliography.ts` 裡標成 `status: "wanted"` 的書，
 全部匯出成一張採購清單。書名以**英文原名**為主，中譯附在後面，並附**作者**——
@@ -8,19 +8,16 @@
 不是 Greenleaf 1977 原典），下單前請對作者。由
 `notes-core/tools/export-wanted.py` 生成，**不要手改**——改各站的 bibliography 再重跑。
 
-**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，2010 個 repo）。
+**已收錄比對的資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，2047 個 repo）。
 
-## 先收這 1 本
+## 先收這 0 本——採購清單清空了
 
-全星系的 wanted 只剩 1 筆，**這節就是全部**，順序即建議的採購與消化順序（薄的、起手容易的排前面）。**這節是全檔唯一的人工區塊**——要改請編 `export-wanted.py` 的 `TOP20`，不要改這裡。挑選準則依序：**①歸零槓桿——優先收「還差 1–2 本就收齊」的站所缺的書**（見下面「快歸零的站」那節，腳本自動算；站書單一歸零，缺書就不再是它進 `note-check --enrich` 深化的瓶頸） ②多站共等，收一本補多站 ③站主自己在 `note` 裡標了「最大／頭號缺口」 ④portal 驗證的 anchor 深度——nplus.wiki 上已經建成幾本回指它的書站（同作者書櫃、同一條線的衍生書），書櫃愈深、原典愈缺就排愈前面（見 [SOURCING-DEBT.md](./SOURCING-DEBT.md)） ⑤同等重要時，薄的、有繁中在版的排前面。
+全星系 78 個有書單的站，**沒有任何一筆 `wanted`**：想收的書都已經建成書站，剩下的都判過 `unavailable`（想收但收不到）或 `skipped`（不打算收）——兩者都不佔採購清單版面。
 
-「站」欄的 `(n)` ＝**收了這本之後該站還剩幾本**；`(0)` 就是這一本收了該站即歸零。
+**這節平常是全檔唯一的人工區塊**（`export-wanted.py` 的 `TOP20`），清空時沒有東西可排；等新站開起來、或既有站再登記新的 wanted，它才會長回來。
 
-「為何排這裡」的 portal 數字都是實查出來的（作者書櫃本數、同一條線的衍生書數、各站概念頁引用處數）；`/note-wanted` 每次重挑會一併重查。
+> 採購缺口歸零 **不等於**內容沒有缺口——書有了而內容沒寫完看 [ENRICH-BACKLOG.md](./ENRICH-BACKLOG.md)，寫了而查不到出處看 [SOURCING-DEBT.md](./SOURCING-DEBT.md)，書有了沒站在管（含開新站候選）看 [ORPHAN-BOOKS.md](./ORPHAN-BOOKS.md)。
 
-| # | 英文書名 | 作者 | 中譯 | 年 | 站 | 為何排這裡 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | **Competing on Analytics** | Thomas H. Davenport & Jeanne G. Harris |  | 2007 | data-science(0) | 全星系最後一本 wanted：data-science 站 owned＋wanted 只差它——**收了就歸零**；概念頁 consumer-of-analytics 已點名 Davenport，portal 上 Davenport 0 本 |
 
 **這是「書本身還沒有」那個軸**，與 docs/ 其餘幾份不同：
 
@@ -40,12 +37,12 @@
 
 | status | 意思 | 判準 | 筆數 |
 | --- | --- | --- | --- |
-| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2407 筆（去重 1868 本） |
-| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **1 筆（去重 1 本）** |
+| `owned` | **已收錄**——書已經做成 `nplus.wiki/<slug>/` 的書站 | 必須有 `slug`；首頁書架的封面列就是取這批，概念頁的 `furtherReading.anchor` 也是連到這裡 | 2408 筆（去重 1869 本） |
+| `wanted` | **待收錄**——想收、還沒有 | 買得到，只是還沒買／還沒做站 | **0 筆（去重 0 本）** |
 | `unavailable` | **暫無來源**——想收但收不到 | 絕版、無中譯、或只有機構授權（如 Scrum Guide、Vanguard 內部傳記） | 88 筆 |
 | `skipped` | **刻意略過**——不打算收 | 內容重複、練習冊、合輯、不合站主軸；`note` 欄寫明為何略過 | 87 筆 |
 
-> `owned` 去重後的 1868 是**已建成書站的書**（2407 是含跨站重複的登錄筆數，
+> `owned` 去重後的 1869 是**已建成書站的書**（2408 是含跨站重複的登錄筆數，
 > 一本書被三站列進盤點就算三筆）。它代表「書站存在、封面抓得到、概念頁 anchor 回得去」，
 > 不等於實體書在書架上。
 
@@ -72,13 +69,11 @@
 
 無——沒有書名相近卻沒對上的。
 
-## 快歸零的站：1 站只差 1–2 本
+## 快歸零的站：0 站只差 1–2 本
 
 **TOP20 的準則①就看這一節。** 這些站的書單已經接近收齊，剩下的一兩本收到，整站的採購缺口就歸零——缺書不再是它進 `note-check --enrich` 深化的瓶頸。分母只算 `owned + wanted`（`unavailable` / `skipped` 是永久不可收，不算欠）。
 
-| 站 | 已收 | 還差 | 差哪幾本 |
-| --- | ---: | ---: | --- |
-| `data-science-note` | 64 | **1** | Competing on Analytics（Thomas H. Davenport & Jeanne G. Harris） |
+（目前沒有只差 1–2 本的站。）
 
 ## 優先收：0 本有兩個以上的站在等
 
@@ -87,13 +82,7 @@
 | 英文書名 | 作者 | 中譯 | 年 | 等它的站 |
 | --- | --- | --- | --- | --- |
 
-## 完整清單（依站，共 1 筆）
-
-### data-science-note — 1 本
-
-| 英文書名 | 作者 | 中譯 | 年 | 為何想收 |
-| --- | --- | --- | --- | --- |
-| Competing on Analytics | Thomas H. Davenport & Jeanne G. Harris |  | 2007 | 分析型競爭者的組織條件；Davenport 那篇 HBR 文章的整本版 |
+## 完整清單（依站，共 0 筆）
 
 ## 沒有英文書名的 0 本（華文／日文原著）
 

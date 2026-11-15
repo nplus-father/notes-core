@@ -379,9 +379,9 @@ from pathlib import Path
 #   （ESL、Burkov、McElreath、Mastering 'Metrics、Bernoulli's Fallacy、Model Thinker、Ace、
 #   Becoming a Data Head），西內啓取不到 → `unavailable`，由 Becoming a Data Head 接同一個位置。
 #   wanted 9 → 1，全星系只剩 Competing on Analytics。
-TOP20 = [
-    ("competing-on-analytics", "全星系最後一本 wanted：data-science 站 owned＋wanted 只差它——**收了就歸零**；概念頁 consumer-of-analytics 已點名 Davenport，portal 上 Davenport 0 本"),
-]
+# 2026-11-15（同日第三輪）：Competing on Analytics 2017 增訂版建站（`competing-on-analytics`），
+#   data-science-note 那筆改成 `owned`＋slug；wanted 1 → 0，全星系待收書單歸零，TOP20 清空。
+TOP20 = []
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
 PORTAL_REPOS = NOTES_ROOT / ".." / "sites" / "nplus-father.github.io" / "src" / "data" / "repos.json"
