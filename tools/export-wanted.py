@@ -373,6 +373,8 @@ from pathlib import Path
 #      Blitzstein＋Kurt 建好後機率與貝氏分類缺進階建模（McElreath）。
 #   c. Géron TensorFlow 版**仍不排**：PyTorch 版 `hands-on-machine-learning-with-scikit-learn-and-pytorch`
 #      已建站，是否以它結案待 Andrew 裁決（第二輪問）。
+# 2026-11-15（`/note-wanted`；GitHub 現況 2010 repos）：Andrew 裁決 Géron 以 PyTorch 版結案，
+#   data-science-note 那筆改成 PyTorch 版書名＋`owned`＋slug；wanted 10 → 9，TOP20 不變。
 TOP20 = [
     ("the-elements-of-statistical-learning", "ISLP 2026-11-14 剛建站，ESL 是同一組作者（Hastie、Tibshirani）的數學完整版；線上免費，可先做站"),
     ("the-hundred-page-machine-learning-book", "ML 基礎分類只剩它與 ESL；一百頁，最薄、最快消化"),
