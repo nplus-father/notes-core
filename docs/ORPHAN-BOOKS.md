@@ -1,12 +1,12 @@
 # 孤兒書與死鏈（反向盤點）
 
-> **生成於 2026-11-15T14:58:24+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
+> **生成於 2026-11-15T18:50:58+08:00**｜由 `tools/export-orphan-books.py` 產生，**不要手改**——改資料源再重跑。
 
 **這份是什麼**：從**書庫那一側**反過來問的四個問題——書庫的書有沒有站在管、站上的 slug 指得到書嗎。由 `notes-core/tools/export-orphan-books.py` 生成，**不要手改**——改各站的 bibliography／內容再重跑。
 
 **為什麼需要反向**：另外幾份都是「站說它缺什麼」的正向視角，看不到「**沒有任何站提過**」的書——新建的書站如果沒人認領，正向工具永遠不會提醒你，因為沒有站提過它。
 
-**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，2043 個 repo），其中 `nplus-kind-book` 的書 repo 1898 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
+**資料源**：GitHub 現況（`gh repo list` nplus-father／Andrewnplus，2036 個 repo），其中 `nplus-kind-book` 的書 repo 1891 本（9 本經 [EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決排除，不入盤點）。
 
 | 文件 | 缺口是什麼 | 靠什麼補 |
 | --- | --- | --- |
@@ -22,9 +22,9 @@
 | 孤兒書（沒有任何站的 bibliography 指到） | **29** | 書站建了但沒有筆記在用，等於白建 |
 | ↳ 其中內容頁已經 anchor 到、盤點沒登記 | **0** | 補一筆 bibliography 就好，不必開站 |
 | 刻意排除（[EXCLUDED-BOOKS.md](./EXCLUDED-BOOKS.md) 裁決不進任何站） | **9** | 不列孤兒、不再提醒 |
-| 死鏈 slug（bibliography 指到不存在的 repo） | **4** | 首頁書架封面 404 |
+| 死鏈 slug（bibliography 指到不存在的 repo） | **11** | 首頁書架封面 404 |
 | `owned` 沒有 slug | **0** | 不會出現在首頁書架，登記了卻看不到 |
-| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **4** | 延伸閱讀連結 404 |
+| 死鏈 anchor（內容頁 `book:` 指到不存在的 repo） | **11** | 延伸閱讀連結 404 |
 
 ## 一、孤兒書：29 本沒有任何站認領
 
@@ -40,7 +40,7 @@
 
 | leaf | 未覆蓋/總數 | 未覆蓋率 | 沒人認領的是哪幾本 |
 | --- | ---: | ---: | --- |
-| `travel` | 14/20 | **70%** | Why the Dutch Are Different、Travels in Siberia、The Tao of Travel、The Nile、Frommer's National Parks of the American West、The Narrow Road to the Deep North and Other Travel Sketches、The Lost Heart of Asia、Indonesia, Etc.: Exploring the Improbable Nation、In a Sunburned Country、Hokkaido Highway Blues: Hitchhiking Japan、Ghosts of Spain、Elephant Complex: Travels in Sri Lanka、City of Djinns、Black Dragon River: A Journey Down the Amur River at the Borderlands of Empires |
+| `travel` | 14/20 | **70%** | The Tao of Travel、The Narrow Road to the Deep North and Other Travel Sketches、Ghosts of Spain、Why the Dutch Are Different、Travels in Siberia、The Nile、Frommer's National Parks of the American West、The Lost Heart of Asia、Indonesia, Etc.: Exploring the Improbable Nation、In a Sunburned Country、Hokkaido Highway Blues: Hitchhiking Japan、Elephant Complex: Travels in Sri Lanka、City of Djinns、Black Dragon River: A Journey Down the Amur River at the Borderlands of Empires |
 
 ### 1c. 各 leaf 覆蓋率與目前誰在管
 
@@ -49,7 +49,7 @@
 | leaf | sub | 未覆蓋/總數 | 未覆蓋率 | 目前誰在管 |
 | --- | --- | ---: | ---: | --- |
 | `travel` | lifestyle | 14/20 | 70% | travel(6) |
-| `modern` | history | 6/17 | 35% | history(7)、travel(2)、drucker(2) |
+| `modern` | history | 6/17 | 35% | history(7)、fromm(2)、drucker(2) |
 | `civilization` | history | 4/38 | 11% | history(20)、travel(6)、wujun(4) |
 | `cultural` | history | 3/22 | 14% | travel(11)、history(7)、economics(2) |
 | `food-drink` | lifestyle | 1/3 | 33% | history(2) |
@@ -82,7 +82,7 @@
 | `travels-in-siberia` | Travels in Siberia | Ian Frazier |
 | `why-the-dutch-are-different` | Why the Dutch Are Different | Ben Coates |
 
-#### `modern` — 6/17 沒人認領（目前：history(7)、travel(2)、drucker(2)）
+#### `modern` — 6/17 沒人認領（目前：history(7)、fromm(2)、drucker(2)）
 
 | 書 repo | 書名 | 作者 |
 | --- | --- | --- |
@@ -122,16 +122,23 @@
 | --- | --- | --- |
 | `how-to-measure-anything-in-cybersecurity-risk` | How to Measure Anything in Cybersecurity Risk | Douglas W. Hubbard & Richard Seiersen |
 
-## 二、死鏈 slug：4 個
+## 二、死鏈 slug：11 個
 
 bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的封面會 404**。兩種收法（2026-08-04 那批 8 個就是這樣分的）：書其實該有就**補建書 repo**，書根本不存在就**撤掉這筆 `slug`**，不要掛死鏈。
 
 | slug | 登記在 |
 | --- | --- |
-| `60-seconds-and-youre-hired` | behaviour-interview-note |
-| `behavioral-interviews-for-software-engineers` | behaviour-interview-note、career-note |
-| `decode-and-conquer` | behaviour-interview-note |
-| `first-break-all-the-rules` | career-note、hr-note、management-note |
+| `thinking-fast-and-slow` | data-science-note、economics-note、investing-note、science-note、thinking-note |
+| `thinking-in-programming-paradigms-and-oop` | design-patterns-note |
+| `thinking-in-systems` | thinking-note |
+| `thirty-million-words` | relationships-note |
+| `through-the-language-glass` | science-note、thinking-note |
+| `time-management` | tools-note、tracy-note |
+| `time-smart` | habits-note |
+| `timeless-way-of-building` | design-patterns-note |
+| `tiny-habits` | habits-note、tools-note |
+| `to-have-or-to-be` | fromm-note、philosophy-note |
+| `to-sell-is-human` | business-strategy-note |
 
 ## 三、`owned` 沒有 slug：0 筆
 
@@ -139,16 +146,23 @@ bibliography 的 `slug` 在書庫裡找不到對應 repo——**首頁書架的�
 
 無——每一筆 `owned` 都有 slug。
 
-## 四、死鏈 anchor：4 個 slug
+## 四、死鏈 anchor：11 個 slug
 
 內容頁 `furtherReading` 的 `book:` 指到不存在的書 repo——延伸閱讀連結 404。[SOURCING-DEBT](./SOURCING-DEBT.md) 只驗過「頁有沒有 anchor」，沒驗過「anchor 到的書在不在」。
 
 | book slug | 出現在哪些頁 |
 | --- | --- |
-| `60-seconds-and-youre-hired` | `behaviour-interview-note/concepts/delivery/sixty-second-sell.md`、`behaviour-interview-note/guide/03-canon-guide.md`、`behaviour-interview-note/guide/05-reading-path.md` |
-| `behavioral-interviews-for-software-engineers` | `behaviour-interview-note/concepts/frameworks/star-starr-carl.md`、`behaviour-interview-note/concepts/fundamentals/how-evaluated.md`、`behaviour-interview-note/guide/01-what-this-field-asks.md`、`behaviour-interview-note/guide/02-threads-and-schools.md`、`behaviour-interview-note/guide/03-canon-guide.md` 等 21 處 |
-| `decode-and-conquer` | `behaviour-interview-note/guide/03-canon-guide.md` |
-| `first-break-all-the-rules` | `career-note/concepts/manage-yourself/first-year-manager.md`、`career-note/concepts/manage-yourself/q12-and-four-keys.md`、`hr-note/concepts/performance-feedback/four-keys-of-great-managers.md`、`hr-note/concepts/performance-feedback/twelve-questions.md`、`hr-note/guide/01-what-this-field-asks.md` 等 11 處 |
+| `thinking-fast-and-slow` | `economics-note/guide/03-canon-guide.md`、`science-note/concepts/mind-cognition/system-one-and-system-two.md`、`thinking-note/concepts/judgment-bias/prospect-theory.md`、`thinking-note/concepts/judgment-bias/two-systems.md`、`thinking-note/guide/01-what-this-field-asks.md` 等 6 處 |
+| `thinking-in-programming-paradigms-and-oop` | `design-patterns-note/concepts/paradigms/oop-vs-functional.md`、`design-patterns-note/concepts/paradigms/programming-paradigms.md`、`design-patterns-note/guide/02-schools-in-dialogue.md`、`design-patterns-note/guide/03-canon-guide.md` |
+| `thinking-in-systems` | `thinking-note/concepts/mental-models/system-traps-and-leverage.md`、`thinking-note/concepts/mental-models/systems-basics.md`、`thinking-note/guide/02-threads-and-schools.md`、`thinking-note/guide/03-canon-guide.md`、`thinking-note/guide/05-reading-path.md` |
+| `thirty-million-words` | `relationships-note/concepts/parenting/thirty-million-words.md` |
+| `through-the-language-glass` | `thinking-note/concepts/language-perception/colors-across-languages.md`、`thinking-note/concepts/language-perception/geographic-language.md`、`thinking-note/concepts/language-perception/grammar-and-perception.md`、`thinking-note/concepts/language-perception/language-shapes-thought.md`、`thinking-note/guide/02-threads-and-schools.md` 等 7 處 |
+| `time-management` | `tools-note/concepts/time-management/classic-time-management.md`、`tools-note/guide/03-canon-guide.md`、`tracy-note/concepts/productivity/time-management-basics.md` |
+| `time-smart` | `habits-note/concepts/productivity/value-time-over-money.md` |
+| `timeless-way-of-building` | `design-patterns-note/concepts/principles/timeless-way-and-pattern-language.md` |
+| `tiny-habits` | `habits-note/concepts/habit-loop/behavior-model.md`、`habits-note/concepts/habit-loop/make-it-tiny.md`、`habits-note/guide/01-what-this-field-asks.md`、`tools-note/concepts/habits/tiny-habits-behavior-design.md`、`tools-note/guide/01-what-this-field-asks.md` 等 9 處 |
+| `to-have-or-to-be` | `fromm-note/concepts/love-being/to-have-or-to-be.md`、`fromm-note/guide/02-threads.md`、`philosophy-note/concepts/ethics-justice/having-vs-being.md`、`philosophy-note/guide/02-schools-in-dialogue.md`、`philosophy-note/guide/03-canon-guide.md` 等 6 處 |
+| `to-sell-is-human` | `business-strategy-note/concepts/sales/attunement-buoyancy-clarity.md`、`business-strategy-note/concepts/sales/everyone-is-in-sales.md` |
 
 ## 重跑
 
