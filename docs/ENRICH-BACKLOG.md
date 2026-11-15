@@ -46,13 +46,13 @@
 - Statistical Rethinking 摘要把 pooling 譯作「匯集」，頁名與內文跟著用，不用「合併」。
 - ISLP 沒說提升法降偏差；ISLP 說樹「非常不穩健」、DSB 說樹對常見資料問題穩健，頁內並陳。
 - 兩本書的 IDF 公式不同（吳軍 `log(D/Dw)`、DSB `1 + log`），刪不刪停用詞立場也相反，頁內並陳。
-- **待查**：`wujun-beauty-of-math` ch11 摘要有一句「該詞分散在越多文獻中，TF-IDF 也越大」與 IDF 定義矛盾，疑為摘要轉寫錯，頁內未採用，書站那句該回原書核對。
+- **待查**：`wujun-beauty-of-math` ch11 摘要有一句「該詞分散在越多文獻中，TF-IDF 也越大」與 IDF 定義矛盾，疑為摘要轉寫錯，頁內未採用，書站那句該回原書核對；本機沒有這本的原書檔，待取得後再查。
 - 數學之美 ch6 把 Jensen–Shannon 寫成兩個方向 KL 取平均，與標準定義不同；頁內照書、不放公式。
 
 **第三輪 6 頁**（同日，補非大部頭 spine 的第二頁）：absolute-vs-relative-risk（統計的藝術 ch1）、data-forensics-and-cheating（Freakonomics ch1）、forecast-calibration（精準預測 ch4）、explore-exploit（決斷的演算 ch3 目錄）、graphical-integrity（Tufte 第一部 ch2–3）、narrative-structure-for-data（Storytelling with Data 第 7 課）。舊頁 `from-rules-to-statistics` 的原始 `$…$` 一併改成行內 code。
 
 - 用詞照書：Tufte 摘要寫「謊言因子」、統計的藝術寫「預期次數」、決斷的演算寫「後悔（regret）」。
-- **待查（書站摘要自相矛盾）**：`signal-and-the-noise` ch4 開頭說預測精度 25 年提升三倍、結尾說 350%；同章把 5 的 5 次方寫成 3,215（應為 3,125）。頁內都未採用。
+- **已核對原書（2026-11-15）**：`signal-and-the-noise` ch4 的「三倍」與「350%」兩種說法都是 Silver 原文（颶風登陸位置誤差 350 英里縮到 100 英里），書站照實；「3,215」是原書誤植，書站已加註應為 3,125（`87e0a51`）。
 
 **本站現況**：41 頁、19 本 spine，已不在 DEEPEN-TARGETS。還沒有導覽；站已不再長，時機到了可以跑 `/note-guide`。
 
