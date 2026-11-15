@@ -17,7 +17,7 @@
 
 ## 進行中
 
-### 2026-11-15 data-science-note 兩輪深化（Fable 選題；起草交 Opus 子代理）— **已交付 28 頁，概念頁 7 → 35**
+### 2026-11-15 data-science-note 兩輪深化（Fable 選題；起草交 Opus 子代理）— **已交付 34 頁，概念頁 7 → 41**
 
 **起因**：WANTED 歸零後 39 本新進書未判層。判層 12 spine／7 tool／20 support（`apply-tiers.py`），tier-audit 六類全 0。
 
@@ -49,9 +49,12 @@
 - **待查**：`wujun-beauty-of-math` ch11 摘要有一句「該詞分散在越多文獻中，TF-IDF 也越大」與 IDF 定義矛盾，疑為摘要轉寫錯，頁內未採用，書站那句該回原書核對。
 - 數學之美 ch6 把 Jensen–Shannon 寫成兩個方向 KL 取平均，與標準定義不同；頁內照書、不放公式。
 
-**已知遺留**：notes-core 不渲染數學式，舊頁 `from-rules-to-statistics` 仍有原始 `$…$`。
+**第三輪 6 頁**（同日，補非大部頭 spine 的第二頁）：absolute-vs-relative-risk（統計的藝術 ch1）、data-forensics-and-cheating（Freakonomics ch1）、forecast-calibration（精準預測 ch4）、explore-exploit（決斷的演算 ch3 目錄）、graphical-integrity（Tufte 第一部 ch2–3）、narrative-structure-for-data（Storytelling with Data 第 7 課）。舊頁 `from-rules-to-statistics` 的原始 `$…$` 一併改成行內 code。
 
-**留給下一輪的候選（未開單）**：統計的藝術 ch1 絕對 vs 相對風險；Algorithms to Live By ch3 探索與善用；Tufte ch1 圖表誠信與 lie factor；Storytelling with Data 第 7 課敘事結構；精準預測 ch4 氣象預報的校準；Freakonomics ch1 用資料抓作弊。
+- 用詞照書：Tufte 摘要寫「謊言因子」、統計的藝術寫「預期次數」、決斷的演算寫「後悔（regret）」。
+- **待查（書站摘要自相矛盾）**：`signal-and-the-noise` ch4 開頭說預測精度 25 年提升三倍、結尾說 350%；同章把 5 的 5 次方寫成 3,215（應為 3,125）。頁內都未採用。
+
+**本站現況**：41 頁、19 本 spine，已不在 DEEPEN-TARGETS。還沒有導覽；站已不再長，時機到了可以跑 `/note-guide`。
 
 ### 2026-11-13 第四鏟（Fable 開單；起草交 Opus 子代理）— Andrew 點名第三鏟留著的四個候選 → **開 8 頁**
 
