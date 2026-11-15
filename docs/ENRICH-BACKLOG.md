@@ -17,6 +17,42 @@
 
 ## 進行中
 
+### 2026-11-15 data-science-note 兩輪深化（Fable 選題；起草交 Opus 子代理）— **已交付 28 頁，概念頁 7 → 35**
+
+**起因**：WANTED 歸零後 39 本新進書未判層。判層 12 spine／7 tool／20 support（`apply-tiers.py`），tier-audit 六類全 0。
+
+**第一輪 13 頁**（填缺口，每本新 spine 至少一頁）：sampling-and-variation、p-values-and-replication-crisis、ladder-of-causation、dags-and-bad-controls、randomized-experiments、natural-experiments-toolkit、bias-variance-and-cross-validation、ml-system-lifecycle、declutter-and-focus、expected-value-framework、measuring-intangibles、algorithmic-bias-and-fairness、decision-hygiene。
+
+**第二輪 15 頁**（roadmap 欠頁 3＋DEEPEN-TARGETS 上的大部頭 12）：
+
+- roadmap 欠頁：linear-thinking-nonlinear-world、data-driven-pitfalls（HBR）、regression-to-the-mean（統計的藝術 ch5＋因果革命 ch2＋雜訊 ch14）。
+- 數學之美：information-entropy（ch6、ch20）、text-as-vectors-tf-idf（ch11、ch14＋DSB ch10）。
+- ISLP：trees-and-ensembles（ch8＋DSB ch3）、multiple-testing-and-fdr（ch13）、high-dimensions-and-pca（6.3、6.4、12.2）。
+- Data Science for Business：ranking-roc-and-lift（ch8）、data-mining-process（ch2）。
+- Designing ML Systems：training-data-and-leakage（ch4、ch5）。
+- Mastering 'Metrics：regression-and-omitted-variable-bias（ch2）。
+- 因果革命：simpsons-paradox-and-colliders（ch6）、mediation-direct-and-indirect-effects（ch9）。
+- Statistical Rethinking：multilevel-models-and-partial-pooling（ch13）。
+
+**裁決**
+
+- 原訂「脊迴歸與 lasso」不開：bias-variance-and-cross-validation 已有一節，改開 high-dimensions-and-pca。
+- information-entropy 留在本站寫（數學之美是本站 spine，ch6 沒被用過）；《信息傳》仍歸 wujun-note。
+- roadmap 拿掉 5 個節點，書都判給姊妹站：factfulness-ten-instincts（science）、calibration-and-brier-score（thinking）、decisions-as-bets（leadership）、fat-tails-and-the-law-of-large-numbers（taleb）、good-charts-matrix（problem-solving）。
+
+**起草代理回報、照原文處理的規格出入**
+
+- 因果革命 ch6 是四個悖論（多一個洛德），不是三個。
+- Statistical Rethinking 摘要把 pooling 譯作「匯集」，頁名與內文跟著用，不用「合併」。
+- ISLP 沒說提升法降偏差；ISLP 說樹「非常不穩健」、DSB 說樹對常見資料問題穩健，頁內並陳。
+- 兩本書的 IDF 公式不同（吳軍 `log(D/Dw)`、DSB `1 + log`），刪不刪停用詞立場也相反，頁內並陳。
+- **待查**：`wujun-beauty-of-math` ch11 摘要有一句「該詞分散在越多文獻中，TF-IDF 也越大」與 IDF 定義矛盾，疑為摘要轉寫錯，頁內未採用，書站那句該回原書核對。
+- 數學之美 ch6 把 Jensen–Shannon 寫成兩個方向 KL 取平均，與標準定義不同；頁內照書、不放公式。
+
+**已知遺留**：notes-core 不渲染數學式，舊頁 `from-rules-to-statistics` 仍有原始 `$…$`。
+
+**留給下一輪的候選（未開單）**：統計的藝術 ch1 絕對 vs 相對風險；Algorithms to Live By ch3 探索與善用；Tufte ch1 圖表誠信與 lie factor；Storytelling with Data 第 7 課敘事結構；精準預測 ch4 氣象預報的校準；Freakonomics ch1 用資料抓作弊。
+
 ### 2026-11-13 第四鏟（Fable 開單；起草交 Opus 子代理）— Andrew 點名第三鏟留著的四個候選 → **開 8 頁**
 
 **來源**：第三鏟戰報末尾「留著的候選」裡的四項：fengtang 魯仲連與奇貨可居、mere-christianity 03/05–03/06、cost-of-discipleship 第三部、休謨設計論證。兩個開單代理逐章讀完並回源比對（fengtang 263 筆、信仰線 363 筆全中）；主會話另抽 21 筆回源 grep 全中。
