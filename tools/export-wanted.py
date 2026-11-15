@@ -375,16 +375,12 @@ from pathlib import Path
 #      已建站，是否以它結案待 Andrew 裁決（第二輪問）。
 # 2026-11-15（`/note-wanted`；GitHub 現況 2010 repos）：Andrew 裁決 Géron 以 PyTorch 版結案，
 #   data-science-note 那筆改成 PyTorch 版書名＋`owned`＋slug；wanted 10 → 9，TOP20 不變。
+# 2026-11-15（同日第二輪，`/book-import-to-queue` 建站後）：Andrew 一口氣建了 8 個書站
+#   （ESL、Burkov、McElreath、Mastering 'Metrics、Bernoulli's Fallacy、Model Thinker、Ace、
+#   Becoming a Data Head），西內啓取不到 → `unavailable`，由 Becoming a Data Head 接同一個位置。
+#   wanted 9 → 1，全星系只剩 Competing on Analytics。
 TOP20 = [
-    ("the-elements-of-statistical-learning", "ISLP 2026-11-14 剛建站，ESL 是同一組作者（Hastie、Tibshirani）的數學完整版；線上免費，可先做站"),
-    ("the-hundred-page-machine-learning-book", "ML 基礎分類只剩它與 ESL；一百頁，最薄、最快消化"),
-    ("statistical-rethinking", "機率與貝氏分類剛建了 Blitzstein、Kurt 兩本入門，缺一本貝氏建模的進階課"),
-    ("mastering-metrics", "Causal Inference: The Mixtape 剛建站，這本是同一套五招（隨機、迴歸、IV、RDD、DiD）的平易版"),
-    ("bernoulli-s-fallacy", "Signal and the Noise 第 8 章那場頻率派 vs 貝氏論戰的整本版；Taleb 書櫃已 7 本，同一條機率哲學線"),
-    ("competing-on-analytics", "本站概念頁 consumer-of-analytics 已點名 Davenport（1 處，另見 schools.ts），portal 上 Davenport 0 本"),
-    ("the-model-thinker", "分析與決策分類的多模型思維；portal 上 Scott E. Page 0 本"),
-    ("ace-the-data-science-interview", "portal 已有 14 個名稱含 interview 的書 repo（system design、behavioral、coding、PM、ML system design），獨缺資料科學版"),
-    ("cjk::統計學，最強的商業武器", "日系商業統計入門，繁中在版；統計思維分類收尾"),
+    ("competing-on-analytics", "全星系最後一本 wanted：data-science 站 owned＋wanted 只差它——**收了就歸零**；概念頁 consumer-of-analytics 已點名 Davenport，portal 上 Davenport 0 本"),
 ]
 
 NOTES_ROOT = Path(os.environ.get("NOTES_ROOT") or Path(__file__).resolve().parents[2])
